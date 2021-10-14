@@ -67,12 +67,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-<<<<<<< Updated upstream
     <Page Include="CustomerWorkspace\CustomerTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-=======
     <Compile Include="BILL.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -112,7 +110,6 @@
     <Compile Include="SPECIFICATION_TYPE.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
->>>>>>> Stashed changes
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -121,14 +118,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-<<<<<<< Updated upstream
     <Compile Include="CustomerWorkspace\CustomerTabView.xaml.cs">
       <DependentUpon>CustomerTabView.xaml</DependentUpon>
     </Compile>
-=======
     <Compile Include="Helper\BaseViewModel.cs" />
     <Compile Include="Helper\RelayCommand.cs" />
->>>>>>> Stashed changes
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
