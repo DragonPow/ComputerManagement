@@ -3,10 +3,88 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ComputerProject.Category"
+             xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="1024" d:DesignWidth="1485"
+             Background="{StaticResource Background}">
+    <DockPanel>
+        <TextBlock
+            DockPanel.Dock="Top"
+            FontSize="35"
+            FontWeight="Bold"
+            FontFamily="{StaticResource Mulish}"
+            Foreground="{StaticResource Title}"
+            Margin="40, 40,0, 40"
+            >
+            Danh mục
+        </TextBlock>
+        <Grid
+            Background="White"
+            Margin="10, 10, 10, 10">
+            <Grid.RowDefinitions
+                >
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="66"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <local:FeatureBar x:Name="Featurebar"></local:FeatureBar>
+            <local:TableTitle
+                Grid.Row="1"
+                Margin="10"
+                />
+            <ListView
+                x:Name="Listcategory"
+                Grid.Row="2"
+                >
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListViewItem >
+                    <local:TableRow   ></local:TableRow>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:TableRow  ></local:TableRow>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:TableRow  ></local:TableRow>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:TableRow ></local:TableRow>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:TableRow></local:TableRow>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:TableRow></local:TableRow>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:TableRow ></local:TableRow>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:TableRow></local:TableRow>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:TableRow></local:TableRow>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:TableRow></local:TableRow>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:TableRow></local:TableRow>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:TableRow></local:TableRow>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:TableRow></local:TableRow>
+                </ListViewItem>
+
+            </ListView>
+        </Grid>
+    </DockPanel>
+
+    
 </UserControl>
