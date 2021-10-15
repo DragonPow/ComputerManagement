@@ -4,28 +4,38 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
-             mc:Ignorable="d" Padding="30" Background="White"
+             mc:Ignorable="d" Padding="30" Background="{StaticResource Background}"
              d:DesignHeight="1000" d:DesignWidth="1300">
     <DockPanel>
         <TextBlock 
             Height="50"
             FontSize="35"
             DockPanel.Dock="Top" 
-            Foreground="#FF32378C" Margin="10,0,10,15">
+            FontFamily="{StaticResource Mulish}"
+            FontWeight="Bold"
+            Foreground="{StaticResource Title}" Margin="10,0,10,15">
             Khách hàng
         </TextBlock>
         <Grid
-            x:Name="gridMain">
+            Background="White"
+            >
             <Grid.RowDefinitions>
-                <RowDefinition Height="102"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
+            <local:CustomerSearchView
+                Grid.Row="0"
+                Background="White"
+                Margin="10,0"
+                />
             <local:Test
                 Grid.Row="1"
-                ></local:Test>
+                Margin="10,0"
+                />
             <ListView
-                x:Name="listMain" Grid.Row="2">
+                Grid.Row="2"
+                Margin="10,0">
                 <ListViewItem>
                     <local:CustomerAllViewRow/>
                 </ListViewItem>
