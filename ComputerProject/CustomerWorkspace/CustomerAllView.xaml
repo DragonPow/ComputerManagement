@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="ComputerProject.CustomerWorkspace.CustomerAllView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
+             mc:Ignorable="d" Padding="30" Background="White"
+             d:DesignHeight="1000" d:DesignWidth="1300">
+    <DockPanel>
+        <TextBlock 
+            Height="50"
+            FontSize="35"
+            DockPanel.Dock="Top" 
+            Foreground="#FF32378C" Margin="10,0,10,15">
+            Khách hàng
+        </TextBlock>
+        <Grid
+            x:Name="gridMain">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="102"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <local:Test
+                Grid.Row="1"
+                ></local:Test>
+            <ListView
+                x:Name="listMain" Grid.Row="2">
+                <ListViewItem>
+                    <local:CustomerAllViewRow/>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:CustomerAllViewRow/>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:CustomerAllViewRow/>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:CustomerAllViewRow/>
+                </ListViewItem>
+                <ListViewItem>
+                    <local:CustomerAllViewRow/>
+                </ListViewItem>
+                
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </Grid>
+    </DockPanel>
+</UserControl>
