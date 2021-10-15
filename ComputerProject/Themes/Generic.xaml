@@ -1,0 +1,72 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ComputerProject.CustomControl">
+
+
+    <Style TargetType="{x:Type local:ButtonIcon}">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ButtonIcon}"
+                >
+                    <Border                         
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="5"
+                            HorizontalAlignment="Left"
+                            >
+                        
+                        <Viewbox 
+                             >
+                            <StackPanel Orientation="{TemplateBinding Orientation}" 
+                                        Height="{TemplateBinding Height}"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Background="{TemplateBinding Background}">
+                                <Viewbox           
+                                         HorizontalAlignment="Left" 
+                                         VerticalAlignment="Center"   
+                                         Width="26"
+                                         Visibility="{TemplateBinding IconVisibility}" 
+                                        >
+
+                                    <Path Grid.Column="0"
+                                              Fill="White" 
+                                               Margin="2"
+                                              Data="{TemplateBinding PathData}"/>
+
+                                </Viewbox>
+                              
+                                <ContentControl 
+                                                Grid.Column="1"
+                                                Content="{TemplateBinding Text}" 
+                                                Visibility="{TemplateBinding TextVisibility}"
+                                                HorizontalAlignment="Left" 
+                                                Foreground="White"
+                                                VerticalAlignment="Center" 
+                                                FontSize="20"
+                                              
+                                                Margin="5"/>
+                            </StackPanel>
+                        </Viewbox>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Opacity" Value="0.5"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="BorderBrush" Value="Transparent"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

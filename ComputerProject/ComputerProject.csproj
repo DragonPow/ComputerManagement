@@ -120,6 +120,7 @@
     <Compile Include="CategoryWorkspace\Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl\ButtonIcon.cs" />
     <Compile Include="CUSTOMER.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -189,6 +190,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="WindowTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
