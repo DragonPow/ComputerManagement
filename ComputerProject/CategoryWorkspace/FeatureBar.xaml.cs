@@ -13,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject.Category
+namespace ComputerProject.CategoryWorkspace
 {
     /// <summary>
-    /// Interaction logic for Category.xaml
+    /// Interaction logic for FeatureBar.xaml
     /// </summary>
-    public partial class Category : UserControl
+    public partial class FeatureBar : UserControl
     {
-        public Category()
+        public FeatureBar()
         {
             InitializeComponent();
-        }
-
-       
+        }  
     }
 }

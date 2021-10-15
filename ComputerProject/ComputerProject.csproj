@@ -95,6 +95,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CategoryWorkspace\FeatureBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CategoryWorkspace\Search.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -111,8 +115,17 @@
     <Compile Include="CategoryWorkspace\Category.xaml.cs">
       <DependentUpon>Category.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CategoryWorkspace\FeatureBar.xaml.cs">
+      <DependentUpon>FeatureBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CategoryWorkspace\Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\TableRow.xaml.cs">
+      <DependentUpon>TableRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\TableTitle.xaml.cs">
+      <DependentUpon>TableTitle.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControl\ButtonIcon.cs" />
     <Compile Include="CUSTOMER.cs">
@@ -158,6 +171,14 @@
     <Compile Include="WindowTest.xaml.cs">
       <DependentUpon>WindowTest.xaml</DependentUpon>
     </Compile>
+    <Page Include="CategoryWorkspace\TableRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\TableTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomerWorkspace\CustomerAllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

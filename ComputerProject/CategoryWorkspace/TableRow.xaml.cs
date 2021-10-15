@@ -13,18 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject.Category
+namespace ComputerProject.CategoryWorkspace
 {
     /// <summary>
-    /// Interaction logic for Category.xaml
+    /// Interaction logic for TableRow.xaml
     /// </summary>
-    public partial class Category : UserControl
+    public partial class TableRow : UserControl
     {
-        public Category()
+        public TableRow()
         {
             InitializeComponent();
+            InitData();
         }
-
-       
+        public void InitData()
+        {
+            CategoryLv1.Text = "Lap top";
+            CategoryLv2.Text = "Macbook,  acer, HP, MSI, ";
+        }
     }
 }
