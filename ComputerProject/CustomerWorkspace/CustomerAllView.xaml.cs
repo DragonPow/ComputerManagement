@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ComputerProject.CustomerWorkspace
 {
     /// <summary>
-    /// Interaction logic for CustomerTabView.xaml
+    /// Interaction logic for CustomerAllView.xaml
     /// </summary>
-    public partial class CustomerTabView : UserControl
+    public partial class CustomerAllView : UserControl
     {
-        public CustomerTabView()
+        public CustomerAllView()
         {
             InitializeComponent();
         }
