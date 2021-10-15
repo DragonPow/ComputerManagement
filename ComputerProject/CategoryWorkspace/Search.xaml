@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="ComputerProject.Category.Search"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerProject.Category"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="500">
+   <Grid>
+        <Border
+            Name="mask"
+            BorderBrush="{StaticResource Background}"
+            BorderThickness="1"
+            CornerRadius="8"
+            Width="500"
+            Height="39"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Padding="2"
+            Background= "{StaticResource Background}"
+        />
+        <StackPanel
+        Orientation="Horizontal" 
+        HorizontalAlignment="Center"
+        Width="500"
+        Height="40"
+        Background= "{StaticResource Background}"    
+        >
+            <StackPanel.OpacityMask>
+                <VisualBrush Visual="{Binding ElementName = mask}"/>
+            </StackPanel.OpacityMask>
+            <TextBlock
+             Background= "{StaticResource Background}"
+             Width="40"
+             Height="24"  
+            ><InlineUIContainer>
+                <Image 
+                    Source="/Resource/Icon/search.png"
+                    Width="24"
+                    Height="24"  
+                    Margin="10, 0, 0, 0"  
+                />
+            </InlineUIContainer></TextBlock>
+
+                <TextBlock
+            Background= "{StaticResource Background}"
+            TextAlignment="Left"
+            Foreground="{StaticResource Icon}"
+            FontFamily="{StaticResource Mulish}"     
+            Width="460"
+            VerticalAlignment="Center"
+            FontSize="14"
+            >
+            Search
+                </TextBlock>
+            </StackPanel>
+    </Grid>
+</UserControl>
