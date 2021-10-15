@@ -52,20 +52,19 @@
             Grid.Column="5" x:Name="btnEdit"
             Style="{StaticResource MaterialDesignIconButton}"
             ToolTip="Chỉnh sửa thông tin" >
-            <materialDesign:PackIcon
-                Kind="SquareEditOutline"
-                
+            <Image
                 Height="{StaticResource IconSize}"
-                Width="{StaticResource IconSize}" Foreground="#FF01B1FF" />    
+                Width="{StaticResource IconSize}" 
+                Source="/ComputerProject;component/Resource/Icon/akar-icons_edit.png"/>
         </Button>
         <Button 
             Grid.Column="6" x:Name="btnDelete"
             Style="{StaticResource MaterialDesignIconButton}"
             ToolTip="Xóa khách hàng">
-            <materialDesign:PackIcon
-                Kind="DeleteOutline"
+            <Image
                 Height="{StaticResource IconSize}"
-                Width="{StaticResource IconSize}" Foreground="#FFFF2500" />
+                Width="{StaticResource IconSize}" 
+                Source="/ComputerProject;component/Resource/Icon/trash-2.png"/>
         </Button>
     </Grid>
 </UserControl>

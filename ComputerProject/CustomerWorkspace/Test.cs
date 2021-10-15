@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace ComputerProject.CustomerWorkspace
 {
@@ -19,6 +20,8 @@ namespace ComputerProject.CustomerWorkspace
             cellAddress.Text = "Địa chỉ";
             cellBirthday.Text = "Ngày sinh";
             cellPoint.Text = "Điểm thưởng";
+
+            this.SetValue(System.Windows.Controls.UserControl.BackgroundProperty, new SolidColorBrush(Color.FromArgb(255, 247, 247, 254)));
         }
     }
 }
