@@ -16,7 +16,7 @@
         <local:Search
             Grid.Column="0"
             HorizontalAlignment="Left"
-            Margin="20, 0, 0, 0">
+            Margin="20, 0, 0, 0" >
         </local:Search>
         <local1:ButtonIcon
             Grid.Column="1"

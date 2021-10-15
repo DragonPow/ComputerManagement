@@ -17,7 +17,8 @@
             <Setter Property="Foreground" Value="Black"></Setter>
         </Style>
     </UserControl.Resources>
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical"
+                Height="67">
         <Grid
             Height="60">
         <Grid.ColumnDefinitions >
