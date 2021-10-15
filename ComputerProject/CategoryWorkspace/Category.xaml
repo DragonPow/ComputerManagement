@@ -28,7 +28,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <local:FeatureBar x:Name="Featurebar"></local:FeatureBar>
+            <local:FeatureBar x:Name="Feature" ></local:FeatureBar>
             <local:TableTitle
                 Grid.Row="1"
                 Margin="10"
