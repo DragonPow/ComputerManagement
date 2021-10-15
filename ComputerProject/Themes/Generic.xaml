@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:ComputerProject.CustomControl">
 
-
     <Style TargetType="{x:Type local:ButtonIcon}">
         <Setter Property="Orientation" Value="Horizontal"/>
         <Setter Property="Height" Value="24" />
@@ -38,7 +37,7 @@
 
                                     <Path Grid.Column="0"
                                               Fill="White" 
-                                               Margin="2"
+                                               Margin="10, 0, 0, 0"
                                               Data="{TemplateBinding PathData}"/>
 
                                 </Viewbox>
@@ -47,12 +46,12 @@
                                                 Grid.Column="1"
                                                 Content="{TemplateBinding Text}" 
                                                 Visibility="{TemplateBinding TextVisibility}"
-                                                HorizontalAlignment="Left" 
+                                                HorizontalAlignment="Center" 
                                                 Foreground="White"
-                                                VerticalAlignment="Center" 
-                                                FontSize="20"
-                                              
-                                                Margin="5"/>
+                                                VerticalAlignment="Center"                              
+                                                FontSize="22"
+                                               
+                                                Margin="10,0,15,0"/>
                             </StackPanel>
                         </Viewbox>
                     </Border>

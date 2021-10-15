@@ -13,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject.Category
+namespace ComputerProject.CategoryWorkspace
 {
     /// <summary>
-    /// Interaction logic for Category.xaml
+    /// Interaction logic for TableTitle.xaml
     /// </summary>
-    public partial class Category : UserControl
+    public partial class TableTitle : UserControl
     {
-        public Category()
+        public TableTitle()
         {
             InitializeComponent();
         }
-
-      
     }
 }

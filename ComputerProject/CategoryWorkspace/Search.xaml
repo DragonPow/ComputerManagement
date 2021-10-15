@@ -35,12 +35,15 @@
              Width="40"
              Height="24"  
             ><InlineUIContainer>
-                <Image 
-                    Source="/ComputerProject;component/Resource/Icon/search.png"
-                    Width="24"
-                    Height="24"  
-                    Margin="10, 0, 0, 0"  
+                <Viewbox>
+                     <materialDesign:PackIcon
+                Kind="Magnify" 
+                Foreground="{StaticResource MainColor}"
+                Width="24"
+                Height="24"
+                Margin="10, 0, 0, 0"  
                 />
+                </Viewbox>
             </InlineUIContainer></TextBlock>
 
                 <TextBlock
