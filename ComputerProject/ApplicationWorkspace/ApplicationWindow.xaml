@@ -1,0 +1,152 @@
+﻿<Window x:Class="ComputerProject.ApplicationWorkspace.ApplicationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ComputerProject.ApplicationWorkspace"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Title="ApplicationWindow" Height="1024" Width="1485" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="Manual">
+    <Window.Resources>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Style TargetType="ListViewItem">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True" >
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Background" Value="{StaticResource MainColor}"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="False" >
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Foreground" Value="{StaticResource Icon}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <StackPanel Orientation="Horizontal" Background="#FFDEDEDE">
+        <Grid x:Name="GridMenu" Width="70" Background="White" HorizontalAlignment="Left" >
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFAEAEAE"/>
+            </Grid.Effect>
+            <StackPanel>
+                <Grid Height="120" Background="White" RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <Button x:Name="ButtonOpenMenu" Height="60" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5,20,5,5" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{StaticResource MainColor}" Click="ButtonOpenMenu_Click">
+                        <materialDesign:PackIcon Kind="Menu" Width="25" Height="25"/>
+                    </Button>
+                    <Button x:Name="ButtonCloseMenu" Visibility="Collapsed" Height="60" Width="60" Margin="5,20,5,5" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{StaticResource MainColor}" Click="ButtonCloseMenu_Click">
+                        <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
+                    </Button>
+                </Grid>
+                <ListView x:Name="ListViewMenu" Foreground="{StaticResource Icon}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView.Resources>
+                        <Style TargetType="ListViewItem">
+                            <Style.Resources>
+
+                            </Style.Resources>
+                        </Style>
+                    </ListView.Resources>
+
+                    <ListViewItem x:Name="ItemHome" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ViewDashboard" Height="24" Width="24" Margin="15,0" VerticalAlignment="Center" />
+                            <TextBlock Text="Tổng quan " FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="Medium" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem x:Name="ItemSale" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CashRegister" Height="24" Width="24" Margin="15,0" VerticalAlignment="Center" />
+                            <TextBlock Text="Bán hàng " FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="Medium" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemProd" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Devices" Height="24" Width="24" Margin="15,0" VerticalAlignment="Center" />
+                            <TextBlock Text="Sản phẩm " FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="Medium" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemCategory" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Ballot" Height="24" Width="24" Margin="15,0" VerticalAlignment="Center" />
+                            <TextBlock Text="Danh mục " FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="Medium" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemRepair" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ShieldCheck" Height="24" Width="24" Margin="15,0" VerticalAlignment="Center"  />
+                            <TextBlock Text="Bảo hành, sửa chữa " FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="Medium" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemBill" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="invoice" Height="24" Width="24" Margin="15,0" VerticalAlignment="Center" />
+                            <TextBlock Text="Hóa đơn " FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="Medium" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemReport" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Equalizer" Height="24" Width="24" Margin="15,0" VerticalAlignment="Center" />
+                            <TextBlock Text="Thống kê " FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="Medium" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemCustomer" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AccountSupervisor" Height="24" Width="24" Margin="15,0" VerticalAlignment="Center" />
+                            <TextBlock Text="Khách hàng " FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="Medium" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemSetting" Height="60" VerticalAlignment="Bottom" Foreground="{StaticResource Icon}" Margin="0,50,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Settings" Height="24" Width="24" Margin="15,0" VerticalAlignment="Center" />
+                            <TextBlock Text="Thiết lập " FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="Medium" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True" >
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Background" Value="{StaticResource MainColor}"/>
+                                </Trigger>
+
+                                <Trigger Property="IsSelected" Value="False" >
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Foreground" Value="{StaticResource Icon}" />
+                                </Trigger>
+                            </Style.Triggers>
+
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="GridMain" HorizontalAlignment="Left" VerticalAlignment="Top" />
+    </StackPanel>
+</Window>
