@@ -23,6 +23,18 @@ namespace ComputerProject.Category
         public Search()
         {
             InitializeComponent();
+          
         }
+
+        public static readonly DependencyProperty TexthintProperty =
+           DependencyProperty.Register(nameof(Texthint), typeof(string),
+                           typeof(Search), new PropertyMetadata("Tìm kiếm"));
+
+        public string Texthint
+        {
+            get { return (string)GetValue(TexthintProperty); }
+            set { SetValue(TexthintProperty, value); }
+        }
+
     }
 }

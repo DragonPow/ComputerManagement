@@ -46,17 +46,18 @@
                 </Viewbox>
             </InlineUIContainer></TextBlock>
 
-                <TextBlock
+            <TextBlock
+            x:Name="Textblock"
             Background= "{StaticResource Background}"
             TextAlignment="Left"
             Foreground="{StaticResource Icon}"
             FontFamily="{StaticResource Mulish}"     
             Width="460"
             VerticalAlignment="Center"
-            FontSize="14"
+            FontSize="14" 
             >
-            Search
-                </TextBlock>
+                Tìm kiếm
+            </TextBlock>
             </StackPanel>
     </Grid>
 </UserControl>

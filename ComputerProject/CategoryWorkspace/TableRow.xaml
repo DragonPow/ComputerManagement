@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
+             xmlns:local1="clr-namespace:ComputerProject.CustomControl"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="67" d:DesignWidth="1310"
@@ -80,6 +81,7 @@
                 Height="24"
                 />
         </Button>
+           
     </Grid>
         <Separator Background="{StaticResource Divition}"/>
     </StackPanel>
