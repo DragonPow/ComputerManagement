@@ -16,20 +16,13 @@ using System.Windows.Shapes;
 namespace ComputerProject.CategoryWorkspace
 {
     /// <summary>
-    /// Interaction logic for TitleDetailCategory.xaml
+    /// Interaction logic for CategoryAdd.xaml
     /// </summary>
-    public partial class TitleDetailCategory : UserControl
+    public partial class CategoryAdd : UserControl
     {
-        public TitleDetailCategory()
+        public CategoryAdd()
         {
             InitializeComponent();
-        }
-
-        public static DependencyProperty TextProperties = DependencyProperty.Register(nameof(Text), typeof(TextBlock), typeof(TitleDetailCategory), new PropertyMetadata("Chi tiết danh mục"));
-        public string Text
-        {
-            get { return (string)GetValue(TextProperties); }
-            set { SetValue(TextProperties, value); }
         }
     }
 }

@@ -95,9 +95,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="ApplicationWorkspace\ApplicationWindow.xaml">
-		<SubType>Designer</SubType>
-		<Generator>MSBuild:Compile</Generator>
-	</Page>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CategoryWorkspace\AllViewDetailCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -105,6 +105,14 @@
     <Page Include="CategoryWorkspace\Category.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CategoryWorkspace\CategoryAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\CategoryEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CategoryWorkspace\Categorylv2Row.xaml">
       <SubType>Designer</SubType>
@@ -143,6 +151,12 @@
     </Compile>
     <Compile Include="CategoryWorkspace\Category.xaml.cs">
       <DependentUpon>Category.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\CategoryAdd.xaml.cs">
+      <DependentUpon>CategoryAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\CategoryEdit.xaml.cs">
+      <DependentUpon>CategoryEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="CategoryWorkspace\Categorylv2Row.xaml.cs">
       <DependentUpon>Categorylv2Row.xaml</DependentUpon>
@@ -363,6 +377,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resource\Icon\trash_gray.png" />
     <Resource Include="Resource\Image\logo.png" />
     <Resource Include="Resource\Icon\akar-icons_edit.png" />
     <Resource Include="Resource\Icon\trash-2.png" />

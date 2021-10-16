@@ -37,7 +37,7 @@
                 Grid.Row="2"
                 Margin="10,0">
                 <ListViewItem>
-                    <local:CustomerAllViewRow/>
+                    <local:CustomerAllViewRow Loaded="CustomerAllViewRow_Loaded"/>
                 </ListViewItem>
                 <ListViewItem>
                     <local:CustomerAllViewRow/>
