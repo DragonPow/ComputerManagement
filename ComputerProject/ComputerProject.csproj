@@ -313,6 +313,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resource\Image\logo.png" />
     <Resource Include="Resource\Icon\akar-icons_edit.png" />
     <Resource Include="Resource\Icon\trash-2.png" />
     <Resource Include="Resource\Image\button_add_new_with_text.png" />
