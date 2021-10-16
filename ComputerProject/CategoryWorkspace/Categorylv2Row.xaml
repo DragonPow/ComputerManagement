@@ -22,18 +22,14 @@
             Foreground="#11142D"
             VerticalAlignment="Top">
         </TextBlock>
-        <Button
-            Height="60"
-            Background="Transparent"
-            Grid.Column="1"
-            BorderThickness ="0">
-            <materialDesign:PackIcon
-            Kind="DeleteOutline"
-            Height="20"
-            Width="20" 
-            Foreground="{StaticResource Warning}"
-            />    
-        
+        <Button 
+            Grid.Column="1" x:Name="btnDelete"
+            Style="{StaticResource MaterialDesignIconButton}"
+            ToolTip="Xóa thuộc tính">
+            <Image
+                Height="24"
+                Width="24" 
+                Source="/ComputerProject;component/Resource/Icon/trash-2.png"/>
         </Button>
     </Grid>
      

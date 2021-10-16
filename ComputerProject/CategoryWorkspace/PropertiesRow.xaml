@@ -41,22 +41,16 @@
             Style="{StaticResource TitleCell}">
          
         </TextBlock>
-        <Button
-            x:Name="BtnDelete"
-            ToolTip="Xóa danh mục"
-            Grid.Column="3"
-            Background="Transparent"     
-            BorderThickness="0"
-            HorizontalAlignment="Left"
-            >
-            <materialDesign:PackIcon
-                Kind="DeleteOutline" 
-                Foreground="{StaticResource Icon}"
-                Width="24"
+            <Button 
+            Grid.Column="3" x:Name="btnDelete"
+            Style="{StaticResource MaterialDesignIconButton}"
+            ToolTip="Xóa danh mục">
+                <Image
                 Height="24"
-                />
-        </Button>
-    </Grid>
+                Width="24" 
+                Source="/ComputerProject;component/Resource/Icon/trash_gray.png"/>
+            </Button>
+        </Grid>
     <Separator Background="{StaticResource Divition}" Margin="0, 25,0,0" />
     </StackPanel>
 </UserControl>

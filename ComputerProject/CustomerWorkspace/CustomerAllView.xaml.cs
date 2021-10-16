@@ -24,5 +24,7 @@ namespace ComputerProject.CustomerWorkspace
         {
             InitializeComponent();
         }
+
+        
     }
 }
