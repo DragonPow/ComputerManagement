@@ -95,6 +95,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="ApplicationWorkspace\ApplicationWindow.xaml">
+		<SubType>Designer</SubType>
+		<Generator>MSBuild:Compile</Generator>
+	</Page>
+    <Page Include="CategoryWorkspace\AllViewDetailCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,7 +106,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CategoryWorkspace\Categorylv2Row.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CategoryWorkspace\FeatureBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\PropertiesRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\PropertiesTitlexaml.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,11 +138,23 @@
     <Compile Include="CATEGORY.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CategoryWorkspace\AllViewDetailCategory.xaml.cs">
+      <DependentUpon>AllViewDetailCategory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CategoryWorkspace\Category.xaml.cs">
       <DependentUpon>Category.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CategoryWorkspace\Categorylv2Row.xaml.cs">
+      <DependentUpon>Categorylv2Row.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CategoryWorkspace\FeatureBar.xaml.cs">
       <DependentUpon>FeatureBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\PropertiesRow.xaml.cs">
+      <DependentUpon>PropertiesRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\PropertiesTitlexaml.xaml.cs">
+      <DependentUpon>PropertiesTitlexaml.xaml</DependentUpon>
     </Compile>
     <Compile Include="CategoryWorkspace\Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
@@ -137,7 +165,17 @@
     <Compile Include="CategoryWorkspace\TableTitle.xaml.cs">
       <DependentUpon>TableTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CategoryWorkspace\TitleCategoryLv2.xaml.cs">
+      <DependentUpon>TitleCategoryLv2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\TitleDetailCategory.xaml.cs">
+      <DependentUpon>TitleDetailCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\TittlePropertiesTable.xaml.cs">
+      <DependentUpon>TittlePropertiesTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\ButtonIcon.cs" />
+    <Compile Include="CustomControl\TextboxCustom.cs" />
     <Compile Include="CUSTOMER.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -192,6 +230,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CategoryWorkspace\TableTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\TitleCategoryLv2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\TitleDetailCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\TittlePropertiesTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
