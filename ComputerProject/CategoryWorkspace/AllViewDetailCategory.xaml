@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
+              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
+             xmlns:localsearch="clr-namespace:ComputerProject.Category"
              xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
              mc:Ignorable="d" 
              d:DesignHeight="888" d:DesignWidth="1330"
@@ -39,6 +40,7 @@
                 <RowDefinition Height="0.8*"></RowDefinition>
             </Grid.RowDefinitions>
             <localcustom:TextboxCustom
+                x:Name="NameCategory"
                 Texthint = "Lap top"
                 Title="Tên danh mục"
                 FontsizeTitle="19"
@@ -51,6 +53,7 @@
                 VerticalAlignment="Center" Loaded="TitleCategoryLv2_Loaded">
             </local:TitleCategoryLv2>
             <ListView
+                x:Name="ListCategoryLv2"
                 Grid.Row="2">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -94,6 +97,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"></RowDefinition>
                 <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="0.07*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
             </Grid.RowDefinitions>
 
@@ -101,16 +105,28 @@
                 >
                 
             </local:PropertiesTitlexaml>
+            <localsearch:Search
+                Grid.Row="1"
+                HorizontalAlignment="Left"
+                Margin="20, 0, 0, 0"
+                x:Name="Search"
+                >
+
+            </localsearch:Search>
+
+            <local:TittlePropertiesTable
+                    Grid.Row="2">
+            </local:TittlePropertiesTable>
+          
             <ListView
-                Grid.Row="2">
+                x:Name="ListProperties"
+                Grid.Row="3">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
-                <ListViewItem>
-                    <local:TittlePropertiesTable></local:TittlePropertiesTable>
-                </ListViewItem>
+               
                 <ListViewItem>
                     <local:PropertiesRow></local:PropertiesRow>
                 </ListViewItem>
@@ -152,12 +168,14 @@
                 </ListViewItem>
             </ListView>
         </Grid>
+       
         <StackPanel
             Orientation="Horizontal"
             Grid.Row="2"
             Grid.Column="1"
             HorizontalAlignment="Right">
             <Button
+                x:Name="BtnDelete"
                 Background="Transparent"
                 Width="110"
                 Height="48"
@@ -170,6 +188,7 @@
                Xóa
             </Button>
             <Button
+                x:Name="BtnEdit"
                  Width="179"
                 Height="48"
                 Margin="10"

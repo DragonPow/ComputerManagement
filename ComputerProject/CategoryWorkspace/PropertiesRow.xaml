@@ -14,7 +14,10 @@
             <Setter Property="Foreground" Value="Black"></Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <StackPanel
+        Height="67">
+    <Grid
+        VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="8*"></ColumnDefinition>
@@ -54,4 +57,6 @@
                 />
         </Button>
     </Grid>
+    <Separator Background="{StaticResource Divition}" Margin="0, 25,0,0" />
+    </StackPanel>
 </UserControl>
