@@ -315,11 +315,12 @@ public class CodeStringGenerator
     {
         return string.Format(
             CultureInfo.InvariantCulture,
-            "{0} {1}partial class {2}{3}",
+            "{0} {1}partial class {2}{3}{4}",
             Accessibility.ForType(entity),
             _code.SpaceAfter(_code.AbstractOption(entity)),
             _code.Escape(entity),
-            _code.StringBefore(" : ", _typeMapper.GetTypeName(entity.BaseType)));
+            _code.StringBefore(" : ", _typeMapper.GetTypeName(entity.BaseType)),
+            string.IsNullOrEmpty(_code.StringBefore(" : ", _typeMapper.GetTypeName(entity.BaseType))) ? _code.StringBefore(" : ", "Helper.BaseViewModel") : "");
     }
     
     public string EnumOpening(SimpleType enumType)

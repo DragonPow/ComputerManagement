@@ -12,7 +12,7 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class SPECIFICATION
+    public partial class SPECIFICATION : Helper.BaseViewModel
     {
         public int productId { get; set; }
         public int specificationTypeId { get; set; }
