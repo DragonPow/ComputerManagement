@@ -189,9 +189,13 @@
       <DependentUpon>TittlePropertiesTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControl\ButtonIcon.cs" />
+    <Compile Include="CustomControl\Search.cs" />
     <Compile Include="CustomControl\TextboxCustom.cs" />
     <Compile Include="CUSTOMER.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerWorkspace\CustomerAdd.xaml.cs">
+      <DependentUpon>CustomerAdd.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomerWorkspace\CustomerAllView.xaml.cs">
       <DependentUpon>CustomerAllView.xaml</DependentUpon>
@@ -256,6 +260,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CategoryWorkspace\TittlePropertiesTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerWorkspace\CustomerAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,52 +46,68 @@ namespace ComputerProject.CustomControl
     ///
     /// </summary>
     public class TextboxCustom : TextBox
-    {
+    {       
         static TextboxCustom()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TextboxCustom), new FrameworkPropertyMetadata(typeof(TextboxCustom)));
         }
 
-        public static readonly DependencyProperty TexthintProperty
-            = DependencyProperty.Register(nameof(Texthint), typeof(string), typeof(TextboxCustom), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty FontsizeProperty = DependencyProperty.Register(nameof(Fontsize), typeof(int), typeof(TextboxCustom), new PropertyMetadata(14));
+        public static readonly DependencyProperty TexthintProperty = DependencyProperty.Register(nameof(Texthint), typeof(string), typeof(TextboxCustom), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(nameof(Title), typeof(string), typeof(TextboxCustom), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty FontsizeTitleProperty = DependencyProperty.Register(nameof(FontsizeTitle), typeof(int), typeof(TextboxCustom), new PropertyMetadata(14));
+        public static readonly DependencyProperty VisibleTitleProperty = DependencyProperty.Register(nameof(VisibleTitle), typeof(bool), typeof(TextboxCustom), new PropertyMetadata(true));
+        public static readonly DependencyProperty PathIconProperty = DependencyProperty.Register(nameof(PathIcon), typeof(ImageSource), typeof(TextboxCustom), new PropertyMetadata());
+        public static readonly DependencyProperty MarginTextProperty = DependencyProperty.Register(nameof(MarginText), typeof(Thickness), typeof(TextboxCustom), new PropertyMetadata());
+
         public string Texthint
         {
             set { SetValue(TexthintProperty, value); }
             get { return (string)GetValue(TexthintProperty); }
         }
-
-        public static readonly DependencyProperty TitleProperty
-           = DependencyProperty.Register(nameof(Title), typeof(string), typeof(TextboxCustom), new PropertyMetadata(string.Empty));
         public string Title
         {
             set { SetValue(TitleProperty, value); }
             get { return (string)GetValue(TitleProperty); }
         }
 
-        public static readonly DependencyProperty FontsizeTitleProperty
-            = DependencyProperty.Register(nameof(FontsizeTitle), typeof(int), typeof(TextboxCustom), new PropertyMetadata(14));
+        [Bindable(true)]
+        [Category("Appearance")]
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(FontSizeConverter))]
         public int FontsizeTitle
         {
             set { SetValue(FontsizeTitleProperty, value); }
             get { return (int)GetValue(FontsizeTitleProperty); }
         }
 
-        public static readonly DependencyProperty FontsizeProperty
-            = DependencyProperty.Register(nameof(Fontsize), typeof(int), typeof(TextboxCustom), new PropertyMetadata(14));
+        [Bindable(true)]
+        [Category("Appearance")]
+        [Localizability(LocalizationCategory.None)]
+        [TypeConverter(typeof(FontSizeConverter))]
         public int Fontsize
         {
             set { SetValue(FontsizeProperty, value); }
             get { return (int)GetValue(FontsizeProperty); }
         }
 
-        public static readonly DependencyProperty VisibleTitleProperty
-            = DependencyProperty.Register(nameof(VisibleTitle), typeof(bool), typeof(TextboxCustom), new PropertyMetadata(true));
         public bool VisibleTitle
         {
             set { SetValue(VisibleTitleProperty, value); }
             get { return (bool)GetValue(VisibleTitleProperty); }
         }
+        public ImageSource PathIcon
+        {
+            set { SetValue(PathIconProperty, value); }
+            get { return (ImageSource)GetValue(PathIconProperty); }
+        }
+        
 
+        public Thickness MarginText
+        {
+            set { SetValue(MarginTextProperty, value); }
+            get { return (Thickness)GetValue(MarginTextProperty); }
+        }
     }
 
     /*Example
@@ -99,6 +116,7 @@ namespace ComputerProject.CustomControl
                 Title="Tên danh mục"
                 FontsizeTitle="19"
                 Fontsize = "17"
+                MarginText = "14"
              >
             </local:TextboxCustom>*/
 }
