@@ -13,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject.CategoryWorkspace
+namespace ComputerProject.CustomerWorkspace
 {
     /// <summary>
-    /// Interaction logic for TitleDetailCategory.xaml
+    /// Interaction logic for CustomerAdd.xaml
     /// </summary>
-    public partial class TitleDetailCategory : UserControl
+    public partial class CustomerAdd : UserControl
     {
-        public TitleDetailCategory()
+        public CustomerAdd()
         {
             InitializeComponent();
         }
-
-       
     }
 }

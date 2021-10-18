@@ -28,7 +28,6 @@
             Grid.ColumnSpan="2"
             Grid.Row="0"  
             >
-            
         </local:TitleDetailCategory>
         <Grid
             Grid.Row="1"
@@ -46,8 +45,11 @@
                 FontsizeTitle="19"
                 Fontsize = "17"
                 Margin="10, 20, 20, 0"
+                MarginText="10"
+                PathIcon="/ComputerProject;component/Resource/Icon/trash-2.png"
                 >
             </localcustom:TextboxCustom>
+           
             <local:TitleCategoryLv2
                 Grid.Row="1"
                 VerticalAlignment="Center" Loaded="TitleCategoryLv2_Loaded">
@@ -105,14 +107,13 @@
                 >
                 
             </local:PropertiesTitlexaml>
-            <localsearch:Search
-                Grid.Row="1"
+            <localcustom:Search
+                 Grid.Row="1"
                 HorizontalAlignment="Left"
                 Margin="20, 0, 0, 0"
                 x:Name="Search"
-                >
-
-            </localsearch:Search>
+                texthint="Tìm theo danh mục">
+            </localcustom:Search>
 
             <local:TittlePropertiesTable
                     Grid.Row="2">

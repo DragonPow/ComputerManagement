@@ -1,7 +1,9 @@
-<ResourceDictionary
+﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:ComputerProject.CustomControl">
+    xmlns:local="clr-namespace:ComputerProject.CustomControl"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:localsearch="clr-namespace:ComputerProject.Category">
 
     <Style TargetType="{x:Type local:ButtonIcon}">
         <Setter Property="Orientation" Value="Horizontal"/>
@@ -71,38 +73,119 @@
 
     <Style TargetType="{x:Type local:TextboxCustom}">
         <Setter Property="Background" Value="#F7F7FC" />
+        <Setter Property="FontSize" Value="16" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TextboxCustom}">
                     <StackPanel>
                         <TextBlock                                                    
-                                FontSize="{TemplateBinding FontsizeTitle}"
+                                FontSize="{TemplateBinding FontSize}"
                                 FontWeight="Bold"
                                 Text="{TemplateBinding Title}"
-                                Foreground="Black"
+                                Foreground="Black"                   
                                 Margin="0, 0, 0, 10"
                                 Visibility="{TemplateBinding  VisibleTitle}"
                                 VerticalAlignment="Top">
                         </TextBlock>
+                        
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="#DBD7F4"
                             CornerRadius="10"
-                            BorderThickness="0"
+                            BorderThickness="1"
                             VerticalAlignment="Center">
-                            <TextBlock
-                                FontSize="{TemplateBinding Fontsize}"                          
-                                Margin="10, 10, 10, 10"
-                                Foreground="#545454"
-                                Text ="{TemplateBinding Texthint}"
-                                >
-                            </TextBlock>
-                                 
-                            
-                    </Border>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    FontSize="{TemplateBinding FontSize}"                          
+                                    Margin="{TemplateBinding MarginText}"
+                                    Foreground="#545454"
+                                    Text ="{TemplateBinding Texthint}"
+                                    />
+                                <Image
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Height="24"
+                                        Width="24"
+                                        Margin="0, 0, 15, 0"
+                                        Source="{TemplateBinding PathIcon}">  
+                                </Image>
+                              
+                            </Grid>                        
+                        </Border>
                         </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style TargetType="{x:Type local:Search}">
+        <Setter Property="Background" Value="#F7F7FC" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Search}">
+                    <Grid>
+                        <Border
+                            Name="mask"
+                            BorderBrush="{TemplateBinding Background}"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Width="500"
+                            Height="39"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Padding="2"
+                            Background= "{TemplateBinding Background}"
+                        />
+                        <StackPanel
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Center"
+                            Width="500"
+                            Height="40"
+                            Background= "{TemplateBinding Background}"    
+                        >
+                            <StackPanel.OpacityMask>
+                                <VisualBrush Visual="{Binding ElementName = mask}"/>
+                                </StackPanel.OpacityMask>
+                                 <TextBlock
+                                     Background= "{TemplateBinding Background}"
+                                     Width="40"
+                                     Height="24"  
+                                >
+                                     <InlineUIContainer>    
+                                    <Viewbox>
+                                         <materialDesign:PackIcon
+                                            Kind="Magnify" 
+                                            Foreground="#0477BF"
+                                            Width="24"
+                                            Height="24"
+                                            Margin="10, 0, 0, 0"  
+                                        />  
+                                    </Viewbox>
+                            </InlineUIContainer></TextBlock>
 
+                            <TextBlock
+                                x:Name="Textblock"
+                                Background= "{TemplateBinding Background}"
+                                TextAlignment="Left"
+                                Foreground="#9A9AB0"
+                             
+                                Width="460"
+                                VerticalAlignment="Center"
+                                FontSize="14" 
+                                Text="{TemplateBinding texthint}"
+                            >
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
 </ResourceDictionary>

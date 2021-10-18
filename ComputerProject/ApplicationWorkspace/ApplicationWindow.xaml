@@ -129,7 +129,7 @@
                         </StackPanel>
                     </ListViewItem>
                     <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
+                        <Style TargetType="{x:Type ListViewItem}">
                             <Style.Triggers>
                                 <Trigger Property="IsSelected" Value="True" >
                                     <Setter Property="Foreground" Value="White" />
