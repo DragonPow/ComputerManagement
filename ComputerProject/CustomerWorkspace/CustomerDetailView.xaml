@@ -204,30 +204,12 @@
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                   
                 </ListView>
                 
             </Grid>

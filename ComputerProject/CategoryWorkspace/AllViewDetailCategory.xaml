@@ -103,7 +103,7 @@
                 <RowDefinition Height="0.8*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <local:PropertiesTitlexaml
+            <local:PropertiesTitlexaml 
                 >
                 
             </local:PropertiesTitlexaml>

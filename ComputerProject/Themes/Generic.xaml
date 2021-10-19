@@ -78,7 +78,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TextboxCustom}">
                     <StackPanel>
-                        <TextBlock                                                    
+                        <TextBlock   
                                 FontSize="{TemplateBinding FontSize}"
                                 FontWeight="Bold"
                                 Text="{TemplateBinding Title}"
@@ -185,6 +185,15 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="#0477BF"/>
+                <Setter Property="Opacity" Value="0.5"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="BorderBrush" Value="Transparent"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     
