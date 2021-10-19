@@ -12,7 +12,7 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class BILL_REPAIR
+    public partial class BILL_REPAIR : Helper.BaseViewModel
     {
         public int id { get; set; }
         public Nullable<System.DateTime> timeDelivery { get; set; }
