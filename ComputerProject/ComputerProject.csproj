@@ -131,19 +131,14 @@
     <Compile Include="CUSTOMER.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CustomerWorkspace\CustomerAllRowTitle.cs" />
     <Compile Include="CustomerWorkspace\CustomerAllView.xaml.cs">
       <DependentUpon>CustomerAllView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomerWorkspace\CustomerAllViewRow.xaml.cs">
       <DependentUpon>CustomerAllViewRow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerWorkspace\CustomerAllViewTitle.xaml.cs">
-      <DependentUpon>CustomerAllViewTitle.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerWorkspace\CustomerSearchView.xaml.cs">
-      <DependentUpon>CustomerSearchView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerWorkspace\Test.cs" />
+    <Compile Include="CustomerWorkspace\CustomerViewModel.cs" />
     <Compile Include="DETAIL_REPORT_CATEGORY.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -187,14 +182,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerWorkspace\CustomerAllViewRow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomerWorkspace\CustomerAllViewTitle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomerWorkspace\CustomerSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

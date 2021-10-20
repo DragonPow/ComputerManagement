@@ -7,9 +7,9 @@ using System.Windows.Media;
 
 namespace ComputerProject.CustomerWorkspace
 {
-    class Test:CustomerAllViewRow
+    class CustomerAllRowTitle : CustomerAllViewRow
     {
-        public Test()
+        public CustomerAllRowTitle()
         {
             this.btnDelete.Visibility = System.Windows.Visibility.Collapsed;
             this.btnEdit.Visibility = System.Windows.Visibility.Collapsed;
