@@ -104,8 +104,7 @@
                                     FontSize="{TemplateBinding FontSize}"                          
                                     Margin="{TemplateBinding MarginText}"
                                     Foreground="#545454"
-                                    Text ="{TemplateBinding Texthint}"
-                                    BorderThickness="0"/>
+                                    Text ="{TemplateBinding Texthint}"/>
                                 <Image
                                         Grid.Column="1"
                                         HorizontalAlignment="Right"
@@ -152,16 +151,16 @@
                         />
                         <StackPanel
                             Orientation="Horizontal" 
-                            HorizontalAlignment="Left">
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center">
                             <materialDesign:PackIcon
                                             Kind="Magnify" 
                                             Foreground="#0477BF"
                                             Width="24"
                                             Height="24"
                                             Margin="10, 0, 0, 0"  
+                                            VerticalAlignment="Center"
                                         />  
-                                    </Viewbox>
-                            </InlineUIContainer></TextBlock>
 
                             <TextBox
                                 x:Name="Textbox"
@@ -173,7 +172,6 @@
                                 Width="460"
                                 VerticalAlignment="Center"
                                 FontSize="14" 
-                                BorderThickness="0"
                                 Text="{TemplateBinding texthint}"
                                 Margin="5">
                             </TextBox>

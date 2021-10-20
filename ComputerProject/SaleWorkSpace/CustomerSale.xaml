@@ -7,16 +7,17 @@
              xmlns:Custom="clr-namespace:ComputerProject.CustomControl"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="450">
+             d:DesignHeight="205" d:DesignWidth="450">
     <Border CornerRadius="8" Background="White">
         <StackPanel>
-            <Grid Margin="20">
+            <Border Margin="20,5" BorderBrush="{StaticResource Icon}" BorderThickness="0,0,0,1">
+            <Grid Margin="0,15">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="6*"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Khách hàng" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" FontFamily="{StaticResource Mulish}"></TextBlock>
+                <TextBlock Grid.Column="0" Text="Khách hàng" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" FontFamily="{StaticResource Mulish}"></TextBlock>
                 <Button Grid.Column="1" Foreground="White" Padding="0" Width="100" Height="30" HorizontalAlignment="Right" Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}" Style="{StaticResource MaterialDesignRaisedLightButton}" materialDesign:ButtonAssist.CornerRadius="5">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Add" Margin="0,0,5,0" RenderTransformOrigin="-0.562,0.562"></materialDesign:PackIcon>
@@ -25,7 +26,24 @@
                 </Button>
                 <materialDesign:PackIcon Grid.Column="2" Width="24" Height="24" Kind="Autorenew" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource Icon}"/>
             </Grid>
-            <Custom:Search Margin="20" texthint="Số điện thoại" ></Custom:Search>
+            </Border>
+            <Custom:Search Margin="20,10" texthint="Số điện thoại" ></Custom:Search>
+            <Grid Margin="25,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Tên khách hàng" FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold" Foreground="{StaticResource Icon}"></TextBlock>
+                <TextBlock Grid.Column="1" Text="-" FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold" HorizontalAlignment="Right" Margin="5,0"></TextBlock>
+            </Grid>
+            <Grid Margin="25,5,25,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Số điện thoại" FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold" Foreground="{StaticResource Icon}"></TextBlock>
+                <TextBlock Grid.Column="1" Text="-" FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold" HorizontalAlignment="Right" Margin="5,0"></TextBlock>
+            </Grid>
         </StackPanel>
     </Border>
    
