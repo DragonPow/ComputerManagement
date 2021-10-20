@@ -134,10 +134,12 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="1"
                             CornerRadius="8"
-                            Background= "{TemplateBinding Background}">
+                            Background= "{TemplateBinding Background}"
+                            MaxHeight="50">
                         <StackPanel
                             Orientation="Horizontal" 
-                            HorizontalAlignment="Left">
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center">
                             <materialDesign:PackIcon
                                             Kind="Magnify" 
                                             Foreground="#0477BF"

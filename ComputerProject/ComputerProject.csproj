@@ -249,6 +249,9 @@
     <Compile Include="SaleWorkSpace\CustomerSale.xaml.cs">
       <DependentUpon>CustomerSale.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SaleWorkSpace\ProdChooseItem.xaml.cs">
+      <DependentUpon>ProdChooseItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SaleWorkSpace\ProdSaleAllView.xaml.cs">
       <DependentUpon>ProdSaleAllView.xaml</DependentUpon>
     </Compile>
@@ -342,6 +345,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SaleWorkSpace\CustomerSale.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\ProdChooseItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -188,7 +188,8 @@
                         HorizontalAlignment="Right"
                         Margin="20, 0, 20, 10"
                         x:Name="Search"      
-                        texthint="Mã hóa đơn">
+                        texthint="Mã hóa đơn"
+                        Width="500">
                     </localcustom:Search>
                 </Grid>
                 <local:CustomerDetailViewBillTitle

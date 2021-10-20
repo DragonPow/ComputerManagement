@@ -11,8 +11,8 @@
     <Border CornerRadius="8" Background="White">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="7*"></RowDefinition>
+                <RowDefinition/>
+                <RowDefinition Height="751"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel>
                 <Grid Margin="20">
@@ -47,13 +47,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <StackPanel Orientation="Horizontal" Margin="4">
-                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" FontSize="16" Margin="4" MinWidth="150" FontWeight="Bold" IsChecked="True" Width="auto"  Content="Tất cả" />
-                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" FontSize="16" Margin="4" MinWidth="150" IsChecked="False" Width="auto"  Content="Laptop" />
-                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" FontSize="16" Margin="4" MinWidth="150" IsChecked="False" Width="auto"  Content="Bàn phím" />
-                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" FontSize="16" Margin="4" MinWidth="150" IsChecked="False" Width="auto" Content="Màn hình" />
-                </StackPanel>
-                <ComboBox x:Name="CategoryComboBox" Margin="20" Height="40" FontFamily="{StaticResource Mulish}" FontSize="16" Style="{StaticResource MaterialDesignOutlinedComboBox}" ItemsSource="{Binding ShortStringList}" Width="200" HorizontalAlignment="Left" BorderBrush="{StaticResource MainColor}" />
+                <ComboBox  x:Name="CategoryComboBox" Margin="20" Height="40" FontSize="16"  FontFamily="{StaticResource Mulish}" Style="{StaticResource MaterialDesignOutlinedComboBox}" ItemsSource="{Binding ShortStringList}" Width="200" HorizontalAlignment="Left" BorderBrush="{StaticResource MainColor}" />
             </StackPanel>
             <local:ProdSaleListView Grid.Row="1"/>
         </Grid>
