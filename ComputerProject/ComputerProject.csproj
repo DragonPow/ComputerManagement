@@ -240,6 +240,27 @@
     <Compile Include="PRODUCT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductWorkSpace\Filtertab.xaml.cs">
+      <DependentUpon>Filtertab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProdcutAddSpecificationsRow.xaml.cs">
+      <DependentUpon>ProdcutAddSpecificationsRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProductAddView.xaml.cs">
+      <DependentUpon>ProductAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProductAddViewAddPicture.xaml.cs">
+      <DependentUpon>ProductAddViewAddPicture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProductMainRowTable.xaml.cs">
+      <DependentUpon>ProductMainRowTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProductMainTitleTable.xaml.cs">
+      <DependentUpon>ProductMainTitleTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProductMainView.xaml.cs">
+      <DependentUpon>ProductMainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="REGULATION.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -341,6 +362,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProductWorkSpace\Filtertab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProdcutAddSpecificationsRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProductAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProductAddViewAddPicture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProductMainRowTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProductMainTitleTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProductMainView.xaml">
     <Page Include="SaleWorkSpace\CustomerSale.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -437,6 +483,10 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resource\Icon\AddImage.png" />
+    <Resource Include="Resource\Icon\Arange.png" />
+    <Resource Include="Resource\Icon\Plus.png" />
+    <Resource Include="Resource\Icon\filter.png" />
     <Resource Include="Resource\Image\Product.jpg" />
     <Resource Include="Resource\Icon\CalendarGray.png" />
     <Resource Include="Resource\Icon\Calendar.png" />

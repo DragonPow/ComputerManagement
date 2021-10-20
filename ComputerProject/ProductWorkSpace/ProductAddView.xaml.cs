@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject.CategoryWorkspace
+namespace ComputerProject.ProductWorkSpace
 {
     /// <summary>
-    /// Interaction logic for AllViewDetailCategory.xaml
+    /// Interaction logic for ProductAddView.xaml
     /// </summary>
-    public partial class AllViewDetailCategory : UserControl
+    public partial class ProductAddView : UserControl
     {
-        public AllViewDetailCategory()
+        public ProductAddView()
         {
             InitializeComponent();
         }

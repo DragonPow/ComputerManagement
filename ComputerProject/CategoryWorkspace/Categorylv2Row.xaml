@@ -14,14 +14,16 @@
             <ColumnDefinition Width="2*" ></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock
+        <TextBox
+            materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+            BorderThickness="0"
             x:Name="CategoryLv2Name"
             Grid.Column="0"
             FontSize="16"
             FontFamily="{StaticResource Mulish}"
             Foreground="#11142D"
             VerticalAlignment="Top">
-        </TextBlock>
+        </TextBox>
         <Button 
             Grid.Column="1" x:Name="btnDelete"
             Style="{StaticResource MaterialDesignIconButton}"

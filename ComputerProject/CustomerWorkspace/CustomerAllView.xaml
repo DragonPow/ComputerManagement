@@ -27,7 +27,7 @@
             <local:CustomerSearchView
                 Grid.Row="0"
                 Background="White"
-                Margin="10,0"
+                Margin="10,0" 
                 />
             <local:Test
                 Grid.Row="1"
@@ -35,23 +35,13 @@
                 />
             <ListView
                 Grid.Row="2"
-                Margin="10,0">
-                <ListViewItem>
-                    <local:CustomerAllViewRow Loaded="CustomerAllViewRow_Loaded"/>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:CustomerAllViewRow/>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:CustomerAllViewRow/>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:CustomerAllViewRow/>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:CustomerAllViewRow/>
-                </ListViewItem>
-                
+                Margin="10,0"
+                x:Name="ListCustomers">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:CustomerAllViewRow Loaded="CustomerAllViewRow_Loaded"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate> 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
