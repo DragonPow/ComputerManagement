@@ -12,7 +12,7 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class ITEM_BILL
+    public partial class ITEM_BILL : Helper.BaseViewModel
     {
         public int billId { get; set; }
         public int productId { get; set; }

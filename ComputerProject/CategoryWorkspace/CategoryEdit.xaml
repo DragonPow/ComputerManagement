@@ -69,6 +69,7 @@
                 Title="Tên danh mục"
                 FontsizeTitle="19"
                 Fontsize = "17"
+                MarginText="10"
                 Margin="10, 20, 20, 0"
                 >
             </localcustom:TextboxCustom>
