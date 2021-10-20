@@ -98,7 +98,9 @@
                                     <ColumnDefinition Width="7*"></ColumnDefinition>
                                     <ColumnDefinition Width="3*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock
+                                <TextBox
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+                                    BorderThickness="0"
                                     Grid.Column="0"
                                     FontSize="{TemplateBinding FontSize}"                          
                                     Margin="{TemplateBinding MarginText}"
@@ -121,6 +123,15 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="#0477BF"/>
+                <Setter Property="Opacity" Value="0.5"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="BorderBrush" Value="Transparent"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     
     <Style TargetType="{x:Type local:Search}">
@@ -168,18 +179,19 @@
                                     </Viewbox>
                             </InlineUIContainer></TextBlock>
 
-                            <TextBlock
-                                x:Name="Textblock"
+                            <TextBox
+                                x:Name="Textbox"
                                 Background= "{TemplateBinding Background}"
                                 TextAlignment="Left"
                                 Foreground="#9A9AB0"
-                             
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+                                BorderThickness="0"
                                 Width="460"
                                 VerticalAlignment="Center"
                                 FontSize="14" 
                                 Text="{TemplateBinding texthint}"
                             >
-                            </TextBlock>
+                            </TextBox>
                         </StackPanel>
                     </Grid>
                 </ControlTemplate>
