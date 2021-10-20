@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace ComputerProject.SaleWorkSpace
 {
     /// <summary>
-    /// Interaction logic for ProdSaleAllView.xaml
+    /// Interaction logic for ProdChooseItem.xaml
     /// </summary>
-    public partial class ProdSaleAllView : UserControl
+    public partial class ProdChooseItem : UserControl
     {
-        public ProdSaleAllView()
+        public ProdChooseItem()
         {
             InitializeComponent();
-        }
-
-        private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
