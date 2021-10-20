@@ -40,13 +40,13 @@
             </Grid.RowDefinitions>
             <localcustom:TextboxCustom
                 x:Name="NameCategory"
+                CornerRadiusText="8"
                 Texthint = "Lap top"
                 Title="Tên danh mục"
                 FontsizeTitle="19"
                 Fontsize = "17"
                 Margin="10, 20, 20, 0"
                 MarginText="10"
-                PathIcon="/ComputerProject;component/Resource/Icon/trash-2.png"
                 >
             </localcustom:TextboxCustom>
            

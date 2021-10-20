@@ -90,7 +90,7 @@
                         
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="#DBD7F4"
-                            CornerRadius="10"
+                            CornerRadius="{TemplateBinding CornerRadiusText}"
                             BorderThickness="1"
                             VerticalAlignment="Center">
                             <Grid>
@@ -144,7 +144,6 @@
                             Name="mask"
                             BorderBrush="{TemplateBinding Background}"
                             BorderThickness="1"
-                            CornerRadius="8"
                             Width="500"
                             Height="39"
                             HorizontalAlignment="Center"

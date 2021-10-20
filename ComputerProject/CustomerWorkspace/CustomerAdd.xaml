@@ -11,7 +11,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="7*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
 
         </Grid.RowDefinitions>
@@ -45,7 +45,7 @@
 
         </StackPanel>
         <Grid
-            Grid.Row="1" Margin="0,0.2" >
+            Grid.Row="1" Margin="20" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -57,20 +57,22 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <local:TextboxCustom
+                CornerRadiusText="8"
                 Grid.Row="0" Grid.ColumnSpan="2"
                 VerticalAlignment="Center"
                 Margin="60, 0, 60, 0"
-                FontSize="20"
-                MarginText="20"
+                FontSize="16"
+                MarginText="10"
                 Title="    Tên khách hàng">
 
             </local:TextboxCustom>
             <local:TextboxCustom
                 Grid.Row="1" Grid.ColumnSpan="2"
                 VerticalAlignment="Center"
+                CornerRadiusText="8"
                 Margin="60, 0, 60, 0"
-                FontSize="20"
-                MarginText="20"
+                FontSize="16"
+                MarginText="10"
                 Title="    Số điện thoại">
 
             </local:TextboxCustom>
@@ -78,9 +80,10 @@
                 Grid.Row="2" 
                 Grid.Column="0"
                 VerticalAlignment="Center"
+                CornerRadiusText="8"
                 Margin="60, 0, 30, 0"
-                FontSize="20"
-                MarginText="20"
+                FontSize="16"
+                MarginText="10"
                 PathIcon="/ComputerProject;component/Resource/Icon/Calendar.png"
                 Title="    Ngày sinh" TextChanged="TextboxCustom_TextChanged">
 
@@ -88,20 +91,22 @@
             <local:TextboxCustom
                 Grid.Row="2" 
                 Grid.Column="1"
-                MarginText="20"
+                CornerRadiusText="8"
+                FontSize="16"
+                MarginText="10"
                 VerticalAlignment="Center"
                 Margin="30, 0, 60, 0"
-                FontSize="20"
                 Title="    Điểm thưởng">
 
             </local:TextboxCustom>
             <local:TextboxCustom
                 Grid.Row="3" Grid.ColumnSpan="2"
                 VerticalAlignment="Center"
+                CornerRadiusText="8"
                 Margin="60, 0, 60, 0"
-                FontSize="20"
+                FontSize="16"
+                MarginText="10"
                 MaxLines="1"
-                MarginText="20"
                 Title="    Địa chỉ">
 
             </local:TextboxCustom>

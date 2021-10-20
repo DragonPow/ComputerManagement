@@ -46,7 +46,7 @@ namespace ComputerProject.CustomControl
     ///
     /// </summary>
     public class TextboxCustom : TextBox
-    {       
+    {      
         static TextboxCustom()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TextboxCustom), new FrameworkPropertyMetadata(typeof(TextboxCustom)));
@@ -59,7 +59,7 @@ namespace ComputerProject.CustomControl
         public static readonly DependencyProperty VisibleTitleProperty = DependencyProperty.Register(nameof(VisibleTitle), typeof(bool), typeof(TextboxCustom), new PropertyMetadata(true));
         public static readonly DependencyProperty PathIconProperty = DependencyProperty.Register(nameof(PathIcon), typeof(ImageSource), typeof(TextboxCustom), new PropertyMetadata());
         public static readonly DependencyProperty MarginTextProperty = DependencyProperty.Register(nameof(MarginText), typeof(Thickness), typeof(TextboxCustom), new PropertyMetadata());
-
+        public static readonly DependencyProperty CornerRadiusTextProperty = DependencyProperty.Register(nameof(CornerRadiusText), typeof(CornerRadius), typeof(TextboxCustom), new PropertyMetadata());
         public string Texthint
         {
             set { SetValue(TexthintProperty, value); }
@@ -107,6 +107,12 @@ namespace ComputerProject.CustomControl
         {
             set { SetValue(MarginTextProperty, value); }
             get { return (Thickness)GetValue(MarginTextProperty); }
+        }
+
+        public CornerRadius CornerRadiusText
+        {
+            set { SetValue(CornerRadiusTextProperty, value); }
+            get { return (CornerRadius)GetValue(CornerRadiusTextProperty); }
         }
     }
 
