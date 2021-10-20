@@ -1,0 +1,172 @@
+﻿<UserControl x:Class="ComputerProject.ProductWorkSpace.ProductMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
+                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
+             mc:Ignorable="d" 
+             Padding="30" Background="{StaticResource Background}"
+             d:DesignHeight="1000" d:DesignWidth="1300">
+    <DockPanel>
+        <TextBlock 
+            Height="50"
+            FontSize="35"
+            DockPanel.Dock="Top" 
+            FontFamily="{StaticResource Mulish}"
+            FontWeight="Bold"
+            Foreground="{StaticResource Title}" Margin="10,0,10,15">
+            Sản phẩm
+        </TextBlock>
+
+        <Grid
+            Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="0.8*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row ="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock 
+                    Height="50"
+                    FontSize="25"
+                    DockPanel.Dock="Top" 
+                    FontFamily="{StaticResource Mulish}"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource Title}" Margin="15">
+                    Tất cả
+                </TextBlock>
+                
+                <Button
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            Margin="0, 0, 20, 0"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Background="{StaticResource MainColor}"
+                            Height="37"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                    <StackPanel 
+                                Orientation="Horizontal">
+                        <Image
+                                    Height="18"
+                                    Width="18"
+                                    Source="/ComputerProject;component/Resource/Icon/Plus.png">
+
+                        </Image>
+                        <TextBlock
+                                    Text="Thêm mới" 
+                                    FontSize="16"
+                                    Margin="5, 0, 0, 0"
+                                    Foreground="White"/>
+                    </StackPanel>
+
+                </Button>
+
+            </Grid>
+            <Grid
+                Grid.Row="1"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <localcustom:Search
+                    HorizontalAlignment="Left"
+                    Margin="20, 0, 0, 0"
+                    texthint="Tên, mã sản phẩm">          
+                </localcustom:Search>
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+
+                    <Button
+                            x:Name="Arange"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Background="#F7F8FC"
+                            BorderBrush="{StaticResource MainColor}"
+                            Height="37"
+                            Margin="0, 0, 20, 0"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            HorizontalAlignment="Left"
+                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                        <StackPanel 
+                                Orientation="Horizontal">
+                            <Image
+                                    Height="18"
+                                    Width="18"
+                                    Source="/ComputerProject;component/Resource/Icon/Arange.png">
+
+                            </Image>
+                            <TextBlock
+                                    Text="Giá" 
+                                    FontSize="16"
+                                    Margin="5, 0, 0, 0"
+                                    Foreground="{StaticResource MainColor}"/>
+                        </StackPanel>
+
+                    </Button>
+                    <Button
+                            x:Name="Filter"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Background="#F7F8FC"
+                            BorderBrush="{StaticResource MainColor}"
+                            Height="37"
+                        Margin="0, 0, 20, 0"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            HorizontalAlignment="Left"
+                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                        <StackPanel 
+                                Orientation="Horizontal">
+                            <Image
+                                    Height="18"
+                                    Width="18"
+                                    Source="/ComputerProject;component/Resource/Icon/filter.png">
+
+                            </Image>
+                            <TextBlock
+                                    Text="Bộ lọc" 
+                                    FontSize="16"
+                                    Margin="5, 0, 0, 0"
+                                    Foreground="{StaticResource MainColor}"/>
+                        </StackPanel>
+
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <local:ProductMainTitleTable
+                Margin="10, 0, 10, 0"
+                Grid.Row="2"> 
+            </local:ProductMainTitleTable>
+            <ListView 
+                x:Name="ListProducts"
+                Grid.Row="3"
+                Margin="10, 0, 0, 0"
+                >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:ProductMainRowTable />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                
+            </ListView>
+    </Grid>
+    </DockPanel>
+</UserControl>

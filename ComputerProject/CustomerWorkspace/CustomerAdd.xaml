@@ -1,0 +1,136 @@
+﻿<UserControl x:Class="ComputerProject.CustomerWorkspace.CustomerAdd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerProject.CustomControl"
+             mc:Ignorable="d" 
+             Background="{StaticResource Background}"
+             d:DesignHeight="1024" d:DesignWidth="1400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="1" Fill="White" IsHitTestVisible="False" Margin="40,0.2"></Rectangle>
+        <StackPanel
+            Grid.Row="0"
+                HorizontalAlignment="Left"
+                Orientation="Horizontal"
+                 Margin="20,0,0,0.8">
+            <Button
+                          x:Name="BtnBack"
+                          Style="{StaticResource MaterialDesignIconButton}"
+                          ToolTip="Trở về"
+                          Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                <materialDesign:PackIcon
+                                    Kind="ArrowLeft"
+                                    Foreground="{StaticResource Title}"
+                                    />
+            </Button>
+            <TextBlock
+                    FontSize="35"
+                    FontWeight="Bold"
+                    FontFamily="{StaticResource Mulish}"
+                    Foreground="{StaticResource Title}"
+                    Margin="20,3,0,0"
+                    VerticalAlignment="Center"
+                    >
+                    Thêm khách hàng
+            </TextBlock>
+
+        </StackPanel>
+        <Grid
+            Grid.Row="1" Margin="0,0.2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions >
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <local:TextboxCustom
+                Grid.Row="0" Grid.ColumnSpan="2"
+                VerticalAlignment="Center"
+                Margin="60, 0, 60, 0"
+                FontSize="20"
+                MarginText="20"
+                Title="    Tên khách hàng">
+
+            </local:TextboxCustom>
+            <local:TextboxCustom
+                Grid.Row="1" Grid.ColumnSpan="2"
+                VerticalAlignment="Center"
+                Margin="60, 0, 60, 0"
+                FontSize="20"
+                MarginText="20"
+                Title="    Số điện thoại">
+
+            </local:TextboxCustom>
+            <local:TextboxCustom
+                Grid.Row="2" 
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Margin="60, 0, 30, 0"
+                FontSize="20"
+                MarginText="20"
+                PathIcon="/ComputerProject;component/Resource/Icon/Calendar.png"
+                Title="    Ngày sinh" TextChanged="TextboxCustom_TextChanged">
+
+            </local:TextboxCustom>
+            <local:TextboxCustom
+                Grid.Row="2" 
+                Grid.Column="1"
+                MarginText="20"
+                VerticalAlignment="Center"
+                Margin="30, 0, 60, 0"
+                FontSize="20"
+                Title="    Điểm thưởng">
+
+            </local:TextboxCustom>
+            <local:TextboxCustom
+                Grid.Row="3" Grid.ColumnSpan="2"
+                VerticalAlignment="Center"
+                Margin="60, 0, 60, 0"
+                FontSize="20"
+                MaxLines="1"
+                MarginText="20"
+                Title="    Địa chỉ">
+
+            </local:TextboxCustom>
+        </Grid>
+        <StackPanel 
+            Orientation="Horizontal"
+            Grid.Row="2"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Margin="60, 30, 0, 0">
+            <Button
+                Background="{StaticResource MainColor}"
+                Width="178"
+                Height="48"
+                Margin="0, 0, 20, 0"
+                >
+                Lưu
+            </Button>
+            <Button
+                Background="Transparent"
+                BorderBrush="{StaticResource MainColor}"
+                Foreground="{StaticResource MainColor}"
+                Width="111"
+                Height="48"
+                 Margin="20, 0, 0, 0"
+                >
+                Hủy
+            </Button>
+            
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -54,6 +54,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=2.0.3.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignColors.2.0.3\lib\net452\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -91,11 +94,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ApplicationWorkspace\ApplicationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\AllViewDetailCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CategoryWorkspace\Category.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CategoryWorkspace\CategoryAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\CategoryEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\Categorylv2Row.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CategoryWorkspace\FeatureBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\PropertiesRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\PropertiesTitlexaml.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,6 +134,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="ApplicationWorkspace\ApplicationWindow.xaml.cs">
+      <DependentUpon>ApplicationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BILL.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -112,11 +146,29 @@
     <Compile Include="CATEGORY.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CategoryWorkspace\AllViewDetailCategory.xaml.cs">
+      <DependentUpon>AllViewDetailCategory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CategoryWorkspace\Category.xaml.cs">
       <DependentUpon>Category.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CategoryWorkspace\CategoryAdd.xaml.cs">
+      <DependentUpon>CategoryAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\CategoryEdit.xaml.cs">
+      <DependentUpon>CategoryEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\Categorylv2Row.xaml.cs">
+      <DependentUpon>Categorylv2Row.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CategoryWorkspace\FeatureBar.xaml.cs">
       <DependentUpon>FeatureBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\PropertiesRow.xaml.cs">
+      <DependentUpon>PropertiesRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\PropertiesTitlexaml.xaml.cs">
+      <DependentUpon>PropertiesTitlexaml.xaml</DependentUpon>
     </Compile>
     <Compile Include="CategoryWorkspace\Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
@@ -127,18 +179,41 @@
     <Compile Include="CategoryWorkspace\TableTitle.xaml.cs">
       <DependentUpon>TableTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CategoryWorkspace\TitleCategoryLv2.xaml.cs">
+      <DependentUpon>TitleCategoryLv2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\TitleDetailCategory.xaml.cs">
+      <DependentUpon>TitleDetailCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryWorkspace\TittlePropertiesTable.xaml.cs">
+      <DependentUpon>TittlePropertiesTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\ButtonIcon.cs" />
+    <Compile Include="CustomControl\Search.cs" />
+    <Compile Include="CustomControl\TextboxCustom.cs" />
     <Compile Include="CUSTOMER.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="CustomerWorkspace\CustomerAllRowTitle.cs" />
+    <Compile Include="CustomerWorkspace\CustomerAdd.xaml.cs">
+      <DependentUpon>CustomerAdd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerWorkspace\CustomerAllView.xaml.cs">
       <DependentUpon>CustomerAllView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerWorkspace\CustomerAllViewRow.xaml.cs">
-      <DependentUpon>CustomerAllViewRow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CustomerWorkspace\CustomerViewModel.cs" />
+    <Compile Include="CustomerWorkspace\CustomerDetailView.xaml.cs">
+      <DependentUpon>CustomerDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerWorkspace\CustomerDetailViewBillRow.xaml.cs">
+      <DependentUpon>CustomerDetailViewBillRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml.cs">
+      <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerWorkspace\CustomerEditView.xaml.cs">
+      <DependentUpon>CustomerEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DETAIL_REPORT_CATEGORY.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -151,14 +226,50 @@
     <Compile Include="ITEM_BILL_SERI.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="MessageBox.xaml.cs">
+      <DependentUpon>MessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PRODUCT.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\Filtertab.xaml.cs">
+      <DependentUpon>Filtertab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProdcutAddSpecificationsRow.xaml.cs">
+      <DependentUpon>ProdcutAddSpecificationsRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProductAddView.xaml.cs">
+      <DependentUpon>ProductAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProductAddViewAddPicture.xaml.cs">
+      <DependentUpon>ProductAddViewAddPicture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProductMainRowTable.xaml.cs">
+      <DependentUpon>ProductMainRowTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProductMainTitleTable.xaml.cs">
+      <DependentUpon>ProductMainTitleTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProductMainView.xaml.cs">
+      <DependentUpon>ProductMainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="REGULATION.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="REPORT.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\CustomerSale.xaml.cs">
+      <DependentUpon>CustomerSale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\ProdSaleAllView.xaml.cs">
+      <DependentUpon>ProdSaleAllView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\ProdSaleItem.xaml.cs">
+      <DependentUpon>ProdSaleItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\ProdSaleListView.xaml.cs">
+      <DependentUpon>ProdSaleListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SPECIFICATION.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -177,11 +288,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CategoryWorkspace\TitleCategoryLv2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\TitleDetailCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryWorkspace\TittlePropertiesTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerWorkspace\CustomerAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomerWorkspace\CustomerAllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerWorkspace\CustomerAllViewRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerWorkspace\CustomerDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerWorkspace\CustomerDetailViewBillRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerWorkspace\CustomerEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,6 +342,51 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\Filtertab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProdcutAddSpecificationsRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProductAddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProductAddViewAddPicture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProductMainRowTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProductMainTitleTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProductMainView.xaml"/>
+    <Page Include="SaleWorkSpace\CustomerSale.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\ProdSaleAllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\ProdSaleItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\ProdSaleListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -265,11 +453,7 @@
   <ItemGroup>
     <Resource Include="Resource\Icon\IconColor.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\" />
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />
   <ItemGroup>
@@ -283,6 +467,15 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resource\Icon\AddImage.png" />
+    <Resource Include="Resource\Icon\Arange.png" />
+    <Resource Include="Resource\Icon\Plus.png" />
+    <Resource Include="Resource\Icon\filter.png" />
+    <Resource Include="Resource\Image\Product.jpg" />
+    <Resource Include="Resource\Icon\CalendarGray.png" />
+    <Resource Include="Resource\Icon\Calendar.png" />
+    <Resource Include="Resource\Icon\trash_gray.png" />
+    <Resource Include="Resource\Image\logo.png" />
     <Resource Include="Resource\Icon\akar-icons_edit.png" />
     <Resource Include="Resource\Icon\trash-2.png" />
     <Resource Include="Resource\Image\button_add_new_with_text.png" />

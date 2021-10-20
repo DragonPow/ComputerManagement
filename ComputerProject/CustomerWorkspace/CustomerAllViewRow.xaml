@@ -7,7 +7,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
              mc:Ignorable="d"
-             d:DesignHeight="200" d:DesignWidth="1276" d:DataContext="{Binding RelativeSource={RelativeSource self}}"
+            
+             d:DesignHeight="200" d:DesignWidth="1276"
              >
     <UserControl.Resources>
         <Style TargetType="TextBlock" x:Key="styleCell_Text">
@@ -31,7 +32,7 @@
 
         <TextBlock 
             Grid.Column="0" x:Name="cellName"
-            Style="{DynamicResource ResourceKey=styleCell_Text}"
+            Style="{DynamicResource ResourceKey=styleCell_Text}"           
             />
         <TextBlock 
             Grid.Column="1" x:Name="cellPhone"

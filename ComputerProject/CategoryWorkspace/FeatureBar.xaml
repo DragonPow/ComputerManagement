@@ -16,6 +16,7 @@
         <local:Search
             Grid.Column="0"
             HorizontalAlignment="Left"
+            Texthint="Tìm kiếm bằng số điện thoại"
             Margin="20, 0, 0, 0" >
         </local:Search>
         <local1:ButtonIcon
