@@ -386,7 +386,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProductWorkSpace\ProductMainView.xaml">
+    <Page Include="ProductWorkSpace\ProductMainView.xaml" />
     <Page Include="SaleWorkSpace\CustomerSale.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
