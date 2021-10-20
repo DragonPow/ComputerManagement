@@ -201,6 +201,9 @@
     <Compile Include="CustomerWorkspace\CustomerAllView.xaml.cs">
       <DependentUpon>CustomerAllView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomerWorkspace\CustomerAllViewRow.xaml.cs">
+      <DependentUpon>CustomerAllViewRow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerWorkspace\CustomerViewModel.cs" />
     <Compile Include="CustomerWorkspace\CustomerDetailView.xaml.cs">
       <DependentUpon>CustomerDetailView.xaml</DependentUpon>
