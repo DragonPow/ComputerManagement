@@ -240,6 +240,9 @@
     <Compile Include="PRODUCT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductWorkSpace\Filtertab.xaml.cs">
+      <DependentUpon>Filtertab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProductWorkSpace\ProdcutAddSpecificationsRow.xaml.cs">
       <DependentUpon>ProdcutAddSpecificationsRow.xaml</DependentUpon>
     </Compile>
@@ -344,6 +347,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\Filtertab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

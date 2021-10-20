@@ -82,7 +82,7 @@
                 FontSize="20"
                 MarginText="20"
                 PathIcon="/ComputerProject;component/Resource/Icon/Calendar.png"
-                Title="    Ngày sinh">
+                Title="    Ngày sinh" TextChanged="TextboxCustom_TextChanged">
 
             </local:TextboxCustom>
             <local:TextboxCustom
