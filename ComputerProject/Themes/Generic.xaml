@@ -155,6 +155,7 @@
                                             Width="24"
                                             Height="24"
                                             Margin="10, 0, 0, 0"  
+                                            VerticalAlignment="Center"
                                         />  
 
                             <TextBox
