@@ -246,6 +246,18 @@
     <Compile Include="REPORT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SaleWorkSpace\CustomerSale.xaml.cs">
+      <DependentUpon>CustomerSale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\ProdSaleAllView.xaml.cs">
+      <DependentUpon>ProdSaleAllView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\ProdSaleItem.xaml.cs">
+      <DependentUpon>ProdSaleItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\ProdSaleListView.xaml.cs">
+      <DependentUpon>ProdSaleListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SPECIFICATION.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -329,6 +341,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SaleWorkSpace\CustomerSale.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\ProdSaleAllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\ProdSaleItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\ProdSaleListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -409,6 +437,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resource\Image\Product.jpg" />
     <Resource Include="Resource\Icon\CalendarGray.png" />
     <Resource Include="Resource\Icon\Calendar.png" />
     <Resource Include="Resource\Icon\trash_gray.png" />
