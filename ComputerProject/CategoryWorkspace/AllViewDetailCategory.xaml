@@ -46,13 +46,12 @@
                 Fontsize = "17"
                 Margin="10, 20, 20, 0"
                 MarginText="10"
-                PathIcon="/ComputerProject;component/Resource/Icon/trash-2.png"
                 >
             </localcustom:TextboxCustom>
            
             <local:TitleCategoryLv2
                 Grid.Row="1"
-                VerticalAlignment="Center" Loaded="TitleCategoryLv2_Loaded">
+                VerticalAlignment="Center">
             </local:TitleCategoryLv2>
             <ListView
                 x:Name="ListCategoryLv2"
@@ -110,8 +109,9 @@
             <localcustom:Search
                  Grid.Row="1"
                 HorizontalAlignment="Left"
-                Margin="20, 0, 0, 0"
+                Margin="20, 0, 0, 20"
                 x:Name="Search"
+                Width="500"
                 texthint="Tìm theo danh mục">
             </localcustom:Search>
 
@@ -195,7 +195,8 @@
                 Margin="10"
                 FontFamily="{StaticResource Mulish}"
                 FontSize="16"
-                Background="{StaticResource MainColor}">
+                Background="{StaticResource MainColor}"
+                BorderBrush="{StaticResource}">
             Chỉnh sửa
             </Button>
 

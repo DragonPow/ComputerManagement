@@ -18,15 +18,16 @@
              Grid.Column="0"
             VerticalAlignment="Center"
             HorizontalAlignment="Left"
-            texthint="Số điện thoại">
-            
+            texthint="Số điện thoại"
+            Width="500">
+           
         </local:Search>
        
         <Button
             Grid.Column="2"
             ToolTip="Tìm kiếm khách hàng"
             Background="#FF0477BF" 
-            >
+            BorderBrush="{StaticResource MainColor}">
             <TextBlock
                 FontFamily="/ComputerProject;component/Resource/Font/Mulish-VariableFont_wght.ttf"
                 Foreground="White"
