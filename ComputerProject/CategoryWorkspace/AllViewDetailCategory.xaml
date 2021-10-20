@@ -52,7 +52,7 @@
            
             <local:TitleCategoryLv2
                 Grid.Row="1"
-                VerticalAlignment="Center" Loaded="TitleCategoryLv2_Loaded">
+                VerticalAlignment="Center">
             </local:TitleCategoryLv2>
             <ListView
                 x:Name="ListCategoryLv2"
@@ -84,6 +84,15 @@
                 >
                 
             </local:PropertiesTitlexaml>
+            <localcustom:Search
+                 Grid.Row="1"
+                HorizontalAlignment="Left"
+                Margin="20, 0, 0, 20"
+                x:Name="Search"
+                Width="500"
+                texthint="Tìm theo danh mục">
+            </localcustom:Search>
+
             <local:TittlePropertiesTable
                     Grid.Row="1">
             </local:TittlePropertiesTable>
@@ -129,7 +138,8 @@
                 Margin="10"
                 FontFamily="{StaticResource Mulish}"
                 FontSize="16"
-                Background="{StaticResource MainColor}">
+                Background="{StaticResource MainColor}"
+                BorderBrush="{StaticResource}">
             Chỉnh sửa
             </Button>
 
