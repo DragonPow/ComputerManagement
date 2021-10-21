@@ -67,6 +67,7 @@
                         MarginText="20"
                         Width="500"
                         IsEnabled="False"
+                        CornerRadiusText="8"
                         Title="    Mã sản phẩm"
                         >
                         
@@ -77,6 +78,7 @@
                 </local:ProductAddViewAddPicture>
                 <ListViewItem>
                     <localcustom:TextboxCustom
+                        CornerRadiusText="8"
                         x:Name="ProductName"
                         VerticalAlignment="Center"
                         Margin="0, 10, 0, 20"
@@ -112,6 +114,7 @@
                 </StackPanel>
                 <ListViewItem>
                     <localcustom:TextboxCustom
+                        CornerRadiusText="8"
                         x:Name="Procedure"
                         VerticalAlignment="Center"
                         Margin="0, 10, 0, 20"
@@ -126,6 +129,7 @@
                 <ListViewItem>
                     <localcustom:TextboxCustom
                         x:Name="Quantity"
+                         CornerRadiusText="8"
                         VerticalAlignment="Center"
                         Margin="0, 10, 0, 20"
                         FontSize="20"
@@ -139,6 +143,7 @@
                 <ListViewItem>
                     <localcustom:TextboxCustom
                         VerticalAlignment="Center"
+                        CornerRadiusText="8" 
                         Margin="0, 10, 0, 20"
                         FontSize="20"
                         MarginText="20"
@@ -151,6 +156,7 @@
                 <ListViewItem>
                     <localcustom:TextboxCustom
                         x:Name="Price"
+                        CornerRadiusText="8" 
                         VerticalAlignment="Center"
                         Margin="0, 10, 0, 20"
                         FontSize="20"
@@ -164,6 +170,7 @@
                 <ListViewItem>
                     <localcustom:TextboxCustom
                         x:Name="PriceSales"
+                        CornerRadiusText="8" 
                         VerticalAlignment="Center"
                         Margin="0, 10, 0, 20"
                         FontSize="20"

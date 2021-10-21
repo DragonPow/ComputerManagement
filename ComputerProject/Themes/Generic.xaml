@@ -22,7 +22,7 @@
                             CornerRadius="5"
                             HorizontalAlignment="Left"
                             >
-                        
+
                         <Viewbox 
                              >
                             <StackPanel Orientation="{TemplateBinding Orientation}" 
@@ -43,7 +43,7 @@
                                               Data="{TemplateBinding PathData}"/>
 
                                 </Viewbox>
-                              
+
                                 <ContentControl 
                                                 Grid.Column="1"
                                                 Content="{TemplateBinding Text}" 
@@ -87,10 +87,10 @@
                                 Visibility="{TemplateBinding  VisibleTitle}"
                                 VerticalAlignment="Top">
                         </TextBlock>
-                        
-                    <Border Background="{TemplateBinding Background}"
+
+                        <Border Background="{TemplateBinding Background}"
                             BorderBrush="#DBD7F4"
-                            CornerRadius="10"
+                            CornerRadius="{TemplateBinding CornerRadiusText}"
                             BorderThickness="1"
                             VerticalAlignment="Center">
                             <Grid>
@@ -112,12 +112,12 @@
                                         Height="24"
                                         Width="24"
                                         Margin="0, 0, 15, 0"
-                                        Source="{TemplateBinding PathIcon}">  
+                                        Source="{TemplateBinding PathIcon}">
                                 </Image>
-                              
-                            </Grid>                        
+
+                            </Grid>
                         </Border>
-                        </StackPanel>
+                    </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -131,7 +131,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <Style TargetType="{x:Type local:Search}">
         <Setter Property="Background" Value="#F7F7FC" />
         <Setter Property="BorderBrush" Value="#0477BF" />
@@ -139,23 +139,30 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Search}">
                     <Border
-                            Name="mask"
+                        Name="mask"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="1"
-                            CornerRadius="8"
-                            Background= "{TemplateBinding Background}">
-                        <StackPanel
+                            Width="500"
+                            Height="39"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Padding="2"
+                            Background= "{TemplateBinding Background}"
+                        >
+                    <StackPanel
                             Orientation="Horizontal" 
-                            HorizontalAlignment="Left">
-                            <materialDesign:PackIcon
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center">
+                        <materialDesign:PackIcon
                                             Kind="Magnify" 
                                             Foreground="#0477BF"
                                             Width="24"
                                             Height="24"
                                             Margin="10, 0, 0, 0"  
-                                        />  
+                                            VerticalAlignment="Center"
+                                        />
 
-                            <TextBox
+                        <TextBox
                                 x:Name="Textbox"
                                 Background= "{TemplateBinding Background}"
                                 TextAlignment="Left"
@@ -167,9 +174,9 @@
                                 FontSize="14" 
                                 Text="{TemplateBinding texthint}"
                                 Margin="5">
-                            </TextBox>
-                        </StackPanel>
-                        </Border>
+                        </TextBox>
+                    </StackPanel>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -183,6 +190,4 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    
 </ResourceDictionary>

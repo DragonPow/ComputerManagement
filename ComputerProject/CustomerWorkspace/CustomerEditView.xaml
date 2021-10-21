@@ -187,7 +187,8 @@
                         Grid.Column="1"
                         HorizontalAlignment="Right"
                         Margin="20, 0, 20, 10"
-                        x:Name="Search"      
+                        x:Name="Search"    
+                        Width="500"
                         texthint="Mã hóa đơn">
                     </localcustom:Search>
                 </Grid>
