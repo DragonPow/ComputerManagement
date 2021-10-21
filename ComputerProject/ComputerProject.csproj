@@ -223,6 +223,8 @@
     <Compile Include="DETAIL_REPORT_PRODUCT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Environment.cs" />
+    <Compile Include="Helper\FormatHelper.cs" />
     <Compile Include="ITEM_BILL.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

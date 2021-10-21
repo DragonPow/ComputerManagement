@@ -65,20 +65,31 @@ namespace ComputerProject.CustomerWorkspace
 
         public Task Save()
         {
-            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            try
             {
-                if (_model.id == -1)
+                using (ComputerManagementEntities db = new ComputerManagementEntities())
                 {
-                    // Add new row to db
-                    this._model = db.CUSTOMERs.Add(this._model);
+                    if (_model.id == -1)
+                    {
+                        // Add new row to db
+                        this._model = db.CUSTOMERs.Add(this._model);
+                    }
+                    else
+                    {
+                        // Update from old one
+                        var old = db.CUSTOMERs.Where(c => c.id == _model.id).First();
+                        this.CopyTo(old);
+                    }
+                    return db.SaveChangesAsync();
                 }
-                else
-                {
-                    // Update from old one
-                    var old = db.CUSTOMERs.Where(c => c.id == _model.id).First();
-                    this.CopyTo(old);
-                }
-                return db.SaveChangesAsync();
+            }
+            catch (Exception e) when (!Helper.Environment.IsDebug)
+            {
+                string des = "Đã xảy ra lỗi khi truy cập cơ sở dữ liệu";
+                string errorCode = "DB-01";
+                string msg = FormatHelper.GetErrorMessage(des, errorCode);
+
+                return Task.CompletedTask;
             }
         }
 
@@ -89,22 +100,66 @@ namespace ComputerProject.CustomerWorkspace
 
         public Task Delete()
         {
-            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            try
             {
-                if (_model.id == -1)
+                using (ComputerManagementEntities db = new ComputerManagementEntities())
                 {
-                    return Task.CompletedTask;
-    }
-                else
-                {
-                    // Update from old one
-                    var old = db.CUSTOMERs.Where(c => c.id == _model.id).First();
-                    if (old != null)
+                    if (_model.id == -1)
                     {
-                        db.CUSTOMERs.Remove(old);
+                        return Task.CompletedTask;
                     }
+                    else
+                    {
+                        // Update from old one
+                        var old = db.CUSTOMERs.Where(c => c.id == _model.id).First();
+                        if (old != null)
+                        {
+                            db.CUSTOMERs.Remove(old);
+                        }
+                    }
+                    return db.SaveChangesAsync();
                 }
-                return db.SaveChangesAsync();
+            }
+            catch (Exception e) when (!Helper.Environment.IsDebug)
+            {
+                string des = "Đã xảy ra lỗi khi truy cập cơ sở dữ liệu";
+                string errorCode = "DB-01";
+                string msg = FormatHelper.GetErrorMessage(des, errorCode);
+
+                return Task.CompletedTask;
+            }
+        }
+
+        public static List<CustomerViewModel> FindName(string name, int startIndex, int count)
+        {
+            try
+            {
+                using (ComputerManagementEntities db = new ComputerManagementEntities())
+                {
+                    string nameF = FormatHelper.ConvertTo_TiengDongLao(name).ToLower();
+                    var reader = db.CUSTOMERs.Where(c => FormatHelper.ConvertTo_TiengDongLao(c.name).ToLower().StartsWith(nameF))
+                        .Union(db.CUSTOMERs.Where(c => FormatHelper.ConvertTo_TiengDongLao(c.name).ToLower().Contains(nameF)))
+                        .Distinct()
+                        .Skip(startIndex).Take(count).ToList();
+
+                    var rs = new List<CustomerViewModel>(reader.Count);
+                    foreach (var row in reader)
+                    {
+                        rs.Add(new CustomerViewModel(row));
+                    }
+
+                    return rs;
+                }
+            }
+            catch (Exception e) when (!Helper.Environment.IsDebug)
+            {
+                string des = "Đã xảy ra lỗi khi truy cập cơ sở dữ liệu";
+                string errorCode = "DB-01";
+                string msg = FormatHelper.GetErrorMessage(des, errorCode);
+
+                // Should log exception to a file
+
+                return null;
             }
         }
 
