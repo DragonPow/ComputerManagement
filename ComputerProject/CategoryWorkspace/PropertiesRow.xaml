@@ -42,13 +42,14 @@
          
         </TextBlock>
             <Button 
-            Grid.Column="3" x:Name="btnDelete"
-            Style="{StaticResource MaterialDesignIconButton}"
-            ToolTip="Xóa danh mục">
+                Visibility="Hidden"
+                Grid.Column="3" x:Name="btnDelete"
+                Style="{StaticResource MaterialDesignIconButton}"
+                ToolTip="Xóa danh mục">
                 <Image
                 Height="24"
                 Width="24" 
-                Source="/ComputerProject;component/Resource/Icon/trash_gray.png"/>
+                Source="/ComputerProject;component/Resource/Icon/trash-2.png"/>
             </Button>
         </Grid>
     <Separator Background="{StaticResource Divition}" Margin="0, 25,0,0" />

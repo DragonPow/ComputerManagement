@@ -119,10 +119,12 @@ namespace ComputerProject.CustomControl
     /*Example
      *      <local:TextboxCustom
                 Texthint = "Lap top"
+                Text = "HP"
                 Title="Tên danh mục"
                 FontsizeTitle="19"
                 Fontsize = "17"
                 MarginText = "14"
+                CornerRadius = "5"
              >
             </local:TextboxCustom>*/
 }

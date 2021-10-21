@@ -82,7 +82,7 @@
                 <localcustom:Search
                     HorizontalAlignment="Left"
                     Margin="20, 0, 0, 0"
-                    texthint="Tên, mã sản phẩm">          
+                    Texthint="Tên, mã sản phẩm">          
                 </localcustom:Search>
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
