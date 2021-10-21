@@ -20,6 +20,7 @@ namespace ComputerProject.CategoryWorkspace
     /// </summary>
     public partial class TitleDetailCategory : UserControl
     {
+        public event EventHandler OnBack;
         public TitleDetailCategory()
         {
             InitializeComponent();
@@ -28,6 +29,14 @@ namespace ComputerProject.CategoryWorkspace
        public void ChangeTitle(string title)
         {
             Title.Text = title;
+        }
+     
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if( OnBack != null)
+            {
+                OnBack(this, new EventArgs());
+            }
         }
     }
 }
