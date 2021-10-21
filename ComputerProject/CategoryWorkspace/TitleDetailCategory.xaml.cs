@@ -25,6 +25,9 @@ namespace ComputerProject.CategoryWorkspace
             InitializeComponent();
         }
 
-       
+       public void ChangeTitle(string title)
+        {
+            Title.Text = title;
+        }
     }
 }

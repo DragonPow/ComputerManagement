@@ -30,5 +30,6 @@ namespace ComputerProject.CategoryWorkspace
         {
             CategoryLv2Name.Text = "Laptop";
         }
+        
     }
 }

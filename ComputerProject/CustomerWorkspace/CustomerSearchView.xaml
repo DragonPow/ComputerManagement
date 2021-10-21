@@ -18,7 +18,7 @@
              Grid.Column="0"
             VerticalAlignment="Center"
             HorizontalAlignment="Left"
-            texthint="Số điện thoại"
+            Texthint="Số điện thoại"
             Width="500">
            
         </local:Search>

@@ -31,6 +31,7 @@
             <Image
                 Height="24"
                 Width="24" 
+                Visibility="Hidden"
                 Source="/ComputerProject;component/Resource/Icon/trash-2.png"/>
         </Button>
     </Grid>
