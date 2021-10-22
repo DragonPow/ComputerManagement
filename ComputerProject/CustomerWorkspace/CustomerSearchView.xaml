@@ -19,6 +19,7 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Left"
             Texthint="Số điện thoại"
+            InputScope="Number"
             Width="500">
            
         </local:Search>

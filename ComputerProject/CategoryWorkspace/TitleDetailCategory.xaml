@@ -15,7 +15,7 @@
           Style="{StaticResource MaterialDesignIconButton}"
           ToolTip="Trở về"
           Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Click="Button_Click">
                 <materialDesign:PackIcon
                     Kind="ArrowLeft"
                     Foreground="{StaticResource Title}"

@@ -23,6 +23,13 @@ namespace ComputerProject.CategoryWorkspace
         public AllViewDetailCategory()
         {
             InitializeComponent();
+            Title.OnBack += Title_OnBack;
+        }
+
+        private void Title_OnBack(object sender, EventArgs e)
+        {
+            if (BtnEdit.Content.ToString() != "Chỉnh sửa")
+                UIDetailCategory();
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
