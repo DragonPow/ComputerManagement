@@ -1,9 +1,11 @@
-﻿using ComputerProject.Test;
+using ComputerProject.Test;
+using ComputerProject.CategoryWorkspace;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -14,7 +16,8 @@ namespace ComputerProject
     /// </summary>
     public partial class App : Application
     {
-        
-        
+        protected override void OnStartup(StartupEventArgs e)
+        {
+        }
     }
 }
