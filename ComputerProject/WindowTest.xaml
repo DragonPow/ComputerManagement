@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         
-        xmlns:test="clr-namespace:ComputerProject.CustomerWorkspace"
+        xmlns:test="clr-namespace:ComputerProject.CategoryWorkspace"
         
         xmlns:local="clr-namespace:ComputerProject.Test"
         mc:Ignorable="d"
         Title="WindowTest" Height="1045" Width="1350"
         d:DesignHeight="1000" d:DesignWidth="1400" WindowStartupLocation="CenterOwner">
     <Grid>
-        <test:CustomerDetailView></test:CustomerDetailView>
+        <test:Category />
     </Grid>
 </Window>

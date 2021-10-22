@@ -72,7 +72,7 @@ namespace ComputerProject.Repository
         {
             using (var db = new ComputerManagementEntities())
             {
-
+                //TODO: save category and child, specification
             }
         }
 
