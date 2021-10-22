@@ -109,6 +109,8 @@
                 CornerRadiusText="3"
                 FontSize="16"
                 MarginText="10"
+                Texthint="0"
+                IsEnabled="False"
                 VerticalAlignment="Center"
                 Margin="30, 0, 60, 0"
                 Title="    Điểm thưởng">

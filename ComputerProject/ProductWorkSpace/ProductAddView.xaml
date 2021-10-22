@@ -7,20 +7,21 @@
              xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
              xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
              mc:Ignorable="d" 
-             Padding="30" Background="{StaticResource Background}"
+             Padding="10, 10, 10, 0" Background="{StaticResource Background}"
              d:DesignHeight="1000" d:DesignWidth="1300">
     <Grid
        >
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.09*"/>
-            <RowDefinition Height="0.77*"/>
+            <RowDefinition Height="0.07*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="0.07*"/>
         </Grid.RowDefinitions>
         <StackPanel
             Grid.Row="0"
                 HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
                 Orientation="Horizontal"
-                 Margin="20,0,0,0.8">
+                 Margin="30,0,0,0">
             <Button
                           x:Name="BtnBack"
                           Style="{StaticResource MaterialDesignIconButton}"
@@ -34,10 +35,10 @@
             </Button>
             <TextBlock
                     FontSize="35"
-                    FontWeight="Bold"
+                    FontWeight="DemiBold"
                     FontFamily="{StaticResource Mulish}"
                     Foreground="{StaticResource Title}"
-                    Margin="20,3,0,0"
+                    Margin="20,0,0,0"
                     VerticalAlignment="Center"
                     >
                     Thêm sản phẩm
@@ -48,11 +49,13 @@
             Margin="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Rectangle Fill="White" Margin="20, 0, 20, 0"></Rectangle>
             <Rectangle Fill="White" Grid.Column="1" Margin="20, 0, 20, 0"></Rectangle>
-            <ListView>
+            <ListView
+                Margin="40, 0, 0, 0"
+                Grid.Column="0">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -62,51 +65,49 @@
                     <localcustom:TextboxCustom
                         x:Name="Code"
                         VerticalAlignment="Center"
-                        Margin="0, 20, 0, 20"
-                        FontSize="20"
-                        MarginText="20"
-                        Width="500"
+                        Margin="0, 20, 20, 10"
+                        FontSize="16"
+                        MarginText="10"
                         IsEnabled="False"
-                        CornerRadiusText="8"
+                        CornerRadiusText="5"
                         Title="    Mã sản phẩm"
                         >
-                        
+
                     </localcustom:TextboxCustom>
                 </ListViewItem>
                 <local:ProductAddViewAddPicture
-                    Margin="40, 10, 40, 20">
+                    Margin="0, 0, 20, 10">
                 </local:ProductAddViewAddPicture>
                 <ListViewItem>
                     <localcustom:TextboxCustom
-                        CornerRadiusText="8"
+                        CornerRadiusText="5"
                         x:Name="ProductName"
                         VerticalAlignment="Center"
-                        Margin="0, 10, 0, 20"
-                        FontSize="20"
-                        MarginText="20"
-                        Width="500"
+                        Margin="0, 10, 20, 10"
+                        FontSize="16"
+                        MarginText="10"
                         Title="    Tên sản phẩm"
                         >
 
                     </localcustom:TextboxCustom>
                 </ListViewItem>
                 <StackPanel
-                   Margin="40, 0, 40, 0" >
+                   Margin="0, 0, 20, 10" >
                     <TextBlock   
-                                FontSize="20"
+                                FontSize="16"
                                 FontWeight="Bold"
                                 Text="   Danh mục"
                                 Foreground="Black"                   
                                 Margin="0, 0, 0, 10"
                                 VerticalAlignment="Top">
                     </TextBlock>
-                
+
                     <ComboBox
                         x:Name="Category"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}"
                         IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                        FontSize="20"
-                        Padding="20"
+                        FontSize="16"
+                        Padding="15"
                         Background="{StaticResource Background}"
                         BorderBrush="#DBD7F4"
                         FontFamily="{StaticResource Mulish}"
@@ -114,13 +115,12 @@
                 </StackPanel>
                 <ListViewItem>
                     <localcustom:TextboxCustom
-                        CornerRadiusText="8"
+                        CornerRadiusText="5"
                         x:Name="Procedure"
                         VerticalAlignment="Center"
-                        Margin="0, 10, 0, 20"
-                        FontSize="20"
-                        MarginText="20"
-                        Width="500"
+                        Margin="0, 10, 20, 10"
+                        FontSize="16"
+                        MarginText="10"
                         Title="    Nhà cung cấp"
                         >
 
@@ -129,12 +129,11 @@
                 <ListViewItem>
                     <localcustom:TextboxCustom
                         x:Name="Quantity"
-                         CornerRadiusText="8"
+                         CornerRadiusText="5"
                         VerticalAlignment="Center"
-                        Margin="0, 10, 0, 20"
-                        FontSize="20"
-                        MarginText="20"
-                        Width="500"
+                        Margin="0, 10, 20, 10"
+                        FontSize="16"
+                        MarginText="10"
                         Title="    Số lượng"
                         >
 
@@ -143,39 +142,24 @@
                 <ListViewItem>
                     <localcustom:TextboxCustom
                         VerticalAlignment="Center"
-                        CornerRadiusText="8" 
-                        Margin="0, 10, 0, 20"
-                        FontSize="20"
-                        MarginText="20"
-                        Width="500"
-                        Title="    Số lượng"
-                        >
-
-                    </localcustom:TextboxCustom>
-                </ListViewItem>
-                <ListViewItem>
-                    <localcustom:TextboxCustom
-                        x:Name="Price"
-                        CornerRadiusText="8" 
-                        VerticalAlignment="Center"
-                        Margin="0, 10, 0, 20"
-                        FontSize="20"
-                        MarginText="20"
-                        Width="500"
+                        CornerRadiusText="5" 
+                        Margin="0, 10, 20, 10"
+                        FontSize="16"
+                        MarginText="10"
                         Title="    Giá gốc"
                         >
 
                     </localcustom:TextboxCustom>
                 </ListViewItem>
+
                 <ListViewItem>
                     <localcustom:TextboxCustom
                         x:Name="PriceSales"
-                        CornerRadiusText="8" 
+                        CornerRadiusText="5" 
                         VerticalAlignment="Center"
-                        Margin="0, 10, 0, 20"
-                        FontSize="20"
-                        MarginText="20"
-                        Width="500"
+                        Margin="0, 10, 20, 10"
+                        FontSize="16"
+                        MarginText="10"
                         Title="    Giá bán"
                         >
 
@@ -193,7 +177,7 @@
                     VerticalAlignment="Center"
                     Text=" Thông số"
                     >
-                    
+
                 </TextBlock>
                 <ListView
                     x:Name="ListSpecifications"
@@ -208,7 +192,7 @@
                         <DataTemplate>
                             <local:ProdcutAddSpecificationsRow></local:ProdcutAddSpecificationsRow>
                         </DataTemplate>
-                    </ListView.ItemTemplate> 
+                    </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
         </Grid>
@@ -217,11 +201,11 @@
             Grid.Row="2"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Margin="0, 0, 40, 0">
+            Margin="0, 0, 60, 0">
             <Button
                 Background="{StaticResource MainColor}"
-                Width="178"
-                Height="48"
+                Width="110"
+                Height="37"
                 Margin="0, 0, 20, 0"
                 >
                 Lưu
@@ -230,8 +214,8 @@
                 Background="Transparent"
                 BorderBrush="{StaticResource MainColor}"
                 Foreground="{StaticResource MainColor}"
-                Width="111"
-                Height="48"
+                Width="110"
+                Height="37"
                  Margin="20, 0, 0, 0"
                 >
                 Hủy

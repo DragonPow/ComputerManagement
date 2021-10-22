@@ -15,7 +15,7 @@
             FontSize="35"
             DockPanel.Dock="Top" 
             FontFamily="{StaticResource Mulish}"
-            FontWeight="Bold"
+            FontWeight="SemiBold"
             Foreground="{StaticResource Title}" Margin="10,0,10,15">
             Sản phẩm
         </TextBlock>
@@ -52,7 +52,7 @@
                             Background="{StaticResource MainColor}"
                             Height="37"
                             materialDesign:ButtonAssist.CornerRadius="8"
-                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                            ToolTip="Thêm sản phẩm"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
                     <StackPanel 
                                 Orientation="Horizontal">
@@ -97,7 +97,7 @@
                             Margin="0, 0, 20, 0"
                             materialDesign:ButtonAssist.CornerRadius="8"
                             HorizontalAlignment="Left"
-                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                            ToolTip="Sắp xếp"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
                         <StackPanel 
                                 Orientation="Horizontal">
@@ -124,7 +124,7 @@
                         Margin="0, 0, 20, 0"
                             materialDesign:ButtonAssist.CornerRadius="8"
                             HorizontalAlignment="Left"
-                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                            ToolTip="Lọc"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
                         <StackPanel 
                                 Orientation="Horizontal">
@@ -165,6 +165,7 @@
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
+                
                 
             </ListView>
     </Grid>
