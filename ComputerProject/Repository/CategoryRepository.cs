@@ -37,7 +37,7 @@ namespace ComputerProject.Repository
             return list;
         }
 
-        public Collection<Model.Category> LoadChildCategories(int rootId)
+        public ObservableCollection<Model.Category> LoadChildCategories(int rootId)
         {
             var list = new ObservableCollection<Model.Category>();
 
@@ -60,10 +60,14 @@ namespace ComputerProject.Repository
         {
             using (var db = new ComputerManagementEntities())
             {
-                var childCategories = db.CATEGORies.Where(i => i.CATEGORY3.id == castegoryId);
+                var childCategories = db.CATEGORies.Where(i => i.CATEGORY3.id == castegoryId).ToList();
                 CATEGORY c = new CATEGORY() { id = castegoryId };
 
-                db.Entry(c).State = db.Entry(childCategories).State = EntityState.Deleted;
+                foreach(var child in childCategories)
+                {
+                    db.Entry(child).State = EntityState.Deleted;
+                }
+                db.Entry(c).State = EntityState.Deleted;
                 db.SaveChanges();
             }
         }
@@ -73,6 +77,9 @@ namespace ComputerProject.Repository
             using (var db = new ComputerManagementEntities())
             {
                 //TODO: save category and child, specification
+                CATEGORY c = category.CastToModel();
+                db.Entry(c).State = c.id==0? EntityState.Added : EntityState.Modified;
+                db.SaveChanges();
             }
         }
 

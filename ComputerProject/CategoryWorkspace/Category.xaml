@@ -4,13 +4,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DataContext="{d:DesignInstance Type=local:ListCategoryViewModel}"
              x:Class="ComputerProject.CategoryWorkspace.Category"
              mc:Ignorable="d"
              d:DesignHeight="1024"
              d:DesignWidth="1485">
 
     <UserControl.Resources>
-        <Style x:Key="ListViewStyle1"
+        <!--<Style x:Key="ListViewStyle1"
                TargetType="{x:Type ListView}">
             <Setter Property="Background"
                     Value="{DynamicResource MaterialDesignPaper}" />
@@ -306,7 +307,7 @@
                     </Binding>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
     </UserControl.Resources>
     <UserControl.Background>
         <StaticResource ResourceKey="Background" />
@@ -318,7 +319,8 @@
                    FontWeight="Bold"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="{StaticResource Title}"
-                   Margin="40, 40,0, 0"><Run Text="Danh mục" /></TextBlock>
+                   Margin="40, 40,0, 0"
+                   Text="Danh mục" />
         <Grid Background="White"
               Margin="20">
             <Grid.RowDefinitions>
@@ -327,14 +329,23 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
-            <local:FeatureBar x:Name="Feature" />
+            <local:FeatureBar x:Name="Feature"
+                              DataContext="{Binding .}" />
             <local:TableTitle Grid.Row="1"
                               Margin="10" />
             <ListView x:Name="Listcategory"
                       Grid.Row="2"
+                      ItemsSource="{Binding CurrentCategories}"
                       Style="{DynamicResource ListViewStyle1}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:TableRow/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
                 <ListView.ItemContainerStyle>
-                    <Style  TargetType="ListViewItem">
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
                         <Style.Triggers>
                             <Trigger Property="IsKeyboardFocusWithin"
                                      Value="True">
@@ -384,6 +395,7 @@
                         </Style.Triggers>
                     </Style>
                 </ListView.ItemContainerStyle>
+                <!--
                 <ListViewItem>
                     <local:TableRow />
                 </ListViewItem>
@@ -419,10 +431,7 @@
                 </ListViewItem>
                 <ListViewItem>
                     <local:TableRow />
-                </ListViewItem>
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>
+                </ListViewItem>-->
 
 
             </ListView>

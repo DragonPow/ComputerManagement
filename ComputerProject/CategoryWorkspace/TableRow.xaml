@@ -1,76 +1,82 @@
 ﻿<UserControl x:Class="ComputerProject.CategoryWorkspace.TableRow"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
+             xmlns:model="clr-namespace:ComputerProject.Model"
+             xmlns:converter="clr-namespace:ComputerProject.Converter"
              xmlns:local1="clr-namespace:ComputerProject.CustomControl"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
-             d:DesignHeight="67" d:DesignWidth="1310"
-             Background="Transparent"
-             >
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
+             d:DesignHeight="67"
+             d:DesignWidth="1310"
+             d:DataContext="{d:DesignInstance model:Category}"
+             Background="Transparent">
     <UserControl.Resources>
-        <Style TargetType="TextBlock" x:Key="CellTitle">
-            <Setter Property="FontFamily" Value="{StaticResource Mulish}"></Setter>
-            <Setter Property="FontWeight" Value="Regular"></Setter>
-            <Setter Property="FontSize" Value="16"></Setter>
-            <Setter Property="Foreground" Value="Black"></Setter>
+        <Style TargetType="TextBlock"
+               x:Key="CellTitle">
+            <Setter Property="FontFamily"
+                    Value="{StaticResource Mulish}"></Setter>
+            <Setter Property="FontWeight"
+                    Value="Regular"></Setter>
+            <Setter Property="FontSize"
+                    Value="16"></Setter>
+            <Setter Property="Foreground"
+                    Value="Black"></Setter>
         </Style>
+        <converter:ListCategoryToStringCommaConverter x:Key="CategoryLv2Converter" />
     </UserControl.Resources>
     <StackPanel Orientation="Vertical"
                 Height="55">
-        <Grid
-            Height="50">
-        <Grid.ColumnDefinitions >
-            <ColumnDefinition Width="0.23*"></ColumnDefinition>
-            <ColumnDefinition Width="0.65*"></ColumnDefinition>
-            <ColumnDefinition Width="0.06*"></ColumnDefinition>
-            <ColumnDefinition Width="0.06*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+        <Grid Height="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.23*"></ColumnDefinition>
+                <ColumnDefinition Width="0.65*"></ColumnDefinition>
+                <ColumnDefinition Width="0.06*"></ColumnDefinition>
+                <ColumnDefinition Width="0.06*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        <TextBlock
-            x:Name="CategoryLv1"
-            Style="{StaticResource CellTitle}"
-            Grid.Column="0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Margin="20, 0, 0, 0"
-            >
-           
-        </TextBlock>
+            <TextBlock x:Name="CategoryLv1"
+                       Style="{StaticResource CellTitle}"
+                       Grid.Column="0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="20, 0, 0, 0"
+                       Text="{Binding Name}">
 
-        <TextBlock
-            x:Name="CategoryLv2"
-            Style="{StaticResource CellTitle}"
-            Grid.Column="1"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Margin="20, 0, 0, 0"
-            >
-           
-        </TextBlock>
+            </TextBlock>
 
-            <Button 
-            Grid.Column="2" x:Name="btnEdit"
-            Style="{StaticResource MaterialDesignIconButton}"
-            ToolTip="Chỉnh sửa danh mục" >
-                <Image
-                Height="24"
-                Width="24" 
-                Source="/ComputerProject;component/Resource/Icon/akar-icons_edit.png"/>
+            <TextBlock x:Name="CategoryLv2"
+                       Style="{StaticResource CellTitle}"
+                       Grid.Column="1"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="20, 0, 0, 0"
+                       Text="{Binding ChildCategories, Converter={StaticResource CategoryLv2Converter}}" />
+            <Button Grid.Column="2"
+                    x:Name="btnEdit"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    ToolTip="Chỉnh sửa danh mục"
+                    Command="{Binding DataContext.OpenDetailCategoryCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
+                    CommandParameter="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                <Image Height="24"
+                       Width="24"
+                       Source="/ComputerProject;component/Resource/Icon/akar-icons_edit.png" />
             </Button>
-            <Button 
-            Grid.Column="3" x:Name="btnDelete"
-            Style="{StaticResource MaterialDesignIconButton}"
-            ToolTip="Xóa danh mục">
-                <Image
-                Height="24"
-                Width="24" 
-                Source="/ComputerProject;component/Resource/Icon/trash-2.png"/>
+            <Button Grid.Column="3"
+                    x:Name="btnDelete"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    ToolTip="Xóa danh mục"
+                    Command="{Binding DataContext.DeleteCategoryCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
+                    CommandParameter="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                <Image Height="24"
+                       Width="24"
+                       Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
             </Button>
 
         </Grid>
-        <Separator Background="{StaticResource Divition}"/>
+        <Separator Background="{StaticResource Divition}" />
     </StackPanel>
 </UserControl>

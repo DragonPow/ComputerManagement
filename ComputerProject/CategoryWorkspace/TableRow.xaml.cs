@@ -23,12 +23,12 @@ namespace ComputerProject.CategoryWorkspace
         public TableRow()
         {
             InitializeComponent();
-            InitData();
+            //InitData();
         }
-        public void InitData()
-        {
-            CategoryLv1.Text = "Lap top";
-            CategoryLv2.Text = "Macbook,  acer, HP, MSI, ";
-        }
+        //public void InitData()
+        //{
+        //    CategoryLv1.Text = "Lap top";
+        //    CategoryLv2.Text = "Macbook,  acer, HP, MSI, ";
+        //}
     }
 }

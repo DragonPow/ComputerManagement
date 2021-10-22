@@ -37,5 +37,15 @@ namespace ComputerProject.ApplicationWorkspace
             ButtonOpenMenu.Visibility = Visibility.Visible;
         }
 
+        private void TabSelected(object sender, MouseButtonEventArgs e)
+        {
+            var tab = sender as ListViewItem;
+            if (tab!=null && tab.IsSelected)
+            {
+                var dc = DataContext as ApplicationViewModel;
+                //dc.CurrentViewModel = tab;
+            }
+        }
+
     }
 }

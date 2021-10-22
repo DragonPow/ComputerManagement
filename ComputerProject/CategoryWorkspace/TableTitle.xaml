@@ -23,15 +23,12 @@
             <ColumnDefinition Width="0.06*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock
-            Style="{StaticResource CellTitle}"
-            Grid.Column="0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Margin="15, 0, 0, 0"
-            >
-           Tên danh mục cấp 1 
-        </TextBlock>
+        <TextBlock Style="{StaticResource CellTitle}"
+                   Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="15, 0, 0, 0" 
+                   Text="Tên danh mục cấp 1"/>
 
         <TextBlock
             Style="{StaticResource CellTitle}"

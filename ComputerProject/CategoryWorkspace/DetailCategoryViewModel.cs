@@ -1,4 +1,5 @@
-﻿using ComputerProject.CustomMessageBox;
+﻿using ComputerProject.ApplicationWorkspace;
+using ComputerProject.CustomMessageBox;
 using ComputerProject.Helper;
 //using ComputerProject.Model;
 using ComputerProject.Repository;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
 
 namespace ComputerProject.CategoryWorkspace
 {
@@ -45,11 +47,13 @@ namespace ComputerProject.CategoryWorkspace
         }
     }
 
-    public class DetailCategoryViewModel : BaseViewModel
+    public class DetailCategoryViewModel : BaseViewModel, ITabView
     {
         #region Fields
         NavigationService _navigator;
         CategoryRepository _repository;
+        public string ViewName => "Test";
+        public PackIconKind ViewIcon => PackIconKind.Add;
 
         Model.Category _currentParentCategory;
         Model.Category _currentChildCateogry;
