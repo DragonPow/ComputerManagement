@@ -19,8 +19,8 @@
             <SolidColorBrush x:Key="Warning" Color="#F24E1E" />
             <SolidColorBrush x:Key="Icon" Color="#9A9AB0" />
             <SolidColorBrush x:Key="Divition" Color="#E1E1FB" />
-            <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#0477BF"/>
-
+            <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#0477BF"/>
+            <SolidColorBrush x:Key="MaterialDesignBody" Color="Gray"/>
             <FontFamily x:Key="Mulish" >pack:/Resource/Font/Mulish-VariableFont_wght.ttf</FontFamily>
             <FontFamily x:Key="MulishItalic" >pack:/Resource/Font/Mulish-Italic-VariableFont_wght.ttf</FontFamily>
 
