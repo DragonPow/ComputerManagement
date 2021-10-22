@@ -26,8 +26,9 @@
                              Color="#E1E1FB" />
             <SolidColorBrush x:Key="SecondaryHueMidBrush"
                              Color="#0477BF" />
-            <SolidColorBrush x:Key="MaterialDesignBody"
-                             Color="Gray" />
+            <SolidColorBrush x:Key="PrimaryHueMidBrush"
+                             Color="#0477BF" />
+
             <FontFamily x:Key="Mulish">pack:/Resource/Font/Mulish-VariableFont_wght.ttf</FontFamily>
             <FontFamily x:Key="MulishItalic">pack:/Resource/Font/Mulish-Italic-VariableFont_wght.ttf</FontFamily>
 

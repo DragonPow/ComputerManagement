@@ -6,21 +6,25 @@
              xmlns:local="clr-namespace:ComputerProject.SaleWorkSpace"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="1024" d:DesignWidth="1350" Background="{StaticResource Background}">
+             d:DesignHeight="1080" d:DesignWidth="1800" Background="{StaticResource Background}">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="38*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Text="Bán hàng" FontSize="35" FontWeight="Bold" FontFamily="{StaticResource Mulish}"  Foreground="{StaticResource Title}" Margin="30,20"  VerticalAlignment="Center"></TextBlock>
-        <Grid Margin="30,0" Grid.Row="1">
+        <TextBlock Text="Bán hàng" FontSize="35" FontWeight="Bold" FontFamily="{StaticResource Mulish}"  Foreground="{StaticResource Title}" Margin="30,20"  VerticalAlignment="Center" Grid.ColumnSpan="2"></TextBlock>
+        <Grid Margin="30,0" Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="500"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <local:ProdSaleAllView Grid.Column="0" Margin="0,0,0,10" ></local:ProdSaleAllView>
-          
+            <local:CurrentSaleBillView Grid.Column="1" Loaded="CurrentSaleBillView_Loaded"></local:CurrentSaleBillView>
         </Grid>
     </Grid>
-           
+
 </UserControl>
