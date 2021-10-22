@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ComputerProject.ProductWorkSpace.ProductAddView"
+﻿<UserControl x:Class="ComputerProject.ProductWorkSpace.ProductDetailView"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -27,13 +27,14 @@
                           Style="{StaticResource MaterialDesignIconButton}"
                           ToolTip="Trở về"
                           Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Click="BtnBack_Click">
                 <materialDesign:PackIcon
                                     Kind="ArrowLeft"
                                     Foreground="{StaticResource Title}"
                                     />
             </Button>
             <TextBlock
+                x:Name="Title"
                     FontSize="35"
                     FontWeight="DemiBold"
                     FontFamily="{StaticResource Mulish}"
@@ -41,27 +42,27 @@
                     Margin="20,0,0,0"
                     VerticalAlignment="Center"
                     >
-                    Thêm sản phẩm
+                    Chi tiết sản phẩm
             </TextBlock>
         </StackPanel>
         <Grid
+            
             Grid.Row="1"
-            Margin="20">
+            Margin="20"
+            >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Rectangle Fill="White" Margin="20, 0, 20, 0"></Rectangle>
             <Rectangle Fill="White" Grid.Column="1" Margin="20, 0, 20, 0"></Rectangle>
-            <ListView
-                Margin="40, 0, 0, 0"
-                Grid.Column="0">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListViewItem>
+            <ScrollViewer
+                Grid.Column="0"
+                VerticalScrollBarVisibility="Visible"
+                Margin="40, 0, 0, 0">
+            <StackPanel
+                x:Name="ProInfor"  
+                IsEnabled="False">
                     <localcustom:TextboxCustom
                         x:Name="Code"
                         VerticalAlignment="Center"
@@ -74,7 +75,7 @@
                         >
 
                     </localcustom:TextboxCustom>
-                </ListViewItem>
+               
                 <Grid
                     Margin="0, 0, 20, 10">
                     <Grid.ColumnDefinitions>
@@ -87,7 +88,6 @@
                         Source="/ComputerProject;component/Resource/Image/AddImage.png"
                         Stretch="Fill"
                         >
-
                     </Image>
                     <Grid
                         Grid.Column="1">
@@ -96,27 +96,30 @@
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <TextBlock
+                            x:Name="TblChoosseImage"
                             FontSize="16"
                             FontWeight="Bold"
                             FontFamily="{StaticResource Mulish}"
                             Foreground="Black"
                             Margin="10,3,0,0"
+                            Visibility="Hidden"
                             VerticalAlignment="Center">
                             Chọn ảnh sản phẩm
                         </TextBlock>
                         <Button
-                            HorizontalAlignment="Left"
-                            Margin="10, 0, 0, 0"
+                            x:Name="BtnAddImage"
+                            HorizontalAlignment="Stretch"
+                            Margin="10, 0, 10, 0"
                             Grid.Row="1"
                             Background="{StaticResource MainColor}"
                             BorderBrush="{StaticResource MainColor}"
                             Content="Tải ảnh lên"
-                            Width="208"
+                            Visibility="Hidden"
                             >
                         </Button>
                     </Grid>
                 </Grid>
-                <ListViewItem>
+               
                     <localcustom:TextboxCustom
                         CornerRadiusText="5"
                         x:Name="ProductName"
@@ -128,8 +131,7 @@
                         >
 
                     </localcustom:TextboxCustom>
-                </ListViewItem>
-                <StackPanel
+                  <StackPanel
                    Margin="0, 0, 20, 10" >
                     <TextBlock   
                                 FontSize="16"
@@ -151,7 +153,7 @@
                         FontFamily="{StaticResource Mulish}"
                         ItemsSource="{Binding ShortStringList}" />
                 </StackPanel>
-                <ListViewItem>
+            
                     <localcustom:TextboxCustom
                         CornerRadiusText="5"
                         x:Name="Procedure"
@@ -163,8 +165,6 @@
                         >
 
                     </localcustom:TextboxCustom>
-                </ListViewItem>
-                <ListViewItem>
                     <localcustom:TextboxCustom
                         x:Name="Quantity"
                          CornerRadiusText="5"
@@ -176,9 +176,8 @@
                         >
 
                     </localcustom:TextboxCustom>
-                </ListViewItem>
-                <ListViewItem>
                     <localcustom:TextboxCustom
+                        x:Name="Price"
                         VerticalAlignment="Center"
                         CornerRadiusText="5" 
                         Margin="0, 10, 20, 10"
@@ -188,9 +187,7 @@
                         >
 
                     </localcustom:TextboxCustom>
-                </ListViewItem>
 
-                <ListViewItem>
                     <localcustom:TextboxCustom
                         x:Name="PriceSales"
                         CornerRadiusText="5" 
@@ -202,8 +199,8 @@
                         >
 
                     </localcustom:TextboxCustom>
-                </ListViewItem>
-            </ListView>
+            </StackPanel>
+            </ScrollViewer>
             <StackPanel
                 Grid.Column="1">
                 <TextBlock
@@ -241,24 +238,26 @@
             VerticalAlignment="Top"
             Margin="0, 0, 60, 0">
             <Button
+                x:Name="BtnDel"
+                Background="Transparent"
+                BorderBrush="{StaticResource Warning}"
+                Foreground="{StaticResource  Warning}"
+                Width="110"
+                Height="37"
+                 Margin="0, 0, 20, 0"
+                >
+                Xóa
+            </Button>
+            <Button
+                x:Name="Btnedit"
                 Background="{StaticResource MainColor}"
                 Width="110"
                 Height="37"
-                Margin="0, 0, 20, 0"
+                Margin="20, 0, 0, 0" Click="Btnedit_Click"
                 >
-                Lưu
+                Chỉnh sửa
             </Button>
 
-            <Button
-                Background="Transparent"
-                BorderBrush="{StaticResource MainColor}"
-                Foreground="{StaticResource MainColor}"
-                Width="110"
-                Height="37"
-                 Margin="20, 0, 0, 0"
-                >
-                Hủy
-            </Button>
         </StackPanel>
     </Grid>
 </UserControl>
