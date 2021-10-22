@@ -272,8 +272,14 @@
     <Compile Include="SaleWorkSpace\CustomerSaleView.xaml.cs">
       <DependentUpon>CustomerSaleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SaleWorkSpace\PaySaleBillView.xaml.cs">
+      <DependentUpon>PaySaleBillView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SaleWorkSpace\ProdChooseItem.xaml.cs">
       <DependentUpon>ProdChooseItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\ProdItemInBill.xaml.cs">
+      <DependentUpon>ProdItemInBill.xaml</DependentUpon>
     </Compile>
     <Compile Include="SaleWorkSpace\ProdSaleAllView.xaml.cs">
       <DependentUpon>ProdSaleAllView.xaml</DependentUpon>
@@ -400,7 +406,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SaleWorkSpace\PaySaleBillView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SaleWorkSpace\ProdChooseItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\ProdItemInBill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
