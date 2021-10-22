@@ -161,9 +161,12 @@
     <Compile Include="CategoryWorkspace\Categorylv2Row.xaml.cs">
       <DependentUpon>Categorylv2Row.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CategoryWorkspace\CategoryViewModel.cs" />
+    <Compile Include="CategoryWorkspace\DetailCategoryViewModel.cs" />
     <Compile Include="CategoryWorkspace\FeatureBar.xaml.cs">
       <DependentUpon>FeatureBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CategoryWorkspace\ListCategoryViewModel.cs" />
     <Compile Include="CategoryWorkspace\PropertiesRow.xaml.cs">
       <DependentUpon>PropertiesRow.xaml</DependentUpon>
     </Compile>
@@ -221,6 +224,7 @@
     <Compile Include="CustomerWorkspace\CustomerSearchView.xaml.cs">
       <DependentUpon>CustomerSearchView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\NavigationService.cs" />
     <Compile Include="CustomerWorkspace\Test.cs" />
     <Compile Include="DETAIL_REPORT_CATEGORY.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -234,9 +238,14 @@
     <Compile Include="ITEM_BILL_SERI.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="MessageBox.xaml.cs">
+    <Compile Include="Helper\CustomMessageBox\MessageBox.xaml.cs">
       <DependentUpon>MessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CustomMessageBox\MessageBoxCustom.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\Specification.cs" />
+    <Compile Include="Model\Specification_type.cs" />
     <Compile Include="PRODUCT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -246,6 +255,7 @@
     <Compile Include="REPORT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="SPECIFICATION.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -325,7 +335,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MessageBox.xaml">
+    <Page Include="Helper\CustomMessageBox\MessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
