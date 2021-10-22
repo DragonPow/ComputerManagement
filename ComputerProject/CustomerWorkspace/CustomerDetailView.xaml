@@ -25,13 +25,14 @@
                           Style="{StaticResource MaterialDesignIconButton}"
                           ToolTip="Trở về"
                           Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Click="BtnBack_Click">
                 <materialDesign:PackIcon
                                     Kind="ArrowLeft"
                                     Foreground="{StaticResource Title}"
                                     />
             </Button>
             <TextBlock
+                x:Name="Title"
                     FontSize="35"
                     FontWeight="Bold"
                     FontFamily="{StaticResource Mulish}"
@@ -57,15 +58,21 @@
                 Grid.Row="0"
                 Margin="20">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.8*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1.7*"></RowDefinition>
+                    <RowDefinition Height="688.2*" ></RowDefinition>
+                    <RowDefinition Height="202*" ></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock
+                <Grid
+                    x:Name="CusInfor"
+                    IsEnabled="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="95.2*" ></RowDefinition>
+                        <RowDefinition Height="118*"></RowDefinition>
+                        <RowDefinition Height="119*"></RowDefinition>
+                        <RowDefinition Height="118*"></RowDefinition>
+                        <RowDefinition Height="119*"></RowDefinition>
+                        <RowDefinition Height="119*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock
                     FontSize="24"
                     FontWeight="SemiBold"
                     Grid.Row="0"
@@ -75,68 +82,86 @@
                     VerticalAlignment="Center"
                     >
                     Thông tin cá nhân
-                </TextBlock>
+                    </TextBlock>
 
-                <localcustom:TextboxCustom
+                    <localcustom:TextboxCustom
                     Grid.Row="1"
                     x:Name="Name"        
                     Title="   Tên khách hàng"
                     FontSize="16"
                     MarginText="10"
                     Margin="20, 0, 20, 0"
-                    CornerRadiusText="8"
+                    CornerRadiusText="5"
                 >
-                </localcustom:TextboxCustom>
-                
-                <localcustom:TextboxCustom
+                    </localcustom:TextboxCustom>
+
+                    <localcustom:TextboxCustom
                     Grid.Row="2"
                     x:Name="Phone"
                     Title="   Số điện thoại"
                     FontSize="16"
-                     MarginText="10"
+                    MarginText="10"
                     Margin="20, 0, 20, 0"
-                    CornerRadiusText="8"
+                    CornerRadiusText="5"
                 >
-                </localcustom:TextboxCustom>
-                <localcustom:TextboxCustom
-                    Grid.Row="3"
-                    x:Name="Birthday"
-                    Title="   Ngày sinh"
-                    FontSize="16"
-                     MarginText="10"
-                    Margin="20, 0, 20, 0"
-                    PathIcon="/ComputerProject;component/Resource/Icon/CalendarGray.png"
-                    CornerRadiusText="8"
+                    </localcustom:TextboxCustom>
+                    <StackPanel
+                 Grid.Row="3" 
+                Grid.Column="0"
+                VerticalAlignment="Top"
+                Margin="20, 0, 20, 0"
                 >
-                </localcustom:TextboxCustom>
-                <localcustom:TextboxCustom
+                        <TextBlock   
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Text="   Ngày sinh"
+                                Foreground="Black"                   
+                                Margin="0, 0, 0, 10"
+                                VerticalAlignment="Top">
+                        </TextBlock>
+
+                        <Border  Background="{StaticResource Background}"
+                            BorderBrush="#DBD7F4"
+                            CornerRadius="8"
+                            VerticalAlignment="Center">
+                            <DatePicker
+                                Name="Birthday"
+                          BorderBrush="#DBD7F4"
+                          FontSize="16"
+                          FontFamily="{StaticResource Mulish}"
+                          Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                        </Border>
+                    </StackPanel>
+                    <localcustom:TextboxCustom
                     Grid.Row="4"
                     x:Name="Adress"
                     Title="   Địa chỉ"
                     FontSize="16"
                      MarginText="10"
                     Margin="20, 0, 20, 0"
-                    CornerRadiusText="8"
+                    CornerRadiusText="5"
                 >
-                </localcustom:TextboxCustom>
-                <localcustom:TextboxCustom
+                    </localcustom:TextboxCustom>
+                    <localcustom:TextboxCustom
                     Grid.Row="5"
-                    x:Name="NameCategory"
+                    x:Name="Point"
                     Texthint = "0"
                     Title="   Điểm thưởng"
                     FontSize="16"
-                     MarginText="10"
+                    MarginText="10"
                     Margin="20, 0, 20, 0"
-                    CornerRadiusText="8"
+                    CornerRadiusText="5"
                 >
-                </localcustom:TextboxCustom>
+                    </localcustom:TextboxCustom>
+                </Grid>
+                
                 <StackPanel
                     VerticalAlignment="Top"
                     Margin="0,10,20,0"
                     Orientation="Horizontal"
                     Grid.Row="6"
                     HorizontalAlignment="Right">
-                            <Button
+                    <Button
                                 x:Name="BtnDelete"
                                 Background="Transparent"
                                 Width="110"
@@ -144,21 +169,21 @@
                                 Margin="10"
                                 FontFamily="{StaticResource Mulish}"
                                 FontSize="16"
-                                Foreground="{StaticResource MainColor}"
-                                BorderBrush="{StaticResource MainColor}"
+                                Foreground="{StaticResource Warning}"
+                                BorderBrush="{StaticResource Warning}" Click="BtnDelete_Click"
                             >
-                                Hủy
-                            </Button>
-                        <Button
+                        Xóa
+                    </Button>
+                    <Button
                             x:Name="BtnEdit"
                              Width="150"
                             Height="48"
                             Margin="20, 0, 0, 0"
                             FontFamily="{StaticResource Mulish}"
                             FontSize="16"
-                            Background="{StaticResource MainColor}">
-                                Chỉnh sửa
-                        </Button>
+                            Background="{StaticResource MainColor}" Click="BtnEdit_Click">
+                        Chỉnh sửa
+                    </Button>
 
                 </StackPanel>
             </Grid>
@@ -199,7 +224,7 @@
                 </Grid>
                 <local:CustomerDetailViewBillTitle
                     Grid.Row="1"
-                    Margin="10, 0, 10, 0">   
+                    Margin="10, 0, 10, 0">
                 </local:CustomerDetailViewBillTitle>
                 <ListView
                     Grid.Row="2"
@@ -215,11 +240,11 @@
                             <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                   
+
                 </ListView>
-                
+
             </Grid>
         </Grid>
-        
+
     </Grid>
 </UserControl>

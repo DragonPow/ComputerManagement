@@ -96,8 +96,8 @@
                             VerticalAlignment="Center">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="7*"></ColumnDefinition>
-                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <TextBox
                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
