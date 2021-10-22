@@ -239,8 +239,8 @@
     <Compile Include="ProductWorkSpace\ProductAddView.xaml.cs">
       <DependentUpon>ProductAddView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProductWorkSpace\ProductAddViewAddPicture.xaml.cs">
-      <DependentUpon>ProductAddViewAddPicture.xaml</DependentUpon>
+    <Compile Include="ProductWorkSpace\ProductDetailView.xaml.cs">
+      <DependentUpon>ProductDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProductWorkSpace\ProductMainRowTable.xaml.cs">
       <DependentUpon>ProductMainRowTable.xaml</DependentUpon>
@@ -363,7 +363,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProductWorkSpace\ProductAddViewAddPicture.xaml">
+    <Page Include="ProductWorkSpace\ProductDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -476,6 +476,8 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resource\Image\AddImage.png" />
+    <Resource Include="Resource\Icon\image-add.png" />
     <Resource Include="Resource\Icon\AddImage.png" />
     <Resource Include="Resource\Icon\Arange.png" />
     <Resource Include="Resource\Icon\Plus.png" />

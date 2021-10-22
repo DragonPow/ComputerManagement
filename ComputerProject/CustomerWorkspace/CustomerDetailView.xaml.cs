@@ -23,6 +23,14 @@ namespace ComputerProject.CustomerWorkspace
         {
             DisEnable();
         }
+        private void BtnDelete_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (BtnDelete.Content.ToString() == "Hủy")
+            {
+                Name.Text = Phone.Text = Adress.Text = Point.Text = " ";
+                Birthday.Text = "";
+            }
+        }
         private void Enable()
         {
             CusInfor.IsEnabled = true;
@@ -40,13 +48,6 @@ namespace ComputerProject.CustomerWorkspace
             Title.Text = "Chi tiết khách hàng";
         }
 
-        private void BtnDelete_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (BtnDelete.Content.ToString() == "Hủy")
-            {
-                Name.Text = Phone.Text = Adress.Text = Point.Text = " ";
-                Birthday.Text ="";
-            }    
-        }
+       
     }
 }
