@@ -9,7 +9,9 @@
              mc:Ignorable="d" 
              Background="White"
              d:DesignHeight="1044" d:DesignWidth="318">
-    <StackPanel>
+    <StackPanel
+        Width="318"
+        >
     <StackPanel
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -31,7 +33,7 @@
                 </Button>
         <TextBlock
                 FontSize="25"
-                FontWeight="Bold"
+                FontWeight="SemiBold"
                 FontFamily="{StaticResource Mulish}"
                 Foreground="{StaticResource Title}"
                 Margin="20,3,0,0"
@@ -66,14 +68,14 @@
         <localcustom:TextboxCustom
                 x:Name="Procedure"
                 Title="   Nhà cung cấp"
-                Fontsize="16"
+                FontSize="16"
                 MarginText = "10"
                 CornerRadiusText="3"
                 Margin="30, 0, 30, 0"
                 >
         </localcustom:TextboxCustom>
         <StackPanel
-                   Margin="30, 30, 30, 0" >
+                   Margin="30, 20, 30, 0" >
             <TextBlock   
                                 FontSize="16"
                                 FontWeight="Bold"
@@ -159,7 +161,7 @@
                 FontWeight="Bold"
                 FontFamily="{StaticResource Mulish}"
                 VerticalScrollBarVisibility="Auto"
-                Margin="30, 0, 10, 0"
+                Margin="20, 0, 20, 0"
                 Background="{StaticResource Background}"
                 BorderBrush="#DBD7F4"
                 IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
@@ -188,9 +190,7 @@
                 Foreground="White"
                 >
                 Lọc
-            </Button>
-            
-
+            </Button>  
         </StackPanel>
     </StackPanel>
 </UserControl>
