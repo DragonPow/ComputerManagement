@@ -243,7 +243,6 @@
     </Compile>
     <Compile Include="Helper\CustomMessageBox\MessageBoxCustom.cs" />
     <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Specification.cs" />
     <Compile Include="Model\Specification_type.cs" />
     <Compile Include="PRODUCT.cs">
