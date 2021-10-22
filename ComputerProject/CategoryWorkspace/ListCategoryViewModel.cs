@@ -106,7 +106,7 @@ namespace ComputerProject.CategoryWorkspace
         private void Delete(Model.Category category)
         {
             CurrentCategories.Remove(category);
-            Task.Run(()=>_repository.Delete(category));
+            Task.Run(()=>_repository.Delete(category.Id));
         }
 
         private void SearchCategory(object name)
