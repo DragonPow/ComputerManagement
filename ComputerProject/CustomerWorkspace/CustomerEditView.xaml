@@ -189,7 +189,7 @@
                         Margin="20, 0, 20, 10"
                         x:Name="Search"    
                         Width="500"
-                        texthint="Mã hóa đơn">
+                        Texthint="Mã hóa đơn">
                     </localcustom:Search>
                 </Grid>
                 <local:CustomerDetailViewBillTitle

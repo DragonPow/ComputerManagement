@@ -22,7 +22,7 @@
                             CornerRadius="5"
                             HorizontalAlignment="Left"
                             >
-                        
+
                         <Viewbox 
                              >
                             <StackPanel Orientation="{TemplateBinding Orientation}" 
@@ -43,7 +43,7 @@
                                               Data="{TemplateBinding PathData}"/>
 
                                 </Viewbox>
-                              
+
                                 <ContentControl 
                                                 Grid.Column="1"
                                                 Content="{TemplateBinding Text}" 
@@ -74,6 +74,7 @@
     <Style TargetType="{x:Type local:TextboxCustom}">
         <Setter Property="Background" Value="#F7F7FC" />
         <Setter Property="FontSize" Value="16" />
+        <Setter Property="Text" Value="" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TextboxCustom}">
@@ -87,10 +88,10 @@
                                 Visibility="{TemplateBinding  VisibleTitle}"
                                 VerticalAlignment="Top">
                         </TextBlock>
-                        
-                    <Border Background="{TemplateBinding Background}"
+
+                        <Border Background="{TemplateBinding Background}"
                             BorderBrush="#DBD7F4"
-                            CornerRadius="10"
+                            CornerRadius="{TemplateBinding CornerRadiusText}"
                             BorderThickness="1"
                             VerticalAlignment="Center">
                             <Grid>
@@ -100,11 +101,13 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBox
                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
-                                    BorderThickness="0"                     Grid.Column="0"
+                                    BorderThickness="0"                    
+                                    Grid.Column="0"
                                     FontSize="{TemplateBinding FontSize}"                          
                                     Margin="{TemplateBinding MarginText}"
                                     Foreground="#545454"
-                                    Text ="{TemplateBinding Texthint}"/>
+                                    materialDesign:HintAssist.Hint="{TemplateBinding Texthint}"
+                                    Text ="{TemplateBinding Text}"/>
                                 <Image
                                         Grid.Column="1"
                                         HorizontalAlignment="Right"
@@ -112,80 +115,84 @@
                                         Height="24"
                                         Width="24"
                                         Margin="0, 0, 15, 0"
-                                        Source="{TemplateBinding PathIcon}">  
+                                        Source="{TemplateBinding PathIcon}">
                                 </Image>
-                              
-                            </Grid>                        
+
+                            </Grid>
                         </Border>
-                        </StackPanel>
+                    </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="BorderBrush" Value="#0477BF"/>
-                <Setter Property="Opacity" Value="0.5"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="False">
                 <Setter Property="BorderBrush" Value="Transparent"/>
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <Style TargetType="{x:Type local:Search}">
         <Setter Property="Background" Value="#F7F7FC" />
         <Setter Property="BorderBrush" Value="#0477BF" />
+        <Setter Property="Text" Value="" />
+        <Setter Property="Width" Value="460" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Search}">
                     <Border
-                            Name="mask"
+                        Name="mask"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="1"
+                            Width="{TemplateBinding Width}"
+                            Height="39"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Padding="2"
                             CornerRadius="8"
                             Background= "{TemplateBinding Background}"
-                            MaxHeight="50">
-                        <StackPanel
+                        >
+                    <StackPanel
                             Orientation="Horizontal" 
                             HorizontalAlignment="Left" 
                             VerticalAlignment="Center">
-                            <materialDesign:PackIcon
+                        <materialDesign:PackIcon
                                             Kind="Magnify" 
                                             Foreground="#0477BF"
                                             Width="24"
                                             Height="24"
                                             Margin="10, 0, 0, 0"  
                                             VerticalAlignment="Center"
-                                        />  
+                                        />
 
-                            <TextBox
+                        <TextBox
                                 x:Name="Textbox"
                                 Background= "{TemplateBinding Background}"
                                 TextAlignment="Left"
-                                Foreground="#9A9AB0"
+                                Foreground="Black"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
                                 BorderThickness="0"
-                                Width="460"
+                                Width="{TemplateBinding Width}"
                                 VerticalAlignment="Center"
-                                FontSize="14" 
-                                Text="{TemplateBinding texthint}"
-                                Margin="5">
-                            </TextBox>
-                        </StackPanel>
-                        </Border>
+                                materialDesign:HintAssist.Hint="{TemplateBinding Texthint}"
+                                Text="{TemplateBinding Text}"
+                                Margin="5, 0, 0, 0"
+                                FontSize="14" >
+                        </TextBox>
+                    </StackPanel>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="BorderBrush" Value="#0477BF"/>
-                <Setter Property="Opacity" Value="0.5"/>
+                <Setter Property="BorderBrush" Value="#0477BF"/> 
             </Trigger>
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="#DBD7F4"/>
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    
 </ResourceDictionary>

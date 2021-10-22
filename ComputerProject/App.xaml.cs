@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerProject.Test;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,7 @@ namespace ComputerProject
     /// </summary>
     public partial class App : Application
     {
+        
+        
     }
 }

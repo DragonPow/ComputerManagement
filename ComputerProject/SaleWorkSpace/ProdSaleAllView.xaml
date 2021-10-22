@@ -21,7 +21,10 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Custom:Search Grid.Column="0" HorizontalAlignment="Left" Width="450" texthint="Tìm kiếm" ></Custom:Search>
+                    <Custom:Search Grid.Column="0"
+                                   Width="500"
+                                   HorizontalAlignment="Left"
+                                   Texthint="Tìm kiếm"></Custom:Search>
                     <Button Grid.Column="1" Padding="0"  Margin="5" Background="#F7F8FC" BorderBrush="{StaticResource MainColor}"  Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="8">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <materialDesign:PackIcon Kind="Sort" Height="auto" Width="auto" Margin="5" Foreground="{StaticResource MainColor}" VerticalAlignment="Center"></materialDesign:PackIcon>

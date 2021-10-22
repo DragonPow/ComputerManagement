@@ -13,23 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject.CategoryWorkspace
+namespace ComputerProject.ProductWorkSpace
 {
     /// <summary>
-    /// Interaction logic for Categorylv2Row.xaml
+    /// Interaction logic for ProductMainTitleTableView.xaml
     /// </summary>
-    public partial class Categorylv2Row : UserControl
+    public partial class ProductMainTitleTable : UserControl
     {
-        public Categorylv2Row()
+     
+        public ProductMainTitleTable()
         {
             InitializeComponent();
-            InitData();
         }
-
-        public void InitData()
-        {
-            CategoryLv2Name.Text = "Laptop";
-        }
-        
     }
 }

@@ -27,7 +27,7 @@
                 <materialDesign:PackIcon Grid.Column="2" Width="24" Height="24" Kind="Autorenew" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource Icon}"/>
             </Grid>
             </Border>
-            <Custom:Search Margin="20,10" texthint="Số điện thoại" ></Custom:Search>
+            <Custom:Search Margin="20,10" Texthint="Số điện thoại" ></Custom:Search>
             <Grid Margin="25,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
