@@ -47,6 +47,7 @@ namespace ComputerProject.CustomControl
     /// </summary>
     public class TextboxCustom : TextBox
     {      
+        
         static TextboxCustom()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(TextboxCustom), new FrameworkPropertyMetadata(typeof(TextboxCustom)));

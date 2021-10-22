@@ -11,8 +11,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="7*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
 
         </Grid.RowDefinitions>
         <Rectangle Grid.Row="1" Fill="White" IsHitTestVisible="False" Margin="40,0.2"></Rectangle>
@@ -57,7 +57,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <local:TextboxCustom
-                CornerRadiusText="8"
+                CornerRadiusText="3"
                 Grid.Row="0" Grid.ColumnSpan="2"
                 VerticalAlignment="Center"
                 Margin="60, 0, 60, 0"
@@ -69,29 +69,44 @@
             <local:TextboxCustom
                 Grid.Row="1" Grid.ColumnSpan="2"
                 VerticalAlignment="Center"
-                CornerRadiusText="8"
+                CornerRadiusText="3"
                 Margin="60, 0, 60, 0"
                 FontSize="16"
                 MarginText="10"
                 Title="    Số điện thoại">
 
             </local:TextboxCustom>
-            <local:TextboxCustom
-                Grid.Row="2" 
+            <StackPanel
+                 Grid.Row="2" 
                 Grid.Column="0"
                 VerticalAlignment="Center"
-                CornerRadiusText="8"
                 Margin="60, 0, 30, 0"
-                FontSize="16"
-                MarginText="10"
-                PathIcon="/ComputerProject;component/Resource/Icon/Calendar.png"
-                Title="    Ngày sinh">
+               
+                >
+                <TextBlock   
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Text="   Ngày sinh"
+                                Foreground="Black"                   
+                                Margin="0, 0, 0, 10"
+                                VerticalAlignment="Top">
+                </TextBlock>
 
-            </local:TextboxCustom>
+                <Border  Background="{StaticResource Background}"
+                            BorderBrush="#DBD7F4"
+                            CornerRadius="8"
+                            VerticalAlignment="Center">
+                    <DatePicker
+                          BorderBrush="#DBD7F4"
+                          FontSize="16"
+                          FontFamily="{StaticResource Mulish}"
+                          Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                </Border>
+            </StackPanel>
             <local:TextboxCustom
                 Grid.Row="2" 
                 Grid.Column="1"
-                CornerRadiusText="8"
+                CornerRadiusText="3"
                 FontSize="16"
                 MarginText="10"
                 VerticalAlignment="Center"
@@ -102,7 +117,7 @@
             <local:TextboxCustom
                 Grid.Row="3" Grid.ColumnSpan="2"
                 VerticalAlignment="Center"
-                CornerRadiusText="8"
+                CornerRadiusText="3"
                 Margin="60, 0, 60, 0"
                 FontSize="16"
                 MarginText="10"
