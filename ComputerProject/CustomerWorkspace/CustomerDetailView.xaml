@@ -47,7 +47,7 @@
         <Grid
             Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="0.8*"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Rectangle Fill="White" IsHitTestVisible="False" Grid.Column="0" Grid.Row="1" Margin="20, 20, 20, 50"/>
@@ -63,7 +63,7 @@
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="2.5*"></RowDefinition>
+                    <RowDefinition Height="1.7*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock
                     FontSize="24"
@@ -80,49 +80,54 @@
                 <localcustom:TextboxCustom
                     Grid.Row="1"
                     x:Name="Name"        
-                    Title="Tên khách hàng"
+                    Title="   Tên khách hàng"
                     FontSize="16"
-                    MarginText="15"
+                    MarginText="10"
                     Margin="20, 0, 20, 0"
+                    CornerRadiusText="8"
                 >
                 </localcustom:TextboxCustom>
                 
                 <localcustom:TextboxCustom
                     Grid.Row="2"
                     x:Name="Phone"
-                    Title="Số điện thoại"
+                    Title="   Số điện thoại"
                     FontSize="16"
-                    MarginText="15"
+                     MarginText="10"
                     Margin="20, 0, 20, 0"
+                    CornerRadiusText="8"
                 >
                 </localcustom:TextboxCustom>
                 <localcustom:TextboxCustom
                     Grid.Row="3"
                     x:Name="Birthday"
-                    Title="Ngày sinh"
+                    Title="   Ngày sinh"
                     FontSize="16"
-                    MarginText="15"
+                     MarginText="10"
                     Margin="20, 0, 20, 0"
                     PathIcon="/ComputerProject;component/Resource/Icon/CalendarGray.png"
+                    CornerRadiusText="8"
                 >
                 </localcustom:TextboxCustom>
                 <localcustom:TextboxCustom
                     Grid.Row="4"
                     x:Name="Adress"
-                    Title="Địa chỉ"
+                    Title="   Địa chỉ"
                     FontSize="16"
-                    MarginText="15"
+                     MarginText="10"
                     Margin="20, 0, 20, 0"
+                    CornerRadiusText="8"
                 >
                 </localcustom:TextboxCustom>
                 <localcustom:TextboxCustom
                     Grid.Row="5"
                     x:Name="NameCategory"
                     Texthint = "0"
-                    Title="Điểm thưởng"
+                    Title="   Điểm thưởng"
                     FontSize="16"
-                    MarginText="15"
+                     MarginText="10"
                     Margin="20, 0, 20, 0"
+                    CornerRadiusText="8"
                 >
                 </localcustom:TextboxCustom>
                 <StackPanel
@@ -146,7 +151,7 @@
                             </Button>
                         <Button
                             x:Name="BtnEdit"
-                             Width="179"
+                             Width="150"
                             Height="48"
                             Margin="20, 0, 0, 0"
                             FontFamily="{StaticResource Mulish}"
@@ -188,7 +193,8 @@
                         HorizontalAlignment="Right"
                         Margin="20, 0, 20, 10"
                         x:Name="Search"      
-                        texthint="Mã hóa đơn">
+                        Texthint="Mã hóa đơn"
+                        Width="300">
                     </localcustom:Search>
                 </Grid>
                 <local:CustomerDetailViewBillTitle
@@ -204,30 +210,12 @@
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                   
                 </ListView>
                 
             </Grid>

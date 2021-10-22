@@ -187,8 +187,9 @@
                         Grid.Column="1"
                         HorizontalAlignment="Right"
                         Margin="20, 0, 20, 10"
-                        x:Name="Search"      
-                        texthint="Mã hóa đơn">
+                        x:Name="Search"    
+                        Width="500"
+                        Texthint="Mã hóa đơn">
                     </localcustom:Search>
                 </Grid>
                 <local:CustomerDetailViewBillTitle
@@ -204,24 +205,11 @@
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
-                    <ListViewItem>
-                        <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
-                    </ListViewItem>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <local:CustomerDetailViewBillRow></local:CustomerDetailViewBillRow>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>    
                 </ListView>
 
             </Grid>

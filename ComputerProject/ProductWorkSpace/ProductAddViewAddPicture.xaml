@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="ComputerProject.ProductWorkSpace.ProductAddViewAddPicture"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
+             mc:Ignorable="d" 
+             d:DesignHeight="104" d:DesignWidth="437">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button
+            Width="106"
+            Height="106"
+            BorderBrush="Transparent"
+            Background="#E2E2EA">
+            <Image
+                Source="/ComputerProject;component/Resource/Icon/AddImage.png"
+                Height="50"
+                Width="50"
+                >
+                
+            </Image>
+        </Button>
+        <Grid
+            Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock
+                    FontSize="16"
+                    FontWeight="Bold"
+                    FontFamily="{StaticResource Mulish}"
+                    Foreground="Black"
+                    Margin="10,3,0,0"
+                    VerticalAlignment="Center">
+                    Chọn ảnh sản phẩm
+            </TextBlock>
+            <Button
+                HorizontalAlignment="Left"
+                Margin="10, 0, 0, 0"
+                Grid.Row="1"
+                Background="{StaticResource MainColor}"
+                BorderBrush="{StaticResource MainColor}"
+                Content="Tải ảnh lên"
+                Width="208"
+                >
+                
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

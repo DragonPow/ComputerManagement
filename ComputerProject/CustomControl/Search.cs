@@ -44,18 +44,19 @@ namespace ComputerProject.CustomControl
     ///     <MyNamespace:Search/>
     ///
     /// </summary>
-    public class Search : Control
+    public class Search : TextBox
     {
         static Search()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Search), new FrameworkPropertyMetadata(typeof(Search)));
         }
 
-        public static DependencyProperty texthintProperty = DependencyProperty.Register(nameof(texthint), typeof(string), typeof(Search), new PropertyMetadata(string.Empty));
-        public string texthint
+        public static DependencyProperty TexthintProperty = DependencyProperty.Register(nameof(Texthint), typeof(string), typeof(Search), new PropertyMetadata(string.Empty));
+        public string Texthint
         {
-            get { return (string)GetValue(texthintProperty); }
-            set { SetValue(texthintProperty, value); }
+            get { return (string)GetValue(TexthintProperty); }
+            set { SetValue(TexthintProperty, value); }
         }
+
     }
 }

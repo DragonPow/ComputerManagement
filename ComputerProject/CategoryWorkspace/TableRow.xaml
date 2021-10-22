@@ -19,9 +19,9 @@
         </Style>
     </UserControl.Resources>
     <StackPanel Orientation="Vertical"
-                Height="67">
+                Height="55">
         <Grid
-            Height="60">
+            Height="50">
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="0.23*"></ColumnDefinition>
             <ColumnDefinition Width="0.65*"></ColumnDefinition>

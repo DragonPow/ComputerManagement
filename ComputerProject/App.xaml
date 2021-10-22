@@ -2,8 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ComputerProject"
-             StartupUri="ApplicationWorkspace/ApplicationWindow.xaml"
-             >
+             StartupUri="WindowTest.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -12,19 +11,27 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
-       
-            <SolidColorBrush x:Key="MainColor" Color="#0477BF" />
-            <SolidColorBrush x:Key="Background" Color="#F7F8FC" />
-            <SolidColorBrush x:Key="Title" Color="#32378C" />
-            <SolidColorBrush x:Key="Warning" Color="#F24E1E" />
-            <SolidColorBrush x:Key="Icon" Color="#9A9AB0" />
-            <SolidColorBrush x:Key="Divition" Color="#E1E1FB" />
-          
 
-            <FontFamily x:Key="Mulish" >pack:/Resource/Font/Mulish-VariableFont_wght.ttf</FontFamily>
-            <FontFamily x:Key="MulishItalic" >pack:/Resource/Font/Mulish-Italic-VariableFont_wght.ttf</FontFamily>
+            <SolidColorBrush x:Key="MainColor"
+                             Color="#0477BF" />
+            <SolidColorBrush x:Key="Background"
+                             Color="#F7F8FC" />
+            <SolidColorBrush x:Key="Title"
+                             Color="#32378C" />
+            <SolidColorBrush x:Key="Warning"
+                             Color="#F24E1E" />
+            <SolidColorBrush x:Key="Icon"
+                             Color="#9A9AB0" />
+            <SolidColorBrush x:Key="Divition"
+                             Color="#E1E1FB" />
+            <SolidColorBrush x:Key="SecondaryHueMidBrush"
+                             Color="#0477BF" />
+            <SolidColorBrush x:Key="MaterialDesignBody"
+                             Color="Gray" />
+            <FontFamily x:Key="Mulish">pack:/Resource/Font/Mulish-VariableFont_wght.ttf</FontFamily>
+            <FontFamily x:Key="MulishItalic">pack:/Resource/Font/Mulish-Italic-VariableFont_wght.ttf</FontFamily>
 
-            
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

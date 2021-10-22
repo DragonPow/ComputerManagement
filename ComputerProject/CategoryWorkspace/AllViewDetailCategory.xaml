@@ -12,7 +12,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"></ColumnDefinition>
-            <ColumnDefinition Width="7*"></ColumnDefinition>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -24,72 +24,52 @@
          <Rectangle Fill="White" IsHitTestVisible="False" Grid.Column="1" Grid.Row="1" Margin="20"/>
 
         <local:TitleDetailCategory
+            x:Name="Title"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Grid.Row="0"  
+            Grid.Row="0" 
             >
         </local:TitleDetailCategory>
         <Grid
             Grid.Row="1"
             Grid.Column="0"
-            Margin="25">
+            Margin="25, 45, 25, 25">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.2*"></RowDefinition>
-                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
             </Grid.RowDefinitions>
             <localcustom:TextboxCustom
                 x:Name="NameCategory"
+                CornerRadiusText="8"
                 Texthint = "Lap top"
                 Title="Tên danh mục"
-                FontsizeTitle="19"
-                Fontsize = "17"
-                Margin="10, 20, 20, 0"
+                FontSize="16"
+                Margin="10, 0, 20, 0"
                 MarginText="10"
-                PathIcon="/ComputerProject;component/Resource/Icon/trash-2.png"
+                IsEnabled="false"
                 >
             </localcustom:TextboxCustom>
            
             <local:TitleCategoryLv2
+                x:Name="Btn_Add_Catelv2"
                 Grid.Row="1"
-                VerticalAlignment="Center" Loaded="TitleCategoryLv2_Loaded">
+                VerticalAlignment="Center">
             </local:TitleCategoryLv2>
             <ListView
+                IsEnabled="False"
                 x:Name="ListCategoryLv2"
-                Grid.Row="2">
+                Grid.Row="2" >
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
-                <ListViewItem>
-                    <local:Categorylv2Row Margin="15, 0, 0, 0"></local:Categorylv2Row>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:Categorylv2Row Margin="15, 0, 0, 0"></local:Categorylv2Row>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:Categorylv2Row Margin="15, 0, 0, 0"></local:Categorylv2Row>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:Categorylv2Row Margin="15, 0, 0, 0"></local:Categorylv2Row>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:Categorylv2Row Margin="15, 0, 0, 0"></local:Categorylv2Row>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:Categorylv2Row Margin="15, 0, 0, 0"></local:Categorylv2Row>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:Categorylv2Row Margin="15, 0, 0, 0"></local:Categorylv2Row>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:Categorylv2Row Margin="15, 0, 0, 0"></local:Categorylv2Row>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:Categorylv2Row Margin="15, 0, 0, 0"></local:Categorylv2Row>
-                </ListViewItem>
-
+                <ListView.ItemTemplate>
+                    <ItemContainerTemplate>
+                        <local:Categorylv2Row Margin="15, 0, 0, 0" x:Name="item"></local:Categorylv2Row>
+                    </ItemContainerTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Grid>
         <Grid
@@ -97,29 +77,32 @@
             Grid.Column="1"
             Margin="25">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"></RowDefinition>
-                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="0.15*"></RowDefinition>
                 <RowDefinition Height="0.07*"></RowDefinition>
-                <RowDefinition Height="0.8*"></RowDefinition>
+                <RowDefinition Height="0.9*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <local:PropertiesTitlexaml
+            <local:PropertiesTitlexaml 
+                x:Name="BtnAddSpeci"
+                Margin="0, 0, 0, 20"
                 >
                 
             </local:PropertiesTitlexaml>
             <localcustom:Search
                  Grid.Row="1"
                 HorizontalAlignment="Left"
-                Margin="20, 0, 0, 0"
+                Margin="20, 0, 0, 20"
                 x:Name="Search"
-                texthint="Tìm theo danh mục">
+                Width="500"
+                Texthint="Tìm theo danh mục">
             </localcustom:Search>
 
             <local:TittlePropertiesTable
-                    Grid.Row="2">
+                    Grid.Row="1">
             </local:TittlePropertiesTable>
           
             <ListView
+                IsEnabled="False"
                 x:Name="ListProperties"
                 Grid.Row="3">
                 <ListView.ItemContainerStyle>
@@ -127,46 +110,11 @@
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
-               
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
+                <ListView.ItemTemplate>
+                    <ItemContainerTemplate>
+                        <local:PropertiesRow></local:PropertiesRow>
+                    </ItemContainerTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </Grid>
        
@@ -174,6 +122,7 @@
             Orientation="Horizontal"
             Grid.Row="2"
             Grid.Column="1"
+            Margin="0, 0, 20, 0"
             HorizontalAlignment="Right">
             <Button
                 x:Name="BtnDelete"
@@ -190,12 +139,14 @@
             </Button>
             <Button
                 x:Name="BtnEdit"
-                 Width="179"
+                 Width="150"
                 Height="48"
                 Margin="10"
                 FontFamily="{StaticResource Mulish}"
                 FontSize="16"
-                Background="{StaticResource MainColor}">
+                Background="{StaticResource MainColor}"
+                Click="BtnEdit_Click"
+                BorderBrush="{StaticResource Icon}">
             Chỉnh sửa
             </Button>
 
