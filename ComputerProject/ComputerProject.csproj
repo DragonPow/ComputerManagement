@@ -110,10 +110,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CategoryWorkspace\CategoryEdit.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CategoryWorkspace\Categorylv2Row.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,9 +150,6 @@
     </Compile>
     <Compile Include="CategoryWorkspace\CategoryAdd.xaml.cs">
       <DependentUpon>CategoryAdd.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CategoryWorkspace\CategoryEdit.xaml.cs">
-      <DependentUpon>CategoryEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="CategoryWorkspace\Categorylv2Row.xaml.cs">
       <DependentUpon>Categorylv2Row.xaml</DependentUpon>
@@ -214,9 +207,6 @@
     </Compile>
     <Compile Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml.cs">
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerWorkspace\CustomerEditView.xaml.cs">
-      <DependentUpon>CustomerEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomerWorkspace\CustomerSearchView.xaml.cs">
       <DependentUpon>CustomerSearchView.xaml</DependentUpon>
@@ -336,10 +326,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomerWorkspace\CustomerEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
