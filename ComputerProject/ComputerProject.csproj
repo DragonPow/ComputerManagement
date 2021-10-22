@@ -267,8 +267,11 @@
     <Compile Include="REPORT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="SaleWorkSpace\CustomerSale.xaml.cs">
-      <DependentUpon>CustomerSale.xaml</DependentUpon>
+    <Compile Include="SaleWorkSpace\CurrentSaleBillView.xaml.cs">
+      <DependentUpon>CurrentSaleBillView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\CustomerSaleView.xaml.cs">
+      <DependentUpon>CustomerSaleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SaleWorkSpace\ProdChooseItem.xaml.cs">
       <DependentUpon>ProdChooseItem.xaml</DependentUpon>
@@ -281,6 +284,9 @@
     </Compile>
     <Compile Include="SaleWorkSpace\ProdSaleListView.xaml.cs">
       <DependentUpon>ProdSaleListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\SaleAllView.xaml.cs">
+      <DependentUpon>SaleAllView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SPECIFICATION.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -390,7 +396,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProductWorkSpace\ProductMainView.xaml" />
-    <Page Include="SaleWorkSpace\CustomerSale.xaml">
+    <Page Include="SaleWorkSpace\CurrentSaleBillView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\CustomerSaleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -407,6 +417,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SaleWorkSpace\ProdSaleListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\SaleAllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
