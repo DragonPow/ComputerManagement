@@ -17,17 +17,5 @@
                 <local:ProdSaleItem/>
             </DataTemplate>
         </ListView.ItemTemplate>
-        <local:ProdSaleItem/>
-        <local:ProdSaleItem/>
-        <local:ProdSaleItem/>
-        <local:ProdSaleItem/>
-        <local:ProdSaleItem/>
-        <local:ProdSaleItem/>
-        <local:ProdSaleItem/>
-        <local:ProdSaleItem/>
-        <local:ProdSaleItem/>
-        <local:ProdSaleItem/>
-        <local:ProdSaleItem/>
-        <local:ProdSaleItem/>
     </ListView>
 </UserControl>

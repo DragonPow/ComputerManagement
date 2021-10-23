@@ -18,16 +18,12 @@ namespace ComputerProject.SaleWorkSpace
     /// <summary>
     /// Interaction logic for PaySaleBillView.xaml
     /// </summary>
-    public partial class PaySaleBillView : UserControl
+    public partial class PaySaleBillView : Window
     {
         public PaySaleBillView()
         {
             InitializeComponent();
         }
 
-        private void ListProdInBill_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

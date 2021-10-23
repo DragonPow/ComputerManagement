@@ -15,7 +15,7 @@
             <Setter Property="BorderBrush" Value="#DBD7F4"/>
             <Setter Property="Padding" Value="16,4"/>
             <Setter Property="MinHeight" Value="32"/>
-            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="MinWidth" Value="150"/>
             <Setter Property="BorderThickness" Value="0,0,0,2"/>
             <Setter Property="materialDesign:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}"/>
             <Setter Property="FontWeight" Value="Medium"/>
@@ -80,7 +80,7 @@
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
