@@ -9,7 +9,8 @@ namespace ComputerProject.Resource.Font
 {
     public static class Font
     {
-        public static double Title = 14;
-        public static double Body = 38;
+        public static double Title = 28;
+        public static double Body = 14;
+        public static double SmallBody = 12;
     }
 }

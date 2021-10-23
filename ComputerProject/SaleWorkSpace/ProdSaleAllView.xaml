@@ -56,19 +56,19 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Custom:Search Grid.Column="0"
-                                   Width="500"
+                                   Width="450"
                                    HorizontalAlignment="Left"
                                    Texthint="Tìm kiếm"></Custom:Search>
                     <Button Grid.Column="1" Padding="0"  Margin="5" Background="#F7F8FC" BorderBrush="{StaticResource MainColor}"  Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="8">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <materialDesign:PackIcon Kind="Sort" Height="auto" Width="auto" Margin="5" Foreground="{StaticResource MainColor}" VerticalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock Text="Giá" FontSize="16" Foreground="{StaticResource MainColor}" Margin="2,0,10,0" VerticalAlignment="Center" ></TextBlock>
+                            <TextBlock Text="Giá" FontSize="14" Foreground="{StaticResource MainColor}" Margin="2,0,10,0" VerticalAlignment="Center" ></TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Grid.Column="2" Padding="0"  Margin="10,5" Background="#F7F8FC" BorderBrush="{StaticResource MainColor}"  Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="8">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                             <materialDesign:PackIcon Kind="FilterOutline" Height="auto" Width="auto" Margin="5" Foreground="{StaticResource MainColor}" VerticalAlignment="Center"></materialDesign:PackIcon>
-                            <TextBlock Text="Bộ lọc" FontSize="16" Foreground="{StaticResource MainColor}" Margin="2,0,10,0" VerticalAlignment="Center" ></TextBlock>
+                            <TextBlock Text="Bộ lọc" FontSize="14" Foreground="{StaticResource MainColor}" Margin="2,0,10,0" VerticalAlignment="Center" ></TextBlock>
                         </StackPanel>
                     </Button>
                 </Grid>
@@ -84,9 +84,9 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
-                <ComboBox  x:Name="CategoryComboBox" Margin="20" Height="40" FontSize="16" FontWeight="Bold" FontFamily="{StaticResource Mulish}" Style="{StaticResource MaterialDesignOutlinedComboBox}" ItemsSource="{Binding ShortStringList}" Width="200" HorizontalAlignment="Left" BorderBrush="{StaticResource MainColor}" />
+                <ComboBox  x:Name="CategoryComboBox" Padding="10" Margin="20" Height="35" FontSize="1" FontWeight="Bold" FontFamily="{StaticResource Mulish}" Style="{StaticResource MaterialDesignOutlinedComboBox}" ItemsSource="{Binding ShortStringList}" Width="200" HorizontalAlignment="Left" BorderBrush="{StaticResource MainColor}" />
             </StackPanel>
-            <local:ProdSaleListView Grid.Row="1"/>
+            <local:ProdSaleListView Grid.Row="1" Margin="15,0,0,0"/>
         </Grid>
     </Border>
 
