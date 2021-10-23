@@ -43,13 +43,6 @@
                             <local:ProdChooseItem/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    <local:ProdChooseItem/>
-                    <local:ProdChooseItem/>
-                    <local:ProdChooseItem/>
-                    <local:ProdChooseItem/>
-                    <local:ProdChooseItem/>
-                    <local:ProdChooseItem/>
-                    <local:ProdChooseItem/>
                 </ListView>
 
             </Grid>
@@ -81,6 +74,6 @@
             </StackPanel>
 
         </Border>
-        <Button Grid.Row="3" Content="THANH TOÁN" Height="40" FontFamily="{StaticResource Mulish}" FontSize="16" Margin="50,15" Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="8" Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}" ></Button>
+        <Button Grid.Row="3" Content="THANH TOÁN" Height="40" FontFamily="{StaticResource Mulish}" FontSize="16" Margin="50,15" Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="8" Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}" Foreground="White" ></Button>
     </Grid>
 </UserControl>
