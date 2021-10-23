@@ -81,7 +81,7 @@
                     <StackPanel>
                         <TextBlock   
                                 FontSize="{TemplateBinding FontSize}"
-                                FontWeight="Bold"
+                                FontWeight="SemiBold"
                                 Text="{TemplateBinding Title}"
                                 Foreground="Black"                   
                                 Margin="0, 0, 0, 10"

@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
              xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              Padding="10, 10, 10, 0" Background="{StaticResource Background}"
              d:DesignHeight="1000" d:DesignWidth="1300">
@@ -35,7 +36,7 @@
             </Button>
             <TextBlock
                 x:Name="Title"
-                    FontSize="35"
+                    FontSize="{x:Static localfont:Font.Title}"
                     FontWeight="DemiBold"
                     FontFamily="{StaticResource Mulish}"
                     Foreground="{StaticResource Title}"
@@ -51,8 +52,8 @@
             Margin="20"
             >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Rectangle Fill="White" Margin="20, 0, 20, 0"></Rectangle>
             <Rectangle Fill="White" Grid.Column="1" Margin="20, 0, 20, 0"></Rectangle>
@@ -67,7 +68,8 @@
                         x:Name="Code"
                         VerticalAlignment="Center"
                         Margin="0, 20, 20, 10"
-                        FontSize="16"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        FontFamily="{StaticResource Mulish}"
                         MarginText="10"
                         IsEnabled="False"
                         CornerRadiusText="5"
@@ -97,9 +99,9 @@
                         </Grid.RowDefinitions>
                         <TextBlock
                             x:Name="TblChoosseImage"
-                            FontSize="16"
-                            FontWeight="Bold"
+                            FontSize="{x:Static localfont:Font.Body}"
                             FontFamily="{StaticResource Mulish}"
+                            FontWeight="SemiBold"
                             Foreground="Black"
                             Margin="10,3,0,0"
                             Visibility="Hidden"
@@ -111,6 +113,8 @@
                             HorizontalAlignment="Stretch"
                             Margin="10, 0, 10, 0"
                             Grid.Row="1"
+                            FontSize="{x:Static localfont:Font.Body}"
+                            FontFamily="{StaticResource Mulish}"
                             Background="{StaticResource MainColor}"
                             BorderBrush="{StaticResource MainColor}"
                             Content="Tải ảnh lên"
@@ -125,7 +129,8 @@
                         x:Name="ProductName"
                         VerticalAlignment="Center"
                         Margin="0, 10, 20, 10"
-                        FontSize="16"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        FontFamily="{StaticResource Mulish}"
                         MarginText="10"
                         Title="    Tên sản phẩm"
                         >
@@ -134,8 +139,9 @@
                   <StackPanel
                    Margin="0, 0, 20, 10" >
                     <TextBlock   
-                                FontSize="16"
-                                FontWeight="Bold"
+                                FontWeight="SemiBold"
+                                FontSize="{x:Static localfont:Font.Body}"
+                                FontFamily="{StaticResource Mulish}"
                                 Text="   Danh mục"
                                 Foreground="Black"                   
                                 Margin="0, 0, 0, 10"
@@ -146,11 +152,11 @@
                         x:Name="Category"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}"
                         IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                        FontSize="16"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        FontFamily="{StaticResource Mulish}"
                         Padding="15"
                         Background="{StaticResource Background}"
                         BorderBrush="#DBD7F4"
-                        FontFamily="{StaticResource Mulish}"
                         ItemsSource="{Binding ShortStringList}" />
                 </StackPanel>
             
@@ -159,7 +165,8 @@
                         x:Name="Procedure"
                         VerticalAlignment="Center"
                         Margin="0, 10, 20, 10"
-                        FontSize="16"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        FontFamily="{StaticResource Mulish}"
                         MarginText="10"
                         Title="    Nhà cung cấp"
                         >
@@ -170,7 +177,8 @@
                          CornerRadiusText="5"
                         VerticalAlignment="Center"
                         Margin="0, 10, 20, 10"
-                        FontSize="16"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        FontFamily="{StaticResource Mulish}"
                         MarginText="10"
                         Title="    Số lượng"
                         >
@@ -181,7 +189,8 @@
                         VerticalAlignment="Center"
                         CornerRadiusText="5" 
                         Margin="0, 10, 20, 10"
-                        FontSize="16"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        FontFamily="{StaticResource Mulish}"
                         MarginText="10"
                         Title="    Giá gốc"
                         >
@@ -193,7 +202,8 @@
                         CornerRadiusText="5" 
                         VerticalAlignment="Center"
                         Margin="0, 10, 20, 10"
-                        FontSize="16"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        FontFamily="{StaticResource Mulish}"
                         MarginText="10"
                         Title="    Giá bán"
                         >

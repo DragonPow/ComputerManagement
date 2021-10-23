@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
               Background="{StaticResource Background}"
              d:DesignHeight="64" d:DesignWidth="1321">
@@ -34,11 +35,17 @@
             Grid.Column="0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
+            FontSize="{x:Static localfont:Font.Body}"
+            FontFamily="{StaticResource Mulish}"
+            FontWeight="SemiBold"
             Style="{StaticResource TitleCell}">
             Sản phẩm
         </TextBlock>
         <TextBlock
             x:Name="Code"
+            FontSize="{x:Static localfont:Font.Body}"
+            FontFamily="{StaticResource Mulish}"
+            FontWeight="SemiBold"
             Grid.Column="1"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
@@ -48,6 +55,9 @@
         <TextBlock
             x:Name="Quantity"
             Grid.Column="2"
+            FontSize="{x:Static localfont:Font.Body}"
+            FontFamily="{StaticResource Mulish}"
+            FontWeight="SemiBold"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}">
@@ -56,6 +66,9 @@
         <TextBlock
             x:Name="Unit"
             Grid.Column="3"
+            FontSize="{x:Static localfont:Font.Body}"
+            FontFamily="{StaticResource Mulish}"
+            FontWeight="SemiBold"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}">
@@ -64,6 +77,9 @@
         <TextBlock
             x:Name="State"
             Grid.Column="4"
+            FontSize="{x:Static localfont:Font.Body}"
+            FontFamily="{StaticResource Mulish}"
+            FontWeight="SemiBold"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}"
@@ -73,6 +89,9 @@
         <TextBlock
             x:Name="Number"
             Grid.Column="5"
+            FontSize="{x:Static localfont:Font.Body}"
+            FontFamily="{StaticResource Mulish}"
+            FontWeight="SemiBold"
             Grid.ColumnSpan="2"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"

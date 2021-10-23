@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
              xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              d:DesignHeight="1024" d:DesignWidth="1485"
              Background="{StaticResource Background}">
@@ -33,9 +34,9 @@
             </Button>
             <TextBlock
                 x:Name="Title"
-                    FontSize="35"
-                    FontWeight="Bold"
+                    FontWeight="SemiBold"
                     FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Title}"
                     Foreground="{StaticResource Title}"
                     Margin="20,3,0,0"
                     VerticalAlignment="Center"
@@ -88,7 +89,8 @@
                     Grid.Row="1"
                     x:Name="Name"        
                     Title="   Tên khách hàng"
-                    FontSize="16"
+                    FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Body}"
                     MarginText="10"
                     Margin="20, 0, 20, 0"
                     CornerRadiusText="5"
@@ -99,7 +101,8 @@
                     Grid.Row="2"
                     x:Name="Phone"
                     Title="   Số điện thoại"
-                    FontSize="16"
+                    FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Body}"
                     MarginText="10"
                     Margin="20, 0, 20, 0"
                     CornerRadiusText="5"
@@ -112,8 +115,9 @@
                 Margin="20, 0, 20, 0"
                 >
                         <TextBlock   
-                                FontSize="16"
-                                FontWeight="Bold"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="{x:Static localfont:Font.Body}"
+                                FontWeight="SemiBold"
                                 Text="   Ngày sinh"
                                 Foreground="Black"                   
                                 Margin="0, 0, 0, 10"
@@ -125,21 +129,22 @@
                             CornerRadius="8"
                             VerticalAlignment="Center">
                             <DatePicker
-                                Name="Birthday"
-                          BorderBrush="#DBD7F4"
-                          FontSize="16"
-                          FontFamily="{StaticResource Mulish}"
-                          Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                              Name="Birthday"
+                              BorderBrush="#DBD7F4"
+                              FontFamily="{StaticResource Mulish}"
+                              FontSize="{x:Static localfont:Font.Body}"
+                              Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                         </Border>
                     </StackPanel>
                     <localcustom:TextboxCustom
                     Grid.Row="4"
                     x:Name="Adress"
                     Title="   Địa chỉ"
-                    FontSize="16"
                      MarginText="10"
                     Margin="20, 0, 20, 0"
                     CornerRadiusText="5"
+                    FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Body}" 
                 >
                     </localcustom:TextboxCustom>
                     <localcustom:TextboxCustom
@@ -147,7 +152,8 @@
                     x:Name="Point"
                     Texthint = "0"
                     Title="   Điểm thưởng"
-                    FontSize="16"
+                    FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Body}"
                     MarginText="10"
                     Margin="20, 0, 20, 0"
                     CornerRadiusText="5"
@@ -217,7 +223,9 @@
                         Grid.Column="1"
                         HorizontalAlignment="Right"
                         Margin="20, 0, 20, 10"
-                        x:Name="Search"      
+                        x:Name="Search"  
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static localfont:Font.Body}"
                         Texthint="Mã hóa đơn"
                         Width="300">
                     </localcustom:Search>

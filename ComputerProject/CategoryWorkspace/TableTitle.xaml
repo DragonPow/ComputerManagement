@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              d:DesignHeight="66" d:DesignWidth="1309"
              Background="{StaticResource Background}">
@@ -26,6 +27,7 @@
         <TextBlock
             Style="{StaticResource CellTitle}"
             Grid.Column="0"
+            FontSize="{x:Static localfont:Font.Body}"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Margin="15, 0, 0, 0"
@@ -39,6 +41,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Margin="15, 0, 0, 0"
+            FontSize="{x:Static localfont:Font.Body}"
             >
            Tên danh mục cấp 2
         </TextBlock>

@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CustomControl"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              d:DesignHeight="51" d:DesignWidth="1330">
     <StackPanel
@@ -23,8 +24,8 @@
         </Button>
         <TextBlock
             x:Name="Title"
-            FontSize="35"
-            FontWeight="Bold"
+            FontSize="{x:Static localfont:Font.Title}"
+            FontWeight="SemiBold"
             FontFamily="{StaticResource Mulish}"
             Foreground="{StaticResource Title}"
             Margin="20,3,0,0"

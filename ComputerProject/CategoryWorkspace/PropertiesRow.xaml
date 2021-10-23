@@ -5,17 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              d:DesignHeight="67" d:DesignWidth="848">
     <UserControl.Resources>
         <Style TargetType="TextBlock" x:Key="TitleCell">
             <Setter Property="FontFamily" Value="{StaticResource Mulish}"></Setter>
-            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontSize" Value="{x:Static localfont:Font.Body}"></Setter>
             <Setter Property="Foreground" Value="Black"></Setter>
         </Style>
     </UserControl.Resources>
     <StackPanel
-        Height="67">
+        Height="40">
     <Grid
         VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
@@ -28,7 +29,7 @@
             Grid.Column="0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="10"
+            Margin="10, 0,0, 0"          
             Style="{StaticResource TitleCell}">
        
         </TextBlock>
@@ -37,7 +38,7 @@
             Grid.Column="1"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="10"
+            Margin="10, 0, 0,0"
             Style="{StaticResource TitleCell}">
          
         </TextBlock>
@@ -45,6 +46,8 @@
                 Visibility="Hidden"
                 Grid.Column="3" x:Name="btnDelete"
                 Style="{StaticResource MaterialDesignIconButton}"
+                FontFamily="{StaticResource Mulish}"
+                FontSize="{x:Static localfont:Font.Body}"
                 ToolTip="Xóa danh mục">
                 <Image
                 Height="24"
@@ -52,6 +55,6 @@
                 Source="/ComputerProject;component/Resource/Icon/trash-2.png"/>
             </Button>
         </Grid>
-    <Separator Background="{StaticResource Divition}" Margin="0, 25,0,0" />
+    <Separator Background="{StaticResource Divition}" Margin="0, 0,0,0" />
     </StackPanel>
 </UserControl>

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              d:DesignHeight="60" d:DesignWidth="400">
     <Grid 
@@ -19,7 +20,7 @@
             BorderThickness="0"
             x:Name="CategoryLv2Name"
             Grid.Column="0"
-            FontSize="16"
+            FontSize="{x:Static localfont:Font.Body}"
             FontFamily="{StaticResource Mulish}"
             Foreground="#11142D"
             VerticalAlignment="Top">
@@ -27,11 +28,12 @@
         <Button 
             Grid.Column="1" x:Name="btnDelete"
             Style="{StaticResource MaterialDesignIconButton}"
+            FontSize="{x:Static localfont:Font.Body}"
             ToolTip="Xóa thuộc tính">
             <Image
                 Height="24"
                 Width="24" 
-                Visibility="Hidden"
+                
                 Source="/ComputerProject;component/Resource/Icon/trash-2.png"/>
         </Button>
     </Grid>
