@@ -8,7 +8,7 @@
         xmlns:sale="clr-namespace:ComputerProject.SaleWorkSpace"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="ApplicationWindow" Height="1024" Width="1485" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="Manual">
+        Title="ApplicationWindow" Height="1080" Width="1920" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="Manual">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
