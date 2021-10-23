@@ -72,7 +72,6 @@
     Style="{StaticResource MaterialDesignTabRadioButton}"
     Margin="4"
     IsChecked="False"
-    IsEnabled="False"
     Content="THIRD" 
                         />
                 </StackPanel>
