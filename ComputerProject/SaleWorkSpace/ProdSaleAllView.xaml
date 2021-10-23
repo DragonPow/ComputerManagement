@@ -8,6 +8,40 @@
              xmlns:Custom="clr-namespace:ComputerProject.CustomControl"
              mc:Ignorable="d" 
              d:DesignHeight="965" d:DesignWidth="815">
+    <UserControl.Resources>
+        <Style x:Key="TabRadioButton" TargetType="{x:Type RadioButton}">
+            <Setter Property="Foreground" Value="{StaticResource Icon}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#DBD7F4"/>
+            <Setter Property="Padding" Value="16,4"/>
+            <Setter Property="MinHeight" Value="32"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            <Setter Property="materialDesign:RippleAssist.Feedback" Value="{DynamicResource MaterialDesignFlatButtonRipple}"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Grid SnapsToDevicePixels="True">
+                            <Border Background="{TemplateBinding Background}" Margin="{TemplateBinding BorderThickness}">
+                                <materialDesign:Ripple x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Focusable="False" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Opacity="0.82" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                            <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource MainColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Border CornerRadius="8" Background="White">
         <Grid>
             <Grid.RowDefinitions>
@@ -41,9 +75,7 @@
                 <ItemsControl>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" MinWidth="80" IsChecked="False"  Content="Laptop">
-                                
-                            </RadioButton>
+                            <RadioButton Style="{DynamicResource TabRadioButton}" IsChecked="False"  Content="Laptop"></RadioButton>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>
@@ -52,29 +84,6 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
-                <StackPanel
-                  
-  Orientation="Horizontal"
-  Margin="4">
-                    <RadioButton
-    Style="{StaticResource MaterialDesignTabRadioButton}"
-    Margin="4"
-    IsChecked="True"
-    Content="FIRST"
-                        />
-                    <RadioButton
-    Style="{StaticResource MaterialDesignTabRadioButton}"
-    Margin="4"
-    IsChecked="False"
-    Content="SECOND" 
-                     />
-                    <RadioButton
-    Style="{StaticResource MaterialDesignTabRadioButton}"
-    Margin="4"
-    IsChecked="False"
-    Content="THIRD" 
-                        />
-                </StackPanel>
                 <ComboBox  x:Name="CategoryComboBox" Margin="20" Height="40" FontSize="16" FontWeight="Bold" FontFamily="{StaticResource Mulish}" Style="{StaticResource MaterialDesignOutlinedComboBox}" ItemsSource="{Binding ShortStringList}" Width="200" HorizontalAlignment="Left" BorderBrush="{StaticResource MainColor}" />
             </StackPanel>
             <local:ProdSaleListView Grid.Row="1"/>
