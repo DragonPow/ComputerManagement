@@ -48,6 +48,6 @@ namespace ComputerProject.CustomerWorkspace
             Title.Text = "Chi tiết khách hàng";
         }
 
-       
+        
     }
 }

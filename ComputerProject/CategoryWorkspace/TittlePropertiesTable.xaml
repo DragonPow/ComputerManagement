@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              d:DesignHeight="32" d:DesignWidth="850">
     <UserControl.Resources>
@@ -25,9 +26,12 @@
         <TextBlock
             x:Name="Number"
             Grid.Column="0"
+            FontFamily="{StaticResource Mulish}"
+            FontWeight="SemiBold"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Margin="10"
+            FontSize="{x:Static localfont:Font.Body}"
             Style="{StaticResource TitleCell}">
             Stt
         </TextBlock>
@@ -37,6 +41,9 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Margin="10"
+            FontFamily="{StaticResource Mulish}"
+            FontWeight="SemiBold"
+            FontSize="{x:Static localfont:Font.Body}"
             Style="{StaticResource TitleCell}">
             Tên thuộc tính
         </TextBlock>

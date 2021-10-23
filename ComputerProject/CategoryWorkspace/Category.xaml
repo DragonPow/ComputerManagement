@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="ComputerProject.Category.Category"
              mc:Ignorable="d" 
-             d:DesignHeight="1024" d:DesignWidth="1485"
+              d:DesignHeight="750" d:DesignWidth="1380"
              >
 
     <UserControl.Resources>
@@ -218,19 +219,19 @@
     <DockPanel>
         <TextBlock
             DockPanel.Dock="Top"
-            FontSize="35"
-            FontWeight="Bold"
+            FontSize="{x:Static localfont:Font.Title}"
+            FontWeight="SemiBold"
             FontFamily="{StaticResource Mulish}"
             Foreground="{StaticResource Title}"
-            Margin="40, 40,0, 0"
+            Margin="40, 20,0, 0"
             ><Run Text="Danh mục"/></TextBlock>
         <Grid
             Background="White"
             Margin="20">
             <Grid.RowDefinitions
                 >
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="66"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 

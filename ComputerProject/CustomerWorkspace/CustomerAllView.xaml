@@ -8,11 +8,11 @@
              d:DesignHeight="1000" d:DesignWidth="1300">
     <DockPanel>
         <TextBlock 
-            Height="50"
-            FontSize="35"
+            Height="40"
+            FontSize="28"
             DockPanel.Dock="Top" 
             FontFamily="{StaticResource Mulish}"
-            FontWeight="Bold"
+            FontWeight="SemiBold"
             Foreground="{StaticResource Title}" Margin="10,0,10,15">
             Khách hàng
         </TextBlock>
@@ -20,8 +20,8 @@
             Background="White"
             >
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="65"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <local:CustomerSearchView

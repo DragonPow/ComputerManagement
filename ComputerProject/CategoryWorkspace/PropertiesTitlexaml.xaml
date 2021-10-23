@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CustomControl"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="850">
     <Grid
@@ -15,8 +16,8 @@
         </Grid.ColumnDefinitions>
         <TextBlock
             Grid.Column="0"
-            FontSize="25"
-            FontWeight="Bold"
+            FontSize="24"
+            FontWeight="SemiBold"
             FontFamily="{StaticResource Mulish}"
             Foreground="{StaticResource Title}"
             Margin="20,3,0,0"
@@ -38,13 +39,15 @@
             <StackPanel 
                                 Orientation="Horizontal">
                 <Image
-                                    Height="18"
-                                    Width="18"
+                                    Height="15"
+                                    Width="15"
                                     Source="/ComputerProject;component/Resource/Icon/Plus.png">
 
                 </Image>
                 <TextBlock
                                     Text="Thêm mới" 
+                                    FontFamily="{StaticResource Mulish}"
+                                    FontWeight="SemiBold"
                                     FontSize="16"
                                     Margin="5, 0, 0, 0"
                                     Foreground="White"/>

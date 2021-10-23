@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d"
             
              d:DesignHeight="200" d:DesignWidth="1276"
@@ -32,27 +33,39 @@
 
         <TextBlock 
             Grid.Column="0" x:Name="cellName"
-            Style="{DynamicResource ResourceKey=styleCell_Text}"           
+            Style="{DynamicResource ResourceKey=styleCell_Text}"   
+            FontFamily="{StaticResource Mulish}"
+            FontSize="{x:Static localfont:Font.Body}"
             />
         <TextBlock 
             Grid.Column="1" x:Name="cellPhone"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
+            FontFamily="{StaticResource Mulish}"
+            FontSize="{x:Static localfont:Font.Body}"
             />
         <TextBlock  
             Grid.Column="2" x:Name="cellBirthday"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
+            FontFamily="{StaticResource Mulish}"
+            FontSize="{x:Static localfont:Font.Body}"
             />
         <TextBlock  
             Grid.Column="3" x:Name="cellAddress"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
+            FontFamily="{StaticResource Mulish}"
+            FontSize="{x:Static localfont:Font.Body}"
             />
         <TextBlock  
             Grid.Column="4" x:Name="cellPoint"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
+            FontFamily="{StaticResource Mulish}"
+            FontSize="{x:Static localfont:Font.Body}"
             />
         <Button 
             Grid.Column="5" x:Name="btnEdit"
             Style="{StaticResource MaterialDesignIconButton}"
+            FontFamily="{StaticResource Mulish}"
+            FontSize="{x:Static localfont:Font.Body}"
             ToolTip="Chỉnh sửa thông tin" >
             <Image
                 Height="{StaticResource IconSize}"
@@ -62,6 +75,8 @@
         <Button 
             Grid.Column="6" x:Name="btnDelete"
             Style="{StaticResource MaterialDesignIconButton}"
+            FontFamily="{StaticResource Mulish}"
+            FontSize="{x:Static localfont:Font.Body}"
             ToolTip="Xóa khách hàng">
             <Image
                 Height="{StaticResource IconSize}"

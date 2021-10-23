@@ -6,16 +6,17 @@
              xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
                  xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
+              xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              Padding="30" Background="{StaticResource Background}"
              d:DesignHeight="1000" d:DesignWidth="1300">
     <DockPanel>
         <TextBlock 
             Height="50"
-            FontSize="35"
+            FontSize="{x:Static localfont:Font.Title}"
+            FontWeight="SemiBold"
             DockPanel.Dock="Top" 
             FontFamily="{StaticResource Mulish}"
-            FontWeight="SemiBold"
             Foreground="{StaticResource Title}" Margin="10,0,10,15">
             Sản phẩm
         </TextBlock>
@@ -36,7 +37,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock 
                     Height="50"
-                    FontSize="25"
+                    FontSize="24"
                     DockPanel.Dock="Top" 
                     FontFamily="{StaticResource Mulish}"
                     FontWeight="Bold"
@@ -64,7 +65,8 @@
                         </Image>
                         <TextBlock
                                     Text="Thêm mới" 
-                                    FontSize="16"
+                                    FontSize="{x:Static localfont:Font.Body}"
+                                    FontFamily="{StaticResource Mulish}"
                                     Margin="5, 0, 0, 0"
                                     Foreground="White"/>
                     </StackPanel>
@@ -82,6 +84,7 @@
                 <localcustom:Search
                     HorizontalAlignment="Left"
                     Margin="20, 0, 0, 0"
+                    FontSize="{x:Static localfont:Font.Body}"
                     Texthint="Tên, mã sản phẩm">          
                 </localcustom:Search>
                 <StackPanel Grid.Column="1"
@@ -109,8 +112,9 @@
                             </Image>
                             <TextBlock
                                     Text="Giá" 
-                                    FontSize="16"
                                     Margin="5, 0, 0, 0"
+                                FontSize="{x:Static localfont:Font.Body}"
+                                    FontFamily="{StaticResource Mulish}"
                                     Foreground="{StaticResource MainColor}"/>
                         </StackPanel>
 
@@ -136,7 +140,8 @@
                             </Image>
                             <TextBlock
                                     Text="Bộ lọc" 
-                                    FontSize="16"
+                                   FontSize="{x:Static localfont:Font.Body}"
+                                    FontFamily="{StaticResource Mulish}"
                                     Margin="5, 0, 0, 0"
                                     Foreground="{StaticResource MainColor}"/>
                         </StackPanel>

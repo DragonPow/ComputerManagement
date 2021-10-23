@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
              xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              Background="White"
              d:DesignHeight="1044" d:DesignWidth="318">
@@ -45,10 +46,10 @@
         <StackPanel
                    Margin="30, 30, 30, 0" >
             <TextBlock   
-                                FontSize="16"
-                                FontWeight="Bold"
+                                FontWeight="SemiBold"
                                 FontFamily="{StaticResource Mulish}"
                                 Text="   Danh mục"
+                                FontSize="{x:Static localfont:Font.Body}"
                                 Foreground="Black"                   
                                 Margin="0, 0, 0, 10"
                                 VerticalAlignment="Top">
@@ -58,7 +59,7 @@
                         x:Name="Category"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}"
                         IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                        FontSize="16"
+                        FontSize="{x:Static localfont:Font.Body}"
                         Background="{StaticResource Background}"
                         BorderBrush="#DBD7F4"
                         Margin="0, 0, 0, 20"
@@ -68,7 +69,7 @@
         <localcustom:TextboxCustom
                 x:Name="Procedure"
                 Title="   Nhà cung cấp"
-                FontSize="16"
+                FontSize="{x:Static localfont:Font.Body}"
                 MarginText = "10"
                 CornerRadiusText="3"
                 Margin="30, 0, 30, 0"
@@ -77,8 +78,8 @@
         <StackPanel
                    Margin="30, 20, 30, 0" >
             <TextBlock   
-                                FontSize="16"
-                                FontWeight="Bold"
+                               FontSize="{x:Static localfont:Font.Body}"
+                                FontWeight="SemiBold"
                                 FontFamily="{StaticResource Mulish}"
                                 Text="   Trạng thái"
                                 Foreground="Black"                   
@@ -100,8 +101,8 @@
         <StackPanel
                    Margin="30, 0, 30, 0" >
             <TextBlock   
-                                FontSize="16"
-                                FontWeight="Bold"
+                                FontSize="{x:Static localfont:Font.Body}"
+                                FontWeight="SemiBold"
                                 FontFamily="{StaticResource Mulish}"
                                 Text="   Hạn bảo hành"
                                 Foreground="Black"                   
@@ -121,8 +122,8 @@
                         ItemsSource="{Binding ShortStringList}" />
         </StackPanel>
         <TextBlock   
-                                FontSize="16"
-                                FontWeight="Bold"
+                                FontSize="{x:Static localfont:Font.Body}"
+                                FontWeight="SemiBold"
                                 FontFamily="{StaticResource Mulish}"
                                 Text="   Khoảng giá"
                                 Foreground="Black"                   
@@ -142,8 +143,7 @@
                 VerticalAlignment="Top"
                 AcceptsReturn="True"
                 TextWrapping="Wrap"
-                FontSize="16"
-                FontWeight="Bold"
+                FontSize="{x:Static localfont:Font.Body}"
                 FontFamily="{StaticResource Mulish}"
                 VerticalScrollBarVisibility="Auto"
                 Margin="30, 0, 10, 0"
@@ -157,8 +157,7 @@
                 VerticalAlignment="Top"
                 AcceptsReturn="True"
                 TextWrapping="Wrap"
-                FontSize="16"
-                FontWeight="Bold"
+                FontSize="{x:Static localfont:Font.Body}"
                 FontFamily="{StaticResource Mulish}"
                 VerticalScrollBarVisibility="Auto"
                 Margin="20, 0, 20, 0"
