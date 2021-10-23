@@ -266,6 +266,7 @@
     <Compile Include="REPORT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Resource\Font\Font.cs" />
     <Compile Include="SaleWorkSpace\CurrentSaleBillView.xaml.cs">
       <DependentUpon>CurrentSaleBillView.xaml</DependentUpon>
     </Compile>
