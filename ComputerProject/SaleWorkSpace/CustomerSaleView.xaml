@@ -17,7 +17,7 @@
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Khách hàng" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" FontFamily="{StaticResource Mulish}"></TextBlock>
+                <TextBlock Grid.Column="0" Text="Khách hàng" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" FontFamily="{StaticResource Mulish}" Foreground="Black"></TextBlock>
                 <Button Grid.Column="1" Foreground="White" Padding="0" Height="30" HorizontalAlignment="Right" Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}" Style="{StaticResource MaterialDesignRaisedLightButton}" materialDesign:ButtonAssist.CornerRadius="5">
                     <StackPanel Orientation="Horizontal" Margin="10,0">
                         <materialDesign:PackIcon Kind="Add" Margin="0,0,5,0" RenderTransformOrigin="-0.562,0.562"></materialDesign:PackIcon>
@@ -27,14 +27,14 @@
                 <materialDesign:PackIcon Grid.Column="2" Width="24" Height="24" Kind="Autorenew" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource Icon}"/>
             </Grid>
             </Border>
-            <Custom:Search Margin="20,10" Texthint="Số điện thoại" ></Custom:Search>
+            <Custom:Search Margin="20,10" Texthint="Số điện thoại" Width="400" ></Custom:Search>
             <Grid Margin="25,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Margin="0,0,30,0" Text="Tên khách hàng" FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold" Foreground="{StaticResource Icon}"></TextBlock>
-                <TextBlock Grid.Column="1" Text="-" FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold" HorizontalAlignment="Right" Margin="5,0"></TextBlock>
+                <TextBlock Grid.Column="1" Text="-" FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold" HorizontalAlignment="Right" Margin="5,0" Foreground="Black"></TextBlock>
             </Grid>
             <Grid Margin="25,5,25,10">
                 <Grid.ColumnDefinitions>
@@ -42,7 +42,7 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"  Margin="0,0,30,0" Text="Số điện thoại" FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold" Foreground="{StaticResource Icon}"></TextBlock>
-                <TextBlock Grid.Column="1" Text="-" FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold" HorizontalAlignment="Right" Margin="5,0"></TextBlock>
+                <TextBlock Grid.Column="1" Text="-" FontSize="16" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold" HorizontalAlignment="Right" Margin="5,0" Foreground="Black"></TextBlock>
             </Grid>
         </StackPanel>
     </Border>

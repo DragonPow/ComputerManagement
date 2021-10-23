@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ComputerProject.SaleWorkSpace"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             Height="65" d:DesignWidth="400" Background="White">
+             Height="65" d:DesignWidth="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="75"></ColumnDefinition>
@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <Image Grid.Column="0" Source="/ComputerProject;component/Resource/Image/Product.jpg" Stretch="UniformToFill" HorizontalAlignment="Center"></Image>
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-            <TextBlock Text="Laptop HP 15s-fq2602TU" TextWrapping="WrapWithOverflow" FontWeight="DemiBold" FontSize="16" FontFamily="{StaticResource Mulish}" Margin="10,10,10,0"></TextBlock>
+            <TextBlock Text="Laptop HP 15s-fq2602TU" TextWrapping="WrapWithOverflow" FontWeight="DemiBold" FontSize="16" FontFamily="{StaticResource Mulish}" Margin="10,10,10,0" Foreground="Black"></TextBlock>
             <TextBlock Text="15,499,000" Foreground="{StaticResource MainColor}" FontWeight="DemiBold" FontSize="16" FontFamily="{StaticResource Mulish}" Margin="10,5"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="0 0,5,0">
@@ -29,7 +29,7 @@
                     <materialDesign:PackIcon  Grid.Column="0" Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}"  Height="Auto" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" Kind="Minus"  />
                 </Button>
 
-                <TextBlock Grid.Column="1" FontFamily="{StaticResource Mulish}" Text="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="1" FontFamily="{StaticResource Mulish}" Text="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
                 <Button Height="Auto" Width="Auto" Grid.Column="2" Padding="0" Background="Transparent" BorderBrush="Transparent">
                     <materialDesign:PackIcon  Grid.Column="0" Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}"  Height="Auto" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" Kind="Plus"  />
                 </Button>

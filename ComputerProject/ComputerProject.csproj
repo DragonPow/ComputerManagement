@@ -515,7 +515,6 @@
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
     <Resource Include="Resource\Image\AddImage.png" />
-    <Resource Include="Resource\Icon\image-add.png" />
     <Resource Include="Resource\Icon\AddImage.png" />
     <Resource Include="Resource\Icon\Arange.png" />
     <Resource Include="Resource\Icon\Plus.png" />

@@ -19,11 +19,11 @@
         <TextBlock Text="Bán hàng" FontSize="35" FontWeight="Bold" FontFamily="{StaticResource Mulish}"  Foreground="{StaticResource Title}" Margin="30,20"  VerticalAlignment="Center" Grid.ColumnSpan="2"></TextBlock>
         <Grid Margin="30,0" Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.4*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="500"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <local:ProdSaleAllView Grid.Column="0" Margin="0,0,0,10" ></local:ProdSaleAllView>
-            <local:CurrentSaleBillView Grid.Column="1" Loaded="CurrentSaleBillView_Loaded"></local:CurrentSaleBillView>
+            <local:CurrentSaleBillView Grid.Column="1"></local:CurrentSaleBillView>
         </Grid>
     </Grid>
 
