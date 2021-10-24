@@ -76,7 +76,7 @@
                 CornerRadiusText="3"
                 FontSize="16"
                 MarginText="10"
-                Text="{Binding PhoneNumber}" />
+                Text="{Binding PhoneNumber, Mode=TwoWay}" />
             <StackPanel
                 Grid.Row="2"
                 Grid.Column="0"

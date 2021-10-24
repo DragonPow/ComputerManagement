@@ -107,7 +107,7 @@
                                     Margin="{TemplateBinding MarginText}"
                                     Foreground="#545454"
                                     materialDesign:HintAssist.Hint="{TemplateBinding Texthint}"
-                                    Text ="{TemplateBinding Text}"/>
+                                    Text ="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text}"/>
                                 <Image
                                         Grid.Column="1"
                                         HorizontalAlignment="Right"
