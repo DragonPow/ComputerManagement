@@ -58,6 +58,16 @@ namespace ComputerProject.CustomerWorkspace
             set => _model.point = int.Parse(value.ToString());
         }
 
+        public String GetError()
+        {
+            return null;
+        }
+
+        public static bool CheckExist(CustomerViewModel target)
+        {
+            return true;
+        }
+
         public void SaveSync()
         {
             this.Save().Wait();

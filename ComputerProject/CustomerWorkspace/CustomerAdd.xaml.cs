@@ -20,9 +20,32 @@ namespace ComputerProject.CustomerWorkspace
     /// </summary>
     public partial class CustomerAdd : UserControl
     {
+        public CustomerViewModel ViewModel => this.DataContext as CustomerViewModel;
+
         public CustomerAdd()
         {
             InitializeComponent();
+
+            BtnBack.Click += (s, e) => Closed_NotSave?.Invoke(this, e);
+            btnCancel.Click += (s, e) => Closed_NotSave?.Invoke(this, e);
+
+            btnSave.Click += (s, e) =>
+            {
+                string error = ViewModel.GetError();
+                if (error == null)
+                {
+                    ViewModel.SaveSync();
+                    // Callback
+                    Saved?.Invoke(this, e);
+                }
+                else
+                {
+                    CustomMessageBox.MessageBox.Show(error);
+                }
+            };
         }
+
+        public event EventHandler Closed_NotSave;
+        public event EventHandler Saved;
     }
 }

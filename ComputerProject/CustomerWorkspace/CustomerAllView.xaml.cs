@@ -20,23 +20,47 @@ namespace ComputerProject.CustomerWorkspace
     /// </summary>
     public partial class CustomerAllView : UserControl
     {
-        private List<CustomerViewModel> _data => this.DataContext as List<CustomerViewModel>;
+        public CustomerAllViewModel ViewModel => this.DataContext as CustomerAllViewModel;
 
         public CustomerAllView()
         {
             InitializeComponent();
-            mainList.ItemsSource = _data;
+            DataContext = new CustomerAllViewModel(new List<CustomerViewModel>());
             btnCreate.Click += BtnCreate_Click;
+            MockData();
         }
+
+        public event EventHandler ClickedCreate;
+        public event EventHandler ClickedEditItem;
+        public event EventHandler ClickedDeleteItem;
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
+            // Do something
+
+            // Call-back
+            ClickedCreate?.Invoke(this, e);
+        }
+
+        private void BtnEditItem_Click(object sender, EventArgs e)
+        {
+            // Do something
+            Console.Write("here");
+            // Call-back
+            ClickedEditItem?.Invoke(sender, e);
+        }
+
+        private void BtnDeleteItem_Click(object sender, EventArgs e)
+        {
+            // Do something
             
+            // Call-back
+            ClickedDeleteItem?.Invoke(sender, e);
         }
 
         private void MockData()
         {
-            DataContext = new List<CustomerViewModel>
+            var list = new List<CustomerViewModel>
             {
                 new CustomerViewModel(new CUSTOMER(){
                     name = "Nguyen Pham Duy Bang",
@@ -67,8 +91,8 @@ namespace ComputerProject.CustomerWorkspace
                     point = 9000
                 }),
             };
-        }
 
-       
+            DataContext = new CustomerAllViewModel(list);
+        }
     }
 }

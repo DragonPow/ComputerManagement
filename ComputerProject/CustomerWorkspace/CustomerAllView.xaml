@@ -7,30 +7,31 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:search="clr-namespace:ComputerProject.Category"
     Padding="30"
-    d:DesignHeight="1000"
-    d:DesignWidth="1300"
+    d:DesignHeight="750"
+    d:DesignWidth="1000"
     Background="{StaticResource Background}"
     mc:Ignorable="d">
     <DockPanel>
-        <TextBlock 
+        <TextBlock
             Height="40"
-            FontSize="28"
-            DockPanel.Dock="Top" 
+            Margin="10,0,10,15"
+            DockPanel.Dock="Top"
             FontFamily="{StaticResource Mulish}"
+            FontSize="28"
             FontWeight="SemiBold"
-            Foreground="{StaticResource Title}" Margin="10,0,10,15">
+            Foreground="{StaticResource Title}">
             Khách hàng
         </TextBlock>
         <Grid Background="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Grid
                 Grid.Row="0"
-                Background="White"
-                Margin="10,0">
+                Margin="10,0"
+                Background="White">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="600" />
                     <ColumnDefinition Width="1*" />
@@ -41,8 +42,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center" />
                 <Button
-                    Grid.Column="2"
                     x:Name="btnCreate"
+                    Grid.Column="2"
                     Background="#FF0477BF"
                     ToolTip="Tìm kiếm khách hàng">
                     <TextBlock
@@ -53,16 +54,20 @@
                     </TextBlock>
                 </Button>
             </Grid>
-            <local:CustomerAllRowTitle Grid.Row="1" Margin="10,0" />
+            <local:CustomerAllRowTitle Grid.Row="1" Margin="20,0,10,0" />
             <ListView
                 x:Name="mainList"
                 Grid.Row="2"
-                Margin="10,0">
+                Margin="10,0"
+                ItemsSource="{Binding CustomerList}">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ListViewItem>
-                            <local:CustomerAllViewRow ViewModel="{Binding}" />
+                            <local:CustomerAllViewRow
+                                ClickedDelete="BtnDeleteItem_Click"
+                                ClickedEdit="BtnEditItem_Click"
+                                ViewModel="{Binding}" />
                         </ListViewItem>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -70,6 +75,7 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Padding" Value="0" />
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>

@@ -9,12 +9,13 @@
              xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d"
             
-             d:DesignHeight="200" d:DesignWidth="1276"
+             d:DesignHeight="200" d:DesignWidth="1200"
              >
     <UserControl.Resources>
         <Style TargetType="TextBlock" x:Key="styleCell_Text">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontSize" Value="{x:Static localfont:Font.Body}"/>
+            <Setter Property="FontFamily" Value="{StaticResource Mulish}"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
             <Setter Property="Padding" Value="22,17,16,16"/>
             <Setter Property="Foreground" Value="Black"/>
         </Style>
@@ -22,10 +23,10 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="270"/>
-            <ColumnDefinition Width="235"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="335"/>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="310"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="50"/>
@@ -33,33 +34,23 @@
 
         <TextBlock 
             Grid.Column="0" x:Name="cellName"
-            Style="{DynamicResource ResourceKey=styleCell_Text}"   
-            FontFamily="{StaticResource Mulish}"
-            FontSize="{x:Static localfont:Font.Body}"
+            Style="{DynamicResource ResourceKey=styleCell_Text}"
             />
         <TextBlock 
             Grid.Column="1" x:Name="cellPhone"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
-            FontFamily="{StaticResource Mulish}"
-            FontSize="{x:Static localfont:Font.Body}"
             />
         <TextBlock  
             Grid.Column="2" x:Name="cellBirthday"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
-            FontFamily="{StaticResource Mulish}"
-            FontSize="{x:Static localfont:Font.Body}"
             />
         <TextBlock  
             Grid.Column="3" x:Name="cellAddress"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
-            FontFamily="{StaticResource Mulish}"
-            FontSize="{x:Static localfont:Font.Body}"
             />
         <TextBlock  
             Grid.Column="4" x:Name="cellPoint"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
-            FontFamily="{StaticResource Mulish}"
-            FontSize="{x:Static localfont:Font.Body}"
             />
         <Button 
             Grid.Column="5" x:Name="btnEdit"
