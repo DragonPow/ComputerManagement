@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
              mc:Ignorable="d" 
              Background="Transparent"
@@ -19,28 +20,34 @@
         <Border
             BorderThickness="1"
             BorderBrush="{StaticResource Icon}">
-        <TextBlock
+        <TextBox
+            ToolTip="Tên thông số"
+            materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+            BorderThickness="0"
             FontSize="{x:Static localfont:Font.Body}"
             FontFamily="{StaticResource Mulish}"
             Foreground="#11142D"
             VerticalAlignment="Center"
             Margin="10, 0, 0, 0"         
             >
-        </TextBlock>
+        </TextBox>
         </Border>
         <Border
             Grid.Column="1"
             BorderThickness="1"
             BorderBrush="{StaticResource Icon}">
-            <TextBlock
+            <TextBox
                 x:Name="Value"
+                ToolTip="Giá trị"
+                materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+                BorderThickness="0"
                 xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
                 FontFamily="{StaticResource Mulish}"
                 Foreground="#11142D"
                 VerticalAlignment="Center"
                 Margin="10, 0, 0, 0"         
             >
-            </TextBlock>
+            </TextBox>
         </Border>
     </Grid>
 </UserControl>
