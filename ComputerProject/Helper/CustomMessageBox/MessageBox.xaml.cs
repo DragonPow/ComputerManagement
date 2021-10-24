@@ -30,6 +30,16 @@ namespace ComputerProject.CustomMessageBox
             InitializeComponent();
         }
 
+        public static void Show(string messageBoxText, string comfirmText = "OK")
+        {
+            MessageBox box = new MessageBox();
+            box.txtMessage.Text = messageBoxText;
+            box.btnOk.Content = comfirmText;
+            box.btnCancel.Visibility = Visibility.Collapsed;
+            box.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            box.ShowDialog();
+        }
+
         public MessageBox(string messageBoxText, string caption, string okText, string cancelText, PackIconKind icon) : this()
         {
             txtMessage.Text = messageBoxText;

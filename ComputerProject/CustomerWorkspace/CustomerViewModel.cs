@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ComputerProject.CustomerWorkspace
@@ -14,7 +15,6 @@ namespace ComputerProject.CustomerWorkspace
         public CustomerViewModel()
         {
             this._model = new CUSTOMER();
-            this._model.id = -1;
         }
 
         public CustomerViewModel(CUSTOMER model)
@@ -58,18 +58,70 @@ namespace ComputerProject.CustomerWorkspace
             set => _model.point = int.Parse(value.ToString());
         }
 
+        public string GetError()
+        {
+            if (FullName == null || FullName.Trim().Length < 1)
+            {
+                return "Tên không hợp lệ";
+            }
+
+            if (PhoneNumber == null || PhoneNumber.Trim().Length < 10 || !PhoneNumber.All(c => "0123456789".IndexOf(c) > -1))
+            {
+                return "Số điện thoại không hợp lệ";
+            }
+
+            DateTime dt;
+            var formats = new string[] { "dd/MM/yyyy", "d/MM/yyyy", "dd/M/yyyy" };
+            if (Birthday == null || !DateTime.TryParseExact(Birthday, formats, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.AllowWhiteSpaces, out dt))
+            {
+                return "Ngày sinh không hợp lệ";
+            }
+            if (dt.Year > DateTime.Now.Year - 3)
+            {
+                return "Khách chưa đủ 4 tuổi";
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Check if a customer is already exist in database
+        /// </summary>
+        /// <param name="target">Target</param>
+        /// <returns>Return true if already exist (may not exactly equal to target)</returns>
+        public static bool CheckExist(CustomerViewModel target)
+        {
+            return false;
+        }
+
         public void SaveSync()
         {
             this.Save().Wait();
+            /*using (ComputerManagementEntities db = new ComputerManagementEntities())
+            {
+                var old = db.CUSTOMERs.Where(c => c.id == _model.id).FirstOrDefault();
+                if (old == null)
+                {
+                    // Add new row to db
+                    this._model = db.CUSTOMERs.Add(this._model);
+                }
+                else
+                {
+                    // Update from old one
+                    this.CopyTo(old);
+                }
+                db.SaveChanges();
+            }*/
         }
 
-        public Task Save()
+        public async Task Save(Action callback = null)
         {
             try
             {
                 using (ComputerManagementEntities db = new ComputerManagementEntities())
                 {
-                    if (_model.id == -1)
+                    var old = db.CUSTOMERs.Where(c => c.id == _model.id).FirstOrDefault();
+                    if (old == null)
                     {
                         // Add new row to db
                         this._model = db.CUSTOMERs.Add(this._model);
@@ -77,10 +129,10 @@ namespace ComputerProject.CustomerWorkspace
                     else
                     {
                         // Update from old one
-                        var old = db.CUSTOMERs.Where(c => c.id == _model.id).First();
                         this.CopyTo(old);
                     }
-                    return db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
+                    callback?.Invoke();
                 }
             }
             catch (Exception e) when (!Helper.Environment.IsDebug)
@@ -88,8 +140,6 @@ namespace ComputerProject.CustomerWorkspace
                 string des = "Đã xảy ra lỗi khi truy cập cơ sở dữ liệu";
                 string errorCode = "DB-01";
                 string msg = FormatHelper.GetErrorMessage(des, errorCode);
-
-                return Task.CompletedTask;
             }
         }
 
@@ -136,9 +186,11 @@ namespace ComputerProject.CustomerWorkspace
             {
                 using (ComputerManagementEntities db = new ComputerManagementEntities())
                 {
-                    string nameF = FormatHelper.ConvertTo_TiengDongLao(name).ToLower();
-                    var reader = db.CUSTOMERs.Where(c => FormatHelper.ConvertTo_TiengDongLao(c.name).ToLower().StartsWith(nameF))
-                        .Union(db.CUSTOMERs.Where(c => FormatHelper.ConvertTo_TiengDongLao(c.name).ToLower().Contains(nameF)))
+                    string nameDL = FormatHelper.ConvertTo_TiengDongLao(name).ToLower();
+                    var rgStartWith = new Regex(String.Format("^{0}", nameDL), RegexOptions.IgnoreCase);
+                    var rgContain = new Regex(nameDL, RegexOptions.IgnoreCase);
+                    var reader = db.CUSTOMERs.Where(c => rgStartWith.IsMatch(c.name))
+                        .Union(db.CUSTOMERs.Where(c => rgContain.IsMatch(c.name)))
                         .Distinct()
                         .Skip(startIndex).Take(count).ToList();
 

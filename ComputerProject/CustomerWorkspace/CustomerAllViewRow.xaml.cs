@@ -21,14 +21,7 @@ namespace ComputerProject.CustomerWorkspace
     public partial class CustomerAllViewRow : UserControl
     {
         public static DependencyProperty ViewModelProperty = DependencyProperty.Register(
-            "ViewModel", typeof(CustomerViewModel), typeof(CustomerAllViewRow)
-            );
-
-        public CustomerViewModel ViewModel
-        {
-            get => DataContext as CustomerViewModel;
-            set => DataContext = value;
-        }
+            nameof(ViewModel), typeof(CustomerViewModel), typeof(CustomerAllViewRow));
 
         public CustomerAllViewRow()
         {
@@ -37,6 +30,16 @@ namespace ComputerProject.CustomerWorkspace
             Bind();
             MockData();
         }
+
+        public CustomerViewModel ViewModel
+        {
+            get => DataContext as CustomerViewModel;
+            set => DataContext = value;
+        }
+
+        public event EventHandler ClickedEdit;
+
+        public event EventHandler ClickedDelete;
 
         private void Bind()
         {
@@ -65,6 +68,19 @@ namespace ComputerProject.CustomerWorkspace
                 Path = new PropertyPath(nameof(CustomerViewModel.Point_String)),
                 Mode = BindingMode.OneWay
             });
+
+            btnEdit.Click += BtnEdit_Click;
+            btnDelete.Click += BtnDelete_Click;
+        }
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            ClickedEdit?.Invoke(this, e);
+        }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            ClickedDelete?.Invoke(this, e);
         }
 
         void MockData()
