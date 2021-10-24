@@ -212,18 +212,53 @@
             </StackPanel>
             </ScrollViewer>
             <StackPanel
+                x:Name="Specifications"
+                IsEnabled="False"
                 Grid.Column="1">
-                <TextBlock
-                    FontSize="24"
-                    FontWeight="Medium"
-                    FontFamily="{StaticResource Mulish}"
-                    Foreground="{StaticResource Title}"
-                    Margin="30,30,0,30"
-                    VerticalAlignment="Center"
-                    Text=" Thông số"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        FontSize="24"
+                        FontWeight="Medium"
+                        FontFamily="{StaticResource Mulish}"
+                        Foreground="{StaticResource Title}"
+                        Margin="30,30,0,30"
+                        VerticalAlignment="Center"
+                        Text=" Thông số"
                     >
+                    </TextBlock>
+                    <Button
+                            x:Name="BtnAdd"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            Margin="0, 0, 40, 0"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Background="{StaticResource MainColor}"
+                            Height="37"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            Visibility="Hidden"
+                            ToolTip="Thêm sản phẩm">
+                        <StackPanel 
+                                Orientation="Horizontal">
+                            <Image
+                                    Height="18"
+                                    Width="18"
+                                    Source="/ComputerProject;component/Resource/Icon/Plus.png">
+                            </Image>
+                            <TextBlock
+                                    Text="Thêm mới" 
+                                    FontSize="{x:Static localfont:Font.Body}"
+                                    FontFamily="{StaticResource Mulish}"
+                                    Margin="5, 0, 0, 0"
+                                    Foreground="White"/>
+                        </StackPanel>
 
-                </TextBlock>
+                    </Button>
+                </Grid>
+               
                 <ListView
                     x:Name="ListSpecifications"
                     Grid.Column="1">
@@ -238,6 +273,18 @@
                             <local:ProdcutAddSpecificationsRow></local:ProdcutAddSpecificationsRow>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                    <ListViewItem>
+                        <local:ProdcutAddSpecificationsRow/>
+                    </ListViewItem>
+                    <ListViewItem>
+                        <local:ProdcutAddSpecificationsRow/>
+                    </ListViewItem>
+                    <ListViewItem>
+                        <local:ProdcutAddSpecificationsRow/>
+                    </ListViewItem>
+                    <ListViewItem>
+                        <local:ProdcutAddSpecificationsRow/>
+                    </ListViewItem>
                 </ListView>
             </StackPanel>
         </Grid>
