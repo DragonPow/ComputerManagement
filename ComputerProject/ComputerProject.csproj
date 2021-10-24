@@ -305,6 +305,7 @@
     <Compile Include="SPECIFICATION_TYPE.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Validation\InitClass.cs" />
     <Compile Include="WindowTest.xaml.cs">
       <DependentUpon>WindowTest.xaml</DependentUpon>
     </Compile>

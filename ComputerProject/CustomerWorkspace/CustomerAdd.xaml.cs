@@ -34,9 +34,16 @@ namespace ComputerProject.CustomerWorkspace
                 string error = ViewModel.GetError();
                 if (error == null)
                 {
-                    ViewModel.SaveSync();
-                    // Callback
-                    Saved?.Invoke(this, e);
+                    _ = ViewModel.Save(() =>
+                      {
+                          // Hide waiting screen
+
+                          // Callback
+                          SaveOK?.Invoke(this, e);
+                      });
+
+                    // Show waiting screen
+
                 }
                 else
                 {
@@ -46,6 +53,6 @@ namespace ComputerProject.CustomerWorkspace
         }
 
         public event EventHandler Closed_NotSave;
-        public event EventHandler Saved;
+        public event EventHandler SaveOK;
     }
 }
