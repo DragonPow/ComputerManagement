@@ -20,10 +20,51 @@ namespace ComputerProject.CustomerWorkspace
     /// </summary>
     public partial class CustomerAllViewRow : UserControl
     {
+        public static DependencyProperty ViewModelProperty = DependencyProperty.Register(
+            "ViewModel", typeof(CustomerViewModel), typeof(CustomerAllViewRow)
+            );
+
+        public CustomerViewModel ViewModel
+        {
+            get => DataContext as CustomerViewModel;
+            set => DataContext = value;
+        }
+
         public CustomerAllViewRow()
         {
             InitializeComponent();
+            this.DataContext = new CustomerViewModel();
+            Bind();
             MockData();
+        }
+
+        private void Bind()
+        {
+            cellName.SetBinding(TextBlock.TextProperty, new Binding()
+            {
+                Path = new PropertyPath(nameof(CustomerViewModel.FullName)),
+                Mode = BindingMode.OneWay
+            });
+            cellAddress.SetBinding(TextBlock.TextProperty, new Binding()
+            {
+                Path = new PropertyPath(nameof(CustomerViewModel.Address)),
+                Mode = BindingMode.OneWay
+            });
+            cellBirthday.SetBinding(TextBlock.TextProperty, new Binding()
+            {
+                Path = new PropertyPath(nameof(CustomerViewModel.Birthday)),
+                Mode = BindingMode.OneWay
+            });
+            cellPhone.SetBinding(TextBlock.TextProperty, new Binding()
+            {
+                Path = new PropertyPath(nameof(CustomerViewModel.PhoneNumber)),
+                Mode = BindingMode.OneWay
+            });
+            cellPoint.SetBinding(TextBlock.TextProperty, new Binding()
+            {
+                Path = new PropertyPath(nameof(CustomerViewModel.Point_String)),
+                Mode = BindingMode.OneWay
+            });
         }
 
         void MockData()
@@ -36,11 +77,8 @@ namespace ComputerProject.CustomerWorkspace
                 address = "to 4, ap Thanh khuong, thi tran Tan Quoi, huyen Binh Tan, tinh Vinh Long",
                 point = 9000
             };
-            cellName.Text = customer.name.ToString();
-            cellPhone.Text = customer.phone.ToString();
-            cellBirthday.Text = customer.birthday.ToString();
-            cellAddress.Text = customer.address.ToString();
-            cellPoint.Text = customer.point.ToString();
+
+            ViewModel = new CustomerViewModel(customer);
         }
     }
 }
