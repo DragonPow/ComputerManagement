@@ -67,10 +67,6 @@
                 FontSize="16"
                 MarginText="10"
                 Text="{Binding FullName, Mode=TwoWay}" />
-            <TextBox
-                Text="{Binding FullName, Mode=TwoWay}">
-                
-            </TextBox>
             <local:TextboxCustom
                 Title="    Số điện thoại"
                 Grid.Row="1"
