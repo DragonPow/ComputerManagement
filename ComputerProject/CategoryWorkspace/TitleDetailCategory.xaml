@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CustomControl"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              d:DesignHeight="51" d:DesignWidth="1330">
     <StackPanel
@@ -15,15 +16,16 @@
           Style="{StaticResource MaterialDesignIconButton}"
           ToolTip="Trở về"
           Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Click="Button_Click">
                 <materialDesign:PackIcon
                     Kind="ArrowLeft"
                     Foreground="{StaticResource Title}"
                     />  
         </Button>
         <TextBlock
-            FontSize="35"
-            FontWeight="Bold"
+            x:Name="Title"
+            FontSize="{x:Static localfont:Font.Title}"
+            FontWeight="SemiBold"
             FontFamily="{StaticResource Mulish}"
             Foreground="{StaticResource Title}"
             Margin="20,3,0,0"

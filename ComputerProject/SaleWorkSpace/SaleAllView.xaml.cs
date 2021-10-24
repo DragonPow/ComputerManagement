@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject.CategoryWorkspace
+namespace ComputerProject.SaleWorkSpace
 {
     /// <summary>
-    /// Interaction logic for CategoryEdit.xaml
+    /// Interaction logic for SaleAllView.xaml
     /// </summary>
-    public partial class CategoryEdit : UserControl
+    public partial class SaleAllView : UserControl
     {
-        public CategoryEdit()
+        public SaleAllView()
         {
             InitializeComponent();
         }

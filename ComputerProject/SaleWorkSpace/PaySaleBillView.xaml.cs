@@ -13,16 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject.ProductWorkSpace
+namespace ComputerProject.SaleWorkSpace
 {
     /// <summary>
-    /// Interaction logic for ProductAddViewAddPicture.xaml
+    /// Interaction logic for PaySaleBillView.xaml
     /// </summary>
-    public partial class ProductAddViewAddPicture : UserControl
+    public partial class PaySaleBillView : Window
     {
-        public ProductAddViewAddPicture()
+        public PaySaleBillView()
         {
             InitializeComponent();
         }
+
     }
 }

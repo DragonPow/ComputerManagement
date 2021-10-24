@@ -30,5 +30,10 @@ namespace ComputerProject.CategoryWorkspace
         {
             CategoryLv2Name.Text = "Laptop";
         }
+        public void VisibleBtnDel()
+        {
+            btnDelete.Visibility = btnDelete.Visibility == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
+        }    
+        
     }
 }

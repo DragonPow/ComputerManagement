@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="840"
@@ -11,7 +12,7 @@
         <Style TargetType="TextBlock" x:Key="TitleCell">
             <Setter Property="FontFamily" Value="{StaticResource Mulish}"></Setter>
             <Setter Property="FontWeight" Value="Medium"></Setter>
-            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="FontSize" Value="{x:Static localfont:Font.Body}"></Setter>
             <Setter Property="Foreground" Value="Black"></Setter>
         </Style>
     </UserControl.Resources>
@@ -29,7 +30,9 @@
             Grid.Column="0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="10"
+            Margin="10, 0, 0, 0"
+            FontFamily="{StaticResource Mulish}"
+            FontSize="{x:Static localfont:Font.Body}"
             Style="{StaticResource TitleCell}">
             STT
         </TextBlock>
@@ -38,7 +41,9 @@
             Grid.Column="1"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="10"
+             FontFamily="{StaticResource Mulish}"
+            FontSize="{x:Static localfont:Font.Body}"
+            Margin="10, 0, 0, 0"
             Style="{StaticResource TitleCell}">
             Ngày tạo
         </TextBlock>
@@ -47,7 +52,9 @@
             Grid.Column="2"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="10"
+             FontFamily="{StaticResource Mulish}"
+            FontSize="{x:Static localfont:Font.Body}"
+            Margin="10, 0, 0, 0"
             Style="{StaticResource TitleCell}">
             Loại hóa đơn
         </TextBlock>
@@ -56,7 +63,9 @@
             Grid.Column="3"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="10"
+             FontFamily="{StaticResource Mulish}"
+            FontSize="{x:Static localfont:Font.Body}"
+            Margin="10, 0, 0, 0"
             Style="{StaticResource TitleCell}">
         Nội dung
         </TextBlock>
@@ -65,7 +74,9 @@
             Grid.Column="4"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="10"
+             FontFamily="{StaticResource Mulish}"
+            FontSize="{x:Static localfont:Font.Body}"
+            Margin="10, 0, 0, 0"
             Style="{StaticResource TitleCell}">
             Tổng tiền
         </TextBlock>

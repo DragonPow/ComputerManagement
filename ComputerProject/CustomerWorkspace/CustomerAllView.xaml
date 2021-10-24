@@ -12,21 +12,20 @@
     Background="{StaticResource Background}"
     mc:Ignorable="d">
     <DockPanel>
-        <TextBlock
-            Height="50"
-            Margin="10,0,10,15"
-            DockPanel.Dock="Top"
+        <TextBlock 
+            Height="40"
+            FontSize="28"
+            DockPanel.Dock="Top" 
             FontFamily="{StaticResource Mulish}"
-            FontSize="35"
-            FontWeight="Bold"
-            Foreground="{StaticResource Title}">
+            FontWeight="SemiBold"
+            Foreground="{StaticResource Title}" Margin="10,0,10,15">
             Khách hàng
         </TextBlock>
         <Grid Background="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-                <RowDefinition Height="65" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid
                 Grid.Row="0"

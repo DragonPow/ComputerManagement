@@ -1,40 +1,62 @@
 ﻿<UserControl x:Class="ComputerProject.CategoryWorkspace.TitleCategoryLv2"
+               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CustomControl"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="360">
     <StackPanel>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="6*"></ColumnDefinition>
-            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
             
             <TextBlock
             Grid.Column="0"
             FontSize="16"
-            FontWeight="Bold"
+            FontWeight="SemiBold"
             FontFamily="{StaticResource Mulish}"
             Foreground="#11142D"
             Margin="20,0,0,0"
             VerticalAlignment="Top">
             Danh mục con
         </TextBlock>
-        <local:ButtonIcon
-            Grid.Column="1"
-            Height = "40"
-             Width="100"
-             Text="Thêm mới" 
-             PathData="M20 14H14V20H10V14H4V10H10V4H14V10H20V14Z" 
-             Background="{StaticResource Icon}" 
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Right"
-        />
-        
+            <Button
+                            x:Name="Btn_add"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            Margin="0, 0, 10, 0"
+                            FontSize="13"
+                            Height="38"
+                            FontWeight="SemiBold"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Background="{StaticResource MainColor}" 
+                            BorderBrush="{StaticResource MainColor}"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            VerticalAlignment="Bottom"
+                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                            Visibility="Hidden">
+                <StackPanel 
+                                Orientation="Horizontal">
+                    <Image
+                                    Height="18"
+                                    Width="18"
+                                    Source="/ComputerProject;component/Resource/Icon/Plus.png">
+
+                    </Image>
+                    <TextBlock
+                                    Text="Thêm mới" 
+                                    FontSize="13"
+                                    Margin="5, 0, 0, 0"
+                                    Foreground="White"/>
+                </StackPanel>
+
+            </Button>
     </Grid>
     <Separator Background="{StaticResource Divition}" Margin="0, 5, 0, 10"/>
     </StackPanel>

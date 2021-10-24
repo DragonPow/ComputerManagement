@@ -5,14 +5,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CustomControl"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              Background="{StaticResource Background}"
              d:DesignHeight="1024" d:DesignWidth="1400">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="7*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
 
         </Grid.RowDefinitions>
         <Rectangle Grid.Row="1" Fill="White" IsHitTestVisible="False" Margin="40,0.2"></Rectangle>
@@ -34,7 +35,7 @@
             </Button>
             <TextBlock
                     FontSize="35"
-                    FontWeight="Bold"
+                    FontWeight="SemiBold"
                     FontFamily="{StaticResource Mulish}"
                     Foreground="{StaticResource Title}"
                     Margin="20,3,0,0"
@@ -57,7 +58,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <local:TextboxCustom
-                CornerRadiusText="8"
+                CornerRadiusText="3"
                 Grid.Row="0" Grid.ColumnSpan="2"
                 VerticalAlignment="Center"
                 Margin="60, 0, 60, 0"
@@ -69,40 +70,58 @@
             <local:TextboxCustom
                 Grid.Row="1" Grid.ColumnSpan="2"
                 VerticalAlignment="Center"
-                CornerRadiusText="8"
+                CornerRadiusText="3"
                 Margin="60, 0, 60, 0"
                 FontSize="16"
                 MarginText="10"
                 Title="    Số điện thoại">
 
             </local:TextboxCustom>
-            <local:TextboxCustom
-                Grid.Row="2" 
+            <StackPanel
+                 Grid.Row="2" 
                 Grid.Column="0"
                 VerticalAlignment="Center"
-                CornerRadiusText="8"
-                Margin="60, 0, 30, 0"
-                FontSize="16"
-                MarginText="10"
-                PathIcon="/ComputerProject;component/Resource/Icon/Calendar.png"
-                Title="    Ngày sinh">
+                Margin="60, 0, 20, 0"
+               
+                >
+                <TextBlock   
+                                FontWeight="SemiBold"
+                                Text="   Ngày sinh"
+                                Foreground="Black"   
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="{x:Static localfont:Font.Body}"
+                                Margin="0, 0, 0, 10"
+                                VerticalAlignment="Top">
+                </TextBlock>
 
-            </local:TextboxCustom>
+                <Border  Background="{StaticResource Background}"
+                            BorderBrush="#DBD7F4"
+                            CornerRadius="8"
+                            VerticalAlignment="Center">
+                    <DatePicker
+                          BorderBrush="#DBD7F4"
+                          FontSize="16"
+                          FontFamily="{StaticResource Mulish}"
+                          Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                </Border>
+            </StackPanel>
             <local:TextboxCustom
                 Grid.Row="2" 
                 Grid.Column="1"
-                CornerRadiusText="8"
+                CornerRadiusText="3"
                 FontSize="16"
                 MarginText="10"
+                Texthint="0"
+                IsEnabled="False"
                 VerticalAlignment="Center"
-                Margin="30, 0, 60, 0"
+                Margin="20, 0, 60, 0"
                 Title="    Điểm thưởng">
 
             </local:TextboxCustom>
             <local:TextboxCustom
                 Grid.Row="3" Grid.ColumnSpan="2"
                 VerticalAlignment="Center"
-                CornerRadiusText="8"
+                CornerRadiusText="3"
                 Margin="60, 0, 60, 0"
                 FontSize="16"
                 MarginText="10"
@@ -119,7 +138,7 @@
             Margin="60, 30, 0, 0">
             <Button
                 Background="{StaticResource MainColor}"
-                Width="178"
+                Width="110"
                 Height="48"
                 Margin="0, 0, 20, 0"
                 >
@@ -129,7 +148,7 @@
                 Background="Transparent"
                 BorderBrush="{StaticResource MainColor}"
                 Foreground="{StaticResource MainColor}"
-                Width="111"
+                Width="110"
                 Height="48"
                  Margin="20, 0, 0, 0"
                 >

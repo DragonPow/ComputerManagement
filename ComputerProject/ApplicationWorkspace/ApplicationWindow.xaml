@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerProject.ApplicationWorkspace"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:sale="clr-namespace:ComputerProject.SaleWorkSpace"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="ApplicationWindow" Height="1024" Width="1485" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="Manual">
+        Title="ApplicationWindow" Height="750" Width="1380" Foreground="White" ResizeMode="CanResize" WindowStartupLocation="CenterOwner">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
@@ -42,7 +43,11 @@
             <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </Window.Triggers>
-    <StackPanel Orientation="Horizontal" Background="#FFDEDEDE">
+    <Grid Background="#FFDEDEDE">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
         <Grid x:Name="GridMenu" Width="70" Background="White" HorizontalAlignment="Left" >
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFAEAEAE"/>
@@ -135,11 +140,6 @@
                                     <Setter Property="Foreground" Value="White" />
                                     <Setter Property="Background" Value="{StaticResource MainColor}"/>
                                 </Trigger>
-
-                                <Trigger Property="IsSelected" Value="False" >
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Setter Property="Foreground" Value="{StaticResource Icon}" />
-                                </Trigger>
                             </Style.Triggers>
 
                         </Style>
@@ -147,6 +147,9 @@
                 </ListView>
             </StackPanel>
         </Grid>
-        <Grid x:Name="GridMain" HorizontalAlignment="Left" VerticalAlignment="Top" />
-    </StackPanel>
+        <sale:SaleAllView Grid.Column="1" ></sale:SaleAllView>
+        <Grid x:Name="GridMain" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            
+        </Grid>
+    </Grid>
 </Window>

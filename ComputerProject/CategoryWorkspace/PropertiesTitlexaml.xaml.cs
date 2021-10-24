@@ -24,5 +24,9 @@ namespace ComputerProject.CategoryWorkspace
         {
             InitializeComponent();
         }
+        public void Visiblebtn()
+        {
+            Btn_add.Visibility = Btn_add.Visibility == Visibility.Hidden ? Visibility.Visible : Visibility.Hidden;
+        }
     }
 }

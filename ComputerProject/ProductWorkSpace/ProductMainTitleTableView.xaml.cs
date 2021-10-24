@@ -13,14 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject.SaleWorkSpace
+namespace ComputerProject.ProductWorkSpace
 {
     /// <summary>
-    /// Interaction logic for CustomerSale.xaml
+    /// Interaction logic for ProductMainTitleTableView.xaml
     /// </summary>
-    public partial class CustomerSale : UserControl
+    public partial class ProductMainTitleTable : UserControl
     {
-        public CustomerSale()
+     
+        public ProductMainTitleTable()
         {
             InitializeComponent();
         }

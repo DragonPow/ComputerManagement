@@ -110,10 +110,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CategoryWorkspace\CategoryEdit.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CategoryWorkspace\Categorylv2Row.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -155,15 +151,15 @@
     <Compile Include="CategoryWorkspace\CategoryAdd.xaml.cs">
       <DependentUpon>CategoryAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CategoryWorkspace\CategoryEdit.xaml.cs">
-      <DependentUpon>CategoryEdit.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CategoryWorkspace\Categorylv2Row.xaml.cs">
       <DependentUpon>Categorylv2Row.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CategoryWorkspace\CategoryViewModel.cs" />
+    <Compile Include="CategoryWorkspace\DetailCategoryViewModel.cs" />
     <Compile Include="CategoryWorkspace\FeatureBar.xaml.cs">
       <DependentUpon>FeatureBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CategoryWorkspace\ListCategoryViewModel.cs" />
     <Compile Include="CategoryWorkspace\PropertiesRow.xaml.cs">
       <DependentUpon>PropertiesRow.xaml</DependentUpon>
     </Compile>
@@ -214,9 +210,11 @@
     <Compile Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml.cs">
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerWorkspace\CustomerEditView.xaml.cs">
-      <DependentUpon>CustomerEditView.xaml</DependentUpon>
+    <Compile Include="CustomerWorkspace\CustomerSearchView.xaml.cs">
+      <DependentUpon>CustomerSearchView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\NavigationService.cs" />
+    <Compile Include="CustomerWorkspace\Test.cs" />
     <Compile Include="DETAIL_REPORT_CATEGORY.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -231,9 +229,14 @@
     <Compile Include="ITEM_BILL_SERI.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="MessageBox.xaml.cs">
+    <Compile Include="Helper\CustomMessageBox\MessageBox.xaml.cs">
       <DependentUpon>MessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CustomMessageBox\MessageBoxCustom.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\Specification.cs" />
+    <Compile Include="Model\Specification_type.cs" />
     <Compile Include="PRODUCT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -246,8 +249,8 @@
     <Compile Include="ProductWorkSpace\ProductAddView.xaml.cs">
       <DependentUpon>ProductAddView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProductWorkSpace\ProductAddViewAddPicture.xaml.cs">
-      <DependentUpon>ProductAddViewAddPicture.xaml</DependentUpon>
+    <Compile Include="ProductWorkSpace\ProductDetailView.xaml.cs">
+      <DependentUpon>ProductDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProductWorkSpace\ProductMainRowTable.xaml.cs">
       <DependentUpon>ProductMainRowTable.xaml</DependentUpon>
@@ -264,11 +267,21 @@
     <Compile Include="REPORT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="SaleWorkSpace\CustomerSale.xaml.cs">
-      <DependentUpon>CustomerSale.xaml</DependentUpon>
+    <Compile Include="Resource\Font\Font.cs" />
+    <Compile Include="SaleWorkSpace\CurrentSaleBillView.xaml.cs">
+      <DependentUpon>CurrentSaleBillView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\CustomerSaleView.xaml.cs">
+      <DependentUpon>CustomerSaleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\PaySaleBillView.xaml.cs">
+      <DependentUpon>PaySaleBillView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SaleWorkSpace\ProdChooseItem.xaml.cs">
       <DependentUpon>ProdChooseItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\ProdItemInBill.xaml.cs">
+      <DependentUpon>ProdItemInBill.xaml</DependentUpon>
     </Compile>
     <Compile Include="SaleWorkSpace\ProdSaleAllView.xaml.cs">
       <DependentUpon>ProdSaleAllView.xaml</DependentUpon>
@@ -279,6 +292,10 @@
     <Compile Include="SaleWorkSpace\ProdSaleListView.xaml.cs">
       <DependentUpon>ProdSaleListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SaleWorkSpace\SaleAllView.xaml.cs">
+      <DependentUpon>SaleAllView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="SPECIFICATION.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -332,7 +349,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomerWorkspace\CustomerEditView.xaml">
+    <Page Include="CustomerWorkspace\CustomerSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -350,7 +367,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MessageBox.xaml">
+    <Page Include="Helper\CustomMessageBox\MessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -366,7 +383,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProductWorkSpace\ProductAddViewAddPicture.xaml">
+    <Page Include="ProductWorkSpace\ProductDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -379,11 +396,23 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProductWorkSpace\ProductMainView.xaml" />
-    <Page Include="SaleWorkSpace\CustomerSale.xaml">
+    <Page Include="SaleWorkSpace\CurrentSaleBillView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\CustomerSaleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\PaySaleBillView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SaleWorkSpace\ProdChooseItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\ProdItemInBill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -396,6 +425,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SaleWorkSpace\ProdSaleListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\SaleAllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -479,6 +512,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resource\Image\AddImage.png" />
     <Resource Include="Resource\Icon\AddImage.png" />
     <Resource Include="Resource\Icon\Arange.png" />
     <Resource Include="Resource\Icon\Plus.png" />

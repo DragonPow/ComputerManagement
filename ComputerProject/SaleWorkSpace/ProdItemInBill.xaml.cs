@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject.CustomerWorkspace
+namespace ComputerProject.SaleWorkSpace
 {
     /// <summary>
-    /// Interaction logic for CustomerEditView.xaml
+    /// Interaction logic for ProdItemInBill.xaml
     /// </summary>
-    public partial class CustomerEditView : UserControl
+    public partial class ProdItemInBill : UserControl
     {
-        public CustomerEditView()
+        public ProdItemInBill()
         {
             InitializeComponent();
         }

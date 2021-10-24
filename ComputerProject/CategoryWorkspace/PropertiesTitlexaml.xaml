@@ -1,9 +1,11 @@
 ﻿<UserControl x:Class="ComputerProject.CategoryWorkspace.PropertiesTitlexaml"
+               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CustomControl"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="850">
     <Grid
@@ -14,8 +16,8 @@
         </Grid.ColumnDefinitions>
         <TextBlock
             Grid.Column="0"
-            FontSize="25"
-            FontWeight="Bold"
+            FontSize="24"
+            FontWeight="SemiBold"
             FontFamily="{StaticResource Mulish}"
             Foreground="{StaticResource Title}"
             Margin="20,3,0,0"
@@ -23,14 +25,34 @@
             >
             Thuộc tính thông số
         </TextBlock>
-        <local:ButtonIcon
-            Grid.Column="1"
-            HorizontalAlignment="Right"
-            Height = "40"
-             Width="100"
-             Text="Thêm mới" 
-             PathData="M20 14H14V20H10V14H4V10H10V4H14V10H20V14Z" 
-             Background="{StaticResource Icon}" Margin="0,0,20,0" 
-        />
-    </Grid>
+        <Button
+                            x:Name="Btn_add"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            Margin="0, 0, 20, 0"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Background="{StaticResource MainColor}" 
+                            Height="40"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                            Visibility="Hidden">
+            <StackPanel 
+                                Orientation="Horizontal">
+                <Image
+                                    Height="15"
+                                    Width="15"
+                                    Source="/ComputerProject;component/Resource/Icon/Plus.png">
+
+                </Image>
+                <TextBlock
+                                    Text="Thêm mới" 
+                                    FontFamily="{StaticResource Mulish}"
+                                    FontWeight="SemiBold"
+                                    FontSize="16"
+                                    Margin="5, 0, 0, 0"
+                                    Foreground="White"/>
+            </StackPanel>
+
+        </Button>
+        </Grid>
 </UserControl>

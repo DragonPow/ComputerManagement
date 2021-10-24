@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +23,10 @@ namespace ComputerProject.CategoryWorkspace
         public TitleCategoryLv2()
         {
             InitializeComponent();
+        }
+        public void Visiblebtn()
+        {
+            Btn_add.Visibility = Btn_add.Visibility == Visibility.Hidden ? Visibility.Visible : Visibility.Hidden;
         }
     }
 }

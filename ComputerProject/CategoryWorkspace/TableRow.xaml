@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
              xmlns:local1="clr-namespace:ComputerProject.CustomControl"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -19,9 +20,9 @@
         </Style>
     </UserControl.Resources>
     <StackPanel Orientation="Vertical"
-                Height="67">
+                Height="55">
         <Grid
-            Height="60">
+            Height="50">
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="0.23*"></ColumnDefinition>
             <ColumnDefinition Width="0.65*"></ColumnDefinition>
@@ -31,10 +32,12 @@
 
         <TextBlock
             x:Name="CategoryLv1"
+            FontFamily="{StaticResource Mulish}"
             Style="{StaticResource CellTitle}"
             Grid.Column="0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
+            FontSize="{x:Static localfont:Font.Body}"
             Margin="20, 0, 0, 0"
             >
            
@@ -43,9 +46,11 @@
         <TextBlock
             x:Name="CategoryLv2"
             Style="{StaticResource CellTitle}"
+            FontFamily="{StaticResource Mulish}"
             Grid.Column="1"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
+            FontSize="{x:Static localfont:Font.Body}"
             Margin="20, 0, 0, 0"
             >
            
@@ -54,6 +59,8 @@
             <Button 
             Grid.Column="2" x:Name="btnEdit"
             Style="{StaticResource MaterialDesignIconButton}"
+            FontSize="{x:Static localfont:Font.Body}"
+            FontFamily="{StaticResource Mulish}"
             ToolTip="Chỉnh sửa danh mục" >
                 <Image
                 Height="24"

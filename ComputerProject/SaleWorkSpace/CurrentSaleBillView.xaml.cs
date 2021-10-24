@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject
+namespace ComputerProject.SaleWorkSpace
 {
     /// <summary>
-    /// Interaction logic for MessageBox.xaml
+    /// Interaction logic for CurrentSaleBillView.xaml
     /// </summary>
-    public partial class MessageBox : Window
+    public partial class CurrentSaleBillView : UserControl
     {
-        public MessageBox()
+        public CurrentSaleBillView()
         {
             InitializeComponent();
         }
