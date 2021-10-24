@@ -59,8 +59,7 @@
                 VerticalScrollBarVisibility="Visible"
                 Margin="40, 0, 0, 0">
                 <StackPanel
-                x:Name="ProInfor"  
-                IsEnabled="False">
+                x:Name="ProInfor" >
                     <localcustom:TextboxCustom
                         x:Name="Code"
                         VerticalAlignment="Center"
@@ -101,7 +100,6 @@
                             FontWeight="SemiBold"
                             Foreground="Black"
                             Margin="10,3,0,0"
-                            Visibility="Hidden"
                             VerticalAlignment="Center">
                             Chọn ảnh sản phẩm
                             </TextBlock>
@@ -115,7 +113,6 @@
                             Background="{StaticResource MainColor}"
                             BorderBrush="{StaticResource MainColor}"
                             Content="Tải ảnh lên"
-                            Visibility="Hidden"
                             >
                             </Button>
                         </Grid>
