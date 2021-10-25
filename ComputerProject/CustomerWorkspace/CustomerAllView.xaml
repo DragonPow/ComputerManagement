@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:search="clr-namespace:ComputerProject.Category"
+    xmlns:search="clr-namespace:ComputerProject.CustomControl"
     Padding="30"
     d:DesignHeight="750"
     d:DesignWidth="1000"
@@ -39,6 +39,7 @@
                 </Grid.ColumnDefinitions>
                 <search:Search
                     Grid.Column="0"
+                    Texthint="Số điện thoại"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center" />
                 <Button

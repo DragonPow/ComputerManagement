@@ -177,7 +177,7 @@
                                 Width="{TemplateBinding Width}"
                                 VerticalAlignment="Center"
                                 materialDesign:HintAssist.Hint="{TemplateBinding Texthint}"
-                                Text="{TemplateBinding Text}"
+                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text}"
                                 Margin="5, 0, 0, 0"
                                 FontSize="14" >
                         </TextBox>

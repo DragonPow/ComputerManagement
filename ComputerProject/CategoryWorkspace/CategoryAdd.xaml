@@ -6,7 +6,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
              xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
-             xmlns:localsearch="clr-namespace:ComputerProject.Category"
             
              mc:Ignorable="d" 
              d:DesignHeight="888" d:DesignWidth="1330"
@@ -183,14 +182,15 @@
                      Background="{StaticResource Icon}" Margin="0,0,20,0" 
                 />
             </Grid>
-            <localsearch:Search
+            <localcustom:Search
                 Grid.Row="1"
                 HorizontalAlignment="Left"
                 Margin="20, 0, 0, 0"
                 x:Name="Search"
+                Texthint="Tìm kiếm"
                 >
 
-            </localsearch:Search>
+            </localcustom:Search>
 
             <local:TittlePropertiesTable
                     Grid.Row="2">

@@ -126,10 +126,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CategoryWorkspace\Search.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="ApplicationWorkspace\ApplicationWindow.xaml.cs">
       <DependentUpon>ApplicationWindow.xaml</DependentUpon>
     </Compile>
@@ -165,9 +161,6 @@
     </Compile>
     <Compile Include="CategoryWorkspace\PropertiesTitlexaml.xaml.cs">
       <DependentUpon>PropertiesTitlexaml.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CategoryWorkspace\Search.xaml.cs">
-      <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
     <Compile Include="CategoryWorkspace\TableRow.xaml.cs">
       <DependentUpon>TableRow.xaml</DependentUpon>
