@@ -1,4 +1,5 @@
-﻿using ComputerProject.CustomMessageBox;
+﻿using ComputerProject.ApplicationWorkspace;
+using ComputerProject.CustomMessageBox;
 using ComputerProject.Helper;
 //using ComputerProject.Model;
 using ComputerProject.Repository;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
 
 namespace ComputerProject.CategoryWorkspace
 {
@@ -45,11 +47,13 @@ namespace ComputerProject.CategoryWorkspace
         }
     }
 
-    public class DetailCategoryViewModel : BaseViewModel
+    public class DetailCategoryViewModel : BaseViewModel, ITabView
     {
         #region Fields
         NavigationService _navigator;
         CategoryRepository _repository;
+        public string ViewName => "Test";
+        public PackIconKind ViewIcon => PackIconKind.Add;
 
         Model.Category _currentParentCategory;
         Model.Category _currentChildCateogry;
@@ -74,9 +78,8 @@ namespace ComputerProject.CategoryWorkspace
                 if (value != _currentParentCategory)
                 {
                     _currentParentCategory = value;
+                    OnPropertyChanged();
                 }
-                OnPropertyChanged();
-                //OnPropertyChanged(nameof(ChildCategories));
             }
         }
         public Model.Category CurrentChildCategory
@@ -89,34 +92,8 @@ namespace ComputerProject.CategoryWorkspace
                     _currentChildCateogry = value;
                 }
                 OnPropertyChanged();
-                //OnPropertyChanged(nameof(SpecificationTypes));
             }
         }
-        //public Collection<Model.Category> ChildCategories
-        //{
-        //    get => (Collection<Model.Category>)CurrentParentCategory.ChildCategories;
-        //    //set
-        //    //{
-        //    //    var categories = (Collection<Model.Category>)CurrentParentCategory.ChildCategories;
-        //    //    if (value != categories)
-        //    //    {
-        //    //        CurrentParentCategory.ChildCategories = value;
-        //    //    }
-        //    //    OnPropertyChanged();
-        //    //}
-        //}
-        //public Collection<Model.Specification_type> SpecificationTypes
-        //{
-        //    get => CurrentChildCategory != null ? (Collection<Model.Specification_type>)CurrentChildCategory.SpecificationTypes : null;
-        //    //set
-        //    //{
-        //    //    if (value != _specifications)
-        //    //    {
-        //    //        _specifications = value;
-        //    //    }
-        //    //    OnPropertyChanged();
-        //    //}
-        //}
         public bool IsEditMode
         {
             get => _isEditMode;
@@ -169,7 +146,7 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (_deleteCategoryCommand == null)
                 {
-                    _deleteCategoryCommand = new RelayCommand(category => Delete((Model.Category)category));
+                    _deleteCategoryCommand = new RelayCommand(category => Delete((Model.Category)category), (_) => IsEditMode);
                 }
                 return _deleteCategoryCommand;
             }
@@ -186,9 +163,13 @@ namespace ComputerProject.CategoryWorkspace
                         {
                             Save();
                         }
-                        catch (ArgumentException e)
+                        catch (ArgumentNullException e2)
                         {
-                            MessageBoxCustom.ShowDialog("Tên danh mục đã tồn tại", "Thông báo");
+                            MessageBoxCustom.ShowDialog("Không được để trống tên", "Thông báo");
+                        }
+                        catch (ArgumentException e1)
+                        {
+                            MessageBoxCustom.ShowDialog("Tên danh mục đã tồn tại", "Lỗi");
                         }
                     });
                 }
@@ -221,7 +202,7 @@ namespace ComputerProject.CategoryWorkspace
         {
             get
             {
-                if (null==_backPageCommand)
+                if (null == _backPageCommand)
                 {
                     _backPageCommand = new RelayCommand(a => NavigateBackPage());
                 }
@@ -288,7 +269,7 @@ namespace ComputerProject.CategoryWorkspace
         {
             if (category == CurrentParentCategory)
             {
-                _repository.Delete(category.Id);
+                if (category.Id != 0) _repository.Delete(category.Id);
                 NavigateBackPage();
             }
             else
@@ -301,7 +282,11 @@ namespace ComputerProject.CategoryWorkspace
 
         public void Save()
         {
-            if (isParentCategoryExists())
+            if (String.IsNullOrWhiteSpace(CurrentParentCategory.Name))
+            {
+                throw new ArgumentNullException("Name is null or while space");
+            }
+            else if (isParentCategoryExists())
             {
                 throw new ArgumentException("Parent Category Exsists");
             }
@@ -312,7 +297,7 @@ namespace ComputerProject.CategoryWorkspace
         }
         private bool isParentCategoryExists()
         {
-            return _repository.IsRootCategoryExists(this.CurrentParentCategory.Name);
+            return _repository.IsRootCategoryExists(this.CurrentParentCategory);
         }
 
         public void OpenEditMode()
@@ -323,6 +308,7 @@ namespace ComputerProject.CategoryWorkspace
         public void Cancel()
         {
             ReloadData();
+            IsEditMode = false;
         }
 
         private void NavigateBackPage()
