@@ -1,32 +1,31 @@
 ﻿<UserControl x:Class="ComputerProject.CategoryWorkspace.Categorylv2Row"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
              xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              xmlns:model="clr-namespace:ComputerProject.Model"
-             mc:Ignorable="d" 
-             d:DesignHeight="60" d:DesignWidth="400"
+             mc:Ignorable="d"
+             d:DesignHeight="60"
+             d:DesignWidth="400"
              d:DataContext="{d:DesignInstance Type=model:Category}">
-    <Grid 
-        VerticalAlignment="Top">
-        <Grid.ColumnDefinitions >
+    <Grid VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"></ColumnDefinition>
-            <ColumnDefinition Width="2*" ></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBox
-            materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
-            BorderThickness="0"
-            x:Name="CategoryLv2Name"
-            Grid.Column="0"
-            FontSize="{x:Static localfont:Font.Body}"
-            FontFamily="{StaticResource Mulish}"
-            Foreground="#11142D"
-            VerticalAlignment="Top"
-            Text="{Binding Name}">
+        <TextBox materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                 BorderThickness="0"
+                 x:Name="CategoryLv2Name"
+                 Grid.Column="0"
+                 FontSize="{x:Static localfont:Font.Body}"
+                 FontFamily="{StaticResource Mulish}"
+                 Foreground="#11142D"
+                 VerticalAlignment="Top"
+                 Text="{Binding Name}">
         </TextBox>
         <Button Grid.Column="1"
                 x:Name="btnDelete"
@@ -35,12 +34,10 @@
                 FontSize="{x:Static localfont:Font.Body}"
                 Command="{Binding DeleteCategoryCommand, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ListView}}}"
                 CommandParameter="{Binding }">
-            <Image
-                Height="24"
-                Width="24" 
-                
-                Source="/ComputerProject;component/Resource/Icon/trash-2.png"/>
+            <Image Height="24"
+                   Width="24"
+                   Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
         </Button>
     </Grid>
-     
+
 </UserControl>

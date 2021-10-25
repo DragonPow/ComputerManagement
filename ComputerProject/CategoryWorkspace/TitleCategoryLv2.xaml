@@ -23,69 +23,39 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-
             <TextBlock Grid.Column="0"
                        FontSize="16"
                        FontWeight="SemiBold"
                        FontFamily="{StaticResource Mulish}"
                        Foreground="#11142D"
                        Margin="20,0,0,0"
-                       VerticalAlignment="Top">
-            Danh mục con
-            </TextBlock>
+                       VerticalAlignment="Top"
+                       Text="Danh mục con" />
             <Button x:Name="Btn_add"
                     Grid.Column="1"
                     HorizontalAlignment="Right"
-                    Margin="0, 0, 10, 0"
+                    Margin="0, 0, 20, 0"
                     FontSize="13"
-                    Height="38"
-                    FontWeight="SemiBold"
                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                     Background="{StaticResource MainColor}"
-                    BorderBrush="{StaticResource MainColor}"
+                    Height="40"
                     materialDesign:ButtonAssist.CornerRadius="8"
                     VerticalAlignment="Bottom"
                     ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
-                    Visibility="Hidden">
+                    Command="{Binding AddChildCategoryCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}}"
+                    Visibility="{Binding IsEditMode, Converter={StaticResource ResourceKey=visibility_converter}}">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="18"
                            Width="18"
-                           Source="/ComputerProject;component/Resource/Icon/Plus.png" />
-
-                    <TextBlock Grid.Column="0"
-                               FontSize="16"
-                               FontWeight="Bold"
-                               FontFamily="{StaticResource Mulish}"
-                               Foreground="#11142D"
-                               Margin="20,0,0,0"
-                               VerticalAlignment="Top"
-                               Text="Danh mục con" />
-                    <!--<Button x:Name="Btn_add"
-                            Grid.Column="1"
-                            HorizontalAlignment="Right"
-                            Margin="0, 0, 20, 0"
-                            FontSize="13"
-                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            Background="{StaticResource MainColor}"
-                            Height="40"
-                            materialDesign:ButtonAssist.CornerRadius="8"
-                            VerticalAlignment="Bottom"
-                            ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
-                            Command="{Binding AddChildCategoryCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}}"
-                            Visibility="{Binding IsEditMode, Converter={StaticResource ResourceKey=visibility_converter}}">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Height="18"
-                                   Width="18"
-                                   Source="/ComputerProject;component/Resource/Icon/Plus.png">
-                            </Image>
-                            <TextBlock Text="Thêm mới"
-                                       FontSize="13"
-                                       Margin="5, 0, 0, 0"
-                                       Foreground="White" />
-                        </StackPanel>
-                    </Button>-->
+                           Source="/ComputerProject;component/Resource/Icon/Plus.png">
+                    </Image>
+                    <TextBlock Text="Thêm mới"
+                               FontSize="13"
+                               Margin="5, 0, 0, 0"
+                               Foreground="White" />
                 </StackPanel>
             </Button>
+
         </Grid>
         <Separator Background="{StaticResource Divition}"
                    Margin="0, 5, 0, 10" />

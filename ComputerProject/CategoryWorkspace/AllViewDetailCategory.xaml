@@ -70,13 +70,6 @@
                                               x:Name="item" />
                     </ItemContainerTemplate>
                 </ListView.ItemTemplate>
-                <ListViewItem>
-                    <local:Categorylv2Row Margin="15, 0, 0, 0" x:Name="item"></local:Categorylv2Row>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:Categorylv2Row Margin="15, 0, 0, 0"></local:Categorylv2Row>
-                </ListViewItem>
-
             </ListView>
         </Grid>
         <Grid
@@ -119,15 +112,6 @@
                         <local:PropertiesRow />
                     </ItemContainerTemplate>
                 </ListView.ItemTemplate>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:PropertiesRow></local:PropertiesRow>
-                </ListViewItem>
             </ListView>
         </Grid>
 

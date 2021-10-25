@@ -134,6 +134,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="ApplicationWorkspace\ApplicationViewModel.cs" />
     <Compile Include="ApplicationWorkspace\ApplicationWindow.xaml.cs">
       <DependentUpon>ApplicationWindow.xaml</DependentUpon>
     </Compile>
