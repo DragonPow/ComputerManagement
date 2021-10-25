@@ -16,8 +16,35 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="8*" />
             <RowDefinition Height="2*" />
-
         </Grid.RowDefinitions>
+        <Border
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Panel.ZIndex="15"
+            Background="#40000000"
+            CornerRadius="4"
+            IsHitTestVisible="True"
+            Visibility="Hidden"
+            x:Name="busy"
+            >
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Control
+                    Width="55"
+                    Margin="0"
+                    Foreground="Blue"
+                    Style="{StaticResource WaitSpinnerStyle}" />
+                <TextBlock
+                    Margin="0,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="Đang tải..." />
+            </StackPanel>
+        </Border>
         <Rectangle
             Grid.Row="1"
             Margin="40,0.2"

@@ -31,25 +31,43 @@ namespace ComputerProject.CustomerWorkspace
 
             btnSave.Click += (s, e) =>
             {
-                string error = ViewModel.GetError();
-                if (error == null)
-                {
-                    _ = ViewModel.Save(() =>
-                      {
-                          // Hide waiting screen
-
-                          // Callback
-                          SaveOK?.Invoke(this, e);
-                      });
-
-                    // Show waiting screen
-
-                }
-                else
-                {
-                    CustomMessageBox.MessageBox.Show(error);
-                }
+                Save();
             };
+        }
+
+        /// <summary>
+        /// This function being call asycn on UI thread
+        /// </summary>
+        async void Save()
+        {
+            string error = ViewModel.GetError(); // Check invalid data
+
+            if (await CustomerViewModel.CheckDuplicate(ViewModel)) // Check duplicate customer
+            {
+                error = "Khách hàng có số điện thoại trên đã tồn tại. Vui lòng nhập số khác.";
+            }
+
+            if (error == null)
+            {
+                busy.Visibility = Visibility.Visible; // Show busy
+                try
+                {
+                    await ViewModel.Save();
+
+                    busy.Visibility = Visibility.Hidden; // Hide busy
+
+                    SaveOK?.Invoke(this, null); // Callback
+                }
+                catch (Exception) when (!Helper.Environment.IsDebug)
+                {
+                    busy.Visibility = Visibility.Hidden; // Hide busy
+                    CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
+                }
+            }
+            else
+            {
+                CustomMessageBox.MessageBox.Show(error);
+            }
         }
 
         public event EventHandler Closed_NotSave;

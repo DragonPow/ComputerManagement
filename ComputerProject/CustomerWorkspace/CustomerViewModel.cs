@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerProject.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ComputerProject.CustomerWorkspace
 {
-    public class CustomerViewModel
+    public class CustomerViewModel: BaseViewModel
     {
         private CUSTOMER _model;
         public CUSTOMER Model => _model;
@@ -25,37 +26,72 @@ namespace ComputerProject.CustomerWorkspace
         public String FullName
         {
             get => _model.name;
-            set => _model.name = value.ToString();
+            set
+            {
+                _model.name = value;
+                OnPropertyChanged(nameof(FullName));
+            }
         }
 
         public String Address
         {
             get => _model.address;
-            set => _model.address = value.ToString();
+            set
+            {
+                _model.address = value;
+                OnPropertyChanged(nameof(Address));
+            }
         }
 
         public String PhoneNumber
         {
             get => _model.phone;
-            set => _model.phone = value.ToString();
+            set
+            {
+                _model.phone = value;
+                OnPropertyChanged(nameof(PhoneNumber));
+            }
         }
 
         public String Birthday
         {
             get => _model.birthday;
-            set => _model.birthday = value.ToString();
+            set
+            {
+                _model.birthday = value;
+                OnPropertyChanged(nameof(Birthday));
+            }
         }
 
         public int Point
         {
             get => _model.point;
-            set => _model.point = value;
+            set
+            {
+                _model.point = value;
+                OnPropertyChanged(nameof(Point));
+                OnPropertyChanged(nameof(Point_String));
+            }
         }
 
         public String Point_String
         {
             get => _model.point.ToString();
-            set => _model.point = int.Parse(value.ToString());
+            set
+            {
+                _model.point = int.Parse(value.ToString());
+                OnPropertyChanged(nameof(Point));
+                OnPropertyChanged(nameof(Point_String));
+            }
+        }
+
+        private System.Windows.Visibility busyVisibility = System.Windows.Visibility.Hidden;
+        public System.Windows.Visibility BusyVisibility { get => busyVisibility;
+            set
+            {
+                busyVisibility = value;
+                OnPropertyChanged(nameof(BusyVisibility));
+            }
         }
 
         public string GetError()
@@ -89,15 +125,17 @@ namespace ComputerProject.CustomerWorkspace
         /// </summary>
         /// <param name="target">Target</param>
         /// <returns>Return true if already exist (may not exactly equal to target)</returns>
-        public static bool CheckExist(CustomerViewModel target)
+        public static async Task<bool> CheckDuplicate(CustomerViewModel target)
         {
-            return false;
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            {
+                return await Task.Run<object>(() => db.CUSTOMERs.Where(c => c.phone == target.PhoneNumber).FirstOrDefault()) != null;
+            }
         }
 
-        public void SaveSync()
+        void save()
         {
-            this.Save().Wait();
-            /*using (ComputerManagementEntities db = new ComputerManagementEntities())
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
                 var old = db.CUSTOMERs.Where(c => c.id == _model.id).FirstOrDefault();
                 if (old == null)
@@ -111,37 +149,14 @@ namespace ComputerProject.CustomerWorkspace
                     this.CopyTo(old);
                 }
                 db.SaveChanges();
-            }*/
+            }
         }
 
-        public async Task Save(Action callback = null)
+        public async Task Save()
         {
-            try
-            {
-                using (ComputerManagementEntities db = new ComputerManagementEntities())
-                {
-                    var old = db.CUSTOMERs.Where(c => c.id == _model.id).FirstOrDefault();
-                    if (old == null)
-                    {
-                        // Add new row to db
-                        this._model = db.CUSTOMERs.Add(this._model);
-                    }
-                    else
-                    {
-                        // Update from old one
-                        this.CopyTo(old);
-                    }
-                    await db.SaveChangesAsync();
-                    callback?.Invoke();
-                }
-            }
-            catch (Exception e) when (!Helper.Environment.IsDebug)
-            {
-                string des = "Đã xảy ra lỗi khi truy cập cơ sở dữ liệu";
-                string errorCode = "DB-01";
-                string msg = FormatHelper.GetErrorMessage(des, errorCode);
-            }
+            await Task.Run(save);
         }
+
 
         public void DeleteSync()
         {
