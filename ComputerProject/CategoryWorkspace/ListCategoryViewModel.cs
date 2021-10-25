@@ -45,7 +45,7 @@ namespace ComputerProject.CategoryWorkspace
                 {
                     _openDetailCategoryCommand = new RelayCommand(parentCategory =>
                     {
-                        if (parentCategory is Model.Category) ShowDetail((Model.Category)parentCategory);
+                        if (parentCategory == null || parentCategory is Model.Category) ShowDetail((Model.Category)parentCategory);
                         else throw new ArgumentException("Not is a Category");
                     });
                 }
@@ -86,6 +86,11 @@ namespace ComputerProject.CategoryWorkspace
             _repository = new CategoryRepository();
         }
 
+        public void setNaigator(NavigationService baseNavigator)
+        {
+            _navigator = baseNavigator;
+        }
+
 
         public async void LoadAsyncCategories(string name = null)
         {
@@ -99,6 +104,7 @@ namespace ComputerProject.CategoryWorkspace
         private void ShowDetail(Model.Category parentCategory)
         {
             var newPage = new DetailCategoryViewModel(_navigator);
+            if (parentCategory == null) newPage.IsEditMode = false;
             newPage.LoadData(parentCategory);
             if (_navigator != null) _navigator.Back = () => _navigator?.NavigateTo(this);
             _navigator?.NavigateTo(newPage);

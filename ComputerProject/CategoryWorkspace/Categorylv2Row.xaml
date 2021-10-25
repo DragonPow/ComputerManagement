@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
+             xmlns:model="clr-namespace:ComputerProject.Model"
              mc:Ignorable="d" 
-             d:DesignHeight="60" d:DesignWidth="400">
+             d:DesignHeight="60" d:DesignWidth="400"
+             d:DataContext="{d:DesignInstance Type=model:Category}">
     <Grid 
         VerticalAlignment="Top">
         <Grid.ColumnDefinitions >
@@ -22,12 +24,15 @@
             FontSize="16"
             FontFamily="{StaticResource Mulish}"
             Foreground="#11142D"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            Text="{Binding Name}">
         </TextBox>
-        <Button 
-            Grid.Column="1" x:Name="btnDelete"
-            Style="{StaticResource MaterialDesignIconButton}"
-            ToolTip="Xóa thuộc tính">
+        <Button Grid.Column="1"
+                x:Name="btnDelete"
+                Style="{StaticResource MaterialDesignIconButton}"
+                ToolTip="Xóa thuộc tính"
+                Command="{Binding DeleteCategoryCommand, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ListView}}}"
+                CommandParameter="{Binding }">
             <Image
                 Height="24"
                 Width="24" 

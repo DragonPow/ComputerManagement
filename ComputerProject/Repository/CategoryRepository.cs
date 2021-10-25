@@ -20,11 +20,11 @@ namespace ComputerProject.Repository
 
                 if (name == null)
                 {
-                    listEntity = db.CATEGORies.Include(c => c.CATEGORY11).ToList();
+                    listEntity = db.CATEGORies.Include(c => c.CATEGORY11).Where(i=>i.parentCategoryId==null).ToList();
                 }
                 else
                 {
-                    listEntity = db.CATEGORies.Include(c => c.CATEGORY11).Where(i => i.name == name).ToList();
+                    listEntity = db.CATEGORies.Include(c => c.CATEGORY11).Where(i => i.name == name && i.parentCategoryId == null).ToList();
                 }
 
                 foreach (var i in listEntity)
@@ -56,12 +56,12 @@ namespace ComputerProject.Repository
             return list;
         }
 
-        public void Delete(int castegoryId)
+        public void Delete(int categoryid)
         {
             using (var db = new ComputerManagementEntities())
             {
-                var childCategories = db.CATEGORies.Where(i => i.CATEGORY3.id == castegoryId).ToList();
-                CATEGORY c = new CATEGORY() { id = castegoryId };
+                var childCategories = db.CATEGORies.Where(i => i.CATEGORY3.id == categoryid).ToList();
+                CATEGORY c = new CATEGORY() { id = categoryid };
 
                 foreach(var child in childCategories)
                 {
@@ -83,11 +83,11 @@ namespace ComputerProject.Repository
             }
         }
 
-        public bool IsRootCategoryExists(string name)
+        public bool IsRootCategoryExists(Model.Category category)
         {
             using (var db = new ComputerManagementEntities())
             {
-                return db.CATEGORies.Where(c => c.name == name).Count() > 0;
+                return db.CATEGORies.Where(c => c.name == category.Name && c.id != category.Id).Count() > 0;
             }
         }
     }

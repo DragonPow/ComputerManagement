@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerProject.ApplicationWorkspace"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:categoryWS="clr-namespace:ComputerProject.CategoryWorkspace"
         xmlns:sale="clr-namespace:ComputerProject.SaleWorkSpace"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance x:Type=local:ApplicationViewModel}"
+        d:DataContext="{d:DesignInstance Type=local:ApplicationViewModel}"
         Title="ApplicationWindow"
         Height="1024"
         Width="1485"
@@ -52,6 +53,23 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <!--<DataTemplate DataType="{x:Type categoryWS:CategoryViewModel}">
+            <ContentPresenter Content="{Binding CurrentPage}">
+                <ContentPresenter.Resources>
+                    <DataTemplate DataType="{x:Type categoryWS:DetailCategoryViewModel}">
+                        <categoryWS:AllViewDetailCategory />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type categoryWS:ListCategoryViewModel}">
+                        <categoryWS:Category />
+                    </DataTemplate>
+                </ContentPresenter.Resources>
+            </ContentPresenter>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type categoryWS:DetailCategoryViewModel}">
+            <categoryWS:AllViewDetailCategory />
+        </DataTemplate>-->
+        <ResourceDictionary Source="./DataTemplateTabItem.xaml"
+                            x:Key="TabItemResource" />
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click"
@@ -125,9 +143,10 @@
                 <ListView x:Name="ListViewMenu"
                           Foreground="{StaticResource Icon}"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                          ItemsSource="{Binding TabViewModels}">
+                          ItemsSource="{Binding TabViewModels}"
+                          SelectedItem="{Binding CurrentViewModel}">
                     <ListView.Resources>
-                        <ResourceDictionary Source="./TabItemResource.xaml"/>
+                        <ResourceDictionary Source="./TabItemResource.xaml" />
                     </ListView.Resources>
                     <ListView.ItemTemplate>
                         <DataTemplate DataType="{x:Type local:ITabView}">
@@ -302,8 +321,10 @@
                 </ListView>
             </StackPanel>
         </Grid>
-        <Control DataContext="{Binding CurrentViewModel}" />
+        <!--<Control DataContext="{Binding CurrentViewModel}" Grid.Column="2" />-->
         <!--<sale:SaleAllView Grid.Column="1"></sale:SaleAllView>-->
+        <ContentPresenter Content="{Binding CurrentViewModel}"
+                          Grid.Column="2" />
         <Grid x:Name="GridMain"
               Grid.Column="1"
               HorizontalAlignment="Left"

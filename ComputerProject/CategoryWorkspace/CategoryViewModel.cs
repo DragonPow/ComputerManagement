@@ -20,15 +20,18 @@ namespace ComputerProject.CategoryWorkspace
 
         public CategoryViewModel()
         {
-            var mainPage = new ListCategoryViewModel(_navigator);
+            var mainPage = new ListCategoryViewModel();
+            mainPage.LoadAsyncCategories();
 
             _navigator = new NavigationService(mainPage);
             _navigator.OnCurrentPageChangedEvent += OnCurrentPageChanged;
+
+            mainPage.setNaigator(_navigator);
         }
 
         private void OnCurrentPageChanged()
         {
-            OnPropertyChanged("CurrentViewModel");
+            OnPropertyChanged(nameof(CurrentPage));
         }
     }
 }

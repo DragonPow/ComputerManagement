@@ -10,26 +10,23 @@ using ComputerProject.Model;
 
 namespace ComputerProject.Converter
 {
-    //[ValueConversion(typeof(ICollection<Model.Category>), typeof(string))]
+    [ValueConversion(typeof(IList<Model.Category>), typeof(string))]
     public class ListCategoryToStringCommaConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string s = "";
+            if (value == null) return s;
+            
             if (targetType != typeof(string))
             {
                 throw new InvalidOperationException("The target must be string");
-            }
-            if (value == null) return s;
-            if (!(value is Collection<Category>))
-            {
-                throw new InvalidOperationException("Value must be List Category");
             }
 
             foreach (var i in (Collection<Category>)value)
             {
                 if (s == "") s += i.Name;
-                s += "," + i.Name;
+                else s += ", " + i.Name;
             }
 
             return s;

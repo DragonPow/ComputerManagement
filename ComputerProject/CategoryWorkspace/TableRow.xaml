@@ -12,7 +12,7 @@
              mc:Ignorable="d"
              d:DesignHeight="67"
              d:DesignWidth="1310"
-             d:DataContext="{d:DesignInstance model:Category}"
+             d:DataContext="{d:DesignInstance model:Category, IsDesignTimeCreatable=True}"
              Background="Transparent">
     <UserControl.Resources>
         <Style TargetType="TextBlock"

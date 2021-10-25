@@ -22,13 +22,14 @@ namespace ComputerProject.Model
         }
         public string Name
         {
-            get => _name; set
+            get => _name;
+            set
             {
                 if (value != _name)
                 {
                     _name = value;
+                    OnPropertyChanged();
                 }
-                OnPropertyChanged();
             }
         }
 
@@ -68,8 +69,7 @@ namespace ComputerProject.Model
         {
             this._id = item.id;
             this.Name = item.name;
-            this.ChildCategories = null;
-            //this.ChildCategories = new ObservableCollection<Category>();
+            this.ChildCategories = new ObservableCollection<Category>();
             foreach (var i in item.CATEGORY11)
             {
                 var c = new Category(i);
@@ -83,27 +83,27 @@ namespace ComputerProject.Model
                     }
                 }
 
-                //this.ChildCategories.Add(c);
+                this.ChildCategories.Add(c);
             }
         }
 
         public CATEGORY CastToModel()
         {
-            CATEGORY c = new CATEGORY() { id = this.Id, name = this.Name, CATEGORY11 = new List<CATEGORY>(), SPECIFICATION_TYPE = new List<SPECIFICATION_TYPE>()};
+            CATEGORY c = new CATEGORY() { id = this.Id, name = this.Name, CATEGORY11 = new List<CATEGORY>(), SPECIFICATION_TYPE = new List<SPECIFICATION_TYPE>() };
 
             //Get child categories
             if (this.ChildCategories != null)
-            foreach(var i in this.ChildCategories)
-            {
-                c.CATEGORY11.Add(i.CastToModel());
-            }
+                foreach (var i in this.ChildCategories)
+                {
+                    c.CATEGORY11.Add(i.CastToModel());
+                }
 
             //Get specification if it is child category
             if (this.SpecificationTypes != null)
-            foreach(var i in this.SpecificationTypes)
-            {
-                c.SPECIFICATION_TYPE.Add(i.CastToModel());
-            }
+                foreach (var i in this.SpecificationTypes)
+                {
+                    c.SPECIFICATION_TYPE.Add(i.CastToModel());
+                }
 
             return c;
         }

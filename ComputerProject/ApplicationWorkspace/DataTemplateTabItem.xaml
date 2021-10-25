@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:categoryWS="clr-namespace:ComputerProject.CategoryWorkspace">
+    <DataTemplate DataType="{x:Type categoryWS:CategoryViewModel}">
+        <ContentPresenter Content="{Binding CurrentPage}">
+            <ContentPresenter.Resources>
+                <DataTemplate DataType="{x:Type categoryWS:DetailCategoryViewModel}">
+                    <categoryWS:AllViewDetailCategory />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type categoryWS:ListCategoryViewModel}">
+                    <categoryWS:Category />
+                </DataTemplate>
+            </ContentPresenter.Resources>
+        </ContentPresenter>
+    </DataTemplate>
+    
+    
+</ResourceDictionary>
