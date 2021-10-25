@@ -31,7 +31,13 @@ namespace ComputerProject.CustomerWorkspace
         }
 
         public event EventHandler ClickedCreate;
+        /// <summary>
+        /// Sender is an instance of CustomerAllViewRow
+        /// </summary>
         public event EventHandler ClickedEditItem;
+        /// <summary>
+        /// Sender is an instance of CustomerAllViewRow
+        /// </summary>
         public event EventHandler ClickedDeleteItem;
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)

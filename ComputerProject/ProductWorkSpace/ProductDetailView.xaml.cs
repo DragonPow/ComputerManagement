@@ -35,18 +35,21 @@ namespace ComputerProject.ProductWorkSpace
         }
         private void Enable()
         {
+            
+            Specifications.IsEnabled = true;
             Title.Text = "Chỉnh sửa sản phẩm";
             ProInfor.IsEnabled = true;
-            TblChoosseImage.Visibility =  BtnAddImage.Visibility = Visibility.Visible;
+            BtnAdd.Visibility = TblChoosseImage.Visibility =  BtnAddImage.Visibility = Visibility.Visible;
             BtnDel.Content = "Hủy";
             BtnDel.Foreground = BtnDel.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFromString("#0477BF");
             Btnedit.Content = "Cập nhật";
         }
         private void DisEnable()
         {
+            Specifications.IsEnabled = false;
             Title.Text = "Chi tiết sản phẩm";
             ProInfor.IsEnabled = false;
-            TblChoosseImage.Visibility = BtnAddImage.Visibility = Visibility.Hidden;
+            BtnAdd.Visibility =  TblChoosseImage.Visibility = BtnAddImage.Visibility = Visibility.Hidden;
             BtnDel.Content = "Xóa";
             BtnDel.Foreground = BtnDel.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFromString("#EE5E5E");
             Btnedit.Content = "Chỉnh sửa";
