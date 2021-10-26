@@ -12,6 +12,10 @@ namespace ComputerProject.Model
         int _id;
         string _name;
 
+        public int Id
+        {
+            get => _id;
+        }
         public string Name
         {
             get => _name;
@@ -34,6 +38,12 @@ namespace ComputerProject.Model
         {
             _id = specification_type.id;
             _name = specification_type.name;
+        }
+
+        public SPECIFICATION_TYPE CastToModel()
+        {
+            SPECIFICATION_TYPE s = new SPECIFICATION_TYPE() { id = this.Id, name = this.Name};
+            return s;
         }
     }
 }

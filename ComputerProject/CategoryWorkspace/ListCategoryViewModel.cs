@@ -18,7 +18,7 @@ namespace ComputerProject.CategoryWorkspace
 
         Collection<Model.Category> _categories;
         ICommand _openDetailCategoryCommand;
-        ICommand _deleteParentCategoryCommand;
+        ICommand _deleteCategoryCommand;
         ICommand _searchCommand;
         #endregion //Fields
 
@@ -43,27 +43,28 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (null == _openDetailCategoryCommand)
                 {
-                    _openDetailCategoryCommand = new RelayCommand(parentCategory => {
-                        if (parentCategory is Model.Category) ShowDetail((Model.Category)parentCategory);
+                    _openDetailCategoryCommand = new RelayCommand(parentCategory =>
+                    {
+                        if (parentCategory == null || parentCategory is Model.Category) ShowDetail((Model.Category)parentCategory);
                         else throw new ArgumentException("Not is a Category");
                     });
                 }
                 return _openDetailCategoryCommand;
             }
         }
-        public ICommand DeleteParentCategoryCommand
+        public ICommand DeleteCategoryCommand
         {
             get
             {
-                if (null == _deleteParentCategoryCommand)
+                if (null == _deleteCategoryCommand)
                 {
-                    _deleteParentCategoryCommand = new RelayCommand(category =>
+                    _deleteCategoryCommand = new RelayCommand(category =>
                     {
                         if (category is Model.Category) Delete((Model.Category)category);
                         else throw new ArgumentException("Not is a Category");
                     });
                 }
-                return _deleteParentCategoryCommand;
+                return _deleteCategoryCommand;
             }
         }
         public ICommand SearchCommand
@@ -72,7 +73,7 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (null == _searchCommand)
                 {
-                    _searchCommand = new RelayCommand(name => SearchCategory(name));
+                    _searchCommand = new RelayCommand(name => SearchCategory((string)name));
                 }
                 return _searchCommand;
             }
@@ -83,6 +84,11 @@ namespace ComputerProject.CategoryWorkspace
         {
             _navigator = baseNavigator;
             _repository = new CategoryRepository();
+        }
+
+        public void setNaigator(NavigationService baseNavigator)
+        {
+            _navigator = baseNavigator;
         }
 
 
@@ -98,18 +104,19 @@ namespace ComputerProject.CategoryWorkspace
         private void ShowDetail(Model.Category parentCategory)
         {
             var newPage = new DetailCategoryViewModel(_navigator);
+            if (parentCategory == null) newPage.IsEditMode = false;
             newPage.LoadData(parentCategory);
-            _navigator.Back = () => _navigator?.NavigateTo(this);
+            if (_navigator != null) _navigator.Back = () => _navigator?.NavigateTo(this);
             _navigator?.NavigateTo(newPage);
         }
 
         private void Delete(Model.Category category)
         {
             CurrentCategories.Remove(category);
-            Task.Run(()=>_repository.Delete(category.Id));
+            Task.Run(() => _repository.Delete(category.Id));
         }
 
-        private void SearchCategory(object name)
+        private void SearchCategory(string name)
         {
             VisibleCategories = (Collection<Model.Category>)CurrentCategories.Where(c => c.Name == name);
             //OnPropertyChanged(nameof(VisibleCategories));
