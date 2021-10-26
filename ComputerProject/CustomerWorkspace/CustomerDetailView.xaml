@@ -26,7 +26,6 @@
             <Button
                 x:Name="BtnBack"
                 Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignIconButton}"
                 ToolTip="Trở về">
                 <materialDesign:PackIcon Foreground="{StaticResource Title}" Kind="ArrowLeft" />

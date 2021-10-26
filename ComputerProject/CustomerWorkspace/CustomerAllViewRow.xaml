@@ -34,22 +34,29 @@
 
         <TextBlock 
             Grid.Column="0" x:Name="cellName"
+            Text="{Binding FullName, FallbackValue=NguyenBang}"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
             />
         <TextBlock 
             Grid.Column="1" x:Name="cellPhone"
+            Text="{Binding PhoneNumber}"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
             />
         <TextBlock  
             Grid.Column="2" x:Name="cellBirthday"
+            Text="{Binding Birthday}"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
             />
         <TextBlock  
             Grid.Column="3" x:Name="cellAddress"
+            
+            Text="{Binding Address}"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
             />
         <TextBlock  
             Grid.Column="4" x:Name="cellPoint"
+            
+            Text="{Binding Point_String}"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
             />
         <Button 

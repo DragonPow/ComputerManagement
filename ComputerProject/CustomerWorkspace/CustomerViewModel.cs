@@ -86,7 +86,9 @@ namespace ComputerProject.CustomerWorkspace
         }
 
         private System.Windows.Visibility busyVisibility = System.Windows.Visibility.Hidden;
-        public System.Windows.Visibility BusyVisibility { get => busyVisibility;
+        public System.Windows.Visibility BusyVisibility
+        {
+            get => busyVisibility;
             set
             {
                 busyVisibility = value;
@@ -94,7 +96,7 @@ namespace ComputerProject.CustomerWorkspace
             }
         }
 
-        public string GetError()
+        public string GetInvalid()
         {
             if (FullName == null || FullName.Trim().Length < 1)
             {
@@ -124,16 +126,33 @@ namespace ComputerProject.CustomerWorkspace
         /// Check if a customer is already exist in database
         /// </summary>
         /// <param name="target">Target</param>
-        /// <returns>Return true if already exist (may not exactly equal to target)</returns>
-        public static async Task<bool> CheckDuplicate(CustomerViewModel target)
+        /// <returns>Return null not duplicate. Return duplicate-detail if duplicated.</returns>
+        public static async Task<string> GetDuplicate(CustomerViewModel target)
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                return await Task.Run<object>(() => db.CUSTOMERs.Where(c => c.phone == target.PhoneNumber).FirstOrDefault()) != null;
+                var old = await Task.Run(() => db.CUSTOMERs.Where(c => c.phone == target.PhoneNumber).FirstOrDefault());
+                if (old != null)
+                {
+                    return "Số điện thoại đã đucợ đăng kí trước đó";
+                }
+                else return null;
             }
         }
 
-        void save()
+        public void InsertToDB()
+        {
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            {
+                this._model = db.CUSTOMERs.Add(this._model);
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Update data to database. Insert new one if not exist before.
+        /// </summary>
+        public void UpdateToDB()
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
@@ -148,86 +167,89 @@ namespace ComputerProject.CustomerWorkspace
                     // Update from old one
                     this.CopyTo(old);
                 }
+                this.CopyTo(old);
                 db.SaveChanges();
             }
         }
 
-        public async Task Save()
+        public void DeleteFromDB()
         {
-            await Task.Run(save);
-        }
-
-
-        public void DeleteSync()
-        {
-            this.Delete().Wait();
-        }
-
-        public Task Delete()
-        {
-            try
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                using (ComputerManagementEntities db = new ComputerManagementEntities())
+                var old = db.CUSTOMERs.Where(c => c.id == _model.id).First();
+                if (old != null)
                 {
-                    if (_model.id == -1)
-                    {
-                        return Task.CompletedTask;
-                    }
-                    else
-                    {
-                        // Update from old one
-                        var old = db.CUSTOMERs.Where(c => c.id == _model.id).First();
-                        if (old != null)
-                        {
-                            db.CUSTOMERs.Remove(old);
-                        }
-                    }
-                    return db.SaveChangesAsync();
+                    db.CUSTOMERs.Remove(old);
                 }
-            }
-            catch (Exception e) when (!Helper.Environment.IsDebug)
-            {
-                string des = "Đã xảy ra lỗi khi truy cập cơ sở dữ liệu";
-                string errorCode = "DB-01";
-                string msg = FormatHelper.GetErrorMessage(des, errorCode);
-
-                return Task.CompletedTask;
+                db.SaveChanges();
             }
         }
 
-        public static List<CustomerViewModel> FindName(string name, int startIndex, int count)
+        public async Task InsertToDBAsycn()
         {
-            try
+            await Task.Run(InsertToDB);
+        }
+
+        public async Task UpdateToDBAsycn()
+        {
+            await Task.Run(InsertToDB);
+        }
+
+        public async Task DeleteFromDBAsync()
+        {
+            await Task.Run(DeleteFromDB);
+        }
+
+        public static List<CustomerViewModel> FindByName(string name, int startIndex, int count)
+        {
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                using (ComputerManagementEntities db = new ComputerManagementEntities())
+                string nameDL = FormatHelper.ConvertTo_TiengDongLao(name).ToLower();
+                var rgStartWith = new Regex(String.Format("^{0}", nameDL), RegexOptions.IgnoreCase);
+                var rgContain = new Regex(nameDL, RegexOptions.IgnoreCase);
+                var reader = db.CUSTOMERs.Where(c => rgStartWith.IsMatch(c.name))
+                    .Union(db.CUSTOMERs.Where(c => rgContain.IsMatch(c.name)))
+                    .Distinct()
+                    .Skip(startIndex).Take(count).ToList();
+
+                var rs = new List<CustomerViewModel>(reader.Count);
+                foreach (var row in reader)
                 {
-                    string nameDL = FormatHelper.ConvertTo_TiengDongLao(name).ToLower();
-                    var rgStartWith = new Regex(String.Format("^{0}", nameDL), RegexOptions.IgnoreCase);
-                    var rgContain = new Regex(nameDL, RegexOptions.IgnoreCase);
-                    var reader = db.CUSTOMERs.Where(c => rgStartWith.IsMatch(c.name))
-                        .Union(db.CUSTOMERs.Where(c => rgContain.IsMatch(c.name)))
-                        .Distinct()
-                        .Skip(startIndex).Take(count).ToList();
-
-                    var rs = new List<CustomerViewModel>(reader.Count);
-                    foreach (var row in reader)
-                    {
-                        rs.Add(new CustomerViewModel(row));
-                    }
-
-                    return rs;
+                    rs.Add(new CustomerViewModel(row));
                 }
+
+                return rs;
             }
-            catch (Exception e) when (!Helper.Environment.IsDebug)
+        }
+
+        public static List<CustomerViewModel> FindByPhone(string phone, int startIndex, int count)
+        {
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                string des = "Đã xảy ra lỗi khi truy cập cơ sở dữ liệu";
-                string errorCode = "DB-01";
-                string msg = FormatHelper.GetErrorMessage(des, errorCode);
+                var reader = db.CUSTOMERs.Where(c => c.phone.StartsWith(phone))
+                    .Union(db.CUSTOMERs.Where(c => c.phone.Contains(phone)))
+                    .Distinct()
+                    .OrderBy(c => c.id)
+                    .Skip(startIndex).Take(count).ToList();
 
-                // Should log exception to a file
+                var rs = new List<CustomerViewModel>(reader.Count);
+                foreach (var row in reader)
+                {
+                    rs.Add(new CustomerViewModel(row));
+                }
 
-                return null;
+                return rs;
             }
+        }
+
+        public static async Task<List<CustomerViewModel>> FindByNameAsync(string name, int startIndex, int count)
+        {
+            return await Task.Run(() => FindByName(name, startIndex, count));
+        }
+
+        public static async Task<List<CustomerViewModel>> FindByPhoneAsync(string phone, int startIndex, int count, System.Threading.CancellationToken cancellationToken)
+        {
+            return await Task.Run(() => FindByPhone(phone, startIndex, count), cancellationToken);
         }
 
         public void CopyTo(CUSTOMER other)
@@ -237,6 +259,11 @@ namespace ComputerProject.CustomerWorkspace
             other.phone = this._model.phone;
             other.birthday = this._model.birthday;
             other.point = this._model.point;
+        }
+
+        public void CopyTo(CustomerViewModel other)
+        {
+            this.CopyTo(other._model);
         }
     }
 }

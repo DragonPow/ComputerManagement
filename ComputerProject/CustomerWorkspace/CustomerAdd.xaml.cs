@@ -35,42 +35,46 @@ namespace ComputerProject.CustomerWorkspace
             };
         }
 
+        public event EventHandler Closed_NotSave;
+        public event EventHandler SaveOK;
+
         /// <summary>
-        /// This function being call asycn on UI thread
+        /// Save data asycn on UI thread
         /// </summary>
         async void Save()
         {
-            string error = ViewModel.GetError(); // Check invalid data
+            string error = ViewModel.GetInvalid(); // Check invalid data
 
-            if (await CustomerViewModel.CheckDuplicate(ViewModel)) // Check duplicate customer
-            {
-                error = "Khách hàng có số điện thoại trên đã tồn tại. Vui lòng nhập số khác.";
-            }
-
-            if (error == null)
-            {
-                busy.Visibility = Visibility.Visible; // Show busy
-                try
-                {
-                    await ViewModel.Save();
-
-                    busy.Visibility = Visibility.Hidden; // Hide busy
-
-                    SaveOK?.Invoke(this, null); // Callback
-                }
-                catch (Exception) when (!Helper.Environment.IsDebug)
-                {
-                    busy.Visibility = Visibility.Hidden; // Hide busy
-                    CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
-                }
-            }
-            else
+            if (error != null)
             {
                 CustomMessageBox.MessageBox.Show(error);
+                return;
+            }
+
+            ViewModel.BusyVisibility = Visibility.Visible; // Show busy
+
+            error = await CustomerViewModel.GetDuplicate(ViewModel); // Busy task
+            if (error != null)
+            {
+                ViewModel.BusyVisibility = Visibility.Hidden;
+                CustomMessageBox.MessageBox.Show(error);
+                return;
+            }
+
+            // Data is safe now
+            try
+            {
+                await ViewModel.InsertToDBAsycn(); // Busy task
+
+                ViewModel.BusyVisibility = Visibility.Hidden;
+
+                SaveOK?.Invoke(this, null); // Callback
+            }
+            catch (Exception) when (!Helper.Environment.IsDebug)
+            {
+                ViewModel.BusyVisibility = Visibility.Hidden;
+                CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
             }
         }
-
-        public event EventHandler Closed_NotSave;
-        public event EventHandler SaveOK;
     }
 }

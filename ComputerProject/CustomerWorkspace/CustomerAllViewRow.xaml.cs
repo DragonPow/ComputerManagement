@@ -26,9 +26,6 @@ namespace ComputerProject.CustomerWorkspace
         public CustomerAllViewRow()
         {
             InitializeComponent();
-            this.DataContext = new CustomerViewModel();
-            Bind();
-            MockData();
         }
 
         public CustomerViewModel ViewModel
@@ -38,7 +35,6 @@ namespace ComputerProject.CustomerWorkspace
         }
 
         public event EventHandler ClickedEdit;
-
         public event EventHandler ClickedDelete;
 
         private void Bind()

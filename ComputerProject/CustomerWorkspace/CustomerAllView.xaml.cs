@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,13 +23,46 @@ namespace ComputerProject.CustomerWorkspace
     public partial class CustomerAllView : UserControl
     {
         public CustomerAllViewModel ViewModel => this.DataContext as CustomerAllViewModel;
+        CancellationTokenSource searchOperation = new CancellationTokenSource();
 
         public CustomerAllView()
         {
             InitializeComponent();
             DataContext = new CustomerAllViewModel(new List<CustomerViewModel>());
             btnCreate.Click += BtnCreate_Click;
-            MockData();
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+            Search();
+        }
+
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(CustomerAllViewModel.SearchContent))
+            {
+                ViewModel.currentStartIndex = 0;
+                Search();
+            }
+
+            if (e.PropertyName == nameof(CustomerAllViewModel.CustomerList))
+            {
+                Console.WriteLine("List changed");
+            }
+        }
+
+        public async void Search()
+        {
+            ViewModel.BusyVisibility = Visibility.Visible;
+            try
+            {
+                searchOperation.Cancel();
+                searchOperation = new CancellationTokenSource();
+                await ViewModel.SearchAsycn(searchOperation.Token); // Busy task
+                ViewModel.BusyVisibility = Visibility.Hidden;
+            }
+            catch (Exception) when (!Helper.Environment.IsDebug)
+            {
+                ViewModel.BusyVisibility = Visibility.Hidden;
+                CustomMessageBox.MessageBox.Show("Lấy dữ liệu thất bại");
+            }
         }
 
         public event EventHandler ClickedCreate;
@@ -99,6 +134,11 @@ namespace ComputerProject.CustomerWorkspace
             };
 
             DataContext = new CustomerAllViewModel(list);
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ViewModel.SearchContent = (sender as TextBox).Text;
         }
     }
 }

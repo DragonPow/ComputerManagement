@@ -32,7 +32,6 @@ namespace ComputerProject.CustomerWorkspace
             mainView.ClickedDeleteItem += OnClick_DeleteItem;
             mainView.ClickedEditItem += OnClick_EditItem;
 
-
             var addView = new CustomerAdd();
             addView.Closed_NotSave += OnBackFrom_Create;
             addView.SaveOK += AddView_SavedOK;
