@@ -92,22 +92,34 @@ namespace ComputerProject.CategoryWorkspace
         }
 
 
-        public async void LoadAsyncCategories(string name = null)
+        public void LoadAsyncCategories(string name = null)
         {
             var task = Task.Run(() =>
             {
                 CurrentCategories = _repository.LoadCategories(name);
             });
-            await task;
         }
 
         private void ShowDetail(Model.Category parentCategory)
         {
             var newPage = new DetailCategoryViewModel(_navigator);
+
+            //Init Data
             if (parentCategory == null) newPage.IsEditMode = false;
             newPage.LoadData(parentCategory);
+            newPage.DetailCategoryChangedEventHandler += OnDetailCategoryChanged;
+
             if (_navigator != null) _navigator.Back = () => _navigator?.NavigateTo(this);
             _navigator?.NavigateTo(newPage);
+        }
+
+        private void OnDetailCategoryChanged(object sender, Model.Category e)
+        {
+            if (!CurrentCategories.Contains(e))
+            {
+                CurrentCategories.Add(e);
+            }
+            OnPropertyChanged(nameof(CurrentCategories));
         }
 
         private void Delete(Model.Category category)

@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ComputerProject.Model
 {
-    public class Category : BaseViewModel
+    public class Category : BaseViewModel, IDataErrorInfo
     {
         int _id;
         string _name;
@@ -19,6 +20,10 @@ namespace ComputerProject.Model
         public int Id
         {
             get => _id;
+            set
+            {
+                _id = value;
+            }
         }
         public string Name
         {
@@ -59,10 +64,33 @@ namespace ComputerProject.Model
             }
         }
 
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case nameof(Name):
+                        {
+                            if (String.IsNullOrWhiteSpace(_name))
+                                return "Name is not null";
+                            break;
+                        }
+                    case nameof(Id):
+                        {
+                            if (_id < 0) return "Id is not negative integer";
+                            break;
+                        }
+                }
+                return null;
+            }
+        }
+
         public Category()
         {
             _id = 0;
-            this.ChildCategories = null;
         }
 
         public Category(CATEGORY item)
@@ -76,7 +104,7 @@ namespace ComputerProject.Model
 
                 if (i.SPECIFICATION_TYPE != null)
                 {
-                    c.SpecificationTypes = new Collection<Model.Specification_type>();
+                    c.SpecificationTypes = new ObservableCollection<Model.Specification_type>();
                     foreach (var s in i.SPECIFICATION_TYPE)
                     {
                         c.SpecificationTypes.Add(new Specification_type(s));
@@ -95,7 +123,9 @@ namespace ComputerProject.Model
             if (this.ChildCategories != null)
                 foreach (var i in this.ChildCategories)
                 {
-                    c.CATEGORY11.Add(i.CastToModel());
+                    var child = i.CastToModel();
+                    child.parentCategoryId = c.id;
+                    c.CATEGORY11.Add(child);
                 }
 
             //Get specification if it is child category

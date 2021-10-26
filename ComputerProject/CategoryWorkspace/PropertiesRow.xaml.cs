@@ -23,16 +23,6 @@ namespace ComputerProject.CategoryWorkspace
         public PropertiesRow()
         {
             InitializeComponent();
-            InitData();
-        }
-        public void InitData()
-        {
-            Number.Text = "1";
-            NameProperties.Text = "Kết nối có dây (LAN) ";
-        }
-        public void VisibleBtnDel()
-        {
-            btnDelete.Visibility = Visibility.Visible;
         }
     }
 }

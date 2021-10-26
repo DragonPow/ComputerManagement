@@ -90,8 +90,8 @@ namespace ComputerProject.CategoryWorkspace
                 if (value != _currentChildCateogry)
                 {
                     _currentChildCateogry = value;
+                    OnPropertyChanged();
                 }
-                OnPropertyChanged();
             }
         }
         public bool IsEditMode
@@ -102,10 +102,11 @@ namespace ComputerProject.CategoryWorkspace
                 if (value != _isEditMode)
                 {
                     _isEditMode = value;
+                    OnPropertyChanged();
                 }
-                OnPropertyChanged();
             }
         }
+        public event EventHandler<Model.Category> DetailCategoryChangedEventHandler;
 
         public ICommand AddSpecificationCommand
         {
@@ -162,6 +163,7 @@ namespace ComputerProject.CategoryWorkspace
                         try
                         {
                             Save();
+                            MessageBoxCustom.ShowDialog("Lưu thành công", "Thông báo");
                         }
                         catch (ArgumentNullException e2)
                         {
@@ -204,7 +206,25 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (null == _backPageCommand)
                 {
-                    _backPageCommand = new RelayCommand(a => NavigateBackPage());
+                    _backPageCommand = new RelayCommand(a =>
+                    {
+                        try
+                        {
+                            if (IsEditMode)
+                            {
+                                throw new ArgumentException("Is not save");
+                            }
+                            NavigateBackPage();
+                        }
+                        catch (ArgumentException e)
+                        {
+                            var rs = MessageBoxCustom.ShowDialog("Thay đổi chưa được lưu, đồng ý hủy bỏ?", "Thông báo");
+                            if (rs == MessageBoxResultCustom.Yes)
+                            {
+                                NavigateBackPage();
+                            }
+                        }
+                    });
                 }
                 return _backPageCommand;
             }
@@ -225,13 +245,14 @@ namespace ComputerProject.CategoryWorkspace
             if (parentCategory == null)
             {
                 CurrentParentCategory = new Model.Category();
-                //ChildCategories = null;
+                CurrentParentCategory.ChildCategories = new ObservableCollection<Model.Category>();
+                CurrentParentCategory.SpecificationTypes = new ObservableCollection<Model.Specification_type>();
                 IsEditMode = true;
             }
             else
             {
                 CurrentParentCategory = parentCategory;
-                //ChildCategories = (Collection<Model.Category>)parentCategory.ChildCategories;
+                Task.Run(() => _repository.LoadSpecification(parentCategory));
                 IsEditMode = false;
             }
         }
@@ -257,7 +278,7 @@ namespace ComputerProject.CategoryWorkspace
 
         public void AddSpecification()
         {
-            CurrentChildCategory.SpecificationTypes.Add(new Model.Specification_type());
+            CurrentChildCategory?.SpecificationTypes.Add(new Model.Specification_type());
         }
 
         public void DeleteSpecificationType(Model.Specification_type specification)
@@ -293,6 +314,9 @@ namespace ComputerProject.CategoryWorkspace
             else
             {
                 Task.Run(() => _repository?.Save(CurrentParentCategory));
+                IsEditMode = false;
+
+                DetailCategoryChangedEventHandler?.Invoke(this, this.CurrentParentCategory);
             }
         }
         private bool isParentCategoryExists()

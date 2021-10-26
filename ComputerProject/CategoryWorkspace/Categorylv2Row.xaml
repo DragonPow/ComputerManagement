@@ -25,15 +25,37 @@
                  FontFamily="{StaticResource Mulish}"
                  Foreground="#11142D"
                  VerticalAlignment="Top"
-                 Text="{Binding Name}">
+                 Text="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}"
+                       BasedOn="{StaticResource MaterialDesignTextBox}">
+                    <Style.Triggers>
+                        <Trigger Property="Validation.HasError"
+                                 Value="True">
+                            <Setter Property="BorderBrush"
+                                    Value="Red" />
+                        </Trigger>
+                        <DataTrigger Binding="{ Binding DataContext.IsEditMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2,AncestorType={x:Type UserControl}}, Mode=OneWay}"
+                                     Value="True">
+                            <Setter Property="IsReadOnly"
+                                    Value="False" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{ Binding DataContext.IsEditMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2,AncestorType={x:Type UserControl}}, Mode=OneWay}"
+                                     Value="False">
+                            <Setter Property="IsReadOnly"
+                                    Value="True" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
         </TextBox>
         <Button Grid.Column="1"
                 x:Name="btnDelete"
                 Style="{StaticResource MaterialDesignIconButton}"
-                ToolTip="Xóa thuộc tính"
+                ToolTip="Xóa danh mục"
                 FontSize="{x:Static localfont:Font.Body}"
-                Command="{Binding DeleteCategoryCommand, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ListView}}}"
-                CommandParameter="{Binding }">
+                Command="{Binding DataContext.DeleteCategoryCommand, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ListView}}}"
+                CommandParameter="{Binding .}">
             <Image Height="24"
                    Width="24"
                    Source="/ComputerProject;component/Resource/Icon/trash-2.png" />

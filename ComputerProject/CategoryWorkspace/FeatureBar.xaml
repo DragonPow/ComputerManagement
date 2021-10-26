@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <local1:Search Grid.Column="0"
                        HorizontalAlignment="Left"
-                       Texthint="Tìm kiếm bằng số điện thoại"
+                       Texthint="Tên danh mục"
                        Margin="20, 0, 0, 0">
         </local1:Search>
         <Button x:Name="Btn_add"

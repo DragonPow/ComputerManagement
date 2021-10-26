@@ -11,10 +11,12 @@ namespace ComputerProject.Model
     {
         int _id;
         string _name;
+        int _categoryId;
 
         public int Id
         {
             get => _id;
+            set => _id = value;
         }
         public string Name
         {
@@ -38,11 +40,12 @@ namespace ComputerProject.Model
         {
             _id = specification_type.id;
             _name = specification_type.name;
+            _categoryId = specification_type.categoryId;
         }
 
         public SPECIFICATION_TYPE CastToModel()
         {
-            SPECIFICATION_TYPE s = new SPECIFICATION_TYPE() { id = this.Id, name = this.Name};
+            SPECIFICATION_TYPE s = new SPECIFICATION_TYPE() { id = this.Id, name = this.Name, categoryId = this._categoryId};
             return s;
         }
     }

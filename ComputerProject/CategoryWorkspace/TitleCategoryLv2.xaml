@@ -5,14 +5,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:ComputerProject.CustomControl"
-             xmlns:model="clr-namespace:ComputerProject.Model"
+             xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
              xmlns:converter="clr-namespace:ComputerProject.Converter"
              mc:Ignorable="d"
              d:DesignHeight="50"
              d:DesignWidth="360"
              xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
-             d:DataContext="{d:DesignInstance Type=model:Category}">
+             d:DataContext="{d:DesignInstance Type=local:DetailCategoryViewModel}">
     <UserControl.Resources>
         <converter:BooleanToVisibilityConverter x:Key="visibility_converter" />
     </UserControl.Resources>
@@ -42,7 +41,7 @@
                     materialDesign:ButtonAssist.CornerRadius="8"
                     VerticalAlignment="Bottom"
                     ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
-                    Command="{Binding AddChildCategoryCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}}"
+                    Command="{Binding AddChildCategoryCommand}"
                     Visibility="{Binding IsEditMode, Converter={StaticResource ResourceKey=visibility_converter}}">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="18"

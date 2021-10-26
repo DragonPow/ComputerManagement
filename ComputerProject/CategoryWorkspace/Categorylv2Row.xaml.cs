@@ -23,17 +23,6 @@ namespace ComputerProject.CategoryWorkspace
         public Categorylv2Row()
         {
             InitializeComponent();
-            InitData();
         }
-
-        public void InitData()
-        {
-            CategoryLv2Name.Text = "Laptop";
-        }
-        public void VisibleBtnDel()
-        {
-            btnDelete.Visibility = btnDelete.Visibility == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
-        }    
-        
     }
 }
