@@ -38,6 +38,8 @@ namespace ComputerProject.CustomerWorkspace
         {
             if (e.PropertyName == nameof(CustomerAllViewModel.SearchContent))
             {
+                searchOperation.Cancel();
+                searchOperation = new CancellationTokenSource();
                 ViewModel.currentStartIndex = 0;
                 Search();
             }
@@ -53,8 +55,6 @@ namespace ComputerProject.CustomerWorkspace
             ViewModel.BusyVisibility = Visibility.Visible;
             try
             {
-                searchOperation.Cancel();
-                searchOperation = new CancellationTokenSource();
                 await ViewModel.SearchAsycn(searchOperation.Token); // Busy task
                 ViewModel.BusyVisibility = Visibility.Hidden;
             }
@@ -93,10 +93,32 @@ namespace ComputerProject.CustomerWorkspace
 
         private void BtnDeleteItem_Click(object sender, EventArgs e)
         {
-            // Do something
-            
-            // Call-back
-            ClickedDeleteItem?.Invoke(sender, e);
+            var msb = new CustomMessageBox.MessageBox("Bạn muốn xóa khách hàng?" + Environment.NewLine + "Dữ liệu đã xóa sẽ không thể hoàn tác.", "", "Tôi hiểu", "Hủy", MaterialDesignThemes.Wpf.PackIconKind.Warning
+                , () =>
+                {
+                    Delete((sender as CustomerAllViewRow).ViewModel);
+                });
+            msb.ShowDialog();
+        }
+
+        private async void Delete(CustomerViewModel vm)
+        {
+            try
+            {
+                ViewModel.BusyVisibility = Visibility.Visible; // Show busy
+
+                await vm.DeleteFromDBAsync(); // Busy task
+
+                ViewModel.BusyVisibility = Visibility.Hidden;
+
+                Search();
+                CustomMessageBox.MessageBox.Show("Xóa khách hàng thành công");
+            }
+            catch (Exception) when (!Helper.Environment.IsDebug)
+            {
+                ViewModel.BusyVisibility = Visibility.Hidden;
+                CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
+            }
         }
 
         private void MockData()

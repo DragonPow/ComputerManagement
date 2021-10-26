@@ -41,7 +41,7 @@ namespace ComputerProject.CustomerWorkspace
         /// <summary>
         /// Save data asycn on UI thread
         /// </summary>
-        async void Save()
+        public async void Save()
         {
             string error = ViewModel.GetInvalid(); // Check invalid data
 
@@ -68,6 +68,7 @@ namespace ComputerProject.CustomerWorkspace
 
                 ViewModel.BusyVisibility = Visibility.Hidden;
 
+                CustomMessageBox.MessageBox.Show("Đã thêm khách hàng mới vào cơ sở dữ liệu thành công");
                 SaveOK?.Invoke(this, null); // Callback
             }
             catch (Exception) when (!Helper.Environment.IsDebug)

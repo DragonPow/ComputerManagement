@@ -1,85 +1,87 @@
-﻿<UserControl x:Class="ComputerProject.CustomerWorkspace.CustomerAllViewRow"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
-             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
-             mc:Ignorable="d"
-            
-             d:DesignHeight="200" d:DesignWidth="1200"
-             >
+﻿<UserControl
+    x:Class="ComputerProject.CustomerWorkspace.CustomerAllViewRow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
+    xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    d:DesignHeight="200"
+    d:DesignWidth="1200"
+    mc:Ignorable="d">
     <UserControl.Resources>
-        <Style TargetType="TextBlock" x:Key="styleCell_Text">
-            <Setter Property="FontSize" Value="{x:Static localfont:Font.Body}"/>
-            <Setter Property="FontFamily" Value="{StaticResource Mulish}"/>
-            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
-            <Setter Property="Padding" Value="22,17,16,16"/>
-            <Setter Property="Foreground" Value="Black"/>
+        <Style x:Key="styleCell_Text" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="{x:Static localfont:Font.Body}" />
+            <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
+            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+            <Setter Property="Padding" Value="22,17,16,16" />
+            <Setter Property="Foreground" Value="Black" />
         </Style>
         <sys:Double x:Key="IconSize">24</sys:Double>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220"/>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="310"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="220" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="310" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock 
-            Grid.Column="0" x:Name="cellName"
-            Text="{Binding FullName, FallbackValue=NguyenBang}"
+        <TextBlock
+            x:Name="cellName"
+            Grid.Column="0"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
-            />
-        <TextBlock 
-            Grid.Column="1" x:Name="cellPhone"
-            Text="{Binding PhoneNumber}"
+            Text="{Binding FullName, Mode=OneWay}" />
+        <TextBlock
+            x:Name="cellPhone"
+            Grid.Column="1"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
-            />
-        <TextBlock  
-            Grid.Column="2" x:Name="cellBirthday"
-            Text="{Binding Birthday}"
+            Text="{Binding PhoneNumber}" />
+        <TextBlock
+            x:Name="cellBirthday"
+            Grid.Column="2"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
-            />
-        <TextBlock  
-            Grid.Column="3" x:Name="cellAddress"
-            
-            Text="{Binding Address}"
+            Text="{Binding Birthday}" />
+        <TextBlock
+            x:Name="cellAddress"
+            Grid.Column="3"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
-            />
-        <TextBlock  
-            Grid.Column="4" x:Name="cellPoint"
-            
-            Text="{Binding Point_String}"
+            Text="{Binding Address}" />
+        <TextBlock
+            x:Name="cellPoint"
+            Grid.Column="4"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
-            />
-        <Button 
-            Grid.Column="5" x:Name="btnEdit"
-            Style="{StaticResource MaterialDesignIconButton}"
+            Text="{Binding Point_String}" />
+        <Button
+            x:Name="btnEdit"
+            Grid.Column="5"
+            Click="BtnEdit_Click"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
-            ToolTip="Chỉnh sửa thông tin" >
+            Style="{StaticResource MaterialDesignIconButton}"
+            ToolTip="Chỉnh sửa thông tin">
             <Image
+                Width="{StaticResource IconSize}"
                 Height="{StaticResource IconSize}"
-                Width="{StaticResource IconSize}" 
-                Source="/ComputerProject;component/Resource/Icon/akar-icons_edit.png"/>
+                Source="/ComputerProject;component/Resource/Icon/akar-icons_edit.png" />
         </Button>
-        <Button 
-            Grid.Column="6" x:Name="btnDelete"
-            Style="{StaticResource MaterialDesignIconButton}"
+        <Button
+            x:Name="btnDelete"
+            Grid.Column="6"
+            Click="BtnDelete_Click"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
+            Style="{StaticResource MaterialDesignIconButton}"
             ToolTip="Xóa khách hàng">
             <Image
+                Width="{StaticResource IconSize}"
                 Height="{StaticResource IconSize}"
-                Width="{StaticResource IconSize}" 
-                Source="/ComputerProject;component/Resource/Icon/trash-2.png"/>
+                Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
         </Button>
     </Grid>
 </UserControl>

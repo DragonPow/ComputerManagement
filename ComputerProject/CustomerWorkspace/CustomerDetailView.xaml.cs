@@ -2,6 +2,7 @@
 using System;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows;
 
 namespace ComputerProject.CustomerWorkspace
 {
@@ -10,71 +11,148 @@ namespace ComputerProject.CustomerWorkspace
     /// </summary>
     public partial class CustomerDetailView : UserControl
     {
-        public CustomerViewModel ViewModel => DataContext as CustomerViewModel;
-        object temp = null;
+        public CustomerDetailViewModel ViewModel => DataContext as CustomerDetailViewModel;
+        CustomerDetailViewModel oldVM = null;
 
         public CustomerDetailView()
         {
             InitializeComponent();
-            SwitchMode_readonly();
 
-            BtnBack.Click += (s, e) => ClickedBack?.Invoke(this, null);
+            if (DataContext == null)
+            {
+                DataContext = new CustomerDetailViewModel();
+            }
+
+            SwitchMode_readonly();
+            BtnBack.Click += OnBack;
         }
 
-        public event EventHandler ClickedBack; 
+        public event EventHandler ClickedBack;
 
         private void OnSaveEdit(object sender, System.Windows.RoutedEventArgs e)
         {
-            SwitchMode_readonly();
+            Save();
         }
 
         private void OnCancelEdit(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.DataContext = temp;
+            this.DataContext = oldVM;
+            oldVM = null;
             SwitchMode_readonly();
         }
 
         private void OnStartEdit(object sender, System.Windows.RoutedEventArgs e)
         {
-            temp = new CustomerViewModel(ViewModel.Model);
+            oldVM = ViewModel;
+            var temp = new CustomerDetailViewModel(new CUSTOMER());
+            ViewModel.CopyTo(temp as CustomerViewModel, true);
+
+            DataContext = temp;
             SwitchMode_edit();
         }
 
-        /*private void BtnDelete_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void OnDelete(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (BtnDelete.Content.ToString() == "Hủy")
+            var msb = new CustomMessageBox.MessageBox("Bạn muốn xóa khách hàng?" + Environment.NewLine + "Dữ liệu đã xóa sẽ không thể hoàn tác.", "", "Tôi hiểu", "Hủy", MaterialDesignThemes.Wpf.PackIconKind.Warning
+                , Delete);
+            msb.ShowDialog();
+        }
+
+        private void OnBack(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (ViewModel.ButtonGroupVisibility_Edit == Visibility.Visible)
             {
-                Name.Text = Phone.Text = Adress.Text = Point.Text = " ";
-                Birthday.Text = "";
+                var msb = new CustomMessageBox.MessageBox("Bạn chưa lưu dữ liệu" + Environment.NewLine + "Những thay đổi chưa lưu sẽ bị mất.", "", "Tôi hiểu", "Hủy", MaterialDesignThemes.Wpf.PackIconKind.Warning
+                    , () =>
+                    {
+                        OnCancelEdit(sender, e);
+                        ClickedBack?.Invoke(this, null);
+                    });
+                msb.ShowDialog();
             }
-        }*/
+            else
+            {
+                ClickedBack?.Invoke(this, null);
+            }
+        }
+
+        private async void Save()
+        {
+            string error = ViewModel.GetInvalid(); // Check invalid data
+
+            if (error != null)
+            {
+                CustomMessageBox.MessageBox.Show(error);
+                return;
+            }
+
+            ViewModel.BusyVisibility = Visibility.Visible; // Show busy
+
+            if (oldVM.PhoneNumber.Trim() != ViewModel.PhoneNumber.Trim())
+            {
+                error = await CustomerViewModel.GetDuplicate(ViewModel); // Busy task
+                if (error != null)
+                {
+                    ViewModel.BusyVisibility = Visibility.Hidden;
+                    CustomMessageBox.MessageBox.Show(error);
+                    return;
+                }
+            }
+
+            // Data is safe now
+            try
+            {
+                await ViewModel.UpdateToDBAsycn(); // Busy task
+
+                ViewModel.BusyVisibility = Visibility.Hidden;
+
+                CustomMessageBox.MessageBox.Show("Cập nhật thông tin thành công");
+                ViewModel.CopyTo(oldVM);
+                OnCancelEdit(null, null);
+            }
+            catch (Exception) when (!Helper.Environment.IsDebug)
+            {
+                ViewModel.BusyVisibility = Visibility.Hidden;
+                CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
+            }
+        }
+
+        private async void Delete()
+        {
+            try
+            {
+                ViewModel.BusyVisibility = Visibility.Visible; // Show busy
+
+                await ViewModel.DeleteFromDBAsync(); // Busy task
+
+                ViewModel.BusyVisibility = Visibility.Hidden;
+                SwitchMode_readonly();
+
+                CustomMessageBox.MessageBox.Show("Xóa khách hàng thành công");
+
+                ClickedBack?.Invoke(this, null);
+            }
+            catch (Exception) when (!Helper.Environment.IsDebug)
+            {
+                ViewModel.BusyVisibility = Visibility.Hidden;
+                CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
+            }
+        }
 
         private void SwitchMode_edit()
         {
             CusInfor.IsEnabled = true;
-            BtnDelete.Content = "Hủy";
-            BtnDelete.Foreground = BtnDelete.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFromString("#0477BF");
-            BtnEdit.Content = "Cập nhật";
-            Title.Text = "Chỉnh sửa khách hàng";
-
-            BtnDelete.Visibility = System.Windows.Visibility.Visible;
-            BtnDelete.Click += OnCancelEdit;
-            BtnEdit.Click -= OnStartEdit;
-            BtnEdit.Click += OnSaveEdit;
+            ViewModel.ButtonGroupVisibility_Edit = System.Windows.Visibility.Visible;
+            ViewModel.ButtonGroupVisibility_Read = System.Windows.Visibility.Hidden;
+            ViewModel.Title = "Chỉnh sửa khách hàng";
         }
 
         private void SwitchMode_readonly()
         {
             CusInfor.IsEnabled = false;
-            BtnDelete.Content = "Xóa";
-            BtnDelete.Foreground = BtnDelete.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFromString("#EE5E5E");
-            BtnEdit.Content = "Chỉnh sửa";
-            Title.Text = "Chi tiết khách hàng";
-
-            BtnDelete.Visibility = System.Windows.Visibility.Hidden;
-            BtnDelete.Click -= OnCancelEdit;
-            BtnEdit.Click -= OnSaveEdit;
-            BtnEdit.Click += OnStartEdit;
+            ViewModel.ButtonGroupVisibility_Edit = System.Windows.Visibility.Hidden;
+            ViewModel.ButtonGroupVisibility_Read = System.Windows.Visibility.Visible;
+            ViewModel.Title = "Chi tiết khách hàng";
         }
 
         

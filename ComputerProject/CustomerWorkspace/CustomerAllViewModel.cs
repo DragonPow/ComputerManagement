@@ -26,7 +26,7 @@ namespace ComputerProject.CustomerWorkspace
         }
 
         public int currentStartIndex = 0;
-        public int step = 5;
+        public int step = 500;
 
         public String searchContent = "";
         public String SearchContent
@@ -72,7 +72,10 @@ namespace ComputerProject.CustomerWorkspace
         public async Task SearchAsycn(System.Threading.CancellationToken cancellationToken)
         {
             var data = await CustomerViewModel.FindByPhoneAsync(searchContent, currentStartIndex, step, cancellationToken);
-            CustomerList = new ObservableCollection<CustomerViewModel>(data);
+            if (!cancellationToken.IsCancellationRequested)
+            {
+                CustomerList = new ObservableCollection<CustomerViewModel>(data);
+            }
         }
     }
 }

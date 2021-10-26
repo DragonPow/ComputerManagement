@@ -20,10 +20,10 @@ namespace ComputerProject
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            //var vm = new ApplicationViewModel();
-            //var view = new ApplicationWindow();
-            //view.DataContext = vm;
-            //view.Show();
+            var vm = new ApplicationViewModel();
+            var view = new ApplicationWindow();
+            view.DataContext = vm;
+            view.Show();
 
             //var vm = new ListCategoryViewModel();
             //var view = new WindowTest();
@@ -48,8 +48,8 @@ namespace ComputerProject
             //var repo = new CategoryRepository();
             //repo.Save(c);
 
-            WindowTest test = new WindowTest();
-            test.Show();
+            //WindowTest test = new WindowTest();
+            //test.Show();
         }
     }
 }

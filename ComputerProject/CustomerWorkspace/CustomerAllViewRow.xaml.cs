@@ -37,38 +37,6 @@ namespace ComputerProject.CustomerWorkspace
         public event EventHandler ClickedEdit;
         public event EventHandler ClickedDelete;
 
-        private void Bind()
-        {
-            cellName.SetBinding(TextBlock.TextProperty, new Binding()
-            {
-                Path = new PropertyPath(nameof(CustomerViewModel.FullName)),
-                Mode = BindingMode.OneWay
-            });
-            cellAddress.SetBinding(TextBlock.TextProperty, new Binding()
-            {
-                Path = new PropertyPath(nameof(CustomerViewModel.Address)),
-                Mode = BindingMode.OneWay
-            });
-            cellBirthday.SetBinding(TextBlock.TextProperty, new Binding()
-            {
-                Path = new PropertyPath(nameof(CustomerViewModel.Birthday)),
-                Mode = BindingMode.OneWay
-            });
-            cellPhone.SetBinding(TextBlock.TextProperty, new Binding()
-            {
-                Path = new PropertyPath(nameof(CustomerViewModel.PhoneNumber)),
-                Mode = BindingMode.OneWay
-            });
-            cellPoint.SetBinding(TextBlock.TextProperty, new Binding()
-            {
-                Path = new PropertyPath(nameof(CustomerViewModel.Point_String)),
-                Mode = BindingMode.OneWay
-            });
-
-            btnEdit.Click += BtnEdit_Click;
-            btnDelete.Click += BtnDelete_Click;
-        }
-
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             ClickedEdit?.Invoke(this, e);

@@ -37,20 +37,20 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="120" />
                 </Grid.ColumnDefinitions>
-                <search:Search
+                <!--<search:Search
                     Grid.Column="0"
                     Texthint="Số điện thoại"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center" 
                     TextChanged="Search_TextChanged"
-                    />
-                <!--<TextBox
+                    />-->
+                <TextBox
                     Grid.Column="0"
                     Width="400"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center" 
                     TextChanged="Search_TextChanged"
-                    />-->
+                    />
                 <Button
                     x:Name="btnCreate"
                     Grid.Column="2"

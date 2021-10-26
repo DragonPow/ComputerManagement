@@ -40,13 +40,15 @@ namespace ComputerProject.CustomMessageBox
             box.ShowDialog();
         }
 
-        public MessageBox(string messageBoxText, string caption, string okText, string cancelText, PackIconKind icon) : this()
+        public MessageBox(string messageBoxText, string caption, string okText, string cancelText, PackIconKind icon, Action acceptCallback = null) : this()
         {
             txtMessage.Text = messageBoxText;
             txtTitle.Text = caption;
             msgLogo.Kind = icon;
             btnOk.Content = okText;
             btnCancel.Content = cancelText;
+
+            btnOk.Click += (s, e) => acceptCallback?.Invoke();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

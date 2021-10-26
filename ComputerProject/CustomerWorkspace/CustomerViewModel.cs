@@ -38,7 +38,7 @@ namespace ComputerProject.CustomerWorkspace
             get => _model.address;
             set
             {
-                _model.address = value;
+                _model.address = value.Trim();
                 OnPropertyChanged(nameof(Address));
             }
         }
@@ -48,7 +48,7 @@ namespace ComputerProject.CustomerWorkspace
             get => _model.phone;
             set
             {
-                _model.phone = value;
+                _model.phone = value.Trim();
                 OnPropertyChanged(nameof(PhoneNumber));
             }
         }
@@ -103,7 +103,7 @@ namespace ComputerProject.CustomerWorkspace
                 return "Tên không hợp lệ";
             }
 
-            if (PhoneNumber == null || PhoneNumber.Trim().Length < 10 || !PhoneNumber.All(c => "0123456789".IndexOf(c) > -1))
+            if (PhoneNumber == null || PhoneNumber.Trim().Length < 10 || !PhoneNumber.Trim().All(c => "0123456789".IndexOf(c) > -1))
             {
                 return "Số điện thoại không hợp lệ";
             }
@@ -156,7 +156,8 @@ namespace ComputerProject.CustomerWorkspace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                var old = db.CUSTOMERs.Where(c => c.id == _model.id).FirstOrDefault();
+                db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL : " + s);
+                var old = db.CUSTOMERs.FirstOrDefault(c => c.id == _model.id);
                 if (old == null)
                 {
                     // Add new row to db
@@ -168,7 +169,14 @@ namespace ComputerProject.CustomerWorkspace
                     this.CopyTo(old);
                 }
                 this.CopyTo(old);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException e)
+                {
+                    var a = e.Message;
+                }
             }
         }
 
@@ -192,7 +200,7 @@ namespace ComputerProject.CustomerWorkspace
 
         public async Task UpdateToDBAsycn()
         {
-            await Task.Run(InsertToDB);
+            await Task.Run(UpdateToDB);
         }
 
         public async Task DeleteFromDBAsync()
@@ -226,14 +234,23 @@ namespace ComputerProject.CustomerWorkspace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                var reader = db.CUSTOMERs.Where(c => c.phone.StartsWith(phone))
-                    .Union(db.CUSTOMERs.Where(c => c.phone.Contains(phone)))
-                    .Distinct()
-                    .OrderBy(c => c.id)
-                    .Skip(startIndex).Take(count).ToList();
+                //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL : " + s);
 
-                var rs = new List<CustomerViewModel>(reader.Count);
-                foreach (var row in reader)
+                var data = db.CUSTOMERs.Where(c => c.phone.StartsWith(phone))
+                        .OrderBy(c => c.phone)
+                        .Skip(startIndex).Take(count).ToList();
+
+                if (data.Count < count)
+                {
+                    var temp1 = db.CUSTOMERs.Where(c => c.phone.Contains(phone) && !c.phone.StartsWith(phone))
+                        .OrderBy(c => c.phone)
+                        .Skip(startIndex).Take(count - data.Count).ToList();
+
+                    data.AddRange(temp1);
+                }
+
+                var rs = new List<CustomerViewModel>(data.Count);
+                foreach (var row in data)
                 {
                     rs.Add(new CustomerViewModel(row));
                 }
@@ -252,18 +269,20 @@ namespace ComputerProject.CustomerWorkspace
             return await Task.Run(() => FindByPhone(phone, startIndex, count), cancellationToken);
         }
 
-        public void CopyTo(CUSTOMER other)
+        public void CopyTo(CUSTOMER other, bool includeID = false)
         {
             other.name = this._model.name;
             other.address = this._model.address;
             other.phone = this._model.phone;
             other.birthday = this._model.birthday;
             other.point = this._model.point;
+
+            if (includeID) other.id = this._model.id;
         }
 
-        public void CopyTo(CustomerViewModel other)
+        public void CopyTo(CustomerViewModel other, bool includeID = false)
         {
-            this.CopyTo(other._model);
+            this.CopyTo(other._model, includeID);
         }
     }
 }
