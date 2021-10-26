@@ -32,7 +32,6 @@ namespace ComputerProject.CustomerWorkspace
             mainView.ClickedDeleteItem += OnClick_DeleteItem;
             mainView.ClickedEditItem += OnClick_EditItem;
 
-
             var addView = new CustomerAdd();
             addView.Closed_NotSave += OnBackFrom_Create;
             addView.SaveOK += AddView_SavedOK;
@@ -59,31 +58,14 @@ namespace ComputerProject.CustomerWorkspace
 
             _vm.CurrentMainViewIndex = 1;
         }
+
         private void OnBackFrom_Create(object sender, EventArgs e)
         {
             var addView = sender as CustomerAdd;
             addView.DataContext = null;
 
             _vm.CurrentMainViewIndex = 0;
-        }
-
-        private void AddView_SavedOK(object sender, EventArgs e)
-        {
-            var cus = (sender as CustomerAdd).ViewModel;
-            var mainViewVM = (_vm.ListViews[0] as CustomerAllView).ViewModel;
-            mainViewVM.CustomerList.Add(cus);
-
-            CustomMessageBox.MessageBox.Show("Đã thêm khách hàng mới vào cơ sở dữ liệu thành công");
-            OnBackFrom_Create(sender, e);
-        }
-
-        private void OnClick_EditItem(object sender, EventArgs e)
-        {
-            var rowVM = (sender as CustomerAllViewRow).ViewModel;
-            var editView = _vm.ListViews[2] as CustomerAdd;
-            editView.DataContext = rowVM;
-
-            _vm.CurrentMainViewIndex = 2;
+            (_vm.ListViews[0] as CustomerAllView).Search();
         }
         private void OnBackFrom_EditItem(object sender, EventArgs e)
         {
@@ -91,6 +73,22 @@ namespace ComputerProject.CustomerWorkspace
             editView.DataContext = null;
 
             _vm.CurrentMainViewIndex = 0;
+            (_vm.ListViews[0] as CustomerAllView).Search();
+        }
+
+        private void AddView_SavedOK(object sender, EventArgs e)
+        {
+            OnBackFrom_Create(sender, e);
+        }
+
+        private void OnClick_EditItem(object sender, EventArgs e)
+        {
+            var rowVM = (sender as CustomerAllViewRow).ViewModel;
+
+            var editView = _vm.ListViews[2] as CustomerDetailView;
+            editView.DataContext = new CustomerDetailViewModel(rowVM.Model);
+
+            _vm.CurrentMainViewIndex = 2;
         }
 
         private void OnClick_DeleteItem(object sender, EventArgs e)

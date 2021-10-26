@@ -31,28 +31,51 @@ namespace ComputerProject.CustomerWorkspace
 
             btnSave.Click += (s, e) =>
             {
-                string error = ViewModel.GetError();
-                if (error == null)
-                {
-                    _ = ViewModel.Save(() =>
-                      {
-                          // Hide waiting screen
-
-                          // Callback
-                          SaveOK?.Invoke(this, e);
-                      });
-
-                    // Show waiting screen
-
-                }
-                else
-                {
-                    CustomMessageBox.MessageBox.Show(error);
-                }
+                Save();
             };
         }
 
         public event EventHandler Closed_NotSave;
         public event EventHandler SaveOK;
+
+        /// <summary>
+        /// Save data asycn on UI thread
+        /// </summary>
+        public async void Save()
+        {
+            string error = ViewModel.GetInvalid(); // Check invalid data
+
+            if (error != null)
+            {
+                CustomMessageBox.MessageBox.Show(error);
+                return;
+            }
+
+            ViewModel.BusyVisibility = Visibility.Visible; // Show busy
+
+            error = await CustomerViewModel.GetDuplicate(ViewModel); // Busy task
+            if (error != null)
+            {
+                ViewModel.BusyVisibility = Visibility.Hidden;
+                CustomMessageBox.MessageBox.Show(error);
+                return;
+            }
+
+            // Data is safe now
+            try
+            {
+                await ViewModel.InsertToDBAsycn(); // Busy task
+
+                ViewModel.BusyVisibility = Visibility.Hidden;
+
+                CustomMessageBox.MessageBox.Show("Đã thêm khách hàng mới vào cơ sở dữ liệu thành công");
+                SaveOK?.Invoke(this, null); // Callback
+            }
+            catch (Exception) when (!Helper.Environment.IsDebug)
+            {
+                ViewModel.BusyVisibility = Visibility.Hidden;
+                CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
+            }
+        }
     }
 }

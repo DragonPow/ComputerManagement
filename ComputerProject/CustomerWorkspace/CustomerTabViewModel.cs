@@ -10,9 +10,21 @@ namespace ComputerProject.CustomerWorkspace
 {
     public class CustomerTabViewModel : BaseViewModel
     {
-        public Control CurrentMainView { get; set; }
+        private Control currentMainView;
+        public Control CurrentMainView { get => currentMainView;
+            set
+            {
+                currentMainView = value;
+            }
+        }
 
-        public List<Control> ListViews { get; set; }
+        private List<Control> listViews;
+        public List<Control> ListViews { get => listViews;
+            set
+            {
+                listViews = value;
+            }
+        }
 
         public int CurrentMainViewIndex
         {

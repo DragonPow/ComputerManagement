@@ -47,6 +47,9 @@ namespace ComputerProject
             //};
             //var repo = new CategoryRepository();
             //repo.Save(c);
+
+            //WindowTest test = new WindowTest();
+            //test.Show();
         }
     }
 }
