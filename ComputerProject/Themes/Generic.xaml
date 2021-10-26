@@ -106,7 +106,7 @@
                                     Margin="{TemplateBinding MarginText}"
                                     Foreground="#545454"
                                     materialDesign:HintAssist.Hint="{TemplateBinding Texthint}"
-                                    Text ="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text}"/>
+                                    Text ="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 <Image
                                         Grid.Column="1"
                                         HorizontalAlignment="Right"
@@ -176,7 +176,7 @@
                                 Width="{TemplateBinding Width}"
                                 VerticalAlignment="Center"
                                 materialDesign:HintAssist.Hint="{TemplateBinding Texthint}"
-                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text}"
+                                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 Margin="5, 0, 0, 0"
                                 FontSize="14" >
                         </TextBox>
