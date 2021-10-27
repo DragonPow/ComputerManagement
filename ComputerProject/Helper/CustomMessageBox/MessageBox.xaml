@@ -14,7 +14,9 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen">
     <Border CornerRadius="8"
-            Background="White">
+            Background="White"
+            BorderBrush="{StaticResource Icon}"
+            BorderThickness="1">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*" />
@@ -35,12 +37,11 @@
                            FontSize="18"
                            FontWeight="Bold"
                            FontFamily="{StaticResource Mulish}" />
-                <materialDesign:PackIcon Kind="Close"
-                                         Grid.Column="1"
-                                         Foreground="{StaticResource MainColor}"
-                                         HorizontalAlignment="Right"
-                                         VerticalAlignment="Center"
-                                         Margin="0,0,20,0" />
+                <Button Grid.Column="1" Height="auto" Width="auto" Margin="0,0,20,0"  Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Center" Click="btnCancel_Click">
+                    <materialDesign:PackIcon Kind="Close"       
+                                         Foreground="{StaticResource MainColor}"/>
+                </Button>
+             
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -54,7 +55,8 @@
                                          HorizontalAlignment="Center"
                                          Width="50"
                                          Height="50"
-                                         Foreground="{StaticResource MainColor}" />
+                                         Foreground="{StaticResource MainColor}" 
+                                        />
                 <TextBlock Name="txtMessage"
                            Grid.Column="1"
                            Text="An Error Occured in the Application"
@@ -89,7 +91,7 @@
                         Height="30"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        Width="80"
+                        MinWidth="80"
                         Margin="20,0,0,0"
                         Background="{StaticResource MainColor}"
                         BorderBrush="{StaticResource MainColor}"
