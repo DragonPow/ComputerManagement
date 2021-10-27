@@ -279,7 +279,13 @@ namespace ComputerProject.CategoryWorkspace
 
         public void AddSpecification()
         {
-            CurrentChildCategory?.SpecificationTypes.Add(new Model.Specification_type());
+            Model.Specification_type specification = new Model.Specification_type();
+
+            if (CurrentChildCategory?.SpecificationTypes == null) specification.Number = 1;
+            else specification.Number = (int) CurrentChildCategory?.SpecificationTypes.Count() + 1;
+
+            CurrentChildCategory?.SpecificationTypes.Add(specification);
+
         }
 
         public void DeleteSpecificationType(Model.Specification_type specification)

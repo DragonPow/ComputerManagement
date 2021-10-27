@@ -189,6 +189,7 @@
       <DependentUpon>TittlePropertiesTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converter\IndexCategoryConverter.cs" />
     <Compile Include="Converter\ListCategoryToStringCommaConverter.cs" />
     <Compile Include="CustomControl\ButtonIcon.cs" />
     <Compile Include="CustomControl\Search.cs" />

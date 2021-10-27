@@ -11,9 +11,10 @@
              mc:Ignorable="d"
              d:DesignHeight="67"
              d:DesignWidth="848"
+             Background="White"
              d:DataContext="{d:DesignInstance Type=model:Specification_type}">
     <UserControl.Resources>
-        <Style TargetType="TextBlock"
+        <Style TargetType="TextBox"
                x:Key="TitleCell">
             <Setter Property="FontFamily"
                     Value="{StaticResource Mulish}"></Setter>
@@ -23,6 +24,7 @@
                     Value="Black"></Setter>
         </Style>
         <converter:BooleanToVisibilityConverter x:Key="boolconverter" />
+        <converter:IndexCategoryConverter x:Key="Indexconverter" />
     </UserControl.Resources>
     <StackPanel Height="40">
         <Grid VerticalAlignment="Center">
@@ -36,19 +38,25 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        Margin="10, 0,0, 0"
-                       Style="{StaticResource TitleCell}">
-
+                       FontSize="{x:Static localfont:Font.Body}"
+                       Text="{Binding Number}"
+                       >
+s
             </TextBlock>
-            <TextBlock x:Name="NameProperties"
+            <TextBox x:Name="NameProperties"
+                       materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                       BorderThickness="0"
                        Grid.Column="1"
-                       HorizontalAlignment="Left"
+                       HorizontalAlignment="Stretch"
                        VerticalAlignment="Center"
                        Margin="10, 0, 0,0"
-                       Text="{Binding Name}"
+                       Text="{Binding Name}" 
                        Style="{StaticResource TitleCell}">
-            </TextBlock>
+            </TextBox>
             <Button Grid.Column="3"
                     x:Name="btnDelete"
+                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+                    BorderThickness="0"
                     Style="{StaticResource MaterialDesignIconButton}"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="{x:Static localfont:Font.Body}"
