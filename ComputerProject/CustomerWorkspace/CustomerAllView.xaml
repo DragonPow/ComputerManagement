@@ -76,6 +76,7 @@
                         <local:CustomerAllViewRow
                                 ClickedDelete="BtnDeleteItem_Click"
                                 ClickedEdit="BtnEditItem_Click"
+                            MouseDoubleClick="Item_MouseDoubleClick"
                                 DataContext="{Binding }" />
                     </DataTemplate>
                 </ListView.ItemTemplate>

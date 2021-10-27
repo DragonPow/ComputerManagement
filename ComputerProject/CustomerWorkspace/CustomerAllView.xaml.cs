@@ -73,7 +73,7 @@ namespace ComputerProject.CustomerWorkspace
         /// <summary>
         /// Sender is an instance of CustomerAllViewRow
         /// </summary>
-        public event EventHandler ClickedDeleteItem;
+        public event EventHandler ClickedDetailItem;
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
@@ -85,10 +85,12 @@ namespace ComputerProject.CustomerWorkspace
 
         private void BtnEditItem_Click(object sender, EventArgs e)
         {
-            // Do something
-            Console.Write("here");
-            // Call-back
             ClickedEditItem?.Invoke(sender, e);
+        }
+
+        private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ClickedDetailItem?.Invoke(sender, e);
         }
 
         private void BtnDeleteItem_Click(object sender, EventArgs e)
@@ -112,7 +114,7 @@ namespace ComputerProject.CustomerWorkspace
                 ViewModel.BusyVisibility = Visibility.Hidden;
 
                 Search();
-                CustomMessageBox.MessageBox.Show("Xóa khách hàng thành công");
+                // CustomMessageBox.MessageBox.Show("Xóa khách hàng thành công");
             }
             catch (Exception) when (!Helper.Environment.IsDebug)
             {

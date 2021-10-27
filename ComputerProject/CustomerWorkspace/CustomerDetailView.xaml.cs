@@ -27,6 +27,14 @@ namespace ComputerProject.CustomerWorkspace
             BtnBack.Click += OnBack;
         }
 
+        public CustomerDetailView(int state) : base()
+        {
+            if (state == 2)
+            {
+                this.OnStartEdit(null, null);
+            }
+        }
+
         public event EventHandler ClickedBack;
 
         private void OnSaveEdit(object sender, System.Windows.RoutedEventArgs e)
@@ -41,7 +49,7 @@ namespace ComputerProject.CustomerWorkspace
             SwitchMode_readonly();
         }
 
-        private void OnStartEdit(object sender, System.Windows.RoutedEventArgs e)
+        public void OnStartEdit(object sender, System.Windows.RoutedEventArgs e)
         {
             oldVM = ViewModel;
             var temp = new CustomerDetailViewModel(new CUSTOMER());
@@ -127,8 +135,6 @@ namespace ComputerProject.CustomerWorkspace
 
                 ViewModel.BusyVisibility = Visibility.Hidden;
                 SwitchMode_readonly();
-
-                CustomMessageBox.MessageBox.Show("Xóa khách hàng thành công");
 
                 ClickedBack?.Invoke(this, null);
             }

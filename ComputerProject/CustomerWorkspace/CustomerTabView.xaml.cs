@@ -34,7 +34,7 @@ namespace ComputerProject.CustomerWorkspace
 
             var mainView = new CustomerAllView();
             mainView.ClickedCreate += OnClick_Create;
-            mainView.ClickedDeleteItem += OnClick_DeleteItem;
+            mainView.ClickedDetailItem += OnClick_DetailItem;
             mainView.ClickedEditItem += OnClick_EditItem;
 
             var addView = new CustomerAdd();
@@ -93,13 +93,18 @@ namespace ComputerProject.CustomerWorkspace
             var editView = _vm.ListViews[2] as CustomerDetailView;
             editView.DataContext = new CustomerDetailViewModel(rowVM.Model);
 
+            editView.OnStartEdit(null, null);
             _vm.CurrentMainViewIndex = 2;
         }
 
-        private void OnClick_DeleteItem(object sender, EventArgs e)
+        private void OnClick_DetailItem(object sender, EventArgs e)
         {
-            MessageBox.Show("hora! it's worked");
-            //_vm.CurrentMainViewIndex = 1;
+            var rowVM = (sender as CustomerAllViewRow).ViewModel;
+
+            var editView = _vm.ListViews[2] as CustomerDetailView;
+            editView.DataContext = new CustomerDetailViewModel(rowVM.Model);
+
+            _vm.CurrentMainViewIndex = 2;
         }
     }
 }
