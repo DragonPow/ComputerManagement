@@ -252,7 +252,8 @@ namespace ComputerProject.CategoryWorkspace
             else
             {
                 CurrentParentCategory = parentCategory;
-                Task.Run(() => _repository.LoadSpecification(parentCategory));
+                Task.Run(() => CurrentParentCategory.ChildCategories = _repository.LoadChildCategories(CurrentParentCategory.Id));
+                //Task.Run(() => _repository.LoadSpecification(parentCategory));
                 IsEditMode = false;
             }
         }
@@ -337,6 +338,10 @@ namespace ComputerProject.CategoryWorkspace
 
         private void NavigateBackPage()
         {
+            foreach(var child in CurrentParentCategory.ChildCategories)
+            {
+                child.SpecificationTypes = null;
+            }
             _navigator?.Back();
         }
     }

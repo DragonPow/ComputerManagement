@@ -102,16 +102,16 @@ namespace ComputerProject.Model
             {
                 var c = new Category(i);
 
-                if (i.SPECIFICATION_TYPE != null)
-                {
-                    c.SpecificationTypes = new ObservableCollection<Model.Specification_type>();
-                    foreach (var s in i.SPECIFICATION_TYPE)
-                    {
-                        c.SpecificationTypes.Add(new Specification_type(s));
-                    }
-                }
-
                 this.ChildCategories.Add(c);
+            }
+
+            if (item.SPECIFICATION_TYPE != null)
+            {
+                this.SpecificationTypes = new ObservableCollection<Model.Specification_type>();
+                foreach (var s in item.SPECIFICATION_TYPE)
+                {
+                    this.SpecificationTypes.Add(new Specification_type(s));
+                }
             }
         }
 
@@ -124,7 +124,8 @@ namespace ComputerProject.Model
                 foreach (var i in this.ChildCategories)
                 {
                     var child = i.CastToModel();
-                    child.parentCategoryId = c.id;
+                    if (c.id == 0) child.parentCategoryId = null;
+                    else child.parentCategoryId = c.id;
                     c.CATEGORY11.Add(child);
                 }
 
@@ -136,6 +137,16 @@ namespace ComputerProject.Model
                 }
 
             return c;
+        }
+
+        public static Collection<Model.Category> GetChildCategory(ICollection<CATEGORY> list)
+        {
+            ObservableCollection<Model.Category> _list = null;
+            foreach (var i in list)
+            {
+                _list.Add(new Model.Category(i));
+            }
+            return _list;
         }
     }
 }

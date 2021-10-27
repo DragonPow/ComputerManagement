@@ -31,22 +31,24 @@ namespace ComputerProject
             //view.DataContext = vm;
             //view.Show();
 
-            //Model.Category c = new Model.Category()
+            //using (var db = new ComputerManagementEntities())
             //{
-            //    Name = "Thử nghiệm",
-            //    ChildCategories = new System.Collections.ObjectModel.Collection<Model.Category>()
+            //    CATEGORY c = new CATEGORY()
             //    {
-            //        new Model.Category() {Name = "Test child 1"},
-            //        new Model.Category() {Name = "Test child 2"},
+            //        name = "Thử nghiệm",
+            //        CATEGORY11 = new List<CATEGORY>()
+            //    {
+            //        new CATEGORY() {name = "Test child 1"},
+            //        new CATEGORY() {name = "Test child 2"},
             //    },
-            //    SpecificationTypes = new System.Collections.ObjectModel.Collection<Model.Specification_type>()
+            //        SPECIFICATION_TYPE = new List<SPECIFICATION_TYPE>()
             //    {
-            //        new Model.Specification_type() { Name = "Spec 1"},
-            //        new Model.Specification_type() { Name = "Spec 2"},
+            //        new SPECIFICATION_TYPE() { name = "Spec 1"},
+            //        new SPECIFICATION_TYPE() { name = "Spec 2"},
             //    }
-            //};
-            //var repo = new CategoryRepository();
-            //repo.Save(c);
+            //    };
+            //    db.SaveChanges();
+            //}
 
             //WindowTest test = new WindowTest();
             //test.Show();
