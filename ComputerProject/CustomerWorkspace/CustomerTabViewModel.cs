@@ -1,4 +1,5 @@
 ﻿using ComputerProject.Helper;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,5 +38,6 @@ namespace ComputerProject.CustomerWorkspace
                 OnPropertyChanged(nameof(CurrentMainViewIndex));
             }
         }
+
     }
 }

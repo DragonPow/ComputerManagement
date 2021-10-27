@@ -28,7 +28,8 @@
             FontFamily="{StaticResource Mulish}"
             Foreground="#11142D"
             VerticalAlignment="Center"
-            Margin="10, 0, 0, 0"         
+            Margin="10, 0, 0, 0"  
+            Text="Tên thông số"
             >
         </TextBox>
         </Border>
@@ -46,6 +47,7 @@
                 Foreground="#11142D"
                 VerticalAlignment="Center"
                 Margin="10, 0, 0, 0"         
+                Text="Giá trị"
             >
             </TextBox>
         </Border>

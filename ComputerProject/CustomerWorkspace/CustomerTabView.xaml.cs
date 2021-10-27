@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,13 @@ namespace ComputerProject.CustomerWorkspace
     /// <summary>
     /// Interaction logic for CustomerTabView.xaml
     /// </summary>
-    public partial class CustomerTabView : UserControl
+    public partial class CustomerTabView : UserControl, ApplicationWorkspace.ITabView
     {
         public CustomerTabViewModel _vm => this.DataContext as CustomerTabViewModel;
+
+        public string ViewName => "Khách hàng";
+        public PackIconKind ViewIcon => PackIconKind.CustomerService;
+
         //private CustomerAllView mainView;
 
         public CustomerTabView()

@@ -44,6 +44,7 @@ namespace ComputerProject.ApplicationWorkspace
             TabViewModels = new ObservableCollection<ITabView>()
             {
                 new CategoryViewModel(),
+                new CustomerWorkspace.CustomerTabView(),
             };
             CurrentViewModel = TabViewModels[0];
         }
