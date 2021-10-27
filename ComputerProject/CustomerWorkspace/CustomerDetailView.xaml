@@ -132,7 +132,7 @@
                                 FontFamily="{StaticResource Mulish}"
                                 FontSize="{x:Static localfont:Font.Body}"
                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                                Text="{Binding Birthday, Mode=TwoWay}" />
+                                SelectedDate="{Binding Birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </Border>
                     </StackPanel>
                     <localcustom:TextboxCustom

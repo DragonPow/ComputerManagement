@@ -46,7 +46,7 @@
             x:Name="cellBirthday"
             Grid.Column="2"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
-            Text="{Binding Birthday}" />
+            Text="{Binding Birthday_String}" />
         <TextBlock
             x:Name="cellAddress"
             Grid.Column="3"

@@ -53,13 +53,19 @@ namespace ComputerProject.CustomerWorkspace
             }
         }
 
-        public String Birthday
+        public String Birthday_String
         {
             get => _model.birthday;
+        }
+
+        public DateTime Birthday
+        {
+            get => _model.birthday == null ? DateTime.Now.AddYears(-4) : DateTime.Parse(_model.birthday);
             set
             {
-                _model.birthday = value;
+                _model.birthday = value.ToString("dd/MM/yyyy");
                 OnPropertyChanged(nameof(Birthday));
+                OnPropertyChanged(nameof(Birthday_String));
             }
         }
 
@@ -117,11 +123,11 @@ namespace ComputerProject.CustomerWorkspace
 
             DateTime dt;
             var formats = new string[] { "dd/MM/yyyy", "d/MM/yyyy", "dd/M/yyyy" };
-            if (Birthday == null || !DateTime.TryParseExact(Birthday, formats, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.AllowWhiteSpaces, out dt))
+            if (Birthday == null)
             {
                 return "Ngày sinh không hợp lệ";
             }
-            if (dt.Year > DateTime.Now.Year - 3)
+            if (Birthday.Year > DateTime.Now.Year - 3)
             {
                 return "Khách chưa đủ 4 tuổi";
             }

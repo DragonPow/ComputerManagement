@@ -42,7 +42,7 @@ namespace ComputerProject.CustomerWorkspace
             addView.SaveOK += AddView_SavedOK;
 
             var detailView = new CustomerDetailView();
-            detailView.ClickedBack += (s, e) => _vm.CurrentMainViewIndex = 0;
+            detailView.ClickedBack += OnBackFrom_EditItem;
 
             DataContext = new CustomerTabViewModel()
             {

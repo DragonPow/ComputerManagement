@@ -125,10 +125,11 @@
                     CornerRadius="8">
                     <DatePicker
                         BorderBrush="#DBD7F4"
+                        Foreground="Black"
                         FontFamily="{StaticResource Mulish}"
                         FontSize="16"
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                        Text="{Binding Birthday, Mode=TwoWay}" />
+                        SelectedDate="{Binding Birthday, Mode=TwoWay}" />
                 </Border>
             </StackPanel>
             <local:TextboxCustom
