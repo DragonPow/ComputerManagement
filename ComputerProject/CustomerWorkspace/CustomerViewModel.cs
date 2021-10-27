@@ -79,9 +79,16 @@ namespace ComputerProject.CustomerWorkspace
             get => _model.point.ToString();
             set
             {
-                _model.point = int.Parse(value.ToString());
-                OnPropertyChanged(nameof(Point));
-                OnPropertyChanged(nameof(Point_String));
+                try
+                {
+                    _model.point = int.Parse(value.ToString());
+                    OnPropertyChanged(nameof(Point));
+                    OnPropertyChanged(nameof(Point_String));
+                }
+                catch (Exception)
+                {
+                    OnPropertyChanged(nameof(Point_String));
+                }
             }
         }
 

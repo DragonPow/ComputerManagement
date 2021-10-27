@@ -128,6 +128,7 @@
                             <DatePicker
                                 Name="Birthday"
                                 BorderBrush="#DBD7F4"
+                                Foreground="Black"
                                 FontFamily="{StaticResource Mulish}"
                                 FontSize="{x:Static localfont:Font.Body}"
                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}"
