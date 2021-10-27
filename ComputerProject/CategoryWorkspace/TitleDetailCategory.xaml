@@ -13,6 +13,8 @@
                 Orientation="Horizontal"
                 Margin="20,0,0,1.2">
         <Button Style="{StaticResource MaterialDesignIconButton}"
+                Width="40"
+                Height="40"
                 ToolTip="Trở về"
                 Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
                 Click="Button_Click"
@@ -27,7 +29,7 @@
                    Foreground="{StaticResource Title}"
                    Margin="20,3,0,0"
                    VerticalAlignment="Center">
-            Chi tiết danh mục
+            Thêm mới danh mục
         </TextBlock>
 
     </StackPanel>

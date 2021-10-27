@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
              xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              xmlns:model="clr-namespace:ComputerProject.Model"
+             Background="White"
              mc:Ignorable="d"
              d:DesignHeight="60"
              d:DesignWidth="400"
@@ -14,18 +15,21 @@
     <Grid VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBox materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+        <TextBox 
+                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                  BorderThickness="0"
                  x:Name="CategoryLv2Name"
+                 HorizontalAlignment="Stretch"
                  Grid.Column="0"
+                 materialDesign:HintAssist.Hint="Danh mục mới"
                  FontSize="{x:Static localfont:Font.Body}"
                  FontFamily="{StaticResource Mulish}"
                  Foreground="#11142D"
-                 VerticalAlignment="Top"
-                 Text="{Binding Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+                 VerticalAlignment="Center"
+                 Text="{Binding Name, ValidatesOnDataErrors=False, UpdateSourceTrigger=PropertyChanged, FallbackValue='Danh mục mới'}">
             <TextBox.Style>
                 <Style TargetType="{x:Type TextBox}"
                        BasedOn="{StaticResource MaterialDesignTextBox}">
