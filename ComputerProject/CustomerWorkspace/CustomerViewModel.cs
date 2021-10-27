@@ -60,7 +60,7 @@ namespace ComputerProject.CustomerWorkspace
 
         public DateTime Birthday
         {
-            get => _model.birthday == null ? DateTime.Now.AddYears(-4) : DateTime.Parse(_model.birthday);
+            get => _model.birthday == null ? DateTime.Now.AddYears(-4) : DateTime.ParseExact(_model.birthday, "dd/MM/yyyy", System.Globalization.CultureInfo.GetCultureInfo("vi"));
             set
             {
                 _model.birthday = value.ToString("dd/MM/yyyy");
