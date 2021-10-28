@@ -20,6 +20,7 @@
         <local1:Search Grid.Column="0"
                        HorizontalAlignment="Left"
                        Texthint="Tên danh mục"
+                       IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                        Margin="20, 0, 0, 0">
         </local1:Search>
         <Button x:Name="Btn_add"

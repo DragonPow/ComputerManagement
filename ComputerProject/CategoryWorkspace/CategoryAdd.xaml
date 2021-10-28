@@ -74,6 +74,7 @@
                 Fontsize = "17"
                 MarginText="5"
                 Margin="10, 20, 20, 0"
+                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                 >
             </localcustom:TextboxCustom>
             <StackPanel 
@@ -219,6 +220,7 @@
                 Margin="20, 0, 0, 0"
                 x:Name="Search"
                 Texthint="Tìm kiếm"
+                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                 >
 
             </localcustom:Search>

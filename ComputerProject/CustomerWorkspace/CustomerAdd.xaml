@@ -93,6 +93,7 @@
                 CornerRadiusText="3"
                 FontSize="16"
                 MarginText="10"
+                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                 Text="{Binding FullName, Mode=TwoWay}" />
             <local:TextboxCustom
                 Title="    Số điện thoại"
@@ -103,6 +104,7 @@
                 CornerRadiusText="3"
                 FontSize="16"
                 MarginText="10"
+                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                 Text="{Binding PhoneNumber, Mode=TwoWay}" />
             <StackPanel
                 Grid.Row="2"
@@ -128,6 +130,7 @@
                         Foreground="Black"
                         FontFamily="{StaticResource Mulish}"
                         FontSize="16"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                         SelectedDate="{Binding Birthday, Mode=TwoWay}" />
                 </Border>
@@ -142,6 +145,7 @@
                 FontSize="16"
                 IsEnabled="False"
                 MarginText="10"
+                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                 Texthint="0" />
             <local:TextboxCustom
                 Title="    Địa chỉ"
@@ -153,6 +157,7 @@
                 FontSize="16"
                 MarginText="10"
                 MaxLines="1"
+                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                 Text="{Binding Address}" />
         </Grid>
         <StackPanel
