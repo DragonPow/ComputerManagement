@@ -30,7 +30,7 @@
                 Background="{StaticResource MainColor}"
                 Height="40"
                 materialDesign:ButtonAssist.CornerRadius="8"
-                ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                ToolTip="Thêm danh mục"
                 Command="{Binding OpenDetailCategoryCommand}"
                 CommandParameter="{x:Null}"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
