@@ -8,9 +8,9 @@
     xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="1024"
-    d:DesignWidth="1485"
     Background="{StaticResource Background}"
+    d:DesignHeight="750"
+    d:DesignWidth="1380"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -50,25 +50,25 @@
             <Rectangle
                 Grid.Row="1"
                 Grid.Column="0"
-                Margin="20,20,20,50"
+                Margin="20,20,20,30"
                 Fill="White"
                 IsHitTestVisible="False" />
             <Rectangle
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="20,20,20,50"
+                Margin="20,20,20,30"
                 Fill="White"
                 IsHitTestVisible="False" />
 
             <Grid Grid.Row="0" Margin="20">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="688.2*" />
-                    <RowDefinition Height="202*" />
+                    <RowDefinition Height="800*" />
+                    <RowDefinition Height="150*" />
                 </Grid.RowDefinitions>
                 <Grid x:Name="CusInfor" IsEnabled="False">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="95.2*" />
-                        <RowDefinition Height="118*" />
+                        <RowDefinition Height="100*" />
+                        <RowDefinition Height="119*" />
                         <RowDefinition Height="119*" />
                         <RowDefinition Height="118*" />
                         <RowDefinition Height="119*" />
@@ -93,7 +93,8 @@
                         CornerRadiusText="5"
                         FontFamily="{StaticResource Mulish}"
                         FontSize="{x:Static localfont:Font.Body}"
-                        MarginText="10"
+                        MarginText="8"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         Text="{Binding FullName, Mode=TwoWay}" />
 
                     <localcustom:TextboxCustom
@@ -104,7 +105,8 @@
                         CornerRadiusText="5"
                         FontFamily="{StaticResource Mulish}"
                         FontSize="{x:Static localfont:Font.Body}"
-                        MarginText="10"
+                        MarginText="8"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         Text="{Binding PhoneNumber, Mode=TwoWay}" />
                     <StackPanel
                         Grid.Row="3"
@@ -126,9 +128,12 @@
                             BorderBrush="#DBD7F4"
                             CornerRadius="8">
                             <DatePicker
+                                Height="45"
                                 Name="Birthday"
                                 BorderBrush="#DBD7F4"
                                 Foreground="Black"
+                                Text="12/12/2021"
+                                Padding="10"
                                 FontFamily="{StaticResource Mulish}"
                                 FontSize="{x:Static localfont:Font.Body}"
                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}"
@@ -141,19 +146,21 @@
                         Grid.Row="4"
                         Margin="20,0,20,0"
                         CornerRadiusText="5"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         FontFamily="{StaticResource Mulish}"
                         FontSize="{x:Static localfont:Font.Body}"
-                        MarginText="10"
+                        MarginText="8"
                         Text="{Binding Address, Mode=TwoWay}" />
                     <localcustom:TextboxCustom
                         x:Name="Point"
                         Title="   Điểm thưởng"
                         Grid.Row="5"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         Margin="20,0,20,0"
                         CornerRadiusText="5"
                         FontFamily="{StaticResource Mulish}"
                         FontSize="{x:Static localfont:Font.Body}"
-                        MarginText="10"
+                        MarginText="8"
                         Text="{Binding Point_String, Mode=TwoWay}"
                         Texthint="0" />
                 </Grid>
@@ -193,15 +200,15 @@
 
                 <StackPanel
                     x:Name="ButtonReadMode"
-                    Grid.Row="6"
-                    Margin="0,10,20,0"
+                    Grid.Row="1"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Orientation="Horizontal"
                     Visibility="{Binding ButtonGroupVisibility_Read}">
                     <Button
-                        Width="110"
-                        Height="48"
+                        x:Name="BtnDelete"
+                        Width="90"
+                        Height="43"
                         Margin="10"
                         Background="Transparent"
                         BorderBrush="{StaticResource Warning}"
@@ -212,8 +219,8 @@
                         Xóa
                     </Button>
                     <Button
-                        Width="110"
-                        Height="48"
+                        Width="110 "
+                        Height="45"
                         Margin="20,0,0,0"
                         Background="{StaticResource MainColor}"
                         Click="OnStartEdit"
@@ -249,6 +256,7 @@
                     </TextBlock>
                     <localcustom:Search
                         x:Name="Search"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         Grid.Column="1"
                         Width="300"
                         Margin="20,0,20,10"

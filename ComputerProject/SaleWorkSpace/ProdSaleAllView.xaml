@@ -58,6 +58,7 @@
                     <Custom:Search Grid.Column="0"
                                    Width="450"
                                    HorizontalAlignment="Left"
+                                   IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                                    Texthint="Tìm kiếm"></Custom:Search>
                     <Button Grid.Column="1" Padding="0"  Margin="5" Background="#F7F8FC" BorderBrush="{StaticResource MainColor}"  Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="8">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">

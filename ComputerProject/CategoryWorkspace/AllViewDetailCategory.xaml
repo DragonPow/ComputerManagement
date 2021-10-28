@@ -47,6 +47,7 @@
                                        FontSize="{x:Static localfont:Font.Body}"
                                        Margin="10, 0, 30, 0"
                                        MarginText="5"
+                                       IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                                        IsEnabled="{Binding IsEditMode}"/>
 
             <local:TitleCategoryLv2 x:Name="Btn_Add_Catelv2"

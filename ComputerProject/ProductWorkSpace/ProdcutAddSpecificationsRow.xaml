@@ -10,7 +10,7 @@
              Background="Transparent"
              d:DesignHeight="51" d:DesignWidth="600">
     <Grid
-        Height="50"
+        Height="51"
         >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
