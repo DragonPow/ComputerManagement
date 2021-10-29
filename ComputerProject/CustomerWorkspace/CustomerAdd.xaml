@@ -7,52 +7,15 @@
     xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="1024"
-    d:DesignWidth="1400"
+    d:DesignHeight="768"
+    d:DesignWidth="1366"
     Background="{StaticResource Background}"
     mc:Ignorable="d">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="8*" />
-            <RowDefinition Height="2*" />
-        </Grid.RowDefinitions>
-        <Border
-            Grid.Row="1"
-            Grid.RowSpan="2"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Panel.ZIndex="15"
-            Background="#40000000"
-            CornerRadius="4"
-            IsHitTestVisible="True"
-            Visibility="{Binding BusyVisibility, FallbackValue=Hidden}"
-            x:Name="busy"
-            >
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Control
-                    Width="55"
-                    Margin="0"
-                    Foreground="Blue"
-                    Style="{StaticResource WaitSpinnerStyle}" />
-                <TextBlock
-                    Margin="0,5"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="16"
-                    FontWeight="Bold"
-                    Foreground="White"
-                    Text="Đang tải..." />
-            </StackPanel>
-        </Border>
-        <Rectangle
-            Grid.Row="1"
-            Margin="40,0.2"
-            Fill="White"
-            IsHitTestVisible="False" />
+    <StackPanel>
+
         <StackPanel
             Grid.Row="0"
-            Margin="20,0,0,0.8"
+            Margin="20"
             HorizontalAlignment="Left"
             Orientation="Horizontal">
             <Button
@@ -67,65 +30,56 @@
                 VerticalAlignment="Center"
                 FontFamily="{StaticResource Mulish}"
                 FontSize="35"
-                FontWeight="SemiBold"
+                FontWeight="DemiBold"
                 Foreground="{StaticResource Title}">
                 Thêm khách hàng
             </TextBlock>
 
         </StackPanel>
-        <Grid Grid.Row="1" Margin="20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-            </Grid.RowDefinitions>
-            <local:TextboxCustom
+        <Border Background="White" CornerRadius="8" BorderThickness="1" Margin="50,0" Height="auto">
+            <StackPanel  Margin="20">
+                <local:TextboxCustom
                 Title="    Tên khách hàng"
-                Grid.Row="0"
-                Grid.ColumnSpan="2"
-                Margin="60,0,60,0"
                 VerticalAlignment="Center"
                 CornerRadiusText="3"
                 FontSize="16"
                 MarginText="10"
+                Margin="10"
                 IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                 Text="{Binding FullName, Mode=TwoWay}" />
-            <local:TextboxCustom
+                <local:TextboxCustom
                 Title="    Số điện thoại"
-                Grid.Row="1"
-                Grid.ColumnSpan="2"
-                Margin="60,0,60,0"
                 VerticalAlignment="Center"
                 CornerRadiusText="3"
                 FontSize="16"
                 MarginText="10"
+                Margin="10"
                 IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                 Text="{Binding PhoneNumber, Mode=TwoWay}" />
-            <StackPanel
-                Grid.Row="2"
-                Grid.Column="0"
-                Margin="60,0,20,0"
-                VerticalAlignment="Center">
-                <TextBlock
-                    Margin="0,0,0,10"
-                    VerticalAlignment="Top"
-                    FontFamily="{StaticResource Mulish}"
-                    FontSize="{x:Static localfont:Font.Body}"
-                    FontWeight="SemiBold"
-                    Foreground="Black"
-                    Text="   Ngày sinh" />
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        VerticalAlignment="Center">
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            VerticalAlignment="Top"
+                            FontFamily="{StaticResource Mulish}"
+                            FontSize="{x:Static localfont:Font.Body}"
+                            FontWeight="SemiBold"
+                            Foreground="Black"
+                            Text="   Ngày sinh" ></TextBlock>
 
-                <Border
+                        <Border
                     VerticalAlignment="Center"
                     Background="{StaticResource Background}"
                     BorderBrush="#DBD7F4"
                     CornerRadius="8">
-                    <DatePicker
+                            <DatePicker
                         BorderBrush="#DBD7F4"
                         Foreground="Black"
                         FontFamily="{StaticResource Mulish}"
@@ -133,13 +87,12 @@
                         IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                         SelectedDate="{Binding Birthday, Mode=TwoWay}" />
-                </Border>
-            </StackPanel>
-            <local:TextboxCustom
+                        </Border>
+                    </StackPanel>
+                    <local:TextboxCustom
                 Title="    Điểm thưởng"
-                Grid.Row="2"
                 Grid.Column="1"
-                Margin="20,0,60,0"
+                Margin="20,0,0,0"
                 VerticalAlignment="Center"
                 CornerRadiusText="3"
                 FontSize="16"
@@ -147,19 +100,21 @@
                 MarginText="10"
                 IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                 Texthint="0" />
-            <local:TextboxCustom
+                </Grid>
+
+                <local:TextboxCustom
                 Title="    Địa chỉ"
-                Grid.Row="3"
-                Grid.ColumnSpan="2"
-                Margin="60,0,60,0"
                 VerticalAlignment="Center"
                 CornerRadiusText="3"
                 FontSize="16"
                 MarginText="10"
                 MaxLines="1"
+                Margin="10"
                 IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                 Text="{Binding Address}" />
-        </Grid>
+            </StackPanel>
+        </Border>
+        
         <StackPanel
             Grid.Row="2"
             Margin="60,30,0,0"
@@ -186,5 +141,5 @@
             </Button>
 
         </StackPanel>
-    </Grid>
+    </StackPanel>
 </UserControl>
