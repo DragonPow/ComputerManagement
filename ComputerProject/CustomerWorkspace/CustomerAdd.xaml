@@ -83,7 +83,7 @@
                         BorderBrush="#DBD7F4"
                         Foreground="Black"
                         FontFamily="{StaticResource Mulish}"
-                        FontSize="16"
+                        FontSize="{x:Static localfont:Font.Body}"
                         IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                         SelectedDate="{Binding Birthday, Mode=TwoWay}" />
