@@ -106,6 +106,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BillWorkSpace\BillAllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BillWorkSpace\BillItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BillWorkSpace\BillListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CategoryWorkspace\AllViewDetailCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +154,15 @@
     <Compile Include="ApplicationWorkspace\TemplateTabItem.cs" />
     <Compile Include="BILL.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillWorkSpace\BillAllView.xaml.cs">
+      <DependentUpon>BillAllView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BillWorkSpace\BillItem.xaml.cs">
+      <DependentUpon>BillItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BillWorkSpace\BillListView.xaml.cs">
+      <DependentUpon>BillListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="BILL_REPAIR.cs">
       <DependentUpon>Model.tt</DependentUpon>

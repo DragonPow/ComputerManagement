@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="ComputerProject.BillWorkSpace.BillItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:ComputerProject.BillWorkSpace"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="1100">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="90"/>
+        </Grid.ColumnDefinitions>
+        <CheckBox IsChecked="False" Foreground="{StaticResource MainColor}" Margin="20,0"></CheckBox>
+        <TextBlock x:Name="txtBillID" Grid.Column="1" Text="LTM123" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <TextBlock x:Name="txtDateBill" Grid.Column="2" Text="1/2/2021" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <TextBlock x:Name="txtCusPhoneNumber" Grid.Column="3" Text="1235478910" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <TextBlock x:Name="txtTotalBill" Grid.Column="4" Text="25,000,000" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <TextBlock x:Name="txtPoint" Grid.Column="5" Text="50,000" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <Button x:Name="btnDelete" Grid.Column="6"  Style="{StaticResource MaterialDesignIconButton}" Margin="20,0" >
+            <Image Width="24" Height="24" Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
+        </Button>
+    </Grid>
+</UserControl>
