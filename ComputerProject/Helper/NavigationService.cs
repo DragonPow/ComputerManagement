@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ComputerProject.Helper
+namespace ComputerProject.HelperService
 {
     public interface INavigationBar
     {

@@ -10,7 +10,7 @@ namespace ComputerProject.Repository
 {
     public class CategoryRepository
     {
-        public Collection<Model.Category> LoadCategories(string name)
+        public Collection<Model.Category> LoadCategories(string name = null)
         {
             Collection<Model.Category> list = new ObservableCollection<Model.Category>();
 
@@ -26,11 +26,10 @@ namespace ComputerProject.Repository
                 {
                     query = _context.CATEGORies.Include(c => c.CATEGORY11).Where(i => i.parentCategoryId == null);
                     //query = _context.CATEGORies.Where(i => i.parentCategoryId == null);
-
                 }
                 else
                 {
-                    query = _context.CATEGORies.Include(c => c.CATEGORY11).Where(i => i.name == name && i.parentCategoryId == null);
+                    query = _context.CATEGORies.Include(c => c.CATEGORY11).Where(i => i.name.Contains(name) && i.parentCategoryId == null);
                 }
 
                 listEntity = query.ToList();
@@ -42,7 +41,7 @@ namespace ComputerProject.Repository
                 }
             }
             Console.WriteLine("Load category done");
-            Console.WriteLine(DateTime.Now);
+
             return list;
         }
 

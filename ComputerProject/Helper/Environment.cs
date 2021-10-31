@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerProject.Helper
+namespace ComputerProject.HelperService
 {
     public class Environment
     {

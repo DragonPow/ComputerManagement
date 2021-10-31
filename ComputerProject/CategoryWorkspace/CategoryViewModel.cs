@@ -1,5 +1,5 @@
 ﻿using ComputerProject.ApplicationWorkspace;
-using ComputerProject.Helper;
+using ComputerProject.HelperService;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
@@ -13,9 +13,7 @@ namespace ComputerProject.CategoryWorkspace
     {
         readonly NavigationService _navigator;
         public BaseViewModel CurrentPage => _navigator.CurrentPage;
-
         public string ViewName => "Danh mục";
-
         public PackIconKind ViewIcon => PackIconKind.Ballot;
 
         public CategoryViewModel()

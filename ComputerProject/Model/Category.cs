@@ -1,4 +1,4 @@
-﻿using ComputerProject.Helper;
+﻿using ComputerProject.HelperService;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -113,6 +113,24 @@ namespace ComputerProject.Model
                     this.SpecificationTypes.Add(new Specification_type(s));
                 }
             }
+        }
+
+        public Category Copy()
+        {
+            Category c = new Category();
+            c._id = this._id;
+            c._name = this._name;
+
+            if (this._specificationTypes != null)
+            {
+                c._specificationTypes = new ObservableCollection<Specification_type>();
+                foreach (var s in this._specificationTypes)
+                {
+                    c._specificationTypes.Add(s.Copy());
+                }
+            }
+
+            return c;
         }
 
         public CATEGORY CastToModel()

@@ -71,7 +71,7 @@ namespace ComputerProject.CustomerWorkspace
                 CustomMessageBox.MessageBox.Show("Đã thêm khách hàng mới vào cơ sở dữ liệu thành công");
                 SaveOK?.Invoke(this, null); // Callback
             }
-            catch (Exception) when (!Helper.Environment.IsDebug)
+            catch (Exception) when (!HelperService.Environment.IsDebug)
             {
                 ViewModel.BusyVisibility = Visibility.Hidden;
                 CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
