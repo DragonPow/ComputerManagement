@@ -20,9 +20,10 @@ namespace ComputerProject
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-          
-            var view = new WindowTest();
-       
+
+            var vm = new ApplicationViewModel();
+            var view = new ApplicationWindow();
+            view.DataContext = vm;
             view.Show();
 
             //var vm = new ListCategoryViewModel();
