@@ -14,7 +14,6 @@
     <Border CornerRadius="8"
             Background="White">
         <StackPanel>
-<!-- saleViewModel
             <Border Margin="20,5"
                     BorderBrush="{StaticResource Icon}"
                     BorderThickness="0,0,0,1">
@@ -51,41 +50,29 @@
                                        FontFamily="{StaticResource Mulish}"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <materialDesign:PackIcon Grid.Column="2"
-                                             Width="20"
-                                             Height="20"
-                                             Kind="Autorenew"
-                                             VerticalAlignment="Center"
-                                             Margin="10,0"
-                                             Foreground="{StaticResource Icon}" />
+                    <Button x:Name="btnRenew"
+                            Grid.Column="2"
+                            Width="auto"
+                            Height="auto"
+                            Margin="10,0"
+                            Padding="0"
+                            Background="{x:Null}"
+                            BorderBrush="{x:Null}">
+                        <materialDesign:PackIcon Height="20"
+                                                 Width="20"
+                                                 Kind="Autorenew"
+                                                 VerticalAlignment="Center"
+                                                 Foreground="{StaticResource Icon}" />
+                    </Button>
+
                 </Grid>
             </Border>
             <Custom:Search Margin="20,5"
                            Texthint="Số điện thoại"
-                           Width="320" DataContext="{Binding SearchCustomerCommand}"></Custom:Search>
--->
-            <Border Margin="20,5" BorderBrush="{StaticResource Icon}" BorderThickness="0,0,0,1">
-            <Grid Margin="0,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Khách hàng" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontWeight="Bold" FontFamily="{StaticResource Mulish}" Foreground="Black"></TextBlock>
-                <Button Grid.Column="1" Foreground="White" Padding="0" Height="28" HorizontalAlignment="Right" Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}" Style="{StaticResource MaterialDesignRaisedLightButton}" materialDesign:ButtonAssist.CornerRadius="5">
-                    <StackPanel Orientation="Horizontal" Margin="5,0">
-                        <materialDesign:PackIcon Kind="Add" Margin="0,0,5,0"></materialDesign:PackIcon>
-                            <TextBlock Text="Thêm mới" FontSize="12"  Margin="0,0,5,0" FontFamily="{StaticResource Mulish}"></TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="btnRenew" Grid.Column="2" Width="auto" Height="auto" Margin="10,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}">
-                       <materialDesign:PackIcon Height="20" Width="20" Kind="Autorenew" VerticalAlignment="Center"  Foreground="{StaticResource Icon}"/>
-                </Button>
-                    
-            </Grid>
-            </Border>
-            <Custom:Search Margin="20,5" Texthint="Số điện thoại" Width="320" IsTabStop="False" KeyboardNavigation.TabIndex="0"  ></Custom:Search>
-<!--main -->
+                           Width="320"
+                           IsTabStop="False"
+                           KeyboardNavigation.TabIndex="0"
+                           DataContext="{Binding SearchCustomerCommand}"></Custom:Search>
             <Grid Margin="25,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>

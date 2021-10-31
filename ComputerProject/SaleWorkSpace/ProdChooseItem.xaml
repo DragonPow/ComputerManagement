@@ -31,7 +31,7 @@
                        FontFamily="{StaticResource Mulish}"
                        Margin="10,10,10,0"
                        Foreground="Black"></TextBlock>
-            <TextBlock Text="{Binding Key.PriceOrigin, FallbackValue='0.000đ'}"
+            <TextBlock Text="{Binding Key.PriceSale, FallbackValue='0.000đ'}"
                        Foreground="{StaticResource MainColor}"
                        FontWeight="DemiBold"
                        FontSize="{x:Static font:Font.SmallBody}"
