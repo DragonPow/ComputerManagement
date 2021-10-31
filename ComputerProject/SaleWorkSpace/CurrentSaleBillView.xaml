@@ -29,7 +29,10 @@
                             <ColumnDefinition Width="auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="Đơn hàng hiện tại" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontWeight="Bold" FontFamily="{StaticResource Mulish}" Foreground="Black"></TextBlock>
-                        <materialDesign:PackIcon Grid.Column="1" Width="auto" Height="auto" Kind="Autorenew" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource Icon}"/>
+                        <Button x:Name="btnRenew" Grid.Column="1" Width="auto" Height="auto" Margin="10,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <materialDesign:PackIcon Kind="Autorenew" VerticalAlignment="Center"  Foreground="{StaticResource Icon}"/>
+                        </Button>
+                       
                     </Grid>
                 </Border>
                 <ListView Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="5" ScrollViewer.VerticalScrollBarVisibility="Auto">

@@ -232,6 +232,9 @@
       <DependentUpon>CustomerAllViewRow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomerWorkspace\CustomerDetailViewModel.cs" />
+    <Compile Include="CustomerWorkspace\CustomerInfor.xaml.cs">
+      <DependentUpon>CustomerInfor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerWorkspace\CustomerTabView.xaml.cs">
       <DependentUpon>CustomerTabView.xaml</DependentUpon>
     </Compile>
@@ -382,6 +385,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerWorkspace\CustomerInfor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

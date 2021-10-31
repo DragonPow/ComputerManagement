@@ -25,7 +25,10 @@
                             <TextBlock Text="Thêm mới" FontSize="12"  Margin="0,0,5,0" FontFamily="{StaticResource Mulish}"></TextBlock>
                     </StackPanel>
                 </Button>
-                <materialDesign:PackIcon Grid.Column="2" Width="20" Height="20" Kind="Autorenew" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource Icon}"/>
+                <Button x:Name="btnRenew" Grid.Column="2" Width="auto" Height="auto" Margin="10,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}">
+                       <materialDesign:PackIcon Height="20" Width="20" Kind="Autorenew" VerticalAlignment="Center"  Foreground="{StaticResource Icon}"/>
+                </Button>
+                    
             </Grid>
             </Border>
             <Custom:Search Margin="20,5" Texthint="Số điện thoại" Width="320" IsTabStop="False" KeyboardNavigation.TabIndex="0"  ></Custom:Search>
