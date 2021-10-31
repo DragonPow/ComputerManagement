@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
              xmlns:localsearch="clr-namespace:ComputerProject.CategoryWorkspace"
             
@@ -51,7 +52,7 @@
             Margin="20,3,0,0"
             VerticalAlignment="Center"
             >
-            Chỉnh sửa danh mục
+            Thêm danh mục
             </TextBlock>
 
         </StackPanel>
@@ -68,9 +69,12 @@
                 x:Name="NameCategory"
                 Texthint = "Lap top"
                 Title="Tên danh mục"
+                CornerRadiusText="5"
                 FontsizeTitle="19"
                 Fontsize = "17"
+                MarginText="5"
                 Margin="10, 20, 20, 0"
+                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                 >
             </localcustom:TextboxCustom>
             <StackPanel 
@@ -93,17 +97,30 @@
             VerticalAlignment="Top">
             Danh mục con
                     </TextBlock>
-                    <localcustom:ButtonIcon
-                        Grid.Column="1"
-                        Height = "40"
-                         Width="100"
-                         Text="Thêm mới" 
-                         PathData="M20 14H14V20H10V14H4V10H10V4H14V10H20V14Z" 
-                         Background="{StaticResource MainColor}" 
-                        VerticalAlignment="Bottom"
-                        HorizontalAlignment="Right"
-                    />
+                    <Button
+                            Grid.Column="1"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Background="{StaticResource MainColor}"
+                            BorderBrush="White"
+                            Height="37"
+                            Margin="0, 0, 20, 0"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            HorizontalAlignment="Left"
+                            ToolTip="Thêm danh mục"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                        <StackPanel 
+                                Orientation="Horizontal">
+                            
+                            <TextBlock
+                                    Text="+ Thêm mới" 
+                                    FontSize="{x:Static localfont:Font.Body}"
+                                    FontFamily="{StaticResource Mulish}"
+                                    Margin="5, 0, 0, 0"
+                                    Foreground="White"/>
+                        </StackPanel>
 
+                    </Button>
+                    
                 </Grid>
                 <Separator Background="{StaticResource Divition}" Margin="0, 5, 0, 10"/>
             </StackPanel>
@@ -173,15 +190,29 @@
             >
             Thuộc tính thông số
                 </TextBlock>
-                <localcustom:ButtonIcon
-                    Grid.Column="1"
-                    HorizontalAlignment="Right"
-                    Height = "40"
-                     Width="100"
-                     Text="Thêm mới" 
-                     PathData="M20 14H14V20H10V14H4V10H10V4H14V10H20V14Z" 
-                     Background="{StaticResource Icon}" Margin="0,0,20,0" 
-                />
+                <Button
+                            Grid.Column="1"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Background="{StaticResource MainColor}"
+                            BorderBrush="White"
+                            Height="37"
+                            Margin="0, 0, 20, 0"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            HorizontalAlignment="Right"
+                            ToolTip="Thêm danh mục"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                    <StackPanel 
+                                Orientation="Horizontal">
+
+                        <TextBlock
+                                    Text="+ Thêm mới" 
+                                    FontSize="{x:Static localfont:Font.Body}"
+                                    FontFamily="{StaticResource Mulish}"
+                                    Margin="5, 0, 0, 0"
+                                    Foreground="White"/>
+                    </StackPanel>
+
+                </Button>
             </Grid>
             <localcustom:Search
                 Grid.Row="1"
@@ -189,6 +220,7 @@
                 Margin="20, 0, 0, 0"
                 x:Name="Search"
                 Texthint="Tìm kiếm"
+                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                 >
 
             </localcustom:Search>

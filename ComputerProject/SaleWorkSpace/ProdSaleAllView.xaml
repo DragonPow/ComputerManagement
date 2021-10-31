@@ -88,6 +88,7 @@
                     <Custom:Search Grid.Column="0"
                                    Width="450"
                                    HorizontalAlignment="Left"
+                                   IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                                    Texthint="Tìm kiếm"
                                    DataContext="{Binding .}"></Custom:Search>
                     <Button Grid.Column="1"
@@ -95,7 +96,7 @@
                             Margin="5"
                             Background="#F7F8FC"
                             BorderBrush="{StaticResource MainColor}"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
                             materialDesign:ButtonAssist.CornerRadius="8"
                             Command="{Binding SortProductsCommand}">
                         <StackPanel Orientation="Horizontal"
@@ -133,7 +134,7 @@
                                        FontSize="14"
                                        Foreground="{StaticResource MainColor}"
                                        Margin="2,0,10,0"
-                                       VerticalAlignment="Center"></TextBlock>
+                                       VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
                 </Grid>

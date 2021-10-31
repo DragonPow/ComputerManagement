@@ -74,6 +74,7 @@
                         IsEnabled="False"
                         CornerRadiusText="5"
                         Title="    Mã sản phẩm"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         >
 
                     </localcustom:TextboxCustom>
@@ -133,6 +134,7 @@
                         FontFamily="{StaticResource Mulish}"
                         MarginText="10"
                         Title="    Tên sản phẩm"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         >
 
                     </localcustom:TextboxCustom>
@@ -169,6 +171,7 @@
                         FontFamily="{StaticResource Mulish}"
                         MarginText="10"
                         Title="    Nhà cung cấp"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         >
 
                     </localcustom:TextboxCustom>
@@ -181,6 +184,7 @@
                         FontFamily="{StaticResource Mulish}"
                         MarginText="10"
                         Title="    Số lượng"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         >
 
                     </localcustom:TextboxCustom>
@@ -193,6 +197,7 @@
                         FontFamily="{StaticResource Mulish}"
                         MarginText="10"
                         Title="    Giá gốc"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         >
 
                     </localcustom:TextboxCustom>
@@ -206,6 +211,7 @@
                         FontFamily="{StaticResource Mulish}"
                         MarginText="10"
                         Title="    Giá bán"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                         >
 
                     </localcustom:TextboxCustom>

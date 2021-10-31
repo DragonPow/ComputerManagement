@@ -20,6 +20,7 @@ namespace ComputerProject
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+
             var vm = new ApplicationViewModel();
             var view = new ApplicationWindow();
             view.DataContext = vm;

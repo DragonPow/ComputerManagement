@@ -10,6 +10,7 @@ namespace ComputerProject.Model
     public class Specification_type : BaseViewModel
     {
         int _id;
+        int _number;
         string _name;
         int _categoryId;
 
@@ -17,6 +18,11 @@ namespace ComputerProject.Model
         {
             get => _id;
             set => _id = value;
+        }
+        public int Number
+        {
+            get => _number;
+            set => _number = value;
         }
         public string Name
         {

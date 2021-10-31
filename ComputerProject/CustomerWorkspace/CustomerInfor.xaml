@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="ComputerProject.CustomerWorkspace.CustomerInfor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
+             xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="400">
+
+    <StackPanel x:Name="CusInfor">
+        <TextBlock
+                        Grid.Row="0"
+                        Margin="20,20,20,10"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static localfont:Font.SubTitle}"
+                        FontWeight="SemiBold"
+                        Foreground="{StaticResource Title}">
+                        Thông tin cá nhân
+        </TextBlock>
+
+        <localcustom:TextboxCustom
+                        x:Name="Name"
+                        Title="   Tên khách hàng"
+                        Grid.Row="1"
+                        Margin="20,10"
+                        CornerRadiusText="5"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        MarginText="8"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
+                        Text="{Binding FullName, Mode=TwoWay}" />
+
+        <localcustom:TextboxCustom
+                        x:Name="Phone"
+                        Title="   Số điện thoại"
+                        Grid.Row="2"
+                        Margin="20,10"
+                        CornerRadiusText="5"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        MarginText="8"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
+                        Text="{Binding PhoneNumber, Mode=TwoWay}" />
+        <StackPanel
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="20,10"
+                        VerticalAlignment="Top">
+            <TextBlock
+                            Margin="0,0,0,10"
+                            VerticalAlignment="Top"
+                            FontFamily="{StaticResource Mulish}"
+                            FontSize="{x:Static localfont:Font.Body}"
+                            FontWeight="SemiBold"
+                            Foreground="Black"
+                            Text="   Ngày sinh" />
+
+            <Border
+                            VerticalAlignment="Center"
+                            Background="{StaticResource Background}"
+                            BorderBrush="#DBD7F4"
+                            CornerRadius="8"
+                            >
+                <DatePicker
+                                Height="45"
+                                Name="Birthday"
+                                BorderBrush="#DBD7F4"
+                                Foreground="Black"
+                                Text="12/12/2021"
+                                Padding="10"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="{x:Static localfont:Font.Body}"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                SelectedDate="{Binding Birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </Border>
+        </StackPanel>
+        <localcustom:TextboxCustom
+                        x:Name="Adress"
+                        Title="   Địa chỉ"
+                        Grid.Row="4"
+                        Margin="20,10"
+                        CornerRadiusText="5"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        MarginText="8"
+                        Text="{Binding Address, Mode=TwoWay}" />
+        <localcustom:TextboxCustom
+                        x:Name="Point"
+                        Title="   Điểm thưởng"
+                        Grid.Row="5"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
+                        Margin="20,10"
+                        CornerRadiusText="5"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        MarginText="8"
+                        Text="{Binding Point_String, Mode=TwoWay}"
+                        Texthint="0" />
+    </StackPanel>
+</UserControl>

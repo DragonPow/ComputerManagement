@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="ComputerProject.BillWorkSpace.ProdInDetailBillItem"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerProject.BillWorkSpace"
+             xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="800" Background="White">
+    <Grid Margin="0,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="1" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <Image x:Name="ProdImage" Grid.Column="1" Source="/ComputerProject;component/Resource/Image/Product.jpg" Stretch="Uniform" />
+        <TextBlock x:Name="ProdName" Grid.Column="2" Text="Laptop HP 15s-fq2602TU" Margin="20,0" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <TextBlock x:Name="ProdSerial" Grid.Column="3" Text="HJ34HK150S" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <TextBlock x:Name="ProdUnitPrice" Grid.Column="4" Text="15,499,000" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+
+    </Grid>
+</UserControl>

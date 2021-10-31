@@ -85,6 +85,7 @@
                     HorizontalAlignment="Left"
                     Margin="20, 0, 0, 0"
                     FontSize="{x:Static localfont:Font.Body}"
+                    IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                     Texthint="Tên, mã sản phẩm">          
                 </localcustom:Search>
                 <StackPanel Grid.Column="1"

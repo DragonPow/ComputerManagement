@@ -20,29 +20,31 @@
         <local1:Search Grid.Column="0"
                        HorizontalAlignment="Left"
                        Texthint="Tên danh mục"
+                       IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                        Margin="20, 0, 0, 0">
         </local1:Search>
         <Button x:Name="Btn_add"
                 Grid.Column="1"
                 HorizontalAlignment="Right"
                 Margin="0, 0, 20, 0"
-                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                Height="35"
+                Padding="10,0"
+                BorderBrush="{StaticResource MainColor}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
                 Background="{StaticResource MainColor}"
-                Height="40"
-                materialDesign:ButtonAssist.CornerRadius="8"
-                ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                ToolTip="Thêm danh mục"
                 Command="{Binding OpenDetailCategoryCommand}"
                 CommandParameter="{x:Null}"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
             <StackPanel Orientation="Horizontal">
-                <Image Height="18"
-                       Width="18"
+                <Image Height="24"
+                       Width="24"
                        Source="/ComputerProject;component/Resource/Icon/Plus.png">
 
                 </Image>
                 <TextBlock Text="Thêm mới"
                            FontSize="16"
-                           Margin="5, 0, 0, 0"
+                           Margin="5,0"
                            Foreground="White" />
             </StackPanel>
 

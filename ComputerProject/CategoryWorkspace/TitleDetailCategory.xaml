@@ -10,9 +10,10 @@
              d:DesignHeight="51"
              d:DesignWidth="1330">
     <StackPanel HorizontalAlignment="Left"
-                Orientation="Horizontal"
-                Margin="20,0,0,1.2">
+                Orientation="Horizontal">
         <Button Style="{StaticResource MaterialDesignIconButton}"
+                Width="40"
+                Height="40"
                 ToolTip="Trở về"
                 Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
                 Click="Button_Click"
@@ -21,13 +22,13 @@
                                      Foreground="{StaticResource Title}" />
         </Button>
         <TextBlock x:Name="Title"
-                   FontSize="{x:Static localfont:Font.Title}"
+                   FontSize="{x:Static localfont:Font.TitleView}"
                    FontWeight="SemiBold"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="{StaticResource Title}"
                    Margin="20,3,0,0"
                    VerticalAlignment="Center">
-            Chi tiết danh mục
+            Thêm mới danh mục
         </TextBlock>
 
     </StackPanel>

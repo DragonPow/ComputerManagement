@@ -109,6 +109,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BillWorkSpace\BillAllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BillWorkSpace\BillDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BillWorkSpace\BillItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BillWorkSpace\BillListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BillWorkSpace\ProdInDetailBillItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CategoryWorkspace\AllViewDetailCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,6 +165,21 @@
     <Compile Include="ApplicationWorkspace\TemplateTabItem.cs" />
     <Compile Include="BILL.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillWorkSpace\BillAllView.xaml.cs">
+      <DependentUpon>BillAllView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BillWorkSpace\BillDetailView.xaml.cs">
+      <DependentUpon>BillDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BillWorkSpace\BillItem.xaml.cs">
+      <DependentUpon>BillItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BillWorkSpace\BillListView.xaml.cs">
+      <DependentUpon>BillListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BillWorkSpace\ProdInDetailBillItem.xaml.cs">
+      <DependentUpon>ProdInDetailBillItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="BILL_REPAIR.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -192,6 +227,7 @@
       <DependentUpon>TittlePropertiesTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converter\IndexCategoryConverter.cs" />
     <Compile Include="Converter\ListCategoryToStringCommaConverter.cs" />
     <Compile Include="CustomControl\ButtonIcon.cs" />
     <Compile Include="CustomControl\Search.cs" />
@@ -213,6 +249,9 @@
       <DependentUpon>CustomerAllViewRow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomerWorkspace\CustomerDetailViewModel.cs" />
+    <Compile Include="CustomerWorkspace\CustomerInfor.xaml.cs">
+      <DependentUpon>CustomerInfor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerWorkspace\CustomerTabView.xaml.cs">
       <DependentUpon>CustomerTabView.xaml</DependentUpon>
     </Compile>
@@ -369,6 +408,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomerWorkspace\CustomerInfor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

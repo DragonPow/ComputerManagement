@@ -34,10 +34,10 @@
             <TextBlock Grid.Column="2" Grid.Row="0" Text="Mã hóa đơn:" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}"/>
             <TextBlock x:Name="IDBill" Margin="10,0" Grid.Column="3" Grid.Row="0" Text="12345680" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" />
 
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="Số điện thoại:" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="16"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Số điện thoại:" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}"/>
             <TextBlock x:Name="CustomerPhoneNumber" Margin="10" Grid.Column="1" Grid.Row="1" Text="019524225" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}"/>
 
-            <TextBlock Grid.Column="2" Grid.Row="1" Text="Ngày tạo:" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="16"/>
+            <TextBlock Grid.Column="2" Grid.Row="1" Text="Ngày tạo:" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}"/>
             <TextBlock x:Name="Date" Margin="10,0" Grid.Column="3" Grid.Row="1" Text="12-10-2021" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" />
         </Grid>
         <Border BorderBrush="#E1E1FB" BorderThickness="1" Margin="0,0,0,0">
@@ -83,9 +83,8 @@
             <TextBlock Grid.Row="1" Margin="10,5" Text="1,401,000" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" HorizontalAlignment="Right" Foreground="Black"/>
         </Grid>
         <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20">
-            <Button Background="Transparent"  materialDesign:ButtonAssist.CornerRadius="8" BorderBrush="{StaticResource MainColor}" Margin="20,0"  Foreground="{StaticResource MainColor}" Width="100" Height="40" Content="In" Padding="30,0"></Button>
-            <Button Background="{StaticResource MainColor}" materialDesign:ButtonAssist.CornerRadius="8" Width="120" Height="40" Content="Xác nhận" Foreground="White">
-            </Button>
+            <Button x:Name="btnPrint" Style="{StaticResource MaterialDesignOutlinedButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{StaticResource MainColor}" Margin="20,0"  Foreground="{StaticResource MainColor}" Width="100" Height="40" Content="In" Padding="30,0"></Button>
+            <Button x:Name="btnAccept" Background="{StaticResource MainColor}"   Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="5" Width="120" Height="40" Content="Xác nhận" Foreground="White"/>
 
         </StackPanel>
     </StackPanel>

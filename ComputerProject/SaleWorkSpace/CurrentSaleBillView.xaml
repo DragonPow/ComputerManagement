@@ -36,7 +36,9 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0"
+
+                      <!--Something wrong here, it belong to SaleVM Branch -->
+                        <!--<TextBlock Grid.Column="0"
                                    Text="Đơn hàng hiện tại"
                                    VerticalAlignment="Center"
                                    FontSize="{x:Static font:Font.Body}"
@@ -49,7 +51,12 @@
                                                  Kind="Autorenew"
                                                  VerticalAlignment="Center"
                                                  Margin="10,0"
-                                                 Foreground="{StaticResource Icon}" />
+                                                 Foreground="{StaticResource Icon}" />-->
+                        <TextBlock Grid.Column="0" Text="Đơn hàng hiện tại" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontWeight="Bold" FontFamily="{StaticResource Mulish}" Foreground="Black"></TextBlock>
+                        <Button x:Name="btnRenew" Grid.Column="1" Width="auto" Height="auto" Margin="10,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <materialDesign:PackIcon Kind="Autorenew" VerticalAlignment="Center"  Foreground="{StaticResource Icon}"/>
+                        </Button>
+                       
                     </Grid>
                 </Border>
                 <ListView Grid.Row="1"
