@@ -62,10 +62,11 @@
                     Orientation="Horizontal"
                     Visibility="{Binding ButtonGroupVisibility_Edit, FallbackValue=Hidden}">
                         <Button
-                        Width="110"
-                        Height="48"
+                        Width="100"
+                        Height="40"
                         Margin="20,0"
                         Background="Transparent"
+                        Style="{StaticResource MaterialDesignOutlinedButton}"
                         BorderBrush="{StaticResource MainColor}"
                         Click="OnCancelEdit"
                         FontFamily="{StaticResource Mulish}"
@@ -74,9 +75,10 @@
                             Hủy
                         </Button>
                         <Button
-                        Width="110"
-                        Height="48"
+                        Width="120"
+                        Height="40"
                         Margin="20,0"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
                         Background="{StaticResource MainColor}"
                         Click="OnSaveEdit"
                         FontFamily="{StaticResource Mulish}"
@@ -96,9 +98,10 @@
                     Visibility="{Binding ButtonGroupVisibility_Read}">
                         <Button
                         x:Name="BtnDelete"
-                        Width="90"
+                        Width="100"
                         Height="40"
-                            Margin="20,0"
+                        Margin="20,0"
+                        Style="{StaticResource MaterialDesignOutlinedButton}"
                         Background="Transparent"
                         BorderBrush="{StaticResource Warning}"
                         Click="OnDelete"
@@ -108,9 +111,10 @@
                             Xóa
                         </Button>
                         <Button
-                        Width="110 "
+                        Width="120 "
                         Height="40"
                         Margin="20,0"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
                         Background="{StaticResource MainColor}"
                         Click="OnStartEdit"
                         FontFamily="{StaticResource Mulish}"

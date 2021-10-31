@@ -134,6 +134,7 @@
                     Width="100"
                     Height="40"
                     Margin="10"
+                    FontWeight="DemiBold"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="16"
                     Foreground="{StaticResource MainColor}"
@@ -167,6 +168,7 @@
                     Margin="10"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="16"
+                    FontWeight="DemiBold"
                     Background="{StaticResource MainColor}"
                     BorderBrush="White">
                 <Button.Style>
