@@ -17,23 +17,24 @@
     <DockPanel>
         <TextBlock DockPanel.Dock="Top"
                    FontSize="{x:Static localfont:Font.Title}"
-                   FontWeight="SemiBold"
+                   FontWeight="Bold"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="{StaticResource Title}"
-                   Margin="40, 20, 0, 0"
+                   Margin="30,20"
                    Text="Danh mục" />
         <Grid Background="White"
-              Margin="20">
+              Margin="20,0,20,20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="70" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
             <local:FeatureBar x:Name="Feature"
-                              DataContext="{Binding .}" />
+                              DataContext="{Binding .}"
+                              Margin="0,20"/>
             <local:TableTitle Grid.Row="1"
-                              Margin="10" />
+                              Margin="10,0"/>
             <ListView x:Name="Listcategory"
                       Grid.Row="2"
                       ItemsSource="{Binding CurrentCategories}">

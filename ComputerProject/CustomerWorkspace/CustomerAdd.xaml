@@ -123,17 +123,19 @@
             Orientation="Horizontal">
             <Button
                 x:Name="btnSave"
-                Width="110"
-                Height="48"
+                Width="100"
+                Height="40"
                 Margin="0,0,20,0"
+                Style="{StaticResource MaterialDesignRaisedButton}"
                 Background="{StaticResource MainColor}">
                 Lưu
             </Button>
             <Button
                 x:Name="btnCancel"
-                Width="110"
-                Height="48"
+                Width="120"
+                Height="40"
                 Margin="20,0,0,0"
+                Style="{StaticResource MaterialDesignOutlinedButton}"
                 Background="Transparent"
                 BorderBrush="{StaticResource MainColor}"
                 Foreground="{StaticResource MainColor}">

@@ -110,11 +110,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BillWorkSpace\BillDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BillWorkSpace\BillItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BillWorkSpace\BillListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BillWorkSpace\ProdInDetailBillItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,11 +166,17 @@
     <Compile Include="BillWorkSpace\BillAllView.xaml.cs">
       <DependentUpon>BillAllView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BillWorkSpace\BillDetailView.xaml.cs">
+      <DependentUpon>BillDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BillWorkSpace\BillItem.xaml.cs">
       <DependentUpon>BillItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="BillWorkSpace\BillListView.xaml.cs">
       <DependentUpon>BillListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BillWorkSpace\ProdInDetailBillItem.xaml.cs">
+      <DependentUpon>ProdInDetailBillItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="BILL_REPAIR.cs">
       <DependentUpon>Model.tt</DependentUpon>
