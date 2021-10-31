@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ComputerProject.Helper
+namespace ComputerProject.HelperService
 {
     public class RelayCommand : ICommand
     {

@@ -12,12 +12,16 @@ namespace ComputerProject.CustomMessageBox
     public class MessageBoxCustom
     {
         private static MessageBoxResultCustom _result;
-        public static MessageBoxResultCustom ShowDialog(string messageBoxText, string caption, string OkText = "Đồng ý", string CancelText = "Hủy", PackIconKind icon = PackIconKind.Information)
+        public static MessageBoxResultCustom ShowDialog(string messageBoxText, string caption, string ConfirmText = "Xác nhận", string CancelText = "Hủy", PackIconKind icon = PackIconKind.Information)
         {
-            MessageBox m = new MessageBox(messageBoxText, caption, OkText, CancelText, icon);
+            MessageBox m = new MessageBox(messageBoxText, caption, ConfirmText, CancelText, icon);
             m.ChangedResultEventHandler += (s, e) => { _result = e; };
             m.ShowDialog();
             return _result;
+        }
+        public static MessageBoxResultCustom ShowDialog(string messageBoxText, string caption, PackIconKind icon)
+        {
+            return ShowDialog(messageBoxText, caption, null, null, icon);
         }
     }
 

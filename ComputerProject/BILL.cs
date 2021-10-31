@@ -12,7 +12,7 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class BILL : Helper.BaseViewModel
+    public partial class BILL : HelperService.BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BILL()

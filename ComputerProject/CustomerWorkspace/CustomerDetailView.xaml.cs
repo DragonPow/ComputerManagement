@@ -118,7 +118,7 @@ namespace ComputerProject.CustomerWorkspace
                 ViewModel.CopyTo(oldVM);
                 OnCancelEdit(null, null);
             }
-            catch (Exception) when (!Helper.Environment.IsDebug)
+            catch (Exception) when (!HelperService.Environment.IsDebug)
             {
                 ViewModel.BusyVisibility = Visibility.Hidden;
                 CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
@@ -138,7 +138,7 @@ namespace ComputerProject.CustomerWorkspace
 
                 ClickedBack?.Invoke(this, null);
             }
-            catch (Exception) when (!Helper.Environment.IsDebug)
+            catch (Exception) when (!HelperService.Environment.IsDebug)
             {
                 ViewModel.BusyVisibility = Visibility.Hidden;
                 CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));

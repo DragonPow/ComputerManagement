@@ -1,6 +1,6 @@
 ﻿using ComputerProject.ApplicationWorkspace;
 using ComputerProject.CustomMessageBox;
-using ComputerProject.Helper;
+using ComputerProject.HelperService;
 //using ComputerProject.Model;
 using ComputerProject.Repository;
 using System;
@@ -147,7 +147,7 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (_deleteCategoryCommand == null)
                 {
-                    _deleteCategoryCommand = new RelayCommand(category => Delete((Model.Category)category), (_) => IsEditMode);
+                    _deleteCategoryCommand = new RelayCommand(category => Delete((Model.Category)category), (category) => IsEditMode || category == CurrentParentCategory);
                 }
                 return _deleteCategoryCommand;
             }

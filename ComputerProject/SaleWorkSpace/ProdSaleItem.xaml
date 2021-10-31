@@ -1,24 +1,53 @@
 ﻿<UserControl x:Class="ComputerProject.SaleWorkSpace.ProdSaleItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.SaleWorkSpace"
+             xmlns:model="clr-namespace:ComputerProject.Model"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
-             mc:Ignorable="d" 
-             Height="180" Width="180">
-    <Border CornerRadius="8" BorderThickness="1" BorderBrush="{StaticResource Icon}" Background="White">
+             mc:Ignorable="d"
+             Height="180"
+             Width="180"
+             d:DataContext="{d:DesignInstance Type={x:Type model:Product}}">
+    <Border CornerRadius="8"
+            BorderThickness="1"
+            BorderBrush="{StaticResource Icon}"
+            Background="White">
         <Grid>
             <Grid.RowDefinitions>
-            <RowDefinition Height="0.65*"></RowDefinition>
-            <RowDefinition Height="0.4*"></RowDefinition>
-        </Grid.RowDefinitions>
-            <Image Grid.Row="0" Source="/ComputerProject;component/Resource/Image/Product.jpg" Stretch="Uniform" Margin="7"></Image>
-            <StackPanel Grid.Row="1" Height="auto" Margin="7,5">
-                <TextBlock x:Name="ProdName" Text="Laptop HP 15s-fq2602T" TextWrapping="WrapWithOverflow" FontSize="{x:Static font:Font.Body}"  FontWeight="DemiBold" FontFamily="{StaticResource Mulish}" Foreground="Black"></TextBlock>
-                <TextBlock x:Name="OriginPrice" Margin="0,10,0,0" Text="18,000,000" Foreground="{StaticResource Icon}" FontSize="10" FontWeight="DemiBold" VerticalAlignment="Bottom" FontFamily="{StaticResource Mulish}"></TextBlock>
-                <TextBlock x:Name="SalePrice" Text="15,499,000" Foreground="{StaticResource MainColor}" FontSize="{x:Static font:Font.Body}" FontWeight="DemiBold" FontFamily="{StaticResource Mulish}"/>
+                <RowDefinition Height="0.65*"></RowDefinition>
+                <RowDefinition Height="0.4*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0"
+                   Source="{Binding Image,FallbackValue={StaticResource DefaultImage}, TargetNullValue={StaticResource DefaultImage}}"
+                   Stretch="Uniform"
+                   Margin="7"></Image>
+            <StackPanel Grid.Row="1"
+                        Height="auto"
+                        Margin="7,5">
+                <TextBlock x:Name="ProdName"
+                           Text="{Binding Name, FallbackValue='Laptop HP 15s-fq2602T'}"
+                           TextWrapping="WrapWithOverflow"
+                           FontSize="{x:Static font:Font.Body}"
+                           FontWeight="DemiBold"
+                           FontFamily="{StaticResource Mulish}"
+                           Foreground="Black"></TextBlock>
+                <TextBlock x:Name="OriginPrice"
+                           Margin="0,10,0,0"
+                           Text="{Binding PriceOrigin, FallbackValue='0.0000đ', StringFormat=' {0:N0}đ'}"
+                           Foreground="{StaticResource Icon}"
+                           FontSize="10"
+                           FontWeight="DemiBold"
+                           VerticalAlignment="Bottom"
+                           FontFamily="{StaticResource Mulish}"></TextBlock>
+                <TextBlock x:Name="SalePrice"
+                           Text="{Binding PriceSale, FallbackValue='0.0000đ', StringFormat=' {0:N0}đ'}"
+                           Foreground="{StaticResource MainColor}"
+                           FontSize="{x:Static font:Font.Body}"
+                           FontWeight="DemiBold"
+                           FontFamily="{StaticResource Mulish}" />
             </StackPanel>
-    </Grid>
+        </Grid>
     </Border>
 </UserControl>

@@ -1,4 +1,4 @@
-﻿using ComputerProject.Helper;
+﻿using ComputerProject.HelperService;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;

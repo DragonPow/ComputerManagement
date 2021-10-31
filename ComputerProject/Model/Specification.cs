@@ -1,4 +1,4 @@
-﻿using ComputerProject.Helper;
+﻿using ComputerProject.HelperService;
 
 namespace ComputerProject.Model
 {

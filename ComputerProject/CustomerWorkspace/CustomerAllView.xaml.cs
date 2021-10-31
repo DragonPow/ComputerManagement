@@ -58,7 +58,7 @@ namespace ComputerProject.CustomerWorkspace
                 await ViewModel.SearchAsycn(searchOperation.Token); // Busy task
                 ViewModel.BusyVisibility = Visibility.Hidden;
             }
-            catch (Exception) when (!Helper.Environment.IsDebug)
+            catch (Exception) when (!HelperService.Environment.IsDebug)
             {
                 ViewModel.BusyVisibility = Visibility.Hidden;
                 CustomMessageBox.MessageBox.Show("Lấy dữ liệu thất bại");
@@ -116,7 +116,7 @@ namespace ComputerProject.CustomerWorkspace
                 Search();
                 // CustomMessageBox.MessageBox.Show("Xóa khách hàng thành công");
             }
-            catch (Exception) when (!Helper.Environment.IsDebug)
+            catch (Exception) when (!HelperService.Environment.IsDebug)
             {
                 ViewModel.BusyVisibility = Visibility.Hidden;
                 CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));

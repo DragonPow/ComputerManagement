@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -24,6 +26,22 @@ namespace ComputerProject
             Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
             string temp = vn_str.Normalize(NormalizationForm.FormD);
             return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
+        }
+
+
+        public static Bitmap TranferToBitmap(byte[] bytecode)
+        {
+            if (bytecode == null) return null;
+            Bitmap bm;
+            using(var ms = new MemoryStream(bytecode))
+            {
+                ms.Write(bytecode, 0, bytecode.Length);
+                ms.Seek(0, SeekOrigin.Begin);
+
+                bm = new Bitmap(ms);
+            }
+
+            return bm;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ComputerProject.CategoryWorkspace;
-using ComputerProject.Helper;
+using ComputerProject.HelperService;
+using ComputerProject.SaleWorkSpace;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -43,6 +44,7 @@ namespace ComputerProject.ApplicationWorkspace
         {
             TabViewModels = new ObservableCollection<ITabView>()
             {
+                new SaleViewModel(),
                 new CategoryViewModel(),
                 new CustomerWorkspace.CustomerTabView(),
             };

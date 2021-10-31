@@ -69,6 +69,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.37\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -233,6 +236,7 @@
     </Compile>
     <Compile Include="Helper\Environment.cs" />
     <Compile Include="Helper\FormatHelper.cs" />
+    <Compile Include="Helper\ObservableConcurrentDictionary.cs" />
     <Compile Include="ITEM_BILL.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -244,6 +248,8 @@
     </Compile>
     <Compile Include="Helper\CustomMessageBox\MessageBoxCustom.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\ProductInBill.cs" />
     <Compile Include="Model\Specification.cs" />
     <Compile Include="Model\Specification_type.cs" />
     <Compile Include="PRODUCT.cs">
@@ -276,6 +282,7 @@
     <Compile Include="REPORT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\SaleRepository.cs" />
     <Compile Include="Resource\Font\Font.cs" />
     <Compile Include="SaleWorkSpace\CurrentSaleBillView.xaml.cs">
       <DependentUpon>CurrentSaleBillView.xaml</DependentUpon>
@@ -283,6 +290,7 @@
     <Compile Include="SaleWorkSpace\CustomerSaleView.xaml.cs">
       <DependentUpon>CustomerSaleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SaleWorkSpace\FilterProduct.cs" />
     <Compile Include="SaleWorkSpace\PaySaleBillView.xaml.cs">
       <DependentUpon>PaySaleBillView.xaml</DependentUpon>
     </Compile>
@@ -305,6 +313,7 @@
       <DependentUpon>SaleAllView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repository\CategoryRepository.cs" />
+    <Compile Include="SaleWorkSpace\SaleViewModel.cs" />
     <Compile Include="SPECIFICATION.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerProject.Helper
+namespace ComputerProject.HelperService
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
