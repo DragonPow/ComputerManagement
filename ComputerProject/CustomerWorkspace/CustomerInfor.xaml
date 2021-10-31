@@ -12,10 +12,10 @@
     <StackPanel x:Name="CusInfor">
         <TextBlock
                         Grid.Row="0"
-                        Margin="20"
+                        Margin="20,20,20,10"
                         VerticalAlignment="Center"
                         FontFamily="{StaticResource Mulish}"
-                        FontSize="24"
+                        FontSize="{x:Static localfont:Font.SubTitle}"
                         FontWeight="SemiBold"
                         Foreground="{StaticResource Title}">
                         Thông tin cá nhân
