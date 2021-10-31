@@ -29,7 +29,7 @@
                 Margin="20,3,0,0"
                 VerticalAlignment="Center"
                 FontFamily="{StaticResource Mulish}"
-                FontSize="35"
+                FontSize="{x:Static localfont:Font.TitleView}"
                 FontWeight="DemiBold"
                 Foreground="{StaticResource Title}">
                 Thêm khách hàng

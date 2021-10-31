@@ -21,7 +21,7 @@
             <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0"
-                   FontSize="24"
+                   FontSize="{x:Static localfont:Font.SubTitle}"
                    FontWeight="SemiBold"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="{StaticResource Title}"

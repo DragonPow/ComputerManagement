@@ -138,7 +138,7 @@
                         Margin="20"
                         VerticalAlignment="Center"
                         FontFamily="{StaticResource Mulish}"
-                        FontSize="24"
+                        FontSize="{x:Static localfont:Font.SubTitle}"
                         FontWeight="SemiBold"
                         Foreground="{StaticResource Title}">
                         Lịch sử hóa đơn

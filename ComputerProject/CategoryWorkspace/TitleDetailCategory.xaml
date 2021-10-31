@@ -23,7 +23,7 @@
                                      Foreground="{StaticResource Title}" />
         </Button>
         <TextBlock x:Name="Title"
-                   FontSize="{x:Static localfont:Font.Title}"
+                   FontSize="{x:Static localfont:Font.TitleView}"
                    FontWeight="SemiBold"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="{StaticResource Title}"
