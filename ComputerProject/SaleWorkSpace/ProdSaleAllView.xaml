@@ -143,7 +143,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <RadioButton Style="{DynamicResource TabRadioButton}"
-                                         IsChecked="False"
+                                         IsChecked="{Binding Path=SelectedItem, Converter={StaticResource InstanceToBooleanConverter}, ConverterParameter={Binding}}"
                                          Content="Laptop"></RadioButton>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -155,11 +155,12 @@
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>-->
                 <ComboBox  x:Name="CategoryComboBox"
-                           Padding="10"
+                           Padding="10,7"
                            Margin="20"
                            Height="35"
-                           FontSize="1"
-                           FontWeight="Bold"
+                           FontSize="14"
+                           FontWeight="Medium"
+                           Foreground="Black"
                            FontFamily="{StaticResource Mulish}"
                            Style="{StaticResource MaterialDesignOutlinedComboBox}"
                            ItemsSource="{Binding Categories}"
