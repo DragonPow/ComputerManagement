@@ -19,7 +19,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0"
@@ -27,7 +27,6 @@
                        FontWeight="SemiBold"
                        FontFamily="{StaticResource Mulish}"
                        Foreground="{StaticResource Title}"
-                       Margin="20,0,0,0"
                        VerticalAlignment="Center"
                        Text="Danh mục con" />
             <Button x:Name="Btn_add"
@@ -39,16 +38,18 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     VerticalAlignment="Bottom"
                     ToolTip="Thêm danh mục"
+                    Padding="7,0"
+                    Height="30"
                     Command="{Binding AddChildCategoryCommand}"
                     Visibility="{Binding IsEditMode, Converter={StaticResource ResourceKey=visibility_converter}}">
                 <StackPanel Orientation="Horizontal">
-                    <Image Height="18"
-                           Width="18"
+                    <Image Height="14"
+                           Width="14"
                            Source="/ComputerProject;component/Resource/Icon/Plus.png">
                     </Image>
                     <TextBlock Text="Thêm mới"
-                               FontSize="13"
-                               Margin="5, 0, 0, 0"
+                               FontSize="12"
+                               Margin="5, 0"
                                Foreground="White" />
                 </StackPanel>
             </Button>

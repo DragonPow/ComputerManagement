@@ -15,124 +15,126 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2.5*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.07*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="0.8*"/>
-            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="White" IsHitTestVisible="False" Grid.Column="0" Grid.Row="1" Margin="20, 10, 20, 10"/>
-        <Rectangle Fill="White" IsHitTestVisible="False" Grid.Column="1" Grid.Row="1" Margin="20, 10, 20, 10"/>
 
         <local:TitleDetailCategory x:Name="Title"
+                                   Margin="20,10"
                                    Grid.Column="0"
                                    Grid.ColumnSpan="2"
                                    Grid.Row="0"
                                    DataContext="{Binding .}"/>
-        <Grid Grid.Row="1"
-              Grid.Column="0"
-              Margin="25, 45, 25, 25">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="77.6"/>
-                <RowDefinition Height="13*"/>
-                <RowDefinition Height="69*"/>
-            </Grid.RowDefinitions>
-            <localcustom:TextboxCustom x:Name="NameCategory"
+        <Border Grid.Row="1" Grid.Column="0" Background="White" CornerRadius="8" Margin="20,0,0,0">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <localcustom:TextboxCustom x:Name="NameCategory"
                                        CornerRadiusText="5"
                                        Text="{Binding CurrentParentCategory.Name, FallbackValue=Lap top}"
                                        Title="Tên danh mục"
                                        FontSize="{x:Static localfont:Font.Body}"
-                                       Margin="10, 0, 30, 0"
+                                       Margin="15"
                                        MarginText="5"
                                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                                        IsEnabled="{Binding IsEditMode}"/>
 
-            <local:TitleCategoryLv2 x:Name="Btn_Add_Catelv2"
+                <local:TitleCategoryLv2 x:Name="Btn_Add_Catelv2"
                                     Grid.Row="1"
+                                    Margin="15,0"
                                     VerticalAlignment="Bottom"
                                     DataContext="{Binding .}"/>
-            <ListView x:Name="ListCategoryLv2"
+                <ListView x:Name="ListCategoryLv2"
                       Grid.Row="2"
                       DataContext="{Binding .}"
                       Background="White"
-                      Margin="15, 0, 0, 0"
+                          Margin="5,0"
                       SelectedItem="{Binding CurrentChildCategory}"
                       ItemsSource="{Binding CurrentParentCategory.ChildCategories}" >
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListViewItem}">
-                        <Setter Property="HorizontalContentAlignment"
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="HorizontalContentAlignment"
                                 Value="Stretch" />
-                        <Setter Property="Background"
+                            <Setter Property="Background"
                                 Value="White" />
 
-                    </Style>
+                        </Style>
 
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <ItemContainerTemplate>
-                        <local:Categorylv2Row 
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <ItemContainerTemplate>
+                            <local:Categorylv2Row 
                                               x:Name="item" />
-                    </ItemContainerTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-        <Grid
+                        </ItemContainerTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="1" Background="White" CornerRadius="8" Margin="20,0">
+            <Grid
             Grid.Row="1"
-            Grid.Column="1"
-            Margin="25, 15, 25, 15">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.07*"/>
-                <RowDefinition Height="0.9*"/>
-            </Grid.RowDefinitions>
+            Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="0.9*"/>
+                </Grid.RowDefinitions>
 
-            <local:PropertiesTitlexaml x:Name="BtnAddSpeci"
+                <local:PropertiesTitlexaml x:Name="BtnAddSpeci"
                                        VerticalAlignment="Center"
                                        d:LayoutOverrides="LeftMargin, RightMargin"
-                                       DataContext="{Binding .}"/>
-            <!--<localcustom:Search Grid.Row="1"
+                                       DataContext="{Binding .}"
+                                           Margin="0,15"/>
+                <!--<localcustom:Search Grid.Row="1"
                                 HorizontalAlignment="Left"
                                 Margin="20, 0, 0, 20"
                                 x:Name="Search"
                                 Width="500"
                                 Texthint="Tìm theo danh mục"/>-->
 
-            <local:TittlePropertiesTable Grid.Row="1"/>
+                <local:TittlePropertiesTable Grid.Row="1" Margin="5,0"/>
 
-            <ListView x:Name="ListProperties"
+                <ListView x:Name="ListProperties"
                       Grid.Row="3"
                       Background="White"
+                      Margin="5,0"
                       ItemsSource="{Binding CurrentChildCategory.SpecificationTypes}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListViewItem}">
-                        <Setter Property="HorizontalContentAlignment"
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="HorizontalContentAlignment"
                                 Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <ItemContainerTemplate>
-                        <local:PropertiesRow />
-                    </ItemContainerTemplate>
-                </ListView.ItemTemplate>
-                <ListViewItem>
-                    <local:PropertiesRow/>
-                </ListViewItem>
-            </ListView>
-        </Grid>
-
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <ItemContainerTemplate>
+                            <local:PropertiesRow />
+                        </ItemContainerTemplate>
+                    </ListView.ItemTemplate>
+                    <ListViewItem>
+                        <local:PropertiesRow/>
+                    </ListViewItem>
+                </ListView>
+            </Grid>
+        </Border>
         <StackPanel Orientation="Horizontal"
                     Grid.Row="2"
                     Grid.Column="1"
-                    Margin="0, 0, 20, 0"
+                    Margin="20"
                     HorizontalAlignment="Right">
             <Button x:Name="BtnDelete"
                     Background="Transparent"
                     Width="100"
                     Height="40"
-                    Margin="10"
+                    Margin="20,0"
                     FontWeight="DemiBold"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="16"
@@ -163,8 +165,7 @@
             </Button>
             <Button x:Name="BtnEdit"
                     Width="150"
-                    Height="48"
-                    Margin="10"
+                    Height="40"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="16"
                     FontWeight="DemiBold"

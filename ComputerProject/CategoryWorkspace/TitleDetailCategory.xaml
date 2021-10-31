@@ -10,8 +10,7 @@
              d:DesignHeight="51"
              d:DesignWidth="1330">
     <StackPanel HorizontalAlignment="Left"
-                Orientation="Horizontal"
-                Margin="20,0,0,1.2">
+                Orientation="Horizontal">
         <Button Style="{StaticResource MaterialDesignIconButton}"
                 Width="40"
                 Height="40"

@@ -24,6 +24,7 @@
                  x:Name="CategoryLv2Name"
                  HorizontalAlignment="Stretch"
                  Grid.Column="0"
+                 Margin="10,0"
                  materialDesign:HintAssist.Hint="Danh mục mới"
                  FontSize="{x:Static localfont:Font.Body}"
                  FontFamily="{StaticResource Mulish}"

@@ -26,7 +26,7 @@
         <converter:BooleanToVisibilityConverter x:Key="boolconverter" />
         <converter:IndexCategoryConverter x:Key="Indexconverter" />
     </UserControl.Resources>
-    <StackPanel Height="40">
+    <StackPanel>
         <Grid VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -68,7 +68,6 @@ s
                        Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
             </Button>
         </Grid>
-        <Separator Background="{StaticResource Divition}"
-                   Margin="0, 0,0,0" />
+        <Separator Background="{StaticResource Divition}" Margin="0,10"/>
     </StackPanel>
 </UserControl>

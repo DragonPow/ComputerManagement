@@ -15,7 +15,7 @@
 
         <StackPanel
             Grid.Row="0"
-            Margin="20"
+            Margin="20,10"
             HorizontalAlignment="Left"
             Orientation="Horizontal">
             <Button
