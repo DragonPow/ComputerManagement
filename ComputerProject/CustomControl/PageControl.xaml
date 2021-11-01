@@ -9,6 +9,7 @@
              d:DesignHeight="36" d:DesignWidth="200">
    
     <Grid
+        Height="35"
         >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -22,7 +23,7 @@
         <Button
             Grid.Column="6"
           Style="{StaticResource MaterialDesignIconButton}"
-          ToolTip="MaterialDesignIconButton"
+          ToolTip="Trang cuối"
           IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Width="Auto" Height="Auto" Click="Button_Skip_Next_Click">
             <materialDesign:PackIcon
                 Foreground="{StaticResource MainColor}"
@@ -31,7 +32,7 @@
         <Button
             Grid.Column="0"
           Style="{StaticResource MaterialDesignIconButton}"
-          ToolTip="MaterialDesignIconButton"
+          ToolTip="Trang đầu"
           IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Width="Auto" Height="Auto" Click="Button_Skip_Back_Click">
             <materialDesign:PackIcon
                 Foreground="{StaticResource MainColor}"
@@ -40,7 +41,7 @@
         <Button
             Grid.Column="5"
           Style="{StaticResource MaterialDesignIconButton}"
-          ToolTip="MaterialDesignIconButton"
+          ToolTip="Trang kế"
           IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Width="Auto" Height="Auto" Click="Button_Next_Click">
             <materialDesign:PackIcon
                 Foreground="{StaticResource MainColor}"
@@ -49,7 +50,7 @@
         <Button
           Grid.Column="1"
           Style="{StaticResource MaterialDesignIconButton}"
-          ToolTip="MaterialDesignIconButton"
+          ToolTip="Trang trước"
           IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Width="Auto" Height="Auto" Click="Button_Back_Click">
             <materialDesign:PackIcon
                 Foreground="{StaticResource MainColor}"
@@ -64,7 +65,7 @@
             FontSize="12"
             FontWeight="DemiBold"
             Foreground="{StaticResource MainColor}"
-            Text="/"
+            Text="/ "
             >
 
         </TextBlock>

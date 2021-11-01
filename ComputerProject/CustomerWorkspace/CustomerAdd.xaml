@@ -75,31 +75,32 @@
                             Text="   Ngày sinh" ></TextBlock>
 
                         <Border
-                    VerticalAlignment="Center"
-                    Background="{StaticResource Background}"
-                    BorderBrush="#DBD7F4"
-                    CornerRadius="8">
+                            VerticalAlignment="Center"
+                            Background="{StaticResource Background}"
+                            BorderBrush="#DBD7F4"
+                            CornerRadius="8">
                             <DatePicker
-                        BorderBrush="#DBD7F4"
-                        Foreground="Black"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="{x:Static localfont:Font.Body}"
-                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
-                        Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                        SelectedDate="{Binding Birthday, Mode=TwoWay}" />
+                                x:Name="datetimepicker"
+                                BorderBrush="#DBD7F4"
+                                Foreground="Black"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="{x:Static localfont:Font.Body}"
+                                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                SelectedDate="{Binding Birthday, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
                     <local:TextboxCustom
-                Title="    Điểm thưởng"
-                Grid.Column="1"
-                Margin="20,0,0,0"
-                VerticalAlignment="Center"
-                CornerRadiusText="3"
-                FontSize="16"
-                IsEnabled="False"
-                MarginText="10"
-                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
-                Texthint="0" />
+                        Title="    Điểm thưởng"
+                        Grid.Column="1"
+                        Margin="20,0,0,0"
+                        VerticalAlignment="Center"
+                        CornerRadiusText="3"
+                        FontSize="16"
+                        IsEnabled="False"
+                        MarginText="10"
+                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
+                        Texthint="0" />
                 </Grid>
 
                 <local:TextboxCustom

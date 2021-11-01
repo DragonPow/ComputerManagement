@@ -25,6 +25,7 @@ namespace ComputerProject.CustomerWorkspace
         public CustomerAdd()
         {
             InitializeComponent();
+            datetimepicker.Language = System.Windows.Markup.XmlLanguage.GetLanguage(System.Globalization.CultureInfo.GetCultureInfo("vi").IetfLanguageTag);
 
             BtnBack.Click += (s, e) => Closed_NotSave?.Invoke(this, e);
             btnCancel.Click += (s, e) => Closed_NotSave?.Invoke(this, e);

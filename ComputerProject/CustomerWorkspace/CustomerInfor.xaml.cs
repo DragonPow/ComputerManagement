@@ -23,6 +23,7 @@ namespace ComputerProject.CustomerWorkspace
         public CustomerInfor()
         {
             InitializeComponent();
+            Birthday.Language = System.Windows.Markup.XmlLanguage.GetLanguage(System.Globalization.CultureInfo.GetCultureInfo("vi").IetfLanguageTag);
         }
     }
 }
