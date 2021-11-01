@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
+    xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:search="clr-namespace:ComputerProject.CustomControl"
     Padding="20"
@@ -28,6 +29,7 @@
                     <RowDefinition Height="70" />
                     <RowDefinition Height="50" />
                     <RowDefinition Height="1*" />
+                    <RowDefinition Height="35" />
                 </Grid.RowDefinitions>
                 <Grid
                 Grid.Row="0"
@@ -120,6 +122,12 @@
                     Text="Đang tải..." />
                     </StackPanel>
                 </Border>
+                <localcustom:PageControl
+                    MaxHeight="10"
+                    CurrentPage="1"
+                    Grid.Row="4"
+                    Width="150"
+                    ></localcustom:PageControl>
             </Grid>
         </Border>
         
