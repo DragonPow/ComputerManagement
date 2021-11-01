@@ -28,6 +28,7 @@
                 <RowDefinition Height="0.1*"></RowDefinition>
                 <RowDefinition Height="0.1*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
+                <RowDefinition Height="0.05*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid
                 Grid.Row ="0">
@@ -174,6 +175,15 @@
                 
                 
             </ListView>
+
+            <localcustom:PageControl
+                MaxPage="10"
+                CurrentPage="1"
+                Grid.Row="4"
+                Width="150"
+                >
+
+            </localcustom:PageControl>
     </Grid>
     </DockPanel>
 </UserControl>

@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
+             xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
              d:DataContext="{d:DesignInstance Type=local:ListCategoryViewModel, IsDesignTimeCreatable=True}"
              x:Class="ComputerProject.CategoryWorkspace.Category"
              mc:Ignorable="d"
@@ -28,6 +29,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
 
             <local:FeatureBar x:Name="Feature"
@@ -136,6 +138,12 @@
 
 
             </ListView>
+            <localcustom:PageControl
+                    MaxHeight="10"
+                    CurrentPage="1"
+                    Grid.Row="4"
+                    Width="150"
+                    ></localcustom:PageControl>
         </Grid>
     </DockPanel>
 
