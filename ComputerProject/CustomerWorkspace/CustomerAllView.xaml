@@ -23,13 +23,19 @@
             Foreground="{StaticResource Title}">
             Khách hàng
         </TextBlock>
-        <Border  Background="White" CornerRadius="8">
+        <localcustom:PageControl
+                MaxPage="10"
+                HorizontalAlignment="Center"
+                CurrentPage="1"
+                Grid.Row="4"
+                Width="150"
+                DockPanel.Dock="Bottom"/>
+        <Border  Background="White" CornerRadius="8" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70" />
                     <RowDefinition Height="50" />
                     <RowDefinition Height="1*" />
-                    <RowDefinition Height="35" />
                 </Grid.RowDefinitions>
                 <Grid
                 Grid.Row="0"
@@ -122,13 +128,9 @@
                     Text="Đang tải..." />
                     </StackPanel>
                 </Border>
-                <localcustom:PageControl
-                    MaxHeight="10"
-                    CurrentPage="1"
-                    Grid.Row="4"
-                    Width="150"
-                    ></localcustom:PageControl>
+               
             </Grid>
+            
         </Border>
         
     </DockPanel>

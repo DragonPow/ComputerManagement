@@ -25,8 +25,8 @@ namespace ComputerProject.CustomControl
             InitializeComponent();
         }
 
-        private static readonly DependencyProperty CurrentPageProperties = DependencyProperty.Register(nameof(CurrentPage), typeof(int), typeof(PageControl), new PropertyMetadata(int.MinValue));
-        private static readonly DependencyProperty MaxPageProperties = DependencyProperty.Register(nameof(MaxPage), typeof(int), typeof(PageControl), new PropertyMetadata(int.MinValue));
+        private static readonly DependencyProperty CurrentPageProperties = DependencyProperty.Register(nameof(CurrentPage), typeof(int), typeof(PageControl), new PropertyMetadata(1000));
+        private static readonly DependencyProperty MaxPageProperties = DependencyProperty.Register(nameof(MaxPage), typeof(int), typeof(PageControl), new PropertyMetadata(1));
 
 
         public int CurrentPage
