@@ -353,6 +353,18 @@
     </Compile>
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="SaleWorkSpace\SaleViewModel.cs" />
+    <Compile Include="SettingWorkSpace\SettingAllView.xaml.cs">
+      <DependentUpon>SettingAllView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingWorkSpace\SettingHelp.xaml.cs">
+      <DependentUpon>SettingHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingWorkSpace\SettingPointView.xaml.cs">
+      <DependentUpon>SettingPointView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingWorkSpace\SettingStoreView.xaml.cs">
+      <DependentUpon>SettingStoreView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SPECIFICATION.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -498,6 +510,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SettingWorkSpace\SettingAllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingWorkSpace\SettingHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingWorkSpace\SettingPointView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingWorkSpace\SettingStoreView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -579,6 +607,10 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resource\Image\SettingPoint.png" />
+    <Resource Include="Resource\Image\SettingQA.png" />
+    <Resource Include="Resource\Image\SettingStore.png" />
+    <Resource Include="Resource\Image\background.png" />
     <Resource Include="Resource\Image\AddImage.png" />
     <Resource Include="Resource\Icon\AddImage.png" />
     <Resource Include="Resource\Icon\Arange.png" />

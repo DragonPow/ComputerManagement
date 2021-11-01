@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="ComputerProject.SettingWorkSpace.SettingPointView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerProject.SettingWorkSpace"
+             xmlns:custom="clr-namespace:ComputerProject.CustomControl"
+             xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <TextBlock Text="Cài đặt điểm thưởng" FontSize="{x:Static font:Font.Title}" FontFamily="{StaticResource Mulish}" FontWeight="Bold" Foreground="{StaticResource Title}"/>
+        <custom:TextboxCustom x:Name="PointToMoney" 
+                              Title="Tỉ lệ quy đổi điểm thành tiền khuyến mãi(%)" 
+                              HorizontalAlignment="Left"
+                              CornerRadiusText="5"
+                              FontSize="16"
+                              Background="White"
+                              MarginText="10"/>
+        <custom:TextboxCustom x:Name="MoneyToPoint" 
+                              Title="Tỉ lệ quy đổi điểm thành tiền khuyến mãi(%)" 
+                              HorizontalAlignment="Left"
+                              CornerRadiusText="5"
+                              FontSize="16"
+                              Background="White"
+                              MarginText="10"/>
+        <custom:TextboxCustom x:Name="MaxPoint" 
+                              Title="Tỉ lệ quy đổi điểm thành tiền khuyến mãi(%)" 
+                              HorizontalAlignment="Left"
+                              CornerRadiusText="5"
+                              FontSize="16"
+                              Background="White"
+                              MarginText="10"/>
+
+        <StackPanel Margin="0,20" Orientation="Horizontal">
+            <Button
+                x:Name="btnSave" 
+                Width="120" 
+                Height="40"
+                Margin="0,0,20,0"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                Background="{StaticResource MainColor}"
+                Content="Lưu">
+            </Button>
+            <Button
+                x:Name="btnCancel"
+                Width="120"
+                Height="40"
+                Margin="20,0,0,0"
+                Style="{StaticResource MaterialDesignOutlinedButton}"
+                Background="Transparent"
+                BorderBrush="{StaticResource MainColor}"
+                Foreground="{StaticResource MainColor}" 
+                Content="Hủy">
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
