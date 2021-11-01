@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject.CustomerWorkspace
+namespace ComputerProject.StatiticsWorkSpace
 {
     /// <summary>
-    /// Interaction logic for CustomerInfor.xaml
+    /// Interaction logic for TopProductItemView.xaml
     /// </summary>
-    public partial class CustomerInfor : UserControl
+    public partial class TopProductItemView : UserControl
     {
-        public CustomerInfor()
+        public TopProductItemView()
         {
             InitializeComponent();
-            Birthday.Language = System.Windows.Markup.XmlLanguage.GetLanguage(System.Globalization.CultureInfo.GetCultureInfo("vi").IetfLanguageTag);
         }
     }
 }

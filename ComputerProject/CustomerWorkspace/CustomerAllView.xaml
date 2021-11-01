@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
+    xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:search="clr-namespace:ComputerProject.CustomControl"
     Padding="20"
@@ -22,7 +23,14 @@
             Foreground="{StaticResource Title}">
             Khách hàng
         </TextBlock>
-        <Border  Background="White" CornerRadius="8">
+        <localcustom:PageControl
+                MaxPage="10"
+                HorizontalAlignment="Center"
+                CurrentPage="1"
+                Grid.Row="4"
+                Width="150"
+                DockPanel.Dock="Bottom"/>
+        <Border  Background="White" CornerRadius="8" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70" />
@@ -120,7 +128,9 @@
                     Text="Đang tải..." />
                     </StackPanel>
                 </Border>
+               
             </Grid>
+            
         </Border>
         
     </DockPanel>

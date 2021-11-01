@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="ComputerProject.StatiticsWorkSpace.OverviewCardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerProject.StatiticsWorkSpace"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:customerworkspace="clr-namespace:ComputerProject.CustomerWorkspace"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="260"
+             
+             >
+    <UserControl.Resources
+        >
+        <Style x:Key="OverviewCardStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource Mulish}"/>
+            <Setter Property='FontSize' Value="16"/>
+            <Setter Property="Margin" Value="10, 0, 10, 0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Foreground" Value="#11142D"/>
+        </Style>
+    </UserControl.Resources>
+    <Border
+        CornerRadius="8"
+        BorderThickness="1"
+        Background="White"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock
+            Style="{DynamicResource OverviewCardStyle}"
+            Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:OverviewCardView}}, 
+                               Path=Title}"
+            >
+        </TextBlock>
+        <materialDesign:PackIcon 
+            Grid.Column="1"
+            Kind="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:OverviewCardView}}, 
+                               Path=Icon}"
+            Foreground="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:OverviewCardView}}, 
+                               Path=ColorFore}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Margin="0, 0, 10,0"
+            />
+        <TextBlock
+            Grid.Row="1"
+            Style="{DynamicResource OverviewCardStyle}"
+            Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:OverviewCardView}}, 
+                               Path=Value}"
+            VerticalAlignment="Bottom"
+            >
+        </TextBlock>
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            Style="{DynamicResource OverviewCardStyle}"
+            HorizontalAlignment="Right"
+            Foreground="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:OverviewCardView}}, 
+                               Path=ColorFore}"
+            Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:OverviewCardView}}, 
+                               Path=Percent}"
+            VerticalAlignment="Bottom"
+            >
+        </TextBlock>
+        <TextBlock
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Style="{DynamicResource OverviewCardStyle}"
+            Text="So với cùng kỳ tháng trước"
+            FontSize="11"
+            Foreground="#9FA2B4"
+            FontWeight="Regular"
+            HorizontalAlignment="Right"
+            Margin="0, 0, 10, 0"
+            VerticalAlignment="Top"
+            >
+        </TextBlock>
+    </Grid>
+    </Border>
+</UserControl>

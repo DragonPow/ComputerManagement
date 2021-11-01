@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="ComputerProject.StatiticsWorkSpace.TopProductItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerProject.StatiticsWorkSpace"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="305">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="72"/>
+        </Grid.ColumnDefinitions>
+
+        <Image
+            Stretch="Fill"
+            >
+        </Image>
+
+        <TextBlock
+            Grid.Column="1"
+            TextWrapping="WrapWithOverflow"
+            TextTrimming="WordEllipsis"
+            FontFamily="{StaticResource Mulish}"
+            FontSize="16"
+            FontWeight="DemiBold"
+            Foreground="#11142D"
+            VerticalAlignment="Top"
+            >
+            
+        </TextBlock>
+        <TextBlock
+            Grid.Column="2"
+            FontFamily="{StaticResource Mulish}"
+            FontSize="16"
+            FontWeight="DemiBold"
+            Foreground="#92929D"
+            LineStackingStrategy="BlockLineHeight"
+            Margin="0, 10, 10, 0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            >
+
+        </TextBlock>
+    </Grid>
+</UserControl>

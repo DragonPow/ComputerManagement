@@ -57,6 +57,12 @@
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=2.0.3.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignColors.2.0.3\lib\net452\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -230,6 +236,9 @@
     <Compile Include="Converter\IndexCategoryConverter.cs" />
     <Compile Include="Converter\ListCategoryToStringCommaConverter.cs" />
     <Compile Include="CustomControl\ButtonIcon.cs" />
+    <Compile Include="CustomControl\PageControl.xaml.cs">
+      <DependentUpon>PageControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\Search.cs" />
     <Compile Include="CustomControl\TextboxCustom.cs" />
     <Compile Include="CUSTOMER.cs">
@@ -266,6 +275,7 @@
     <Compile Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml.cs">
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatiticsWorkSpace\DatePickerCalendar.cs" />
     <Compile Include="Helper\NavigationService.cs" />
     <Compile Include="DETAIL_REPORT_CATEGORY.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -371,6 +381,18 @@
     <Compile Include="SPECIFICATION_TYPE.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="StatiticsWorkSpace\OverviewCardView.xaml.cs">
+      <DependentUpon>OverviewCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatiticsWorkSpace\StatiticsMainView.xaml.cs">
+      <DependentUpon>StatiticsMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatiticsWorkSpace\TopCategoryView.xaml.cs">
+      <DependentUpon>TopCategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatiticsWorkSpace\TopProductItemView.xaml.cs">
+      <DependentUpon>TopProductItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Validation\InitClass.cs" />
     <Compile Include="WindowTest.xaml.cs">
       <DependentUpon>WindowTest.xaml</DependentUpon>
@@ -392,6 +414,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CategoryWorkspace\TittlePropertiesTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\PageControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -523,6 +549,19 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingWorkSpace\SettingStoreView.xaml">
+    <Page Include="StatiticsWorkSpace\OverviewCardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatiticsWorkSpace\StatiticsMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatiticsWorkSpace\TopCategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatiticsWorkSpace\TopProductItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
