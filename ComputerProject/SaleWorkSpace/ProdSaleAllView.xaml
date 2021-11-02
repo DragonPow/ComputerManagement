@@ -70,6 +70,11 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <DataTemplate x:Key="myTemplate">
+            <RadioButton Style="{DynamicResource TabRadioButton}"
+                                         IsChecked="False"
+                                         Content="Laptop"></RadioButton>
+        </DataTemplate>
     </UserControl.Resources>
     <Border CornerRadius="8"
             Background="White">
@@ -138,22 +143,23 @@
                         </StackPanel>
                     </Button>
                 </Grid>
-                <!--<ItemsControl ItemsSource="{Binding Categories}"
-                              x:Name="parentCategories">
-                    <ItemsControl.ItemTemplate>
+                <ListView ItemsSource="{Binding Categories}"
+                           Background="Transparent">
+                    <ListView.ItemTemplate>
                         <DataTemplate>
                             <RadioButton Style="{DynamicResource TabRadioButton}"
-                                         IsChecked="{Binding Path=SelectedItem, Converter={StaticResource InstanceToBooleanConverter}, ConverterParameter={Binding}}"
-                                         Content="Laptop"></RadioButton>
+                                         Content="Laptop"
+                                         GroupName="DisplayPage"
+                                         IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"></RadioButton>
                         </DataTemplate>
-                    </ItemsControl.ItemTemplate>
+                    </ListView.ItemTemplate>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="Stretch" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-                </ItemsControl>-->
+                </ListView>
                 <ComboBox  x:Name="CategoryComboBox"
                            Padding="10,7"
                            Margin="20"
