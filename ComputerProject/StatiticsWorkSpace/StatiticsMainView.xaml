@@ -85,10 +85,10 @@
         </Border>
         <TextBlock 
                    FontSize="{x:Static localfont:Font.Title}"
-                   FontWeight="SemiBold"
+                   FontWeight="Bold"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="{StaticResource Title}"
-                   Margin="40,19,-0.8,-1"
+                   Margin="20,19,-0.8,-1"
                    VerticalAlignment="Center" 
                    Text="Thống kê" />
         <local:OverviewCardView
@@ -219,9 +219,9 @@
                     </DatePicker>
                     <Button
                         Grid.Column="2"
-                        Style="{StaticResource MaterialDesignRaisedSecondaryDarkButton}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
                         Content="Chi tiết"
-                        FontSize="17"
+                        FontSize="16"
                         FontWeight="DemiBold"
                         FontFamily="{StaticResource Mulish}"
                         HorizontalAlignment="Right"

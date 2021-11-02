@@ -548,7 +548,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingWorkSpace\SettingStoreView.xaml">
+	  <Page Include="SettingWorkSpace\SettingStoreView.xaml">
+	  </Page>
     <Page Include="StatiticsWorkSpace\OverviewCardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

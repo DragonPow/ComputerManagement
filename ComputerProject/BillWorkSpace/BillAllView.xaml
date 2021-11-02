@@ -13,8 +13,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="Title" Text="Hóa đơn" FontWeight="DemiBold" Foreground="{StaticResource Title}" FontSize="{x:Static font:Font.Title}" Margin="30,20"></TextBlock>
+        <TextBlock x:Name="Title" Text="Hóa đơn" FontWeight="Bold" Foreground="{StaticResource Title}" FontSize="{x:Static font:Font.Title}" Margin="30,20"></TextBlock>
         <Border Grid.Row="1" Background="White" CornerRadius="8" Margin="30,0,30,20">
             <Grid Margin="10,20">
                 <Grid.RowDefinitions>
@@ -68,5 +69,6 @@
                 <local:BillListView Grid.Row="2"></local:BillListView>
             </Grid>
         </Border>
+        <custom:PageControl Grid.Row="2" HorizontalAlignment="Center" Margin="20,10,20,20"></custom:PageControl>
     </Grid>
 </UserControl>
