@@ -69,7 +69,7 @@
                 x:Name="NameCategory"
                 Texthint = "Lap top"
                 Title="Tên danh mục"
-                CornerRadiusText="5"
+                CornerRadiusText="3"
                 FontsizeTitle="19"
                 Fontsize = "17"
                 MarginText="5"

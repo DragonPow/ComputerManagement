@@ -15,7 +15,8 @@
         <StaticResource ResourceKey="Background" />
     </UserControl.Background>
 
-    <DockPanel>
+    <DockPanel
+        >
         <TextBlock DockPanel.Dock="Top"
                    FontSize="{x:Static localfont:Font.Title}"
                    FontWeight="Bold"
@@ -26,18 +27,18 @@
         <localcustom:PageControl
                 MaxPage="10"
                 HorizontalAlignment="Center"
+                VerticalAlignment="Top"
                 CurrentPage="1"
                 Grid.Row="4"
                 Width="150"
                 DockPanel.Dock="Bottom"
                 />
         <Grid Background="White"
-              Margin="20,0,20,20">
+              Margin="20,0,20,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="60" />
+                <RowDefinition Height="50" />
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
 
             <local:FeatureBar x:Name="Feature"
@@ -53,98 +54,6 @@
                         <local:TableRow/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
-                        <Style.Triggers>
-                            <Trigger Property="IsKeyboardFocusWithin"
-                                     Value="True">
-                                <Setter Property="BorderBrush"
-                                        Value="{DynamicResource MaterialDesignTextBoxBorder}" />
-                            </Trigger>
-                            <Trigger Property="IsSelected"
-                                     Value="True">
-                                <Setter Property="Background"
-                                        Value="{StaticResource Icon}" />
-                            </Trigger>
-                            <Trigger Property="IsMouseOver"
-                                     Value="True">
-                                <Setter Property="Background"
-                                        Value="Red" />
-                            </Trigger>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsSelected"
-                                               Value="True" />
-                                    <Condition Property="Selector.IsSelectionActive"
-                                               Value="False" />
-                                </MultiTrigger.Conditions>
-                                <Setter Property="Background"
-                                        Value="{DynamicResource MaterialDesignSelection}" />
-                            </MultiTrigger>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsSelected"
-                                               Value="True" />
-                                    <Condition Property="Selector.IsSelectionActive"
-                                               Value="True" />
-                                </MultiTrigger.Conditions>
-                                <Setter Property="Foreground"
-                                        Value="{DynamicResource MaterialDesignBody}" />
-                            </MultiTrigger>
-                            <Trigger Property="IsEnabled"
-                                     Value="False">
-                                <Setter Property="Opacity"
-                                        Value="0.56" />
-                            </Trigger>
-                            <Trigger Property="ItemsControl.AlternationIndex"
-                                     Value="1">
-                                <Setter Property="Background"
-                                        Value="{DynamicResource MaterialDesignDivider}" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <!--
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>
-                <ListViewItem>
-                    <local:TableRow />
-                </ListViewItem>-->
-
-
             </ListView>
         </Grid>
         

@@ -7,7 +7,6 @@
     xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:search="clr-namespace:ComputerProject.CustomControl"
-    Padding="20"
     d:DesignHeight="750"
     d:DesignWidth="1000"
     Background="{StaticResource Background}"
@@ -80,7 +79,7 @@
                 <ListView
                 x:Name="mainList"
                 Grid.Row="2"
-                Margin="10,0"
+                Margin="20,0, 10, 0"
                 ItemsSource="{Binding CustomerList, Mode=OneWay}">
 
                     <ListView.ItemTemplate>

@@ -52,7 +52,7 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <local:CustomerInfor x:Name="CusInfor" IsEnabled="False"/>
+                    <local:CustomerInfor x:Name="CusInfor" IsEnabled="False" />
                     <StackPanel
                     x:Name="ButtonEditMode"
                     Grid.Row="6"
