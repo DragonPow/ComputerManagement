@@ -79,7 +79,6 @@
             <Border x:Name="SearchCustomer" Width="auto" Margin="20,0" Grid.Row="1" BorderBrush="{StaticResource MainColor}" BorderThickness="1" Height="35" CornerRadius="8" Background= "{StaticResource Background}" >
                 <StackPanel Orientation="Horizontal" >
                     <materialDesign:PackIcon Kind="Magnify"  Foreground="#0477BF"   Width="24"   Height="24"     Margin="10, 0, 0, 0"   VerticalAlignment="Center" />
-
                     <Toolkit:AutoCompleteBox
                         Background="Transparent" 
                         Width="250"
@@ -88,7 +87,6 @@
                         BorderThickness="0"
                         Foreground="Black" 
                         Text="Số điện thoại"
-                      
                         FontSize="{x:Static font:Font.Body}" 
                         FontFamily="{StaticResource Mulish}"
                         ItemsSource="{Binding VisibleProducts}"
@@ -96,15 +94,20 @@
                         ValueMemberPath="Name">
                         <Toolkit:AutoCompleteBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock  Text="{Binding Name}" Foreground="Black" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" />
+                                <StackPanel>
+                                    <TextBlock  Text="{Binding Name}" Foreground="Black" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" />
+                                </StackPanel>
+                             
                             </DataTemplate>
                         </Toolkit:AutoCompleteBox.ItemTemplate>
                         <Toolkit:AutoCompleteBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="Background" Value="White"/>
                                 <Setter Property="Margin" Value="0"/>
+                                <Setter Property="BorderThickness" Value="0"/>
                             </Style>
                         </Toolkit:AutoCompleteBox.ItemContainerStyle>
+
                     </Toolkit:AutoCompleteBox>
                 </StackPanel>
             </Border>
