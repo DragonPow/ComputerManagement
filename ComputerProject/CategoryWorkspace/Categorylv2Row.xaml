@@ -7,7 +7,6 @@
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
              xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              xmlns:model="clr-namespace:ComputerProject.Model"
-             Background="White"
              mc:Ignorable="d"
              d:DesignHeight="60"
              d:DesignWidth="400"
@@ -18,51 +17,26 @@
             <ColumnDefinition Width="50"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBox 
-                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                 BorderThickness="0"
+        <TextBlock 
                  x:Name="CategoryLv2Name"
                  HorizontalAlignment="Stretch"
                  Grid.Column="0"
                  Margin="10,0"
-                 materialDesign:HintAssist.Hint="Danh mục mới"
                  FontSize="{x:Static localfont:Font.Body}"
                  FontFamily="{StaticResource Mulish}"
                  Foreground="#11142D"
                  VerticalAlignment="Center"
-                 Text="{Binding Name, ValidatesOnDataErrors=False, UpdateSourceTrigger=PropertyChanged, FallbackValue='Danh mục mới'}">
-            <TextBox.Style>
-                <Style TargetType="{x:Type TextBox}"
-                       BasedOn="{StaticResource MaterialDesignTextBox}">
-                    <Style.Triggers>
-                        <Trigger Property="Validation.HasError"
-                                 Value="True">
-                            <Setter Property="BorderBrush"
-                                    Value="Red" />
-                        </Trigger>
-                        <DataTrigger Binding="{ Binding DataContext.IsEditMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2,AncestorType={x:Type UserControl}}, Mode=OneWay}"
-                                     Value="True">
-                            <Setter Property="IsReadOnly"
-                                    Value="False" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{ Binding DataContext.IsEditMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2,AncestorType={x:Type UserControl}}, Mode=OneWay}"
-                                     Value="False">
-                            <Setter Property="IsReadOnly"
-                                    Value="True" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
+                 Padding="15"
+                 Text="{Binding Name, ValidatesOnDataErrors=False, UpdateSourceTrigger=PropertyChanged, TargetNullValue= 'Danh mục mới'}">
+        </TextBlock>
         <Button Grid.Column="1"
                 x:Name="btnDelete"
                 Style="{StaticResource MaterialDesignIconButton}"
                 ToolTip="Xóa danh mục"
-                FontSize="{x:Static localfont:Font.Body}"
                 Command="{Binding DataContext.DeleteCategoryCommand, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ListView}}}"
                 CommandParameter="{Binding .}">
-            <Image Height="24"
-                   Width="24"
+            <Image Height="20"
+                   Width="20"
                    Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
         </Button>
     </Grid>

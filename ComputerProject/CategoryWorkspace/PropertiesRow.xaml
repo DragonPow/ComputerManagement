@@ -11,8 +11,7 @@
              mc:Ignorable="d"
              d:DesignHeight="67"
              d:DesignWidth="848"
-             Background="White"
-             d:DataContext="{d:DesignInstance Type=model:Specification_type}">
+             d:DataContext="{d:DesignInstance Type = model:Specification_type}">
     <UserControl.Resources>
         <Style TargetType="TextBox"
                x:Key="TitleCell">
@@ -41,12 +40,13 @@
                        FontSize="{x:Static localfont:Font.Body}"
                        Text="{Binding Number}"
                        >
-s
             </TextBlock>
             <TextBox x:Name="NameProperties"
                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                        BorderThickness="0"
                        Grid.Column="1"
+                        Background="Transparent"
+                       materialDesign:HintAssist.Hint="Tên thuộc tính"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Center"
                        Margin="10, 0, 0,0"
@@ -63,11 +63,11 @@ s
                     ToolTip="Xóa danh mục"
                     Command="{Binding DataContext.DeleteSpecificationCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
                     Visibility="{Binding DataContext.IsEditMode, Converter={StaticResource ResourceKey=boolconverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}">
-                <Image Height="24"
-                       Width="24"
+                <Image Height="20"
+                       Width="20"
                        Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
             </Button>
         </Grid>
-        <Separator Background="{StaticResource Divition}" Margin="0,10"/>
+        <Separator Background="{StaticResource Divition}"/>
     </StackPanel>
 </UserControl>
