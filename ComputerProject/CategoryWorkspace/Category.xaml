@@ -34,7 +34,7 @@
                 DockPanel.Dock="Bottom"
                 />
         <Border
-            CornerRadius="20"
+            CornerRadius="8"
               Background="White"
               Margin="20,0,20,0">
             <Grid >
@@ -61,7 +61,7 @@
 
                     <ListView.Resources>
                         <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                            <Border  BorderThickness="0" Background="Wheat"  HorizontalAlignment="Stretch" Margin="10,0, 10, 0">
+                            <Border  BorderThickness="0" Background="{StaticResource SelectedItemBackground}"  HorizontalAlignment="Stretch" Margin="10,5">
                                 <local:TableRow />
                             </Border>
                         </ControlTemplate>
@@ -73,7 +73,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListViewItem">
-                                        <local:TableRow/>
+                                        <local:TableRow Margin="10,5"/>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
