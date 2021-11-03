@@ -29,12 +29,12 @@
         </Style>
         <converter:ListCategoryToStringCommaConverter x:Key="CategoryLv2Converter" />
     </UserControl.Resources>
-        <Grid Height="50">
+        <Grid Height="45">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.23*"></ColumnDefinition>
                 <ColumnDefinition Width="0.65*"></ColumnDefinition>
-                <ColumnDefinition Width="0.04*"></ColumnDefinition>
-                <ColumnDefinition Width="0.04*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <TextBlock x:Name="CategoryLv1"
@@ -44,7 +44,7 @@
                        Grid.Column="0"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
-                       Margin="20, 0, 0, 0"
+                       Margin="10, 0, 0, 0"
                        Text="{Binding Name}">
 
             </TextBlock>
@@ -59,24 +59,29 @@
                        Text="{Binding ChildCategories, Converter={StaticResource CategoryLv2Converter}}" />
             <Button Grid.Column="2"
                     x:Name="btnEdit"
+                    Height="40"
+                    Width="40"
                     FontSize="{x:Static localfont:Font.Body}"
                     FontFamily="{StaticResource Mulish}"
                     Style="{StaticResource MaterialDesignIconButton}"
                     ToolTip="Chỉnh sửa danh mục"
                     Command="{Binding DataContext.OpenDetailCategoryCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
                     CommandParameter="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
-                <Image Height="24"
-                       Width="24"
+                <Image Height="22"
+                       Width="22"
                        Source="/ComputerProject;component/Resource/Icon/akar-icons_edit.png" />
             </Button>
             <Button Grid.Column="3"
                     x:Name="btnDelete"
+                    Height="40"
+                    Width="40"
+                    Margin="10,0"
                     Style="{StaticResource MaterialDesignIconButton}"
                     ToolTip="Xóa danh mục"
                     Command="{Binding DataContext.DeleteCategoryCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
                     CommandParameter="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
-                <Image Height="24"
-                       Width="24"
+                <Image Height="20"
+                       Width="20"
                        Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
             </Button>
 

@@ -121,6 +121,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ApplicationWorkspace\TabMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ApplicationWorkspace\TabMenuSelectedItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BillWorkSpace\BillAllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,6 +182,12 @@
       <DependentUpon>ApplicationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ApplicationWorkspace\ITabView.cs" />
+    <Compile Include="ApplicationWorkspace\TabMenuItem.xaml.cs">
+      <DependentUpon>TabMenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationWorkspace\TabMenuSelectedItem.xaml.cs">
+      <DependentUpon>TabMenuSelectedItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationWorkspace\TemplateTabItem.cs" />
     <Compile Include="BILL.cs">
       <DependentUpon>Model.tt</DependentUpon>
