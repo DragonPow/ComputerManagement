@@ -37,7 +37,7 @@
             Grid.Column="1"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="15, 0, 0, 0"
+            Margin="10, 0, 0, 0"
             FontSize="{x:Static localfont:Font.Body}"
             >
            Tên danh mục cấp 2

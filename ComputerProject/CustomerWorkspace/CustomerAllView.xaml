@@ -10,6 +10,7 @@
     d:DesignHeight="750"
     d:DesignWidth="1000"
     Background="{StaticResource Background}"
+    Margin="20, 20, 20 0"
     mc:Ignorable="d">
     <DockPanel>
         <TextBlock
