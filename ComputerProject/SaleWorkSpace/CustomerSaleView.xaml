@@ -6,15 +6,23 @@
              xmlns:local="clr-namespace:ComputerProject.SaleWorkSpace"
              xmlns:Custom="clr-namespace:ComputerProject.CustomControl"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:Toolkit="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
              mc:Ignorable="d"
              d:DesignHeight="180"
              d:DesignWidth="350"
              d:DataContext="{d:DesignInstance Type={x:Type local:SaleViewModel}}">
     <Border CornerRadius="8"
             Background="White">
-        <StackPanel>
-            <Border Margin="20,5"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Border Margin="20,5,20,10"
                     BorderBrush="{StaticResource Icon}"
                     BorderThickness="0,0,0,1">
                 <Grid Margin="0,10">
@@ -51,29 +59,56 @@
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnRenew"
-                            Grid.Column="2"
-                            Width="auto"
-                            Height="auto"
-                            Margin="10,0"
-                            Padding="0"
-                            Background="{x:Null}"
-                            BorderBrush="{x:Null}">
-                        <materialDesign:PackIcon Height="20"
-                                                 Width="20"
-                                                 Kind="Autorenew"
-                                                 VerticalAlignment="Center"
-                                                 Foreground="{StaticResource Icon}" />
+                                Grid.Column="2"
+                                Width="auto"
+                                Height="auto"
+                                Margin="10,0"
+                                Padding="5"
+                                Style="{StaticResource MaterialDesignIconButton}"
+                                Background="{x:Null}"
+                                BorderBrush="{x:Null}">
+                        <materialDesign:PackIcon Kind="Autorenew"
+                                                     Width="18"
+                                                     Height="18"
+                                                     VerticalAlignment="Center"
+                                                     Foreground="{StaticResource Icon}" />
                     </Button>
 
                 </Grid>
             </Border>
-            <Custom:Search Margin="20,5"
-                           Texthint="Số điện thoại"
-                           Width="320"
-                           IsTabStop="False"
-                           KeyboardNavigation.TabIndex="0"
-                           DataContext="{Binding SearchCustomerCommand}"></Custom:Search>
-            <Grid Margin="25,5">
+            <Border x:Name="SearchCustomer" Width="auto" Margin="20,0" Grid.Row="1" BorderBrush="{StaticResource MainColor}" BorderThickness="1" Height="35" CornerRadius="8" Background= "{StaticResource Background}" >
+                <StackPanel Orientation="Horizontal" >
+                    <materialDesign:PackIcon Kind="Magnify"  Foreground="#0477BF"   Width="24"   Height="24"     Margin="10, 0, 0, 0"   VerticalAlignment="Center" />
+
+                    <Toolkit:AutoCompleteBox
+                        Background="Transparent" 
+                        Width="250"
+                        Margin="5,7"
+                        BorderBrush="{x:Null}"
+                        BorderThickness="0"
+                        Foreground="Black" 
+                        Text="Số điện thoại"
+                      
+                        FontSize="{x:Static font:Font.Body}" 
+                        FontFamily="{StaticResource Mulish}"
+                        ItemsSource="{Binding VisibleProducts}"
+                        SelectedItem="{Binding}"
+                        ValueMemberPath="Name">
+                        <Toolkit:AutoCompleteBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock  Text="{Binding Name}" Foreground="Black" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" />
+                            </DataTemplate>
+                        </Toolkit:AutoCompleteBox.ItemTemplate>
+                        <Toolkit:AutoCompleteBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Margin" Value="0"/>
+                            </Style>
+                        </Toolkit:AutoCompleteBox.ItemContainerStyle>
+                    </Toolkit:AutoCompleteBox>
+                </StackPanel>
+            </Border>
+            <Grid Margin="25,5" Grid.Row="2" Grid.RowSpan="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -84,6 +119,7 @@
                            FontSize="{x:Static font:Font.Body}"
                            FontFamily="{StaticResource Mulish}"
                            FontWeight="DemiBold"
+                           
                            Foreground="{StaticResource Icon}"></TextBlock>
                 <TextBlock Grid.Column="1"
                            Text="{Binding CurrentCustomer.FullName, FallbackValue='-'}"
@@ -94,7 +130,7 @@
                            Margin="5,0"
                            Foreground="Black"></TextBlock>
             </Grid>
-            <Grid Margin="25,5,25,10">
+            <Grid Margin="25,5,25,10" Grid.Row="3" Grid.RowSpan="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -115,7 +151,7 @@
                            Margin="5,0"
                            Foreground="Black"></TextBlock>
             </Grid>
-        </StackPanel>
+        </Grid>
     </Border>
 
 </UserControl>
