@@ -77,7 +77,7 @@
             </Grid.RowDefinitions>
             <TextBlock Text="Tiền khách đưa" Margin="10" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" Foreground="{StaticResource Icon}"/>
             <Border Margin="5" HorizontalAlignment="Right" Padding="30,0,0,0" MinWidth="100" BorderThickness="1" BorderBrush="{StaticResource MainColor}" CornerRadius="5">
-                <TextBox Margin="5,0" Text="18,000,000" FontWeight="DemiBold" BorderThickness="0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" HorizontalAlignment="Right" Foreground="Black"/>
+                <TextBox Margin="5,0" Text="18,000,000" MaxWidth="250" FontWeight="DemiBold" BorderThickness="0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" HorizontalAlignment="Right" Foreground="Black"/>
             </Border>
             <TextBlock Grid.Row="1" Text="Tiền thừa" Margin="10,0" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" Foreground="{StaticResource Icon}"/>
             <TextBlock Grid.Row="1" Margin="10,5" Text="1,401,000" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" HorizontalAlignment="Right" Foreground="Black"/>
