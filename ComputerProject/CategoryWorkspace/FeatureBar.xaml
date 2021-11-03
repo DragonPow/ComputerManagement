@@ -37,12 +37,7 @@
                 CommandParameter="{x:Null}"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
             <StackPanel Orientation="Horizontal">
-                <Image Height="24"
-                       Width="24"
-                       Source="/ComputerProject;component/Resource/Icon/Plus.png">
-
-                </Image>
-                <TextBlock Text="Thêm mới"
+                <TextBlock Text="+ Thêm mới"
                            FontSize="16"
                            Margin="5,0"
                            Foreground="White" />

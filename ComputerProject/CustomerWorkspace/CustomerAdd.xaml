@@ -66,7 +66,7 @@
                         Grid.Column="0"
                         VerticalAlignment="Center">
                         <TextBlock
-                            Margin="0,0,0,10"
+                            Margin="0,0,0,14"
                             VerticalAlignment="Top"
                             FontFamily="{StaticResource Mulish}"
                             FontSize="{x:Static localfont:Font.Body}"
@@ -78,15 +78,20 @@
                             VerticalAlignment="Center"
                             Background="{StaticResource Background}"
                             BorderBrush="#DBD7F4"
-                            CornerRadius="8">
+                            BorderThickness="1"
+                            Height="50"
+                            CornerRadius="3">
                             <DatePicker
                                 x:Name="datetimepicker"
+                                Margin="5,0,5,0"
+                                Height="50"
                                 BorderBrush="#DBD7F4"
-                                Foreground="Black"
+                                Foreground="#11142D"
+                                Text="12/12/2021"
+                                Padding="1"
                                 FontFamily="{StaticResource Mulish}"
-                                FontSize="{x:Static localfont:Font.Body}"
-                                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
-                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                FontSize="16"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
                                 SelectedDate="{Binding Birthday, Mode=TwoWay}" />
                         </Border>
                     </StackPanel>
