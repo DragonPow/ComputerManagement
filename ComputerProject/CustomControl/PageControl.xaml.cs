@@ -24,15 +24,20 @@ namespace ComputerProject.CustomControl
         {
             InitializeComponent();
         }
-
         private static readonly DependencyProperty CurrentPageProperties = DependencyProperty.Register(nameof(CurrentPage), typeof(int), typeof(PageControl), new PropertyMetadata(1));
         private static readonly DependencyProperty MaxPageProperties = DependencyProperty.Register(nameof(MaxPage), typeof(int), typeof(PageControl), new PropertyMetadata(1000));
+
 
 
         public int CurrentPage
         {
             get { return (int)GetValue(CurrentPageProperties); }
-            set { SetValue(CurrentPageProperties, value); }
+            set
+            {
+                //if (this.CurrentPage == value) return;
+                SetValue(CurrentPageProperties, value);
+                PageChanged?.Invoke(this, null);
+            }
         }
         public int MaxPage
         {

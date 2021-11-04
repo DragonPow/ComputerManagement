@@ -12,7 +12,7 @@
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
              Height="60"
              d:DesignWidth="350">
-    <Grid Background="White">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="75"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>

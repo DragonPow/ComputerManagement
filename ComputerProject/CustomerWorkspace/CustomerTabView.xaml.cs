@@ -26,7 +26,7 @@ namespace ComputerProject.CustomerWorkspace
         public string ViewName => "Khách hàng";
         public PackIconKind ViewIcon => PackIconKind.AccountGroup;
 
-        //private CustomerAllView mainView;
+        private CustomerAllViewModel mainVM;
 
         public CustomerTabView()
         {
@@ -36,6 +36,9 @@ namespace ComputerProject.CustomerWorkspace
             mainView.ClickedCreate += OnClick_Create;
             mainView.ClickedDetailItem += OnClick_DetailItem;
             mainView.ClickedEditItem += OnClick_EditItem;
+
+            mainVM = new CustomerAllViewModel();
+            mainView.DataContext = mainVM;
 
             var addView = new CustomerAdd();
             addView.Closed_NotSave += OnBackFrom_Create;
@@ -55,6 +58,14 @@ namespace ComputerProject.CustomerWorkspace
             _vm.CurrentMainViewIndex = 0;
         }
 
+        public CustomerTabView(bool notDesign):this()
+        {
+            if (notDesign)
+            {
+                mainVM.SearchAsync();
+            }
+        }
+
         private void OnClick_Create(object sender, EventArgs e)
         {
             // MessageBox.Show("hora! it's worked");
@@ -70,7 +81,7 @@ namespace ComputerProject.CustomerWorkspace
             addView.DataContext = null;
 
             _vm.CurrentMainViewIndex = 0;
-            (_vm.ListViews[0] as CustomerAllView).Search();
+            mainVM.ReloadCurrentPage();
         }
         private void OnBackFrom_EditItem(object sender, EventArgs e)
         {
@@ -78,7 +89,7 @@ namespace ComputerProject.CustomerWorkspace
             editView.DataContext = null;
 
             _vm.CurrentMainViewIndex = 0;
-            (_vm.ListViews[0] as CustomerAllView).Search();
+            mainVM.ReloadCurrentPage();
         }
 
         private void AddView_SavedOK(object sender, EventArgs e)

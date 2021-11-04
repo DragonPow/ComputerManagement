@@ -1,0 +1,35 @@
+﻿<UserControl
+    x:Class="ComputerProject.CustomControl.BusyView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ComputerProject.CustomControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Border
+        x:Name="busy"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Panel.ZIndex="15"
+        Background="#40000000"
+        CornerRadius="4"
+        IsHitTestVisible="True">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Control
+                Width="55"
+                Margin="0"
+                Foreground="Blue"
+                Style="{StaticResource WaitSpinnerStyle}" />
+            <TextBlock
+                Margin="0,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"
+                FontWeight="Bold"
+                Foreground="White"
+                Text="Đang tải..." />
+        </StackPanel>
+    </Border>
+</UserControl>

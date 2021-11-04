@@ -33,6 +33,7 @@ namespace ComputerProject.CustomMessageBox
         public static void Show(string messageBoxText, string comfirmText = "OK")
         {
             MessageBox box = new MessageBox();
+            box.txtTitle.Text = "Quản lý của hàng";
             box.txtMessage.Text = messageBoxText;
             box.btnOk.Content = comfirmText;
             box.btnCancel.Visibility = Visibility.Collapsed;

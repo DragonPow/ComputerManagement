@@ -8,9 +8,9 @@
     xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Background="{StaticResource Background}"
     d:DesignHeight="750"
     d:DesignWidth="1380"
+    Background="{StaticResource Background}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -46,7 +46,11 @@
                 <ColumnDefinition Width="0.8*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <Border Grid.Row="0" Background="White" CornerRadius="8" Margin="20,0,20,20">
+            <Border
+                Grid.Row="0"
+                Margin="20,0,20,20"
+                Background="White"
+                CornerRadius="8">
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -54,71 +58,73 @@
                     </Grid.RowDefinitions>
                     <local:CustomerInfor x:Name="CusInfor" IsEnabled="False" />
                     <StackPanel
-                    x:Name="ButtonEditMode"
-                    Grid.Row="6"
-                    Margin="0,20"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Orientation="Horizontal"
-                    Visibility="{Binding ButtonGroupVisibility_Edit, FallbackValue=Hidden}">
+                        x:Name="ButtonEditMode"
+                        Grid.Row="6"
+                        Margin="0,20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        IsEnabled="{Binding IsFree}"
+                        Orientation="Horizontal"
+                        Visibility="{Binding ButtonGroupVisibility_Edit, FallbackValue=Hidden}">
                         <Button
-                        Width="100"
-                        Height="40"
-                        Margin="20,0"
-                        Background="Transparent"
-                        Style="{StaticResource MaterialDesignOutlinedButton}"
-                        BorderBrush="{StaticResource MainColor}"
-                        Click="OnCancelEdit"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="16"
-                        Foreground="{StaticResource MainColor}">
+                            Width="100"
+                            Height="40"
+                            Margin="20,0"
+                            Background="Transparent"
+                            BorderBrush="{StaticResource MainColor}"
+                            Click="OnCancelEdit"
+                            FontFamily="{StaticResource Mulish}"
+                            FontSize="16"
+                            Foreground="{StaticResource MainColor}"
+                            Style="{StaticResource MaterialDesignOutlinedButton}">
                             Hủy
                         </Button>
                         <Button
-                        Width="120"
-                        Height="40"
-                        Margin="20,0"
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        Background="{StaticResource MainColor}"
-                        Click="OnSaveEdit"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="16">
+                            Width="120"
+                            Height="40"
+                            Margin="20,0"
+                            Background="{StaticResource MainColor}"
+                            Click="OnSaveEdit"
+                            FontFamily="{StaticResource Mulish}"
+                            FontSize="16"
+                            Style="{StaticResource MaterialDesignRaisedButton}">
                             Cập nhật
                         </Button>
 
                     </StackPanel>
 
                     <StackPanel
-                    x:Name="ButtonReadMode"
-                    Grid.Row="1"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Orientation="Horizontal"
-                    Margin="0,20"
-                    Visibility="{Binding ButtonGroupVisibility_Read}">
+                        x:Name="ButtonReadMode"
+                        Grid.Row="1"
+                        Margin="0,20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        IsEnabled="{Binding IsFree}"
+                        Orientation="Horizontal"
+                        Visibility="{Binding ButtonGroupVisibility_Read}">
                         <Button
-                        x:Name="BtnDelete"
-                        Width="100"
-                        Height="40"
-                        Margin="20,0"
-                        Style="{StaticResource MaterialDesignOutlinedButton}"
-                        Background="Transparent"
-                        BorderBrush="{StaticResource Warning}"
-                        Click="OnDelete"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="16"
-                        Foreground="{StaticResource Warning}">
+                            x:Name="BtnDelete"
+                            Width="100"
+                            Height="40"
+                            Margin="20,0"
+                            Background="Transparent"
+                            BorderBrush="{StaticResource Warning}"
+                            Click="OnDelete"
+                            FontFamily="{StaticResource Mulish}"
+                            FontSize="16"
+                            Foreground="{StaticResource Warning}"
+                            Style="{StaticResource MaterialDesignOutlinedButton}">
                             Xóa
                         </Button>
                         <Button
-                        Width="120 "
-                        Height="40"
-                        Margin="20,0"
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        Background="{StaticResource MainColor}"
-                        Click="OnStartEdit"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="16">
+                            Width="120 "
+                            Height="40"
+                            Margin="20,0"
+                            Background="{StaticResource MainColor}"
+                            Click="OnStartEdit"
+                            FontFamily="{StaticResource Mulish}"
+                            FontSize="16"
+                            Style="{StaticResource MaterialDesignRaisedButton}">
                             Chỉnh sửa
                         </Button>
 
@@ -126,7 +132,11 @@
 
                 </Grid>
             </Border>
-            <Border  Grid.Column="1" Background="White" CornerRadius="8" Margin="0,0,0,20">
+            <Border
+                Grid.Column="1"
+                Margin="0,0,0,20"
+                Background="White"
+                CornerRadius="8">
                 <StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -134,31 +144,35 @@
                             <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock
-                        Grid.Column="0"
-                        Margin="20"
-                        VerticalAlignment="Center"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="{x:Static localfont:Font.SubTitle}"
-                        FontWeight="SemiBold"
-                        Foreground="{StaticResource Title}">
-                        Lịch sử hóa đơn
+                            Grid.Column="0"
+                            Margin="20"
+                            VerticalAlignment="Center"
+                            FontFamily="{StaticResource Mulish}"
+                            FontSize="{x:Static localfont:Font.SubTitle}"
+                            FontWeight="SemiBold"
+                            Foreground="{StaticResource Title}">
+                            Lịch sử hóa đơn
                         </TextBlock>
                         <localcustom:Search
-                        x:Name="Search"
-                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
-                        Grid.Column="1"
-                        Width="300"
-                        Margin="20,0,20,10"
-                        HorizontalAlignment="Right"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="{x:Static localfont:Font.Body}"
-                        Texthint="Mã hóa đơn" />
+                            x:Name="Search"
+                            Grid.Column="1"
+                            Width="300"
+                            Margin="20,0,20,10"
+                            HorizontalAlignment="Right"
+                            FontFamily="{StaticResource Mulish}"
+                            FontSize="{x:Static localfont:Font.Body}"
+                            IsTabStop="False"
+                            KeyboardNavigation.TabIndex="0"
+                            Texthint="Mã hóa đơn" />
                     </Grid>
-                    <local:CustomerDetailViewBillTitle Grid.Row="1" Margin="10,0" Height="50" />
+                    <local:CustomerDetailViewBillTitle
+                        Grid.Row="1"
+                        Height="50"
+                        Margin="10,0" />
                     <ListView
-                    x:Name="ListBills"
-                    Grid.Row="2"
-                    Margin="10,0,10,0">
+                        x:Name="ListBills"
+                        Grid.Row="2"
+                        Margin="10,0,10,0">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -179,30 +193,30 @@
 
         </Grid>
         <Border
-                x:Name="busy"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Panel.ZIndex="15"
-                Background="#40000000"
-                CornerRadius="4"
-                IsHitTestVisible="True"
-                Visibility="{Binding BusyVisibility, FallbackValue=Hidden}">
+            x:Name="busy"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Panel.ZIndex="15"
+            Background="#40000000"
+            CornerRadius="4"
+            IsHitTestVisible="True"
+            Visibility="{Binding BusyVisibility, FallbackValue=Hidden}">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Control
-                        Width="55"
-                        Margin="0"
-                        Foreground="Blue"
-                        Style="{StaticResource WaitSpinnerStyle}" />
+                    Width="55"
+                    Margin="0"
+                    Foreground="Blue"
+                    Style="{StaticResource WaitSpinnerStyle}" />
                 <TextBlock
-                        Margin="0,5"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        FontSize="16"
-                        FontWeight="Bold"
-                        Foreground="White"
-                        Text="Đang tải..." />
+                    Margin="0,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="Đang tải..." />
             </StackPanel>
         </Border>
     </Grid>
