@@ -43,7 +43,7 @@
                         <DatePicker BorderBrush="#DBD7F4" Padding="10"  Foreground="Black" FontFamily="{StaticResource Mulish}"  FontSize="{x:Static font:Font.Body}"  IsTabStop="False" KeyboardNavigation.TabIndex="0" Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                                      />
                     </Border>
-                    <Button  x:Name="btnExportSameTime" Grid.Column="5" Padding="10,0" Height="40" VerticalAlignment="Center" Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}" Style="{StaticResource MaterialDesignRaisedButton}"  materialDesign:ButtonAssist.CornerRadius="8" HorizontalAlignment="Right">
+                    <Button  x:Name="btnExportSameTime" Grid.Column="5" Margin="10,0" Padding="10,0" Height="40" VerticalAlignment="Center" Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}" Style="{StaticResource MaterialDesignRaisedButton}"  materialDesign:ButtonAssist.CornerRadius="8" HorizontalAlignment="Right">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Export" Width="24" Height="24" Foreground="White"></materialDesign:PackIcon>
                             <TextBlock Text="Xuất cùng lúc" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="White" Margin="10,0"></TextBlock>
@@ -63,10 +63,10 @@
                     <TextBlock x:Name="txtBillITitle" Grid.Column="1" Text="Mã hóa đơn" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
                     <TextBlock x:Name="txtDateBill" Grid.Column="2" Text="Ngày tạo" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
                     <TextBlock x:Name="txtCusPhoneNumber" Grid.Column="3" Text="Số điện thoại" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-                    <TextBlock x:Name="txtTotalBill" Grid.Column="4" Text="Tổng hóa dơn" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                    <TextBlock x:Name="txtTotalBill" Grid.Column="4" Text="Tổng hóa đơn" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
                     <TextBlock x:Name="txtPoint" Grid.Column="5" Text="Điểm thưởng sử dụng" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
                 </Grid>
-                <local:BillListView Grid.Row="2"></local:BillListView>
+                <local:BillListView Grid.Row="2" Margin="0,5"></local:BillListView>
             </Grid>
         </Border>
         <custom:PageControl Grid.Row="2" HorizontalAlignment="Center" Margin="20,10,20,20"></custom:PageControl>
