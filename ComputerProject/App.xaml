@@ -1,7 +1,8 @@
-﻿<Application x:Class="ComputerProject.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ComputerProject">
+﻿<Application
+    x:Class="ComputerProject.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ComputerProject">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -26,8 +27,7 @@
             <FontFamily x:Key="Mulish">pack:/Resource/Font/Mulish-VariableFont_wght.ttf</FontFamily>
             <FontFamily x:Key="MulishItalic">pack:/Resource/Font/Mulish-Italic-VariableFont_wght.ttf</FontFamily>
 
-            <BitmapImage x:Key="DefaultImage"
-                         UriSource="/ComputerProject;component/Resource/Image/Product.jpg" />
+            <BitmapImage x:Key="DefaultImage" UriSource="/ComputerProject;component/Resource/Image/Product.jpg" />
 
             <Style x:Key="WaitSpinnerStyle" TargetType="Control">
                 <Setter Property="Foreground" Value="#888" />

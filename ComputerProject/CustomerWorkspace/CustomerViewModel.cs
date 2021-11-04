@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ComputerProject.CustomerWorkspace
 {
-    public class CustomerViewModel: BaseViewModel
+    public class CustomerViewModel: BusyViewModel
     {
         private CUSTOMER _model;
         public CUSTOMER Model => _model;
@@ -98,17 +98,6 @@ namespace ComputerProject.CustomerWorkspace
             }
         }
 
-        private System.Windows.Visibility busyVisibility = System.Windows.Visibility.Hidden;
-        public System.Windows.Visibility BusyVisibility
-        {
-            get => busyVisibility;
-            set
-            {
-                busyVisibility = value;
-                OnPropertyChanged(nameof(BusyVisibility));
-            }
-        }
-
         public string GetInvalid()
         {
             if (FullName == null || FullName.Trim().Length < 1)
@@ -140,11 +129,24 @@ namespace ComputerProject.CustomerWorkspace
         /// </summary>
         /// <param name="target">Target</param>
         /// <returns>Return null not duplicate. Return duplicate-detail if duplicated.</returns>
-        public static async Task<string> GetDuplicate(CustomerViewModel target)
+        public static async Task<string> GetDuplicateAsync(CustomerViewModel target)
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
                 var old = await Task.Run(() => db.CUSTOMERs.Where(c => c.phone == target.PhoneNumber).FirstOrDefault());
+                if (old != null)
+                {
+                    return "Số điện thoại đã đucợ đăng kí trước đó";
+                }
+                else return null;
+            }
+        }
+
+        public static string GetDuplicate(CustomerViewModel target)
+        {
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            {
+                var old = db.CUSTOMERs.Where(c => c.phone == target.PhoneNumber).FirstOrDefault();
                 if (old != null)
                 {
                     return "Số điện thoại đã đucợ đăng kí trước đó";
@@ -247,7 +249,7 @@ namespace ComputerProject.CustomerWorkspace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL : " + s);
+                db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL : " + s);
 
                 var data = db.CUSTOMERs.Where(c => c.phone.StartsWith(phone))
                         .OrderBy(c => c.phone)
@@ -255,6 +257,9 @@ namespace ComputerProject.CustomerWorkspace
 
                 if (data.Count < count)
                 {
+                    startIndex -= db.CUSTOMERs.Where(c => c.phone.StartsWith(phone)).Count();
+
+                    if (startIndex < 0) startIndex = 0;
                     var temp1 = db.CUSTOMERs.Where(c => c.phone.Contains(phone) && !c.phone.StartsWith(phone))
                         .OrderBy(c => c.phone)
                         .Skip(startIndex).Take(count - data.Count).ToList();
@@ -263,12 +268,22 @@ namespace ComputerProject.CustomerWorkspace
                 }
 
                 var rs = new List<CustomerViewModel>(data.Count);
-                foreach (var row in data)
+                foreach (var c in data)
                 {
-                    rs.Add(new CustomerViewModel(row));
+                    rs.Add(new CustomerViewModel(c));
                 }
 
                 return rs;
+            }
+        }
+
+        public static int CountByPhone(string phone)
+        {
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            {
+                //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL : " + s);
+
+                return db.CUSTOMERs.Where(c => c.phone.Contains(phone)).Count();
             }
         }
 
@@ -280,6 +295,50 @@ namespace ComputerProject.CustomerWorkspace
         public static async Task<List<CustomerViewModel>> FindByPhoneAsync(string phone, int startIndex, int count, System.Threading.CancellationToken cancellationToken)
         {
             return await Task.Run(() => FindByPhone(phone, startIndex, count), cancellationToken);
+        }
+
+        public static async Task<int> CountByPhoneAsync(string phone, System.Threading.CancellationToken cancellationToken)
+        {
+            return await Task.Run(() => CountByPhone(phone), cancellationToken);
+        }
+
+        public void Insert(Action callback = null)
+        {
+            string error = GetInvalid(); // Check invalid data
+
+            if (error != null)
+            {
+                CustomMessageBox.MessageBox.Show(error);
+                return;
+            }
+
+            DoBusyTask(() =>
+            {
+                error = CustomerViewModel.GetDuplicate(this); // Busy task
+                
+            }, ()=>
+            {
+                if (error == null)
+                {
+                    try
+                    {
+                        DoBusyTask(InsertToDB, () =>
+                        {
+                            CustomMessageBox.MessageBox.Show("Đã thêm khách hàng mới vào cơ sở dữ liệu thành công");
+                            callback?.Invoke(); // Callback
+                        });
+                    }
+                    catch (Exception) when (!HelperService.Environment.IsDebug)
+                    {
+                        IsBusy = false;
+                        CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
+                    }
+                }
+                else
+                {
+                    CustomMessageBox.MessageBox.Show(error);
+                }
+            });
         }
 
         public void CopyTo(CUSTOMER other, bool includeID = false)

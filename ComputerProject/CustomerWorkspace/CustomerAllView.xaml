@@ -10,6 +10,7 @@
     d:DesignHeight="750"
     d:DesignWidth="1000"
     Background="{StaticResource Background}"
+    d:DataContext="{d:DesignInstance Type=local:CustomerAllViewModel}"
     Margin="20, 20, 20 0"
     mc:Ignorable="d">
     <DockPanel>
@@ -24,13 +25,14 @@
             Khách hàng
         </TextBlock>
         <localcustom:PageControl
-                MaxPage="10"
-                HorizontalAlignment="Center"
-                CurrentPage="1"
-                Grid.Row="4"
-                Width="150"
-                DockPanel.Dock="Bottom"/>
-        <Border  Background="White" CornerRadius="8" >
+            Grid.Row="4"
+            Width="150"
+            HorizontalAlignment="Center"
+            CurrentPage="{Binding CurrentPage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            DockPanel.Dock="Bottom"
+            MaxPage="{Binding MaxPage}"
+            />
+        <Border Background="White" CornerRadius="8">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70" />
@@ -38,58 +40,60 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Grid
-                Grid.Row="0"
-                Margin="20,0"
-                Background="White">
+                    Grid.Row="0"
+                    Margin="20,0"
+                    Background="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="600" />
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="120" />
                     </Grid.ColumnDefinitions>
                     <search:Search
-                    Grid.Column="0"
-                    Texthint="Số điện thoại"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center" 
-                    TextChanged="Search_TextChanged"
-                    IsTabStop="False" KeyboardNavigation.TabIndex="0" 
-                    />
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        IsTabStop="False"
+                        KeyboardNavigation.TabIndex="0"
+                        TextChanged="Search_TextChanged"
+                        Texthint="Số điện thoại" />
                     <!--<TextBox
                     Grid.Column="0"
                     Width="400"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center" 
+                    VerticalAlignment="Center"
                     TextChanged="Search_TextChanged"
                     />-->
                     <Button
-                    x:Name="btnCreate"
-                    Grid.Column="2"
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    Background="#FF0477BF"
-                    Height="35"
-                    ToolTip="Thêm khách hàng">
+                        x:Name="btnCreate"
+                        Grid.Column="2"
+                        Height="35"
+                        Background="#FF0477BF"
+                        Click="BtnCreate_Click"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        ToolTip="Thêm khách hàng">
                         <TextBlock
-                        FontFamily="/ComputerProject;component/Resource/Font/Mulish-VariableFont_wght.ttf"
-                        FontSize="16"
-                        Foreground="White">
-                        + Thêm mới
+                            FontFamily="/ComputerProject;component/Resource/Font/Mulish-VariableFont_wght.ttf"
+                            FontSize="16"
+                            Foreground="White">
+                            + Thêm mới
                         </TextBlock>
                     </Button>
                 </Grid>
                 <local:CustomerAllRowTitle Grid.Row="1" Margin="20,0,10,0" />
                 <ListView
-                x:Name="mainList"
-                Grid.Row="2"
-                Margin="20,0, 10, 0"
-                ItemsSource="{Binding CustomerList, Mode=OneWay}">
+                    x:Name="mainList"
+                    Grid.Row="2"
+                    Margin="20,0,10,0"
+                    ItemsSource="{Binding CustomerList}">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <local:CustomerAllViewRow
+                                Background="Transparent"
                                 ClickedDelete="BtnDeleteItem_Click"
                                 ClickedEdit="BtnEditItem_Click"
-                                MouseDoubleClick="Item_MouseDoubleClick"
-                                DataContext="{Binding }" />
+                                DataContext="{Binding}"
+                                MouseDoubleClick="Item_MouseDoubleClick" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
@@ -100,38 +104,14 @@
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
-                <Border
-            Grid.Row="2"
-            Grid.RowSpan="1"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Panel.ZIndex="15"
-            Background="#40000000"
-            CornerRadius="4"
-            IsHitTestVisible="True"
-            Visibility="{Binding BusyVisibility, FallbackValue=Hidden}"
-            x:Name="busy"
-            >
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Control
-                    Width="55"
-                    Margin="0"
-                    Foreground="Blue"
-                    Style="{StaticResource WaitSpinnerStyle}" />
-                        <TextBlock
-                    Margin="0,5"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="16"
-                    FontWeight="Bold"
-                    Foreground="White"
-                    Text="Đang tải..." />
-                    </StackPanel>
-                </Border>
-               
+                <localcustom:BusyView
+                    Grid.Row="2"
+                    Margin="20,0,10,0"
+                    Visibility="{Binding BusyVisibility, FallbackValue=Hidden}"/>
+
             </Grid>
-            
+
         </Border>
-        
+
     </DockPanel>
 </UserControl>

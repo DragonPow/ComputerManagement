@@ -42,11 +42,13 @@ namespace ComputerProject.ApplicationWorkspace
 
         public ApplicationViewModel()
         {
+            var customerTab = new CustomerWorkspace.CustomerTabView(true);
+
             TabViewModels = new ObservableCollection<ITabView>()
             {
                 new SaleViewModel(),
                 new CategoryViewModel(),
-                new CustomerWorkspace.CustomerTabView(),
+                customerTab,
             };
             CurrentViewModel = TabViewModels[0];
         }
