@@ -44,10 +44,7 @@ namespace ComputerProject.CustomerWorkspace
             if (e.PropertyName == nameof(CurrentPage))
             {
                 //Console.WriteLine("Page = " + CurrentPage);
-                searchOperation.Cancel();
-                searchOperation = new CancellationTokenSource();
-
-                DoBusyTask(Search, searchOperation.Token);
+                SearchAsync();
             }
         }
 
@@ -106,31 +103,33 @@ namespace ComputerProject.CustomerWorkspace
             }
         }
 
-        public void Search()
+        public void SearchAsync()
         {
-            var data = CustomerViewModel.FindByPhone(searchContent, currentStartIndex, step);
+            searchOperation.Cancel();
+            searchOperation = new CancellationTokenSource();
 
-            if (!searchOperation.Token.IsCancellationRequested)
+            List<CustomerViewModel> data = null;
+            DoBusyTask(() =>
             {
-                CustomerList = new List<CustomerViewModel>(data);
-            }
+                data = CustomerViewModel.FindByPhone(searchContent, currentStartIndex, step);
+            }, searchOperation.Token, () =>
+            {
+                CustomerList = data;
+            });
         }
 
         public void CountMaxPage()
         {
             int max = CustomerViewModel.CountByPhone(searchContent);
-            if (!countOperation.IsCancellationRequested)
-            {
-                MaxPage = max % step > 0 ? max / step + 1 : max / step;
-            }
+            MaxPage = max % step > 0 ? max / step + 1 : max / step;
         }
 
         public void ReloadCurrentPage()
         {
-            searchOperation.Cancel();
-            searchOperation = new CancellationTokenSource();
+            countOperation.Cancel();
+            countOperation = new CancellationTokenSource();
 
-            DoBusyTask(CountMaxPage, searchOperation.Token, () => {
+            DoBusyTask(CountMaxPage, countOperation.Token, () => {
                 if (CurrentPage > MaxPage)
                 {
                     CurrentPage = maxPage;
