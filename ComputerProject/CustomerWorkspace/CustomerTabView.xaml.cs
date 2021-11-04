@@ -62,7 +62,7 @@ namespace ComputerProject.CustomerWorkspace
         {
             if (notDesign)
             {
-                mainVM.Search();
+                mainVM.SearchAsync();
             }
         }
 

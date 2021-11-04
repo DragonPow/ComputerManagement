@@ -39,7 +39,10 @@ namespace ComputerProject
             IsBusy = true;
             await Task.Run(busyTask, cancellationToken);
             IsBusy = false;
-            callback?.Invoke();
+            if (!cancellationToken.IsCancellationRequested)
+            {
+                callback?.Invoke();
+            }
         }
     }
 }
