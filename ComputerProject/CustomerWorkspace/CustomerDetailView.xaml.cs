@@ -94,33 +94,34 @@ namespace ComputerProject.CustomerWorkspace
                 return;
             }
 
-            ViewModel.BusyVisibility = Visibility.Visible; // Show busy
-
-            if (oldVM.PhoneNumber.Trim() != ViewModel.PhoneNumber.Trim())
-            {
-                error = await CustomerViewModel.GetDuplicate(ViewModel); // Busy task
-                if (error != null)
-                {
-                    ViewModel.BusyVisibility = Visibility.Hidden;
-                    CustomMessageBox.MessageBox.Show(error);
-                    return;
-                }
-            }
-
-            // Data is safe now
             try
             {
-                await ViewModel.UpdateToDBAsycn(); // Busy task
+                if (oldVM.PhoneNumber.Trim() != ViewModel.PhoneNumber.Trim())
+                {
+                    ViewModel.IsBusy = true;
+                    error = await CustomerViewModel.GetDuplicateAsync(ViewModel);
+                }
 
-                ViewModel.BusyVisibility = Visibility.Hidden;
+                if (error == null)
+                {
+                    ViewModel.IsBusy = true;
+                    await ViewModel.UpdateToDBAsycn();
+                    ViewModel.IsBusy = false;
 
-                CustomMessageBox.MessageBox.Show("Cập nhật thông tin thành công");
-                ViewModel.CopyTo(oldVM);
-                OnCancelEdit(null, null);
+                    CustomMessageBox.MessageBox.Show("Cập nhật thông tin thành công");
+                    ViewModel.CopyTo(oldVM);
+                    OnCancelEdit(null, null);
+
+                }
+                else
+                {
+                    ViewModel.IsBusy = false;
+                    CustomMessageBox.MessageBox.Show(error);
+                }
             }
             catch (Exception) when (!HelperService.Environment.IsDebug)
             {
-                ViewModel.BusyVisibility = Visibility.Hidden;
+                ViewModel.IsBusy = false;
                 CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
             }
         }
@@ -129,18 +130,16 @@ namespace ComputerProject.CustomerWorkspace
         {
             try
             {
-                ViewModel.BusyVisibility = Visibility.Visible; // Show busy
+                ViewModel.IsBusy = true;
+                await ViewModel.DeleteFromDBAsync();
+                ViewModel.IsBusy = false;
 
-                await ViewModel.DeleteFromDBAsync(); // Busy task
-
-                ViewModel.BusyVisibility = Visibility.Hidden;
                 SwitchMode_readonly();
-
                 ClickedBack?.Invoke(this, null);
             }
             catch (Exception) when (!HelperService.Environment.IsDebug)
             {
-                ViewModel.BusyVisibility = Visibility.Hidden;
+                ViewModel.IsBusy = false;
                 CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
             }
         }

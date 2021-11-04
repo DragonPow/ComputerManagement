@@ -571,8 +571,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="phone" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="address" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="birthday" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="birthday" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
           <Property Name="point" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BILLs" Relationship="QuanLyCuaHangViTinhModel.FK__BILL__customerId__66603565" FromRole="CUSTOMER" ToRole="BILL" />
           <NavigationProperty Name="BILL_REPAIR" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__40058253" FromRole="CUSTOMER" ToRole="BILL_REPAIR" />

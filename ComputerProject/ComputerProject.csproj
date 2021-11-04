@@ -241,6 +241,10 @@
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\IndexCategoryConverter.cs" />
     <Compile Include="Converter\ListCategoryToStringCommaConverter.cs" />
+    <Compile Include="Converter\RevertBooleanConverter.cs" />
+    <Compile Include="CustomControl\BusyView.xaml.cs">
+      <DependentUpon>BusyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\ButtonIcon.cs" />
     <Compile Include="CustomControl\PageControl.xaml.cs">
       <DependentUpon>PageControl.xaml</DependentUpon>
@@ -281,6 +285,7 @@
     <Compile Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml.cs">
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\BusyViewModel.cs" />
     <Compile Include="StatiticsWorkSpace\DatePickerCalendar.cs" />
     <Compile Include="Helper\NavigationService.cs" />
     <Compile Include="DETAIL_REPORT_CATEGORY.cs">
@@ -420,6 +425,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CategoryWorkspace\TittlePropertiesTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\BusyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
