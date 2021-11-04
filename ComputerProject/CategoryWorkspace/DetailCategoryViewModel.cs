@@ -291,6 +291,7 @@ namespace ComputerProject.CategoryWorkspace
         public void DeleteSpecificationType(Model.Specification_type specification)
         {
             CurrentChildCategory.SpecificationTypes.Remove(specification);
+
         }
 
         public void Delete(Model.Category category)

@@ -11,6 +11,6 @@
         Title="WindowTest" Height="750" Width="1380"
         d:DesignHeight="1000" d:DesignWidth="1100" WindowStartupLocation="CenterOwner">
     <Grid>
-        <test:CustomerTabView/>
+        <bill:BillAllView/>
     </Grid>
 </Window>

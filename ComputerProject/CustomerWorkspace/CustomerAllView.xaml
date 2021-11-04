@@ -11,6 +11,7 @@
     d:DesignWidth="1000"
     Background="{StaticResource Background}"
     d:DataContext="{d:DesignInstance Type=local:CustomerAllViewModel}"
+    Margin="20, 20, 20 0"
     mc:Ignorable="d">
     <DockPanel>
         <TextBlock

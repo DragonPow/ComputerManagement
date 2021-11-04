@@ -24,7 +24,7 @@ namespace ComputerProject.CustomerWorkspace
         public CustomerTabViewModel _vm => this.DataContext as CustomerTabViewModel;
 
         public string ViewName => "Khách hàng";
-        public PackIconKind ViewIcon => PackIconKind.CustomerService;
+        public PackIconKind ViewIcon => PackIconKind.AccountGroup;
 
         private CustomerAllViewModel mainVM;
 

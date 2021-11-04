@@ -33,30 +33,67 @@
                 Width="150"
                 DockPanel.Dock="Bottom"
                 />
-        <Grid Background="White"
+        <Border
+            CornerRadius="8"
+              Background="White"
               Margin="20,0,20,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="1*" />
-            </Grid.RowDefinitions>
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
 
-            <local:FeatureBar x:Name="Feature"
+                <local:FeatureBar x:Name="Feature"
                               DataContext="{Binding .}"
                               Margin="0,20"/>
-            <local:TableTitle Grid.Row="1"
+                <local:TableTitle Grid.Row="1"
                               Margin="10,0"/>
-            <ListView x:Name="Listcategory"
+                <ListView x:Name="Listcategory"
                       Grid.Row="2"
                       ItemsSource="{Binding CurrentCategories}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <local:TableRow/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-        
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <local:TableRow/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.Resources>
+                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+
+                            <Border  BorderThickness="0" Background="{StaticResource SelectedItemBackground}"  HorizontalAlignment="Stretch" Margin="10,5">
+
+                                <local:TableRow />
+                            </Border>
+                        </ControlTemplate>
+                    </ListView.Resources>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <local:TableRow Margin="10,5"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsSelected" Value="true" />
+                                        <Condition Property="Selector.IsSelectionActive" Value="true" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                                </MultiTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </Grid>
+        </Border>
     </DockPanel>
 
 
