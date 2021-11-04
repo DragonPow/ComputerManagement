@@ -61,24 +61,51 @@
 
                     </Grid>
                 </Border>
-                <ListView Grid.Row="1"
+                <ListView  Grid.Row="1"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           Margin="5,6,5,4"
                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                           ItemsSource="{Binding ProductsInBill}">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment"
-                                    Value="Stretch" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
+
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <local:ProdChooseItem />
+                            <local:ProdChooseItem/>
                         </DataTemplate>
+                        
                     </ListView.ItemTemplate>
-                </ListView>
 
+                    <ListView.Resources>
+                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+                            <Border  Background="{StaticResource SelectedItemBackground}"  HorizontalAlignment="Stretch">
+                                <local:ProdChooseItem Margin="5" />
+                            </Border>
+                        </ControlTemplate>
+                    </ListView.Resources>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <local:ProdChooseItem Margin="5" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsSelected" Value="true" />
+                                        <Condition Property="Selector.IsSelectionActive" Value="true" />
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.Setters>
+                                        <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                                    </MultiTrigger.Setters>
+                                </MultiTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
             </Grid>
         </Border>
         <Border Grid.Row="2"

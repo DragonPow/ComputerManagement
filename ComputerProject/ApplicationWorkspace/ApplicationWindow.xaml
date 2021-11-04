@@ -124,12 +124,12 @@
                           SelectedItem="{Binding CurrentViewModel}">
                     <ListView.Resources>
                         <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                            <local:TabMenuSelectedItem Margin="10,5"/>
+                            <local:TabMenuSelectedItem Margin="10,0"/>
                         </ControlTemplate>
                     </ListView.Resources>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <local:TabMenuItem Margin="10,5"/>
+                            <local:TabMenuItem Margin="10,0"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
@@ -139,7 +139,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListViewItem">
-                                        <local:TabMenuItem Margin="10,5"/>
+                                        <local:TabMenuItem Margin="10,0"/>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
