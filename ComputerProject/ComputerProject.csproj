@@ -266,6 +266,11 @@
     <Compile Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml.cs">
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\WindowService.cs" />
+    <Compile Include="ProductWorkSpace\ProductMainTitleTableView.xaml.cs">
+      <DependentUpon>ProductMainTitleTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\BillViewModel.cs" />
     <Compile Include="Helper\NavigationService.cs" />
     <Compile Include="DETAIL_REPORT_CATEGORY.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -329,7 +334,7 @@
     <Compile Include="SaleWorkSpace\CustomerSaleView.xaml.cs">
       <DependentUpon>CustomerSaleView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SaleWorkSpace\FilterProduct.cs" />
+    <Compile Include="SaleWorkSpace\FilterProductViewModel.cs" />
     <Compile Include="SaleWorkSpace\PaySaleBillView.xaml.cs">
       <DependentUpon>PaySaleBillView.xaml</DependentUpon>
     </Compile>
@@ -461,6 +466,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProductWorkSpace\ProductMainTitleTableView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ProductWorkSpace\ProductMainView.xaml" />
     <Page Include="SaleWorkSpace\CurrentSaleBillView.xaml">
       <SubType>Designer</SubType>
@@ -565,7 +574,10 @@
   <ItemGroup>
     <Resource Include="Resource\Icon\IconColor.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SettingWorkSpace\" />
+    <Folder Include="StatiticsWorkSpace\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />
   <ItemGroup>

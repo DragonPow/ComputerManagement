@@ -10,6 +10,16 @@ using System.Threading.Tasks;
 
 namespace ComputerProject.ApplicationWorkspace
 {
+    public class RequestViewArgs : EventArgs
+    {
+        public object Value;
+        public BaseViewModel TypeViewModel;
+        public RequestViewArgs(BaseViewModel type, object value)
+        {
+            TypeViewModel = type;
+            Value = value;
+        }
+    }
     public class ApplicationViewModel : BaseViewModel
     {
         private ObservableCollection<ITabView> _tabViewModels;
@@ -42,13 +52,21 @@ namespace ComputerProject.ApplicationWorkspace
 
         public ApplicationViewModel()
         {
+            SaleViewModel saleVM = new SaleViewModel();
+            saleVM.RequestOpenDetailProductView += SaleVM_RequestOpenDetailProduct;
+
             TabViewModels = new ObservableCollection<ITabView>()
             {
-                new SaleViewModel(),
+                saleVM,
                 new CategoryViewModel(),
                 new CustomerWorkspace.CustomerTabView(),
             };
             CurrentViewModel = TabViewModels[0];
+        }
+
+        private void SaleVM_RequestOpenDetailProduct(object sender, RequestViewArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

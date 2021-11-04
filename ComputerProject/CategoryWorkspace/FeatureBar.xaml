@@ -34,8 +34,7 @@
                 Background="{StaticResource MainColor}"
                 ToolTip="Thêm danh mục"
                 Command="{Binding OpenDetailCategoryCommand}"
-                CommandParameter="{x:Null}"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                CommandParameter="{x:Null}">
             <StackPanel Orientation="Horizontal">
                 <Image Height="24"
                        Width="24"

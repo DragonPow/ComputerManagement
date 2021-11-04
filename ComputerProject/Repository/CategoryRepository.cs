@@ -25,7 +25,6 @@ namespace ComputerProject.Repository
                 if (name == null)
                 {
                     query = _context.CATEGORies.Include(c => c.CATEGORY11).Where(i => i.parentCategoryId == null);
-                    //query = _context.CATEGORies.Where(i => i.parentCategoryId == null);
                 }
                 else
                 {

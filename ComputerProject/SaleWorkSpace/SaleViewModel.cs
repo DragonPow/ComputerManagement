@@ -3,6 +3,7 @@ using ComputerProject.CustomerWorkspace;
 using ComputerProject.Helper;
 using ComputerProject.HelperService;
 using ComputerProject.Model;
+using ComputerProject.ProductWorkSpace;
 using ComputerProject.Repository;
 using MaterialDesignThemes.Wpf;
 using System;
@@ -22,25 +23,15 @@ namespace ComputerProject.SaleWorkSpace
         public PackIconKind ViewIcon => PackIconKind.CashRegister;
         readonly SaleRepository _repository;
 
-        Collection<Model.Product> _products
-        {
-            get => _products;
-            set
-            {
-                if (value != _products)
-                {
-                    VisibleProducts = _products = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        Collection<Model.Product> _products;
         Collection<Model.Product> _visibleProduct;
         IDictionary<Model.Product, int> _productsInBill;
         Collection<Model.Category> _categories;
         CustomerViewModel _currentCustomer;
         Model.Category _currentCategory;
+        Model.Category _currentRootCategory;
         int _currentPoint;
-        FilterProduct _currentFilter;
+        IFilterProductState _currentFilter;
         bool _isPriceLowToHight;
 
         ICommand _paymentCommand;
@@ -52,11 +43,12 @@ namespace ComputerProject.SaleWorkSpace
         ICommand _searchProductCommand;
         ICommand _searchCustomerCommand;
         ICommand _showDetailProductCommand;
+        ICommand _clearCommand;
         #endregion //Fields
 
 
         #region Properties
-        public int TotalPriceProduct => ProductsInBill == null ? 0:ProductsInBill.Sum(p => p.Value * p.Key.PriceSale);
+        public int TotalPriceProduct => ProductsInBill == null ? 0 : ProductsInBill.Sum(p => p.Value * p.Key.PriceSale);
         public int TotalPriceBill => 0;
 
         public Collection<Product> VisibleProducts
@@ -64,7 +56,7 @@ namespace ComputerProject.SaleWorkSpace
             get => _visibleProduct;
             set
             {
-                if (value!=_visibleProduct)
+                if (value != _visibleProduct)
                 {
                     _visibleProduct = value;
                     OnPropertyChanged();
@@ -75,7 +67,7 @@ namespace ComputerProject.SaleWorkSpace
         {
             get
             {
-                if (null==_productsInBill)
+                if (null == _productsInBill)
                 {
                     _productsInBill = new ObservableConcurrentDictionary<Product, int>();
                 }
@@ -114,6 +106,21 @@ namespace ComputerProject.SaleWorkSpace
                 if (value != _currentCategory)
                 {
                     _currentCategory = value;
+                    OnCategoryChanged();
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public Model.Category CurrentRootCategory
+        {
+            get => _currentRootCategory;
+            set
+            {
+                if (value != _currentRootCategory)
+                {
+                    _currentRootCategory = value;
+                    _currentCategory = null;
+                    OnCategoryChanged();
                     OnPropertyChanged();
                 }
             }
@@ -130,7 +137,7 @@ namespace ComputerProject.SaleWorkSpace
                 }
             }
         }
-        public FilterProduct CurrentFilter
+        public IFilterProductState CurrentFilter
         {
             get => _currentFilter;
             set
@@ -152,11 +159,11 @@ namespace ComputerProject.SaleWorkSpace
                     _isPriceLowToHight = value;
                     if (_isPriceLowToHight)
                     {
-                        VisibleProducts?.OrderBy(i => i.PriceSale);
+                        VisibleProducts = new ObservableCollection<Product>(VisibleProducts?.OrderBy(i => i.PriceSale));
                     }
                     else
                     {
-                        VisibleProducts?.OrderByDescending(i => i.PriceSale);
+                        VisibleProducts = new ObservableCollection<Product>(VisibleProducts?.OrderByDescending(i => i.PriceSale));
                     }
                     OnPropertyChanged();
                 }
@@ -257,11 +264,23 @@ namespace ComputerProject.SaleWorkSpace
             {
                 if (null == _showDetailProductCommand)
                 {
-                    _showDetailProductCommand = new RelayCommand(product => ShowDetail(product));
+                    _showDetailProductCommand = new RelayCommand(product => ShowDetail(product as Model.Product));
                 }
                 return _showDetailProductCommand;
             }
         }
+        public ICommand ClearCommand
+        {
+            get
+            {
+                if (null == _clearCommand)
+                {
+                    _clearCommand = new RelayCommand(information => Clear(information));
+                }
+                return _clearCommand;
+            }
+        }
+        public event EventHandler<RequestViewArgs> RequestOpenDetailProductView;
         #endregion //Properties
 
 
@@ -277,13 +296,29 @@ namespace ComputerProject.SaleWorkSpace
 
         public void LoadData()
         {
-            Task.Run(() => VisibleProducts = _repository.LoadProducts());
+            Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
             Task.Run(() => Categories = _repository.LoadCategories());
+        }
+        public void OnCategoryChanged()
+        {
+            if (CurrentCategory != null)
+            {
+                VisibleProducts = new ObservableCollection<Model.Product>(_products.Where(i => i.CategoryProduct.Id == CurrentCategory.Id));
+            }
+            else if (CurrentRootCategory != null)
+            {
+                VisibleProducts = new ObservableCollection<Model.Product>(_products.Where(i => CurrentRootCategory.ChildCategories.Any(child => child.Id == i.CategoryProduct.Id)));
+            }
+            else
+            {
+                VisibleProducts = _products;
+            }
         }
 
         private void Payment(IDictionary<Product, int> productsInBill, CustomerViewModel currentCustomer)
         {
-            throw new NotImplementedException();
+            var vm = new BillViewModel();
+            WindowService.ShowWindow(vm, new PaySaleBillView());
         }
         private void AddToBill(Product product, int quantity)
         {
@@ -310,14 +345,25 @@ namespace ComputerProject.SaleWorkSpace
             }
             else
             {
-                ProductsInBill.Add(product, quantity);
+                throw new NullReferenceException();
             }
             OnPropertyChanged(nameof(TotalPriceProduct));
             OnPropertyChanged(nameof(TotalPriceBill));
         }
         private void OpenFilterControl()
         {
-            throw new NotImplementedException();
+            FilterProductViewModel filter = new FilterProductViewModel(CurrentFilter);
+            filter.FilterEvent += new EventHandler((o, e) =>
+              {
+                  CurrentFilter = filter;
+                  VisibleProducts = _products = _repository.SearchFilterProduct(CurrentFilter);
+                  if (CurrentFilter.CategoryType != null)
+                  {
+                      CurrentCategory = Categories.Where(i => i.Name == CurrentFilter.CategoryType.Name).FirstOrDefault();
+                  }
+              });
+
+            WindowService.ShowWindow(filter, new Filtertab());
         }
         private void OpenAddCustomerView()
         {
@@ -335,9 +381,21 @@ namespace ComputerProject.SaleWorkSpace
         {
             throw new NotImplementedException();
         }
-        private void ShowDetail(object product)
+        private void ShowDetail(Model.Product product)
         {
-            throw new NotImplementedException();
+            //RequestOpenView?.Invoke(this, new RequestViewArgs(ProductViewModel, product));
+        }
+        private void Clear(object list)
+        {
+            if (list == null) return;
+            if (list == CurrentCustomer)
+            {
+                CurrentCustomer = null;
+            }
+            if (list == ProductsInBill)
+            {
+                ProductsInBill.Clear();
+            }
         }
     }
 }

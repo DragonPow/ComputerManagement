@@ -70,6 +70,11 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <DataTemplate x:Key="myTemplate">
+            <RadioButton Style="{DynamicResource TabRadioButton}"
+                         IsChecked="False"
+                         Content="Laptop"></RadioButton>
+        </DataTemplate>
     </UserControl.Resources>
     <Border CornerRadius="8"
             Background="White">
@@ -88,9 +93,10 @@
                     <Custom:Search Grid.Column="0"
                                    Width="450"
                                    HorizontalAlignment="Left"
-                                   IsTabStop="False" KeyboardNavigation.TabIndex="0" 
+                                   IsTabStop="False"
+                                   KeyboardNavigation.TabIndex="0"
                                    Texthint="Tìm kiếm"
-                                   DataContext="{Binding .}"></Custom:Search>
+                                   DataContext="{Binding .}" />
                     <Button Grid.Column="1"
                             Padding="0"
                             Margin="5"
@@ -134,26 +140,24 @@
                                        FontSize="14"
                                        Foreground="{StaticResource MainColor}"
                                        Margin="2,0,10,0"
-                                       VerticalAlignment="Center"/>
+                                       VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                 </Grid>
-                <!--<ItemsControl ItemsSource="{Binding Categories}"
-                              x:Name="parentCategories">
-                    <ItemsControl.ItemTemplate>
+                <ListView ItemsSource="{Binding Categories}"
+                          Background="Transparent"
+                          x:Name="TabCategory"
+                          SelectedItem="{Binding CurrentRootCategory}">
+                    <ListView.ItemTemplate>
                         <DataTemplate>
-                            <RadioButton Style="{DynamicResource TabRadioButton}"
-                                         IsChecked="False"
-                                         Content="Laptop"></RadioButton>
+                            <RadioButton Style="{StaticResource TabRadioButton}"
+                                         Content="{Binding Name}"
+                                         GroupName="DisplayPage"
+                                         IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"></RadioButton>
+
                         </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Stretch" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>-->
+                    </ListView.ItemTemplate>
+                </ListView>
                 <ComboBox  x:Name="CategoryComboBox"
                            Padding="10"
                            Margin="20"
@@ -162,9 +166,9 @@
                            FontWeight="Bold"
                            FontFamily="{StaticResource Mulish}"
                            Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                           ItemsSource="{Binding Categories}"
                            Width="200"
                            HorizontalAlignment="Left"
+                           ItemsSource="{Binding SelectedItem.ChildCategories, ElementName=TabCategory}"
                            BorderBrush="{StaticResource MainColor}"
                            SelectedItem="{Binding CurrentCategory}">
                     <ComboBox.ItemTemplate>
@@ -175,8 +179,8 @@
                 </ComboBox>
             </StackPanel>
             <local:ProdSaleListView Grid.Row="1"
-                                    Margin="15,0,0,0" 
-                                    DataContext="{Binding .}"/>
+                                    Margin="15,0,0,0"
+                                    DataContext="{Binding .}" />
         </Grid>
     </Border>
 
