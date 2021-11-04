@@ -143,23 +143,23 @@
                         </StackPanel>
                     </Button>
                 </Grid>
-                <ListView ItemsSource="{Binding Categories}"
+                <ItemsControl ItemsSource="{Binding Categories}"
                            Background="Transparent">
-                    <ListView.ItemTemplate>
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <RadioButton Style="{DynamicResource TabRadioButton}"
                                          Content="Laptop"
                                          GroupName="DisplayPage"
                                          IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"></RadioButton>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
+                    </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="Stretch" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-                </ListView>
+                </ItemsControl>
                 <ComboBox  x:Name="CategoryComboBox"
                            Padding="10,7"
                            Margin="20"

@@ -13,5 +13,6 @@
         d:DesignHeight="1000" d:DesignWidth="1100" WindowStartupLocation="CenterOwner">
     <Grid>
         <statitic:StatiticsMainView></statitic:StatiticsMainView>
+
     </Grid>
 </Window>
