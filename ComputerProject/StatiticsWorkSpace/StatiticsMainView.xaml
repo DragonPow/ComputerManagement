@@ -96,10 +96,8 @@
             Grid.Row="1"
             Title="Khách hàng"
             Value="10000"
-            Percent="-15%"
+            Percent="-21%"
             Margin="15,10,15.2,9.6"
-            Icon="ArrowDown"
-            ColorFore="{StaticResource Warning}"
             >
         </local:OverviewCardView>
         <local:OverviewCardView
@@ -108,9 +106,7 @@
             Title="Đơn hàng"
             Value="10000"
             Percent="+15%"
-            ColorFore="#42BDA1"
             Margin="14.8,10,14.6,9.6"
-            Icon="ArrowUp"
             >
         </local:OverviewCardView>
         <local:OverviewCardView
@@ -118,10 +114,8 @@
             Grid.Row="2"
             Title="Doanh thu"
             Value="10000"
-            Percent="-15%"
+            Percent="+15%"
             Margin="15,10.4,15.2,10.4"
-            Icon="ArrowDown"
-            ColorFore="{StaticResource Warning}"
             >
         </local:OverviewCardView>
         <local:OverviewCardView
@@ -129,10 +123,9 @@
             Grid.Row="2"
             Title="Sửa chữa bảo hành"
             Value="10000"
+
             Percent="-15%"
             Margin="14.8,10.4,14.6,10.4"
-            Icon="ArrowDown"
-            ColorFore="{StaticResource Warning}"
             >
         </local:OverviewCardView>
         <Border
@@ -215,6 +208,7 @@
                       local:DatePickerDateFormat.DateFormat="MMM-yyyy"
                       Text="MMM-yyyy"
                       Padding="8"
+                      BorderBrush="{StaticResource MainColor}"
                       Style="{StaticResource MaterialDesignOutlinedDatePicker}" >
                     </DatePicker>
                     <Button
