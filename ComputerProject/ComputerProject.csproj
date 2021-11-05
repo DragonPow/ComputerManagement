@@ -54,8 +54,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetProjects.Input.Toolkit, Version=6.0.90.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
+      <HintPath>packages\DotNetProjects.WpfToolkit.Input.6.0.90\lib\net40\DotNetProjects.Input.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignColors, Version=2.0.3.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignColors.2.0.3\lib\net452\MaterialDesignColors.dll</HintPath>
@@ -88,6 +97,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Toolkit.WPF, Version=1.0.5752.30721, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Toolkit.WPF.1.0.5752.30721\lib\net40\Toolkit.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -106,6 +118,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ApplicationWorkspace\TabItemResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ApplicationWorkspace\TabMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ApplicationWorkspace\TabMenuSelectedItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,6 +182,12 @@
       <DependentUpon>ApplicationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ApplicationWorkspace\ITabView.cs" />
+    <Compile Include="ApplicationWorkspace\TabMenuItem.xaml.cs">
+      <DependentUpon>TabMenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationWorkspace\TabMenuSelectedItem.xaml.cs">
+      <DependentUpon>TabMenuSelectedItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationWorkspace\TemplateTabItem.cs" />
     <Compile Include="BILL.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -229,7 +255,14 @@
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\IndexCategoryConverter.cs" />
     <Compile Include="Converter\ListCategoryToStringCommaConverter.cs" />
+    <Compile Include="Converter\RevertBooleanConverter.cs" />
+    <Compile Include="CustomControl\BusyView.xaml.cs">
+      <DependentUpon>BusyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\ButtonIcon.cs" />
+    <Compile Include="CustomControl\PageControl.xaml.cs">
+      <DependentUpon>PageControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\Search.cs" />
     <Compile Include="CustomControl\TextboxCustom.cs" />
     <Compile Include="CUSTOMER.cs">
@@ -266,6 +299,8 @@
     <Compile Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml.cs">
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helper\BusyViewModel.cs" />
+    <Compile Include="StatiticsWorkSpace\DatePickerCalendar.cs" />
     <Compile Include="Helper\WindowService.cs" />
     <Compile Include="ProductWorkSpace\ProductMainTitleTableView.xaml.cs">
       <DependentUpon>ProductMainTitleTableView.xaml</DependentUpon>
@@ -358,11 +393,35 @@
     </Compile>
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="SaleWorkSpace\SaleViewModel.cs" />
+    <Compile Include="SettingWorkSpace\SettingAllView.xaml.cs">
+      <DependentUpon>SettingAllView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingWorkSpace\SettingHelp.xaml.cs">
+      <DependentUpon>SettingHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingWorkSpace\SettingPointView.xaml.cs">
+      <DependentUpon>SettingPointView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingWorkSpace\SettingStoreView.xaml.cs">
+      <DependentUpon>SettingStoreView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SPECIFICATION.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SPECIFICATION_TYPE.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StatiticsWorkSpace\OverviewCardView.xaml.cs">
+      <DependentUpon>OverviewCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatiticsWorkSpace\StatiticsMainView.xaml.cs">
+      <DependentUpon>StatiticsMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatiticsWorkSpace\TopCategoryView.xaml.cs">
+      <DependentUpon>TopCategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatiticsWorkSpace\TopProductItemView.xaml.cs">
+      <DependentUpon>TopProductItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Validation\InitClass.cs" />
     <Compile Include="WindowTest.xaml.cs">
@@ -385,6 +444,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CategoryWorkspace\TittlePropertiesTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\BusyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\PageControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -507,6 +574,36 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SettingWorkSpace\SettingAllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingWorkSpace\SettingHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingWorkSpace\SettingPointView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingWorkSpace\SettingStoreView.xaml">
+    </Page>
+    <Page Include="StatiticsWorkSpace\OverviewCardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatiticsWorkSpace\StatiticsMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatiticsWorkSpace\TopCategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatiticsWorkSpace\TopProductItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -591,6 +688,10 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resource\Image\SettingPoint.png" />
+    <Resource Include="Resource\Image\SettingQA.png" />
+    <Resource Include="Resource\Image\SettingStore.png" />
+    <Resource Include="Resource\Image\background.png" />
     <Resource Include="Resource\Image\AddImage.png" />
     <Resource Include="Resource\Icon\AddImage.png" />
     <Resource Include="Resource\Icon\Arange.png" />

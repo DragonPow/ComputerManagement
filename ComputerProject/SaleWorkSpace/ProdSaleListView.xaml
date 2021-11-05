@@ -13,7 +13,7 @@
                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                ItemsSource="{Binding VisibleProducts}">
         <i:Interaction.Triggers>
-            <i:EventTrigger EventName="SelectionChanged">
+            <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
                 <i:InvokeCommandAction Command="{Binding AddProductInBillCommand}"
                                        CommandParameter="{Binding SelectedItem, ElementName=listProduct}" />
             </i:EventTrigger>

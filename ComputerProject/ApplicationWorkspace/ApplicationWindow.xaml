@@ -16,7 +16,7 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)"
                                            Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0"
-                                      Value="70" />
+                                      Value="80" />
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5"
                                       Value="250" />
             </DoubleAnimationUsingKeyFrames>
@@ -30,24 +30,6 @@
                                       Value="70" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <Style TargetType="ListViewItem">
-            <Style.Triggers>
-                <Trigger Property="IsSelected"
-                         Value="True">
-                    <Setter Property="Foreground"
-                            Value="White" />
-                    <Setter Property="Background"
-                            Value="{StaticResource MainColor}" />
-                </Trigger>
-                <Trigger Property="IsSelected"
-                         Value="False">
-                    <Setter Property="Background"
-                            Value="Transparent" />
-                    <Setter Property="Foreground"
-                            Value="{StaticResource Icon}" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
         <!--<DataTemplate DataType="{x:Type categoryWS:CategoryViewModel}">
             <ContentPresenter Content="{Binding CurrentPage}">
                 <ContentPresenter.Resources>
@@ -141,16 +123,41 @@
                           ItemsSource="{Binding TabViewModels}"
                           SelectedItem="{Binding CurrentViewModel}">
                     <ListView.Resources>
-                        <ResourceDictionary Source="./TabItemResource.xaml" />
+                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+                            <local:TabMenuSelectedItem Margin="10,0"/>
+                        </ControlTemplate>
                     </ListView.Resources>
                     <ListView.ItemTemplate>
-                        <DataTemplate DataType="{x:Type local:ITabView}">
-                            <local:TemplateTabItem TabName="{Binding ViewName}"
-                                                   Icon="{Binding ViewIcon}" />
+                        <DataTemplate>
+                            <local:TabMenuItem Margin="10,0"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
-                    <!--<ListViewItem x:Name="ItemHome"
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <local:TabMenuItem Margin="10,0"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsSelected" Value="true" />
+                                        
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.Setters>
+                                        <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                                    </MultiTrigger.Setters>
+                                </MultiTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                <!--<ListViewItem x:Name="ItemHome"
                                   Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewDashboard"
@@ -298,22 +305,6 @@
                                        Margin="20 0" />
                         </StackPanel>
                     </ListViewItem>-->
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="{x:Type ListViewItem}">
-                            <Style.Triggers>
-                                <Trigger Property="IsSelected"
-                                         Value="True">
-                                    <Setter Property="Foreground"
-                                            Value="White" />
-                                    <Setter Property="Background"
-                                            Value="{StaticResource MainColor}" />
-                                </Trigger>
-                            </Style.Triggers>
-                            <EventSetter Event="PreviewMouseLeftButtonDown"
-                                         Handler="TabSelected" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
             </StackPanel>
         </Grid>
         <!--<Control DataContext="{Binding CurrentViewModel}" Grid.Column="2" />-->

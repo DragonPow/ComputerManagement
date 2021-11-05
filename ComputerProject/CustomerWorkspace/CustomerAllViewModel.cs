@@ -4,29 +4,58 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace ComputerProject.CustomerWorkspace
 {
-    public class CustomerAllViewModel : BaseViewModel
+    public class CustomerAllViewModel : BusyViewModel
     {
-        public CustomerAllViewModel(IList<CustomerViewModel> list)
+        public CustomerAllViewModel()
         {
-            customerList = new ObservableCollection<CustomerViewModel>(list);
+            customerList = new List<CustomerViewModel>();
+            this.PropertyChanged += CustomerAllViewModel_PropertyChanged;
         }
 
-        private ObservableCollection<CustomerViewModel> customerList;
-        public ObservableCollection<CustomerViewModel> CustomerList { get => customerList; 
+        public CustomerAllViewModel(IList<CustomerViewModel> list) : this()
+        {
+            customerList = new List<CustomerViewModel>(list);
+        }
+
+        CancellationTokenSource countOperation = new CancellationTokenSource();
+        CancellationTokenSource searchOperation = new CancellationTokenSource();
+
+        private void CustomerAllViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SearchContent))
+            {
+                countOperation.Cancel();
+                countOperation = new CancellationTokenSource();
+
+                DoBusyTask(CountMaxPage, countOperation.Token, () => { CurrentPage = 1; });
+            }
+
+            if (e.PropertyName == nameof(CustomerList))
+            {
+                Console.WriteLine("List changed");
+            }
+
+            if (e.PropertyName == nameof(CurrentPage))
+            {
+                //Console.WriteLine("Page = " + CurrentPage);
+                SearchAsync();
+            }
+        }
+
+        private List<CustomerViewModel> customerList;
+        public List<CustomerViewModel> CustomerList { get => customerList; 
             set
             {
                 customerList = value;
                 OnPropertyChanged(nameof(CustomerList));
             }
         }
-
-        public int currentStartIndex = 0;
-        public int step = 500;
 
         public String searchContent = "";
         public String SearchContent
@@ -44,38 +73,87 @@ namespace ComputerProject.CustomerWorkspace
             }
         }
 
-        int currentPage;
-        public int CurrentPage
+
+        public int currentStartIndex = 0;
+        public int step = 20;
+
+        int maxPage = 1;
+        public int MaxPage
         {
-            get => currentPage;
+            get => maxPage;
             set
             {
-                if (currentPage == value || currentPage < 1) return;
+                maxPage = value;
+                OnPropertyChanged(nameof(MaxPage));
+            }
+        }
 
-                currentPage = value;
+        public int CurrentPage
+        {
+            get
+            {
+                return currentStartIndex / step + 1;
+            }
 
+            set
+            {
+                if (value < 1 || value > MaxPage) return;
+                currentStartIndex = (value - 1) * step;
                 OnPropertyChanged(nameof(CurrentPage));
             }
         }
 
-        private System.Windows.Visibility busyVisibility = System.Windows.Visibility.Hidden;
-        public System.Windows.Visibility BusyVisibility
+        public void SearchAsync()
         {
-            get => busyVisibility;
-            set
+            searchOperation.Cancel();
+            searchOperation = new CancellationTokenSource();
+
+            List<CustomerViewModel> data = null;
+            DoBusyTask(() =>
             {
-                busyVisibility = value;
-                OnPropertyChanged(nameof(BusyVisibility));
-            }
+                data = CustomerViewModel.FindByPhone(searchContent, currentStartIndex, step);
+            }, searchOperation.Token, () =>
+            {
+                CustomerList = data;
+            });
         }
 
-        public async Task SearchAsycn(System.Threading.CancellationToken cancellationToken)
+        public void CountMaxPage()
         {
-            var data = await CustomerViewModel.FindByPhoneAsync(searchContent, currentStartIndex, step, cancellationToken);
-            if (!cancellationToken.IsCancellationRequested)
+            int max = CustomerViewModel.CountByPhone(searchContent);
+            MaxPage = max % step > 0 ? max / step + 1 : max / step;
+        }
+
+        public void ReloadCurrentPage()
+        {
+            countOperation.Cancel();
+            countOperation = new CancellationTokenSource();
+
+            DoBusyTask(CountMaxPage, countOperation.Token, () => {
+                if (CurrentPage > MaxPage)
+                {
+                    CurrentPage = maxPage;
+                }
+                CurrentPage = CurrentPage;
+            });
+        }
+
+        public void Delete(CustomerViewModel vm)
+        {
+            var task = new Action(vm.DeleteFromDB);
+
+            void callback()
             {
-                CustomerList = new ObservableCollection<CustomerViewModel>(data);
+                customerList.Remove(vm);
+                ReloadCurrentPage();
             }
+
+            DoBusyTask(task, callback);
+        }
+
+        public void OnPageChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

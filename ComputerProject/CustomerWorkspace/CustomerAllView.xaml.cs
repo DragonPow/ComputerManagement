@@ -23,46 +23,10 @@ namespace ComputerProject.CustomerWorkspace
     public partial class CustomerAllView : UserControl
     {
         public CustomerAllViewModel ViewModel => this.DataContext as CustomerAllViewModel;
-        CancellationTokenSource searchOperation = new CancellationTokenSource();
 
         public CustomerAllView()
         {
             InitializeComponent();
-            DataContext = new CustomerAllViewModel(new List<CustomerViewModel>());
-            btnCreate.Click += BtnCreate_Click;
-            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
-            Search();
-        }
-
-        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(CustomerAllViewModel.SearchContent))
-            {
-                searchOperation.Cancel();
-                searchOperation = new CancellationTokenSource();
-                ViewModel.currentStartIndex = 0;
-                Search();
-            }
-
-            if (e.PropertyName == nameof(CustomerAllViewModel.CustomerList))
-            {
-                Console.WriteLine("List changed");
-            }
-        }
-
-        public async void Search()
-        {
-            ViewModel.BusyVisibility = Visibility.Visible;
-            try
-            {
-                await ViewModel.SearchAsycn(searchOperation.Token); // Busy task
-                ViewModel.BusyVisibility = Visibility.Hidden;
-            }
-            catch (Exception) when (!HelperService.Environment.IsDebug)
-            {
-                ViewModel.BusyVisibility = Visibility.Hidden;
-                CustomMessageBox.MessageBox.Show("Lấy dữ liệu thất bại");
-            }
         }
 
         public event EventHandler ClickedCreate;
@@ -77,9 +41,6 @@ namespace ComputerProject.CustomerWorkspace
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
-            // Do something
-
-            // Call-back
             ClickedCreate?.Invoke(this, e);
         }
 
@@ -103,22 +64,15 @@ namespace ComputerProject.CustomerWorkspace
             msb.ShowDialog();
         }
 
-        private async void Delete(CustomerViewModel vm)
+        private void Delete(CustomerViewModel item)
         {
             try
             {
-                ViewModel.BusyVisibility = Visibility.Visible; // Show busy
-
-                await vm.DeleteFromDBAsync(); // Busy task
-
-                ViewModel.BusyVisibility = Visibility.Hidden;
-
-                Search();
-                // CustomMessageBox.MessageBox.Show("Xóa khách hàng thành công");
+                ViewModel.Delete(item);
             }
             catch (Exception) when (!HelperService.Environment.IsDebug)
             {
-                ViewModel.BusyVisibility = Visibility.Hidden;
+                ViewModel.IsBusy = false;
                 CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
             }
         }

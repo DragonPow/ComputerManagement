@@ -20,6 +20,16 @@
             Foreground="{StaticResource Title}" Margin="10,0,10,15">
             Sản phẩm
         </TextBlock>
+        <localcustom:PageControl
+                MaxPage="10"
+                HorizontalAlignment="Center"
+                CurrentPage="1"
+                Grid.Row="4"
+                Width="150"
+                DockPanel.Dock="Bottom"
+                >
+
+        </localcustom:PageControl>
 
         <Grid
             Background="White">
@@ -175,5 +185,6 @@
                 
             </ListView>
     </Grid>
+        
     </DockPanel>
 </UserControl>

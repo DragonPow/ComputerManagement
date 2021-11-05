@@ -12,7 +12,7 @@
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
              Height="60"
              d:DesignWidth="350">
-    <Grid Background="White">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="75"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -31,7 +31,7 @@
                        FontFamily="{StaticResource Mulish}"
                        Margin="10,10,10,0"
                        Foreground="Black"></TextBlock>
-            <TextBlock Text="{Binding Key.PriceOrigin, FallbackValue='0.000đ'}"
+            <TextBlock Text="{Binding Key.PriceSale, FallbackValue='0.000đ'}"
                        Foreground="{StaticResource MainColor}"
                        FontWeight="DemiBold"
                        FontSize="{x:Static font:Font.SmallBody}"

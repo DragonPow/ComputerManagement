@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="ComputerProject.CustomControl.PageControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerProject.CustomControl"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            Margin="0, 10, 0, 10"
+             mc:Ignorable="d" 
+             d:DesignHeight="36" d:DesignWidth="200">
+   
+    <Grid
+        Height="35"
+        >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Button
+            Grid.Column="6"
+          Style="{StaticResource MaterialDesignIconButton}"
+          ToolTip="Trang cuối"
+          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Width="Auto" Height="Auto" Click="Button_Skip_Next_Click">
+            <materialDesign:PackIcon
+                Foreground="{StaticResource MainColor}"
+                Kind="SkipNext" />
+        </Button>
+        <Button
+            Grid.Column="0"
+          Style="{StaticResource MaterialDesignIconButton}"
+          ToolTip="Trang đầu"
+          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Width="Auto" Height="Auto" Click="Button_Skip_Back_Click">
+            <materialDesign:PackIcon
+                Foreground="{StaticResource MainColor}"
+            Kind="SkipPrevious" />
+        </Button>
+        <Button
+            Grid.Column="5"
+          Style="{StaticResource MaterialDesignIconButton}"
+          ToolTip="Trang kế"
+          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Width="Auto" Height="Auto" Click="Button_Next_Click">
+            <materialDesign:PackIcon
+                Foreground="{StaticResource MainColor}"
+                Kind="ChevronRight" />
+        </Button>
+        <Button
+          Grid.Column="1"
+          Style="{StaticResource MaterialDesignIconButton}"
+          ToolTip="Trang trước"
+          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Width="Auto" Height="Auto" Click="Button_Back_Click">
+            <materialDesign:PackIcon
+                Foreground="{StaticResource MainColor}"
+                Kind="ChevronLeft" />
+        </Button>
+
+        <TextBlock
+            Grid.Column="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontFamily="{StaticResource Mulish}"
+            FontSize="12"
+            FontWeight="DemiBold"
+            Foreground="{StaticResource MainColor}"
+            Text="/ "
+            >
+
+        </TextBlock>
+
+        <TextBox
+            x:Name="currentpage"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Grid.Column="2"
+            FontFamily="{StaticResource Mulish}"
+            FontSize="12"
+            FontWeight="DemiBold"
+            Foreground="{StaticResource MainColor}"
+            Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:PageControl}}, 
+                               Path=CurrentPage, Mode=TwoWay}"
+             materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+                                    BorderThickness="0"                    
+            ></TextBox>
+
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Grid.Column="4"
+            FontFamily="{StaticResource Mulish}"
+            FontSize="12"
+            FontWeight="DemiBold"
+            Foreground="{StaticResource MainColor}"
+            Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:PageControl}}, 
+                               Path=MaxPage}"                
+            >
+
+        </TextBlock>
+    </Grid>
+</UserControl>

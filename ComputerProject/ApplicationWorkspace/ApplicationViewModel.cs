@@ -52,6 +52,7 @@ namespace ComputerProject.ApplicationWorkspace
 
         public ApplicationViewModel()
         {
+            var customerTab = new CustomerWorkspace.CustomerTabView(true);
             SaleViewModel saleVM = new SaleViewModel();
             saleVM.RequestOpenDetailProductView += SaleVM_RequestOpenDetailProduct;
 
@@ -59,7 +60,7 @@ namespace ComputerProject.ApplicationWorkspace
             {
                 saleVM,
                 new CategoryViewModel(),
-                new CustomerWorkspace.CustomerTabView(),
+                customerTab,
             };
             CurrentViewModel = TabViewModels[0];
         }

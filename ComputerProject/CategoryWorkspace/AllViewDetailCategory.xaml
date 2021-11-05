@@ -39,15 +39,14 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <localcustom:TextboxCustom x:Name="NameCategory"
-                                       CornerRadiusText="5"
+                                       CornerRadiusText="3"
                                        Text="{Binding CurrentParentCategory.Name, FallbackValue=Lap top}"
                                        Title="Tên danh mục"
                                        FontSize="{x:Static localfont:Font.Body}"
                                        Margin="15"
-                                       MarginText="5"
+                                       MarginText="3"
                                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                                        IsEnabled="{Binding IsEditMode}"/>
-
                 <local:TitleCategoryLv2 x:Name="Btn_Add_Catelv2"
                                     Grid.Row="1"
                                     Margin="15,0"
@@ -60,22 +59,46 @@
                           Margin="5,0"
                       SelectedItem="{Binding CurrentChildCategory}"
                       ItemsSource="{Binding CurrentParentCategory.ChildCategories}" >
+
+                    <ListView.Resources>
+                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+                            <Border  BorderThickness="0" Background="#190477BF"  HorizontalAlignment="Stretch" >
+                                <local:Categorylv2Row/>
+                            </Border>
+                        </ControlTemplate>
+                    </ListView.Resources>
+                    
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListViewItem}">
                             <Setter Property="HorizontalContentAlignment"
                                 Value="Stretch" />
                             <Setter Property="Background"
                                 Value="White" />
-
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <local:Categorylv2Row/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsSelected" Value="true" />
+                                        <Condition Property="Selector.IsSelectionActive" Value="true" />
+                                    </MultiTrigger.Conditions>
+                                        <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                                </MultiTrigger>
+                            </Style.Triggers>
                         </Style>
 
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <ItemContainerTemplate>
-                            <local:Categorylv2Row 
-                                              x:Name="item" />
+                            <local:Categorylv2Row x:Name="item" />
                         </ItemContainerTemplate>
                     </ListView.ItemTemplate>
+                    
                 </ListView>
             </Grid>
         </Border>
@@ -86,14 +109,31 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="0.9*"/>
                 </Grid.RowDefinitions>
 
-                <local:PropertiesTitlexaml x:Name="BtnAddSpeci"
-                                       VerticalAlignment="Center"
-                                       d:LayoutOverrides="LeftMargin, RightMargin"
-                                       DataContext="{Binding .}"
-                                           Margin="0,15"/>
+                <localcustom:TextboxCustom
+                    x:Name="NameCategoryLv2"
+                    HorizontalAlignment="Left"
+                    Width="300"
+                    CornerRadiusText="3"
+                    Text="{Binding CurrentChildCategory.Name, ValidatesOnDataErrors=False, UpdateSourceTrigger=PropertyChanged, TargetNullValue='Danh mục mới' }"
+                    Title="Tên danh mục con"
+                    FontSize="{x:Static localfont:Font.Body}"
+                    Margin="15"
+                    MarginText="3"
+                    IsTabStop="False" KeyboardNavigation.TabIndex="0" 
+                    IsEnabled="{Binding IsEditMode}">
+                   
+                </localcustom:TextboxCustom>
+                <local:PropertiesTitlexaml 
+                    Grid.Row="1"
+                    x:Name="BtnAddSpeci"
+                    VerticalAlignment="Center"
+                    d:LayoutOverrides="LeftMargin, RightMargin"
+                    DataContext="{Binding .}"
+                    Margin="0,0, 0, 5"/>
                 <!--<localcustom:Search Grid.Row="1"
                                 HorizontalAlignment="Left"
                                 Margin="20, 0, 0, 20"
@@ -101,17 +141,41 @@
                                 Width="500"
                                 Texthint="Tìm theo danh mục"/>-->
 
-                <local:TittlePropertiesTable Grid.Row="1" Margin="5,0"/>
+                <local:TittlePropertiesTable Grid.Row="2" Margin="5,0"/>
 
                 <ListView x:Name="ListProperties"
                       Grid.Row="3"
-                      Background="White"
                       Margin="5,0"
                       ItemsSource="{Binding CurrentChildCategory.SpecificationTypes}">
+
+                    <ListView.Resources>
+                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+                            <Border  BorderThickness="0" Background="Transparent"  HorizontalAlignment="Stretch" >
+                                <local:PropertiesRow />
+                            </Border>
+                        </ControlTemplate>
+                    </ListView.Resources>
+                    
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListViewItem}">
                             <Setter Property="HorizontalContentAlignment"
                                 Value="Stretch" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <local:PropertiesRow />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsSelected" Value="true" />
+                                        <Condition Property="Selector.IsSelectionActive" Value="true" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                                </MultiTrigger>
+                            </Style.Triggers>
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
@@ -119,9 +183,6 @@
                             <local:PropertiesRow />
                         </ItemContainerTemplate>
                     </ListView.ItemTemplate>
-                    <ListViewItem>
-                        <local:PropertiesRow/>
-                    </ListViewItem>
                 </ListView>
             </Grid>
         </Border>
@@ -164,7 +225,7 @@
                 </Button.Style>
             </Button>
             <Button x:Name="BtnEdit"
-                    Width="150"
+                    Width="120"
                     Height="40"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="16"

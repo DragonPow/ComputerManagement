@@ -16,15 +16,16 @@
             <Setter Property="Foreground" Value="Black"></Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions >
-            <ColumnDefinition Width="0.23*"></ColumnDefinition>
-            <ColumnDefinition Width="0.65*"></ColumnDefinition>
-            <ColumnDefinition Width="0.06*"></ColumnDefinition>
-            <ColumnDefinition Width="0.06*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+    <Border BorderBrush="{StaticResource ListTitleBackground}" BorderThickness="0,0.2">
+        <Grid>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="0.23*"></ColumnDefinition>
+                <ColumnDefinition Width="0.65*"></ColumnDefinition>
+                <ColumnDefinition Width="0.06*"></ColumnDefinition>
+                <ColumnDefinition Width="0.06*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        <TextBlock Style="{StaticResource CellTitle}"
+            <TextBlock Style="{StaticResource CellTitle}"
                    Grid.Column="0"
                    FontSize="{x:Static localfont:Font.Body}"
                    HorizontalAlignment="Left"
@@ -32,16 +33,18 @@
                    Margin="15, 0, 0, 0" 
                    Text="Tên danh mục cấp 1"/>
 
-        <TextBlock
+            <TextBlock
             Style="{StaticResource CellTitle}"
             Grid.Column="1"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="15, 0, 0, 0"
+            Margin="10, 0, 0, 0"
             FontSize="{x:Static localfont:Font.Body}"
             >
            Tên danh mục cấp 2
-        </TextBlock>
+            </TextBlock>
 
-    </Grid>
+        </Grid>
+    </Border>
+   
 </UserControl>

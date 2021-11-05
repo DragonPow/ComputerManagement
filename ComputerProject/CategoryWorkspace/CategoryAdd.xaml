@@ -65,16 +65,17 @@
                 <RowDefinition Height="0.1*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
             </Grid.RowDefinitions>
-            <localcustom:TextboxCustom x:Name="NameCategory"
-                                       Texthint="Lap top"
-                                       Title="Tên danh mục"
-                                       CornerRadiusText="5"
-                                       FontsizeTitle="19"
-                                       Fontsize="17"
-                                       MarginText="5"
-                                       Margin="10, 20, 20, 0"
-                                       IsTabStop="False"
-                                       KeyboardNavigation.TabIndex="0">
+            <localcustom:TextboxCustom
+                x:Name="NameCategory"
+                Texthint = "Lap top"
+                Title="Tên danh mục"
+                CornerRadiusText="3"
+                FontsizeTitle="19"
+                Fontsize = "17"
+                MarginText="5"
+                Margin="10, 20, 20, 0"
+                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
+                >
             </localcustom:TextboxCustom>
             <StackPanel Grid.Row="1">
                 <Grid>

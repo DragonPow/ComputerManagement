@@ -12,12 +12,7 @@ namespace ComputerProject.CustomerWorkspace
     public class CustomerTabViewModel : BaseViewModel
     {
         private Control currentMainView;
-        public Control CurrentMainView { get => currentMainView;
-            set
-            {
-                currentMainView = value;
-            }
-        }
+        public Control CurrentMainView { get => currentMainView; }
 
         private List<Control> listViews;
         public List<Control> ListViews { get => listViews;
@@ -32,7 +27,7 @@ namespace ComputerProject.CustomerWorkspace
             get => ListViews.IndexOf(CurrentMainView);
             set
             {
-                CurrentMainView = ListViews[value];
+                currentMainView = ListViews[value];
 
                 OnPropertyChanged(nameof(CurrentMainView));
                 OnPropertyChanged(nameof(CurrentMainViewIndex));

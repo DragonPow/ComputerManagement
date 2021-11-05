@@ -6,20 +6,49 @@
              xmlns:local="clr-namespace:ComputerProject.BillWorkSpace"
              mc:Ignorable="d" 
              d:DesignHeight="768" d:DesignWidth="1200">
-    <ListView x:Name="ListBill"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+    <ListView  x:Name="ListBill"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <local:BillItem/>
             </DataTemplate>
         </ListView.ItemTemplate>
+
+        <ListView.Resources>
+            <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+                <Border  BorderThickness="0" Background="{StaticResource SelectedItemBackground}">
+                    <local:BillItem />
+                </Border>
+            </ControlTemplate>
+        </ListView.Resources>
+
         <ListView.ItemContainerStyle>
             <Style TargetType="ListViewItem">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListViewItem">
+                            <local:BillItem/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsMouseCaptured, RelativeSource={RelativeSource Self}}" Value="True">
+                        <Setter Property="IsSelected" Value="True"/>
+                    </DataTrigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsSelected" Value="true" />
+                            <Condition Property="Selector.IsSelectionActive" Value="true" />
+                        </MultiTrigger.Conditions>
+                        <MultiTrigger.Setters>
+                            <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                        </MultiTrigger.Setters>
+                    </MultiTrigger>
+                </Style.Triggers>
             </Style>
         </ListView.ItemContainerStyle>
-        <local:BillItem/>
-        <local:BillItem/>
-        <local:BillItem/>
-        <local:BillItem/>
+        <local:BillItem />
+        <local:BillItem />
+        <local:BillItem />
     </ListView>
 </UserControl>

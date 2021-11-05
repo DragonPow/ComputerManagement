@@ -157,12 +157,40 @@
                     <local:ProdItemInBill />
                 </DataTemplate>
             </ListView.ItemTemplate>
+
+            <ListView.Resources>
+                <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+                    <local:ProdItemInBill />
+                </ControlTemplate>
+            </ListView.Resources>
+
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment"
+                    <Setter Property="HorizontalContentAlignment" 
                             Value="Stretch" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <local:ProdItemInBill/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                                <Condition Property="Selector.IsSelectionActive" Value="true" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </Style.Triggers>
                 </Style>
             </ListView.ItemContainerStyle>
+            <local:ProdItemInBill/>
+            <local:ProdItemInBill/>
+            <local:ProdItemInBill/>
         </ListView>
         <Grid Background="{StaticResource MainColor}"
               Margin="0,20,0,0">
@@ -201,6 +229,7 @@
                 <TextBox Margin="5,0"
                          Text="{Binding CurrentBill.customerMoney}"
                          FontWeight="DemiBold"
+                         MaxWidth="250"
                          BorderThickness="0"
                          VerticalAlignment="Center"
                          FontSize="{x:Static font:Font.Body}"
