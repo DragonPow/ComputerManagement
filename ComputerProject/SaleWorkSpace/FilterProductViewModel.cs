@@ -1,6 +1,7 @@
 ﻿using ComputerProject.HelperService;
 using ComputerProject.Model;
 using System;
+using System.Windows.Input;
 
 namespace ComputerProject.SaleWorkSpace
 {
@@ -8,19 +9,28 @@ namespace ComputerProject.SaleWorkSpace
     {
         Model.Category CategoryType { get; set; }
         string Supplier { get; set; }
+        stateProduct StateProduct {get; }
         int PriceHighest { get; set; }
         int PriceLowest { get; set; }
         int TimeWarranty { get; set; }
+        event EventHandler FilterEvent;
     }
-    public class FilterProduct : BaseViewModel, IFilterProductState
+    public class FilterProductViewModel : BaseViewModel, IFilterProductState
     {
+        #region Fields
         Model.Category _categoryType;
         string _supplier;
+        stateProduct _stateProduct;
         int _priceHighest;
         int _priceLowest;
         int _timeWarranty;
         IFilterProductState _initState;
 
+        ICommand _filterCommand;
+        ICommand _undoCommand;
+        #endregion //Fields
+
+        #region Properties
         public Category CategoryType
         {
             get => _categoryType;
@@ -41,6 +51,18 @@ namespace ComputerProject.SaleWorkSpace
                 if (value != _supplier)
                 {
                     _supplier = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public stateProduct StateProduct
+        {
+            get => _stateProduct;
+            set
+            {
+                if (value!=_stateProduct)
+                {
+                    _stateProduct = value;
                     OnPropertyChanged();
                 }
             }
@@ -80,9 +102,33 @@ namespace ComputerProject.SaleWorkSpace
                     OnPropertyChanged();
                 }
             }
-        }
+        } 
 
-        public FilterProduct(IFilterProductState initstate)
+        public ICommand FilterCommand
+        {
+            get
+            {
+                if (null==_filterCommand)
+                {
+                    _filterCommand = new RelayCommand(a => Filter());
+                }
+                return _filterCommand;
+            }
+        }
+        public ICommand UndoCommand
+        {
+            get
+            {
+                if (null == _undoCommand)
+                {
+                    _undoCommand = new RelayCommand(a => Undo());
+                }
+                return _undoCommand;
+            }
+        }
+        #endregion //Properties
+
+        public FilterProductViewModel(IFilterProductState initstate)
         {
             this._initState = initstate;
         }
@@ -95,17 +141,33 @@ namespace ComputerProject.SaleWorkSpace
         {
             if (_initState != null)
             {
-                this.CategoryType = _initState.CategoryType.Copy();
-                this.Supplier = _initState.Supplier;
-                this.PriceHighest = _initState.PriceHighest;
-                this.PriceLowest = _initState.PriceLowest;
-                this.TimeWarranty = _initState.TimeWarranty;
+                //this.CategoryType = _initState.CategoryType.Copy();
+                //this.Supplier = _initState.Supplier;
+                //this.PriceHighest = _initState.PriceHighest;
+                //this.PriceLowest = _initState.PriceLowest;
+                //this.TimeWarranty = _initState.TimeWarranty;
+
+                this.CategoryType = null;
+                this.Supplier = null;
+                this.PriceHighest = 0;
+                this.PriceLowest = 0;
+                this.TimeWarranty = 0;
+                UndoFilterEvent?.Invoke(this, null);
                 return true;
             }
             else
             {
+                UndoFilterEvent?.Invoke(this, null);
                 return false;
             }
         }
+
+        public void Filter()
+        {
+            FilterEvent?.Invoke(this, null);
+        }
+
+        public event EventHandler FilterEvent;
+        public event EventHandler UndoFilterEvent;
     }
 }
