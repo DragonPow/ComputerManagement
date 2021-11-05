@@ -124,7 +124,7 @@
                             Margin="10,5"
                             Background="#F7F8FC"
                             BorderBrush="{StaticResource MainColor}"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
                             materialDesign:ButtonAssist.CornerRadius="8"
                             Command="{Binding FilterProductsCommand}">
                         <StackPanel Orientation="Horizontal"
@@ -155,8 +155,7 @@
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Stretch" />
+                            <UniformGrid Rows="1"></UniformGrid>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
