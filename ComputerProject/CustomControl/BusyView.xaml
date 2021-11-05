@@ -13,14 +13,14 @@
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
         Panel.ZIndex="15"
-        Background="#40000000"
+        Background="#10000000"
         CornerRadius="4"
         IsHitTestVisible="True">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Control
                 Width="55"
                 Margin="0"
-                Foreground="Blue"
+                Foreground="{StaticResource MainColor}"
                 Style="{StaticResource WaitSpinnerStyle}" />
             <TextBlock
                 Margin="0,5"
