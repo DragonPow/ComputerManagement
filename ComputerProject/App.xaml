@@ -22,6 +22,7 @@
             <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#0477BF" />
             <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#0477BF" />
             <SolidColorBrush x:Key="SelectedItemBackground" Color="#190477BF" />
+
             <SolidColorBrush x:Key="ListTitleBackground" Color="#E7E7E7" />
 
             <FontFamily x:Key="Mulish">pack:/Resource/Font/Mulish-VariableFont_wght.ttf</FontFamily>
