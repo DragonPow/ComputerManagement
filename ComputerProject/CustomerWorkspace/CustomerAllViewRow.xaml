@@ -12,6 +12,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="200"
     d:DesignWidth="1200"
+    Background="Transparent"
     d:DataContext="{d:DesignInstance Type=local:CustomerViewModel}"
     mc:Ignorable="d">
     <UserControl.Resources>

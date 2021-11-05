@@ -79,17 +79,28 @@
                         </TextBlock>
                     </Button>
                 </Grid>
-                <local:CustomerAllRowTitle Grid.Row="1" Margin="20,0,10,0" />
+                <local:CustomerAllRowTitle Grid.Row="1" Margin="20,0,20,0" />
                 <ListView
                     x:Name="mainList"
                     Grid.Row="2"
                     Margin="20,0,10,0"
                     ItemsSource="{Binding CustomerList}">
 
+                    <ListView.Resources>
+                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+                            <Border  BorderThickness="0" Background="{StaticResource SelectedItemBackground}"  HorizontalAlignment="Stretch" >
+                                <local:CustomerAllViewRow
+                                ClickedDelete="BtnDeleteItem_Click"
+                                ClickedEdit="BtnEditItem_Click"
+                                DataContext="{Binding}"
+                                MouseDoubleClick="Item_MouseDoubleClick" />
+                            </Border>
+                        </ControlTemplate>
+                    </ListView.Resources>
+
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <local:CustomerAllViewRow
-                                Background="Transparent"
                                 ClickedDelete="BtnDeleteItem_Click"
                                 ClickedEdit="BtnEditItem_Click"
                                 DataContext="{Binding}"
@@ -101,12 +112,33 @@
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                             <Setter Property="Padding" Value="0" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <local:CustomerAllViewRow
+                                            ClickedDelete="BtnDeleteItem_Click"
+                                            ClickedEdit="BtnEditItem_Click"
+                                            DataContext="{Binding}"
+                                            MouseDoubleClick="Item_MouseDoubleClick" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsSelected" Value="true" />
+                                        <Condition Property="Selector.IsSelectionActive" Value="true" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                                </MultiTrigger>
+                            </Style.Triggers>
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
                 <localcustom:BusyView
                     Grid.Row="2"
-                    Margin="20,0,10,0"
+                    Margin="20,0,20,0"
+                    Foreground="{StaticResource MainColor}"
                     Visibility="{Binding BusyVisibility, FallbackValue=Hidden}"/>
 
             </Grid>
