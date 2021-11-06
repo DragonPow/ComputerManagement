@@ -303,6 +303,7 @@
 
     <Compile Include="OverViewWorkSpace\OverViewMainView.xaml.cs">
       <DependentUpon>OverViewMainView.xaml</DependentUpon>
+	</Compile>
     <Compile Include="InsuranceWorkSpace\InsuranceAllView.xaml.cs">
       <DependentUpon>InsuranceAllView.xaml</DependentUpon>
     </Compile>
