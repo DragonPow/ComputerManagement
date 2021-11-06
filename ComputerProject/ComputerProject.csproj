@@ -300,6 +300,9 @@
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\BusyViewModel.cs" />
+    <Compile Include="OverViewWorkSpace\OverViewMainView.xaml.cs">
+      <DependentUpon>OverViewMainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatiticsWorkSpace\DatePickerCalendar.cs" />
     <Compile Include="Helper\NavigationService.cs" />
     <Compile Include="DETAIL_REPORT_CATEGORY.cs">
@@ -501,6 +504,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Helper\CustomMessageBox\MessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OverViewWorkSpace\OverViewMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
