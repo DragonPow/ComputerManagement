@@ -111,7 +111,7 @@
             <TextBlock Grid.Row="1" Margin="10,5" Text="1,401,000" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" HorizontalAlignment="Right" Foreground="Black"/>
         </Grid>
         <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20">
-            <Button x:Name="btnPrint" Style="{StaticResource MaterialDesignOutlinedButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{StaticResource MainColor}" Margin="20,0"  Foreground="{StaticResource MainColor}" Width="100" Height="40" Content="In" Padding="30,0"></Button>
+            <Button x:Name="btnCancel" Style="{StaticResource MaterialDesignOutlinedButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{StaticResource MainColor}" Margin="20,0"  Foreground="{StaticResource MainColor}" Width="100" Height="40" Content="Hủy" Padding="30,0"></Button>
             <Button x:Name="btnAccept" Background="{StaticResource MainColor}"   Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="5" Width="120" Height="40" Content="Xác nhận" Foreground="White"/>
 
         </StackPanel>
