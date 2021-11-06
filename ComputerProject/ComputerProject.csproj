@@ -300,6 +300,18 @@
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\BusyViewModel.cs" />
+
+    <Compile Include="OverViewWorkSpace\OverViewMainView.xaml.cs">
+      <DependentUpon>OverViewMainView.xaml</DependentUpon>
+    <Compile Include="InsuranceWorkSpace\InsuranceAllView.xaml.cs">
+      <DependentUpon>InsuranceAllView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceWorkSpace\InsuranceItem.xaml.cs">
+      <DependentUpon>InsuranceItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceWorkSpace\InsuranceListView.xaml.cs">
+      <DependentUpon>InsuranceListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatiticsWorkSpace\DatePickerCalendar.cs" />
     <Compile Include="Helper\NavigationService.cs" />
     <Compile Include="DETAIL_REPORT_CATEGORY.cs">
@@ -486,6 +498,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceAllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -501,6 +525,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Helper\CustomMessageBox\MessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OverViewWorkSpace\OverViewMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
