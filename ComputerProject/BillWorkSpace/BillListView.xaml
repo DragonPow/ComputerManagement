@@ -32,7 +32,7 @@
                     </Setter.Value>
                 </Setter>
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsMouseCaptured, RelativeSource={RelativeSource Self}}" Value="True">
+                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
                         <Setter Property="IsSelected" Value="True"/>
                     </DataTrigger>
                     <MultiTrigger>
