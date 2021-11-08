@@ -219,7 +219,6 @@
             </ScrollViewer>
             <StackPanel
                 x:Name="Specifications"
-                IsEnabled="False"
                 Grid.Column="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -244,8 +243,7 @@
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Background="{StaticResource MainColor}"
                             Height="37"
-                            materialDesign:ButtonAssist.CornerRadius="8"
-                            Visibility="Hidden"
+                            materialDesign:ButtonAssist.CornerRadius="5"
                             ToolTip="Thêm sản phẩm">
                         <StackPanel 
                                 Orientation="Horizontal">
@@ -267,7 +265,9 @@
                
                 <ListView
                     x:Name="ListSpecifications"
-                    Grid.Column="1">
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    >
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
