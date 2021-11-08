@@ -175,11 +175,39 @@
                         <local:ProductMainRowTable />
                     </DataTemplate>
                 </ListView.ItemTemplate>
+
+                <ListView.Resources>
+                    <ControlTemplate TargetType="ListViewItem" x:Key="SeletedItem">
+                        <Border  BorderThickness="0" Background="{StaticResource SelectedItemBackground}"  HorizontalAlignment="Stretch" >
+                            <local:ProductMainRowTable />
+                        </Border>
+                    </ControlTemplate>
+                </ListView.Resources>
+                
                 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Template" >
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <local:ProductMainRowTable/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                                <Setter Property="IsSelected" Value="True"/>
+                            </DataTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="true" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                            </MultiTrigger>
+                        </Style.Triggers>
                     </Style>
+                    
                 </ListView.ItemContainerStyle>
                 
                 

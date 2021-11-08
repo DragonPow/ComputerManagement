@@ -305,6 +305,8 @@
     </Compile>
     <Compile Include="InsuranceWorkSpace\InsuranceDetailView.xaml.cs">
       <DependentUpon>InsuranceDetailView.xaml</DependentUpon>
+    <Compile Include="InsuranceWorkSpace\WarrantyCard.xaml.cs">
+      <DependentUpon>WarrantyCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="OverViewWorkSpace\OverViewMainView.xaml.cs">
       <DependentUpon>OverViewMainView.xaml</DependentUpon>
@@ -521,6 +523,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InsuranceWorkSpace\InsuranceListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\WarrantyCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
