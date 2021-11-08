@@ -11,26 +11,26 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
-            <ColumnDefinition Width="1.3*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1.2*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
         <CheckBox IsChecked="False" Foreground="{StaticResource MainColor}" Margin="20,0" ></CheckBox>
         <TextBlock x:Name="txtInsuranceID" Grid.Column="1" Text="LTM123" VerticalAlignment="Stretch" Padding="0,17" FontWeight="DemiBold"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-        <TextBlock x:Name="txtDateReception" Grid.Column="2" Text="1/2/2021" Padding="20,17" VerticalAlignment="Stretch" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-        <TextBlock x:Name="txtCusPhoneNumber" Grid.Column="3" Text="1235478910" Padding="20,17" VerticalAlignment="Stretch" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-        <TextBlock x:Name="txtStatus" Grid.Column="4" Text="Chưa sửa" Padding="20,17" VerticalAlignment="Stretch" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-        <TextBlock x:Name="txtDateReceive" Grid.Column="5" Text="5/2/2021" Padding="20,17" VerticalAlignment="Stretch" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-        <TextBlock x:Name="txtTotal" Grid.Column="6" Text="250,000" Padding="20,17" VerticalAlignment="Stretch" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-        <Button x:Name="btnEdit" Grid.Column="7"  Style="{StaticResource MaterialDesignIconButton}" Margin="10,0" >
+        <TextBlock x:Name="txtDateReception" Grid.Column="2" Text="1/2/2021" Padding="10,17" VerticalAlignment="Stretch" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <TextBlock x:Name="txtCusPhoneNumber" Grid.Column="3" Text="1235478910" Padding="10,17" VerticalAlignment="Stretch" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <TextBlock x:Name="txtStatus" Grid.Column="4" Text="Chưa sửa" Padding="10,17" VerticalAlignment="Stretch" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <TextBlock x:Name="txtDateReceive" Grid.Column="5" Text="5/2/2021" Padding="10,17" VerticalAlignment="Stretch" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <TextBlock x:Name="txtTotal" Grid.Column="6" Text="250,000" Padding="10,17" VerticalAlignment="Stretch" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <Button x:Name="btnEdit" Grid.Column="7"  Style="{StaticResource MaterialDesignIconButton}"  >
             <Image Width="24" Height="24" Source="/ComputerProject;component/Resource/Icon/akar-icons_edit.png" />
         </Button>
-        <Button x:Name="btnDelete" Grid.Column="8"  Style="{StaticResource MaterialDesignIconButton}" Margin="10,0" >
+        <Button x:Name="btnDelete" Grid.Column="8"  Style="{StaticResource MaterialDesignIconButton}" >
             <Image Width="24" Height="24" Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
         </Button>
       

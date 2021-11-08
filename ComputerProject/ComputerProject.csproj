@@ -300,10 +300,15 @@
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\BusyViewModel.cs" />
-
+    <Compile Include="InsuranceWorkSpace\InsuranceBillView.xaml.cs">
+      <DependentUpon>InsuranceBillView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceWorkSpace\InsuranceDetailView.xaml.cs">
+      <DependentUpon>InsuranceDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OverViewWorkSpace\OverViewMainView.xaml.cs">
       <DependentUpon>OverViewMainView.xaml</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="InsuranceWorkSpace\InsuranceAllView.xaml.cs">
       <DependentUpon>InsuranceAllView.xaml</DependentUpon>
     </Compile>
@@ -500,6 +505,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InsuranceWorkSpace\InsuranceAllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceBillView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
