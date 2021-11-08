@@ -160,5 +160,6 @@ namespace ComputerProject.CustomerWorkspace
             ViewModel.Title = "Chi tiết khách hàng";
         }
 
+       
     }
 }
