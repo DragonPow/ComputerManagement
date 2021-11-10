@@ -38,7 +38,9 @@
                        VerticalAlignment="Center"
                        Margin="10, 0,0, 0"
                        FontSize="{x:Static localfont:Font.Body}"
-                       Text="{Binding Number}"
+                       Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:PropertiesRow}}, 
+                               Path=number}"
                        >
             </TextBlock>
             <TextBox x:Name="NameProperties"

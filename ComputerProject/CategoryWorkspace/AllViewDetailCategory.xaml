@@ -6,13 +6,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
              xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
+             xmlns:converter="clr-namespace:ComputerProject.Converter" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="ComputerProject.CategoryWorkspace.AllViewDetailCategory"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="1380"
             Background="{StaticResource Background}"
              d:DataContext="{d:DesignInstance Type={x:Type local:DetailCategoryViewModel}}"
              >
-
+    <UserControl.Resources>
+        <converter:IndexCategoryConverter x:Key="IndexConver" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -150,7 +153,8 @@
                     <ListView.Resources>
                         <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
                             <Border  BorderThickness="0" Background="Transparent"  HorizontalAlignment="Stretch" >
-                                <local:PropertiesRow />
+                                <local:PropertiesRow number="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type ListViewItem}}, Converter= {StaticResource IndexConver }}" />
                             </Border>
                         </ControlTemplate>
                     </ListView.Resources>
@@ -162,7 +166,8 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListViewItem">
-                                        <local:PropertiesRow />
+                                        <local:PropertiesRow  number="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                                                          AncestorType={x:Type ListViewItem}}, Converter= {StaticResource IndexConver }}"/>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -181,7 +186,8 @@
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <ItemContainerTemplate>
-                            <local:PropertiesRow />
+                            <local:PropertiesRow number="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type ListViewItem}}, Converter= {StaticResource IndexConver }}"/>
                         </ItemContainerTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
