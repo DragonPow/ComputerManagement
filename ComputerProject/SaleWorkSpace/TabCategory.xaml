@@ -8,7 +8,7 @@
              
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="200">
-    <Border BorderThickness="0,0,0,3" BorderBrush="#DBD7F4" MinHeight="40" MinWidth="150" Background="White">
+    <Border BorderThickness="0,0,0,3" BorderBrush="#DBD7F4" MinHeight="40" Background="White">
         <TextBlock Text="{Binding Name, TargetNullValue='Tất cả'}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontWeight="Medium" FontFamily="{StaticResource Mulish}" Foreground="{StaticResource Icon}"/>
     </Border>
 </UserControl>

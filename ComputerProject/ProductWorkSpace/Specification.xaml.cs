@@ -16,16 +16,13 @@ using System.Windows.Shapes;
 namespace ComputerProject.ProductWorkSpace
 {
     /// <summary>
-    /// Interaction logic for ProductDetailView.xaml
+    /// Interaction logic for Specification.xaml
     /// </summary>
-    public partial class ProductDetailView : UserControl
+    public partial class Specification : UserControl
     {
-        
-        public ProductDetailView()
+        public Specification()
         {
             InitializeComponent();
-          
         }
-
     }
 }

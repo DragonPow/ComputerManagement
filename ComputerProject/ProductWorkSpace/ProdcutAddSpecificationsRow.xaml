@@ -18,18 +18,20 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="{StaticResource Background}" />
-        <Border BorderBrush="{StaticResource Icon}" BorderThickness="1">
-            <TextBox
-                Margin="10,0,0,0"
-                VerticalAlignment="Center"
-                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                BorderThickness="0"
-                FontFamily="{StaticResource Mulish}"
-                FontSize="{x:Static localfont:Font.Body}"
-                Foreground="#11142D"
-                Text="{Binding SpecificationName, Mode=OneWay, FallbackValue='Tên thông số'}"
-                ToolTip="Tên thông số" />
+        <Rectangle Fill="{StaticResource Background}"></Rectangle>
+        <Border
+            BorderThickness="1"
+            BorderBrush="{StaticResource Icon}">
+        <TextBlock
+            ToolTip="Tên thông số"
+            FontSize="{x:Static localfont:Font.Body}"
+            FontFamily="{StaticResource Mulish}"
+            Foreground="#11142D"
+            VerticalAlignment="Center"
+            Margin="10, 0, 0, 0"  
+            Text="Tên thông số"
+            >
+        </TextBlock>
         </Border>
         <Border
             Grid.Column="1"

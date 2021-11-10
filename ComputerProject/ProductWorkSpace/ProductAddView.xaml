@@ -17,9 +17,9 @@
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.07*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="0.07*" />
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.08*"/>
         </Grid.RowDefinitions>
         <StackPanel
             Grid.Row="0"
@@ -46,10 +46,12 @@
                 Thêm sản phẩm
             </TextBlock>
         </StackPanel>
-        <Grid Grid.Row="1" Margin="20">
+        <Grid
+            Grid.Row="1"
+            Margin="20, 10, 20, 10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.2*" />
-                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Rectangle Margin="20,0,20,0" Fill="White" />
             <Rectangle
@@ -58,176 +60,13 @@
                 Fill="White" />
             <ScrollViewer
                 Grid.Column="0"
-                Margin="40,0,0,0"
-                VerticalScrollBarVisibility="Visible">
-                <StackPanel x:Name="ProInfor">
-                    <localcustom:TextboxCustom
-                        x:Name="Code"
-                        Title="    Mã sản phẩm"
-                        Margin="0,20,20,10"
-                        VerticalAlignment="Center"
-                        CornerRadiusText="5"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="{x:Static localfont:Font.Body}"
-                        IsEnabled="False"
-                        IsTabStop="False"
-                        KeyboardNavigation.TabIndex="0"
-                        MarginText="10"
-                        Text="{Binding Id, Mode=OneWay}"
-                        Visibility="Collapsed" />
-
-                    <Grid Margin="0,0,20,10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-                        <Image
-                            Width="110"
-                            Height="110"
-                            Source="{Binding SelectedImage, Mode=OneWay, FallbackValue=/ComputerProject;component/Resource/Image/AddImage.png}"
-                            Stretch="Fill" />
-                        <Grid Grid.Column="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="1*" />
-                            </Grid.RowDefinitions>
-                            <TextBlock
-                                x:Name="TblChoosseImage"
-                                Margin="10,3,0,0"
-                                VerticalAlignment="Center"
-                                FontFamily="{StaticResource Mulish}"
-                                FontSize="{x:Static localfont:Font.Body}"
-                                FontWeight="SemiBold"
-                                Foreground="Black">
-                                Chọn ảnh sản phẩm
-                            </TextBlock>
-                            <Button
-                                x:Name="BtnAddImage"
-                                Grid.Row="1"
-                                Margin="10,0,10,0"
-                                HorizontalAlignment="Stretch"
-                                Background="{StaticResource MainColor}"
-                                BorderBrush="{StaticResource MainColor}"
-                                Command="{Binding CommandPickImage}"
-                                Content="Tải ảnh lên"
-                                FontFamily="{StaticResource Mulish}"
-                                FontSize="{x:Static localfont:Font.Body}" />
-                        </Grid>
-                    </Grid>
-
-                    <localcustom:TextboxCustom
-                        x:Name="ProductName"
-                        Title="    Tên sản phẩm"
-                        Margin="0,10,20,10"
-                        VerticalAlignment="Center"
-                        CornerRadiusText="5"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="{x:Static localfont:Font.Body}"
-                        IsTabStop="False"
-                        KeyboardNavigation.TabIndex="0"
-                        MarginText="10"
-                        Text="{Binding Name, Mode=TwoWay}" />
-                    <StackPanel Margin="0,0,20,10">
-                        <TextBlock
-                            Margin="0,0,0,10"
-                            VerticalAlignment="Top"
-                            FontFamily="{StaticResource Mulish}"
-                            FontSize="{x:Static localfont:Font.Body}"
-                            FontWeight="SemiBold"
-                            Foreground="Black"
-                            Text="   Danh mục" />
-
-                        <ComboBox
-                            x:Name="Category"
-                            Padding="15"
-                            Background="{StaticResource Background}"
-                            BorderBrush="#DBD7F4"
-                            FontFamily="{StaticResource Mulish}"
-                            FontSize="{x:Static localfont:Font.Body}"
-                            IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                            ItemsSource="{Binding CategoryList}"
-                            SelectedItem="{Binding SelectedCategory_String}"
-                            Style="{StaticResource MaterialDesignOutlinedComboBox}" />
-                    </StackPanel>
-
-                    <localcustom:TextboxCustom
-                        x:Name="Procedure"
-                        Title="    Nhà cung cấp"
-                        Margin="0,10,20,10"
-                        VerticalAlignment="Center"
-                        CornerRadiusText="5"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="{x:Static localfont:Font.Body}"
-                        IsTabStop="False"
-                        KeyboardNavigation.TabIndex="0"
-                        MarginText="10"
-                        Text="{Binding Producer, Mode=TwoWay}" />
-                    <localcustom:TextboxCustom
-                        x:Name="Quantity"
-                        Title="    Số lượng"
-                        Margin="0,10,20,10"
-                        VerticalAlignment="Center"
-                        CornerRadiusText="5"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="{x:Static localfont:Font.Body}"
-                        IsTabStop="False"
-                        KeyboardNavigation.TabIndex="0"
-                        MarginText="10"
-                        Text="{Binding Quantity, Mode=TwoWay}" />
-                    <localcustom:TextboxCustom
-                        x:Name="Price"
-                        Title="    Giá gốc"
-                        Margin="0,10,20,10"
-                        VerticalAlignment="Center"
-                        CornerRadiusText="5"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="{x:Static localfont:Font.Body}"
-                        IsTabStop="False"
-                        KeyboardNavigation.TabIndex="0"
-                        MarginText="10"
-                        Text="{Binding PriceOrigin_String, Mode=TwoWay}" />
-
-                    <localcustom:TextboxCustom
-                        x:Name="PriceSales"
-                        Title="    Giá bán"
-                        Margin="0,10,20,10"
-                        VerticalAlignment="Center"
-                        CornerRadiusText="5"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="{x:Static localfont:Font.Body}"
-                        IsTabStop="False"
-                        KeyboardNavigation.TabIndex="0"
-                        MarginText="10"
-                        Text="{Binding PriceSales_String, Mode=TwoWay}" />
-                </StackPanel>
+                VerticalScrollBarVisibility="Visible"
+                Margin="40, 20, 20, 10"
+                >
+                <local:ProInfor Margin="0, 0, 15, 0"/>
             </ScrollViewer>
-            <StackPanel Grid.Column="1">
-                <TextBlock
-                    Margin="30,30,0,30"
-                    VerticalAlignment="Center"
-                    FontFamily="{StaticResource Mulish}"
-                    FontSize="24"
-                    FontWeight="Medium"
-                    Foreground="{StaticResource Title}"
-                    Text=" Thông số" />
+            <local:Specification Grid.Column="1" Margin="15, 0. 15, 0"/>
 
-                <ListView
-                    x:Name="ListSpecifications"
-                    Grid.Column="1"
-                    ItemsSource="{Binding SpecificationList}">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            <Setter Property="Margin" Value="20,0,20,0" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <local:ProdcutAddSpecificationsRow DataContext="{Binding}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackPanel>
         </Grid>
         <StackPanel
             Grid.Row="2"
