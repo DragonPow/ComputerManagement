@@ -17,10 +17,10 @@
             Background="White">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Border Margin="20,5,20,10"
                     BorderBrush="{StaticResource Icon}"
@@ -59,60 +59,94 @@
                         </StackPanel>
                     </Button>
                     <Button x:Name="btnRenew"
-                                Grid.Column="2"
-                                Width="auto"
-                                Height="auto"
-                                Margin="10,0"
-                                Padding="5"
-                                Style="{StaticResource MaterialDesignIconButton}"
-                                Background="{x:Null}"
-                                BorderBrush="{x:Null}">
+                            Grid.Column="2"
+                            Width="auto"
+                            Height="auto"
+                            Margin="10,0"
+                            Padding="5"
+                            Style="{StaticResource MaterialDesignIconButton}"
+                            Background="{x:Null}"
+                            BorderBrush="{x:Null}">
                         <materialDesign:PackIcon Kind="Autorenew"
-                                                     Width="18"
-                                                     Height="18"
-                                                     VerticalAlignment="Center"
-                                                     Foreground="{StaticResource Icon}" />
+                                                 Width="18"
+                                                 Height="18"
+                                                 VerticalAlignment="Center"
+                                                 Foreground="{StaticResource Icon}" />
                     </Button>
 
                 </Grid>
             </Border>
-            <Border x:Name="SearchCustomer" Width="auto" Margin="20,0" Grid.Row="1" BorderBrush="{StaticResource MainColor}" BorderThickness="1" Height="35" CornerRadius="8" Background= "{StaticResource Background}" >
-                <StackPanel Orientation="Horizontal" >
-                    <materialDesign:PackIcon Kind="Magnify"  Foreground="#0477BF"   Width="24"   Height="24"     Margin="10, 0, 0, 0"   VerticalAlignment="Center" />
-                    <Toolkit:AutoCompleteBox
-                        Background="Transparent" 
-                        Width="250"
-                        Margin="5,7"
-                        BorderBrush="{x:Null}"
-                        BorderThickness="0"
-                        Foreground="Black" 
-                        Text="Số điện thoại"
-                        FontSize="{x:Static font:Font.Body}" 
-                        FontFamily="{StaticResource Mulish}"
-                        ItemsSource="{Binding }"
-                        SelectedItem="{Binding}"
-                        ValueMemberPath="Name">
+            <Border x:Name="SearchCustomer"
+                    Width="auto"
+                    Margin="20,0"
+                    Grid.Row="1"
+                    BorderBrush="{StaticResource MainColor}"
+                    BorderThickness="1"
+                    Height="35"
+                    CornerRadius="8"
+                    Background="{StaticResource Background}">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Magnify"
+                                             Foreground="#0477BF"
+                                             Width="24"
+                                             Height="24"
+                                             Margin="10, 0, 0, 0"
+                                             VerticalAlignment="Center" />
+                    <Toolkit:AutoCompleteBox x:Name="completebox"
+                                             Background="Transparent"
+                                             Width="250"
+                                             Margin="5,7"
+                                             BorderBrush="{x:Null}"
+                                             BorderThickness="0"
+                                             Foreground="Black"
+                                             materialDesign:HintAssist.Hint="Số điện thoại"
+                                             FontSize="{x:Static font:Font.Body}"
+                                             FontFamily="{StaticResource Mulish}"
+                                             ItemsSource="{Binding ListSearchCustomer}"
+                                             SelectedItem="{Binding CurrentCustomer}"
+                                             ValueMemberPath="Name">
                         <Toolkit:AutoCompleteBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                                    <TextBlock x:Name="CustomerPhoneMuber" Text="{Binding }" HorizontalAlignment="Left" Width="100" Foreground="Black" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" FontWeight="Medium"/>
-                                    <TextBlock x:Name="CustomerName" Text="{Binding }" Grid.Column="1" MaxWidth="200" HorizontalAlignment="Right" Foreground="{StaticResource Icon}" FontStyle="Italic"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" />
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Stretch">
+                                    <TextBlock x:Name="CustomerPhoneMuber"
+                                               Text="{Binding phone}"
+                                               HorizontalAlignment="Left"
+                                               Width="100"
+                                               Foreground="Black"
+                                               FontSize="{x:Static font:Font.Body}"
+                                               FontFamily="{StaticResource Mulish}"
+                                               FontWeight="Medium" />
+                                    <TextBlock x:Name="CustomerName"
+                                               Text="{Binding name}"
+                                               Grid.Column="1"
+                                               MaxWidth="200"
+                                               HorizontalAlignment="Right"
+                                               Foreground="{StaticResource Icon}"
+                                               FontStyle="Italic"
+                                               FontSize="{x:Static font:Font.Body}"
+                                               FontFamily="{StaticResource Mulish}" />
                                 </StackPanel>
-                             
+
                             </DataTemplate>
                         </Toolkit:AutoCompleteBox.ItemTemplate>
                         <Toolkit:AutoCompleteBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
-                                <Setter Property="Background" Value="White"/>
-                                <Setter Property="Margin" Value="0"/>
-                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Background"
+                                        Value="White" />
+                                <Setter Property="Margin"
+                                        Value="0" />
+                                <Setter Property="BorderThickness"
+                                        Value="0" />
                             </Style>
                         </Toolkit:AutoCompleteBox.ItemContainerStyle>
 
                     </Toolkit:AutoCompleteBox>
                 </StackPanel>
             </Border>
-            <Grid Margin="25,5" Grid.Row="2" Grid.RowSpan="1">
+            <Grid Margin="25,5"
+                  Grid.Row="2"
+                  Grid.RowSpan="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -123,10 +157,9 @@
                            FontSize="{x:Static font:Font.Body}"
                            FontFamily="{StaticResource Mulish}"
                            FontWeight="DemiBold"
-                           
                            Foreground="{StaticResource Icon}"></TextBlock>
                 <TextBlock Grid.Column="1"
-                           Text="{Binding CurrentCustomer.FullName, FallbackValue='-'}"
+                           Text="{Binding CurrentCustomer.name, FallbackValue='-'}"
                            FontSize="{x:Static font:Font.Body}"
                            FontFamily="{StaticResource Mulish}"
                            FontWeight="DemiBold"
@@ -134,7 +167,9 @@
                            Margin="5,0"
                            Foreground="Black"></TextBlock>
             </Grid>
-            <Grid Margin="25,5,25,10" Grid.Row="3" Grid.RowSpan="1">
+            <Grid Margin="25,5,25,10"
+                  Grid.Row="3"
+                  Grid.RowSpan="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -147,7 +182,7 @@
                            FontWeight="DemiBold"
                            Foreground="{StaticResource Icon}"></TextBlock>
                 <TextBlock Grid.Column="1"
-                           Text="{Binding CurrentCustomer.PhoneNumber, FallbackValue='-'}"
+                           Text="{Binding CurrentCustomer.phone, FallbackValue='-'}"
                            FontSize="{x:Static font:Font.Body}"
                            FontFamily="{StaticResource Mulish}"
                            FontWeight="DemiBold"
