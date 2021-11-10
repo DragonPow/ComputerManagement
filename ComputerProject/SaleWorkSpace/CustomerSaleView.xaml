@@ -104,10 +104,11 @@
                                              FontFamily="{StaticResource Mulish}"
                                              ItemsSource="{Binding ListSearchCustomer}"
                                              SelectedItem="{Binding CurrentCustomer}"
-                                             ValueMemberPath="Name">
+                                             ValueMemberPath="phone">
                         <Toolkit:AutoCompleteBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal"
+                                            Margin="10"
                                             HorizontalAlignment="Stretch">
                                     <TextBlock x:Name="CustomerPhoneMuber"
                                                Text="{Binding phone}"
