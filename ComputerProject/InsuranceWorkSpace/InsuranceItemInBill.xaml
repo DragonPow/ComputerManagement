@@ -10,11 +10,12 @@
     <Border BorderThickness="0,0,0,0.5" BorderBrush="{StaticResource ListTitleBackground}">
         <Grid Margin="0,5">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="1.5*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1.5*"/>
             </Grid.ColumnDefinitions>
             <TextBlock x:Name="ID" Text="1" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
             <TextBlock x:Name="ProdName" Grid.Column="1" Text="Laptop HP 15s-fq2602TU" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
@@ -23,9 +24,11 @@
                 <TextBox x:Name="ProdSerial" Text="HJ34HK150S" BorderThickness="0" Margin="5,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
             </Border>
             <Border Grid.Column="4" Height="30" BorderThickness="1" CornerRadius="8" BorderBrush="{StaticResource Icon}">
-                <TextBox x:Name="Note" Grid.Column="4" BorderThickness="0" Text="Bảo hành 80%"  Margin="5,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                <TextBox x:Name="Note"  Text="Bảo hành 80%" Grid.Column="4" BorderThickness="0"  Margin="5,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
             </Border>
-         
+            <Button x:Name="btnDelete" Grid.Column="5"  Style="{StaticResource MaterialDesignIconButton}" IsEnabled="{Binding}" >
+                <Image Width="18" Height="18" Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
+            </Button>
         </Grid>
     </Border>
    
