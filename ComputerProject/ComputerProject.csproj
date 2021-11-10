@@ -633,7 +633,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ProductWorkSpace\ProductMainView.xaml" />
-    <Page Include="ProductWorkSpace\ProductTabView.xaml">
+    <Page Include="ProductWorkSpace\ProductTabView.xaml"/>
     <Page Include="ProductWorkSpace\ProInfor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

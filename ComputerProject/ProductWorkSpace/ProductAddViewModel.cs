@@ -151,6 +151,7 @@ namespace ComputerProject.ProductWorkSpace
                 else
                 {
                     CustomMessageBox.MessageBox.Show("Thêm sản phẩm thành công");
+                    ClickBack?.Invoke(this, null);
                 }
             }
             DoBusyTask(task, callback);

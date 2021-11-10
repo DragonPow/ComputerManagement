@@ -63,9 +63,9 @@
                 VerticalScrollBarVisibility="Visible"
                 Margin="40, 20, 20, 10"
                 >
-                <local:ProInfor Margin="0, 0, 15, 0"/>
+                <local:ProInfor Margin="0, 0, 15, 0" DataContext="{Binding }"/>
             </ScrollViewer>
-            <local:Specification Grid.Column="1" Margin="15, 0. 15, 0"/>
+            <local:Specification Grid.Column="1" Margin="15, 0. 15, 0" DataContext="{Binding }"/>
 
         </Grid>
         <StackPanel

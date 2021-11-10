@@ -26,6 +26,7 @@ namespace ComputerProject.ProductWorkSpace
         public void OpenAdd()
         {
             var addVM = new ProductAddViewModel();
+            addVM.ClickBack += BackToMain;
             viewController.CurrentViewModel = addVM;
         }
 
@@ -38,6 +39,11 @@ namespace ComputerProject.ProductWorkSpace
         public void OnClick_Add(object sender, RoutedEventArgs e)
         {
             OpenAdd();
+        }
+
+        public void BackToMain(object sender, EventArgs e)
+        {
+            viewController.CurrentViewModel = this;
         }
     }
 }

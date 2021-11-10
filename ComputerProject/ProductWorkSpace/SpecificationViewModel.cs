@@ -19,7 +19,7 @@ namespace ComputerProject.ProductWorkSpace
             set
             {
                 this.specificationName = value;
-                OnPropertyChanged(nameof(specificationName));
+                OnPropertyChanged(nameof(SpecificationName));
             }
         }
 
@@ -43,13 +43,13 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        public string Value
+        public string SpecValue
         {
             get => model.value;
             set
             {
                 model.value = value;
-                OnPropertyChanged(nameof(Value));
+                OnPropertyChanged(nameof(SpecValue));
             }
         }
 
