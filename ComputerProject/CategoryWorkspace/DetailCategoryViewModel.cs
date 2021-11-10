@@ -114,7 +114,7 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (_addSpecificationCommand == null)
                 {
-                    _addSpecificationCommand = new RelayCommand(a => AddSpecification(), b => IsEditMode);
+                    _addSpecificationCommand = new RelayCommand(a => AddSpecification(CurrentChildCategory), b => IsEditMode);
                 }
                 return _addSpecificationCommand;
             }
@@ -277,11 +277,11 @@ namespace ComputerProject.CategoryWorkspace
             CurrentParentCategory.ChildCategories.Add(CurrentChildCategory);
         }
 
-        public void AddSpecification()
+        public void AddSpecification(Model.Category category)
         {
             Model.Specification_type specification = new Model.Specification_type();
 
-            if (CurrentChildCategory?.SpecificationTypes == null) specification.Number = 1;
+            if (category?.SpecificationTypes == null) specification.Number = 1;
             else specification.Number = (int) CurrentChildCategory?.SpecificationTypes.Count() + 1;
 
             CurrentChildCategory?.SpecificationTypes.Add(specification);
@@ -317,12 +317,13 @@ namespace ComputerProject.CategoryWorkspace
             }
             else if (isParentCategoryExists())
             {
-                throw new ArgumentException("Parent Category Exsists");
+                throw new ArgumentException("Root Category Exsists");
             }
             else
             {
                 Task.Run(() => _repository?.Save(CurrentParentCategory));
                 IsEditMode = false;
+                CurrentChildCategory = null;
 
                 DetailCategoryChangedEventHandler?.Invoke(this, this.CurrentParentCategory);
             }

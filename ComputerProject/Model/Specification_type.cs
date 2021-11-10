@@ -1,13 +1,14 @@
 ﻿using ComputerProject.HelperService;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ComputerProject.Model
 {
-    public class Specification_type : BaseViewModel
+    public class Specification_type : BaseViewModel, IDataErrorInfo
     {
         int _id;
         int _number;
@@ -34,6 +35,28 @@ namespace ComputerProject.Model
                     _name = value;
                 }
                 OnPropertyChanged();
+            }
+        }
+
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case nameof(Name):
+                        {
+                            if (String.IsNullOrWhiteSpace(Name))
+                            {
+                                return "Name is not null";
+                            }
+                            break;
+                        }
+                }
+
+                return null;
             }
         }
 

@@ -40,7 +40,7 @@
                 </Grid.RowDefinitions>
                 <localcustom:TextboxCustom x:Name="NameCategory"
                                        CornerRadiusText="3"
-                                       Text="{Binding CurrentParentCategory.Name, FallbackValue=Lap top}"
+                                       Text="{Binding CurrentParentCategory.Name, FallbackValue='Tên'}"
                                        Title="Tên danh mục"
                                        FontSize="{x:Static localfont:Font.Body}"
                                        Margin="15"
@@ -217,7 +217,7 @@
                             <DataTrigger Binding="{Binding IsEditMode}"
                                          Value="False">
                                 <Setter Property="Content"
-                                            Value="Hủy" />
+                                            Value="Xóa" />
                                 <Setter Property="Command"
                                             Value="{Binding DeleteCategoryCommand}" />
                                 <Setter Property="CommandParameter"
@@ -252,7 +252,7 @@
                                 <Setter Property="Command"
                                             Value="{Binding OpenEditCommand}" />
                                 <Setter Property="Content"
-                                            Value="Lưu" />
+                                            Value="Chỉnh sửa" />
                                 <Setter Property="Foreground"
                                             Value="White" />
                             </DataTrigger>

@@ -27,9 +27,8 @@
                    FontFamily="{StaticResource Mulish}"
                    Foreground="{StaticResource Title}"
                    Margin="20,3,0,0"
-                   VerticalAlignment="Center">
-            Thêm mới danh mục
-        </TextBlock>
+                   VerticalAlignment="Center" 
+                   Text="Chỉnh sửa danh mục"/>
 
     </StackPanel>
 </UserControl>
