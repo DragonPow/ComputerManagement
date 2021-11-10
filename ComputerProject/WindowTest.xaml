@@ -16,11 +16,7 @@
         Title="WindowTest" Height="700" Width="1300"
        
         d:DesignHeight="1000" d:DesignWidth="1100" WindowStartupLocation="CenterOwner">
-    <Grid Background="{StaticResource Background}">
-        <insurance:InsuranceDetailView/>
-        Title="WindowTest" Height="700" Width="1400"
-       
-        d:DesignHeight="1000" d:DesignWidth="1100" WindowStartupLocation="CenterOwner">
+
     <Grid Background="{StaticResource Background}">
 
         <pro:ProductAddView/>

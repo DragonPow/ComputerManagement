@@ -19,7 +19,7 @@
                         FontWeight="Medium"
                         FontFamily="{StaticResource Mulish}"
                         Foreground="{StaticResource Title}"
-                        Margin="30,30,0,30"
+                        Margin="30,10,0,30"
                         VerticalAlignment="Center"
                         Text=" Thông số"
                     >

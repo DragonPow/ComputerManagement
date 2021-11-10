@@ -336,6 +336,7 @@
     </Compile>
     <Compile Include="SaleWorkSpace\TabCategory.xaml.cs">
       <DependentUpon>TabCategory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProductWorkSpace\ProInfor.xaml.cs">
       <DependentUpon>ProInfor.xaml</DependentUpon>
     </Compile>

@@ -13,9 +13,9 @@
     <Grid
        >
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.07*"/>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="0.07*"/>
+            <RowDefinition Height="0.08*"/>
         </Grid.RowDefinitions>
         <StackPanel
             Grid.Row="0"
@@ -48,31 +48,31 @@
         <Grid
             
             Grid.Row="1"
-            Margin="20"
+            Margin="20, 10, 20, 0"
             >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.2*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Rectangle Fill="White" Margin="20, 0, 20, 0"></Rectangle>
-            <Rectangle Fill="White" Grid.Column="1" Margin="20, 0, 20, 0"></Rectangle>
+           <Rectangle Fill="White" Grid.Column="1" Margin="20, 0, 20, 0"></Rectangle>
 
             <ScrollViewer
                 Grid.Column="0"
                 VerticalScrollBarVisibility="Visible"
                 Margin="40, 20, 20, 10"
                 >
-                <local:ProInfor VisibilityAddImage="Hidden" Margin="0, 0, 10, 0"  />
+                <local:ProInfor VisibilityAddImage="Hidden" Margin="0, 0, 15, 0"  />
             </ScrollViewer>
                 
-            <local:Specification IsEnabled="False" Grid.Column="1" Margin="10, 0 ,10 ,0"/>
+            <local:Specification IsEnabled="False" Grid.Column="1" Margin="15, 0 ,15 ,0"/>
         </Grid>
         <StackPanel 
             Orientation="Horizontal"
             Grid.Row="2"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Margin="0, 0, 60, 0">
+            Margin="0, 10, 60, 0">
             <Button
                 x:Name="BtnDel"
                 Background="Transparent"
