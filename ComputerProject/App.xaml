@@ -2,7 +2,6 @@
     x:Class="ComputerProject.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    StartupUri="WindowTest.xaml"
     xmlns:local="clr-namespace:ComputerProject">
     <Application.Resources>
         <ResourceDictionary>

@@ -17,7 +17,7 @@ namespace ComputerProject.InsuranceWorkSpace
     /// <summary>
     /// Interaction logic for InsuranceBillView.xaml
     /// </summary>
-    public partial class InsuranceBillView : Window
+    public partial class InsuranceBillView : UserControl
     {
         public InsuranceBillView()
         {
