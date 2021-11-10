@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
+using ComputerProject.Model;
 
 namespace ComputerProject.CategoryWorkspace
 {
@@ -114,7 +115,7 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (_addSpecificationCommand == null)
                 {
-                    _addSpecificationCommand = new RelayCommand(a => AddSpecification(CurrentChildCategory), b => IsEditMode);
+                    _addSpecificationCommand = new RelayCommand(a => AddSpecification(CurrentChildCategory), b => IsEditMode && CurrentChildCategory != null);
                 }
                 return _addSpecificationCommand;
             }
@@ -279,12 +280,14 @@ namespace ComputerProject.CategoryWorkspace
 
         public void AddSpecification(Model.Category category)
         {
-            Model.Specification_type specification = new Model.Specification_type();
+            Model.Specification_type specification = new Model.Specification_type() { Name = "test ne"};
 
             if (category?.SpecificationTypes == null) specification.Number = 1;
             else specification.Number = (int) CurrentChildCategory?.SpecificationTypes.Count() + 1;
 
-            CurrentChildCategory?.SpecificationTypes.Add(specification);
+            if (CurrentChildCategory.SpecificationTypes == null)
+                CurrentChildCategory.SpecificationTypes = new ObservableCollection<Specification_type>();
+            CurrentChildCategory.SpecificationTypes.Add(specification);
 
         }
 

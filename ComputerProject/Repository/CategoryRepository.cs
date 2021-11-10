@@ -103,8 +103,14 @@ namespace ComputerProject.Repository
                     }
                 }
                 _context.SaveChanges();
-
                 ChangeIdRuntime(category, c);
+
+                //Remove category is delete from db
+                var listDBCategories = _context.CATEGORies.Where(i => i.parentCategoryId == c.id).AsEnumerable();
+                var categoriesDeleted = listDBCategories.Where(i1 => !category.ChildCategories.Any(i2 => i1.id == i2.Id)).AsEnumerable();
+
+                _context.CATEGORies.RemoveRange(categoriesDeleted);
+                _context.SaveChanges();
             }
         }
 
