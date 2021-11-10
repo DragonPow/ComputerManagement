@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="ComputerProject.SaleWorkSpace.TabCategory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+             xmlns:local="clr-namespace:ComputerProject.SaleWorkSpace"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="200">
+    <Border BorderThickness="0,0,0,3" BorderBrush="#DBD7F4" MinHeight="40" MinWidth="150" Background="White">
+        <TextBlock Text="{Binding Name, TargetNullValue='Tất cả'}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontWeight="Medium" FontFamily="{StaticResource Mulish}" Foreground="{StaticResource Icon}"/>
+    </Border>
+</UserControl>

@@ -331,6 +331,12 @@
     <Compile Include="InsuranceWorkSpace\InsuranceListView.xaml.cs">
       <DependentUpon>InsuranceListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SaleWorkSpace\SelectedTabCategory.xaml.cs">
+      <DependentUpon>SelectedTabCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\TabCategory.xaml.cs">
+      <DependentUpon>TabCategory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatiticsWorkSpace\DatePickerCalendar.cs" />
     <Compile Include="Helper\WindowService.cs" />
     <Compile Include="ProductWorkSpace\ProductMainTitleTableView.xaml.cs">
@@ -642,6 +648,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SaleWorkSpace\SaleAllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\SelectedTabCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\TabCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
