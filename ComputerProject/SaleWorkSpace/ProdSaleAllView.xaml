@@ -6,11 +6,13 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ComputerProject.SaleWorkSpace"
              xmlns:Custom="clr-namespace:ComputerProject.CustomControl"
+             xmlns:model="clr-namespace:ComputerProject.Model"
              mc:Ignorable="d"
              d:DesignHeight="965"
              d:DesignWidth="815"
              d:DataContext="{d:DesignInstance Type={x:Type local:SaleViewModel}}">
     <UserControl.Resources>
+        <local:ListProductTabSelector x:Key="TemplateListItemSelector" />
         <Style x:Key="TabRadioButton"
                TargetType="{x:Type RadioButton}">
             <Setter Property="Foreground"
@@ -72,18 +74,19 @@
         </Style>
         <DataTemplate x:Key="myTemplate">
             <RadioButton Style="{DynamicResource TabRadioButton}"
-                                         IsChecked="False"
-                                         Content="Laptop"></RadioButton>
+                         IsChecked="False"
+                         Content="Laptop"></RadioButton>
         </DataTemplate>
     </UserControl.Resources>
     <Border CornerRadius="8"
             Background="White">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="56" />
+                <RowDefinition Height="149" />
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <StackPanel>
+            <StackPanel Grid.RowSpan="2">
                 <Grid Margin="20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -93,9 +96,10 @@
                     <Custom:Search Grid.Column="0"
                                    Width="450"
                                    HorizontalAlignment="Left"
-                                   IsTabStop="False" KeyboardNavigation.TabIndex="0" 
+                                   IsTabStop="False"
+                                   KeyboardNavigation.TabIndex="0"
                                    Texthint="Tìm kiếm"
-                                   DataContext="{Binding .}"></Custom:Search>
+                                   DataContext="{Binding .}" />
                     <Button Grid.Column="1"
                             Padding="0"
                             Margin="5"
@@ -139,18 +143,18 @@
                                        FontSize="14"
                                        Foreground="{StaticResource MainColor}"
                                        Margin="2,0,10,0"
-                                       VerticalAlignment="Center"/>
+                                       VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                 </Grid>
-                <ItemsControl ItemsSource="{Binding Categories}"
-                           Background="Transparent">
+
+                <!--<ItemsControl ItemsSource="{Binding Categories}"
+                              Background="Transparent">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <RadioButton Style="{DynamicResource TabRadioButton}"
-                                         Content="Laptop"
-                                         GroupName="DisplayPage"
-                                         IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"></RadioButton>
+                                         Content="{Binding Name}"
+                                         GroupName="DisplayPage" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>
@@ -158,7 +162,41 @@
                             <UniformGrid Rows="1"></UniformGrid>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-                </ItemsControl>
+                </ItemsControl>-->
+
+                <ListView ItemsSource="{Binding Categories}"
+                          Background="Transparent"
+                          x:Name="TabCategory"
+                          SelectedItem="{Binding CurrentRootCategory}">
+                    <!--<ListView.Resources>
+                        <DataTemplate x:Key="NotNullObjectTemplate">
+                            <RadioButton Style="{StaticResource TabRadioButton}"
+                                         Content="{Binding Name}"
+                                         GroupName="DisplayPage"
+                                         IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"/>
+                        </DataTemplate>
+                        <DataTemplate x:Key="NullObjectTemplate">
+                            <RadioButton Style="{StaticResource TabRadioButton}"
+                                         Content="Tất cả nè"
+                                         GroupName="DisplayPage"
+                                         IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}"/>
+                        </DataTemplate>
+                    </ListView.Resources>-->
+                    <ListView.ItemTemplate>
+                        <DataTemplate DataType="{x:Type model:Category}">
+                            <RadioButton Style="{StaticResource TabRadioButton}"
+                                         Content="{Binding Name, TargetNullValue='Tất cả'}"
+                                         GroupName="DisplayPage"
+                                         IsChecked="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1"></UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+
                 <ComboBox  x:Name="CategoryComboBox"
                            Padding="10,7"
                            Margin="20"
@@ -168,21 +206,21 @@
                            Foreground="Black"
                            FontFamily="{StaticResource Mulish}"
                            Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                           ItemsSource="{Binding Categories}"
                            Width="200"
                            HorizontalAlignment="Left"
                            BorderBrush="{StaticResource MainColor}"
+                           ItemsSource="{Binding CurrentRootCategory.ChildCategories}"
                            SelectedItem="{Binding CurrentCategory}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Name}" />
+                            <TextBlock Text="{Binding Name, TargetNullValue='Tất cả'}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>
-            <local:ProdSaleListView Grid.Row="1"
-                                    Margin="15,0,0,0" 
-                                    DataContext="{Binding .}"/>
+            <local:ProdSaleListView Grid.Row="2"
+                                    Margin="15,0,0,0"
+                                    DataContext="{Binding .}" />
         </Grid>
     </Border>
 

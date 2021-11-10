@@ -18,9 +18,9 @@ namespace ComputerProject.ProductWorkSpace
     /// <summary>
     /// Interaction logic for ProductMainTitleTable.xaml
     /// </summary>
-    public partial class ProductMainTitleTable : UserControl
+    public partial class ProductMainTitleTableView : UserControl
     {
-        public ProductMainTitleTable()
+        public ProductMainTitleTableView()
         {
             InitializeComponent();
         }

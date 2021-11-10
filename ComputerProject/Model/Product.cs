@@ -1,6 +1,7 @@
 ﻿using ComputerProject.HelperService;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,35 @@ using System.Threading.Tasks;
 
 namespace ComputerProject.Model
 {
+    public enum stateProduct
+    {
+        [Description("Đang bán")]
+        OnSale,
+        [Description("Tạm ngừng")]
+        Stop,
+    }
+    public class StateProductExtension
+    {
+        public static string TranferToViewNamese(stateProduct _state)
+        {
+            switch(_state)
+            {
+                case stateProduct.OnSale:
+                    return "Đang bán";
+                case stateProduct.Stop:
+                    return "Tạm ngừng";
+                default:
+                    throw new InvalidEnumArgumentException();
+            }
+        }
+        public static IEnumerable<string> TranferToViewNamese(Type enumType)
+        {
+            foreach(var i in (stateProduct[])Enum.GetValues(enumType))
+            {
+                yield return StateProductExtension.TranferToViewNamese(i);
+            }
+        }
+    }
     public class Product : BaseViewModel
     {
         int _id;
@@ -17,6 +47,7 @@ namespace ComputerProject.Model
         Bitmap _image;
         Model.Category _category;
         string _decription;
+        string _producer;
 
 
         public int Id
@@ -93,6 +124,18 @@ namespace ComputerProject.Model
                 }
             }
         }
+        public string Producer
+        {
+            get => _producer;
+            set
+            {
+                if (value != _producer)
+                {
+                    _producer = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
 
         public Product()
@@ -102,15 +145,27 @@ namespace ComputerProject.Model
             //CategoryProduct = new Model.Category();
         }
 
+        public Product(Product product)
+        {
+            this.Id = product.Id;
+            this.Name = product.Name;
+            this.PriceOrigin = product.PriceOrigin;
+            this.PriceSale = product.PriceSale;
+            this.Producer = product.Producer;
+            this.Image = product.Image;
+            this.Decription = product.Decription;
+            this.CategoryProduct = product.CategoryProduct;
+        }
+
         public Product(PRODUCT product)
         {
             Id = product.id;
             Name = product.name;
             PriceOrigin = product.priceOrigin;
             PriceSale = product.priceSales;
+            Producer = product.producer;
             Task.Run(() => {
                 Image = FormatHelper.TranferToBitmap(product.image);
-                Console.WriteLine("Image of {0} load done.", Name);
                 });
             CategoryProduct = new Model.Category(product.CATEGORY);
             Decription = product.description;
@@ -123,6 +178,7 @@ namespace ComputerProject.Model
             p.name = this.Name;
             p.priceOrigin = this.PriceOrigin;
             p.priceSales = this.PriceSale;
+            p.producer = this.Producer;
             p.description = this.Decription;
             p.CATEGORY = this.CategoryProduct.CastToModel();
 

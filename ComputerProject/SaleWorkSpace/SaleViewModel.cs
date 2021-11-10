@@ -1,8 +1,10 @@
 ﻿using ComputerProject.ApplicationWorkspace;
 using ComputerProject.CustomerWorkspace;
+using ComputerProject.CustomMessageBox;
 using ComputerProject.Helper;
 using ComputerProject.HelperService;
 using ComputerProject.Model;
+using ComputerProject.ProductWorkSpace;
 using ComputerProject.Repository;
 using MaterialDesignThemes.Wpf;
 using System;
@@ -22,25 +24,15 @@ namespace ComputerProject.SaleWorkSpace
         public PackIconKind ViewIcon => PackIconKind.CashRegister;
         readonly SaleRepository _repository;
 
-        Collection<Model.Product> _products
-        {
-            get => _products;
-            set
-            {
-                if (value != _products)
-                {
-                    VisibleProducts = _products = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        Collection<Model.Product> _products;
         Collection<Model.Product> _visibleProduct;
         IDictionary<Model.Product, int> _productsInBill;
         Collection<Model.Category> _categories;
-        CustomerViewModel _currentCustomer;
+        CUSTOMER _currentCustomer;
         Model.Category _currentCategory;
+        Model.Category _currentRootCategory;
         int _currentPoint;
-        FilterProduct _currentFilter;
+        IFilterProductState _currentFilter;
         bool _isPriceLowToHight;
 
         ICommand _paymentCommand;
@@ -52,11 +44,12 @@ namespace ComputerProject.SaleWorkSpace
         ICommand _searchProductCommand;
         ICommand _searchCustomerCommand;
         ICommand _showDetailProductCommand;
+        ICommand _clearCommand;
         #endregion //Fields
 
 
         #region Properties
-        public int TotalPriceProduct => ProductsInBill == null ? 0:ProductsInBill.Sum(p => p.Value * p.Key.PriceSale);
+        public int TotalPriceProduct => ProductsInBill == null ? 0 : ProductsInBill.Sum(p => p.Value * p.Key.PriceSale);
         public int TotalPriceBill => 0;
 
         public Collection<Product> VisibleProducts
@@ -64,7 +57,7 @@ namespace ComputerProject.SaleWorkSpace
             get => _visibleProduct;
             set
             {
-                if (value!=_visibleProduct)
+                if (value != _visibleProduct)
                 {
                     _visibleProduct = value;
                     OnPropertyChanged();
@@ -75,7 +68,7 @@ namespace ComputerProject.SaleWorkSpace
         {
             get
             {
-                if (null==_productsInBill)
+                if (null == _productsInBill)
                 {
                     _productsInBill = new ObservableConcurrentDictionary<Product, int>();
                 }
@@ -94,7 +87,7 @@ namespace ComputerProject.SaleWorkSpace
                 }
             }
         }
-        public CustomerViewModel CurrentCustomer
+        public CUSTOMER CurrentCustomer
         {
             get => _currentCustomer;
             set
@@ -115,6 +108,24 @@ namespace ComputerProject.SaleWorkSpace
                 {
                     _currentCategory = value;
                     OnPropertyChanged();
+                    OnCategoryChanged();
+                }
+            }
+        }
+        public Model.Category CurrentRootCategory
+        {
+            get => _currentRootCategory;
+            set
+            {
+                if (value != _currentRootCategory)
+                {
+                    _currentRootCategory = value;
+                    //_currentCategory = _currentRootCategory?.ChildCategories[0];
+                    OnPropertyChanged();
+
+                    _currentCategory = _currentRootCategory == null ? null : _currentRootCategory.ChildCategories[0];
+                    OnPropertyChanged(nameof(CurrentCategory));
+                    OnCategoryChanged();
                 }
             }
         }
@@ -130,7 +141,7 @@ namespace ComputerProject.SaleWorkSpace
                 }
             }
         }
-        public FilterProduct CurrentFilter
+        public IFilterProductState CurrentFilter
         {
             get => _currentFilter;
             set
@@ -152,11 +163,11 @@ namespace ComputerProject.SaleWorkSpace
                     _isPriceLowToHight = value;
                     if (_isPriceLowToHight)
                     {
-                        VisibleProducts?.OrderBy(i => i.PriceSale);
+                        VisibleProducts = new ObservableCollection<Product>(VisibleProducts?.OrderBy(i => i.PriceSale));
                     }
                     else
                     {
-                        VisibleProducts?.OrderByDescending(i => i.PriceSale);
+                        VisibleProducts = new ObservableCollection<Product>(VisibleProducts?.OrderByDescending(i => i.PriceSale));
                     }
                     OnPropertyChanged();
                 }
@@ -169,7 +180,14 @@ namespace ComputerProject.SaleWorkSpace
             {
                 if (null == _paymentCommand)
                 {
-                    _paymentCommand = new RelayCommand(a => Payment(ProductsInBill, CurrentCustomer));
+                    _paymentCommand = new RelayCommand(a =>
+                    {
+                        if (ProductsInBill == null || ProductsInBill.Count == 0)
+                        {
+                            MessageBoxCustom.ShowDialog("Không có đơn hàng để thanh toán", "Lỗi", PackIconKind.Error);
+                        }
+                        else OpenPaymentView(ProductsInBill, CurrentCustomer);
+                    });
                 }
                 return _paymentCommand;
             }
@@ -257,11 +275,24 @@ namespace ComputerProject.SaleWorkSpace
             {
                 if (null == _showDetailProductCommand)
                 {
-                    _showDetailProductCommand = new RelayCommand(product => ShowDetail(product));
+                    _showDetailProductCommand = new RelayCommand(product => ShowDetail(product as Model.Product));
                 }
                 return _showDetailProductCommand;
             }
         }
+        public ICommand ClearCommand
+        {
+            get
+            {
+                if (null == _clearCommand)
+                {
+                    _clearCommand = new RelayCommand(information => Clear(information));
+                }
+                return _clearCommand;
+            }
+        }
+        public event EventHandler<RequestViewArgs> RequestOpenDetailProductView;
+        public event EventHandler RequestAddNewCustomer;
         #endregion //Properties
 
 
@@ -277,13 +308,52 @@ namespace ComputerProject.SaleWorkSpace
 
         public void LoadData()
         {
-            Task.Run(() => VisibleProducts = _repository.LoadProducts());
-            Task.Run(() => Categories = _repository.LoadCategories());
+            var loadProductTask = Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
+            Task.Run(() =>
+            {
+                Categories = _repository.LoadCategories();
+
+                //Add "all" to UI for category tab
+                var null_category = new Category();
+                Categories.Insert(0, null_category);
+                foreach (var category in Categories)
+                {
+                    if (category.ChildCategories == null) category.ChildCategories = new ObservableCollection<Model.Category>();
+                    category.ChildCategories.Insert(0, null_category);
+                }
+            });
+        }
+        public void OnCategoryChanged()
+        {
+            if (_products == null) return;
+            if (CurrentCategory != null && CurrentCategory.Name != null)
+            {
+                //Current tab category is child
+                VisibleProducts = new ObservableCollection<Model.Product>(_products.Where(i => i.CategoryProduct.Id == CurrentCategory.Id));
+            }
+            else if (CurrentRootCategory != null)
+            {
+                //Current tab category is root
+                if (CurrentRootCategory.Name != null)
+                {
+                    VisibleProducts = new ObservableCollection<Model.Product>(_products.Where(i => CurrentRootCategory.ChildCategories.Any(child => child.Id == i.CategoryProduct.Id)));
+                }
+                else
+                {
+                    //Show all products in store
+                    VisibleProducts = _products;
+                }
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
 
-        private void Payment(IDictionary<Product, int> productsInBill, CustomerViewModel currentCustomer)
+        private void OpenPaymentView(IDictionary<Product, int> productsInBill, CUSTOMER currentCustomer = null)
         {
-            throw new NotImplementedException();
+            var vm = new BillViewModel(productsInBill, currentCustomer);
+            WindowService.ShowWindow(vm, new PaySaleBillView());
         }
         private void AddToBill(Product product, int quantity)
         {
@@ -310,18 +380,29 @@ namespace ComputerProject.SaleWorkSpace
             }
             else
             {
-                ProductsInBill.Add(product, quantity);
+                throw new NullReferenceException();
             }
             OnPropertyChanged(nameof(TotalPriceProduct));
             OnPropertyChanged(nameof(TotalPriceBill));
         }
         private void OpenFilterControl()
         {
-            throw new NotImplementedException();
+            FilterProductViewModel filter = new FilterProductViewModel(CurrentFilter);
+            filter.FilterEvent += new EventHandler((o, e) =>
+              {
+                  CurrentFilter = filter;
+                  VisibleProducts = _products = _repository.SearchFilterProduct(CurrentFilter);
+                  if (CurrentFilter.CategoryType != null)
+                  {
+                      CurrentCategory = Categories.Where(i => i.Name == CurrentFilter.CategoryType.Name).FirstOrDefault();
+                  }
+              });
+
+            WindowService.ShowWindow(filter, new Filtertab());
         }
         private void OpenAddCustomerView()
         {
-            throw new NotImplementedException();
+            RequestAddNewCustomer?.Invoke(this, null);
         }
         private void SearchProduct(string v)
         {
@@ -335,9 +416,22 @@ namespace ComputerProject.SaleWorkSpace
         {
             throw new NotImplementedException();
         }
-        private void ShowDetail(object product)
+        private void ShowDetail(Model.Product product)
         {
-            throw new NotImplementedException();
+            //RequestOpenView?.Invoke(this, new RequestViewArgs(ProductViewModel, product));
+        }
+        private void Clear(object list)
+        {
+            if (list == null) return;
+
+            if (list == CurrentCustomer)
+            {
+                CurrentCustomer = null;
+            }
+            else if (list == ProductsInBill)
+            {
+                ProductsInBill.Clear();
+            }
         }
     }
 }

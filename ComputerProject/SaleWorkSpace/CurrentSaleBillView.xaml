@@ -51,7 +51,9 @@
                                 Padding="5"
                                 Style="{StaticResource MaterialDesignIconButton}"
                                 Background="{x:Null}"
-                                BorderBrush="{x:Null}">
+                                BorderBrush="{x:Null}"
+                                Command="{Binding ClearCommand}"
+                                CommandParameter="{Binding ProductsInBill}">
                             <materialDesign:PackIcon Kind="Autorenew"
                                                      Width="18"
                                                      Height="18"

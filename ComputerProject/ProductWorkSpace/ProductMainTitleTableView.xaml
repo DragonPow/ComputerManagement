@@ -1,84 +1,78 @@
-﻿<UserControl x:Class="ComputerProject.ProductWorkSpace.ProductMainTitleTable"
+﻿<UserControl x:Class="ComputerProject.ProductWorkSpace.ProductMainTitleTableView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
               Background="{StaticResource Background}"
              d:DesignHeight="64" d:DesignWidth="1321">
-    <UserControl.Resources>
-        <Style TargetType="TextBlock" x:Key="TitleCell">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Padding" Value="22,17,16,16"/>
-            <Setter Property="Foreground" Value="#11142D"/>
-            <Setter Property="FontFamily" Value="{StaticResource Mulish}"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-    </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.28*"></ColumnDefinition>
-            <ColumnDefinition Width="0.14*"></ColumnDefinition>
-            <ColumnDefinition Width="0.09*"></ColumnDefinition>
-            <ColumnDefinition Width="0.13*"></ColumnDefinition>
-            <ColumnDefinition Width="0.1*"></ColumnDefinition>
-            <ColumnDefinition Width="0.09*"></ColumnDefinition>
-            <ColumnDefinition Width="0.04*"></ColumnDefinition>
-            <ColumnDefinition Width="0.04*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+	<UserControl.Resources>
+		<Style TargetType="TextBlock" x:Key="TitleCell">
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="TextWrapping" Value="Wrap"/>
+			<Setter Property="Padding" Value="22,17,16,16"/>
+			<Setter Property="Foreground" Value="#11142D"/>
+			<Setter Property="FontFamily" Value="{StaticResource Mulish}"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+		</Style>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0.28*"></ColumnDefinition>
+			<ColumnDefinition Width="0.14*"></ColumnDefinition>
+			<ColumnDefinition Width="0.09*"></ColumnDefinition>
+			<ColumnDefinition Width="0.13*"></ColumnDefinition>
+			<ColumnDefinition Width="0.1*"></ColumnDefinition>
+			<ColumnDefinition Width="0.09*"></ColumnDefinition>
+			<ColumnDefinition Width="0.04*"></ColumnDefinition>
+			<ColumnDefinition Width="0.04*"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
 
-        <TextBlock
-            x:Name="Name"
+		<TextBlock
             Grid.Column="0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}">
-            Sản phẩm
-        </TextBlock>
-        <TextBlock
-            x:Name="Code"
+			Sản phẩm
+		</TextBlock>
+		<TextBlock
             Grid.Column="1"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}">
-            Mã sản phẩm
-        </TextBlock>
-        <TextBlock
-            x:Name="Quantity"
+			Mã sản phẩm
+		</TextBlock>
+		<TextBlock
             Grid.Column="2"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}">
-            Số lượng
-        </TextBlock>
-        <TextBlock
-            x:Name="Unit"
+			Số lượng
+		</TextBlock>
+		<TextBlock
             Grid.Column="3"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}">
-            Đơn giá
-        </TextBlock>
-        <TextBlock
-            x:Name="State"
+			Đơn giá
+		</TextBlock>
+		<TextBlock
             Grid.Column="4"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}"
             >
-            Trạng thái
-        </TextBlock>
-        <TextBlock
-            x:Name="Number"
+			Trạng thái
+		</TextBlock>
+		<TextBlock
             Grid.Column="5"
             Grid.ColumnSpan="2"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}"
             >
-            Hạn bảo hành
-        </TextBlock>
-    </Grid>
+			Hạn bảo hành
+		</TextBlock>
+	</Grid>
 </UserControl>

@@ -18,7 +18,7 @@ namespace ComputerProject.SaleWorkSpace
     /// <summary>
     /// Interaction logic for PaySaleBillView.xaml
     /// </summary>
-    public partial class PaySaleBillView : Window
+    public partial class PaySaleBillView : UserControl
     {
         public PaySaleBillView()
         {

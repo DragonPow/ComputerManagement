@@ -2,195 +2,177 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
              xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
              xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
-             mc:Ignorable="d" 
+             xmlns:saleworkspace="clr-namespace:ComputerProject.SaleWorkSpace"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:model="clr-namespace:ComputerProject.Model"
+             mc:Ignorable="d"
              Background="White"
-             d:DesignHeight="1044" d:DesignWidth="318">
-    <StackPanel
-        Width="318"
-        >
-    <StackPanel
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Orientation="Horizontal"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Grid.Row="0"  
-                Margin="20,20,0, 0">
-                <Button      
-                  x:Name ="BtnBack"
-                  Style="{StaticResource MaterialDesignIconButton}"
-                  ToolTip="Trở về"
-                  Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                    <materialDesign:PackIcon
-                            Kind="ArrowLeft"
-                            Foreground="{StaticResource Title}"
-                            />
-                </Button>
-        <TextBlock
-                FontSize="25"
-                FontWeight="SemiBold"
-                FontFamily="{StaticResource Mulish}"
-                Foreground="{StaticResource Title}"
-                Margin="20,3,0,0"
-                VerticalAlignment="Center"
-                >
-                Bộ lọc
-        </TextBlock>     
-    </StackPanel>
-        <StackPanel
-                   Margin="30, 30, 30, 0" >
-            <TextBlock   
-                                FontWeight="SemiBold"
-                                FontFamily="{StaticResource Mulish}"
-                                Text="   Danh mục"
-                                FontSize="{x:Static localfont:Font.Body}"
-                                Foreground="Black"                   
-                                Margin="0, 0, 0, 10"
-                                VerticalAlignment="Top">
-            </TextBlock>
-
-            <ComboBox
-                        x:Name="Category"
-                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                        IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                        FontSize="{x:Static localfont:Font.Body}"
-                        Background="{StaticResource Background}"
-                        BorderBrush="#DBD7F4"
-                        Margin="0, 0, 0, 20"
-                        FontFamily="{StaticResource Mulish}"
-                        ItemsSource="{Binding ShortStringList}" />
-        </StackPanel>
-        <localcustom:TextboxCustom
-                x:Name="Procedure"
-                Title="   Nhà cung cấp"
-                FontSize="{x:Static localfont:Font.Body}"
-                MarginText = "10"
-                CornerRadiusText="3"
-                Margin="30, 0, 30, 0"
-                IsTabStop="False" KeyboardNavigation.TabIndex="0" 
-                >
-        </localcustom:TextboxCustom>
-        <StackPanel
-                   Margin="30, 20, 30, 0" >
-            <TextBlock   
-                               FontSize="{x:Static localfont:Font.Body}"
-                                FontWeight="SemiBold"
-                                FontFamily="{StaticResource Mulish}"
-                                Text="   Trạng thái"
-                                Foreground="Black"                   
-                                Margin="0, 0, 0, 10"
-                                VerticalAlignment="Top">
-            </TextBlock>
-
-            <ComboBox
-                        x:Name="State"
-                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                        IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                        FontSize="16"
-                        Background="{StaticResource Background}"
-                        BorderBrush="#DBD7F4"
-                        Margin="0, 0, 0, 20"
-                        FontFamily="{StaticResource Mulish}"
-                        ItemsSource="{Binding ShortStringList}" />
-        </StackPanel>
-        <StackPanel
-                   Margin="30, 0, 30, 0" >
-            <TextBlock   
-                                FontSize="{x:Static localfont:Font.Body}"
-                                FontWeight="SemiBold"
-                                FontFamily="{StaticResource Mulish}"
-                                Text="   Hạn bảo hành"
-                                Foreground="Black"                   
-                                Margin="0, 0, 0, 10"
-                                VerticalAlignment="Top">
-            </TextBlock>
-
-            <ComboBox
-                        x:Name="Waranty"
-                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                        IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                        FontSize="16"
-                        Background="{StaticResource Background}"
-                        BorderBrush="#DBD7F4"
-                        Margin="0, 0, 0, 20"
-                        FontFamily="{StaticResource Mulish}"
-                        ItemsSource="{Binding ShortStringList}" />
-        </StackPanel>
-        <TextBlock   
-                                FontSize="{x:Static localfont:Font.Body}"
-                                FontWeight="SemiBold"
-                                FontFamily="{StaticResource Mulish}"
-                                Text="   Khoảng giá"
-                                Foreground="Black"                   
-                                Margin="30, 0, 30, 10"
-                                VerticalAlignment="Top">
-        </TextBlock>
-        <Grid
-            Margin="0, 0, 0, 20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <TextBox
-                Grid.Column="0"
-                x:Name="From"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                VerticalAlignment="Top"
-                AcceptsReturn="True"
-                TextWrapping="Wrap"
-                FontSize="{x:Static localfont:Font.Body}"
-                FontFamily="{StaticResource Mulish}"
-                VerticalScrollBarVisibility="Auto"
-                Margin="30, 0, 10, 0"
-                Background="{StaticResource Background}"
-                BorderBrush="#DBD7F4"
-                IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
-            <TextBox
-                Grid.Column="1"
-                x:Name="To"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                VerticalAlignment="Top"
-                AcceptsReturn="True"
-                TextWrapping="Wrap"
-                FontSize="{x:Static localfont:Font.Body}"
-                FontFamily="{StaticResource Mulish}"
-                VerticalScrollBarVisibility="Auto"
-                Margin="20, 0, 20, 0"
-                Background="{StaticResource Background}"
-                BorderBrush="#DBD7F4"
-                IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextBoxEnabledComboBox}" />
-        </Grid>
-        <StackPanel 
-            Orientation="Horizontal"
-           
-            Margin="30, 50, 0, 0">
-            <Button
-                Style="{StaticResource MaterialDesignRaisedLightButton}"
-                Background="Transparent"
-                BorderBrush="{StaticResource MainColor}"
-                Foreground="{StaticResource MainColor}"
-                Width="116"
-                Height="48"
-                Margin="0, 0, 20, 0"
-                >
-                Đặt lại
+             Tag="FilterProductView"
+             d:DesignHeight="1044"
+             d:DesignWidth="318"
+             d:DataContext="{d:DesignInstance Type={x:Type saleworkspace:FilterProductViewModel}}">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="dataFromEnum"
+                            MethodName="TranferToViewNamese"
+                            ObjectType="{x:Type model:StateProductExtension}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="model:stateProduct" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <StackPanel Width="318">
+        <StackPanel HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="0"
+                    Margin="20,20,0, 0">
+            <Button x:Name="BtnBack"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    ToolTip="Trở về"
+                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
+                <materialDesign:PackIcon Kind="ArrowLeft"
+                                         Foreground="{StaticResource Title}" />
             </Button>
-            <Button
-                Style="{StaticResource MaterialDesignRaisedLightButton}"
-                Background="{StaticResource MainColor}"
-                Width="116"
-                Height="48"
-                Margin="20, 0, 0, 0"
-                Foreground="White"
-                >
-                Lọc
-            </Button>  
+            <TextBlock FontSize="25"
+                       FontWeight="SemiBold"
+                       FontFamily="{StaticResource Mulish}"
+                       Foreground="{StaticResource Title}"
+                       Margin="20,3,0,0"
+                       VerticalAlignment="Center">
+                Bộ lọc
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Margin="30, 30, 30, 0">
+            <TextBlock FontWeight="SemiBold"
+                       FontFamily="{StaticResource Mulish}"
+                       Text="   Danh mục"
+                       FontSize="{x:Static localfont:Font.Body}"
+                       Foreground="Black"
+                       Margin="0, 0, 0, 10"
+                       VerticalAlignment="Top">
+            </TextBlock>
+
+            <ComboBox x:Name="Category"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      FontSize="{x:Static localfont:Font.Body}"
+                      Background="{StaticResource Background}"
+                      BorderBrush="#DBD7F4"
+                      Margin="0, 0, 0, 20"
+                      FontFamily="{StaticResource Mulish}"/>
+        </StackPanel>
+        <localcustom:TextboxCustom x:Name="Procedure"
+                                   Title="   Nhà cung cấp"
+                                   FontSize="{x:Static localfont:Font.Body}"
+                                   MarginText="10"
+                                   CornerRadiusText="3"
+                                   Margin="30, 0, 30, 0"
+                                   IsTabStop="False"
+                                   KeyboardNavigation.TabIndex="0">
+        </localcustom:TextboxCustom>
+        <StackPanel Margin="30, 20, 30, 0">
+            <TextBlock FontSize="{x:Static localfont:Font.Body}"
+                       FontWeight="SemiBold"
+                       FontFamily="{StaticResource Mulish}"
+                       Text="   Trạng thái"
+                       Foreground="Black"
+                       Margin="0, 0, 0, 10"
+                       VerticalAlignment="Top">
+            </TextBlock>
+
+            <ComboBox x:Name="State"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      FontSize="16"
+                      Background="{StaticResource Background}"
+                      BorderBrush="#DBD7F4"
+                      Margin="0, 0, 0, 20"
+                      FontFamily="{StaticResource Mulish}"
+                      ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
+                      SelectedItem="{Binding StateProduct}"/>
+        </StackPanel>
+        <StackPanel Margin="30, 0, 30, 0">
+            <TextBlock FontSize="{x:Static localfont:Font.Body}"
+                       FontWeight="SemiBold"
+                       FontFamily="{StaticResource Mulish}"
+                       Text="   Hạn bảo hành"
+                       Foreground="Black"
+                       Margin="0, 0, 0, 10"
+                       VerticalAlignment="Top">
+            </TextBlock>
+
+            <TextBox x:Name="Waranty"
+                     FontSize="16"
+                     Text="{Binding TimeWarranty}"
+                     Background="{StaticResource Background}"
+                     BorderBrush="#DBD7F4"
+                     Margin="0, 0, 0, 20"
+                     FontFamily="{StaticResource Mulish}" />
+        </StackPanel>
+        <TextBlock FontSize="{x:Static localfont:Font.Body}"
+                   FontWeight="SemiBold"
+                   FontFamily="{StaticResource Mulish}"
+                   Text="   Khoảng giá"
+                   Foreground="Black"
+                   Margin="30, 0, 30, 10"
+                   VerticalAlignment="Top">
+        </TextBlock>
+        <Grid Margin="0, 0, 0, 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0"
+                     x:Name="From"
+                     Text="{Binding PriceLowest}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     VerticalAlignment="Top"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     FontSize="{x:Static localfont:Font.Body}"
+                     FontFamily="{StaticResource Mulish}"
+                     VerticalScrollBarVisibility="Auto"
+                     Margin="30, 0, 10, 0"
+                     Background="{StaticResource Background}"
+                     BorderBrush="#DBD7F4" />
+            <TextBox Grid.Column="1"
+                     x:Name="To"
+                     Text="{Binding PriceHighest}"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     VerticalAlignment="Top"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     FontSize="{x:Static localfont:Font.Body}"
+                     FontFamily="{StaticResource Mulish}"
+                     VerticalScrollBarVisibility="Auto"
+                     Margin="20, 0, 20, 0"
+                     Background="{StaticResource Background}"
+                     BorderBrush="#DBD7F4" />
+        </Grid>
+        <StackPanel Orientation="Horizontal"
+                    Margin="30, 50, 0, 0">
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Background="Transparent"
+                    BorderBrush="{StaticResource MainColor}"
+                    Foreground="{StaticResource MainColor}"
+                    Width="116"
+                    Height="48"
+                    Content="Đặt lại"
+                    Margin="0, 0, 20, 0"
+                    Command="{Binding UndoCommand}" />
+            <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Background="{StaticResource MainColor}"
+                    Width="116"
+                    Height="48"
+                    Content="Lọc"
+                    Margin="20, 0, 0, 0"
+                    Foreground="White"
+                    Command="{Binding FilterCommand}" />
         </StackPanel>
     </StackPanel>
 </UserControl>

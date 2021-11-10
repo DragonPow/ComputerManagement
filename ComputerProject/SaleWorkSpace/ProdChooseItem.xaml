@@ -54,7 +54,7 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Command="{Binding DataContext.RemoveProductInBillCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
-                        CommandParameter="{Binding .}">
+                        CommandParameter="{Binding Key}">
                     <materialDesign:PackIcon  Grid.Column="0"
                                               Background="{StaticResource MainColor}"
                                               BorderBrush="{StaticResource MainColor}"
@@ -81,7 +81,7 @@
                         Background="Transparent"
                         BorderBrush="Transparent"
                         Command="{Binding DataContext.AddProductInBillCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
-                        CommandParameter="{Binding .}">
+                        CommandParameter="{Binding Key}">
                     <materialDesign:PackIcon  Grid.Column="0"
                                               Background="{StaticResource MainColor}"
                                               BorderBrush="{StaticResource MainColor}"

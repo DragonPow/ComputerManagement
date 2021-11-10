@@ -1,8 +1,10 @@
 ﻿using ComputerProject.Model;
+using ComputerProject.SaleWorkSpace;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,35 +15,62 @@ namespace ComputerProject.Repository
     {
         public Collection<Model.Product> LoadProducts(bool isContainStopSale = false, string name = null)
         {
-            Collection<Model.Product> list = new ObservableCollection<Model.Product>();
-
-            using(var db = new ComputerManagementEntities())
+            using (var db = new ComputerManagementEntities())
             {
-                IList<PRODUCT> l;
-                if (name ==null)
+                Stopwatch timeExecute = new Stopwatch();
+                timeExecute.Start();
+                Collection<Model.Product> list = new ObservableCollection<Model.Product>();
+                IQueryable<PRODUCT> query = db.PRODUCTs.Include(i => i.CATEGORY).AsNoTracking();
+
+                if (name == null)
                 {
-                    l = db.PRODUCTs.Include(i => i.CATEGORY).Where(i => i.isStopSelling == isContainStopSale).ToList();
+                    query = query.Where(i => i.isStopSelling == isContainStopSale);
                 }
                 else
                 {
-                    l = db.PRODUCTs.Include(i => i.CATEGORY).Where(i => i.isStopSelling == isContainStopSale && i.name.Contains(name)).ToList();
+                    query = query.Where(i => i.isStopSelling == isContainStopSale && i.name.Contains(name));
                 }
 
+                IEnumerable<PRODUCT> l = query.AsEnumerable();
                 foreach (var item in l)
                 {
                     list.Add(new Model.Product(item));
                 }
+
+                timeExecute.Stop();
+                Console.WriteLine("List product load done, time execute: {0}", timeExecute.ElapsedMilliseconds);
+                return list;
             }
-
-            Console.WriteLine("List product load done");
-
-            return list;
         }
 
         public Collection<Category> LoadCategories()
         {
             var categoryRepo = new CategoryRepository();
             return categoryRepo.LoadCategories();
+        }
+
+        public Collection<Product> SearchFilterProduct(IFilterProductState filter)
+        {
+            using (var db = new ComputerManagementEntities())
+            {
+                Collection<Model.Product> list = new ObservableCollection<Model.Product>();
+                IQueryable<PRODUCT> query = db.PRODUCTs.Include(i => i.CATEGORY).AsNoTracking();
+
+                query = query.Where(i => (filter.Supplier == null ? i.producer.ToLower().Contains(filter.Supplier.Trim().ToLower()) : true)
+                && i.priceSales >= filter.PriceLowest
+                && i.isStopSelling == (filter.StateProduct == stateProduct.Stop ? true : false)
+                && (filter.PriceHighest > 0 ? i.priceSales <= filter.PriceHighest : true)
+                && (filter.TimeWarranty > 0 ? i.warrantyTime == filter.TimeWarranty : true)
+                && ((filter.CategoryType != null && filter.CategoryType.Id > 0) ? i.categoryId == filter.CategoryType.Id : true));
+
+                IEnumerable<PRODUCT> l = query.AsEnumerable();
+                foreach (var item in l)
+                {
+                    list.Add(new Model.Product(item));
+                }
+
+                return list;
+            }
         }
     }
 }
