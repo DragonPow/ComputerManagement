@@ -9,6 +9,7 @@
              mc:Ignorable="d"
              d:DesignHeight="700"
              d:DesignWidth="650"
+             MinWidth="600"
              d:DataContext="{d:DesignInstance Type={x:Type local:BillViewModel}}"
              Background="White">
     <StackPanel Margin="20,10">
@@ -105,7 +106,7 @@
                        Margin="10,0"
                        Grid.Column="3"
                        Grid.Row="1"
-                       Text="{Binding CurrentBill.TimeCreated, Mode=OneWay}"
+                       Text="{Binding CurrentBill.TimeCreated, Mode=OneWay, StringFormat={}{0:d}}"
                        FontWeight="DemiBold"
                        VerticalAlignment="Center"
                        FontSize="{x:Static font:Font.Body}" />
@@ -212,9 +213,8 @@
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="549*" />
-                <ColumnDefinition Width="44*" />
-                <ColumnDefinition Width="17*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />

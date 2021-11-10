@@ -9,13 +9,14 @@
         xmlns:overview="clr-namespace:ComputerProject.OverViewWorkSpace"
         xmlns:wanrantycard="clr-namespace:ComputerProject.InsuranceWorkSpace"
         xmlns:local="clr-namespace:ComputerProject.Test"
+        xmlns:insurance="clr-namespace:ComputerProject.InsuranceWorkSpace"
         xmlns:statitic="clr-namespace:ComputerProject.StatiticsWorkSpace"
         mc:Ignorable="d"
         Title="WindowTest" Height="700" Width="1300"
        
         d:DesignHeight="1000" d:DesignWidth="1100" WindowStartupLocation="CenterOwner">
     <Grid Background="{StaticResource Background}">
-        <bill:BillDetailView/>
+        <insurance:InsuranceDetailView/>
 
     </Grid>
 </Window>
