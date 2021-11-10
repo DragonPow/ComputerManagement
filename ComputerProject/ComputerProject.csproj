@@ -337,6 +337,12 @@
     <Compile Include="SaleWorkSpace\TabCategory.xaml.cs">
       <DependentUpon>TabCategory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProductWorkSpace\ProInfor.xaml.cs">
+      <DependentUpon>ProInfor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\Specification.xaml.cs">
+      <DependentUpon>Specification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatiticsWorkSpace\DatePickerCalendar.cs" />
     <Compile Include="Helper\WindowService.cs" />
     <Compile Include="ProductWorkSpace\ProductMainTitleTableView.xaml.cs">
@@ -615,6 +621,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ProductWorkSpace\ProductMainView.xaml" />
+    <Page Include="ProductWorkSpace\ProInfor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\Specification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SaleWorkSpace\CurrentSaleBillView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
