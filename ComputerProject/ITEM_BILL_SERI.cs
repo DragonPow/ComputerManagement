@@ -12,7 +12,7 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class ITEM_BILL_SERI : HelperService.BaseViewModel
+    public partial class ITEM_BILL_SERI : Helper.BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ITEM_BILL_SERI()

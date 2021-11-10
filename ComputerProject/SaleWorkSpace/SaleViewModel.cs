@@ -17,7 +17,7 @@ using System.Windows.Input;
 
 namespace ComputerProject.SaleWorkSpace
 {
-    public class SaleViewModel : BaseViewModel, ITabView
+    public class SaleViewModel : HelperService.BaseViewModel, ITabView
     {
         #region Fields
         public string ViewName => "Bán hàng";

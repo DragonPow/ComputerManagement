@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="ComputerProject.ProductWorkSpace.ProductTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=local:ProductTabViewModel}"
+             d:DesignHeight="1000" d:DesignWidth="1100">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type local:ProductMainViewModel}">
+            <local:ProductMainView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:ProductAddViewModel}">
+            <local:ProductAddView/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <ContentControl
+            Content="{Binding CurrentViewModel}"/>
+    </Grid>
+</UserControl>

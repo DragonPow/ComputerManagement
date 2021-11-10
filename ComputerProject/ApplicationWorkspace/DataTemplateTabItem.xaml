@@ -1,9 +1,10 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:categoryWS="clr-namespace:ComputerProject.CategoryWorkspace"
-                    xmlns:customerWS="clr-namespace:ComputerProject.CustomerWorkspace"
-                    xmlns:productWS="clr-namespace:ComputerProject.ProductWorkSpace"
-                    xmlns:saleWS="clr-namespace:ComputerProject.SaleWorkSpace">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:categoryWS="clr-namespace:ComputerProject.CategoryWorkspace"
+    xmlns:customerWS="clr-namespace:ComputerProject.CustomerWorkspace"
+    xmlns:productWS="clr-namespace:ComputerProject.ProductWorkSpace"
+    xmlns:saleWS="clr-namespace:ComputerProject.SaleWorkSpace">
     <DataTemplate DataType="{x:Type categoryWS:CategoryViewModel}">
         <ContentPresenter Content="{Binding CurrentPage}">
             <ContentPresenter.Resources>

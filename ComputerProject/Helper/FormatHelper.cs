@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,52 @@ namespace ComputerProject
             return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
         }
 
+        public static string ToMoney(int val, bool hasCurrency = false)
+        {
+            var rs = hasCurrency ? val.ToString("N0") + "VND" : val.ToString("N0");
+            return rs;
+        }
+
+        public static int CheckMoney(string val)
+        {
+            int temp;
+            if (Int32.TryParse(val, System.Globalization.NumberStyles.AllowThousands, System.Globalization.CultureInfo.CurrentCulture, out temp) && temp > 0)
+            {
+                return temp;
+            }
+            else return 0;
+        }
+
+        public static byte[] ImageToBytes(Bitmap image)
+        {
+            if (image == null) return null;
+            byte[] rs;
+
+            using (var ms = new MemoryStream())
+            {
+                image.Save(ms, ImageFormat.Png);
+
+                rs = ms.ToArray();
+            }
+
+            return rs;
+        }
+
+        public static System.Windows.Media.Imaging.BitmapImage BytesToImage(byte[] bytes)
+        {
+            if (bytes == null) return null;
+            System.Windows.Media.Imaging.BitmapImage rs = new System.Windows.Media.Imaging.BitmapImage();
+
+            using (var ms = new System.IO.MemoryStream(bytes))
+            {
+                rs.BeginInit();
+                rs.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad; // important here
+                rs.StreamSource = ms;
+                rs.EndInit();
+            }
+
+            return rs;
+        }
 
         public static Bitmap TranferToBitmap(byte[] bytecode)
         {

@@ -9,7 +9,9 @@
               xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              Padding="30" Background="{StaticResource Background}"
-             d:DesignHeight="1000" d:DesignWidth="1300">
+             d:DesignHeight="1000" d:DesignWidth="1300"
+             d:DataContext="{d:DesignInstance Type=local:ProductMainViewModel}"
+             >
     <DockPanel>
         <TextBlock 
             Height="50"
@@ -64,7 +66,7 @@
                             Height="37"
                             materialDesign:ButtonAssist.CornerRadius="8"
                             ToolTip="Thêm sản phẩm"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                            Command="{Binding Clicked_Add}">
                     <StackPanel 
                                 Orientation="Horizontal">
                         <Image
@@ -203,7 +205,7 @@
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsSelected" Value="true" />
                                 </MultiTrigger.Conditions>
-                                <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                                <Setter Property="Template" Value="{StaticResource SeletedItem}" />
                             </MultiTrigger>
                         </Style.Triggers>
                     </Style>
