@@ -49,8 +49,8 @@
             Grid.Row="1"
             Margin="20">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.2*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Rectangle Fill="White" Margin="20, 0, 20, 0"></Rectangle>
             <Rectangle Fill="White" Grid.Column="1" Margin="20, 0, 20, 0"></Rectangle>
@@ -106,9 +106,10 @@
                             </TextBlock>
                             <Button
                             x:Name="BtnAddImage"
-                            HorizontalAlignment="Stretch"
+                            HorizontalAlignment="Left"
                             Margin="10, 0, 10, 0"
                             Grid.Row="1"
+                            Width="120"
                             FontSize="{x:Static localfont:Font.Body}"
                             FontFamily="{StaticResource Mulish}"
                             Background="{StaticResource MainColor}"
