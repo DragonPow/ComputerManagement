@@ -28,7 +28,7 @@
                    Foreground="{StaticResource Title}"
                    Margin="20,3,0,0"
                    VerticalAlignment="Center" 
-                   Text="Chỉnh sửa danh mục"/>
+                   Text="Chi tiết danh mục"/>
 
     </StackPanel>
 </UserControl>

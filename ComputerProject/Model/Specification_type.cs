@@ -62,7 +62,7 @@ namespace ComputerProject.Model
 
         public Specification_type()
         {
-            _id = 0;
+
         }
 
         public Specification_type(SPECIFICATION_TYPE specification_type)
@@ -74,7 +74,7 @@ namespace ComputerProject.Model
 
         public SPECIFICATION_TYPE CastToModel()
         {
-            SPECIFICATION_TYPE s = new SPECIFICATION_TYPE() { id = this.Id, name = this.Name, categoryId = this._categoryId};
+            SPECIFICATION_TYPE s = new SPECIFICATION_TYPE() { id = this.Id, name = this.Name};
             return s;
         }
 

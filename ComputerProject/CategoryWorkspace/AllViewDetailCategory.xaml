@@ -118,7 +118,7 @@
                     HorizontalAlignment="Left"
                     Width="300"
                     CornerRadiusText="3"
-                    Text="{Binding CurrentChildCategory.Name, ValidatesOnDataErrors=False, UpdateSourceTrigger=PropertyChanged, TargetNullValue='Danh mục mới' }"
+                    Text="{Binding CurrentChildCategory.Name, UpdateSourceTrigger=PropertyChanged}"
                     Title="Tên danh mục con"
                     FontSize="{x:Static localfont:Font.Body}"
                     Margin="15"

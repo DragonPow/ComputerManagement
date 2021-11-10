@@ -253,7 +253,7 @@ namespace ComputerProject.CategoryWorkspace
             else
             {
                 CurrentParentCategory = parentCategory;
-                Task.Run(() => CurrentParentCategory.ChildCategories = _repository.LoadChildCategories(CurrentParentCategory.Id));
+                CurrentParentCategory.ChildCategories = _repository.LoadChildCategories(CurrentParentCategory.Id);
                 //Task.Run(() => _repository.LoadSpecification(parentCategory));
                 IsEditMode = false;
             }
@@ -274,13 +274,13 @@ namespace ComputerProject.CategoryWorkspace
 
         public void AddChildCategory()
         {
-            CurrentChildCategory = new Model.Category();
+            CurrentChildCategory = new Model.Category() { Name = "Danh mục mới"};
             CurrentParentCategory.ChildCategories.Add(CurrentChildCategory);
         }
 
         public void AddSpecification(Model.Category category)
         {
-            Model.Specification_type specification = new Model.Specification_type() { Name = "test ne"};
+            Model.Specification_type specification = new Model.Specification_type();
 
             if (category?.SpecificationTypes == null) specification.Number = 1;
             else specification.Number = (int) CurrentChildCategory?.SpecificationTypes.Count() + 1;
@@ -294,7 +294,6 @@ namespace ComputerProject.CategoryWorkspace
         public void DeleteSpecificationType(Model.Specification_type specification)
         {
             CurrentChildCategory.SpecificationTypes.Remove(specification);
-
         }
 
         public void Delete(Model.Category category)
@@ -306,13 +305,11 @@ namespace ComputerProject.CategoryWorkspace
             }
             else
             {
-                category.SpecificationTypes.Clear();
-                category.SpecificationTypes = null;
                 CurrentParentCategory.ChildCategories.Remove(category);
             }
         }
 
-        public void Save()
+        public async void Save()
         {
             if (String.IsNullOrWhiteSpace(CurrentParentCategory.Name))
             {
@@ -324,7 +321,7 @@ namespace ComputerProject.CategoryWorkspace
             }
             else
             {
-                Task.Run(() => _repository?.Save(CurrentParentCategory));
+                var task = Task.Run(()=>_repository?.Save(CurrentParentCategory));
                 IsEditMode = false;
                 CurrentChildCategory = null;
 

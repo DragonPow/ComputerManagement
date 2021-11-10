@@ -42,16 +42,15 @@
                        >
             </TextBlock>
             <TextBox x:Name="NameProperties"
-                       materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                       BorderThickness="0"
-                       Grid.Column="1"
-                        Background="Transparent"
-                       materialDesign:HintAssist.Hint="Tên thuộc tính"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Center"
-                       Margin="10, 0, 0,0"
-                       Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                       Style="{StaticResource TitleCell}">
+                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                     BorderThickness="0"
+                     Grid.Column="1"
+                     Background="Transparent"
+                     materialDesign:HintAssist.Hint="Tên thuộc tính"
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Center"
+                     Margin="10, 0, 0,0"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}">
             </TextBox>
             <Button Grid.Column="3"
                     x:Name="btnDelete"
@@ -62,6 +61,7 @@
                     FontSize="{x:Static localfont:Font.Body}"
                     ToolTip="Xóa danh mục"
                     Command="{Binding DataContext.DeleteSpecificationCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
+                    CommandParameter="{Binding .}"
                     Visibility="{Binding DataContext.IsEditMode, Converter={StaticResource ResourceKey=boolconverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}">
                 <Image Height="20"
                        Width="20"

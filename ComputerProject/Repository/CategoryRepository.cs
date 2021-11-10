@@ -106,9 +106,13 @@ namespace ComputerProject.Repository
                 ChangeIdRuntime(category, c);
 
                 //Remove category is delete from db
-                var listDBCategories = _context.CATEGORies.Where(i => i.parentCategoryId == c.id).AsEnumerable();
+                var listDBCategories = _context.CATEGORies.Include(i=>i.SPECIFICATION_TYPE).Where(i => i.parentCategoryId == c.id).AsEnumerable();
                 var categoriesDeleted = listDBCategories.Where(i1 => !category.ChildCategories.Any(i2 => i1.id == i2.Id)).AsEnumerable();
 
+                foreach(var i in categoriesDeleted)
+                {
+                    _context.SPECIFICATION_TYPE.RemoveRange(i.SPECIFICATION_TYPE);
+                }
                 _context.CATEGORies.RemoveRange(categoriesDeleted);
                 _context.SaveChanges();
             }
