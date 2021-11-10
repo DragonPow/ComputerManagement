@@ -37,23 +37,15 @@ namespace ComputerProject.Model
                 }
             }
         }
-        //public int Quantity
-        //{
-        //    get => _quantity; 
-        //    set
-        //    {
-        //        if (value != _quantity)
-        //        {
-        //            _quantity = value;
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
 
-
-        public ProductInBill()
+        public ProductInBill(Product product) : base(product)
         {
-
+            this.PriceUnit = product.PriceSale;
+        }
+        public ProductInBill(ITEM_BILL_SERI product, int priceUnit) : base(product.PRODUCT)
+        {
+            this.Seri = product.seri;
+            this.PriceUnit = priceUnit;
         }
     }
 }

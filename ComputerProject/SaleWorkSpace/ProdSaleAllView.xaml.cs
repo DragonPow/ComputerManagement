@@ -23,11 +23,44 @@ namespace ComputerProject.SaleWorkSpace
         public ProdSaleAllView()
         {
             InitializeComponent();
+            TabCategory.SelectionChanged += TabCategory_SelectionChanged;
+            CategoryComboBox.SelectionChanged += CategoryComboBox_SelectionChanged;
         }
 
         private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Console.WriteLine(CategoryComboBox.SelectedIndex);
+        }
 
+        private void TabCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            Console.WriteLine(CategoryComboBox.SelectedIndex);
+        }
+    }
+
+    public class ListProductTabSelector : DataTemplateSelector
+    {
+        public override DataTemplate
+            SelectTemplate(object item, DependencyObject container)
+        {
+            FrameworkElement element = container as FrameworkElement;
+
+            if (element != null)
+            {
+                var category = item as Model.Category;
+
+                if (category == null)
+                    return
+                        element.FindResource("NullObjectTemplate") as DataTemplate;
+                //else if (category.ChildCategories == null)
+                //    return element.FindResource("NullChildObjectTemplate") as DataTemplate;
+                else
+                    return
+                        element.FindResource("NotNullObjectTemplate") as DataTemplate;
+            }
+
+            return null;
         }
     }
 }

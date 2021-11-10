@@ -145,6 +145,18 @@ namespace ComputerProject.Model
             //CategoryProduct = new Model.Category();
         }
 
+        public Product(Product product)
+        {
+            this.Id = product.Id;
+            this.Name = product.Name;
+            this.PriceOrigin = product.PriceOrigin;
+            this.PriceSale = product.PriceSale;
+            this.Producer = product.Producer;
+            this.Image = product.Image;
+            this.Decription = product.Decription;
+            this.CategoryProduct = product.CategoryProduct;
+        }
+
         public Product(PRODUCT product)
         {
             Id = product.id;

@@ -5,11 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+             xmlns:model="clr-namespace:ComputerProject.Model"
              mc:Ignorable="d"
              d:DesignHeight="40"
              d:DesignWidth="800"
              Background="White"
-             d:DataContext="{d:DesignInstance Type={x:Type local:ITEM_BILL}}">
+             d:DataContext="{d:DesignInstance Type={x:Type model:ProductInBill}}">
     <Grid Margin="0,5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70" />
@@ -24,14 +25,14 @@
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
         <TextBlock Grid.Column="1"
-                   Text="{Binding PRODUCT.name}"
+                   Text="{Binding Name}"
                    FontWeight="DemiBold"
                    VerticalAlignment="Center"
                    FontSize="{x:Static font:Font.Body}"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
         <TextBlock Grid.Column="3"
-                   Text="{Binding unitPrice}"
+                   Text="{Binding PriceUnit, StringFormat='\{0:N0}đ'}"
                    Margin="20,0"
                    VerticalAlignment="Center"
                    FontSize="{x:Static font:Font.Body}"
@@ -44,7 +45,7 @@
                 CornerRadius="8"
                 BorderBrush="{StaticResource Icon}">
             <TextBox Grid.Column="2"
-                     Text="{Binding productId}"
+                     Text="{Binding Seri}"
                      BorderThickness="0"
                      Margin="5,0"
                      VerticalAlignment="Center"

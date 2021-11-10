@@ -56,7 +56,7 @@ namespace ComputerProject.Repository
                 Collection<Model.Product> list = new ObservableCollection<Model.Product>();
                 IQueryable<PRODUCT> query = db.PRODUCTs.Include(i => i.CATEGORY).AsNoTracking();
 
-                query = query.Where(i => (filter.Supplier == null ? i.producer == filter.Supplier : true)
+                query = query.Where(i => (filter.Supplier == null ? i.producer.ToLower().Contains(filter.Supplier.Trim().ToLower()) : true)
                 && i.priceSales >= filter.PriceLowest
                 && i.isStopSelling == (filter.StateProduct == stateProduct.Stop ? true : false)
                 && (filter.PriceHighest > 0 ? i.priceSales <= filter.PriceHighest : true)

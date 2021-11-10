@@ -1,5 +1,6 @@
 ﻿using ComputerProject.ApplicationWorkspace;
 using ComputerProject.CustomerWorkspace;
+using ComputerProject.CustomMessageBox;
 using ComputerProject.Helper;
 using ComputerProject.HelperService;
 using ComputerProject.Model;
@@ -27,7 +28,7 @@ namespace ComputerProject.SaleWorkSpace
         Collection<Model.Product> _visibleProduct;
         IDictionary<Model.Product, int> _productsInBill;
         Collection<Model.Category> _categories;
-        CustomerViewModel _currentCustomer;
+        CUSTOMER _currentCustomer;
         Model.Category _currentCategory;
         Model.Category _currentRootCategory;
         int _currentPoint;
@@ -86,7 +87,7 @@ namespace ComputerProject.SaleWorkSpace
                 }
             }
         }
-        public CustomerViewModel CurrentCustomer
+        public CUSTOMER CurrentCustomer
         {
             get => _currentCustomer;
             set
@@ -106,8 +107,8 @@ namespace ComputerProject.SaleWorkSpace
                 if (value != _currentCategory)
                 {
                     _currentCategory = value;
-                    OnCategoryChanged();
                     OnPropertyChanged();
+                    OnCategoryChanged();
                 }
             }
         }
@@ -119,9 +120,12 @@ namespace ComputerProject.SaleWorkSpace
                 if (value != _currentRootCategory)
                 {
                     _currentRootCategory = value;
-                    _currentCategory = null;
-                    OnCategoryChanged();
+                    //_currentCategory = _currentRootCategory?.ChildCategories[0];
                     OnPropertyChanged();
+
+                    _currentCategory = _currentRootCategory == null ? null : _currentRootCategory.ChildCategories[0];
+                    OnPropertyChanged(nameof(CurrentCategory));
+                    OnCategoryChanged();
                 }
             }
         }
@@ -176,7 +180,14 @@ namespace ComputerProject.SaleWorkSpace
             {
                 if (null == _paymentCommand)
                 {
-                    _paymentCommand = new RelayCommand(a => Payment(ProductsInBill, CurrentCustomer));
+                    _paymentCommand = new RelayCommand(a =>
+                    {
+                        if (ProductsInBill == null || ProductsInBill.Count == 0)
+                        {
+                            MessageBoxCustom.ShowDialog("Không có đơn hàng để thanh toán", "Lỗi", PackIconKind.Error);
+                        }
+                        else OpenPaymentView(ProductsInBill, CurrentCustomer);
+                    });
                 }
                 return _paymentCommand;
             }
@@ -281,6 +292,7 @@ namespace ComputerProject.SaleWorkSpace
             }
         }
         public event EventHandler<RequestViewArgs> RequestOpenDetailProductView;
+        public event EventHandler RequestAddNewCustomer;
         #endregion //Properties
 
 
@@ -296,28 +308,51 @@ namespace ComputerProject.SaleWorkSpace
 
         public void LoadData()
         {
-            Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
-            Task.Run(() => Categories = _repository.LoadCategories());
+            var loadProductTask = Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
+            Task.Run(() =>
+            {
+                Categories = _repository.LoadCategories();
+
+                //Add "all" to UI for category tab
+                var null_category = new Category();
+                Categories.Insert(0, null_category);
+                foreach (var category in Categories)
+                {
+                    if (category.ChildCategories == null) category.ChildCategories = new ObservableCollection<Model.Category>();
+                    category.ChildCategories.Insert(0, null_category);
+                }
+            });
         }
         public void OnCategoryChanged()
         {
-            if (CurrentCategory != null)
+            if (_products == null) return;
+            if (CurrentCategory != null && CurrentCategory.Name != null)
             {
+                //Current tab category is child
                 VisibleProducts = new ObservableCollection<Model.Product>(_products.Where(i => i.CategoryProduct.Id == CurrentCategory.Id));
             }
             else if (CurrentRootCategory != null)
             {
-                VisibleProducts = new ObservableCollection<Model.Product>(_products.Where(i => CurrentRootCategory.ChildCategories.Any(child => child.Id == i.CategoryProduct.Id)));
+                //Current tab category is root
+                if (CurrentRootCategory.Name != null)
+                {
+                    VisibleProducts = new ObservableCollection<Model.Product>(_products.Where(i => CurrentRootCategory.ChildCategories.Any(child => child.Id == i.CategoryProduct.Id)));
+                }
+                else
+                {
+                    //Show all products in store
+                    VisibleProducts = _products;
+                }
             }
             else
             {
-                VisibleProducts = _products;
+                throw new ArgumentNullException();
             }
         }
 
-        private void Payment(IDictionary<Product, int> productsInBill, CustomerViewModel currentCustomer)
+        private void OpenPaymentView(IDictionary<Product, int> productsInBill, CUSTOMER currentCustomer = null)
         {
-            var vm = new BillViewModel();
+            var vm = new BillViewModel(productsInBill, currentCustomer);
             WindowService.ShowWindow(vm, new PaySaleBillView());
         }
         private void AddToBill(Product product, int quantity)
@@ -367,7 +402,7 @@ namespace ComputerProject.SaleWorkSpace
         }
         private void OpenAddCustomerView()
         {
-            throw new NotImplementedException();
+            RequestAddNewCustomer?.Invoke(this, null);
         }
         private void SearchProduct(string v)
         {
@@ -388,11 +423,12 @@ namespace ComputerProject.SaleWorkSpace
         private void Clear(object list)
         {
             if (list == null) return;
+
             if (list == CurrentCustomer)
             {
                 CurrentCustomer = null;
             }
-            if (list == ProductsInBill)
+            else if (list == ProductsInBill)
             {
                 ProductsInBill.Clear();
             }
