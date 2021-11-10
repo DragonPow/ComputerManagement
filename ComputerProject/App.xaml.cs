@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using ComputerProject.ApplicationWorkspace;
+using ComputerProject.InsuranceWorkSpace;
 using ComputerProject.Repository;
 
 namespace ComputerProject
@@ -22,8 +23,8 @@ namespace ComputerProject
         {
 
             var vm = new ApplicationViewModel();
-            var view = new ApplicationWindow();
-            view.DataContext = vm;
+            var view = new WindowTest();
+           // view.DataContext = vm;
             view.Show();
 
             //var vm = new ListCategoryViewModel();
