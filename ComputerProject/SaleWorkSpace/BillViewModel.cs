@@ -17,6 +17,7 @@ namespace ComputerProject.SaleWorkSpace
         ICommand _confirmCommand;
         ICommand _printCommand;
 
+
         public Model.Bill CurrentBill
         {
             get => _currentBill;
@@ -52,13 +53,14 @@ namespace ComputerProject.SaleWorkSpace
             }
         }
 
+
         public BillViewModel(BILL bill)
         {
             CurrentBill = new Model.Bill(bill);
         }
-        public BillViewModel(IDictionary<Model.Product, int> listproduct, CUSTOMER customer)
+        public BillViewModel(IDictionary<Model.Product, int> listproduct, CUSTOMER customer, int totalMoney)
         {
-            CurrentBill = new Model.Bill(listproduct, customer);
+            CurrentBill = new Model.Bill(listproduct, customer, totalMoney);
         }
 
         private void Confirm()
