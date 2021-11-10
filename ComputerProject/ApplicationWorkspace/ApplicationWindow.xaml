@@ -16,7 +16,7 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)"
                                            Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0"
-                                      Value="80" />
+                                      Value="70" />
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5"
                                       Value="250" />
             </DoubleAnimationUsingKeyFrames>
@@ -30,21 +30,6 @@
                                       Value="70" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-        <!--<DataTemplate DataType="{x:Type categoryWS:CategoryViewModel}">
-            <ContentPresenter Content="{Binding CurrentPage}">
-                <ContentPresenter.Resources>
-                    <DataTemplate DataType="{x:Type categoryWS:DetailCategoryViewModel}">
-                        <categoryWS:AllViewDetailCategory />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type categoryWS:ListCategoryViewModel}">
-                        <categoryWS:Category />
-                    </DataTemplate>
-                </ContentPresenter.Resources>
-            </ContentPresenter>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type categoryWS:DetailCategoryViewModel}">
-            <categoryWS:AllViewDetailCategory />
-        </DataTemplate>-->
         <ResourceDictionary Source="./DataTemplateTabItem.xaml"
                             x:Key="TabItemResource" />
     </Window.Resources>
@@ -85,9 +70,15 @@
                             <TranslateTransform />
                         </TransformGroup>
                     </Grid.RenderTransform>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
                     <Button x:Name="ButtonOpenMenu"
                             Height="60"
                             Width="60"
+                            Grid.Column="2"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
                             Margin="5,20,5,5"
@@ -100,10 +91,13 @@
                                                  Width="25"
                                                  Height="25" />
                     </Button>
+                    <Image Grid.Column="0" Source="/ComputerProject;component/Resource/Image/logo.png" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,25,0,0"/>
+                    <TextBlock Text="Comsoft" Grid.Column="1" Foreground="{StaticResource Title}" FontSize="20" FontWeight="Bold" FontFamily="{StaticResource Mulish}" Margin="0,40"/>
                     <Button x:Name="ButtonCloseMenu"
                             Visibility="Collapsed"
                             Height="60"
                             Width="60"
+                            Grid.Column="2"
                             Margin="5,20,5,5"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
@@ -147,7 +141,7 @@
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
                                         <Condition Property="IsSelected" Value="true" />
-                                        
+
                                     </MultiTrigger.Conditions>
                                     <MultiTrigger.Setters>
                                         <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
@@ -157,154 +151,6 @@
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
-                <!--<ListViewItem x:Name="ItemHome"
-                                  Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ViewDashboard"
-                                                     Height="24"
-                                                     Width="24"
-                                                     Margin="15,0"
-                                                     VerticalAlignment="Center" />
-                            <TextBlock Text="Tổng quan "
-                                       FontSize="16"
-                                       FontFamily="{StaticResource Mulish}"
-                                       FontWeight="Medium"
-                                       VerticalAlignment="Center"
-                                       Margin="20 0" />
-                        </StackPanel>
-                    </ListViewItem>
-
-                    <ListViewItem x:Name="ItemSale"
-                                  Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="CashRegister"
-                                                     Height="24"
-                                                     Width="24"
-                                                     Margin="15,0"
-                                                     VerticalAlignment="Center" />
-                            <TextBlock Text="Bán hàng "
-                                       FontSize="16"
-                                       FontFamily="{StaticResource Mulish}"
-                                       FontWeight="Medium"
-                                       VerticalAlignment="Center"
-                                       Margin="20 0" />
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem x:Name="ItemProd"
-                                  Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Devices"
-                                                     Height="24"
-                                                     Width="24"
-                                                     Margin="15,0"
-                                                     VerticalAlignment="Center" />
-                            <TextBlock Text="Sản phẩm "
-                                       FontSize="16"
-                                       FontFamily="{StaticResource Mulish}"
-                                       FontWeight="Medium"
-                                       VerticalAlignment="Center"
-                                       Margin="20 0" />
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem x:Name="ItemCategory"
-                                  Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Ballot"
-                                                     Height="24"
-                                                     Width="24"
-                                                     Margin="15,0"
-                                                     VerticalAlignment="Center" />
-                            <TextBlock Text="Danh mục "
-                                       FontSize="16"
-                                       FontFamily="{StaticResource Mulish}"
-                                       FontWeight="Medium"
-                                       VerticalAlignment="Center"
-                                       Margin="20 0" />
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem x:Name="ItemRepair"
-                                  Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ShieldCheck"
-                                                     Height="24"
-                                                     Width="24"
-                                                     Margin="15,0"
-                                                     VerticalAlignment="Center" />
-                            <TextBlock Text="Bảo hành, sửa chữa "
-                                       FontSize="16"
-                                       FontFamily="{StaticResource Mulish}"
-                                       FontWeight="Medium"
-                                       VerticalAlignment="Center"
-                                       Margin="20 0" />
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem x:Name="ItemBill"
-                                  Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="invoice"
-                                                     Height="24"
-                                                     Width="24"
-                                                     Margin="15,0"
-                                                     VerticalAlignment="Center" />
-                            <TextBlock Text="Hóa đơn "
-                                       FontSize="16"
-                                       FontFamily="{StaticResource Mulish}"
-                                       FontWeight="Medium"
-                                       VerticalAlignment="Center"
-                                       Margin="20 0" />
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem x:Name="ItemReport"
-                                  Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Equalizer"
-                                                     Height="24"
-                                                     Width="24"
-                                                     Margin="15,0"
-                                                     VerticalAlignment="Center" />
-                            <TextBlock Text="Thống kê "
-                                       FontSize="16"
-                                       FontFamily="{StaticResource Mulish}"
-                                       FontWeight="Medium"
-                                       VerticalAlignment="Center"
-                                       Margin="20 0" />
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem x:Name="ItemCustomer"
-                                  Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="AccountSupervisor"
-                                                     Height="24"
-                                                     Width="24"
-                                                     Margin="15,0"
-                                                     VerticalAlignment="Center" />
-                            <TextBlock Text="Khách hàng "
-                                       FontSize="16"
-                                       FontFamily="{StaticResource Mulish}"
-                                       FontWeight="Medium"
-                                       VerticalAlignment="Center"
-                                       Margin="20 0" />
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem x:Name="ItemSetting"
-                                  Height="60"
-                                  VerticalAlignment="Bottom"
-                                  Foreground="{StaticResource Icon}"
-                                  Margin="0,50,0,0">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Settings"
-                                                     Height="24"
-                                                     Width="24"
-                                                     Margin="15,0"
-                                                     VerticalAlignment="Center" />
-                            <TextBlock Text="Thiết lập "
-                                       FontSize="16"
-                                       FontFamily="{StaticResource Mulish}"
-                                       FontWeight="Medium"
-                                       VerticalAlignment="Center"
-                                       Margin="20 0" />
-                        </StackPanel>
-                    </ListViewItem>-->
             </StackPanel>
         </Grid>
         <!--<Control DataContext="{Binding CurrentViewModel}" Grid.Column="2" />-->
