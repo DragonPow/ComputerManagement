@@ -6,6 +6,7 @@
         
         xmlns:test="clr-namespace:ComputerProject.CustomerWorkspace"
         xmlns:bill="clr-namespace:ComputerProject.BillWorkSpace"
+        xmlns:pro="clr-namespace:ComputerProject.ProductWorkSpace"
         xmlns:overview="clr-namespace:ComputerProject.OverViewWorkSpace"
         xmlns:wanrantycard="clr-namespace:ComputerProject.InsuranceWorkSpace"
         xmlns:local="clr-namespace:ComputerProject.Test"
@@ -17,6 +18,11 @@
         d:DesignHeight="1000" d:DesignWidth="1100" WindowStartupLocation="CenterOwner">
     <Grid Background="{StaticResource Background}">
         <insurance:InsuranceDetailView/>
+        Title="WindowTest" Height="700" Width="1400"
+       
+        d:DesignHeight="1000" d:DesignWidth="1100" WindowStartupLocation="CenterOwner">
+    <Grid Background="{StaticResource Background}">
 
+        <pro:ProductAddView/>
     </Grid>
 </Window>

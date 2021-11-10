@@ -16,14 +16,12 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="{StaticResource Background}" ></Rectangle>
+        <Rectangle Fill="{StaticResource Background}"></Rectangle>
         <Border
             BorderThickness="1"
             BorderBrush="{StaticResource Icon}">
-        <TextBox
+        <TextBlock
             ToolTip="Tên thông số"
-            materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
-            BorderThickness="0"
             FontSize="{x:Static localfont:Font.Body}"
             FontFamily="{StaticResource Mulish}"
             Foreground="#11142D"
@@ -31,7 +29,7 @@
             Margin="10, 0, 0, 0"  
             Text="Tên thông số"
             >
-        </TextBox>
+        </TextBlock>
         </Border>
         <Border
             Grid.Column="1"
