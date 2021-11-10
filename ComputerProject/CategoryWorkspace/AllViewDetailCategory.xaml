@@ -56,13 +56,13 @@
                       Grid.Row="2"
                       DataContext="{Binding .}"
                       Background="White"
-                          Margin="5,0"
+                      Margin="5,0"
                       SelectedItem="{Binding CurrentChildCategory}"
                       ItemsSource="{Binding CurrentParentCategory.ChildCategories}" >
 
                     <ListView.Resources>
                         <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                            <Border  BorderThickness="0" Background="#190477BF"  HorizontalAlignment="Stretch" >
+                            <Border  BorderThickness="0" Background="{StaticResource SelectedItemBackground}"  HorizontalAlignment="Stretch" >
                                 <local:Categorylv2Row/>
                             </Border>
                         </ControlTemplate>
@@ -168,6 +168,9 @@
                                 </Setter.Value>
                             </Setter>
                             <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                                    <Setter Property="IsSelected" Value="True"/>
+                                </DataTrigger>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
                                         <Condition Property="IsSelected" Value="true" />

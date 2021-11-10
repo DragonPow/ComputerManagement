@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="ComputerProject.InsuranceWorkSpace.InsuranceAllView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:ComputerProject.InsuranceWorkSpace"
+             xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+             xmlns:custom="clr-namespace:ComputerProject.CustomControl"
+             mc:Ignorable="d" 
+               d:DesignHeight="768" d:DesignWidth="1200" Background="{StaticResource Background}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="Title" Text="Bảo hành, sửa chữa" FontWeight="Bold" Foreground="{StaticResource Title}" FontSize="{x:Static font:Font.Title}" Margin="30,20"></TextBlock>
+        <Border Grid.Row="1" Background="White" CornerRadius="8" Margin="20,0,20,20">
+            <Grid Margin="10,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <custom:Search Texthint="Mã phiếu hoặc số điện thoại" Width="400" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0"></custom:Search>
+                    <ComboBox  x:Name="CbxStatus" Grid.Column="1" Height="35" Margin="10,0" BorderBrush="{StaticResource MainColor}" Background="{StaticResource Background}" Foreground="Black" FontFamily="{StaticResource Mulish}" Padding="10" FontSize="{x:Static font:Font.Body}" Style="{StaticResource MaterialDesignOutlinedComboBox}" materialDesign:HintAssist.Hint="Some item" ItemsSource="{Binding ShortStringList}" />
+                    <Button x:Name="btnFilter"
+                        Grid.Column="2"
+                            Padding="0"
+                            Height="35"
+                            Margin="10,0"
+                            Background="#F7F8FC"
+                            BorderBrush="{StaticResource MainColor}"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            materialDesign:ButtonAssist.CornerRadius="5">
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Left">
+                            <materialDesign:PackIcon Kind="FilterOutline"
+                                                     Height="20"
+                                                     Width="20"
+                                                     Margin="5,0"
+                                                     Foreground="{StaticResource MainColor}"
+                                                     VerticalAlignment="Center"></materialDesign:PackIcon>
+                            <TextBlock Text="Bộ lọc"
+                                       FontSize="14"
+                                       Foreground="{StaticResource MainColor}"
+                                       Margin="2,0,10,0"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button  x:Name="btnExportSameTime" Grid.Column="5" Margin="10,0" Padding="10,0" Height="35" VerticalAlignment="Center" Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}" Style="{StaticResource MaterialDesignRaisedButton}"  materialDesign:ButtonAssist.CornerRadius="5" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Export" Width="24" Height="24" Foreground="White"></materialDesign:PackIcon>
+                            <TextBlock Text="Xuất cùng lúc" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="White" Margin="10,0"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1" Height="50" Background="{StaticResource Background}" Margin="10,15,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="1.2*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock  Grid.Column="1" Text="Mã phiếu" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                    <TextBlock  Grid.Column="2" Text="Ngày tiếp nhận" FontWeight="DemiBold" Margin="10,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                    <TextBlock  Grid.Column="3" Text="Số điện thoại" FontWeight="DemiBold" Margin="10,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                    <TextBlock  Grid.Column="4" Text="Tình trạng" FontWeight="DemiBold" Margin="10,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                    <TextBlock  Grid.Column="5" Text="Ngày trả hàng" FontWeight="DemiBold" Margin="10,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                    <TextBlock  Grid.Column="6" Text="Tổng tiền" FontWeight="DemiBold" Margin="10,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                </Grid>
+                <local:InsuranceListView Grid.Row="2" Margin="10,0"/>
+            </Grid>
+        </Border>
+        <custom:PageControl Grid.Row="2" HorizontalAlignment="Center" Margin="0,0,0,20"></custom:PageControl>
+    </Grid>
+</UserControl>

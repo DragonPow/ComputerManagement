@@ -138,7 +138,9 @@
                 Background="White"
                 CornerRadius="8">
                 <StackPanel>
-                    <Grid>
+                    <Grid
+                        IsEnabled="False"
+                        >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="2*" />

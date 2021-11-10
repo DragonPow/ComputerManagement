@@ -6,13 +6,16 @@
         
         xmlns:test="clr-namespace:ComputerProject.CustomerWorkspace"
         xmlns:bill="clr-namespace:ComputerProject.BillWorkSpace"
+        xmlns:overview="clr-namespace:ComputerProject.OverViewWorkSpace"
+        xmlns:wanrantycard="clr-namespace:ComputerProject.InsuranceWorkSpace"
         xmlns:local="clr-namespace:ComputerProject.Test"
         xmlns:statitic="clr-namespace:ComputerProject.StatiticsWorkSpace"
         mc:Ignorable="d"
-        Title="WindowTest" Height="750" Width="1380"
+        Title="WindowTest" Height="700" Width="800"
+       
         d:DesignHeight="1000" d:DesignWidth="1100" WindowStartupLocation="CenterOwner">
-    <Grid>
-        <statitic:StatiticsMainView></statitic:StatiticsMainView>
+    <Grid Background="{StaticResource Background}">
+        <wanrantycard:WarrantyCard/>
 
     </Grid>
 </Window>

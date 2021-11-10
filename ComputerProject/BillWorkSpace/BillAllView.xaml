@@ -60,15 +60,15 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="90"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="txtBillITitle" Grid.Column="1" Text="Mã hóa đơn" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-                    <TextBlock x:Name="txtDateBill" Grid.Column="2" Text="Ngày tạo" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-                    <TextBlock x:Name="txtCusPhoneNumber" Grid.Column="3" Text="Số điện thoại" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-                    <TextBlock x:Name="txtTotalBill" Grid.Column="4" Text="Tổng hóa đơn" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-                    <TextBlock x:Name="txtPoint" Grid.Column="5" Text="Điểm thưởng sử dụng" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                    <TextBlock Grid.Column="1" Text="Mã hóa đơn" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                    <TextBlock Grid.Column="2" Text="Ngày tạo" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                    <TextBlock Grid.Column="3" Text="Số điện thoại" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                    <TextBlock Grid.Column="4" Text="Tổng hóa đơn" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                    <TextBlock Grid.Column="5" Text="Điểm thưởng sử dụng" FontWeight="DemiBold" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
                 </Grid>
-                <local:BillListView Grid.Row="2" Margin="0,5"></local:BillListView>
+                <local:BillListView Grid.Row="2" Margin="10,0"></local:BillListView>
             </Grid>
         </Border>
-        <custom:PageControl Grid.Row="2" HorizontalAlignment="Center" Margin="20,10,20,20"></custom:PageControl>
+        <custom:PageControl Grid.Row="2" HorizontalAlignment="Center" Margin="0,0,0,20"></custom:PageControl>
     </Grid>
 </UserControl>

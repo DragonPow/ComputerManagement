@@ -301,6 +301,27 @@
     </Compile>
     <Compile Include="Helper\BusyViewModel.cs" />
     <Compile Include="Model\Bill.cs" />
+    <Compile Include="InsuranceWorkSpace\InsuranceBillView.xaml.cs">
+      <DependentUpon>InsuranceBillView.xaml</DependentUpon>
+    </Compile>
+	  <Compile Include="InsuranceWorkSpace\InsuranceDetailView.xaml.cs">
+		  <DependentUpon>InsuranceDetailView.xaml</DependentUpon>
+	  </Compile>
+    <Compile Include="InsuranceWorkSpace\WarrantyCard.xaml.cs">
+      <DependentUpon>WarrantyCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OverViewWorkSpace\OverViewMainView.xaml.cs">
+      <DependentUpon>OverViewMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceWorkSpace\InsuranceAllView.xaml.cs">
+      <DependentUpon>InsuranceAllView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceWorkSpace\InsuranceItem.xaml.cs">
+      <DependentUpon>InsuranceItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceWorkSpace\InsuranceListView.xaml.cs">
+      <DependentUpon>InsuranceListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatiticsWorkSpace\DatePickerCalendar.cs" />
     <Compile Include="Helper\WindowService.cs" />
     <Compile Include="ProductWorkSpace\ProductMainTitleTableView.xaml.cs">
@@ -492,6 +513,30 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceAllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceBillView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\WarrantyCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -507,6 +552,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Helper\CustomMessageBox\MessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OverViewWorkSpace\OverViewMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,21 +7,17 @@
              xmlns:model="clr-namespace:ComputerProject.Model"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d"
-             Height="180"
-             Width="180"
+             Height="200"
+             Width="200"
              d:DataContext="{d:DesignInstance Type={x:Type model:Product}}">
-    <Border CornerRadius="8"
-            BorderThickness="1"
-            BorderBrush="{StaticResource Icon}"
-            Background="White">
-        <Grid>
+    <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.65*"></RowDefinition>
                 <RowDefinition Height="0.4*"></RowDefinition>
             </Grid.RowDefinitions>
             <Image Grid.Row="0"
                    Source="{Binding Image,FallbackValue={StaticResource DefaultImage}, TargetNullValue={StaticResource DefaultImage}}"
-                   Stretch="Uniform"
+                   Stretch="UniformToFill"
                    Margin="7"></Image>
             <StackPanel Grid.Row="1"
                         Height="auto"
@@ -49,5 +45,4 @@
                            FontFamily="{StaticResource Mulish}" />
             </StackPanel>
         </Grid>
-    </Border>
 </UserControl>

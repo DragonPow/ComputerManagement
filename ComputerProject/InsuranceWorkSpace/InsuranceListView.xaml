@@ -1,22 +1,22 @@
-﻿<UserControl x:Class="ComputerProject.BillWorkSpace.BillListView"
+﻿<UserControl x:Class="ComputerProject.InsuranceWorkSpace.InsuranceListView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ComputerProject.BillWorkSpace"
+             xmlns:local="clr-namespace:ComputerProject.InsuranceWorkSpace"
              mc:Ignorable="d" 
-             d:DesignHeight="768" d:DesignWidth="1200">
+             d:DesignHeight="450" d:DesignWidth="800">
     <ListView  x:Name="ListBill"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <local:BillItem/>
+                <local:InsuranceItem/>
             </DataTemplate>
         </ListView.ItemTemplate>
 
         <ListView.Resources>
             <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
                 <Border  BorderThickness="0" Background="{StaticResource SelectedItemBackground}">
-                    <local:BillItem />
+                    <local:InsuranceItem />
                 </Border>
             </ControlTemplate>
         </ListView.Resources>
@@ -27,7 +27,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ListViewItem">
-                            <local:BillItem/>
+                            <local:InsuranceItem/>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -47,8 +47,8 @@
                 </Style.Triggers>
             </Style>
         </ListView.ItemContainerStyle>
-        <local:BillItem />
-        <local:BillItem />
-        <local:BillItem />
+        <local:InsuranceItem/>
+        <local:InsuranceItem/>
+        <local:InsuranceItem/>
     </ListView>
 </UserControl>

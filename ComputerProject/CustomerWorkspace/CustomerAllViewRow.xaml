@@ -12,6 +12,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     d:DesignHeight="200"
     d:DesignWidth="1200"
+    Background="Transparent"
     d:DataContext="{d:DesignInstance Type=local:CustomerViewModel}"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -23,7 +24,7 @@
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
-        <sys:Double x:Key="IconSize">24</sys:Double>
+        <sys:Double x:Key="IconSize">22</sys:Double>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
