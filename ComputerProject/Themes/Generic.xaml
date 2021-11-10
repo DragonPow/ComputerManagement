@@ -89,7 +89,7 @@
                         </TextBlock>
 
                         <Border Background="{TemplateBinding Background}"
-                            BorderBrush="#DBD7F4"
+                             BorderBrush="#DBD7F4"
                             CornerRadius="{TemplateBinding CornerRadiusText}"
                             BorderThickness="1"
                             VerticalAlignment="Center">
