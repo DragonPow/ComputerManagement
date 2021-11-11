@@ -38,10 +38,13 @@
                        VerticalAlignment="Center"
                        Margin="10, 0,0, 0"
                        FontSize="{x:Static localfont:Font.Body}"
-                       Text="{Binding Number}"
+                       Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:PropertiesRow}}, 
+                               Path=number}"
                        >
             </TextBlock>
             <TextBox x:Name="NameProperties"
+
                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                        BorderThickness="0"
                        Grid.Column="1"
@@ -51,6 +54,7 @@
                        VerticalAlignment="Center"
                        Margin="10, 0, 0,0"
                        Text="{Binding Name}" 
+                       TextWrapping="Wrap"
                        Style="{StaticResource TitleCell}">
             </TextBox>
             <Button Grid.Column="3"
@@ -62,6 +66,7 @@
                     FontSize="{x:Static localfont:Font.Body}"
                     ToolTip="Xóa danh mục"
                     Command="{Binding DataContext.DeleteSpecificationCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
+                    CommandParameter="{Binding .}"
                     Visibility="{Binding DataContext.IsEditMode, Converter={StaticResource ResourceKey=boolconverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}">
                 <Image Height="20"
                        Width="20"

@@ -28,6 +28,7 @@ namespace ComputerProject.SaleWorkSpace
         Collection<Model.Product> _visibleProduct;
         IDictionary<Model.Product, int> _productsInBill;
         Collection<Model.Category> _categories;
+        Collection<CUSTOMER> _listSearchCustomer;
         CUSTOMER _currentCustomer;
         Model.Category _currentCategory;
         Model.Category _currentRootCategory;
@@ -50,7 +51,7 @@ namespace ComputerProject.SaleWorkSpace
 
         #region Properties
         public int TotalPriceProduct => ProductsInBill == null ? 0 : ProductsInBill.Sum(p => p.Value * p.Key.PriceSale);
-        public int TotalPriceBill => 0;
+        public int TotalPriceBill => TotalPriceProduct;
 
         public Collection<Product> VisibleProducts
         {
@@ -95,6 +96,18 @@ namespace ComputerProject.SaleWorkSpace
                 if (value != _currentCustomer)
                 {
                     _currentCustomer = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public Collection<CUSTOMER> ListSearchCustomer
+        {
+            get => _listSearchCustomer;
+            set
+            {
+                if (value != _listSearchCustomer)
+                {
+                    _listSearchCustomer = value;
                     OnPropertyChanged();
                 }
             }
@@ -352,7 +365,7 @@ namespace ComputerProject.SaleWorkSpace
 
         private void OpenPaymentView(IDictionary<Product, int> productsInBill, CUSTOMER currentCustomer = null)
         {
-            var vm = new BillViewModel(productsInBill, currentCustomer);
+            var vm = new BillViewModel(productsInBill, currentCustomer, TotalPriceBill);
             WindowService.ShowWindow(vm, new PaySaleBillView());
         }
         private void AddToBill(Product product, int quantity)
@@ -388,10 +401,10 @@ namespace ComputerProject.SaleWorkSpace
         private void OpenFilterControl()
         {
             FilterProductViewModel filter = new FilterProductViewModel(CurrentFilter);
-            filter.FilterEvent += new EventHandler((o, e) =>
+            filter.FilterClickedEvent += new EventHandler((o, e) =>
               {
                   CurrentFilter = filter;
-                  VisibleProducts = _products = _repository.SearchFilterProduct(CurrentFilter);
+                  VisibleProducts = _repository.SearchFilterProduct(CurrentFilter);
                   if (CurrentFilter.CategoryType != null)
                   {
                       CurrentCategory = Categories.Where(i => i.Name == CurrentFilter.CategoryType.Name).FirstOrDefault();
@@ -412,9 +425,9 @@ namespace ComputerProject.SaleWorkSpace
         {
             IsPriceLowToHight = !IsPriceLowToHight;
         }
-        private void SearchCustomer(string v)
+        private void SearchCustomer(string text)
         {
-            throw new NotImplementedException();
+            ListSearchCustomer = _repository.SearchCustomer(text);
         }
         private void ShowDetail(Model.Product product)
         {

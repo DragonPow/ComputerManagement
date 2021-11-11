@@ -103,38 +103,62 @@ namespace ComputerProject.Repository
                     }
                 }
                 _context.SaveChanges();
+                ChangeIdRuntime(category, c);
 
-                ChangeIdRuntime(category, _context);
+                //Remove category is delete from db
+                var listDBCategories = _context.CATEGORies.Include(i=>i.SPECIFICATION_TYPE).Where(i => i.parentCategoryId == c.id).AsEnumerable();
+                var categoriesDeleted = listDBCategories.Where(i1 => !category.ChildCategories.Any(i2 => i1.id == i2.Id)).AsEnumerable();
+
+                foreach(var i in categoriesDeleted)
+                {
+                    _context.SPECIFICATION_TYPE.RemoveRange(i.SPECIFICATION_TYPE);
+                }
+                _context.CATEGORies.RemoveRange(categoriesDeleted);
+                _context.SaveChanges();
             }
         }
 
-        private void ChangeIdRuntime(Model.Category category, ComputerManagementEntities _context)
+        private void ChangeIdRuntime(Model.Category category, CATEGORY dbCategory)
         {
-            if (category.Id == 0)
-            {
-                var id = _context.CATEGORies.Where(i => i.name == category.Name).Select(i => i.id).Single();
-                category.Id = id;
-            }
-
+            category.Id = dbCategory.id;
             if (category.ChildCategories != null)
                 foreach (var child in category.ChildCategories)
                 {
-                    ChangeIdRuntime(child, _context);
+                    ChangeIdRuntime(child, dbCategory.CATEGORY11.Where(c => c.name == child.Name).First());
                 }
 
             if (category.SpecificationTypes != null)
                 foreach (var spec in category.SpecificationTypes)
                 {
-                    var id = _context.SPECIFICATION_TYPE.Where(i => i.name == category.Name).Select(i => i.id).Single();
-                    spec.Id = id;
+                    if (spec.Id == 0) spec.Id = dbCategory.SPECIFICATION_TYPE.Where(i => i.name == spec.Name).Select(i => i.id).First();
                 }
+
+            //if (category.Id == 0)
+            //{
+            //    var id = _context.CATEGORies.Where(i => i.name == category.Name).Select(i => i.id).Single();
+            //    category.Id = id;
+            //}
+
+            //if (category.ChildCategories != null)
+            //    foreach (var child in category.ChildCategories)
+            //    {
+            //        ChangeIdRuntime(child, _context);
+            //    }
+
+            //if (category.SpecificationTypes != null)
+            //    foreach (var spec in category.SpecificationTypes)
+            //    {
+            //        var id = _context.SPECIFICATION_TYPE.Where(i => i.name == category.Name).Select(i => i.id).Single();
+            //        spec.Id = id;
+            //    }
         }
 
         public bool IsRootCategoryExists(Model.Category category)
         {
             using (var _context = new ComputerManagementEntities())
             {
-                return _context.CATEGORies.Where(c => c.name == category.Name && c.id != category.Id).Count() > 0;
+                var findCategory = _context.CATEGORies.FirstOrDefault(c => c.name == category.Name && c.id != category.Id && c.parentCategoryId == null);
+                return findCategory != null;
             }
         }
 

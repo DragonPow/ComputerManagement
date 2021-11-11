@@ -6,13 +6,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
              xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
+             xmlns:converter="clr-namespace:ComputerProject.Converter" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="ComputerProject.CategoryWorkspace.AllViewDetailCategory"
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="1380"
             Background="{StaticResource Background}"
              d:DataContext="{d:DesignInstance Type={x:Type local:DetailCategoryViewModel}}"
              >
-
+    <UserControl.Resources>
+        <converter:IndexCategoryConverter x:Key="IndexConver" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -40,7 +43,7 @@
                 </Grid.RowDefinitions>
                 <localcustom:TextboxCustom x:Name="NameCategory"
                                        CornerRadiusText="3"
-                                       Text="{Binding CurrentParentCategory.Name, FallbackValue=Lap top}"
+                                       Text="{Binding CurrentParentCategory.Name, FallbackValue='Tên'}"
                                        Title="Tên danh mục"
                                        FontSize="{x:Static localfont:Font.Body}"
                                        Margin="15"
@@ -59,40 +62,33 @@
                       Margin="5,0"
                       SelectedItem="{Binding CurrentChildCategory}"
                       ItemsSource="{Binding CurrentParentCategory.ChildCategories}" >
-
-                    <ListView.Resources>
-                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                            <Border  BorderThickness="0" Background="{StaticResource SelectedItemBackground}"  HorizontalAlignment="Stretch" >
-                                <local:Categorylv2Row/>
-                            </Border>
-                        </ControlTemplate>
-                    </ListView.Resources>
                     
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListViewItem}">
-                            <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
-                            <Setter Property="Background"
-                                Value="White" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="Background" Value="Transparent" />
                             <Setter Property="Template">
                                 <Setter.Value>
-                                    <ControlTemplate TargetType="ListViewItem">
-                                        <local:Categorylv2Row/>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border x:Name="Bd"  Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" >
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="True"/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="Background" TargetName="Bd" Value="#190477BF" />
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
-                            <Style.Triggers>
-                                <MultiTrigger>
-                                    <MultiTrigger.Conditions>
-                                        <Condition Property="IsSelected" Value="true" />
-                                        <Condition Property="Selector.IsSelectionActive" Value="true" />
-                                    </MultiTrigger.Conditions>
-                                        <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
-                                </MultiTrigger>
-                            </Style.Triggers>
+
                         </Style>
 
                     </ListView.ItemContainerStyle>
+                    
                     <ListView.ItemTemplate>
                         <ItemContainerTemplate>
                             <local:Categorylv2Row x:Name="item" />
@@ -118,7 +114,7 @@
                     HorizontalAlignment="Left"
                     Width="300"
                     CornerRadiusText="3"
-                    Text="{Binding CurrentChildCategory.Name, ValidatesOnDataErrors=False, UpdateSourceTrigger=PropertyChanged, TargetNullValue='Danh mục mới' }"
+                    Text="{Binding CurrentChildCategory.Name, UpdateSourceTrigger=PropertyChanged}"
                     Title="Tên danh mục con"
                     FontSize="{x:Static localfont:Font.Body}"
                     Margin="15"
@@ -148,42 +144,29 @@
                       Margin="5,0"
                       ItemsSource="{Binding CurrentChildCategory.SpecificationTypes}">
 
-                    <ListView.Resources>
-                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                            <Border  BorderThickness="0" Background="Transparent"  HorizontalAlignment="Stretch" >
-                                <local:PropertiesRow />
-                            </Border>
-                        </ControlTemplate>
-                    </ListView.Resources>
                     
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListViewItem}">
-                            <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="Background" Value="Transparent" />
                             <Setter Property="Template">
                                 <Setter.Value>
-                                    <ControlTemplate TargetType="ListViewItem">
-                                        <local:PropertiesRow />
+
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border x:Name="Bd"  Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" >
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
-                                    <Setter Property="IsSelected" Value="True"/>
-                                </DataTrigger>
-                                <MultiTrigger>
-                                    <MultiTrigger.Conditions>
-                                        <Condition Property="IsSelected" Value="true" />
-                                        <Condition Property="Selector.IsSelectionActive" Value="true" />
-                                    </MultiTrigger.Conditions>
-                                    <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
-                                </MultiTrigger>
-                            </Style.Triggers>
                         </Style>
+
                     </ListView.ItemContainerStyle>
+                    
                     <ListView.ItemTemplate>
                         <ItemContainerTemplate>
-                            <local:PropertiesRow />
+                            <local:PropertiesRow number="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type ListViewItem}}, Converter= {StaticResource IndexConver }}"/>
                         </ItemContainerTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -217,7 +200,7 @@
                             <DataTrigger Binding="{Binding IsEditMode}"
                                          Value="False">
                                 <Setter Property="Content"
-                                            Value="Hủy" />
+                                            Value="Xóa" />
                                 <Setter Property="Command"
                                             Value="{Binding DeleteCategoryCommand}" />
                                 <Setter Property="CommandParameter"
@@ -252,7 +235,7 @@
                                 <Setter Property="Command"
                                             Value="{Binding OpenEditCommand}" />
                                 <Setter Property="Content"
-                                            Value="Lưu" />
+                                            Value="Chỉnh sửa" />
                                 <Setter Property="Foreground"
                                             Value="White" />
                             </DataTrigger>

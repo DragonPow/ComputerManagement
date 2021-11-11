@@ -56,46 +56,31 @@
                 <TextBlock Grid.Column="4" Text="Ghi chú"   VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" FontWeight="Bold"/>
             </Grid>
         </Border>
-        <ListView BorderThickness="1" BorderBrush="{StaticResource Icon}"  x:Name="ListProdInBill" Height="220" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <local:InsuranceItemInBill/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-
-            <ListView.Resources>
-                <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                    <local:InsuranceItemInBill />
-                </ControlTemplate>
-            </ListView.Resources>
-
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ListViewItem">
-                                <local:InsuranceItemInBill/>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="true" />
-                                <Condition Property="Selector.IsSelectionActive" Value="true" />
-                            </MultiTrigger.Conditions>
-                            <MultiTrigger.Setters>
-                                <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
-                            </MultiTrigger.Setters>
-                        </MultiTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ListView.ItemContainerStyle>
-            <local:InsuranceItemInBill/>
-            <local:InsuranceItemInBill/>
-            <local:InsuranceItemInBill/>
-        </ListView>
+        <Border BorderThickness="1,0,1,1" BorderBrush="#E1E1FB">
+            <ListView   x:Name="ListProdInBill" Height="220" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:InsurancePayBillItem/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <local:InsurancePayBillItem/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <local:InsuranceItemInBill/>
+                <local:InsuranceItemInBill/>
+                <local:InsuranceItemInBill/>
+            </ListView>
+        </Border>
+       
         <Grid Background="{StaticResource MainColor}" Margin="0,20,0,0">
             <TextBlock Text="Tổng hóa đơn" Margin="10,5" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="16" Foreground="White"/>
             <TextBlock Margin="10,0" Text="16,599,000" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="16" HorizontalAlignment="Right" Foreground="White"/>

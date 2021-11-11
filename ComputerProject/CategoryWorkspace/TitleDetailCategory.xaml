@@ -5,10 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.CustomControl"
+             xmlns:viewmodel="clr-namespace:ComputerProject.CategoryWorkspace"
              mc:Ignorable="d"
              xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              d:DesignHeight="51"
-             d:DesignWidth="1330">
+             d:DesignWidth="1330"
+             d:DataContext="{d:DesignInstance Type={x:Type viewmodel:DetailCategoryViewModel}}">
     <StackPanel HorizontalAlignment="Left"
                 Orientation="Horizontal">
         <Button Style="{StaticResource MaterialDesignIconButton}"
@@ -28,7 +30,22 @@
                    Foreground="{StaticResource Title}"
                    Margin="20,3,0,0"
                    VerticalAlignment="Center">
-            Thêm mới danh mục
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding TitleViewName}"
+                                     Value="AddCategory">
+                            <Setter Property="Text"
+                                    Value="Danh mục mới" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding TitleViewName}"
+                                     Value="DetailCategory">
+                            <Setter Property="Text"
+                                    Value="Chi tiết danh mục" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
         </TextBlock>
 
     </StackPanel>

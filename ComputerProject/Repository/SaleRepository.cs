@@ -54,20 +54,30 @@ namespace ComputerProject.Repository
             using (var db = new ComputerManagementEntities())
             {
                 Collection<Model.Product> list = new ObservableCollection<Model.Product>();
-                IQueryable<PRODUCT> query = db.PRODUCTs.Include(i => i.CATEGORY).AsNoTracking();
+                IQueryable<PRODUCT> query = db.PRODUCTs.Include(i => i.CATEGORY);
 
-                query = query.Where(i => (filter.Supplier == null ? i.producer.ToLower().Contains(filter.Supplier.Trim().ToLower()) : true)
+                query = query.Where(i => (!(filter.Supplier == null || filter.Supplier.Trim() == "") ? i.producer.ToLower().Contains(filter.Supplier.Trim().ToLower()) : true)
                 && i.priceSales >= filter.PriceLowest
-                && i.isStopSelling == (filter.StateProduct == stateProduct.Stop ? true : false)
+                && i.isStopSelling == (filter.StateProduct == stateProduct.Stop)
                 && (filter.PriceHighest > 0 ? i.priceSales <= filter.PriceHighest : true)
-                && (filter.TimeWarranty > 0 ? i.warrantyTime == filter.TimeWarranty : true)
-                && ((filter.CategoryType != null && filter.CategoryType.Id > 0) ? i.categoryId == filter.CategoryType.Id : true));
+                && (filter.TimeWarranty > 0 ? i.warrantyTime == filter.TimeWarranty : true));
 
                 IEnumerable<PRODUCT> l = query.AsEnumerable();
                 foreach (var item in l)
                 {
                     list.Add(new Model.Product(item));
                 }
+
+                return list;
+            }
+        }
+
+        public Collection<CUSTOMER> SearchCustomer(string text)
+        {
+            using (var db = new ComputerManagementEntities())
+            {
+                var query = db.CUSTOMERs.Where(i => i.phone.Contains(text));
+                Collection<CUSTOMER> list = new ObservableCollection<CUSTOMER>(query.AsEnumerable());
 
                 return list;
             }

@@ -13,7 +13,7 @@ namespace ComputerProject.SaleWorkSpace
         int PriceHighest { get; set; }
         int PriceLowest { get; set; }
         int TimeWarranty { get; set; }
-        event EventHandler FilterEvent;
+        event EventHandler FilterClickedEvent;
     }
     public class FilterProductViewModel : BaseViewModel, IFilterProductState
     {
@@ -131,6 +131,15 @@ namespace ComputerProject.SaleWorkSpace
         public FilterProductViewModel(IFilterProductState initstate)
         {
             this._initState = initstate;
+
+            if (initstate != null)
+            {
+                this.Supplier = initstate.Supplier;
+                this.PriceHighest = initstate.PriceHighest;
+                this.PriceLowest = initstate.PriceLowest;
+                this.TimeWarranty = initstate.TimeWarranty;
+                this.StateProduct = initstate.StateProduct;
+            }
         }
 
         /// <summary>
@@ -139,7 +148,7 @@ namespace ComputerProject.SaleWorkSpace
         /// <returns>Return true if Have an init state, otherwise return false</returns>
         public bool Undo()
         {
-            if (_initState != null)
+            if (_initState == null)
             {
                 //this.CategoryType = _initState.CategoryType.Copy();
                 //this.Supplier = _initState.Supplier;
@@ -147,7 +156,7 @@ namespace ComputerProject.SaleWorkSpace
                 //this.PriceLowest = _initState.PriceLowest;
                 //this.TimeWarranty = _initState.TimeWarranty;
 
-                this.CategoryType = null;
+                //this.CategoryType = null;
                 this.Supplier = null;
                 this.PriceHighest = 0;
                 this.PriceLowest = 0;
@@ -164,10 +173,10 @@ namespace ComputerProject.SaleWorkSpace
 
         public void Filter()
         {
-            FilterEvent?.Invoke(this, null);
+            FilterClickedEvent?.Invoke(this, null);
         }
 
-        public event EventHandler FilterEvent;
+        public event EventHandler FilterClickedEvent;
         public event EventHandler UndoFilterEvent;
     }
 }

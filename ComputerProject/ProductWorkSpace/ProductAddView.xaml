@@ -53,17 +53,14 @@
                 <ColumnDefinition Width="1.2*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Rectangle Margin="20,0,20,0" Fill="White" />
-            <Rectangle
-                Grid.Column="1"
-                Margin="20,0,20,0"
-                Fill="White" />
+            <Border Background="White" CornerRadius="8" Margin="10, 0, 10, 0"></Border>
+            <Border Background="White" CornerRadius="8" Grid.Column="1" Margin="10, 0, 0, 0"></Border>
             <ScrollViewer
                 Grid.Column="0"
                 VerticalScrollBarVisibility="Visible"
-                Margin="40, 20, 20, 10"
+                Margin="40, 0, 10, 0"
                 >
-                <local:ProInfor Margin="0, 0, 15, 0" DataContext="{Binding }"/>
+                <local:ProInfor Margin="0, 20, 15, 10" DataContext="{Binding }"/>
             </ScrollViewer>
             <local:Specification Grid.Column="1" Margin="15, 0. 15, 0" DataContext="{Binding }"/>
 

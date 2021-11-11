@@ -26,7 +26,10 @@
         </Style>
         <sys:Double x:Key="IconSize">22</sys:Double>
     </UserControl.Resources>
-    <Grid>
+    <Grid
+        Background="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:CustomerAllViewRow}}, 
+                               Path=Backgrounds}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220" />
             <ColumnDefinition Width="150" />
