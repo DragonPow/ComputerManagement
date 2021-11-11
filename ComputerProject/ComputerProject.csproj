@@ -256,6 +256,7 @@
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\IndexCategoryConverter.cs" />
     <Compile Include="Converter\ListCategoryToStringCommaConverter.cs" />
+    <Compile Include="Converter\ProductStatusConverter.cs" />
     <Compile Include="Converter\RevertBooleanConverter.cs" />
     <Compile Include="CustomControl\BusyView.xaml.cs">
       <DependentUpon>BusyView.xaml</DependentUpon>
@@ -300,7 +301,9 @@
     <Compile Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml.cs">
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helper\BusyViewModel.cs" />
+    <Compile Include="Helper\ViewModel\BusyViewModel.cs" />
+    <Compile Include="Helper\ViewModel\PagingViewModel.cs" />
+    <Compile Include="Helper\Interface\ISearchable.cs" />
     <Compile Include="InsuranceWorkSpace\InsuranceInfor.xaml.cs">
       <DependentUpon>InsuranceInfor.xaml</DependentUpon>
     </Compile>
@@ -337,6 +340,7 @@
     <Compile Include="InsuranceWorkSpace\InsuranceListView.xaml.cs">
       <DependentUpon>InsuranceListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProductWorkSpace\ProductMainRowTableViewModel.cs" />
     <Compile Include="SaleWorkSpace\SelectedTabCategory.xaml.cs">
       <DependentUpon>SelectedTabCategory.xaml</DependentUpon>
     </Compile>
@@ -344,8 +348,8 @@
       <DependentUpon>TabCategory.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\Interface\IBackable.cs" />
-    <Compile Include="Helper\ListControlViewModel.cs" />
-    <Compile Include="Helper\MultipleControlViewModel.cs" />
+    <Compile Include="Helper\ViewModel\ListControlViewModel.cs" />
+    <Compile Include="Helper\ViewModel\MultipleControlViewModel.cs" />
     <Compile Include="ProductWorkSpace\ProductAddViewModel.cs" />
     <Compile Include="ProductWorkSpace\ProductDetailViewModel.cs" />
     <Compile Include="ProductWorkSpace\ProductMainViewModel.cs" />
@@ -643,7 +647,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ProductWorkSpace\ProductMainView.xaml" />
-    <Page Include="ProductWorkSpace\ProductTabView.xaml"/>
+    <Page Include="ProductWorkSpace\ProductTabView.xaml" />
     <Page Include="ProductWorkSpace\ProInfor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

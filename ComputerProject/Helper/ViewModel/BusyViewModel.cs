@@ -44,5 +44,16 @@ namespace ComputerProject
                 callback?.Invoke();
             }
         }
+
+        public async void DoBusyTask(Action<System.Threading.CancellationToken> busyTask, System.Threading.CancellationToken cancellationToken, Action callback = null)
+        {
+            IsBusy = true;
+            await Task.Run(() => busyTask(cancellationToken), cancellationToken);
+            IsBusy = false;
+            if (!cancellationToken.IsCancellationRequested)
+            {
+                callback?.Invoke();
+            }
+        }
     }
 }

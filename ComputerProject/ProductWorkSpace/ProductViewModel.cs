@@ -95,6 +95,7 @@ namespace ComputerProject.ProductWorkSpace
             {
                 product.quantity = value;
                 OnPropertyChanged(nameof(Quantity));
+                OnPropertyChanged(nameof(Status));
             }
         }
         public Nullable<int> WarrantyTime
@@ -104,8 +105,20 @@ namespace ComputerProject.ProductWorkSpace
             {
                 product.warrantyTime = value;
                 OnPropertyChanged(nameof(WarrantyTime));
+                OnPropertyChanged(nameof(WarrantyYear_String));
             }
         }
+
+        public string WarrantyYear_String
+        {
+            get
+            {
+                if (WarrantyTime == null) return "";
+
+                return Math.Round(WarrantyTime.Value / 12d, 1).ToString() + " năm";
+            }
+        }
+
         public bool IsStopSelling
         {
             get => product.isStopSelling;
@@ -113,6 +126,7 @@ namespace ComputerProject.ProductWorkSpace
             {
                 product.isStopSelling = value;
                 OnPropertyChanged(nameof(IsStopSelling));
+                OnPropertyChanged(nameof(Status));
             }
         }
         public int CategoryId
@@ -124,22 +138,76 @@ namespace ComputerProject.ProductWorkSpace
                 OnPropertyChanged(nameof(CategoryId));
             }
         }
+        public string Status
+        {
+            get
+            {
+                string rs;
+                var input = this;
+                if (input.IsStopSelling)
+                {
+                    rs = "Ngừng bán";
+                }
+                else if (input.Quantity < 1)
+                {
+                    rs = "Hết hàng";
+                }
+                else
+                {
+                    rs = "Đang bán";
+                }
+                return rs;
+            }
+        }
 
         public BitmapImage Image => FormatHelper.BytesToImage(product.image);
 
         public static List<ProductViewModel> FindByName(string name, int startIndex, int count)
         {
-            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            try
             {
-                var data = db.PRODUCTs.Where(p => p.nameIndex.Contains(name)).OrderBy(p => p.name).Skip(startIndex).Take(count);
-
-                var rs = new List<ProductViewModel>();
-                foreach (var row in data)
+                using (ComputerManagementEntities db = new ComputerManagementEntities())
                 {
-                    rs.Add(new ProductViewModel(row));
-                }
+                    string nameDL = FormatHelper.ConvertTo_TiengDongLao(name);
+                    var data = db.PRODUCTs.Where(p => p.nameIndex.Contains(nameDL)).Select(
+                        p => new
+                        {
+                            p.name,
+                            p.id,
+                            p.priceOrigin,
+                            p.priceSales,
+                            p.quantity,
+                            p.warrantyTime,
+                            p.producer,
+                            p.description
+                        }
+                        ).OrderBy(p => p.name).Skip(startIndex).Take(count).ToList();
 
-                return rs;
+                    Console.WriteLine("l = " + data.Count);
+                    var rs = new List<ProductViewModel>();
+
+                    foreach (var p in data)
+                    {
+                        rs.Add(new ProductViewModel(new PRODUCT()
+                        {
+                            name = p.name,
+                            id = p.id,
+                            priceOrigin = p.priceOrigin,
+                            priceSales = p.priceSales,
+                            quantity = p.quantity,
+                            warrantyTime = p.warrantyTime,
+                            producer = p.producer,
+                            description = p.description
+                        }));
+                    }
+
+                    return rs;
+                }
+            }
+            catch (Exception e)
+            {
+                string a = e.Message;
+                return null;
             }
         }
 
@@ -150,6 +218,15 @@ namespace ComputerProject.ProductWorkSpace
                 var data = db.PRODUCTs.Where(p => p.name.Equals(name)).FirstOrDefault();
 
                 return data != null ? new ProductViewModel(data) : null;
+            }
+        }
+
+        public static int CountByName(string name)
+        {
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            {
+                int rs = db.PRODUCTs.Where(p => p.name.Contains(name)).Count();
+                return rs;
             }
         }
     }

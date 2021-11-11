@@ -24,5 +24,18 @@ namespace ComputerProject.ProductWorkSpace
         {
             InitializeComponent();
         }
+
+        public event EventHandler ClickEdit;
+        public event EventHandler ClickDelete;
+
+        void OnClick_Edit(object obj, RoutedEventArgs e)
+        {
+            ClickEdit?.Invoke(this, null);
+        }
+
+        void OnClick_Delete(object obj, RoutedEventArgs e)
+        {
+            ClickDelete?.Invoke(this, null);
+        }
     }
 }
