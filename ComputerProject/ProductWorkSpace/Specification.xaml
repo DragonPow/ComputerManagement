@@ -67,18 +67,6 @@
                         <local:ProdcutAddSpecificationsRow></local:ProdcutAddSpecificationsRow>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                <ListViewItem>
-                    <local:ProdcutAddSpecificationsRow/>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:ProdcutAddSpecificationsRow/>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:ProdcutAddSpecificationsRow/>
-                </ListViewItem>
-                <ListViewItem>
-                    <local:ProdcutAddSpecificationsRow/>
-                </ListViewItem>
             </ListView>
         </StackPanel>
     </Grid>
