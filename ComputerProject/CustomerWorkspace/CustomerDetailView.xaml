@@ -174,12 +174,8 @@
                     <ListView
                         x:Name="ListBills"
                         Grid.Row="2"
+                        ItemContainerStyle="{StaticResource ListViewContainerStyle}"
                         Margin="10,0,10,0">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            </Style>
-                        </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <local:CustomerDetailViewBillRow />

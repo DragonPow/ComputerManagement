@@ -4,9 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.InsuranceWorkSpace"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:Custom="clr-namespace:ComputerProject.CustomControl"
+             xmlns:Sale="clr-namespace:ComputerProject.SaleWorkSpace"
+             xmlns:font="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="800" d:DesignWidth="1300">
+    <Grid Background="{StaticResource Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="20,10">
+            <Button x:Name="btnBack" Style="{StaticResource MaterialDesignIconButton}" Width="40" Height="40" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
+                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="{StaticResource Title}" />
+            </Button>
+            <TextBlock x:Name="txtTitleView" Text="Chi tiết hóa đơn" Foreground="{StaticResource Title}" FontSize="{x:Static font:Font.TitleView}" VerticalAlignment="Center" FontWeight="DemiBold" Margin="20,0"></TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.7*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Sale:CustomerSaleView x:Name="CustomerSearch" Margin="20,0"/>
+            <local:InsuranceInfor x:Name="InsuranceInfor" Grid.Row="1"/>
+            <local:InsuranceProdView Grid.Column="1" Grid.RowSpan="2"/>
+
+        </Grid>
+        <StackPanel Grid.Row="2"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="20">
+            <Button x:Name="btnDelete" Style="{StaticResource MaterialDesignOutlinedButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{StaticResource Warning}" Margin="20,0"  Foreground="{StaticResource Warning}" Width="100" Height="35" Content="Xóa" Padding="30,0"></Button>
+            <Button x:Name="btnPrint" Background="{StaticResource MainColor}"   Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="5" Height="35" Padding="30,0" Content='Chỉnh sửa' Foreground="White"> </Button>
+
+        </StackPanel>
     </Grid>
 </UserControl>

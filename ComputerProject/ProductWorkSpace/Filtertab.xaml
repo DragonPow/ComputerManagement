@@ -49,7 +49,7 @@
                 Bộ lọc
             </TextBlock>
         </StackPanel>
-        <StackPanel Margin="30, 30, 30, 0">
+        <StackPanel Margin="30, 20, 30, 0">
             <TextBlock FontWeight="SemiBold"
                        FontFamily="{StaticResource Mulish}"
                        Text="   Danh mục"
@@ -64,19 +64,20 @@
                       FontSize="{x:Static localfont:Font.Body}"
                       Background="{StaticResource Background}"
                       BorderBrush="#DBD7F4"
-                      Margin="0, 0, 0, 20"
+                      Padding="9"
+                      Margin="0, 0, 0, 10"
                       FontFamily="{StaticResource Mulish}"/>
         </StackPanel>
         <localcustom:TextboxCustom x:Name="Procedure"
                                    Title="   Nhà cung cấp"
                                    FontSize="{x:Static localfont:Font.Body}"
-                                   MarginText="10"
+                                   MarginText="5"
                                    CornerRadiusText="3"
                                    Margin="30, 0, 30, 0"
                                    IsTabStop="False"
                                    KeyboardNavigation.TabIndex="0">
         </localcustom:TextboxCustom>
-        <StackPanel Margin="30, 20, 30, 0">
+        <StackPanel Margin="30, 10, 30, 0">
             <TextBlock FontSize="{x:Static localfont:Font.Body}"
                        FontWeight="SemiBold"
                        FontFamily="{StaticResource Mulish}"
@@ -91,7 +92,8 @@
                       FontSize="16"
                       Background="{StaticResource Background}"
                       BorderBrush="#DBD7F4"
-                      Margin="0, 0, 0, 20"
+                      Margin="0, 0, 0, 10"
+                      Padding="8"
                       FontFamily="{StaticResource Mulish}"
                       ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
                       SelectedItem="{Binding StateProduct}"
@@ -107,13 +109,22 @@
                        VerticalAlignment="Top">
             </TextBlock>
 
+            <Border
+                CornerRadius="3"
+                Background="{StaticResource Background}"
+                BorderThickness="1"
+                BorderBrush="#DBD7F4"
+                Padding="5"
+                Margin="0, 0, 0, 10"
+                >
             <TextBox x:Name="Waranty"
+                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+                     BorderThickness="0"    
                      FontSize="16"
                      Text="{Binding TimeWarranty}"
-                     Background="{StaticResource Background}"
-                     BorderBrush="#DBD7F4"
-                     Margin="0, 0, 0, 20"
+                     
                      FontFamily="{StaticResource Mulish}" />
+            </Border>
         </StackPanel>
         <TextBlock FontSize="{x:Static localfont:Font.Body}"
                    FontWeight="SemiBold"
@@ -126,6 +137,7 @@
         <Grid Margin="0, 0, 0, 20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="0.15*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0"
@@ -138,38 +150,45 @@
                      FontSize="{x:Static localfont:Font.Body}"
                      FontFamily="{StaticResource Mulish}"
                      VerticalScrollBarVisibility="Auto"
-                     Margin="30, 0, 10, 0"
+                     Margin="30, 0, 0, 0"
+                     Padding="9"
                      Background="{StaticResource Background}"
                      BorderBrush="#DBD7F4" />
-            <TextBox Grid.Column="1"
+            <Separator Grid.Column="1"
+                       Margin="5"
+                       
+                       ></Separator>
+            <TextBox Grid.Column="2"
                      x:Name="To"
                      Text="{Binding PriceHighest}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      VerticalAlignment="Top"
                      AcceptsReturn="True"
                      TextWrapping="Wrap"
+                     Padding="9"
                      FontSize="{x:Static localfont:Font.Body}"
                      FontFamily="{StaticResource Mulish}"
                      VerticalScrollBarVisibility="Auto"
-                     Margin="20, 0, 20, 0"
+                     Margin="0, 0, 30, 0"
                      Background="{StaticResource Background}"
                      BorderBrush="#DBD7F4" />
         </Grid>
         <StackPanel Orientation="Horizontal"
-                    Margin="30, 50, 0, 0">
+                    HorizontalAlignment="Center"
+                    Margin="30, 10, 30, 0">
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                     Background="Transparent"
                     BorderBrush="{StaticResource MainColor}"
                     Foreground="{StaticResource MainColor}"
-                    Width="116"
-                    Height="48"
+                    Width="100"
+                    Height="40"
                     Content="Đặt lại"
                     Margin="0, 0, 20, 0"
                     Command="{Binding UndoCommand}" />
             <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
                     Background="{StaticResource MainColor}"
-                    Width="116"
-                    Height="48"
+                    Width="100"
+                    Height="40"
                     Content="Lọc"
                     Margin="20, 0, 0, 0"
                     Foreground="White"

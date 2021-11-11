@@ -44,15 +44,18 @@
                        >
             </TextBlock>
             <TextBox x:Name="NameProperties"
-                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                     BorderThickness="0"
-                     Grid.Column="1"
-                     Background="Transparent"
-                     materialDesign:HintAssist.Hint="Tên thuộc tính"
-                     HorizontalAlignment="Stretch"
-                     VerticalAlignment="Center"
-                     Margin="10, 0, 0,0"
-                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+
+                       materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                       BorderThickness="0"
+                       Grid.Column="1"
+                        Background="Transparent"
+                       materialDesign:HintAssist.Hint="Tên thuộc tính"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Center"
+                       Margin="10, 0, 0,0"
+                       Text="{Binding Name}" 
+                       TextWrapping="Wrap"
+                       Style="{StaticResource TitleCell}">
             </TextBox>
             <Button Grid.Column="3"
                     x:Name="btnDelete"

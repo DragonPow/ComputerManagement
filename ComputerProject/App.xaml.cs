@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using ComputerProject.ApplicationWorkspace;
+using ComputerProject.InsuranceWorkSpace;
 using ComputerProject.Repository;
 
 namespace ComputerProject

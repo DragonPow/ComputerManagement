@@ -67,19 +67,47 @@
                             <TextBlock Grid.Column="3" Text="Đơn giá" Margin="20,0" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
                         </Grid>
                     </StackPanel>
-                    <ListView x:Name="ListProdInDetailBill" Grid.Row="1" Margin="10,0,10,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListView  x:Name="ListProdInDetailBill" Margin="10,0" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <local:ProdInDetailBillItem/>
                             </DataTemplate>
                         </ListView.ItemTemplate>
+
+                        <ListView.Resources>
+                            <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+                                <Border  BorderThickness="0" Background="{StaticResource SelectedItemBackground}">
+                                    <local:ProdInDetailBillItem/>
+                                </Border>
+                            </ControlTemplate>
+                        </ListView.Resources>
+
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListViewItem">
+                                            <local:ProdInDetailBillItem/>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                                        <Setter Property="IsSelected" Value="True"/>
+                                    </DataTrigger>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsSelected" Value="true" />
+                                            <Condition Property="Selector.IsSelectionActive" Value="true" />
+                                        </MultiTrigger.Conditions>
+                                        <MultiTrigger.Setters>
+                                            <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                                        </MultiTrigger.Setters>
+                                    </MultiTrigger>
+                                </Style.Triggers>
                             </Style>
                         </ListView.ItemContainerStyle>
-                        <local:ProdInDetailBillItem/>
-                        <local:ProdInDetailBillItem/>
                         <local:ProdInDetailBillItem/>
                         <local:ProdInDetailBillItem/>
                         <local:ProdInDetailBillItem/>

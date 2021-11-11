@@ -89,7 +89,7 @@
                         </TextBlock>
 
                         <Border Background="{TemplateBinding Background}"
-                            BorderBrush="#DBD7F4"
+                             BorderBrush="#DBD7F4"
                             CornerRadius="{TemplateBinding CornerRadiusText}"
                             BorderThickness="1"
                             VerticalAlignment="Center">
@@ -102,6 +102,7 @@
                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
                                     BorderThickness="0"                    
                                     Grid.Column="0"
+                                    TextWrapping="Wrap"
                                     FontSize="{TemplateBinding FontSize}"                          
                                     Margin="{TemplateBinding MarginText}"
                                     Foreground="#545454"

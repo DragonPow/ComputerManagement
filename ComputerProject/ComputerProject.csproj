@@ -301,6 +301,15 @@
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\BusyViewModel.cs" />
+    <Compile Include="InsuranceWorkSpace\InsuranceInfor.xaml.cs">
+      <DependentUpon>InsuranceInfor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceWorkSpace\InsurancePayBillItem.xaml.cs">
+      <DependentUpon>InsurancePayBillItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceWorkSpace\InsuranceProdView.xaml.cs">
+      <DependentUpon>InsuranceProdView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Bill.cs" />
     <Compile Include="InsuranceWorkSpace\InsuranceBillView.xaml.cs">
       <DependentUpon>InsuranceBillView.xaml</DependentUpon>
@@ -308,6 +317,11 @@
     <Compile Include="InsuranceWorkSpace\InsuranceDetailView.xaml.cs">
       <DependentUpon>InsuranceDetailView.xaml</DependentUpon>
     </Compile>
+
+    <Compile Include="InsuranceWorkSpace\InsuranceItemInBill.xaml.cs">
+      <DependentUpon>InsuranceItemInBill.xaml</DependentUpon>
+    </Compile>
+    
     <Compile Include="InsuranceWorkSpace\WarrantyCard.xaml.cs">
       <DependentUpon>WarrantyCard.xaml</DependentUpon>
     </Compile>
@@ -322,6 +336,18 @@
     </Compile>
     <Compile Include="InsuranceWorkSpace\InsuranceListView.xaml.cs">
       <DependentUpon>InsuranceListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\SelectedTabCategory.xaml.cs">
+      <DependentUpon>SelectedTabCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaleWorkSpace\TabCategory.xaml.cs">
+      <DependentUpon>TabCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\ProInfor.xaml.cs">
+      <DependentUpon>ProInfor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductWorkSpace\Specification.xaml.cs">
+      <DependentUpon>Specification.xaml</DependentUpon>
     </Compile>
     <Compile Include="StatiticsWorkSpace\DatePickerCalendar.cs" />
     <Compile Include="Helper\WindowService.cs" />
@@ -526,11 +552,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceInfor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InsuranceWorkSpace\InsuranceItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceItemInBill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InsuranceWorkSpace\InsuranceListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\InsurancePayBillItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\InsuranceProdView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -589,6 +631,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ProductWorkSpace\ProductMainView.xaml" />
+    <Page Include="ProductWorkSpace\ProInfor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\Specification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SaleWorkSpace\CurrentSaleBillView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -622,6 +672,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SaleWorkSpace\SaleAllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\SelectedTabCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaleWorkSpace\TabCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

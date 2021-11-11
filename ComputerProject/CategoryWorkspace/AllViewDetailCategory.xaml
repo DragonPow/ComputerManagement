@@ -62,39 +62,33 @@
                       Margin="5,0"
                       SelectedItem="{Binding CurrentChildCategory}"
                       ItemsSource="{Binding CurrentParentCategory.ChildCategories}" >
-
-                    <ListView.Resources>
-                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                            <Border  BorderThickness="0" Background="{StaticResource SelectedItemBackground}"  HorizontalAlignment="Stretch" >
-                                <local:Categorylv2Row/>
-                            </Border>
-                        </ControlTemplate>
-                    </ListView.Resources>
                     
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListViewItem}">
-                            <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
-                            <Setter Property="Background"
-                                Value="White" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="Background" Value="Transparent" />
                             <Setter Property="Template">
                                 <Setter.Value>
-                                    <ControlTemplate TargetType="ListViewItem">
-                                        <local:Categorylv2Row/>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border x:Name="Bd"  Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" >
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="True"/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="Background" TargetName="Bd" Value="#190477BF" />
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
-                            <Style.Triggers>
-                                <MultiTrigger>
-                                    <MultiTrigger.Conditions>
-                                        <Condition Property="IsSelected" Value="true" />
-                                    </MultiTrigger.Conditions>
-                                        <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
-                                </MultiTrigger>
-                            </Style.Triggers>
+
                         </Style>
 
                     </ListView.ItemContainerStyle>
+                    
                     <ListView.ItemTemplate>
                         <ItemContainerTemplate>
                             <local:Categorylv2Row x:Name="item" />
@@ -150,40 +144,25 @@
                       Margin="5,0"
                       ItemsSource="{Binding CurrentChildCategory.SpecificationTypes}">
 
-                    <ListView.Resources>
-                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                            <Border  BorderThickness="0" Background="Transparent"  HorizontalAlignment="Stretch" >
-                                <local:PropertiesRow number="{Binding RelativeSource={RelativeSource FindAncestor, 
-                               AncestorType={x:Type ListViewItem}}, Converter= {StaticResource IndexConver }}" />
-                            </Border>
-                        </ControlTemplate>
-                    </ListView.Resources>
                     
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListViewItem}">
-                            <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="Background" Value="Transparent" />
                             <Setter Property="Template">
                                 <Setter.Value>
-                                    <ControlTemplate TargetType="ListViewItem">
-                                        <local:PropertiesRow  number="{Binding RelativeSource={RelativeSource FindAncestor, 
-                                                                          AncestorType={x:Type ListViewItem}}, Converter= {StaticResource IndexConver }}"/>
+
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border x:Name="Bd"  Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" >
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
-                                    <Setter Property="IsSelected" Value="True"/>
-                                </DataTrigger>
-                                <MultiTrigger>
-                                    <MultiTrigger.Conditions>
-                                        <Condition Property="IsSelected" Value="true" />
-                                    </MultiTrigger.Conditions>
-                                    <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
-                                </MultiTrigger>
-                            </Style.Triggers>
                         </Style>
+
                     </ListView.ItemContainerStyle>
+                    
                     <ListView.ItemTemplate>
                         <ItemContainerTemplate>
                             <local:PropertiesRow number="{Binding RelativeSource={RelativeSource FindAncestor, 

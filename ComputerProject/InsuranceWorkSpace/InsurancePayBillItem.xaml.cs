@@ -13,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ComputerProject.ProductWorkSpace
+namespace ComputerProject.InsuranceWorkSpace
 {
     /// <summary>
-    /// Interaction logic for ProductDetailView.xaml
+    /// Interaction logic for InsurancePayBillItem.xaml
     /// </summary>
-    public partial class ProductDetailView : UserControl
+    public partial class InsurancePayBillItem : UserControl
     {
-        
-        public ProductDetailView()
+        public InsurancePayBillItem()
         {
             InitializeComponent();
-          
         }
-
     }
 }
