@@ -20,22 +20,34 @@ namespace ComputerProject.ProductWorkSpace
     /// </summary>
     public partial class ProductMainRowTable : UserControl
     {
+        public static DependencyProperty CommandEditProperty = DependencyProperty.Register(nameof(CommandEdit), typeof(ICommand), typeof(ProductMainRowTable));
+        public static DependencyProperty CommandDeleteProperty = DependencyProperty.Register(nameof(CommandDelete), typeof(ICommand), typeof(ProductMainRowTable));
+
         public ProductMainRowTable()
         {
             InitializeComponent();
         }
 
-        public event EventHandler ClickEdit;
-        public event EventHandler ClickDelete;
-
-        void OnClick_Edit(object obj, RoutedEventArgs e)
+        public ICommand CommandEdit
         {
-            ClickEdit?.Invoke(this, null);
+            get => (ICommand)GetValue(CommandEditProperty);
+            set => SetValue(CommandEditProperty, value);
         }
 
-        void OnClick_Delete(object obj, RoutedEventArgs e)
+        public ICommand CommandDelete
         {
-            ClickDelete?.Invoke(this, null);
+            get => (ICommand)GetValue(CommandEditProperty);
+            set => SetValue(CommandEditProperty, value);
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            CommandEdit.Execute(this);
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            CommandDelete.Execute(this);
         }
     }
 }

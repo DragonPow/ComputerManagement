@@ -338,6 +338,7 @@
     <Compile Include="InsuranceWorkSpace\InsuranceListView.xaml.cs">
       <DependentUpon>InsuranceListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProductWorkSpace\ProductEditViewModel.cs" />
     <Compile Include="ProductWorkSpace\ProductMainRowTableViewModel.cs" />
     <Compile Include="ProductWorkSpace\ProductEditView.xaml.cs">
       <DependentUpon>ProductEditView.xaml</DependentUpon>

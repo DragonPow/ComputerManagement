@@ -157,13 +157,14 @@
             <ListView
                 x:Name="ListProducts"
                 Grid.Row="3"
-                Margin="10, 0, 0, 0"
+                Margin="10,0,0,0"
                 ItemContainerStyle="{StaticResource ListViewContainerStyle}"
-                ItemsSource="{Binding ItemList}"
-                >
+                ItemsSource="{Binding ItemList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <local:ProductMainRowTable ClickEdit="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.OnClick_DeleteItem}" DataContext="{Binding}" />
+                        <local:ProductMainRowTable 
+                            DataContext="{Binding}" 
+                           CommandEdit="{Binding Path=DataContext.CommandEditItem, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -171,8 +172,7 @@
             <localcustom:BusyView
                 Grid.Row="2"
                 Grid.RowSpan="3"
-                Visibility="{Binding BusyVisibility}"
-                />
+                Visibility="{Binding BusyVisibility}" />
         </Grid>
 
     </DockPanel>

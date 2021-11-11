@@ -160,7 +160,7 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        public BitmapImage Image => FormatHelper.BytesToImage(product.image);
+        public BitmapImage Image => product.image != null && product.image.Length > 0 ? FormatHelper.BytesToImage(product.image) : null;
 
         public static List<ProductViewModel> FindByName(string name, int startIndex, int count)
         {
@@ -227,6 +227,81 @@ namespace ComputerProject.ProductWorkSpace
             {
                 int rs = db.PRODUCTs.Where(p => p.name.Contains(name)).Count();
                 return rs;
+            }
+        }
+
+        public static byte[] GetImage(int productID)
+        {
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            {
+                var data = db.PRODUCTs.Where(p => p.id.Equals(productID)).Select(p => p.image).FirstOrDefault();
+
+                return data != null ? data : null;
+            }
+        }
+
+        public static ICollection<SPECIFICATION> GetSpecifications(int productID)
+        {
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            {
+                db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL : " + s);
+                var data = db.PRODUCTs.Where(p => p.id.Equals(productID)).Select(p => p.SPECIFICATIONs).FirstOrDefault();
+
+                return data != null ? data : null;
+            }
+        }
+
+        public static void CopyTo(PRODUCT source, PRODUCT destination)
+        {
+            destination.name = source.name;
+
+            if (source.image != null && !source.image.Equals(destination.image))
+            {
+                destination.image = new byte[source.image.Length];
+                source.image.CopyTo(destination.image, 0);
+            }
+
+            destination.producer = source.producer;
+            destination.quantity = source.quantity;
+            destination.priceOrigin = source.priceOrigin;
+            destination.priceSales = source.priceSales;
+
+            if (source.SPECIFICATIONs == null)
+            {
+                destination.SPECIFICATIONs = null;
+                return;
+            }
+
+            if (destination.categoryId != source.categoryId || destination.SPECIFICATIONs == null)
+            {
+                destination.categoryId = source.categoryId;
+
+                if (destination.SPECIFICATIONs != null)
+                {
+                    destination.SPECIFICATIONs.Clear();
+                }
+                else
+                {
+                    destination.SPECIFICATIONs = new List<SPECIFICATION>(source.SPECIFICATIONs.Count);
+                }
+
+                foreach (var spec in source.SPECIFICATIONs)
+                {
+                    destination.SPECIFICATIONs.Add(new SPECIFICATION()
+                    {
+                        productId = spec.productId,
+                        specificationTypeId = spec.specificationTypeId,
+                        value = spec.value
+                    });
+                }
+            }
+            else
+            {
+                foreach (var spec in source.SPECIFICATIONs)
+                {
+                    destination.SPECIFICATIONs.Where(s => s.specificationTypeId == spec.specificationTypeId)
+                        .First().value = spec.value;
+                }
             }
         }
     }

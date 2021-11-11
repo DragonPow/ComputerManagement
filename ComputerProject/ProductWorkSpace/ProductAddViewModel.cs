@@ -40,13 +40,15 @@ namespace ComputerProject.ProductWorkSpace
             set
             {
                 selectedImagePath = value;
+                selectedImage = selectedImagePath != null ? new BitmapImage(new Uri(selectedImagePath)) : null;
                 OnPropertyChanged(nameof(SelectedImagePath));
                 OnPropertyChanged(nameof(SelectedImage));
             }
         }
+        protected BitmapImage selectedImage;
         public BitmapImage SelectedImage
         {
-            get => selectedImagePath != null ? new BitmapImage(new Uri(selectedImagePath)) : null;
+            get => selectedImage;
         }
 
 
@@ -127,10 +129,10 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        string error;
+        protected string error;
 
         public RelayCommand CommandSave => new RelayCommand((o) => OnSave());
-        void OnSave()
+        protected virtual void OnSave()
         {
             void task()
             {
@@ -157,7 +159,7 @@ namespace ComputerProject.ProductWorkSpace
             DoBusyTask(task, callback);
         }
 
-        void CheckInvalid()
+        protected void CheckInvalid()
         {
             if (PriceOrigin < 1 || PriceSales < 1)
             {
@@ -175,7 +177,7 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        void CheckDuplicate()
+        protected void CheckDuplicate()
         {
             var temp = ProductViewModel.FindByName(Name);
             if (temp != null && temp.IsStopSelling == false)
@@ -227,7 +229,7 @@ namespace ComputerProject.ProductWorkSpace
 
         public RelayCommand CommandClickBack => new RelayCommand((o) => OnClickBack());
         public event EventHandler ClickBack;
-        void OnClickBack()
+        protected void OnClickBack()
         {
             ClickBack?.Invoke(this, null);
         }

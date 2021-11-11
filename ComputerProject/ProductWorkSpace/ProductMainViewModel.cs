@@ -114,7 +114,10 @@ namespace ComputerProject.ProductWorkSpace
             viewController.CurrentViewModel = this;
         }
 
-        public void OnClick_EditItem(object sender, EventArgs e)
+        public RelayCommand CommandEditItem => new RelayCommand(OnClick_EditItem);
+        public RelayCommand CommandDeleteItem => new RelayCommand(OnClick_DeleteItem);
+
+        public void OnClick_EditItem(object sender)
         {
             var item = (ProductViewModel)(sender as Control).DataContext;
 
@@ -123,7 +126,7 @@ namespace ComputerProject.ProductWorkSpace
             Console.WriteLine("Edit item : " + item.Name);
         }
 
-        public void OnClick_DeleteItem(object sender, EventArgs e)
+        public void OnClick_DeleteItem(object sender)
         {
             var item = (ProductViewModel)(sender as Control).DataContext;
 

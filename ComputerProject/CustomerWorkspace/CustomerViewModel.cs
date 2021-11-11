@@ -249,7 +249,7 @@ namespace ComputerProject.CustomerWorkspace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL : " + s);
+                //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL : " + s);
 
                 var data = db.CUSTOMERs.Where(c => c.phone.StartsWith(phone))
                         .OrderBy(c => c.phone)

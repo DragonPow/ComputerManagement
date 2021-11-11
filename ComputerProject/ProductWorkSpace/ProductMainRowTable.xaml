@@ -76,7 +76,7 @@
         <Button
             x:Name="btnEdit"
             Grid.Column="6"
-            Click="OnClick_Edit"
+            Click="btnEdit_Click"
             Style="{StaticResource MaterialDesignIconButton}"
             ToolTip="Chỉnh sửa thông tin">
             <Image
@@ -87,7 +87,7 @@
         <Button
             x:Name="btnDelete"
             Grid.Column="7"
-            Click="OnClick_Delete"
+            Click="btnDelete_Click"
             Style="{StaticResource MaterialDesignIconButton}"
             ToolTip="Xóa khách hàng">
             <Image
