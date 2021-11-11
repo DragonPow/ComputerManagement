@@ -20,6 +20,13 @@ namespace ComputerProject.InsuranceWorkSpace
     /// </summary>
     public partial class InsurancePayBillItem : UserControl
     {
+        public static DependencyProperty NumberProperties = DependencyProperty.Register(nameof(number), typeof(string), typeof(InsurancePayBillItem), new PropertyMetadata("0"));
+
+        public string number
+        {
+            get { return (string)GetValue(NumberProperties); }
+            set { SetValue(NumberProperties, value); }
+        }
         public InsurancePayBillItem()
         {
             InitializeComponent();

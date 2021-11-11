@@ -15,7 +15,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="1" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" />
+        <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:InsurancePayBillItem}}, Path=number}" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" />
         <TextBlock x:Name="NameProd" Grid.Column="1" Text="Laptop HP 15s-fq2602TU" Margin="0,10" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" FontWeight="Bold"/>
         <TextBlock x:Name="SerialProd" Grid.Column="3" Text="1,520,000" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" />
         <TextBlock x:Name="PriceProd" Grid.Column="2" Text="PI01252504" Margin="10,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" />

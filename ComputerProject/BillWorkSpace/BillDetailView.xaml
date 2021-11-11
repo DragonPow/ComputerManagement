@@ -7,8 +7,12 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:Customer="clr-namespace:ComputerProject.CustomerWorkspace"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+             xmlns:converter="clr-namespace:ComputerProject.Converter" 
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="1300">
+    <UserControl.Resources>
+        <converter:IndexCategoryConverter x:Key="IndexConver" />
+    </UserControl.Resources>
     <Grid Background="{StaticResource Background}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -66,51 +70,33 @@
                             <TextBlock Grid.Column="2" Text="Số Seri" Margin="20,0" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
                             <TextBlock Grid.Column="3" Text="Đơn giá" Margin="20,0" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
                         </Grid>
-                    </StackPanel>
-                    <ListView  x:Name="ListProdInDetailBill" Margin="10,0" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <local:ProdInDetailBillItem/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-
-                        <ListView.Resources>
-                            <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                                <Border  BorderThickness="0" Background="{StaticResource SelectedItemBackground}">
-                                    <local:ProdInDetailBillItem/>
-                                </Border>
-                            </ControlTemplate>
-                        </ListView.Resources>
-
+                    </StackPanel> 
+                    <ListView  x:Name="ListProdInDetailBill" Margin="10,0" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                               ItemsSource="{Binding}">
                         <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
+                            <Style TargetType="{x:Type ListViewItem}">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="Background" Value="Transparent" />
                                 <Setter Property="Template">
                                     <Setter.Value>
-                                        <ControlTemplate TargetType="ListViewItem">
-                                            <local:ProdInDetailBillItem/>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <Border x:Name="Bd"  Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" >
+                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                            </Border>
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="IsSelected" Value="True"/>
-                                    </DataTrigger>
-                                    <MultiTrigger>
-                                        <MultiTrigger.Conditions>
-                                            <Condition Property="IsSelected" Value="true" />
-                                            <Condition Property="Selector.IsSelectionActive" Value="true" />
-                                        </MultiTrigger.Conditions>
-                                        <MultiTrigger.Setters>
-                                            <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
-                                        </MultiTrigger.Setters>
-                                    </MultiTrigger>
-                                </Style.Triggers>
                             </Style>
+
                         </ListView.ItemContainerStyle>
-                        <local:ProdInDetailBillItem/>
-                        <local:ProdInDetailBillItem/>
-                        <local:ProdInDetailBillItem/>
+                        <ListView.ItemTemplate>
+                            <ItemContainerTemplate>
+                                <local:ProdInDetailBillItem number="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Converter= {StaticResource IndexConver}}"/>
+                            </ItemContainerTemplate>
+                        </ListView.ItemTemplate>
+                        <local:ProdInDetailBillItem />
+                        <local:ProdInDetailBillItem />
+                        <local:ProdInDetailBillItem />
                     </ListView>
                     <Grid Grid.Row="2" Margin="30,10">
                         <Grid.RowDefinitions>

@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="70"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="ID" Text="1" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+            <TextBlock x:Name="ID" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:InsuranceItemInBill}}, Path=number}" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
             <TextBlock x:Name="ProdName" Grid.Column="1" Text="Laptop HP 15s-fq2602TU" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
             <TextBlock x:Name="ProdPrice" Grid.Column="3" Text="15,499,000" Margin="20,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
             <Border Grid.Column="2" Height="30" Margin="10,0" BorderThickness="1" CornerRadius="8" BorderBrush="{StaticResource Icon}">
