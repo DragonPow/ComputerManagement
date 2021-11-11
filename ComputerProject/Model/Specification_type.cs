@@ -1,13 +1,14 @@
 ﻿using ComputerProject.HelperService;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ComputerProject.Model
 {
-    public class Specification_type : BaseViewModel
+    public class Specification_type : BaseViewModel, IDataErrorInfo
     {
         int _id;
         int _number;
@@ -37,9 +38,31 @@ namespace ComputerProject.Model
             }
         }
 
+        public string Error => null;
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case nameof(Name):
+                        {
+                            if (String.IsNullOrWhiteSpace(Name))
+                            {
+                                return "Name is not null";
+                            }
+                            break;
+                        }
+                }
+
+                return null;
+            }
+        }
+
         public Specification_type()
         {
-            _id = 0;
+
         }
 
         public Specification_type(SPECIFICATION_TYPE specification_type)
@@ -51,7 +74,7 @@ namespace ComputerProject.Model
 
         public SPECIFICATION_TYPE CastToModel()
         {
-            SPECIFICATION_TYPE s = new SPECIFICATION_TYPE() { id = this.Id, name = this.Name, categoryId = this._categoryId};
+            SPECIFICATION_TYPE s = new SPECIFICATION_TYPE() { id = this.Id, name = this.Name};
             return s;
         }
 

@@ -151,7 +151,9 @@ namespace ComputerProject.Model
             if (this.SpecificationTypes != null)
                 foreach (var i in this.SpecificationTypes)
                 {
-                    c.SPECIFICATION_TYPE.Add(i.CastToModel());
+                    var spec = i.CastToModel();
+                    spec.categoryId = c.id;
+                    c.SPECIFICATION_TYPE.Add(spec);
                 }
 
             return c;

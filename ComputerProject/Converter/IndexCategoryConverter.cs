@@ -16,8 +16,8 @@ namespace ComputerProject.Converter
         {
             ListViewItem item = (ListViewItem)value;
             ListView listView = ItemsControl.ItemsControlFromItemContainer(item) as ListView;
-            int index = listView.ItemContainerGenerator.IndexFromContainer(item);
-            return (index.ToString());
+            int index = listView.ItemContainerGenerator.IndexFromContainer(item)  + 1;
+            return index.ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

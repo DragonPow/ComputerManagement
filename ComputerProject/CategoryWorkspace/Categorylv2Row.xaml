@@ -27,7 +27,7 @@
                  Foreground="#11142D"
                  VerticalAlignment="Center"
                  Padding="15"
-                 Text="{Binding Name, ValidatesOnDataErrors=False, UpdateSourceTrigger=PropertyChanged, TargetNullValue= 'Danh mục mới'}">
+                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, TargetNullValue= 'Danh mục mới'}">
         </TextBlock>
         <Button Grid.Column="1"
                 x:Name="btnDelete"

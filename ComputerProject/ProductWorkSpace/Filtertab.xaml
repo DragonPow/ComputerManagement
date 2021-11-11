@@ -96,7 +96,8 @@
                       Padding="8"
                       FontFamily="{StaticResource Mulish}"
                       ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
-                      SelectedItem="{Binding StateProduct}"/>
+                      SelectedItem="{Binding StateProduct}"
+                      SelectedIndex="0"/>
         </StackPanel>
         <StackPanel Margin="30, 0, 30, 0">
             <TextBlock FontSize="{x:Static localfont:Font.Body}"

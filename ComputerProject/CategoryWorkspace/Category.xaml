@@ -57,7 +57,7 @@
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <local:TableRow/>
+                            <local:TableRow />
                         </DataTemplate>
                     </ListView.ItemTemplate>
 

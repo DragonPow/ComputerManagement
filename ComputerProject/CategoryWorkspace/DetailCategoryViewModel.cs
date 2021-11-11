@@ -11,49 +11,49 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
+using ComputerProject.Model;
 
 namespace ComputerProject.CategoryWorkspace
 {
-    public interface IMemento
-    {
-        void StoreState();
-        void RestoreState();
-    }
-    public interface IDetailCategoryMemento
-    {
-        Collection<Model.Category> ChildCategories { get; }
-        Collection<Model.Specification_type> Specifications { get; }
-    }
-    public interface IBaseMemento
-    {
-        void ClearState();
-    }
-    public class DetailCategoryMemento : IDetailCategoryMemento, IBaseMemento
-    {
-        public Collection<Model.Category> ChildCategories { get; set; } = null;
-        public Collection<Model.Specification_type> Specifications { get; set; } = null;
-        public DetailCategoryMemento(Collection<Model.Category> childCategories, Collection<Model.Specification_type> specifications)
-        {
-            this.ChildCategories = new Collection<Model.Category>(childCategories);
-            this.Specifications = new Collection<Model.Specification_type>(specifications);
-        }
-        public void ClearState()
-        {
-            ChildCategories.Clear();
-            Specifications.Clear();
+    //public interface IMemento
+    //{
+    //    void StoreState();
+    //    void RestoreState();
+    //}
+    //public interface IDetailCategoryMemento
+    //{
+    //    Collection<Model.Category> ChildCategories { get; }
+    //    Collection<Model.Specification_type> Specifications { get; }
+    //}
+    //public interface IBaseMemento
+    //{
+    //    void ClearState();
+    //}
+    //public class DetailCategoryMemento : IDetailCategoryMemento, IBaseMemento
+    //{
+    //    public Collection<Model.Category> ChildCategories { get; set; } = null;
+    //    public Collection<Model.Specification_type> Specifications { get; set; } = null;
+    //    public DetailCategoryMemento(Collection<Model.Category> childCategories, Collection<Model.Specification_type> specifications)
+    //    {
+    //        this.ChildCategories = new Collection<Model.Category>(childCategories);
+    //        this.Specifications = new Collection<Model.Specification_type>(specifications);
+    //    }
+    //    public void ClearState()
+    //    {
+    //        ChildCategories.Clear();
+    //        Specifications.Clear();
 
-            ChildCategories = null;
-            Specifications = null;
-        }
-    }
+    //        ChildCategories = null;
+    //        Specifications = null;
+    //    }
+    //}
 
-    public class DetailCategoryViewModel : BaseViewModel, ITabView
+    public class DetailCategoryViewModel : BaseViewModel
     {
         #region Fields
         NavigationService _navigator;
         CategoryRepository _repository;
-        public string ViewName => "Test";
-        public PackIconKind ViewIcon => PackIconKind.Add;
+        public string TitleViewName { get; private set; }
 
         Model.Category _currentParentCategory;
         Model.Category _currentChildCateogry;
@@ -114,7 +114,7 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (_addSpecificationCommand == null)
                 {
-                    _addSpecificationCommand = new RelayCommand(a => AddSpecification(), b => IsEditMode);
+                    _addSpecificationCommand = new RelayCommand(a => AddSpecification(CurrentChildCategory), b => IsEditMode && CurrentChildCategory != null);
                 }
                 return _addSpecificationCommand;
             }
@@ -244,6 +244,7 @@ namespace ComputerProject.CategoryWorkspace
 
             if (parentCategory == null)
             {
+                TitleViewName = "AddCategory";
                 CurrentParentCategory = new Model.Category();
                 CurrentParentCategory.ChildCategories = new ObservableCollection<Model.Category>();
                 CurrentParentCategory.SpecificationTypes = new ObservableCollection<Model.Specification_type>();
@@ -251,8 +252,9 @@ namespace ComputerProject.CategoryWorkspace
             }
             else
             {
+                TitleViewName = "DetailCategory";
                 CurrentParentCategory = parentCategory;
-                Task.Run(() => CurrentParentCategory.ChildCategories = _repository.LoadChildCategories(CurrentParentCategory.Id));
+                CurrentParentCategory.ChildCategories = _repository.LoadChildCategories(CurrentParentCategory.Id);
                 //Task.Run(() => _repository.LoadSpecification(parentCategory));
                 IsEditMode = false;
             }
@@ -273,25 +275,26 @@ namespace ComputerProject.CategoryWorkspace
 
         public void AddChildCategory()
         {
-            CurrentChildCategory = new Model.Category();
+            CurrentChildCategory = new Model.Category() { Name = "Danh mục mới"};
             CurrentParentCategory.ChildCategories.Add(CurrentChildCategory);
         }
 
-        public void AddSpecification()
+        public void AddSpecification(Model.Category category)
         {
             Model.Specification_type specification = new Model.Specification_type();
 
-            if (CurrentChildCategory?.SpecificationTypes == null) specification.Number = 1;
+            if (category?.SpecificationTypes == null) specification.Number = 1;
             else specification.Number = (int) CurrentChildCategory?.SpecificationTypes.Count() + 1;
 
-            CurrentChildCategory?.SpecificationTypes.Add(specification);
+            if (CurrentChildCategory.SpecificationTypes == null)
+                CurrentChildCategory.SpecificationTypes = new ObservableCollection<Specification_type>();
+            CurrentChildCategory.SpecificationTypes.Add(specification);
 
         }
 
         public void DeleteSpecificationType(Model.Specification_type specification)
         {
             CurrentChildCategory.SpecificationTypes.Remove(specification);
-
         }
 
         public void Delete(Model.Category category)
@@ -303,13 +306,11 @@ namespace ComputerProject.CategoryWorkspace
             }
             else
             {
-                category.SpecificationTypes.Clear();
-                category.SpecificationTypes = null;
                 CurrentParentCategory.ChildCategories.Remove(category);
             }
         }
 
-        public void Save()
+        public async void Save()
         {
             if (String.IsNullOrWhiteSpace(CurrentParentCategory.Name))
             {
@@ -317,12 +318,13 @@ namespace ComputerProject.CategoryWorkspace
             }
             else if (isParentCategoryExists())
             {
-                throw new ArgumentException("Parent Category Exsists");
+                throw new ArgumentException("Root Category Exsists");
             }
             else
             {
-                Task.Run(() => _repository?.Save(CurrentParentCategory));
+                var task = Task.Run(()=>_repository?.Save(CurrentParentCategory));
                 IsEditMode = false;
+                CurrentChildCategory = null;
 
                 DetailCategoryChangedEventHandler?.Invoke(this, this.CurrentParentCategory);
             }

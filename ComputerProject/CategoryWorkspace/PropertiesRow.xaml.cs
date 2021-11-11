@@ -20,6 +20,14 @@ namespace ComputerProject.CategoryWorkspace
     /// </summary>
     public partial class PropertiesRow : UserControl
     {
+
+        public static DependencyProperty NumberProperties = DependencyProperty.Register(nameof(number), typeof(string), typeof(PropertiesRow), new PropertyMetadata("0"));
+
+        public string number
+        {
+            get { return (string)GetValue(NumberProperties); }
+            set { SetValue(NumberProperties, value); }
+        }
         public PropertiesRow()
         {
             InitializeComponent();
