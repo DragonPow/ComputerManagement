@@ -320,11 +320,9 @@
     <Compile Include="InsuranceWorkSpace\InsuranceDetailView.xaml.cs">
       <DependentUpon>InsuranceDetailView.xaml</DependentUpon>
     </Compile>
-
     <Compile Include="InsuranceWorkSpace\InsuranceItemInBill.xaml.cs">
       <DependentUpon>InsuranceItemInBill.xaml</DependentUpon>
     </Compile>
-    
     <Compile Include="InsuranceWorkSpace\WarrantyCard.xaml.cs">
       <DependentUpon>WarrantyCard.xaml</DependentUpon>
     </Compile>
@@ -341,6 +339,9 @@
       <DependentUpon>InsuranceListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProductWorkSpace\ProductMainRowTableViewModel.cs" />
+    <Compile Include="ProductWorkSpace\ProductEditView.xaml.cs">
+      <DependentUpon>ProductEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SaleWorkSpace\SelectedTabCategory.xaml.cs">
       <DependentUpon>SelectedTabCategory.xaml</DependentUpon>
     </Compile>
@@ -631,6 +632,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProductWorkSpace\ProductDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductWorkSpace\ProductEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

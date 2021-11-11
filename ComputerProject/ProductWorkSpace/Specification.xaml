@@ -71,7 +71,6 @@
                         </Style.Triggers>
                     </Style>
                 </ListView.ItemContainerStyle>
-
             </ListView>
         </StackPanel>
     </Grid>
