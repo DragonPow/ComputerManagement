@@ -102,6 +102,7 @@
                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
                                     BorderThickness="0"                    
                                     Grid.Column="0"
+                                    TextWrapping="Wrap"
                                     FontSize="{TemplateBinding FontSize}"                          
                                     Margin="{TemplateBinding MarginText}"
                                     Foreground="#545454"

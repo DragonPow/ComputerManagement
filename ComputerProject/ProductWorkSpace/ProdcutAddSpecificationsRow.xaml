@@ -21,6 +21,7 @@
             BorderThickness="1"
             BorderBrush="{StaticResource Icon}">
         <TextBlock
+            FontWeight="DemiBold"
             ToolTip="Tên thông số"
             FontSize="{x:Static localfont:Font.Body}"
             FontFamily="{StaticResource Mulish}"
@@ -28,6 +29,7 @@
             VerticalAlignment="Center"
             Margin="10, 0, 0, 0"  
             Text="Tên thông số"
+            TextWrapping="Wrap"
             >
         </TextBlock>
         </Border>
@@ -46,6 +48,7 @@
                 VerticalAlignment="Center"
                 Margin="10, 0, 0, 0"         
                 Text="Giá trị"
+                TextWrapping="Wrap"
             >
             </TextBox>
         </Border>
