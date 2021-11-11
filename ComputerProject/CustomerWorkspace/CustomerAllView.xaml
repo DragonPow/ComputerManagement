@@ -77,19 +77,8 @@
                     x:Name="mainList"
                     Grid.Row="2"
                     Margin="20,0,10,0"
+                    ItemContainerStyle="{StaticResource ListViewContainerStyle}"
                     ItemsSource="{Binding CustomerList}">
-
-                    <ListView.Resources>
-                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                            <Border  BorderThickness="0" Background="{StaticResource SelectedItemBackground}"  HorizontalAlignment="Stretch" >
-                                <local:CustomerAllViewRow
-                                    ClickedDelete="BtnDeleteItem_Click"
-                                    ClickedEdit="BtnEditItem_Click"
-                                    DataContext="{Binding}"
-                                    MouseDoubleClick="Item_MouseDoubleClick" />
-                            </Border>
-                        </ControlTemplate>
-                    </ListView.Resources>
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -101,34 +90,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            <Setter Property="Padding" Value="0" />
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="ListViewItem">
-                                        <local:CustomerAllViewRow
-                                            ClickedDelete="BtnDeleteItem_Click"
-                                            ClickedEdit="BtnEditItem_Click"
-                                            DataContext="{Binding}"
-                                            MouseDoubleClick="Item_MouseDoubleClick" />
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
-                                    <Setter Property="IsSelected" Value="True"/>
-                                </DataTrigger>
-                                <MultiTrigger>
-                                    <MultiTrigger.Conditions>
-                                        <Condition Property="IsSelected" Value="true" />
-                                    </MultiTrigger.Conditions>
-                                    <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
-                                </MultiTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ListView.ItemContainerStyle>
+                  
                 </ListView>
                 <localcustom:BusyView
                     Grid.Row="2"
