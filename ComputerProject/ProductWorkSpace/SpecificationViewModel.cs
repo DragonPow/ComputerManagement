@@ -10,7 +10,14 @@ namespace ComputerProject.ProductWorkSpace
     public class SpecificationViewModel : BaseViewModel
     {
         protected SPECIFICATION model;
-        public SPECIFICATION Model => model;
+        public SPECIFICATION Model
+        { get => model;
+            set
+            {
+                model = value;
+                OnPropertyChanged();
+            }
+        }
 
         private string specificationName;
         public string SpecificationName

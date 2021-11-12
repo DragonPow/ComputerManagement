@@ -30,7 +30,7 @@ namespace ComputerProject.ProductWorkSpace
         public List<SpecificationViewModel> SpecificationList
         {
             get => specificationList;
-            private set
+            protected set
             {
                 specificationList = value;
                 OnPropertyChanged(nameof(SpecificationList));

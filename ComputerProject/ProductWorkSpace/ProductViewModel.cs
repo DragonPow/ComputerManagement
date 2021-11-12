@@ -169,7 +169,7 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        public BitmapImage Image => Product.image != null && Product.image.Length > 0 ? FormatHelper.BytesToImage(Product.image) : null;
+        public BitmapImage Image => Product.image != null && Product.image.Length > 0 ? FormatHelper.BytesToImage(Product.image) : (BitmapImage) System.Windows.Application.Current.FindResource("NoImage");
 
         public void DeleteFromDB(bool hasInBill)
         {
@@ -273,32 +273,51 @@ namespace ComputerProject.ProductWorkSpace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
+                var dbContext = (db as System.Data.Entity.Infrastructure.IObjectContextAdapter).ObjectContext;
+                dbContext.CommandTimeout = 120;
+
                 var data = db.PRODUCTs.Where(p => p.id.Equals(productID)).Select(p => p.image).FirstOrDefault();
 
                 return data != null ? data : null;
             }
         }
 
-        public static ICollection<SPECIFICATION> GetSpecifications(int productID)
+        public static ICollection<SpecificationViewModel> GetSpecifications(int productID)
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL : " + s);
-                var data = db.PRODUCTs.Where(p => p.id.Equals(productID)).Select(p => p.SPECIFICATIONs).FirstOrDefault();
+                db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Spec: " + s);
+                var data = db.SPECIFICATIONs.Where(s => s.productId == productID).Select(s => new SpecificationViewModel()
+                {
+                    SpecificationName = s.SPECIFICATION_TYPE.name,
+                    SpecificationTypeId = s.specificationTypeId,
+                    SpecValue = s.value,
+                    ProductID = s.productId
+                });
 
-                return data != null ? data : null;
+                var rs = new List<SpecificationViewModel>();
+
+                foreach (var row in data)
+                {
+                    rs.Add(row);
+                }
+
+                return rs;
             }
         }
 
         public static void CopyTo(PRODUCT source, PRODUCT destination)
         {
+            // Copy not include image and specification list
+            destination.id = source.id;
+            destination.categoryId = source.categoryId;
             destination.name = source.name;
 
-            if (source.image != null && !source.image.Equals(destination.image))
+            /*if (source.image != null && !source.image.Equals(destination.image))
             {
                 destination.image = new byte[source.image.Length];
                 source.image.CopyTo(destination.image, 0);
-            }
+            }*/
 
             destination.producer = source.producer;
             destination.quantity = source.quantity;
@@ -311,10 +330,8 @@ namespace ComputerProject.ProductWorkSpace
                 return;
             }
 
-            if (destination.categoryId != source.categoryId || destination.SPECIFICATIONs == null)
+            /*if (destination.categoryId != source.categoryId || destination.SPECIFICATIONs == null)
             {
-                destination.categoryId = source.categoryId;
-
                 if (destination.SPECIFICATIONs != null)
                 {
                     destination.SPECIFICATIONs.Clear();
@@ -336,12 +353,18 @@ namespace ComputerProject.ProductWorkSpace
             }
             else
             {
+                var destinationSpecs = (List<SPECIFICATION>)destination.SPECIFICATIONs;
                 foreach (var spec in source.SPECIFICATIONs)
                 {
-                    destination.SPECIFICATIONs.Where(s => s.specificationTypeId == spec.specificationTypeId)
-                        .First().value = spec.value;
+                    for (int i = 0; i < destinationSpecs.Count; i++)
+                    {
+                        if (destinationSpecs[i].specificationTypeId == spec.specificationTypeId)
+                        {
+                            destinationSpecs[i].value = spec.value;
+                        }
+                    }
                 }
-            }
+            }*/
         }
     }
 }

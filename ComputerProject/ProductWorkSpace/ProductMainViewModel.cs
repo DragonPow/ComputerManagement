@@ -107,6 +107,11 @@ namespace ComputerProject.ProductWorkSpace
         {
             viewController.CurrentViewModel = this;
         }
+        public void BackAndRefresh(object sender, EventArgs e)
+        {
+            viewController.CurrentViewModel = this;
+            CountPage(false);
+        }
 
 
         public RelayCommand CommandDetailItem => new RelayCommand(OnClick_DetailItem);
@@ -122,10 +127,11 @@ namespace ComputerProject.ProductWorkSpace
             var detailVM = new ProductDetailViewModel(item.Product);
             detailVM.Prepare();
             detailVM.ClickBack += BackToMain;
-            detailVM.ClickEdit += (s, e) => CommandEditItem.Execute(item);
+            detailVM.ClickEdit += (s, e) => CommandEditItem.Execute(sender);
+            detailVM.DeleteOK += BackAndRefresh;
 
             viewController.CurrentViewModel = detailVM;
-            Console.WriteLine("Edit item : " + item.Name);
+            Console.WriteLine("Detail item : " + item.Name);
         }
 
         public void OnClick_EditItem(object sender)
@@ -137,14 +143,13 @@ namespace ComputerProject.ProductWorkSpace
             var editlVM = new ProductEditViewModel(item.Product);
             editlVM.Prepare();
             editlVM.ClickBack += BackToMain;
+            editlVM.UpdateOK += (s,e)=>
+            {
+                CommandDetailItem.Execute(sender);
+            };
 
             viewController.CurrentViewModel = editlVM;
             Console.WriteLine("Edit item : " + item.Name);
-        }
-
-        private void DetailVM_ClickEdit(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         public void OnClick_DeleteItem(object sender)

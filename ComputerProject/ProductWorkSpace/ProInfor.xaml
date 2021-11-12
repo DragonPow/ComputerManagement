@@ -33,7 +33,7 @@
                 <Image
                     Width="110"
                     Height="110"
-                    Source="{Binding SelectedImage}"
+                    Source="{Binding SelectedImage, TargetNullValue={StaticResource NoImage}}"
                     Stretch="Fill" />
                 <Grid Grid.Column="1" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ProInfor}}, Path=VisibilityAddImage}">
                     <Grid.RowDefinitions>
@@ -94,10 +94,9 @@
                     FontFamily="{StaticResource Mulish}"
                     FontSize="{x:Static localfont:Font.Body}"
                     IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
                     ItemsSource="{Binding CategoryList}"
                     SelectedItem="{Binding SelectedCategory_String}"
-                    />
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}" />
             </StackPanel>
 
             <localcustom:TextboxCustom

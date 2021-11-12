@@ -37,9 +37,12 @@ namespace ComputerProject.ProductWorkSpace
 
         protected void LoadImage()
         {
-            void task(){
-                Product.image = GetImage(Product.id);
-                if (Product.image == null) Product.image = new byte[0];
+            void task()
+            {
+                if (Product.image == null)
+                {
+                    Product.image = GetImage(Product.id);
+                }
             }
             void callback()
             {
@@ -47,29 +50,24 @@ namespace ComputerProject.ProductWorkSpace
                 selectedImage = Image;
                 OnPropertyChanged(nameof(SelectedImage));
             }
-
-            if (Product.image == null)
-            {
-                DoBusyTask(task, callback);
-            }
+            DoBusyTask(task, callback);
         }
 
         protected void LoadSpecification()
         {
             void task()
             {
-                Product.SPECIFICATIONs = GetSpecifications(Product.id);
-                if (Product.SPECIFICATIONs == null) Product.SPECIFICATIONs = new List<SPECIFICATION>();
+                specificationList = new List<SpecificationViewModel>(GetSpecifications(Product.id));
             }
             void callback()
             {
                 Console.WriteLine("Loaded spec list");
-                specificationList = new List<SpecificationViewModel>();
-                if (Product.SPECIFICATIONs != null)
+                if (SpecificationList != null)
                 {
-                    foreach (var spec in Product.SPECIFICATIONs)
+                    Product.SPECIFICATIONs = new List<SPECIFICATION>();
+                    foreach (var spec in SpecificationList)
                     {
-                        specificationList.Add(new SpecificationViewModel(spec));
+                        Product.SPECIFICATIONs.Add(spec.Model);
                     }
                 }
                 OnPropertyChanged(nameof(SpecificationList));
@@ -84,7 +82,7 @@ namespace ComputerProject.ProductWorkSpace
         public RelayCommand CommandClickEdit => new RelayCommand(OnClickEdit);
         void OnClickEdit(object obj)
         {
-            DeleteOK?.Invoke(this, null);
+            ClickEdit?.Invoke(this, null);
         }
 
         public RelayCommand CommandClickDelete => new RelayCommand(OnClickDelete);

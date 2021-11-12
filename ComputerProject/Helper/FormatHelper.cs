@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -50,9 +51,14 @@ namespace ComputerProject
             if (image == null) return null;
             byte[] rs;
 
-            /*int h = image.Height, w = image.Width;
-            decimal scale = Math.Min(h / 130, w / 200);
-            image = new Bitmap(image, new Size((int)(w * scale), (int)(h * scale)));*/
+            float width = 192, height = 108;
+            int h = image.Height, w = image.Width;
+            var scale = Math.Min(width / w, height / h);
+            var newSize = new Size((int)(w * scale), (int)(h * scale));
+
+            image = new Bitmap(image, newSize);
+
+            //image = Scale(image);
 
             using (var ms = new MemoryStream())
             {
@@ -62,6 +68,26 @@ namespace ComputerProject
             }
 
             return rs;
+        }
+
+        public static Bitmap Scale(Bitmap image)
+        {
+            float width = 192 * 2, height = 108 * 2;
+            int h = image.Height, w = image.Width;
+            var scale = Math.Min(width / h, height / w);
+            var newSize = new Size((int)(w * scale), (int)(h * scale));
+
+            var bmp = new Bitmap((int)width, (int)height);
+            var graph = Graphics.FromImage(bmp);
+
+            graph.InterpolationMode = InterpolationMode.High;
+            graph.CompositingQuality = CompositingQuality.HighQuality;
+            graph.SmoothingMode = SmoothingMode.AntiAlias;
+
+            graph.FillRectangle(new SolidBrush(Color.White), new RectangleF(0, 0, width, height));
+            graph.DrawImage(image, newSize.Width / 2, newSize.Height / 2, newSize.Width, newSize.Height);
+
+            return bmp;
         }
 
         public static System.Windows.Media.Imaging.BitmapImage BytesToImage(byte[] bytes)

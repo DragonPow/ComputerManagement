@@ -20,62 +20,88 @@ namespace ComputerProject.ProductWorkSpace
         {
             void task3()
             {
-                GetCategoryList();
+                if (oldModel.image == null)
+                {
+                    oldModel.image = GetImage(oldModel.id);
+                    if (oldModel.image == null) oldModel.image = new byte[0];
+                }
             }
             void callback3()
+            {
+                Console.WriteLine("Loaded image");
+
+                Product.image = oldModel.image;
+
+                if (SelectedImagePath == null || SelectedImagePath.Length == 0)
+                {
+                    selectedImage = Image;
+                    OnPropertyChanged(nameof(SelectedImage));
+                }
+            }
+            void task2()
+            {
+                GetCategoryList();
+            }
+            void callback2()
             {
                 Console.WriteLine("Loaded cate");
                 OnPropertyChanged(nameof(SelectedCategory_String));
                 IsBusy = false;
                 StartEdit();
-            }
-            void task2()
-            {
-                Product.image = GetImage(Product.id);
-                if (Product.image == null) Product.image = new byte[0];
-            }
-            void callback2()
-            {
-                Console.WriteLine("Loaded image");
-                selectedImage = Image;
-                OnPropertyChanged(nameof(SelectedImage));
                 DoBusyTask(task3, callback3);
             }
-            void task1()
+
+            void task()
             {
-                Product.SPECIFICATIONs = GetSpecifications(Product.id);
-                if (Product.SPECIFICATIONs == null) Product.SPECIFICATIONs = new List<SPECIFICATION>();
+                specificationList = new List<SpecificationViewModel>(GetSpecifications(Product.id));
             }
-            void callback1()
+            void callback()
             {
                 Console.WriteLine("Loaded spec list");
-                specificationList = new List<SpecificationViewModel>();
-                if (Product.SPECIFICATIONs != null)
+                if (SpecificationList != null)
                 {
-                    foreach (var spec in Product.SPECIFICATIONs)
+                    Product.SPECIFICATIONs = new List<SPECIFICATION>();
+                    foreach (var spec in SpecificationList)
                     {
-                        specificationList.Add(new SpecificationViewModel(spec));
+                        Product.SPECIFICATIONs.Add(spec.Model);
                     }
                 }
-                OnPropertyChanged(nameof(SpecificationList));
                 DoBusyTask(task2, callback2);
             }
 
-            DoBusyTask(task1, callback1);
+            DoBusyTask(task, callback);
         }
 
         protected void StartEdit()
         {
             PRODUCT temp = new PRODUCT();
             CopyTo(Product, temp);
+
             oldModel = Product;
             Product = temp;
-            OnPropertyChanged();
+
+            foreach (var spec in oldModel.SPECIFICATIONs)
+            {
+                specificationList.Where(s => s.SpecificationTypeId.Equals(spec.specificationTypeId)).First().Model = new SPECIFICATION()
+                {
+                    productId = spec.productId,
+                    specificationTypeId = spec.specificationTypeId,
+                    value = spec.value
+                };
+            }
+            OnPropertyChanged(nameof(SpecificationList));
         }
 
         protected void EndEdit()
         {
             Product = oldModel;
+
+            foreach (var spec in oldModel.SPECIFICATIONs)
+            {
+                specificationList.Where(s => s.SpecificationTypeId.Equals(spec.specificationTypeId)).First().Model = spec;
+            }
+            OnPropertyChanged(nameof(SpecificationList));
+
             oldModel = null;
         }
 
@@ -83,15 +109,49 @@ namespace ComputerProject.ProductWorkSpace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
+                db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Update: " + s);
+
+                base.Product.nameIndex = FormatHelper.ConvertTo_TiengDongLao(Name);
+
+                db.PRODUCTs.Attach(this.oldModel);
+
                 if (SelectedImagePath != null)
                 {
-                    this.Product.image = FormatHelper.ImageToBytes(new System.Drawing.Bitmap(SelectedImagePath));
+                    this.oldModel.image = FormatHelper.ImageToBytes(new System.Drawing.Bitmap(SelectedImagePath));
                 }
 
-                Product.nameIndex = FormatHelper.ConvertTo_TiengDongLao(Name);
+                if (oldModel.categoryId != Product.categoryId || oldModel.SPECIFICATIONs == null)
+                {
+                    if (oldModel.SPECIFICATIONs != null)
+                    {
+                        oldModel.SPECIFICATIONs.Clear();
+                    }
+                    else
+                    {
+                        oldModel.SPECIFICATIONs = new List<SPECIFICATION>(Product.SPECIFICATIONs.Count);
+                    }
 
-                db.PRODUCTs.Attach(oldModel);
-                CopyTo(Product, oldModel);
+                    foreach (var spec in SpecificationList)
+                    {
+                        oldModel.SPECIFICATIONs.Add(new SPECIFICATION()
+                        {
+                            productId = spec.ProductID,
+                            specificationTypeId = spec.SpecificationTypeId,
+                            value = spec.SpecValue
+                        });
+                    }
+                }
+                else
+                {
+                    var destinationSpecs = (List<SPECIFICATION>)oldModel.SPECIFICATIONs;
+                    foreach (var spec in specificationList)
+                    {
+                        oldModel.SPECIFICATIONs.Where(s => s.specificationTypeId == spec.SpecificationTypeId)
+                            .First().value = spec.SpecValue;
+                    }
+                }
+
+                CopyTo(base.Product, this.oldModel);
 
                 db.SaveChanges();
             }
@@ -105,8 +165,11 @@ namespace ComputerProject.ProductWorkSpace
                 CheckInvalid();
                 if (error != null) return;
 
-                CheckDuplicate();
-                if (error != null) return;
+                if (oldModel.name != Product.name)
+                {
+                    CheckDuplicate();
+                    if (error != null) return;
+                }
 
                 Update();
             }
