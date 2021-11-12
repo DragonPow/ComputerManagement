@@ -1,20 +1,22 @@
-﻿<UserControl x:Class="ComputerProject.ProductWorkSpace.ProdcutAddSpecificationsRow"
-             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
-             mc:Ignorable="d" 
-             Background="Transparent"
-             d:DesignHeight="51" d:DesignWidth="600">
-    <Grid
-        Height="51"
-        >
+﻿<UserControl
+    x:Class="ComputerProject.ProductWorkSpace.ProdcutAddSpecificationsRow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
+    xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:ComputerProject.Model"
+    d:DataContext="{d:DesignInstance Type=local:SpecificationViewModel}"
+    d:DesignHeight="51"
+    d:DesignWidth="600"
+    Background="Transparent"
+    mc:Ignorable="d">
+    <Grid Height="51">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Rectangle Fill="{StaticResource Background}"></Rectangle>
         <Border
@@ -27,27 +29,26 @@
             FontFamily="{StaticResource Mulish}"
             Foreground="#11142D"
             VerticalAlignment="Center"
-            Margin="10, 0, 0, 0"  
-            Text="Tên thông số"
+            Margin="10, 0, 0, 0" 
+                Text="{Binding SpecificationName, Mode=OneWay, FallbackValue='Tên thông số'}"
             TextWrapping="Wrap"
             >
         </TextBlock>
         </Border>
         <Border
             Grid.Column="1"
-            BorderThickness="1"
-            BorderBrush="{StaticResource Icon}">
+            BorderBrush="{StaticResource Icon}"
+            BorderThickness="1">
             <TextBox
-                x:Name="Value"
-                ToolTip="Giá trị"
-                materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
-                BorderThickness="0"
                 xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
+                x:Name="Value"
+                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                BorderThickness="0"
                 FontFamily="{StaticResource Mulish}"
                 Foreground="#11142D"
                 VerticalAlignment="Center"
-                Margin="10, 0, 0, 0"         
-                Text="Giá trị"
+                Margin="10, 0, 0, 0"     
+                Text="{Binding SpecValue, Mode=TwoWay, FallbackValue='Giá trị'}"
                 TextWrapping="Wrap"
             >
             </TextBox>

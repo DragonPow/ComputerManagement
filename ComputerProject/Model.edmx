@@ -45,9 +45,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="phone" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="12" />
           <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="address" Type="nvarchar" MaxLength="1" />
+          <Property Name="address" Type="nvarchar" MaxLength="200" />
           <Property Name="birthday" Type="char" MaxLength="10" />
           <Property Name="point" Type="int" Nullable="false" />
         </EntityType>
@@ -101,13 +101,14 @@
           <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="priceOrigin" Type="int" Nullable="false" />
           <Property Name="priceSales" Type="int" Nullable="false" />
-          <Property Name="image" Type="varbinary" MaxLength="1" />
+          <Property Name="image" Type="varbinary(max)" />
           <Property Name="description" Type="nvarchar" MaxLength="1000" />
           <Property Name="producer" Type="nvarchar" MaxLength="100" />
           <Property Name="quantity" Type="int" Nullable="false" />
           <Property Name="warrantyTime" Type="int" />
           <Property Name="isStopSelling" Type="bit" Nullable="false" />
           <Property Name="categoryId" Type="int" Nullable="false" />
+          <Property Name="nameIndex" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="REGULATION">
           <Key>
@@ -569,10 +570,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="phone" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="birthday" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="birthday" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="point" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BILLs" Relationship="QuanLyCuaHangViTinhModel.FK__BILL__customerId__66603565" FromRole="CUSTOMER" ToRole="BILL" />
           <NavigationProperty Name="BILL_REPAIR" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__40058253" FromRole="CUSTOMER" ToRole="BILL_REPAIR" />
@@ -636,7 +637,7 @@
           <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="priceOrigin" Type="Int32" Nullable="false" />
           <Property Name="priceSales" Type="Int32" Nullable="false" />
-          <Property Name="image" Type="Binary" MaxLength="1" FixedLength="false" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="producer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
@@ -648,6 +649,7 @@
           <NavigationProperty Name="ITEM_BILL" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__151B244E" FromRole="PRODUCT" ToRole="ITEM_BILL" />
           <NavigationProperty Name="ITEM_BILL_SERI" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__1CBC4616" FromRole="PRODUCT" ToRole="ITEM_BILL_SERI" />
           <NavigationProperty Name="SPECIFICATIONs" Relationship="QuanLyCuaHangViTinhModel.FK__SPECIFICA__produ__22751F6C" FromRole="PRODUCT" ToRole="SPECIFICATION" />
+          <Property Name="nameIndex" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="REGULATION">
           <Key>
@@ -993,6 +995,7 @@
           <EntitySetMapping Name="PRODUCTs">
             <EntityTypeMapping TypeName="QuanLyCuaHangViTinhModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="nameIndex" ColumnName="nameIndex" />
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
                 <ScalarProperty Name="isStopSelling" ColumnName="isStopSelling" />
                 <ScalarProperty Name="warrantyTime" ColumnName="warrantyTime" />

@@ -29,6 +29,7 @@
             <FontFamily x:Key="MulishItalic">pack:/Resource/Font/Mulish-Italic-VariableFont_wght.ttf</FontFamily>
 
             <BitmapImage x:Key="DefaultImage" UriSource="/ComputerProject;component/Resource/Image/Product.jpg" />
+            <BitmapImage x:Key="NoImage" UriSource="/ComputerProject;component/Resource/Image/Product.jpg" />
 
             <Style x:Key="WaitSpinnerStyle" TargetType="Control">
                 <Setter Property="Foreground" Value="#888" />
@@ -138,21 +139,24 @@
             </Style>
 
             <Style x:Key="ListViewContainerStyle" TargetType="{x:Type ListViewItem}">
-                <Setter Property="Padding" Value="0"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ListViewItem}">
-                            <Border x:Name="Bd"  Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" >
-                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Border
+                                x:Name="Bd"
+                                Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                             </Border>
                             <ControlTemplate.Triggers>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
-                                        <Condition Property="IsMouseOver" Value="True"/>
+                                        <Condition Property="IsMouseOver" Value="True" />
                                     </MultiTrigger.Conditions>
-                                    <Setter Property="Background" TargetName="Bd" Value="#190477BF" />
+                                    <Setter TargetName="Bd" Property="Background" Value="#190477BF" />
                                 </MultiTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>

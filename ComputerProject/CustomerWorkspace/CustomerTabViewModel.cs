@@ -9,30 +9,7 @@ using System.Windows.Controls;
 
 namespace ComputerProject.CustomerWorkspace
 {
-    public class CustomerTabViewModel : BaseViewModel
+    public class CustomerTabViewModel : ListControlViewModel
     {
-        private Control currentMainView;
-        public Control CurrentMainView { get => currentMainView; }
-
-        private List<Control> listViews;
-        public List<Control> ListViews { get => listViews;
-            set
-            {
-                listViews = value;
-            }
-        }
-
-        public int CurrentMainViewIndex
-        {
-            get => ListViews.IndexOf(CurrentMainView);
-            set
-            {
-                currentMainView = ListViews[value];
-
-                OnPropertyChanged(nameof(CurrentMainView));
-                OnPropertyChanged(nameof(CurrentMainViewIndex));
-            }
-        }
-
     }
 }

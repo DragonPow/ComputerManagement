@@ -19,3 +19,11 @@ namespace ComputerProject.HelperService
     }
 }
 
+namespace ComputerProject.Helper
+{
+    public abstract class BaseViewModel : ComputerProject.HelperService.BaseViewModel
+    {
+
+    }
+}
+

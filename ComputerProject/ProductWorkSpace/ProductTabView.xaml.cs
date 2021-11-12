@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ComputerProject.ApplicationWorkspace;
+using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,15 +18,20 @@ using System.Windows.Shapes;
 namespace ComputerProject.ProductWorkSpace
 {
     /// <summary>
-    /// Interaction logic for ProductDetailView.xaml
+    /// Interaction logic for ProductTabView.xaml
     /// </summary>
-    public partial class ProductDetailView : UserControl
+    public partial class ProductTabView : UserControl, ITabView
     {
-        
-        public ProductDetailView()
+        public string ViewName => "Sản phẩm";
+        public PackIconKind ViewIcon => PackIconKind.Contact;
+
+        public ProductTabView()
         {
             InitializeComponent();
-          
+            if (DataContext == null)
+            {
+                DataContext = new ProductTabViewModel();
+            }
         }
     }
 }

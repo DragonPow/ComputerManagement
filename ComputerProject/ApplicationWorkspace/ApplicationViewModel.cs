@@ -61,6 +61,7 @@ namespace ComputerProject.ApplicationWorkspace
                 saleVM,
                 new CategoryViewModel(),
                 customerTab,
+                new ProductWorkSpace.ProductTabView()
             };
             CurrentViewModel = TabViewModels[0];
         }

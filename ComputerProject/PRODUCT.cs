@@ -12,7 +12,7 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class PRODUCT : HelperService.BaseViewModel
+    public partial class PRODUCT : Helper.BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCT()
@@ -34,6 +34,7 @@ namespace ComputerProject
         public Nullable<int> warrantyTime { get; set; }
         public bool isStopSelling { get; set; }
         public int categoryId { get; set; }
+        public string nameIndex { get; set; }
     
         public virtual CATEGORY CATEGORY { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
