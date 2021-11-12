@@ -17,6 +17,7 @@ namespace ComputerProject.ProductWorkSpace
         public ProductMainViewModel():base()
         {
             PropertyChanged += ProductMainViewModel_PropertyChanged;
+            step = 2;
         }
 
         public ProductMainViewModel(MultipleControlViewModel navigation) : this()
@@ -95,12 +96,8 @@ namespace ComputerProject.ProductWorkSpace
             var addVM = new ProductAddViewModel();
             addVM.Prepare();
             addVM.ClickBack += BackToMain;
+            addVM.InsertOK += BackAndRefresh;
             viewController.CurrentViewModel = addVM;
-        }
-
-        public void OnClick_Add(object sender, RoutedEventArgs e)
-        {
-            OpenAdd();
         }
 
         public void BackToMain(object sender, EventArgs e)

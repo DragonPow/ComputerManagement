@@ -171,7 +171,7 @@ namespace ComputerProject.CustomerWorkspace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL : " + s);
+                //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL : " + s);
                 var old = db.CUSTOMERs.FirstOrDefault(c => c.id == _model.id);
                 if (old == null)
                 {

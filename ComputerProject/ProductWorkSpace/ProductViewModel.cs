@@ -264,7 +264,8 @@ namespace ComputerProject.ProductWorkSpace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                int rs = db.PRODUCTs.Where(p => p.name.Contains(name)).Count();
+                string nameDL = FormatHelper.ConvertTo_TiengDongLao(name);
+                int rs = db.PRODUCTs.Where(p => p.nameIndex.Contains(nameDL)).Count();
                 return rs;
             }
         }
@@ -286,7 +287,7 @@ namespace ComputerProject.ProductWorkSpace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Spec: " + s);
+                //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Spec: " + s);
                 var data = db.SPECIFICATIONs.Where(s => s.productId == productID).Select(s => new SpecificationViewModel()
                 {
                     SpecificationName = s.SPECIFICATION_TYPE.name,
@@ -312,6 +313,7 @@ namespace ComputerProject.ProductWorkSpace
             destination.id = source.id;
             destination.categoryId = source.categoryId;
             destination.name = source.name;
+            destination.nameIndex = source.nameIndex;
 
             /*if (source.image != null && !source.image.Equals(destination.image))
             {

@@ -73,7 +73,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}"
-            Text="{Binding Name, Mode=OneWay, FallbackValue='Tên sản phẩm'}" />
+            Text="{Binding WarrantyYear_String, Mode=OneWay, FallbackValue='Bao hanh'}" />
         <Button
             x:Name="btnEdit"
             Grid.Column="6"

@@ -157,7 +157,7 @@ namespace ComputerProject.ProductWorkSpace
                 else
                 {
                     CustomMessageBox.MessageBox.Show("Thêm sản phẩm thành công");
-                    ClickBack?.Invoke(this, null);
+                    InsertOK?.Invoke(this, null);
                 }
             }
             DoBusyTask(task, callback);
@@ -169,15 +169,17 @@ namespace ComputerProject.ProductWorkSpace
             {
                 error = "Định dạng giá tiền không hợp lệ";
             }
-
-            if (Name == null || Name.Trim().Length < 1)
+            else if (Name == null || Name.Trim().Length < 1)
             {
                 error = "Tên không đucợ để trống";
             }
-
-            if (Quantity < 1)
+            else if (Quantity < 1)
             {
                 error = "Số lượng không hợp lệ";
+            }
+            else
+            {
+                error = null;
             }
         }
 
@@ -187,6 +189,10 @@ namespace ComputerProject.ProductWorkSpace
             if (temp != null && temp.IsStopSelling == false)
             {
                 error = "Sản phẩm đã tồn tại, vui lòng chọn tên khác";
+            }
+            else
+            {
+                error = null;
             }
         }
 
@@ -236,6 +242,11 @@ namespace ComputerProject.ProductWorkSpace
         protected void OnClickBack()
         {
             ClickBack?.Invoke(this, null);
+        }
+        public event EventHandler InsertOK;
+        protected void OnInsertOK()
+        {
+            InsertOK?.Invoke(this, null);
         }
     }
 }

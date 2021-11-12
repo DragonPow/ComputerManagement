@@ -109,17 +109,19 @@ namespace ComputerProject.ProductWorkSpace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Update: " + s);
+                //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Update: " + s);
 
-                base.Product.nameIndex = FormatHelper.ConvertTo_TiengDongLao(Name);
+                Product.nameIndex = FormatHelper.ConvertTo_TiengDongLao(Name);
 
                 db.PRODUCTs.Attach(this.oldModel);
 
+                // Copy image
                 if (SelectedImagePath != null)
                 {
                     this.oldModel.image = FormatHelper.ImageToBytes(new System.Drawing.Bitmap(SelectedImagePath));
                 }
 
+                // Copy spec list
                 if (oldModel.categoryId != Product.categoryId || oldModel.SPECIFICATIONs == null)
                 {
                     if (oldModel.SPECIFICATIONs != null)
@@ -151,6 +153,7 @@ namespace ComputerProject.ProductWorkSpace
                     }
                 }
 
+                // Copy others
                 CopyTo(base.Product, this.oldModel);
 
                 db.SaveChanges();
