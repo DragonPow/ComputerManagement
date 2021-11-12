@@ -26,6 +26,5 @@ namespace ComputerProject.ProductWorkSpace
             InitializeComponent();
           
         }
-
     }
 }

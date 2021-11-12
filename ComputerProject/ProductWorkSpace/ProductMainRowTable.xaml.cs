@@ -20,12 +20,19 @@ namespace ComputerProject.ProductWorkSpace
     /// </summary>
     public partial class ProductMainRowTable : UserControl
     {
+        public static DependencyProperty CommandDoubleClickProperty = DependencyProperty.Register(nameof(CommandDoubleClick), typeof(ICommand), typeof(ProductMainRowTable));
         public static DependencyProperty CommandEditProperty = DependencyProperty.Register(nameof(CommandEdit), typeof(ICommand), typeof(ProductMainRowTable));
         public static DependencyProperty CommandDeleteProperty = DependencyProperty.Register(nameof(CommandDelete), typeof(ICommand), typeof(ProductMainRowTable));
 
         public ProductMainRowTable()
         {
             InitializeComponent();
+        }
+
+        public ICommand CommandDoubleClick
+        {
+            get => (ICommand)GetValue(CommandDoubleClickProperty);
+            set => SetValue(CommandDoubleClickProperty, value);
         }
 
         public ICommand CommandEdit
@@ -48,6 +55,11 @@ namespace ComputerProject.ProductWorkSpace
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             CommandDelete.Execute(this);
+        }
+
+        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            CommandDoubleClick.Execute(this);
         }
     }
 }

@@ -89,19 +89,13 @@ namespace ComputerProject.ProductWorkSpace
         }
 
         public RelayCommand Clicked_Add => new RelayCommand((obj) => OpenAdd());
-        public RelayCommand Clicked_Detail => new RelayCommand((obj) => OpenDetail());
 
         public void OpenAdd()
         {
             var addVM = new ProductAddViewModel();
+            addVM.Prepare();
             addVM.ClickBack += BackToMain;
             viewController.CurrentViewModel = addVM;
-        }
-
-        public void OpenDetail()
-        {
-            var detailVM = new ProductDetailViewModel();
-            viewController.CurrentViewModel = detailVM;
         }
 
         public void OnClick_Add(object sender, RoutedEventArgs e)
@@ -114,8 +108,25 @@ namespace ComputerProject.ProductWorkSpace
             viewController.CurrentViewModel = this;
         }
 
+
+        public RelayCommand CommandDetailItem => new RelayCommand(OnClick_DetailItem);
         public RelayCommand CommandEditItem => new RelayCommand(OnClick_EditItem);
         public RelayCommand CommandDeleteItem => new RelayCommand(OnClick_DeleteItem);
+
+        public void OnClick_DetailItem(object sender)
+        {
+            var item = (ProductViewModel)(sender as Control).DataContext;
+
+            if (item == null) return;
+
+            var detailVM = new ProductDetailViewModel(item.Product);
+            detailVM.Prepare();
+            detailVM.ClickBack += BackToMain;
+            detailVM.ClickEdit += (s, e) => CommandEditItem.Execute(item);
+
+            viewController.CurrentViewModel = detailVM;
+            Console.WriteLine("Edit item : " + item.Name);
+        }
 
         public void OnClick_EditItem(object sender)
         {
@@ -123,7 +134,17 @@ namespace ComputerProject.ProductWorkSpace
 
             if (item == null) return;
 
+            var editlVM = new ProductEditViewModel(item.Product);
+            editlVM.Prepare();
+            editlVM.ClickBack += BackToMain;
+
+            viewController.CurrentViewModel = editlVM;
             Console.WriteLine("Edit item : " + item.Name);
+        }
+
+        private void DetailVM_ClickEdit(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public void OnClick_DeleteItem(object sender)

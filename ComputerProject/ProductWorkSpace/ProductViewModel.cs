@@ -10,6 +10,15 @@ namespace ComputerProject.ProductWorkSpace
     class ProductViewModel : BusyViewModel
     {
         protected PRODUCT product;
+        public PRODUCT Product
+        {
+            get => product;
+            set
+            {
+                product = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ProductViewModel()
         {
@@ -18,29 +27,29 @@ namespace ComputerProject.ProductWorkSpace
 
         public ProductViewModel(PRODUCT model)
         {
-            this.product = model;
+            this.Product = model;
         }
 
         public int Id
         {
-            get => product.id;
+            get => Product.id;
             set
             {
-                product.id = value;
+                Product.id = value;
                 OnPropertyChanged(nameof(Id));
             }
         }
         public string Name
         {
-            get => product.name;
+            get => Product.name;
             set
             {
-                product.name = value;
+                Product.name = value;
                 OnPropertyChanged(nameof(Name));
             }
         }
 
-        public int PriceOrigin => product.priceOrigin;
+        public int PriceOrigin => Product.priceOrigin;
         public string PriceOrigin_String
         {
             get => FormatHelper.ToMoney(PriceOrigin);
@@ -49,13 +58,13 @@ namespace ComputerProject.ProductWorkSpace
                 int val = FormatHelper.CheckMoney(value);
                 if (val < 1) return;
 
-                product.priceOrigin = val;
+                Product.priceOrigin = val;
                 OnPropertyChanged(nameof(PriceOrigin));
                 OnPropertyChanged(nameof(PriceOrigin_String));
             }
         }
 
-        public int PriceSales => product.priceSales;
+        public int PriceSales => Product.priceSales;
         public string PriceSales_String
         {
             get => FormatHelper.ToMoney(PriceSales);
@@ -64,7 +73,7 @@ namespace ComputerProject.ProductWorkSpace
                 int val = FormatHelper.CheckMoney(value);
                 if (val < 1) return;
 
-                product.priceSales = val;
+                Product.priceSales = val;
                 OnPropertyChanged(nameof(PriceSales));
                 OnPropertyChanged(nameof(PriceSales_String));
             }
@@ -72,38 +81,38 @@ namespace ComputerProject.ProductWorkSpace
 
         public string Description
         {
-            get => product.description;
+            get => Product.description;
             set
             {
-                product.description = value;
+                Product.description = value;
                 OnPropertyChanged(nameof(Description));
             }
         }
         public string Producer
         {
-            get => product.producer;
+            get => Product.producer;
             set
             {
-                product.producer = value;
+                Product.producer = value;
                 OnPropertyChanged(nameof(Producer));
             }
         }
         public int Quantity
         {
-            get => product.quantity;
+            get => Product.quantity;
             set
             {
-                product.quantity = value;
+                Product.quantity = value;
                 OnPropertyChanged(nameof(Quantity));
                 OnPropertyChanged(nameof(Status));
             }
         }
         public Nullable<int> WarrantyTime
         {
-            get => product.warrantyTime;
+            get => Product.warrantyTime;
             set
             {
-                product.warrantyTime = value;
+                Product.warrantyTime = value;
                 OnPropertyChanged(nameof(WarrantyTime));
                 OnPropertyChanged(nameof(WarrantyYear_String));
             }
@@ -121,20 +130,20 @@ namespace ComputerProject.ProductWorkSpace
 
         public bool IsStopSelling
         {
-            get => product.isStopSelling;
+            get => Product.isStopSelling;
             set
             {
-                product.isStopSelling = value;
+                Product.isStopSelling = value;
                 OnPropertyChanged(nameof(IsStopSelling));
                 OnPropertyChanged(nameof(Status));
             }
         }
         public int CategoryId
         {
-            get => product.id;
+            get => Product.id;
             set
             {
-                product.categoryId = value;
+                Product.categoryId = value;
                 OnPropertyChanged(nameof(CategoryId));
             }
         }
@@ -160,7 +169,35 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        public BitmapImage Image => product.image != null && product.image.Length > 0 ? FormatHelper.BytesToImage(product.image) : null;
+        public BitmapImage Image => Product.image != null && Product.image.Length > 0 ? FormatHelper.BytesToImage(Product.image) : null;
+
+        public void DeleteFromDB(bool hasInBill)
+        {
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            {
+                
+                if (hasInBill)
+                {
+                    db.PRODUCTs.Attach(Product);
+                    Product.isStopSelling = true;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    db.PRODUCTs.Remove(Product);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public static bool HasInBill(int productId)
+        {
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            {
+                var data = db.ITEM_BILL.Where(b => b.productId == productId).Select(b => b.unitPrice).FirstOrDefault();
+                return data != 0;
+            }
+        }
 
         public static List<ProductViewModel> FindByName(string name, int startIndex, int count)
         {
@@ -179,7 +216,8 @@ namespace ComputerProject.ProductWorkSpace
                             p.quantity,
                             p.warrantyTime,
                             p.producer,
-                            p.description
+                            p.description,
+                            p.categoryId
                         }
                         ).OrderBy(p => p.name).Skip(startIndex).Take(count).ToList();
 
@@ -197,7 +235,8 @@ namespace ComputerProject.ProductWorkSpace
                             quantity = p.quantity,
                             warrantyTime = p.warrantyTime,
                             producer = p.producer,
-                            description = p.description
+                            description = p.description,
+                            categoryId = p.categoryId
                         }));
                     }
 

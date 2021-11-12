@@ -162,9 +162,11 @@
                 ItemsSource="{Binding ItemList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <local:ProductMainRowTable 
-                            DataContext="{Binding}" 
-                           CommandEdit="{Binding Path=DataContext.CommandEditItem, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+                        <local:ProductMainRowTable
+                            CommandDelete="{Binding Path=DataContext.CommandDeleteItem, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                            CommandDoubleClick="{Binding Path=DataContext.CommandDetailItem, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                            CommandEdit="{Binding Path=DataContext.CommandEditItem, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                            DataContext="{Binding}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

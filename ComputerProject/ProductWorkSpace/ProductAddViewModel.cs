@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Media.Imaging;
 
 namespace ComputerProject.ProductWorkSpace
@@ -13,15 +13,19 @@ namespace ComputerProject.ProductWorkSpace
     {
         public ProductAddViewModel()
         {
-            this.product = new PRODUCT();
+            
+        }
+
+        public virtual void Prepare()
+        {
+            this.Product = new PRODUCT();
             DoBusyTask(GetCategoryList);
-            specificationOperation = new System.Threading.CancellationTokenSource();
         }
 
         private Dictionary<int, string> cateDict;
-        public string[] CategoryList => cateDict.Values.ToArray();
+        public string[] CategoryList =>  cateDict != null ? cateDict.Values.ToArray() : null;
 
-        System.Threading.CancellationTokenSource specificationOperation;
+        CancellationTokenSource specificationOperation = new CancellationTokenSource();
         protected List<SpecificationViewModel> specificationList;
         public List<SpecificationViewModel> SpecificationList
         {
@@ -54,10 +58,10 @@ namespace ComputerProject.ProductWorkSpace
 
         public int SelectedCategoryId
         {
-            get => this.product.categoryId;
+            get => this.Product.categoryId;
             set
             {
-                this.product.categoryId = value;
+                this.Product.categoryId = value;
 
                 specificationOperation.Cancel();
                 specificationOperation = new System.Threading.CancellationTokenSource();
@@ -77,7 +81,7 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        private void GetCategoryList()
+        protected void GetCategoryList()
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
@@ -192,15 +196,15 @@ namespace ComputerProject.ProductWorkSpace
             {
                 if (selectedImagePath != null)
                 {
-                    this.product.image = FormatHelper.ImageToBytes(new System.Drawing.Bitmap(SelectedImagePath));
+                    this.Product.image = FormatHelper.ImageToBytes(new System.Drawing.Bitmap(SelectedImagePath));
                 }
 
-                product.nameIndex = FormatHelper.ConvertTo_TiengDongLao(Name);
+                Product.nameIndex = FormatHelper.ConvertTo_TiengDongLao(Name);
 
-                this.product = db.PRODUCTs.Add(this.product);
+                this.Product = db.PRODUCTs.Add(this.Product);
                 foreach (var spec in SpecificationList)
                 {
-                    this.product.SPECIFICATIONs.Add(spec.Model);
+                    this.Product.SPECIFICATIONs.Add(spec.Model);
                 }
 
                 db.SaveChanges();

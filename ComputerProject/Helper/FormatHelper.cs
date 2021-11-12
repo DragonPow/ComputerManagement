@@ -50,9 +50,13 @@ namespace ComputerProject
             if (image == null) return null;
             byte[] rs;
 
+            /*int h = image.Height, w = image.Width;
+            decimal scale = Math.Min(h / 130, w / 200);
+            image = new Bitmap(image, new Size((int)(w * scale), (int)(h * scale)));*/
+
             using (var ms = new MemoryStream())
             {
-                image.Save(ms, ImageFormat.Png);
+                image.Save(ms, ImageFormat.Jpeg);
 
                 rs = ms.ToArray();
             }
