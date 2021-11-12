@@ -19,6 +19,6 @@
 
     <Grid Background="{StaticResource Background}">
 
-        <pro:ProductAddView/>
+        <insurance:InsuranceDetailView/>
     </Grid>
 </Window>
