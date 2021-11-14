@@ -18,7 +18,7 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="380"/>
             <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
 

@@ -15,7 +15,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70" />
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="1.2*" />
+            <ColumnDefinition Width="150" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <TextBlock Text="1"
@@ -40,16 +40,15 @@
                    Foreground="Black" />
         <Border Grid.Column="2"
                 Height="30"
-                Margin="10,0"
                 BorderThickness="1"
-                Grid.ColumnSpan="1"
                 CornerRadius="8"
+                Margin="10,0"
                 BorderBrush="{StaticResource Icon}">
             <TextBox 
                      Text="{Binding Seri}"
                      BorderThickness="0"
                      Margin="5,0"
-                     
+                     Grid.Column="2"
                      VerticalAlignment="Center"
                      FontSize="{x:Static font:Font.Body}"
                      FontFamily="{StaticResource Mulish}"

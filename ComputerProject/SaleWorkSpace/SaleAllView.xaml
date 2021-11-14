@@ -21,7 +21,7 @@
                    FontWeight="Bold"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="{StaticResource Title}"
-                   Margin="20"
+                   Margin="30,20"
                    VerticalAlignment="Center"></TextBlock>
         <Grid Margin="20,0"
               Grid.Row="1"

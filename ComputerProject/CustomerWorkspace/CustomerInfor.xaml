@@ -9,12 +9,9 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="ComputerProject.CustomerWorkspace.CustomerInfor"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="400">
-
-    <UserControl.Resources>
-    </UserControl.Resources>
-
-    <StackPanel x:Name="CusInfor">
-        <TextBlock
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel x:Name="CusInfor">
+            <TextBlock
                         Grid.Row="0"
                         Margin="20,20,20,10"
                         VerticalAlignment="Center"
@@ -23,7 +20,7 @@
                         FontWeight="SemiBold"
                         Foreground="{StaticResource Title}"><Run Text="Thông tin cá nhân"/></TextBlock>
 
-        <localcustom:TextboxCustom
+            <localcustom:TextboxCustom
                         x:Name="Name"
                         Title="   Tên khách hàng"
                         Grid.Row="1"
@@ -36,7 +33,7 @@
                         Foreground="#11142D"
                         Text="{Binding FullName, Mode=TwoWay}" />
 
-        <localcustom:TextboxCustom
+            <localcustom:TextboxCustom
                         x:Name="Phone"
                         Title="   Số điện thoại"
                         Grid.Row="2"
@@ -48,12 +45,12 @@
                         IsTabStop="False" KeyboardNavigation.TabIndex="0"
                         Foreground="#11142D"
                         Text="{Binding PhoneNumber, Mode=TwoWay}" />
-        <StackPanel
+            <StackPanel
                         Grid.Row="3"
                         Grid.Column="0"
                         Margin="20,10"
                         VerticalAlignment="Top">
-            <TextBlock
+                <TextBlock
                             Margin="0,0,0,10"
                             VerticalAlignment="Top"
                             FontFamily="{StaticResource Mulish}"
@@ -62,7 +59,7 @@
                             Foreground="Black"
                             Text="   Ngày sinh" />
 
-            <Border
+                <Border
                             VerticalAlignment="Center"
                             Background="{StaticResource Background}"
                             BorderBrush="#DBD7F4"
@@ -70,7 +67,7 @@
                             CornerRadius="3"
                             Height="45"
                             >
-                <DatePicker
+                    <DatePicker
                                
                                 Height="49"
                                 x:Name="Birthday"
@@ -83,9 +80,9 @@
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 BorderThickness="2"
                                 SelectedDate="{Binding Birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-            </Border>
-        </StackPanel>
-        <localcustom:TextboxCustom
+                </Border>
+            </StackPanel>
+            <localcustom:TextboxCustom
                         x:Name="Adress"
                         Title="   Địa chỉ"
                         Grid.Row="4"
@@ -97,7 +94,7 @@
                         MarginText="8"
                         Foreground="#11142D"
                         Text="{Binding Address, Mode=TwoWay}" />
-        <localcustom:TextboxCustom
+            <localcustom:TextboxCustom
                         x:Name="Point"
                         Title="   Điểm thưởng"
                         Grid.Row="5"
@@ -110,5 +107,7 @@
                         Foreground="#11142D"
                         Text="{Binding Point_String, Mode=TwoWay}"
                         Texthint="0" />
-    </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+   
 </UserControl>

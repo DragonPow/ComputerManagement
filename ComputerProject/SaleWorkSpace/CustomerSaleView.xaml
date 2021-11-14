@@ -93,6 +93,7 @@
                                              Margin="10, 0, 0, 0"
                                              VerticalAlignment="Center" />
                     <Toolkit:AutoCompleteBox x:Name="completebox"
+                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                              Background="Transparent"
                                              Width="250"
                                              Margin="5,7"
@@ -107,26 +108,24 @@
                                              ValueMemberPath="phone">
                         <Toolkit:AutoCompleteBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal"
+                                <StackPanel Orientation="Vertical"
                                             Margin="10"
                                             HorizontalAlignment="Stretch">
+                                    <TextBlock x:Name="CustomerName"
+                                               Text="{Binding name}"
+                                               Foreground="Black"
+                                               FontWeight="Medium"
+                                               FontSize="{x:Static font:Font.Body}"
+                                               FontFamily="{StaticResource Mulish}" />
                                     <TextBlock x:Name="CustomerPhoneMuber"
                                                Text="{Binding phone}"
                                                HorizontalAlignment="Left"
-                                               Width="100"
-                                               Foreground="Black"
-                                               FontSize="{x:Static font:Font.Body}"
-                                               FontFamily="{StaticResource Mulish}"
-                                               FontWeight="Medium" />
-                                    <TextBlock x:Name="CustomerName"
-                                               Text="{Binding name}"
-                                               Grid.Column="1"
-                                               MaxWidth="200"
-                                               HorizontalAlignment="Right"
                                                Foreground="{StaticResource Icon}"
                                                FontStyle="Italic"
+                                               Margin="0,5,0,0"
                                                FontSize="{x:Static font:Font.Body}"
-                                               FontFamily="{StaticResource Mulish}" />
+                                               FontFamily="{StaticResource Mulish}"/>
+                                
                                 </StackPanel>
 
                             </DataTemplate>

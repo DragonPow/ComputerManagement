@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
     xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="64"
+    d:DesignHeight="50"
     d:DesignWidth="1321"
     Background="{StaticResource Background}"
     mc:Ignorable="d">
@@ -14,7 +14,8 @@
         <Style x:Key="TitleCell" TargetType="TextBlock">
             <Setter Property="FontSize" Value="16" />
             <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="Padding" Value="22,17,16,16" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="15" />
             <Setter Property="Foreground" Value="#11142D" />
             <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
             <Setter Property="FontWeight" Value="Bold" />
@@ -22,14 +23,14 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.28*" />
-            <ColumnDefinition Width="0.14*" />
-            <ColumnDefinition Width="0.09*" />
+            <ColumnDefinition Width="0.25*" />
+            <ColumnDefinition Width="0.15*" />
+            <ColumnDefinition Width="0.1*" />
             <ColumnDefinition Width="0.13*" />
             <ColumnDefinition Width="0.1*" />
-            <ColumnDefinition Width="0.09*" />
-            <ColumnDefinition Width="0.04*" />
-            <ColumnDefinition Width="0.04*" />
+            <ColumnDefinition Width="0.1*" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
         </Grid.ColumnDefinitions>
 
         <TextBlock
@@ -39,9 +40,9 @@
             VerticalAlignment="Center"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
-            FontWeight="SemiBold"
+            FontWeight="Bold"
             Style="{StaticResource TitleCell}">
-            Sản phẩm
+            Tên sản phẩm
         </TextBlock>
         <TextBlock
             x:Name="Code"
@@ -50,7 +51,7 @@
             VerticalAlignment="Center"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
-            FontWeight="SemiBold"
+            FontWeight="Bold"
             Style="{StaticResource TitleCell}">
             Mã sản phẩm
         </TextBlock>
@@ -61,7 +62,7 @@
             VerticalAlignment="Center"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
-            FontWeight="SemiBold"
+            FontWeight="Bold"
             Style="{StaticResource TitleCell}">
             Số lượng
         </TextBlock>
@@ -72,7 +73,7 @@
             VerticalAlignment="Center"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
-            FontWeight="SemiBold"
+            FontWeight="Bold"
             Style="{StaticResource TitleCell}">
             Đơn giá
         </TextBlock>
@@ -83,7 +84,7 @@
             VerticalAlignment="Center"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
-            FontWeight="SemiBold"
+            FontWeight="Bold"
             Style="{StaticResource TitleCell}">
             Trạng thái
         </TextBlock>
@@ -95,7 +96,7 @@
             VerticalAlignment="Center"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
-            FontWeight="SemiBold"
+            FontWeight="Bold"
             Style="{StaticResource TitleCell}">
             Hạn bảo hành
         </TextBlock>

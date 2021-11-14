@@ -7,6 +7,7 @@
     xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:search="clr-namespace:ComputerProject.CustomControl"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     d:DesignHeight="750"
     d:DesignWidth="1000"
     Background="{StaticResource Background}"
@@ -62,6 +63,7 @@
                         Height="35"
                         Background="#FF0477BF"
                         Click="BtnCreate_Click"
+                        materialDesign:ButtonAssist.CornerRadius="5"
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         ToolTip="Thêm khách hàng">
                         <TextBlock
@@ -74,6 +76,7 @@
                 </Grid>
                 <local:CustomerAllRowTitle Grid.Row="1" Margin="20,0,20,0" />
                 <ListView
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     x:Name="mainList"
                     Grid.Row="2"
                     Margin="20,0,10,0"

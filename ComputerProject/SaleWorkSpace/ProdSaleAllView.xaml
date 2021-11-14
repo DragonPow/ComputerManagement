@@ -16,7 +16,7 @@
     </UserControl.Resources>
     <Border CornerRadius="8"
             Background="White">
-        <Grid>
+        <Grid x:Name="GridSaleProd">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="1*"></RowDefinition>
@@ -41,7 +41,7 @@
                             Background="#F7F8FC"
                             BorderBrush="{StaticResource MainColor}"
                             Style="{StaticResource MaterialDesignOutlinedButton}"
-                            materialDesign:ButtonAssist.CornerRadius="8"
+                            materialDesign:ButtonAssist.CornerRadius="5"
                             Command="{Binding SortProductsCommand}">
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Left">
@@ -64,7 +64,7 @@
                             Background="#F7F8FC"
                             BorderBrush="{StaticResource MainColor}"
                             Style="{StaticResource MaterialDesignOutlinedButton}"
-                            materialDesign:ButtonAssist.CornerRadius="8"
+                            materialDesign:ButtonAssist.CornerRadius="5"
                             Command="{Binding FilterProductsCommand}">
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Left">
