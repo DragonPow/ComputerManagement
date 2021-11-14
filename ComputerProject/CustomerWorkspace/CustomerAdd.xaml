@@ -22,7 +22,7 @@
 
         <StackPanel
             Grid.Row="0"
-            Margin="20,10"
+            Margin="20"
             HorizontalAlignment="Left"
             Orientation="Horizontal">
             <Button

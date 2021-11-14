@@ -18,18 +18,19 @@
             <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="TextWrapping" Value="WrapWithOverflow" />
-            <Setter Property="Padding" Value="22,17,16,16" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="15" />
             <Setter Property="Foreground" Value="Black" />
         </Style>
         <sys:Double x:Key="IconSize">24</sys:Double>
     </UserControl.Resources>
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"/>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="120"/>
-            <ColumnDefinition Width="310"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>

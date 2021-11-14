@@ -16,13 +16,13 @@
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="0.08*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <StackPanel
             Grid.Row="0"
-            Margin="30,0,0,0"
+            Margin="30,10"
             HorizontalAlignment="Left"
             VerticalAlignment="Stretch"
             Orientation="Horizontal">
@@ -38,41 +38,27 @@
                 Margin="20,0,0,0"
                 VerticalAlignment="Center"
                 FontFamily="{StaticResource Mulish}"
-                FontSize="{x:Static localfont:Font.Title}"
+                FontSize="{x:Static localfont:Font.TitleView}"
                 FontWeight="DemiBold"
                 Foreground="{StaticResource Title}">
                 Chỉnh sửa sản phẩm
             </TextBlock>
         </StackPanel>
-        <Grid Grid.Row="1" Margin="20,10,20,10">
+        <Grid Grid.Row="1" Margin="20,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.2*" />
-                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Border
-                Margin="10,0,10,0"
-                Background="White"
-                CornerRadius="8" />
-            <Border
-                Grid.Column="1"
-                Margin="10,0,0,0"
-                Background="White"
-                CornerRadius="8" />
-            <ScrollViewer
-                Grid.Column="0"
-                Margin="40,0,10,0"
-                VerticalScrollBarVisibility="Visible">
-                <local:ProInfor Margin="0,20,15,10" DataContext="{Binding}" />
-            </ScrollViewer>
+            <local:ProInfor  DataContext="{Binding}" />
             <local:Specification
                 Grid.Column="1"
-                Margin="15, 0. 15, 0"
+                Margin="20,0,0,0"
                 DataContext="{Binding}" />
 
         </Grid>
         <StackPanel
             Grid.Row="2"
-            Margin="0,0,60,0"
+            Margin="60,20"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Orientation="Horizontal">
@@ -81,21 +67,25 @@
             <Button
                 Width="110"
                 Height="37"
-                Margin="0,0,20,0"
+                Margin="10,0"
                 Background="Transparent"
                 BorderBrush="{StaticResource MainColor}"
                 Command="{Binding CommandClickBack}"
                 Foreground="{StaticResource MainColor}"
-                IsEnabled="{Binding IsFree}">
+                IsEnabled="{Binding IsFree}"
+                materialDesign:ButtonAssist.CornerRadius="5"
+                Style="{StaticResource MaterialDesignOutlinedButton}">
                 Hủy
             </Button>
             <Button
                 Width="110"
                 Height="37"
-                Margin="20,0,0,0"
+                Margin="10,0"
                 Background="{StaticResource MainColor}"
                 Command="{Binding CommandUpdate}"
-                IsEnabled="{Binding IsFree}">
+                IsEnabled="{Binding IsFree}"
+                materialDesign:ButtonAssist.CornerRadius="5"
+                Style="{StaticResource MaterialDesignRaisedButton}">
                 Cập nhật
             </Button>
         </StackPanel>

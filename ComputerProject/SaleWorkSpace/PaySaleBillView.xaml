@@ -118,7 +118,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="STT"
@@ -143,6 +143,7 @@
                            FontWeight="Bold" />
                 <TextBlock Grid.Column="2"
                            Text="Số Seri"
+                           Margin="10,0"
                            VerticalAlignment="Center"
                            FontSize="{x:Static font:Font.Body}"
                            FontFamily="{StaticResource Mulish}"
@@ -270,12 +271,11 @@
                     Style="{StaticResource MaterialDesignOutlinedButton}"
                     materialDesign:ButtonAssist.CornerRadius="5"
                     BorderBrush="{StaticResource MainColor}"
-                    Command="{Binding PrintCommand}"
                     Margin="20,0"
                     Foreground="{StaticResource MainColor}"
                     Width="100"
                     Height="40"
-                    Content="In"
+                    Content="Hủy"
                     Padding="30,0"></Button>
             <Button x:Name="btnAccept"
                     Background="{StaticResource MainColor}"

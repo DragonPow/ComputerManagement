@@ -176,7 +176,8 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     Margin="30, 10, 30, 0">
-            <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+            <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonAssist.CornerRadius="5"
                     Background="Transparent"
                     BorderBrush="{StaticResource MainColor}"
                     Foreground="{StaticResource MainColor}"
@@ -185,13 +186,15 @@
                     Content="Đặt lại"
                     Margin="0, 0, 20, 0"
                     Command="{Binding UndoCommand}" />
-            <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+            <Button 
                     Background="{StaticResource MainColor}"
                     Width="100"
                     Height="40"
                     Content="Lọc"
                     Margin="20, 0, 0, 0"
                     Foreground="White"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    materialDesign:ButtonAssist.CornerRadius="5"
                     Command="{Binding FilterCommand}" />
         </StackPanel>
     </StackPanel>

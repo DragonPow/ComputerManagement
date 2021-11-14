@@ -23,25 +23,24 @@
                        IsTabStop="False" KeyboardNavigation.TabIndex="0" 
                        Margin="20, 0, 0, 0">
         </local1:Search>
-        <Button x:Name="Btn_add"
-                Grid.Column="1"
-                HorizontalAlignment="Right"
-                Margin="0, 0, 20, 0"
-                Height="35"
-                Padding="10,0"
-                BorderBrush="{StaticResource MainColor}"
-                Style="{StaticResource MaterialDesignRaisedButton}"
-                Background="{StaticResource MainColor}"
-                ToolTip="Thêm danh mục"
-                Command="{Binding OpenDetailCategoryCommand}"
-                CommandParameter="{x:Null}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="+ Thêm mới"
-                           FontSize="16"
-                           Margin="5,0"
-                           Foreground="White" />
-            </StackPanel>
-
+        <Button
+                        x:Name="btnCreate"
+                        Grid.Column="1"
+                        Height="35"
+                        HorizontalAlignment="Right"
+                        Margin="0, 0, 20, 0"
+                        Background="#FF0477BF"
+                         Command="{Binding OpenDetailCategoryCommand}"
+                        CommandParameter="{x:Null}"
+                        materialDesign:ButtonAssist.CornerRadius="5"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        ToolTip="Thêm danh mục">
+            <TextBlock
+                            FontFamily="/ComputerProject;component/Resource/Font/Mulish-VariableFont_wght.ttf"
+                            FontSize="16"
+                            Foreground="White">
+                            + Thêm mới
+            </TextBlock>
         </Button>
     </Grid>
 </UserControl>
