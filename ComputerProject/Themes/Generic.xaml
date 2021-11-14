@@ -71,6 +71,7 @@
         <Setter Property="Background" Value="#F7F7FC" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="Text" Value="" />
+        <Setter Property="MinHeight" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TextboxCustom}">
@@ -105,7 +106,8 @@
                                     BorderThickness="0"
                                     Foreground="#545454"
                                     TabIndex="{Binding Path=TabIndex, RelativeSource={RelativeSource AncestorType={x:Type local:TextboxCustom}}}"
-                                    Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    MinHeight="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MinHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 <Image
                                     Grid.Column="1"
                                     Width="24"

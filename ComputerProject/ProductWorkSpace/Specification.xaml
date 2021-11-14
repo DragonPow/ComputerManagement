@@ -30,17 +30,6 @@
                 x:Name="ListSpecifications"
                 Grid.Column="1"
                 ItemsSource="{Binding SpecificationList}">
-                <ListView.Resources>
-                    <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                        <Border
-                            HorizontalAlignment="Stretch"
-                            Background="Transparent"
-                            BorderThickness="0">
-                            <local:ProdcutAddSpecificationsRow DataContext="{Binding}" />
-                        </Border>
-                    </ControlTemplate>
-                </ListView.Resources>
-
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <local:ProdcutAddSpecificationsRow DataContext="{Binding}" />
@@ -51,24 +40,19 @@
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         <Setter Property="Margin" Value="20,0,20,0" />
+                        <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="Template">
                             <Setter.Value>
-                                <ControlTemplate TargetType="ListViewItem">
-                                    <local:ProdcutAddSpecificationsRow DataContext="{Binding}" />
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <Border
+                                        x:Name="Bd"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    </Border>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
-                                <Setter Property="IsSelected" Value="True" />
-                            </DataTrigger>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsSelected" Value="true" />
-                                </MultiTrigger.Conditions>
-                                <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
-                            </MultiTrigger>
-                        </Style.Triggers>
+                      
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>

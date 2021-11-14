@@ -90,7 +90,7 @@
         <TextBlock
             x:Name="Number"
             Grid.Column="5"
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="3"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             FontFamily="{StaticResource Mulish}"

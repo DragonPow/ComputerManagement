@@ -98,6 +98,18 @@
                     SelectedItem="{Binding SelectedCategory_String}"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}" />
             </StackPanel>
+            <localcustom:TextboxCustom
+                x:Name="WarrantyPeriod"
+                Title="    Hạn bảo hành"
+                Margin="0,10,0,0"
+                VerticalAlignment="Center"
+                CornerRadiusText="5"
+                FontFamily="{StaticResource Mulish}"
+                FontSize="{x:Static localfont:Font.Body}"
+                IsTabStop="False"
+                KeyboardNavigation.TabIndex="0"
+                MarginText="10"
+                Text="{Binding WarrantyTime, Mode=TwoWay}" />
 
             <localcustom:TextboxCustom
                 x:Name="Procedure"
@@ -148,6 +160,19 @@
                 KeyboardNavigation.TabIndex="0"
                 MarginText="10"
                 Text="{Binding PriceSales_String, Mode=TwoWay}" />
+            <localcustom:TextboxCustom
+                x:Name="Description"
+                Title="    Mô tả"
+                Margin="0,10,0,10"
+                VerticalAlignment="Center"
+                CornerRadiusText="5"
+                FontFamily="{StaticResource Mulish}"
+                FontSize="{x:Static localfont:Font.Body}"
+                IsTabStop="False"
+                KeyboardNavigation.TabIndex="0"
+                MarginText="10"
+                MinHeight="100"
+                Text="{Binding Description, Mode=TwoWay}" />
         </StackPanel>
 
     </Grid>
