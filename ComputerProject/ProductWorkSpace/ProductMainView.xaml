@@ -8,7 +8,7 @@
     xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Padding="30"
+    Padding="20"
     d:DataContext="{d:DesignInstance Type=local:ProductMainViewModel}"
     d:DesignHeight="1000"
     d:DesignWidth="1300"
@@ -16,12 +16,12 @@
     mc:Ignorable="d">
     <DockPanel>
         <TextBlock
-            Height="50"
+            Height="30"
             Margin="10,0,10,15"
             DockPanel.Dock="Top"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Title}"
-            FontWeight="SemiBold"
+            FontWeight="Bold"
             Foreground="{StaticResource Title}">
             Sản phẩm
         </TextBlock>
@@ -51,7 +51,7 @@
                     DockPanel.Dock="Top"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="24"
-                    FontWeight="Bold"
+                    FontWeight="SemiBold"
                     Foreground="{StaticResource Title}">
                     Tất cả
                 </TextBlock>
@@ -66,19 +66,12 @@
                     Command="{Binding Clicked_Add}"
                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                     ToolTip="Thêm sản phẩm">
-                    <StackPanel Orientation="Horizontal">
-                        <Image
-                            Width="18"
-                            Height="18"
-                            Source="/ComputerProject;component/Resource/Icon/Plus.png" />
                         <TextBlock
                             Margin="5,0,0,0"
                             FontFamily="{StaticResource Mulish}"
                             FontSize="{x:Static localfont:Font.Body}"
                             Foreground="White"
-                            Text="Thêm mới" />
-                    </StackPanel>
-
+                            Text="+ Thêm mới" />
                 </Button>
 
             </Grid>
@@ -92,14 +85,14 @@
                     HorizontalAlignment="Left"
                     FontSize="{x:Static localfont:Font.Body}"
                     IsTabStop="False"
+                    Width="400"
                     KeyboardNavigation.TabIndex="0"
                     Text="{Binding SearchContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Texthint="Tên, mã sản phẩm" />
+                    Texthint="Tên hoặc mã sản phẩm" />
                 <StackPanel
                     Grid.Column="1"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
-
                     <Button
                         x:Name="Arange"
                         Height="37"
@@ -157,7 +150,7 @@
             <ListView
                 x:Name="ListProducts"
                 Grid.Row="3"
-                Margin="10,0,0,0"
+                Margin="10,0,10,0"
                 ItemContainerStyle="{StaticResource ListViewContainerStyle}"
                 ItemsSource="{Binding ItemList}">
                 <ListView.ItemTemplate>
