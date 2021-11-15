@@ -326,6 +326,7 @@
     <Compile Include="InsuranceWorkSpace\WarrantyCard.xaml.cs">
       <DependentUpon>WarrantyCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Regulation.cs" />
     <Compile Include="OverViewWorkSpace\OverViewMainView.xaml.cs">
       <DependentUpon>OverViewMainView.xaml</DependentUpon>
     </Compile>
@@ -338,7 +339,6 @@
     <Compile Include="InsuranceWorkSpace\InsuranceListView.xaml.cs">
       <DependentUpon>InsuranceListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OverViewWorkSpace\OverViewViewModel.cs" />
     <Compile Include="ProductWorkSpace\ProductEditViewModel.cs" />
     <Compile Include="ProductWorkSpace\ProductMainRowTableViewModel.cs" />
     <Compile Include="ProductWorkSpace\ProductEditView.xaml.cs">
@@ -368,6 +368,7 @@
     <Compile Include="ProductWorkSpace\Specification.xaml.cs">
       <DependentUpon>Specification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingWorkSpace\SettingViewModel.cs" />
     <Compile Include="StatiticsWorkSpace\DatePickerCalendar.cs" />
     <Compile Include="Helper\WindowService.cs" />
     <Compile Include="ProductWorkSpace\ProductMainTitleTableView.xaml.cs">

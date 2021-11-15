@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bfd6a1027e40479f90fcb07fda9911c2" Name="Diagram1">
+      <Diagram DiagramId="bfd6a1027e40479f90fcb07fda9911c2" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.BILL" Width="1.5" PointX="6" PointY="0.75" />
         <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.BILL_REPAIR" Width="1.5" PointX="9.25" PointY="7.75" />
         <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.CATEGORY" Width="1.5" PointX="4" PointY="5.25" />

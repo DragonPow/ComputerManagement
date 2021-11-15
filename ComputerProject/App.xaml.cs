@@ -24,8 +24,8 @@ namespace ComputerProject
         {
 
             var vm = new ApplicationViewModel();
-            var view = new ApplicationWindow();
-            view.DataContext = vm;
+            var view = new WindowTest();
+            //view.DataContext = vm;
             view.Show();
 
 

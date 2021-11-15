@@ -7,15 +7,16 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ComputerProject.SettingWorkSpace"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type={x:Type local:SettingViewModel}}"
              d:DesignHeight="700" d:DesignWidth="1300">
     <Grid Background="{StaticResource Background}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource Icon}">
             <StackPanel>
-                <TextBlock Text="Cài đặt" FontSize="{x:Static font:Font.Title}" FontFamily="{StaticResource Mulish}" FontWeight="Bold" Foreground="{StaticResource Title}" Margin="20"/>
+                <TextBlock Text="Thiết lập" FontSize="{x:Static font:Font.Title}" FontFamily="{StaticResource Mulish}" FontWeight="Bold" Foreground="{StaticResource Title}" Margin="20"/>
                 <Grid Margin="20,10" Height="190">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -38,28 +39,28 @@
                     <TextBlock Text="ComSoft - Giải pháp quản lí bán hàng hiệu quả" Grid.Row="4" VerticalAlignment="Bottom" FontWeight="DemiBold" Foreground="{StaticResource Title}" Margin="20,10" FontSize="15" FontFamily="{StaticResource Mulish}" />
                 </Grid>
                 <Border Background="White" CornerRadius="8" Margin="20">
-                    <ListBox>
-                        <ListBoxItem>
+                    <ListBox  ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
+                        <ListBoxItem x:Name="ItemPoint">
                             <DockPanel Width="340" Margin="0,5">
                                 <Image Source="/ComputerProject;component/Resource/Image/SettingPoint.png" Height="30" Width="30" Margin="10,0"/>
                                 <StackPanel Grid.Column="1">
-                                    <TextBlock Text="Cài đặt điểm thưởng" Foreground="#545454"   FontSize="18" FontFamily="{StaticResource Mulish}" FontWeight="Medium" ></TextBlock>
+                                    <TextBlock Text="Thiết lập điểm thưởng" Foreground="#545454"   FontSize="18" FontFamily="{StaticResource Mulish}" FontWeight="Medium" ></TextBlock>
                                     <TextBlock Text="Tỉ lệ quy đổi điểm thành tiền" Foreground="{StaticResource Icon}"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}"  />
                                 </StackPanel>
                                 <materialDesign:PackIcon DockPanel.Dock="Right" Kind="ChevronRight" Foreground="{StaticResource Icon}" VerticalAlignment="Center" HorizontalAlignment="Right" Height="30" Width="30" />
                             </DockPanel>
                         </ListBoxItem>
-                        <ListBoxItem>
+                        <ListBoxItem x:Name="ItemStore">
                             <DockPanel Width="340" Margin="0,5">
                                 <Image Source="/ComputerProject;component/Resource/Image/SettingStore.png" Height="30" Width="30" Margin="10,0"/>
                                 <StackPanel Grid.Column="1">
-                                    <TextBlock Text="Cài đặt thông tin cửa hàng" Foreground="#545454"   FontSize="18" FontFamily="{StaticResource Mulish}" FontWeight="Medium" ></TextBlock>
+                                    <TextBlock Text="Thiết lập thông tin cửa hàng" Foreground="#545454"   FontSize="18" FontFamily="{StaticResource Mulish}" FontWeight="Medium" ></TextBlock>
                                     <TextBlock Text="Thông tin công ty, email,..." Foreground="{StaticResource Icon}"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}"  />
                                 </StackPanel>
                                 <materialDesign:PackIcon DockPanel.Dock="Right" Kind="ChevronRight" Foreground="{StaticResource Icon}" VerticalAlignment="Center" HorizontalAlignment="Right" Height="30" Width="30" />
                             </DockPanel>
                         </ListBoxItem>
-                        <ListBoxItem>
+                        <ListBoxItem x:Name="ItemHelp">
                             <DockPanel Width="340" Margin="0,5">
                                 <Image Source="/ComputerProject;component/Resource/Image/SettingQA.png" Height="30" Width="30" Margin="10,0"/>
                                 <StackPanel Grid.Column="1">
@@ -73,8 +74,7 @@
                 </Border>
             </StackPanel>
         </Border>
-        <Grid x:Name="GridMenu" Grid.Column="1" Margin="30,20">
-            <local:SettingStoreView/>
+        <Grid x:Name="GridMenu" Grid.Column="1" Margin="30,10">
         </Grid>
 
     </Grid>

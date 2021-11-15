@@ -9,13 +9,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <TextBlock Text="Cài đặt thông tin hỗ trợ" FontSize="{x:Static font:Font.Title}" FontFamily="{StaticResource Mulish}" FontWeight="Bold" Foreground="{StaticResource Title}"/>
+        <TextBlock Text="Thông tin hỗ trợ" Margin="10" FontSize="{x:Static font:Font.Title}" FontFamily="{StaticResource Mulish}" FontWeight="Bold" Foreground="{StaticResource Title}"/>
         <custom:TextboxCustom x:Name="EmailStore" 
                               Title="Email liên hệ" 
                               HorizontalAlignment="Left"
                               CornerRadiusText="5"
                               FontSize="16"
                               Width="400"
+                              Margin="10"
+                              Text="comsoft.team@gmail.com"
+                              IsEnabled="False"
                               MarginText="10"
                               Background="White"/>
         <custom:TextboxCustom x:Name="HotlineStore" 
@@ -24,30 +27,11 @@
                               CornerRadiusText="5"
                               FontSize="16"
                               Width="400"
+                              Margin="10"
+                              Text="19001952"
+                              IsEnabled="False"
                               Background="White"
                               MarginText="10"/>
 
-        <StackPanel Margin="0,20" Orientation="Horizontal">
-            <Button
-                x:Name="btnSave" 
-                Width="120" 
-                Height="40"
-                Margin="0,0,20,0"
-                Style="{StaticResource MaterialDesignRaisedButton}"
-                Background="{StaticResource MainColor}"
-                Content="Lưu">
-            </Button>
-            <Button
-                x:Name="btnCancel"
-                Width="120"
-                Height="40"
-                Margin="20,0,0,0"
-                Style="{StaticResource MaterialDesignOutlinedButton}"
-                Background="Transparent"
-                BorderBrush="{StaticResource MainColor}"
-                Foreground="{StaticResource MainColor}" 
-                Content="Hủy">
-            </Button>
-        </StackPanel>
     </StackPanel>
 </UserControl>
