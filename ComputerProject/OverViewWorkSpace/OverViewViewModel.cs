@@ -20,7 +20,7 @@ namespace ComputerProject.OverViewWorkSpace
         public SeriesCollection SeriesCollection { get; set; }
         public List<string> Barlable { get; set; }
         
-    public Func<double, string> Formatter { get; set; } = value => value.ToString("C");
+    public Func<double, string> Formatter { get; set; } = value => FormatLable(value);
 
         
         #endregion
@@ -63,7 +63,7 @@ namespace ComputerProject.OverViewWorkSpace
                     Values.Add(dayrevenue);
                     date = date.AddDays(1);
                 }
-
+                #region query ver02
                 //IQueryable<Revenue> query = context.BILLs.GroupBy(b => b.createTime).Where(b => b.First().createTime >= date && b.First().createTime <= date.AddDays(6)).Select(r => new Revenue
                 //{
                 //    Day = r.First().createTime,
@@ -72,6 +72,7 @@ namespace ComputerProject.OverViewWorkSpace
 
                 //List<double> v = query.Select(r => r.Total).ToList();
                 //Values = new ChartValues<double>(v);
+                #endregion
             }
 
             SeriesCollection = new SeriesCollection
@@ -83,22 +84,26 @@ namespace ComputerProject.OverViewWorkSpace
                     Width = 50,
                     Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#200477BF"),
                     PointForeground = Brushes.Transparent,
-                    PointGeometry = null
-
-
+                    PointGeometry = null,
+                    Foreground = Brushes.Black,
+                    ToolTip = ""
                   },
-                 
+
                 };
         }
         #endregion
 
+        static string FormatLable(double value)
+        {
+            if (value >= 100000) return (value / 1000000).ToString() + "tr";
+            if (value >= 100000000) return (value / 1000000000).ToString() + "tỉ";
 
+
+            return null;
+        }
 
     }
-    //class Revenue
-    //{
-    //    public DateTime Day { get; set; }
-    //    public double Total { get; set; }
-    //}
+
+    
 }
 

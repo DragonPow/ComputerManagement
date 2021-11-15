@@ -275,8 +275,6 @@
                                     Zoom="X"
                                     LegendLocation="Top"
                                     >
-
-
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis 
                                 Labels="{Binding Barlable}" 
