@@ -23,19 +23,6 @@ namespace ComputerProject.SaleWorkSpace
         public ProdSaleAllView()
         {
             InitializeComponent();
-            TabCategory.SelectionChanged += TabCategory_SelectionChanged;
-            CategoryComboBox.SelectionChanged += CategoryComboBox_SelectionChanged;
-        }
-
-        private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Console.WriteLine(CategoryComboBox.SelectedIndex);
-        }
-
-        private void TabCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            Console.WriteLine(CategoryComboBox.SelectedIndex);
         }
     }
 

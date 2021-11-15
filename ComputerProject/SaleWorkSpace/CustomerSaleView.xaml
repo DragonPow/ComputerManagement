@@ -64,6 +64,8 @@
                             Height="auto"
                             Margin="10,0"
                             Padding="5"
+                            Command="{Binding ClearCommand}"
+                            CommandParameter="{Binding CurrentCustomer, Mode=OneWay}"
                             Style="{StaticResource MaterialDesignIconButton}"
                             Background="{x:Null}"
                             BorderBrush="{x:Null}">
@@ -103,8 +105,8 @@
                                              FontSize="{x:Static font:Font.Body}"
                                              FontFamily="{StaticResource Mulish}"
                                              ItemsSource="{Binding ListSearchCustomer}"
-                                             SelectedItem="{Binding CurrentCustomer}"
-                                             ValueMemberPath="phone">
+                                             ValueMemberPath="phone"
+                                             SelectedItem="{Binding CurrentCustomer, Mode=OneWayToSource}">
                         <Toolkit:AutoCompleteBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal"
@@ -139,6 +141,8 @@
                                         Value="0" />
                                 <Setter Property="BorderThickness"
                                         Value="0" />
+                                <Setter Property="MaxWidth"
+                                        Value="250" />
                             </Style>
                         </Toolkit:AutoCompleteBox.ItemContainerStyle>
 

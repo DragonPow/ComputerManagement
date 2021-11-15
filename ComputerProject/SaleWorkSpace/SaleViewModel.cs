@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace ComputerProject.SaleWorkSpace
 {
@@ -133,10 +134,9 @@ namespace ComputerProject.SaleWorkSpace
                 if (value != _currentRootCategory)
                 {
                     _currentRootCategory = value;
-                    //_currentCategory = _currentRootCategory?.ChildCategories[0];
                     OnPropertyChanged();
 
-                    _currentCategory = _currentRootCategory == null ? null : _currentRootCategory.ChildCategories[0];
+                    _currentCategory = _currentRootCategory?.ChildCategories[0]?? null;
                     OnPropertyChanged(nameof(CurrentCategory));
                     OnCategoryChanged();
                 }
@@ -322,6 +322,7 @@ namespace ComputerProject.SaleWorkSpace
         public void LoadData()
         {
             var loadProductTask = Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
+
             Task.Run(() =>
             {
                 Categories = _repository.LoadCategories();
@@ -334,9 +335,29 @@ namespace ComputerProject.SaleWorkSpace
                     if (category.ChildCategories == null) category.ChildCategories = new ObservableCollection<Model.Category>();
                     category.ChildCategories.Insert(0, null_category);
                 }
+
+                _currentRootCategory = Categories[0];
+                _currentCategory = _currentRootCategory.ChildCategories[0];
+                OnPropertyChanged(nameof(CurrentRootCategory));
+                OnPropertyChanged(nameof(CurrentCategory));
             });
         }
-        public void OnCategoryChanged()
+        private void SearchRootCategory()
+        {
+            VisibleProducts = _products = _repository.LoadProducts(CurrentRootCategory);
+        }
+        private void SearchChildCategory()
+        {
+            if (CurrentCategory != null)
+            {
+                VisibleProducts = new ObservableCollection<Model.Product>(_products.Where(i => i.CategoryProduct.Id == CurrentCategory.Id).AsEnumerable());
+            }
+            else
+            {
+                VisibleProducts = _products;
+            }
+        }
+        private void OnCategoryChanged()
         {
             if (_products == null) return;
             if (CurrentCategory != null && CurrentCategory.Name != null)
@@ -362,8 +383,7 @@ namespace ComputerProject.SaleWorkSpace
                 throw new ArgumentNullException();
             }
         }
-
-        private void OpenPaymentView(IDictionary<Product, int> productsInBill, CUSTOMER currentCustomer = null)
+        private void OpenPaymentView(IDictionary<Product, int> productsInBill, CUSTOMER currentCustomer)
         {
             var vm = new BillViewModel(productsInBill, currentCustomer, TotalPriceBill);
             WindowService.ShowWindow(vm, new PaySaleBillView());
@@ -427,7 +447,8 @@ namespace ComputerProject.SaleWorkSpace
         }
         private void SearchCustomer(string text)
         {
-            ListSearchCustomer = _repository.SearchCustomer(text);
+            int number = 5;
+            ListSearchCustomer = _repository.SearchCustomer(text, number);
         }
         private void ShowDetail(Model.Product product)
         {

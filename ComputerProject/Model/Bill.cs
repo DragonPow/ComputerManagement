@@ -130,6 +130,7 @@ namespace ComputerProject.Model
             this.TimeCreated = DateTime.Now;
             this.TotalMoney = totalMoney;
             this.Products = new ObservableCollection<ProductInBill>();
+            this.Customer = customer;
 
             foreach (var dictionaryProduct in listproduct)
             {

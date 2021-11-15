@@ -26,9 +26,17 @@ namespace ComputerProject.SaleWorkSpace
         public CustomerSaleView()
         {
             InitializeComponent();
-            timeDelayText = new Timer(3000);
+            timeDelayText = new Timer(2000);
             timeDelayText.Elapsed += TimeDelayText_Elapsed;
             completebox.TextChanged += Completebox_TextChanged;
+            completebox.SelectionChanged += Completebox_SelectionChanged;
+        }
+
+        private void Completebox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            timeDelayText.Stop();
+            completebox.Text = null;
+            //Console.WriteLine((completebox.SelectedItem as CUSTOMER)?.name??"nothing to bind");
         }
 
         private void TimeDelayText_Elapsed(object sender, ElapsedEventArgs e)
@@ -41,8 +49,8 @@ namespace ComputerProject.SaleWorkSpace
                 {
                     if (dataContext.SearchCustomerCommand.CanExecute(null))
                     {
-                        Console.WriteLine("Find customer with phone number start is {0}", completebox.Text);
                         dataContext.SearchCustomerCommand.Execute(completebox.Text);
+                        completebox.PopulateComplete();
                     }
                 }
             });
