@@ -136,7 +136,7 @@ namespace ComputerProject.CustomerWorkspace
                 var old = await Task.Run(() => db.CUSTOMERs.Where(c => c.phone == target.PhoneNumber).FirstOrDefault());
                 if (old != null)
                 {
-                    return "Số điện thoại đã đucợ đăng kí trước đó";
+                    return "Số điện thoại đã được đăng kí trước đó";
                 }
                 else return null;
             }
@@ -149,7 +149,7 @@ namespace ComputerProject.CustomerWorkspace
                 var old = db.CUSTOMERs.Where(c => c.phone == target.PhoneNumber).FirstOrDefault();
                 if (old != null)
                 {
-                    return "Số điện thoại đã đucợ đăng kí trước đó";
+                    return "Số điện thoại đã đư đăng kí trước đó";
                 }
                 else return null;
             }

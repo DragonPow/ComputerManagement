@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:categoryWS="clr-namespace:ComputerProject.CategoryWorkspace"
     xmlns:customerWS="clr-namespace:ComputerProject.CustomerWorkspace"
+    xmlns:overviewWS="clr-namespace:ComputerProject.OverViewWorkSpace"
     xmlns:productWS="clr-namespace:ComputerProject.ProductWorkSpace"
     xmlns:saleWS="clr-namespace:ComputerProject.SaleWorkSpace">
     <DataTemplate DataType="{x:Type categoryWS:CategoryViewModel}">
@@ -28,5 +29,9 @@
 
     <DataTemplate DataType="{x:Type saleWS:SaleViewModel}">
         <saleWS:SaleAllView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type overviewWS:OverViewViewModel}">
+        <overviewWS:OverViewMainView />
     </DataTemplate>
 </ResourceDictionary>

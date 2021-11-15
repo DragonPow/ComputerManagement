@@ -6,10 +6,12 @@
              xmlns:local="clr-namespace:ComputerProject.OverViewWorkSpace"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=local:OverViewViewModel, IsDesignTimeCreatable=True}"
              Padding="20,20,20,0"
+             
              Background="{StaticResource Background}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             mc:Ignorable="d" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
@@ -74,7 +76,7 @@
                 Grid.Column="0"  Grid.ColumnSpan="2">
                 <TextBlock
                     x:Name="TotalBill"
-                    Text="821"
+                    Text="{Binding TotalBill}"
                     FontSize="40"
                     FontWeight="SemiBold"
                     FontFamily="{StaticResource Mulish}"
@@ -85,7 +87,6 @@
                 <TextBlock
                     Text="Tổng"
                     FontSize="10"
-                    FontWeight="SemiBold"
                     FontFamily="{StaticResource Mulish}"
                     Foreground="#9FA2B4"
                     Margin="0, 0, 0, 0" 
@@ -105,7 +106,7 @@
                 Grid.Row="1"
                 Grid.Column="0">
                     <TextBlock
-                        Text="530"
+                        Text="{Binding TotalWarrantyBill}"
                         FontSize="40"
                         FontWeight="SemiBold"
                         FontFamily="{StaticResource Mulish}"
@@ -116,7 +117,6 @@
                     <TextBlock
                         Text="Sửa chữa, bảo hành"
                         FontSize="10"
-                        FontWeight="SemiBold"
                         FontFamily="{StaticResource Mulish}"
                         Foreground="#9FA2B4"
                         Margin="0, 0, 0, 0" 
@@ -127,7 +127,7 @@
                 Grid.Row="1"
                 Grid.Column="1">
                     <TextBlock
-                        Text="210"
+                        Text="{Binding TotalNomalBill}"
                         FontSize="40"
                         FontWeight="SemiBold"
                         FontFamily="{StaticResource Mulish}"
@@ -138,7 +138,6 @@
                     <TextBlock
                         Text="Đơn thường"
                         FontSize="10"
-                        FontWeight="SemiBold"
                         FontFamily="{StaticResource Mulish}"
                         Foreground="#9FA2B4"
                         Margin="0, 0, 0, 0" 
@@ -164,7 +163,7 @@
                 Grid.Row="1"
                 Grid.Column="2" Grid.ColumnSpan="2" >
                 <TextBlock
-                    Text="821"
+                    Text="{Binding TotalPro}"
                     FontSize="40"
                     FontWeight="SemiBold"
                     FontFamily="{StaticResource Mulish}"
@@ -175,7 +174,6 @@
                 <TextBlock
                     Text="Tổng"
                     FontSize="10"
-                    FontWeight="SemiBold"
                     FontFamily="{StaticResource Mulish}"
                     Foreground="#9FA2B4"
                     HorizontalAlignment="Center">
@@ -194,7 +192,7 @@
                 Grid.Row="1"
                 Grid.Column="0">
                     <TextBlock
-                        Text="530"
+                        Text="{Binding TotalProProvie}"
                         FontSize="40"
                         FontWeight="SemiBold"
                         FontFamily="{StaticResource Mulish}"
@@ -203,9 +201,8 @@
                     >
                     </TextBlock>
                     <TextBlock
-                        Text="Sửa chữa, bảo hành"
+                        Text="Đang bán"
                         FontSize="10"
-                        FontWeight="SemiBold"
                         FontFamily="{StaticResource Mulish}"
                         Foreground="#9FA2B4"
                         HorizontalAlignment="Center">
@@ -215,7 +212,7 @@
                 Grid.Row="1"
                 Grid.Column="1">
                     <TextBlock
-                        Text="210"
+                        Text="{Binding TotalProStop}"
                         FontSize="40"
                         FontWeight="SemiBold"
                         FontFamily="{StaticResource Mulish}"
@@ -224,9 +221,8 @@
                     >
                     </TextBlock>
                     <TextBlock
-                        Text="Đơn thường"
+                        Text="Ngừng cung cấp"
                         FontSize="10"
-                        FontWeight="SemiBold"
                         FontFamily="{StaticResource Mulish}"
                         Foreground="#9FA2B4"
                         Margin="0, 0, 0, 0" 
@@ -252,19 +248,30 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
                         FontFamily="{StaticResource Mulish}"
                         FontSize="15"
                         FontWeight="DemiBold"
                         Foreground="#11142D"
                         Text="Hiệu quả bán hàng"
-                        Margin="10"
+                        Margin="10, 10, 0, 10"
                         >
-                    </TextBlock>
+                        </TextBlock>
+                        <TextBlock
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="13"
+                        Foreground="#11142D"
+                        Text="(7 ngày gần nhất)"
+                        Margin="5, 12 0, 10"
+                        >
+                        </TextBlock>
+                    </StackPanel>
+                    
                 </Grid>
                 <lvc:CartesianChart 
                                     Height="{Binding ActualHeight, ElementName=StaticsMainView, Mode=OneWay}"
-                                    Series="{Binding Path= SeriesCollection}" 
+                                    Series="{Binding SeriesCollection}" 
                                     Zoom="X"
                                     LegendLocation="Top"
                                     >
