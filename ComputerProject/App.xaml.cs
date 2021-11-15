@@ -11,6 +11,7 @@ using System.Windows;
 using ComputerProject.ApplicationWorkspace;
 using ComputerProject.InsuranceWorkSpace;
 using ComputerProject.Repository;
+using ComputerProject.OverViewWorkSpace;
 
 namespace ComputerProject
 {
@@ -26,6 +27,8 @@ namespace ComputerProject
             var view = new ApplicationWindow();
             view.DataContext = vm;
             view.Show();
+
+
 
             //var vm = new ListCategoryViewModel();
             //var view = new WindowTest();
