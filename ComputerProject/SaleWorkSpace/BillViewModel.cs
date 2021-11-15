@@ -3,11 +3,9 @@ using ComputerProject.HelperService;
 using ComputerProject.Model;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Controls;
+using ComputerProject.Helper;
 
 namespace ComputerProject.SaleWorkSpace
 {
@@ -36,11 +34,32 @@ namespace ComputerProject.SaleWorkSpace
             {
                 if (null == _confirmCommand)
                 {
-                    _confirmCommand = new RelayCommand(a => Confirm());
+                    _confirmCommand = new RelayCommand(a =>
+                    {
+                        if (!HasErrorData())
+                        {
+                            if (SuccessConfirm())
+                            {
+                                MessageBoxCustom.ShowDialog("Thanh toán hóa đơn thành công", "Thông báo", MaterialDesignThemes.Wpf.PackIconKind.Done);
+                                var view = WindowService.FindWindowbyTag(nameof(BillViewModel))[0];
+                                view.Close();
+                            }
+                        }
+                        else
+                        {
+                            MessageBoxCustom.ShowDialog("Số tiền phải là số dương", "Lỗi", MaterialDesignThemes.Wpf.PackIconKind.Error);
+                        }
+                    });
                 }
                 return _confirmCommand;
             }
         }
+
+        private bool HasErrorData()
+        {
+            return false;
+        }
+
         public ICommand PrintCommand
         {
             get
@@ -53,7 +72,6 @@ namespace ComputerProject.SaleWorkSpace
             }
         }
 
-
         public BillViewModel(BILL bill)
         {
             CurrentBill = new Model.Bill(bill);
@@ -63,7 +81,7 @@ namespace ComputerProject.SaleWorkSpace
             CurrentBill = new Model.Bill(listproduct, customer, totalMoney);
         }
 
-        private void Confirm()
+        private bool SuccessConfirm()
         {
             try
             {
@@ -72,10 +90,12 @@ namespace ComputerProject.SaleWorkSpace
                     db.BILLs.Add(CurrentBill.CastToModel());
                     db.SaveChanges();
                 }
+                return true;
             }
             catch (Exception e)
             {
                 MessageBoxCustom.ShowDialog("Có lỗi xảy ra khi thực hiện thao tác lưu", "Lỗi", MaterialDesignThemes.Wpf.PackIconKind.Error);
+                return false;
             }
         }
         private void Print()

@@ -199,6 +199,10 @@ namespace ComputerProject.SaleWorkSpace
                         {
                             MessageBoxCustom.ShowDialog("Không có đơn hàng để thanh toán", "Lỗi", PackIconKind.Error);
                         }
+                        else if (CurrentCustomer == null)
+                        {
+                            MessageBoxCustom.ShowDialog("Phải nhập thông tin khách hàng trước", "Thông báo", PackIconKind.Information);
+                        }
                         else OpenPaymentView(ProductsInBill, CurrentCustomer);
                     });
                 }

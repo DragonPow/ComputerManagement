@@ -10,6 +10,7 @@
              d:DesignHeight="700"
              d:DesignWidth="650"
              MinWidth="600"
+             Tag="BillViewModel"
              d:DataContext="{d:DesignInstance Type={x:Type local:BillViewModel}}"
              Background="White">
     <StackPanel Margin="20,10">
@@ -236,7 +237,7 @@
                     CornerRadius="5"
                     Grid.ColumnSpan="3">
                 <TextBox Margin="5,0"
-                         Text="{Binding CurrentBill.MoneyCustomer}"
+                         Text="{Binding CurrentBill.MoneyCustomer, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=true}"
                          FontWeight="DemiBold"
                          MaxWidth="250"
                          BorderThickness="0"
@@ -255,7 +256,7 @@
                        Grid.ColumnSpan="3" />
             <TextBlock Grid.Row="1"
                        Margin="0,5,10,5"
-                       Text="{Binding CurrentBill.ExcessCash, StringFormat='\{0:N0}đ'}"
+                       Text="{Binding CurrentBill.ExcessCash, StringFormat='\{0:N0}đ', NotifyOnValidationError=True}"
                        FontWeight="DemiBold"
                        VerticalAlignment="Center"
                        FontSize="{x:Static font:Font.Body}"
@@ -286,7 +287,7 @@
                     Height="40"
                     Content="Xác nhận"
                     Foreground="White" />
-<!--
+            <!--
         <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20">
             <Button x:Name="btnCancel" Style="{StaticResource MaterialDesignOutlinedButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{StaticResource MainColor}" Margin="20,0"  Foreground="{StaticResource MainColor}" Width="100" Height="40" Content="Hủy" Padding="30,0"></Button>
             <Button x:Name="btnAccept" Background="{StaticResource MainColor}"   Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="5" Width="120" Height="40" Content="Xác nhận" Foreground="White"/>

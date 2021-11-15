@@ -21,7 +21,7 @@ namespace ComputerProject.CustomMessageBox
         }
         public static MessageBoxResultCustom ShowDialog(string messageBoxText, string caption, PackIconKind icon)
         {
-            return ShowDialog(messageBoxText, caption, null, null, icon);
+            return ShowDialog(messageBoxText, caption, "Xác nhận", "Hủy", icon);
         }
     }
 

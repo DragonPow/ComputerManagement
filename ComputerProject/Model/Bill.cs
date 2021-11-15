@@ -2,13 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace ComputerProject.Model
 {
-    public class Bill : BaseViewModel
+    public class Bill : BaseViewModel, IDataErrorInfo
     {
         int _id;
         DateTime _timeCreated;
@@ -42,6 +44,7 @@ namespace ComputerProject.Model
                 }
             }
         }
+
         public Collection<ProductInBill> Products
         {
             get => _products;
@@ -103,6 +106,36 @@ namespace ComputerProject.Model
                     _customer = value;
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        public string Error => null;
+
+        public string this[string columnName] {
+            get
+            {
+                switch(columnName)
+                {
+                    case nameof(TotalMoney):
+                        if (TotalMoney < 0)
+                        {
+                            return "Must be positive number TotalMoney";
+                        }
+                        break;
+                    case nameof(MoneyCustomer):
+                        if (MoneyCustomer < 0)
+                        {
+                            return "Must be positive number MoneyCustomer";
+                        }
+                        break;
+                    case nameof(PointCustomer):
+                        if (PointCustomer < 0)
+                        {
+                            return "Must be positive number PointCustomer";
+                        }
+                        break;
+                }
+                return null;
             }
         }
 
