@@ -60,8 +60,5 @@
                 </Style.Triggers>
             </Style>
         </ListView.ItemContainerStyle>
-        <local:BillItem />
-        <local:BillItem />
-        <local:BillItem />
     </ListView>
 </UserControl>
