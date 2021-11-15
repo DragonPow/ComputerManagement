@@ -1,15 +1,15 @@
 ﻿using ComputerProject.CustomMessageBox;
-using ComputerProject.HelperService;
 using ComputerProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 using System.Windows.Controls;
 using ComputerProject.Helper;
+using ComputerProject.HelperService;
 
 namespace ComputerProject.SaleWorkSpace
 {
-    public class BillViewModel : BaseViewModel
+    public class BillViewModel : Helper.BaseViewModel
     {
         Model.Bill _currentBill;
         ICommand _confirmCommand;
