@@ -42,16 +42,18 @@ namespace ComputerProject.Helper
             window.ShowDialog();
         }
 
-        public static IEnumerable<Window> FindWindowbyTag(string nameWindow)
+        public static List<Window> FindWindowbyTag(string nameWindow)
         {
+            List<Window> list = new List<Window>();
             foreach (var window in Application.Current.Windows)
             {
                 if (window is Window && (string)((Window)window).Tag == nameWindow)
                 {
-                    Console.WriteLine("Find window");
-                    yield return (Window)window;
+                    list.Add((Window)window);
                 }
             }
+
+            return list;
         }
     }
 }

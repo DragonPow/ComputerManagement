@@ -2,13 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace ComputerProject.Model
 {
-    public class Bill : BaseViewModel
+    public class Bill : BaseViewModel, IDataErrorInfo
     {
         int _id;
         DateTime _timeCreated;
@@ -42,6 +44,7 @@ namespace ComputerProject.Model
                 }
             }
         }
+
         public Collection<ProductInBill> Products
         {
             get => _products;
@@ -106,6 +109,36 @@ namespace ComputerProject.Model
             }
         }
 
+        public string Error => null;
+
+        public string this[string columnName] {
+            get
+            {
+                switch(columnName)
+                {
+                    case nameof(TotalMoney):
+                        if (TotalMoney < 0)
+                        {
+                            return "Must be positive number TotalMoney";
+                        }
+                        break;
+                    case nameof(MoneyCustomer):
+                        if (MoneyCustomer < 0)
+                        {
+                            return "Must be positive number MoneyCustomer";
+                        }
+                        break;
+                    case nameof(PointCustomer):
+                        if (PointCustomer < 0)
+                        {
+                            return "Must be positive number PointCustomer";
+                        }
+                        break;
+                }
+                return null;
+            }
+        }
+
         public Bill(BILL bill)
         {
             this.Id = bill.id;
@@ -130,6 +163,7 @@ namespace ComputerProject.Model
             this.TimeCreated = DateTime.Now;
             this.TotalMoney = totalMoney;
             this.Products = new ObservableCollection<ProductInBill>();
+            this.Customer = customer;
 
             foreach (var dictionaryProduct in listproduct)
             {

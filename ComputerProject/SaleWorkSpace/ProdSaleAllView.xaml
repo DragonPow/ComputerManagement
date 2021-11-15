@@ -98,42 +98,46 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>-->
-                <ListView  
-                          ItemsSource="{Binding Categories}"
+                <ListView ItemsSource="{Binding Categories}"
                           Background="Transparent"
                           x:Name="TabCategory"
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
                           SelectedItem="{Binding CurrentRootCategory}">
                     <ListView.ItemTemplate>
                         <DataTemplate DataType="{x:Type model:Category}">
-                            <local:TabCategory/>
+                            <local:TabCategory />
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
                     <ListView.Resources>
-                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+                        <ControlTemplate x:Key="SelectedTemplate"
+                                         TargetType="ListViewItem">
                             <local:SelectedTabCategory />
                         </ControlTemplate>
                     </ListView.Resources>
 
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListViewItem">
-                                        <local:TabCategory/>
+                                        <local:TabCategory />
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
                             <Style.Triggers>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
-                                        <Condition Property="IsSelected" Value="true" />
-                                        
+                                        <Condition Property="IsSelected"
+                                                   Value="true" />
+
                                     </MultiTrigger.Conditions>
                                     <MultiTrigger.Setters>
-                                        <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                                        <Setter Property="Template"
+                                                Value="{StaticResource SelectedTemplate}" />
                                     </MultiTrigger.Setters>
                                 </MultiTrigger>
                             </Style.Triggers>

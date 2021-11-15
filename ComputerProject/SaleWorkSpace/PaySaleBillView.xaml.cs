@@ -24,6 +24,5 @@ namespace ComputerProject.SaleWorkSpace
         {
             InitializeComponent();
         }
-
     }
 }

@@ -38,16 +38,18 @@ namespace ComputerProject.Model
             }
         }
     }
+
     public class Product : BaseViewModel
     {
         int _id;
         string _name;
         int _priceOrigin;
         int _priceSale;
-        Bitmap _image;
+        byte[] _image;
         Model.Category _category;
         string _decription;
         string _producer;
+        int _warranty;
 
 
         public int Id
@@ -89,7 +91,7 @@ namespace ComputerProject.Model
                 }
             }
         }
-        public Bitmap Image
+        public byte[] Image
         {
             get => _image; set
             {
@@ -136,12 +138,23 @@ namespace ComputerProject.Model
                 }
             }
         }
+        public int Warranty
+        {
+            get => _warranty;
+            set
+            {
+                if (value!=_warranty)
+                {
+                    _warranty = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
 
         public Product()
         {
             Id = 0;
-            Image = null;
             //CategoryProduct = new Model.Category();
         }
 
@@ -155,6 +168,7 @@ namespace ComputerProject.Model
             this.Image = product.Image;
             this.Decription = product.Decription;
             this.CategoryProduct = product.CategoryProduct;
+            this.Warranty = product.Warranty;
         }
 
         public Product(PRODUCT product)
@@ -164,11 +178,14 @@ namespace ComputerProject.Model
             PriceOrigin = product.priceOrigin;
             PriceSale = product.priceSales;
             Producer = product.producer;
-            Task.Run(() => {
-                Image = FormatHelper.TranferToBitmap(product.image);
-                });
+            //Task.Run(() =>
+            //{
+            //    Image = FormatHelper.TranferToBitmap(product.image);
+            //});
+            Image = product.image;
             CategoryProduct = new Model.Category(product.CATEGORY);
             Decription = product.description;
+            Warranty = product.warrantyTime?? 0;
         }
 
         public PRODUCT CastToModel()
@@ -181,8 +198,15 @@ namespace ComputerProject.Model
             p.producer = this.Producer;
             p.description = this.Decription;
             p.CATEGORY = this.CategoryProduct.CastToModel();
+            p.warrantyTime = this.Warranty == 0 ? this.Warranty : (int?)null;
 
             return p;
+        }
+
+        ~Product()
+        {
+            Console.WriteLine(this.Name + " is dispose");
+            //GC.SuppressFinalize(this);
         }
     }
 }
