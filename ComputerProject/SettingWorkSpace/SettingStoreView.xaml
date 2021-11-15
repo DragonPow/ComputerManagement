@@ -9,13 +9,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <TextBlock Text="Cài đặt thông tin cửa hàng" FontSize="{x:Static font:Font.Title}" FontFamily="{StaticResource Mulish}" FontWeight="Bold" Foreground="{StaticResource Title}"/>
+        <TextBlock Text="Thiết lập thông tin cửa hàng" Margin="10" FontSize="{x:Static font:Font.Title}" FontFamily="{StaticResource Mulish}" FontWeight="Bold" Foreground="{StaticResource Title}"/>
         <custom:TextboxCustom x:Name="StoreName" 
                               Title="Tên cửa hàng" 
                               HorizontalAlignment="Left"
                               CornerRadiusText="5"
                               FontSize="16"
                               Width="400"
+                              Margin="10"
                               MarginText="10"
                               Background="White"/>
         <custom:TextboxCustom x:Name="StoreNumber" 
@@ -24,6 +25,7 @@
                               CornerRadiusText="5"
                               FontSize="16"
                               Width="400"
+                              Margin="10"
                               Background="White"
                               MarginText="10"/>
         <custom:TextboxCustom x:Name="StoreAddress" 
@@ -31,9 +33,10 @@
                               CornerRadiusText="5"
                               FontSize="16"
                               Background="White"
+                              Margin="10"
                               MarginText="10"/>
 
-        <StackPanel Margin="0,20" Orientation="Horizontal">
+        <StackPanel Margin="10,30" Orientation="Horizontal">
             <Button
                 x:Name="btnSave" 
                 Width="120" 
