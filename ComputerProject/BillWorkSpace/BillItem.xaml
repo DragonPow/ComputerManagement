@@ -71,8 +71,8 @@
                 Margin="20,0"
                 Command="{Binding DataContext.DeleteBillCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
                 CommandParameter="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
-            <Image Width="24"
-                   Height="24"
+            <Image Width="18"
+                   Height="18"
                    Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
         </Button>
     </Grid>

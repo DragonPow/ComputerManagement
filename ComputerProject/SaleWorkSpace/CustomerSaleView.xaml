@@ -156,7 +156,7 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
-                           Margin="0,0,30,0"
+                           Margin="0,0,20,0"
                            Text="Tên khách hàng"
                            FontSize="{x:Static font:Font.Body}"
                            FontFamily="{StaticResource Mulish}"
@@ -168,7 +168,7 @@
                            FontFamily="{StaticResource Mulish}"
                            FontWeight="DemiBold"
                            HorizontalAlignment="Right"
-                           Margin="5,0"
+                           
                            Foreground="Black"></TextBlock>
             </Grid>
             <Grid Margin="25,5,25,10"
@@ -179,7 +179,7 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
-                           Margin="0,0,30,0"
+                           Margin="0,0,20,0"
                            Text="Số điện thoại"
                            FontSize="{x:Static font:Font.Body}"
                            FontFamily="{StaticResource Mulish}"
@@ -191,7 +191,7 @@
                            FontFamily="{StaticResource Mulish}"
                            FontWeight="DemiBold"
                            HorizontalAlignment="Right"
-                           Margin="5,0"
+                           
                            Foreground="Black"></TextBlock>
             </Grid>
         </Grid>

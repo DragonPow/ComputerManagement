@@ -197,11 +197,11 @@ namespace ComputerProject.SaleWorkSpace
                     {
                         if (ProductsInBill == null || ProductsInBill.Count == 0)
                         {
-                            MessageBoxCustom.ShowDialog("Không có đơn hàng để thanh toán", "Lỗi", PackIconKind.Error);
+                            MessageBoxCustom.ShowDialog("Vui lòng chọn sản phẩm.", "Lỗi", PackIconKind.Error);
                         }
                         else if (CurrentCustomer == null)
                         {
-                            MessageBoxCustom.ShowDialog("Phải nhập thông tin khách hàng trước", "Thông báo", PackIconKind.Information);
+                            MessageBoxCustom.ShowDialog("Vui lòng chọn khách hàng.", "Thông báo", PackIconKind.Information);
                         }
                         else OpenPaymentView(ProductsInBill, CurrentCustomer);
                     });
