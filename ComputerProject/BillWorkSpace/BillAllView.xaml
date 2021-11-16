@@ -188,6 +188,7 @@
                             HorizontalAlignment="Center"
                             Margin="0,0,0,20" 
                             CurrentPage="{Binding CurrentPage, UpdateSourceTrigger=PropertyChanged}"
-                            MaxPage="{Binding TotalPage, UpdateSourceTrigger=PropertyChanged}"/>
+                            MaxPage="{Binding TotalPage, UpdateSourceTrigger=PropertyChanged}"
+                            PageChanged="PageControl_PageChanged"/>
     </Grid>
 </UserControl>

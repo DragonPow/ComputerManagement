@@ -44,20 +44,34 @@ namespace ComputerProject.CustomControl
         private void Button_Skip_Next_Click(object sender, RoutedEventArgs e)
         {
             CurrentPage = MaxPage;
+            PageChanged?.Invoke(this, CurrentPage);
         }
 
         private void Button_Skip_Back_Click(object sender, RoutedEventArgs e)
         {
             CurrentPage = 1;
+            PageChanged?.Invoke(this, CurrentPage);
         }
 
         private void Button_Next_Click(object sender, RoutedEventArgs e)
         {
-            if (CurrentPage < MaxPage) CurrentPage += 1;
+            if (CurrentPage < MaxPage)
+            {
+                CurrentPage += 1;
+                PageChanged?.Invoke(this, CurrentPage);
+            }
+
         }
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
-            if (CurrentPage > 1) CurrentPage -= 1;
+            if (CurrentPage > 1)
+            {
+                CurrentPage -= 1;
+                PageChanged?.Invoke(this, CurrentPage);
+            }
+
         }
+
+        public event EventHandler<int> PageChanged;
     }
 }

@@ -40,5 +40,12 @@ namespace ComputerProject.BillWorkSpace
                 }
             }
         }
+
+        private void PageControl_PageChanged(object sender, int e)
+        {
+            var datacontext = this.DataContext as HistoryBillViewModel;
+            if (datacontext.ChangePageCommand.CanExecute(e))
+                datacontext.ChangePageCommand.Execute(e);
+        }
     }
 }

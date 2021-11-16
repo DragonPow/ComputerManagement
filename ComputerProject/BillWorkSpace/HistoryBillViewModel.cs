@@ -188,7 +188,7 @@ namespace ComputerProject.BillWorkSpace
         }
         #endregion //Properties
 
-        public HistoryBillViewModel(int maxBillsInPage = 10)
+        public HistoryBillViewModel(int maxBillsInPage = 8)
         {
             this._maxBillsInPage = maxBillsInPage;
             _repository = new BillRepository();
