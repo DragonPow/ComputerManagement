@@ -27,19 +27,19 @@
                     <Grid.Background>
                         <ImageBrush ImageSource="/ComputerProject;component/Resource/Image/background.png"/>
                     </Grid.Background>
-                    <TextBlock x:Name="StoreName" Text="KiotStore" Grid.ColumnSpan="2" Foreground="White" Margin="20,20,20,10" FontSize="30" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold"/>
+                    <TextBlock x:Name="StoreName" Text="{Binding StoreName}" Grid.ColumnSpan="2" Foreground="White" Margin="20,20,20,10" FontSize="30" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold"/>
                     <StackPanel Grid.Row="1" Margin="20,0" Orientation="Horizontal" >
                         <TextBlock Text="Địa chỉ: " Foreground="White"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}"></TextBlock>
-                        <TextBlock x:Name="StoreAddress" Grid.Column="1" Text="Đường Ngô Quyền, quận Thủ Đức, Tp.Thủ Đức, TP.Hồ Chí Minh"  TextWrapping="WrapWithOverflow" Foreground="White"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Width="269"  />
+                        <TextBlock x:Name="StoreAddress" Grid.Column="1" Text="{Binding StoreAddress}"  TextWrapping="WrapWithOverflow" Foreground="White"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Width="269"  />
                     </StackPanel>
                     <StackPanel Grid.Row="2" Margin="20,5,0,10" Orientation="Horizontal" >
                         <TextBlock Text="Số điện thoại: " Foreground="White"   FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" ></TextBlock>
-                        <TextBlock x:Name="StoreNumber" Text="0123456"  TextWrapping="WrapWithOverflow" Foreground="White"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}"  />
+                        <TextBlock x:Name="StoreNumber" Text="{Binding StorePhone}"  TextWrapping="WrapWithOverflow" Foreground="White"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}"  />
                     </StackPanel>
-                    <TextBlock Text="ComSoft - Giải pháp quản lí bán hàng hiệu quả" Grid.Row="4" VerticalAlignment="Bottom" FontWeight="DemiBold" Foreground="{StaticResource Title}" Margin="20,10" FontSize="15" FontFamily="{StaticResource Mulish}" />
+                    <TextBlock Text="ComSoft - Giải pháp quản lý bán hàng hiệu quả" Grid.Row="4" VerticalAlignment="Bottom" FontWeight="DemiBold" Foreground="{StaticResource Title}" Margin="20,10" FontSize="15" FontFamily="{StaticResource Mulish}" />
                 </Grid>
                 <Border Background="White" CornerRadius="8" Margin="20">
-                    <ListBox  ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
+                    <ListBox x:Name="ListBoxSetting" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
                         <ListBoxItem x:Name="ItemPoint">
                             <DockPanel Width="340" Margin="0,5">
                                 <Image Source="/ComputerProject;component/Resource/Image/SettingPoint.png" Height="30" Width="30" Margin="10,0"/>

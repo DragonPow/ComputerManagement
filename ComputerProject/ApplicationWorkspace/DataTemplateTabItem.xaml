@@ -6,6 +6,7 @@
     xmlns:overviewWS="clr-namespace:ComputerProject.OverViewWorkSpace"
     xmlns:productWS="clr-namespace:ComputerProject.ProductWorkSpace"
     xmlns:saleWS="clr-namespace:ComputerProject.SaleWorkSpace"
+    xmlns:SettingWS="clr-namespace:ComputerProject.SettingWorkSpace"
     xmlns:historyWS ="clr-namespace:ComputerProject.BillWorkSpace">
     <DataTemplate DataType="{x:Type categoryWS:CategoryViewModel}">
         <ContentPresenter Content="{Binding CurrentPage}">
@@ -34,6 +35,9 @@
 
     <DataTemplate DataType="{x:Type overviewWS:OverViewViewModel}">
         <overviewWS:OverViewMainView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type SettingWS:SettingViewModel}">
+        <SettingWS:SettingAllView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type historyWS:BillPage}">

@@ -11,8 +11,8 @@ namespace ComputerProject.BillWorkSpace
 {
     public class BillPage : BaseViewModel, ITabView, INavigationBar
     {
-        public string ViewName => "Lịch sử bán hàng";
-        public PackIconKind ViewIcon => PackIconKind.History;
+        public string ViewName => "Hóa đơn";
+        public PackIconKind ViewIcon => PackIconKind.ClipboardTextSearch;
 
         public BaseViewModel CurrentPage => _navigator?.CurrentPage;
         private NavigationService _navigator;
