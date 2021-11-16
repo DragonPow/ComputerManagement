@@ -230,6 +230,8 @@
                                             Value="{Binding CurrentParentCategory}" />
                                 <Setter Property="Content"
                                             Value="Lưu" />
+                                <Setter Property="Foreground"
+                                            Value="White" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding IsEditMode}"
                                          Value="False">

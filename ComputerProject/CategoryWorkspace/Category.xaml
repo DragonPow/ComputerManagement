@@ -52,6 +52,7 @@
                 <ListView x:Name="Listcategory"
                       Grid.Row="2"
                       Margin="22,0"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       ItemContainerStyle="{StaticResource ListViewContainerStyle}"
                       ItemsSource="{Binding CurrentCategories}">
 
