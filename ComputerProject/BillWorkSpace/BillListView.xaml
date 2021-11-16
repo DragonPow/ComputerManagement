@@ -11,13 +11,17 @@
     <ListView  x:Name="ListBill"
                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                ScrollViewer.VerticalScrollBarVisibility="Auto"
-               ItemsSource="{Binding CurrentBills}"
-               ItemContainerStyle="{StaticResource ListViewContainerStyle}">
+               ItemsSource="{Binding CurrentBills}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <local:BillItem />
             </DataTemplate>
         </ListView.ItemTemplate>
-
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewContainerStyle}">
+                <!--<EventSetter Event="MouseDoubleClick"
+                             Handler="ListViewItem_MouseDoubleClick" />-->
+            </Style>
+        </ListView.ItemContainerStyle>
     </ListView>
 </UserControl>
