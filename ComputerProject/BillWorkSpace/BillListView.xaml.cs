@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerProject.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,15 @@ namespace ComputerProject.BillWorkSpace
         public BillListView()
         {
             InitializeComponent();
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var dc = ListBill.DataContext as HistoryBillViewModel;
+            if (dc.ShowDetailBillCommand.CanExecute(null))
+            {
+                dc.ShowDetailBillCommand.Execute((sender as ListViewItem).DataContext);
+            }
         }
     }
 }

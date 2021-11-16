@@ -15,7 +15,7 @@ namespace ComputerProject.BillWorkSpace
         #region Fields
         NavigationService _navigator;
         BillRepository _repository;
-        public readonly BusyViewModel BusyService = new BusyViewModel();
+        public BusyViewModel BusyService = new BusyViewModel();
 
         int _maxBillsInPage = 10;
         Collection<BILL> _bills;

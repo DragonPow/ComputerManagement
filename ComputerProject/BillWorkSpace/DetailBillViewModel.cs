@@ -90,6 +90,7 @@ namespace ComputerProject.BillWorkSpace
         }
         private void DeleteBill(Model.Bill bill)
         {
+            _repository.Delete(CurrentBill);
             NavigateBack();
             BillDeletedEvent?.Invoke(this, bill.Id);
         }

@@ -11,12 +11,12 @@
              d:DesignHeight="50"
              d:DesignWidth="1100"
              d:DataContext="{d:DesignInstance Type={x:Type local:BILL}}">
-    <i:Interaction.Triggers>
+    <!--<i:Interaction.Triggers>
         <i:EventTrigger EventName="MouseDoubleClick">
             <i:InvokeCommandAction Command="{Binding DataContext.ShowDetailBillCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}}"
                                    CommandParameter="{Binding .}" />
         </i:EventTrigger>
-    </i:Interaction.Triggers>
+    </i:Interaction.Triggers>-->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60" />

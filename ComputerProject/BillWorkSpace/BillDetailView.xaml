@@ -49,7 +49,7 @@
             <Border Background="White"
                     CornerRadius="8"
                     Margin="20,0">
-                <local:CustomerInBillInfor IsEnabled="False"/>
+                <local:CustomerInBillInfor IsEnabled="False" DataContext="{Binding CurrentBill.Customer}"/>
             </Border>
             <Border Grid.Column="1"
                     Background="White"

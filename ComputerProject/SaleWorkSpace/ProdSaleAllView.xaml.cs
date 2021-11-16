@@ -24,6 +24,18 @@ namespace ComputerProject.SaleWorkSpace
         {
             InitializeComponent();
         }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var datacontext = this.DataContext as SaleViewModel;
+                if (datacontext.SearchProductCommand.CanExecute(null))
+                {
+                    datacontext.SearchProductCommand.Execute(txtSearch.Text);
+                }
+            }
+        }
     }
 
     public class ListProductTabSelector : DataTemplateSelector
