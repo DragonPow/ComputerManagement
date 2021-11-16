@@ -29,12 +29,12 @@
         </Style>
         <converter:ListCategoryToStringCommaConverter x:Key="CategoryLv2Converter" />
     </UserControl.Resources>
-        <Grid Height="45">
+        <Grid >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.23*"></ColumnDefinition>
-                <ColumnDefinition Width="0.65*"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="40"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <TextBlock x:Name="CategoryLv1"
@@ -44,7 +44,7 @@
                        Grid.Column="0"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
-                       Margin="20, 0, 0, 0"
+                       Margin="15, 0, 0, 0"
                        Text="{Binding Name}">
 
             </TextBlock>
@@ -54,6 +54,7 @@
                        FontSize="{x:Static localfont:Font.Body}"
                        Style="{StaticResource CellTitle}"
                        Grid.Column="1"
+                       Margin="15, 0, 0, 0"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        Text="{Binding ChildCategories, Converter={StaticResource CategoryLv2Converter}}" />

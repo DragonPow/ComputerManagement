@@ -95,6 +95,7 @@
                     Padding="15"
                     Background="{StaticResource Background}"
                     BorderBrush="#DBD7F4"
+                    Foreground="Black"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="{x:Static localfont:Font.Body}"
                     IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
