@@ -28,13 +28,14 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Custom:Search Grid.Column="0"
+                    <Custom:Search x:Name="txtSearch"
+                                   Grid.Column="0"
                                    Width="450"
                                    HorizontalAlignment="Left"
                                    IsTabStop="False"
                                    KeyboardNavigation.TabIndex="0"
                                    Texthint="Tìm kiếm"
-                                   DataContext="{Binding .}" />
+                                   KeyDown="txtSearch_KeyDown"/>
                     <Button Grid.Column="1"
                             Padding="0"
                             Margin="5"

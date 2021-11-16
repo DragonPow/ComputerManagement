@@ -32,7 +32,7 @@ namespace ComputerProject.Repository
             if (timeFrom.HasValue) query = query.Where(i => i.createTime.Year >= timeFrom.Value.Year && i.createTime.Month >= timeFrom.Value.Month && i.createTime.Day >= timeFrom.Value.Day);
             if (timeTo.HasValue) query = query.Where(i => i.createTime.Year <= timeTo.Value.Year && i.createTime.Month <= timeTo.Value.Month && i.createTime.Day <= timeTo.Value.Day);
 
-            return query.OrderByDescending(i=>i.createTime);
+            return query.OrderByDescending(i => i.createTime).ThenBy(i => i.id);
         }
         /// <summary>
         /// Load bill from database
@@ -61,6 +61,26 @@ namespace ComputerProject.Repository
             return bills;
         }
 
+        public void Delete(Bill currentBill)
+        {
+            using (var db = new ComputerManagementEntities())
+            {
+                db.Database.Log = Console.WriteLine;
+                BILL b = db.BILLs.Include(i => i.ITEM_BILL).Include(i => i.ITEM_BILL_SERI).Where(i => i.id == currentBill.Id).First();
+
+                foreach (var i in b.ITEM_BILL.ToList())
+                {
+                    db.ITEM_BILL.Remove(i);
+                }
+                foreach (var i in b.ITEM_BILL_SERI.ToList())
+                {
+                    db.ITEM_BILL_SERI.Remove(i);
+                }
+                db.BILLs.Remove(b);
+                db.SaveChanges();
+            }
+        }
+
         public Collection<BILL> LoadBills(int maxNumberInPage, int numberPage = 1)
         {
             return LoadBills(maxNumberInPage, numberPage, null, null, null);
@@ -76,7 +96,7 @@ namespace ComputerProject.Repository
             using (var db = new ComputerManagementEntities())
             {
                 var query = CreateQuery(db, text, timeFrom, timeTo);
-                return query.Count() / maxNumberInPage + 1;
+                return (query.Count() - 1) / maxNumberInPage + 1;
             }
         }
 
@@ -104,7 +124,7 @@ namespace ComputerProject.Repository
                 using (var db = new ComputerManagementEntities())
                 {
                     db.Configuration.LazyLoadingEnabled = false;
-                    bill = db.BILLs.Include(i=>i.CUSTOMER).Include(i=>i.ITEM_BILL).Include(i=>i.ITEM_BILL_SERI.Select(j=>j.PRODUCT)).Where(i => i.id == billId).First();
+                    bill = db.BILLs.Include(i => i.CUSTOMER).Include(i => i.ITEM_BILL).Include(i => i.ITEM_BILL_SERI.Select(j => j.PRODUCT)).Where(i => i.id == billId).First();
                 }
             }
             catch (ArgumentNullException e)

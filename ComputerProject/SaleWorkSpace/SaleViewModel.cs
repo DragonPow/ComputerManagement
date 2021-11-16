@@ -136,7 +136,7 @@ namespace ComputerProject.SaleWorkSpace
                     _currentRootCategory = value;
                     OnPropertyChanged();
 
-                    _currentCategory = _currentRootCategory?.ChildCategories[0]?? null;
+                    _currentCategory = _currentRootCategory?.ChildCategories[0] ?? null;
                     OnPropertyChanged(nameof(CurrentCategory));
                     OnCategoryChanged();
                 }
@@ -346,21 +346,21 @@ namespace ComputerProject.SaleWorkSpace
                 OnPropertyChanged(nameof(CurrentCategory));
             });
         }
-        private void SearchRootCategory()
-        {
-            VisibleProducts = _products = _repository.LoadProducts(CurrentRootCategory);
-        }
-        private void SearchChildCategory()
-        {
-            if (CurrentCategory != null)
-            {
-                VisibleProducts = new ObservableCollection<Model.Product>(_products.Where(i => i.CategoryProduct.Id == CurrentCategory.Id).AsEnumerable());
-            }
-            else
-            {
-                VisibleProducts = _products;
-            }
-        }
+        //private void SearchRootCategory()
+        //{
+        //    VisibleProducts = _products = _repository.LoadProducts(CurrentRootCategory);
+        //}
+        //private void SearchChildCategory()
+        //{
+        //    if (CurrentCategory != null)
+        //    {
+        //        VisibleProducts = new ObservableCollection<Model.Product>(_products.Where(i => i.CategoryProduct.Id == CurrentCategory.Id).AsEnumerable());
+        //    }
+        //    else
+        //    {
+        //        VisibleProducts = _products;
+        //    }
+        //}
         private void OnCategoryChanged()
         {
             if (_products == null) return;
@@ -441,9 +441,14 @@ namespace ComputerProject.SaleWorkSpace
         {
             RequestAddNewCustomer?.Invoke(this, null);
         }
-        private void SearchProduct(string v)
+        private void SearchProduct(string text)
         {
-            throw new NotImplementedException();
+            if (text != null)
+            {
+                OnCategoryChanged();
+                text = text.Trim();
+                VisibleProducts = new ObservableCollection<Product>(VisibleProducts.Where(i => i.Name.Contains(text)));
+            }
         }
         private void Sort()
         {
