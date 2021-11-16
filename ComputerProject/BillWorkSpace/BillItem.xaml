@@ -6,10 +6,17 @@
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ComputerProject"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:DesignHeight="50"
              d:DesignWidth="1100"
              d:DataContext="{d:DesignInstance Type={x:Type local:BILL}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseDoubleClick">
+            <i:InvokeCommandAction Command="{Binding DataContext.ShowDetailBillCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}}"
+                                   CommandParameter="{Binding .}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60" />
@@ -32,7 +39,7 @@
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
         <TextBlock Grid.Column="2"
-                   Text="{Binding TimeFrom, StringFormat='\{dd/MM/yyyy}'}"
+                   Text="{Binding createTime, StringFormat=dd/MM/yyyy}"
                    Padding="20,17"
                    VerticalAlignment="Stretch"
                    FontSize="{x:Static font:Font.Body}"
@@ -62,8 +69,8 @@
         <Button Grid.Column="6"
                 Style="{StaticResource MaterialDesignIconButton}"
                 Margin="20,0"
-                Command="{Binding DataContext.DeleteBillCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}}"
-                CommandParameter="{Binding .}">
+                Command="{Binding DataContext.DeleteBillCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
+                CommandParameter="{Binding ., RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
             <Image Width="24"
                    Height="24"
                    Source="/ComputerProject;component/Resource/Icon/trash-2.png" />

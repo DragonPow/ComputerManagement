@@ -183,7 +183,7 @@ namespace ComputerProject.Model
             //    Image = FormatHelper.TranferToBitmap(product.image);
             //});
             Image = product.image;
-            CategoryProduct = new Model.Category(product.CATEGORY);
+            if (product.CATEGORY != null) CategoryProduct = new Model.Category(product.CATEGORY);
             Decription = product.description;
             Warranty = product.warrantyTime?? 0;
         }

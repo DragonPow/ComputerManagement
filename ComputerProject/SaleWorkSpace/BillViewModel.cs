@@ -83,7 +83,7 @@ namespace ComputerProject.SaleWorkSpace
 
         private bool SuccessConfirm()
         {
-            try
+            //try
             {
                 using (var db = new ComputerManagementEntities())
                 {
@@ -92,11 +92,11 @@ namespace ComputerProject.SaleWorkSpace
                 }
                 return true;
             }
-            catch (Exception e)
-            {
-                MessageBoxCustom.ShowDialog("Có lỗi xảy ra khi thực hiện thao tác lưu", "Lỗi", MaterialDesignThemes.Wpf.PackIconKind.Error);
-                return false;
-            }
+            //catch (Exception e)
+            //{
+            //    MessageBoxCustom.ShowDialog("Có lỗi xảy ra khi thực hiện thao tác lưu", "Lỗi", MaterialDesignThemes.Wpf.PackIconKind.Error);
+            //    return false;
+            //}
         }
         private void Print()
         {

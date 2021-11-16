@@ -20,10 +20,10 @@ namespace ComputerProject.BillWorkSpace
         public BillPage()
         {
             var initView = new HistoryBillViewModel();
-            initView.SetNavigator(_navigator);
-            initView.LoadInitBills();
+            initView.LoadBillsAsync();
 
             _navigator = new NavigationService(initView);
+            initView.SetNavigator(_navigator);
             _navigator.OnCurrentPageChangedEvent += OnCurrentPageChanged;
         }
 

@@ -15,6 +15,7 @@ namespace ComputerProject.BillWorkSpace
         #region Fields
         NavigationService _navigator;
         BillRepository _repository;
+        public readonly BusyViewModel BusyService = new BusyViewModel();
 
         int _maxBillsInPage = 10;
         Collection<BILL> _bills;
@@ -193,14 +194,12 @@ namespace ComputerProject.BillWorkSpace
             _repository = new BillRepository();
         }
 
-        public void LoadInitBills()
+        public async void LoadBills(int pageNumber = 1, string text = null, DateTime? timeFrom = null, DateTime? timeTo = null)
         {
-            CurrentBills = _repository.LoadBills(_maxBillsInPage, CurrentPage = 1);
-            TotalPage = _repository.LoadNumberPages(_maxBillsInPage);
-        }
+            TextSearch = text;
+            TimeFrom = timeFrom;
+            TimeTo = timeTo;
 
-        public async void ReloadBills(int pageNumber = 1)
-        {
             var taskLoadTotalPage = Task.Run(() => TotalPage = _repository.LoadNumberPages(_maxBillsInPage, TextSearch, TimeFrom, TimeTo));
 
             await taskLoadTotalPage;
@@ -208,7 +207,14 @@ namespace ComputerProject.BillWorkSpace
             {
                 CurrentPage = TotalPage;
             }
-            Task.Run(() => CurrentBills = _repository.LoadBills(_maxBillsInPage, CurrentPage, TextSearch, TimeFrom, TimeTo));
+            else CurrentPage = pageNumber;
+
+            CurrentBills = _repository.LoadBills(_maxBillsInPage, CurrentPage, TextSearch, TimeFrom, TimeTo);
+        }
+
+        public void LoadBillsAsync(int pageNumber = 1, string text = null, DateTime? timeFrom = null, DateTime? timeTo = null)
+        {
+            BusyService.DoBusyTask(() => LoadBills(pageNumber, text, timeFrom, timeTo));
         }
         public void SetNavigator(NavigationService navigator)
         {
@@ -217,13 +223,11 @@ namespace ComputerProject.BillWorkSpace
 
         private void SearchBill(string text)
         {
-            CurrentBills = _repository.LoadBills(_maxBillsInPage, CurrentPage = 1, text);
-            TotalPage = _repository.LoadNumberPages(_maxBillsInPage, text);
+            LoadBillsAsync(1, text);
         }
         private void SearchBill(DateTime? timeFrom, DateTime? timeTo)
         {
-            CurrentBills = _repository.LoadBills(_maxBillsInPage, CurrentPage = 1, TextSearch, timeFrom, timeTo);
-            TotalPage = _repository.LoadNumberPages(_maxBillsInPage, timeFrom, timeTo);
+            LoadBillsAsync(1, null, timeFrom, timeTo);
         }
         private void ExportPdf(Collection<BILL> bills)
         {
@@ -235,6 +239,8 @@ namespace ComputerProject.BillWorkSpace
             {
                 CurrentBills.Remove(bill);
                 _repository.RemoveAsync(bill);
+
+                LoadBillsAsync(CurrentPage);
             }
             else
             {
@@ -246,9 +252,10 @@ namespace ComputerProject.BillWorkSpace
             if (_navigator == null) throw new NullReferenceException("Navigator is null");
 
             DetailBillViewModel vm = new DetailBillViewModel(bill);
+            vm.setNavigator(_navigator);
             vm.BillDeletedEvent += (sender, id) =>
             {
-                ReloadBills(CurrentPage);
+                LoadBillsAsync(CurrentPage);
             };
 
             _navigator.NavigateTo(vm);

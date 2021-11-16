@@ -10,7 +10,8 @@
              xmlns:converter="clr-namespace:ComputerProject.Converter"
              mc:Ignorable="d"
              d:DesignHeight="700"
-             d:DesignWidth="1300">
+             d:DesignWidth="1300"
+             d:DataContext="{d:DesignInstance Type={x:Type local:DetailBillViewModel}}">
     <UserControl.Resources>
         <converter:IndexCategoryConverter x:Key="IndexConver" />
     </UserControl.Resources>
@@ -27,6 +28,7 @@
                     Style="{StaticResource MaterialDesignIconButton}"
                     Width="40"
                     Height="40"
+                    Command="{Binding BackViewCommand}"
                     Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
                 <materialDesign:PackIcon Kind="ArrowLeft"
                                          Foreground="{StaticResource Title}" />
@@ -47,7 +49,8 @@
             <Border Background="White"
                     CornerRadius="8"
                     Margin="20,0">
-                <Customer:CustomerInfor IsEnabled="False"></Customer:CustomerInfor>
+                <Customer:CustomerInfor IsEnabled="False" 
+                                        DataContext="{Binding CurrentBill.Customer}"/>
             </Border>
             <Border Grid.Column="1"
                     Background="White"
@@ -84,7 +87,7 @@
                                        VerticalAlignment="Bottom"
                                        FontSize="{x:Static font:Font.Body}" />
                             <TextBlock x:Name="BillID"
-                                       Text="HD12456"
+                                       Text="{Binding CurrentBill.Id}"
                                        Margin="10,5"
                                        Grid.Column="2"
                                        Grid.Row="0"
@@ -100,7 +103,7 @@
                                        VerticalAlignment="Center"
                                        FontSize="{x:Static font:Font.Body}" />
                             <TextBlock x:Name="DateBill"
-                                       Text="12-10-2021"
+                                       Text="{Binding CurrentBill.TimeCreated, StringFormat=dd-MM-yyyy}"
                                        Margin="10,0"
                                        Grid.Column="2"
                                        Grid.Row="1"
@@ -151,17 +154,26 @@
                                        Foreground="Black" />
                         </Grid>
                     </StackPanel>
-                    <!--<ListView  x:Name="ListProdInDetailBill" Margin="10,0" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"
-                               ItemsSource="{Binding}">
+                    <ListView  x:Name="ListProdInDetailBill"
+                               Margin="10,0"
+                               Grid.Row="1"
+                               ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                               ScrollViewer.VerticalScrollBarVisibility="Auto"
+                               ItemsSource="{Binding CurrentBill.Products}">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Stretch" />
+                                <Setter Property="Background"
+                                        Value="Transparent" />
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                            <Border x:Name="Bd"  Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" >
-                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                            <Border x:Name="Bd"
+                                                    Background="{TemplateBinding Background}"
+                                                    Padding="{TemplateBinding Padding}">
+                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                                             </Border>
                                         </ControlTemplate>
                                     </Setter.Value>
@@ -171,10 +183,10 @@
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <ItemContainerTemplate>
-                                <local:ProdInDetailBillItem number="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Converter= {StaticResource IndexConver}}"/>
+                                <local:ProdInDetailBillItem number="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Converter= {StaticResource IndexConver}}" />
                             </ItemContainerTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>-->
+                    </ListView>
                     <Grid Grid.Row="2"
                           Margin="30,10">
                         <Grid.RowDefinitions>
@@ -222,8 +234,7 @@
                                    VerticalAlignment="Center"
                                    FontSize="{x:Static font:Font.Body}"
                                    Foreground="{StaticResource Icon}" />
-                        <TextBlock x:Name="txtTotalProd"
-                                   Text="16,499,000"
+                        <TextBlock Text="{Binding CurrentBill.TotalPriceProducts, StringFormat=N0}"
                                    Grid.Row="0"
                                    Margin="10,0"
                                    FontWeight="DemiBold"
@@ -231,8 +242,7 @@
                                    FontSize="{x:Static font:Font.Body}"
                                    HorizontalAlignment="Right"
                                    Foreground="Black" />
-                        <TextBlock x:Name="txtPoint"
-                                   Text="25,000"
+                        <TextBlock Text="{Binding CurrentBill.PointCustomer, StringFormat=N0}"
                                    Grid.Row="1"
                                    Margin="10,5"
                                    FontWeight="DemiBold"
@@ -240,8 +250,7 @@
                                    FontSize="{x:Static font:Font.Body}"
                                    HorizontalAlignment="Right"
                                    Foreground="Black" />
-                        <TextBlock x:Name="txtTotalBill"
-                                   Text="16,474,000"
+                        <TextBlock Text="{Binding CurrentBill.TotalMoney, StringFormat=N0}"
                                    Grid.Row="2"
                                    Margin="10,5"
                                    FontWeight="Bold"
@@ -249,8 +258,7 @@
                                    FontSize="18"
                                    HorizontalAlignment="Right"
                                    Foreground="{StaticResource MainColor}" />
-                        <TextBlock x:Name="txtReceiveMoney"
-                                   Text="16,500,000"
+                        <TextBlock Text="{Binding CurrentBill.MoneyCustomer, StringFormat=N0}"
                                    Grid.Row="3"
                                    Margin="10,0"
                                    FontWeight="DemiBold"
@@ -258,8 +266,7 @@
                                    FontSize="{x:Static font:Font.Body}"
                                    HorizontalAlignment="Right"
                                    Foreground="Black" />
-                        <TextBlock x:Name="txtExchangeMoney"
-                                   Text="26,000"
+                        <TextBlock Text="{Binding CurrentBill.ExcessCash, StringFormat=N0}"
                                    Grid.Row="4"
                                    Margin="10,5"
                                    FontWeight="DemiBold"
@@ -275,8 +282,7 @@
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Margin="20">
-            <Button x:Name="btnDelete"
-                    Style="{StaticResource MaterialDesignOutlinedButton}"
+            <Button Style="{StaticResource MaterialDesignOutlinedButton}"
                     materialDesign:ButtonAssist.CornerRadius="5"
                     BorderBrush="{StaticResource Warning}"
                     Margin="20,0"
@@ -284,13 +290,14 @@
                     Width="100"
                     Height="40"
                     Content="Xóa"
-                    Padding="30,0"></Button>
-            <Button x:Name="btnPrint"
-                    Background="{StaticResource MainColor}"
+                    Padding="30,0"
+                    Command="{Binding DeleteBillComamnd}" />
+            <Button Background="{StaticResource MainColor}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     materialDesign:ButtonAssist.CornerRadius="5"
                     Height="40"
-                    Foreground="White">
+                    Foreground="White"
+                    Command="{Binding ExportBillCommand}">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="PrinterOutline"
                                              Height="20"
