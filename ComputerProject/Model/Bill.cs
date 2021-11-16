@@ -96,6 +96,7 @@ namespace ComputerProject.Model
             }
         }
         public int ExcessCash => MoneyCustomer - TotalMoney;
+        public int TotalPriceProducts => Products.Sum(i => i.PriceUnit);
         public CUSTOMER Customer
         {
             get => _customer;

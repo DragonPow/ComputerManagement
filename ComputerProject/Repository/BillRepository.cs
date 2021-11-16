@@ -15,15 +15,24 @@ namespace ComputerProject.Repository
         private IQueryable<BILL> CreateQuery(ComputerManagementEntities db, string text, DateTime? timeFrom, DateTime? timeTo)
         {
             IQueryable<BILL> query = db.BILLs.AsQueryable();
+
             if (!String.IsNullOrWhiteSpace(text))
             {
-                text = text.Trim();
-                //Where id here
+                text.Trim();
+                int number;
+                if (int.TryParse(text, out number))
+                {
+                    query = query.Where(i => i.id == number || i.CUSTOMER.phone.Contains(text));
+                }
+                else
+                {
+                    query = query.Where(i => i.CUSTOMER.phone.Contains(text));
+                }
             }
             if (timeFrom.HasValue) query = query.Where(i => i.createTime.Year >= timeFrom.Value.Year && i.createTime.Month >= timeFrom.Value.Month && i.createTime.Day >= timeFrom.Value.Day);
             if (timeTo.HasValue) query = query.Where(i => i.createTime.Year <= timeTo.Value.Year && i.createTime.Month <= timeTo.Value.Month && i.createTime.Day <= timeTo.Value.Day);
 
-            return query.OrderBy(i=>i.createTime);
+            return query.OrderByDescending(i=>i.createTime);
         }
         /// <summary>
         /// Load bill from database
@@ -67,7 +76,7 @@ namespace ComputerProject.Repository
             using (var db = new ComputerManagementEntities())
             {
                 var query = CreateQuery(db, text, timeFrom, timeTo);
-                return query.Count() / maxNumberInPage;
+                return query.Count() / maxNumberInPage + 1;
             }
         }
 
@@ -94,7 +103,8 @@ namespace ComputerProject.Repository
             {
                 using (var db = new ComputerManagementEntities())
                 {
-                    bill = db.BILLs.Include(i => i.ITEM_BILL).Include(i => i.ITEM_BILL_SERI).Where(i => i.id == billId).First();
+                    db.Configuration.LazyLoadingEnabled = false;
+                    bill = db.BILLs.Include(i=>i.CUSTOMER).Include(i=>i.ITEM_BILL).Include(i=>i.ITEM_BILL_SERI.Select(j=>j.PRODUCT)).Where(i => i.id == billId).First();
                 }
             }
             catch (ArgumentNullException e)

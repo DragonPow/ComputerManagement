@@ -47,7 +47,7 @@ namespace ComputerProject.BillWorkSpace
                 return _exportBillCommand;
             }
         }
-        public ICommand DeleteBillCommnd
+        public ICommand DeleteBillComamnd
         {
             get
             {
@@ -76,7 +76,12 @@ namespace ComputerProject.BillWorkSpace
 
         public DetailBillViewModel(BILL bill)
         {
+            _repository = new BillRepository();
             CurrentBill = new Model.Bill(_repository.LoadDetailBill(bill.id));
+        }
+        public void setNavigator(NavigationService navigator)
+        {
+            this._navigator = navigator;
         }
 
         private void ExportPDF(Model.Bill bill)

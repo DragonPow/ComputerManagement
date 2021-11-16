@@ -9,7 +9,7 @@ namespace ComputerProject
 {
     public class BusyViewModel : BaseViewModel
     {
-        public System.Windows.Visibility BusyVisibility => isBusy ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
+        public System.Windows.Visibility BusyVisibility => IsBusy ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
         public bool IsFree => !IsBusy;
 
         private bool isBusy = false;
