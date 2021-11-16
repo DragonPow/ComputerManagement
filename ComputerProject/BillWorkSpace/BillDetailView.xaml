@@ -47,7 +47,7 @@
             <Border Background="White"
                     CornerRadius="8"
                     Margin="20,0">
-                <Customer:CustomerInfor IsEnabled="False"></Customer:CustomerInfor>
+                <local:CustomerInBillInfor IsEnabled="False"/>
             </Border>
             <Border Grid.Column="1"
                     Background="White"
