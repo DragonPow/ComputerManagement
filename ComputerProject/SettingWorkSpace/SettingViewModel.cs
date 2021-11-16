@@ -17,7 +17,7 @@ namespace ComputerProject.SettingWorkSpace
         #region Field
 
 
-        public string ViewName = "Thiết lập";
+        public string ViewName => "Thiết lập";
         public PackIconKind ViewIcon => PackIconKind.Settings;
 
         Visibility buttonStoreVisibility_Edit = Visibility.Hidden;
@@ -225,10 +225,15 @@ namespace ComputerProject.SettingWorkSpace
                 if (_cancelStoreCommand == null)
                 {
                     _cancelStoreCommand = new RelayCommand(a => {
-                        LoadData();
-                        StoreEditMode = false;
-                        ButtonStoreVisibility_Read = Visibility.Visible;
-                        ButtonStoreVisibility_Edit = Visibility.Hidden;
+                        MessageBoxResultCustom result = MessageBoxCustom.ShowDialog("Thông tin chỉnh sửa chưa được lưu.\nBạn muốn hủy chỉnh sửa?", "Thông báo", PackIconKind.Error);
+                        if (result == MessageBoxResultCustom.Yes)
+                        {
+                            LoadData();
+                            StoreEditMode = false;
+                            ButtonStoreVisibility_Read = Visibility.Visible;
+                            ButtonStoreVisibility_Edit = Visibility.Hidden;
+                        }    
+                           
                     });
                 }
                 return _cancelStoreCommand;
@@ -283,11 +288,14 @@ namespace ComputerProject.SettingWorkSpace
                 if (_cancelPointCommand == null)
                 {
                     _cancelPointCommand = new RelayCommand(a =>{
-                        LoadData();
-                        PointEditMode = false;
-                        ButtonPointVisibility_Read = Visibility.Visible;
-                        ButtonPointVisibility_Edit = Visibility.Hidden;
-
+                        MessageBoxResultCustom result= MessageBoxCustom.ShowDialog("Thông tin chỉnh sửa chưa được lưu. \nBạn muốn hủy chỉnh sửa?", "Thông báo", PackIconKind.Error);
+                        if (result==MessageBoxResultCustom.Yes)
+                        {
+                            LoadData();
+                            PointEditMode = false;
+                            ButtonPointVisibility_Read = Visibility.Visible;
+                            ButtonPointVisibility_Edit = Visibility.Hidden;
+                        }    
                     });
                 }
                 return _cancelPointCommand;

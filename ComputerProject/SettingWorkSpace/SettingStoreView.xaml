@@ -77,7 +77,7 @@
                 BorderBrush="{StaticResource MainColor}"
                 Foreground="{StaticResource MainColor}" 
                 Content="Hủy"
-                Command="{Binding SaveStoreCommand}">
+                Command="{Binding CancelStoreCommand}">
                 </Button>
             </StackPanel>
         </Grid>
