@@ -145,6 +145,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BillWorkSpace\CustomerInBillInfor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BillWorkSpace\ProdInDetailBillItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -205,6 +209,9 @@
       <DependentUpon>BillListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="BillWorkSpace\BillPage.cs" />
+    <Compile Include="BillWorkSpace\CustomerInBillInfor.xaml.cs">
+      <DependentUpon>CustomerInBillInfor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BillWorkSpace\DetailBillViewModel.cs" />
     <Compile Include="BillWorkSpace\HistoryBillViewModel.cs" />
     <Compile Include="BillWorkSpace\ProdInDetailBillItem.xaml.cs">
