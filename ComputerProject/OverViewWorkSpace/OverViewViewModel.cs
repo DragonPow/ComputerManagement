@@ -15,14 +15,16 @@ namespace ComputerProject.OverViewWorkSpace
     class OverViewViewModel : BaseViewModel, ITabView
     {
         #region Field
-        public string ViewName = "Tổng quan";
+        public string ViewName => "Tổng quan";
         public PackIconKind ViewIcon => PackIconKind.ChartArc;
         public SeriesCollection SeriesCollection { get; set; }
         public List<string> Barlable { get; set; }
-        
-    public Func<double, string> Formatter { get; set; } = value => value.ToString("C");
 
         
+        public Func<double, string> Formatter { get; set; } = value => FormatLable(value);
+        DateTime to = DateTime.Now;
+        DateTime from = DateTime.Now.AddDays(-29);
+
         #endregion
 
         #region Properties
@@ -46,9 +48,10 @@ namespace ComputerProject.OverViewWorkSpace
             ChartValues<double> Values = new ChartValues<double>();
             Barlable = new List<string>();
 
+            
             using (ComputerManagementEntities context = new ComputerManagementEntities())
             {
-                TotalNomalBill = context.BILLs.Count();
+                TotalNomalBill = context.BILLs.Where(b=> b.createTime <=to && b.createTime >= from).Count();
                 TotalWarrantyBill = context.BILL_REPAIR.Count();
                 TotalBill = TotalNomalBill + TotalWarrantyBill;
 
@@ -63,7 +66,7 @@ namespace ComputerProject.OverViewWorkSpace
                     Values.Add(dayrevenue);
                     date = date.AddDays(1);
                 }
-
+                #region query ver02
                 //IQueryable<Revenue> query = context.BILLs.GroupBy(b => b.createTime).Where(b => b.First().createTime >= date && b.First().createTime <= date.AddDays(6)).Select(r => new Revenue
                 //{
                 //    Day = r.First().createTime,
@@ -72,6 +75,7 @@ namespace ComputerProject.OverViewWorkSpace
 
                 //List<double> v = query.Select(r => r.Total).ToList();
                 //Values = new ChartValues<double>(v);
+                #endregion
             }
 
             SeriesCollection = new SeriesCollection
@@ -83,22 +87,23 @@ namespace ComputerProject.OverViewWorkSpace
                     Width = 50,
                     Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#200477BF"),
                     PointForeground = Brushes.Transparent,
-                    PointGeometry = null
-
-
+                    PointGeometry = null,
+                    Foreground = Brushes.Black,
                   },
-                 
+
                 };
         }
         #endregion
 
-
+        static string FormatLable(double value)
+        {
+            if (value >= 100000) return (value / 1000000).ToString() + "tr";
+            if (value >= 100000000) return (value / 1000000000).ToString() + "tỉ";
+            return null;
+        }
 
     }
-    //class Revenue
-    //{
-    //    public DateTime Day { get; set; }
-    //    public double Total { get; set; }
-    //}
+
+    
 }
 

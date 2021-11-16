@@ -38,8 +38,8 @@
             <ColumnDefinition Width="120" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="120" />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
 
         <TextBlock

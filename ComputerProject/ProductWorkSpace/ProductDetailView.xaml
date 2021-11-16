@@ -48,10 +48,11 @@
         </StackPanel>
         <Grid Grid.Row="1" Margin="20,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <local:ProInfor
+                    IsEnabled="False"
                     DataContext="{Binding}"
                     VisibilityAddImage="Hidden" />
 

@@ -24,6 +24,7 @@ namespace ComputerProject.SettingWorkSpace
         public SettingAllView()
         {
             InitializeComponent();
+            ListBoxSetting.SelectedIndex = 0;
         }
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
