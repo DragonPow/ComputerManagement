@@ -7,24 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerProject.CategoryWorkspace
+namespace ComputerProject.BillWorkSpace
 {
-    public class CategoryViewModel : BaseViewModel, INavigationBar, ITabView
+    public class BillPage : BaseViewModel, ITabView, INavigationBar
     {
-        readonly NavigationService _navigator;
+        public string ViewName => "Lịch sử bán hàng";
+        public PackIconKind ViewIcon => PackIconKind.History;
+
         public BaseViewModel CurrentPage => _navigator?.CurrentPage;
-        public string ViewName => "Danh mục";
-        public PackIconKind ViewIcon => PackIconKind.Ballot;
+        private NavigationService _navigator;
 
-        public CategoryViewModel()
+        public BillPage()
         {
-            var mainPage = new ListCategoryViewModel();
-            mainPage.LoadAsyncCategories();
+            var initView = new HistoryBillViewModel();
+            initView.SetNavigator(_navigator);
+            initView.LoadInitBills();
 
-            _navigator = new NavigationService(mainPage);
+            _navigator = new NavigationService(initView);
             _navigator.OnCurrentPageChangedEvent += OnCurrentPageChanged;
-
-            mainPage.setNaigator(_navigator);
         }
 
         private void OnCurrentPageChanged()

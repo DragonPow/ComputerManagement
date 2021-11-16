@@ -1,4 +1,5 @@
-﻿using ComputerProject.CategoryWorkspace;
+﻿using ComputerProject.BillWorkSpace;
+using ComputerProject.CategoryWorkspace;
 using ComputerProject.HelperService;
 using ComputerProject.OverViewWorkSpace;
 using ComputerProject.SaleWorkSpace;
@@ -63,7 +64,8 @@ namespace ComputerProject.ApplicationWorkspace
                 saleVM,
                 new CategoryViewModel(),
                 customerTab,
-                new ProductWorkSpace.ProductTabView()
+                new ProductWorkSpace.ProductTabView(),
+                new BillPage(),
             };
             CurrentViewModel = TabViewModels[0];
         }
