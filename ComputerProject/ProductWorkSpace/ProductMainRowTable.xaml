@@ -15,21 +15,22 @@
     <UserControl.Resources>
         <Style x:Key="TitleCell" TargetType="TextBlock">
             <Setter Property="FontSize" Value="16" />
-            <Setter Property="Padding" Value="22,17,16,16" />
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
             <Setter Property="FontSize" Value="{x:Static localfont:Font.Body}" />
             <Setter Property="Foreground" Value="Black" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.25*" />
-            <ColumnDefinition Width="0.15*" />
-            <ColumnDefinition Width="0.1*" />
-            <ColumnDefinition Width="0.13*" />
-            <ColumnDefinition Width="0.1*" />
-            <ColumnDefinition Width="0.1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150" />
             <ColumnDefinition Width="50" />
             <ColumnDefinition Width="50" />
         </Grid.ColumnDefinitions>
@@ -37,29 +38,26 @@
         <TextBlock
             x:Name="Name"
             Grid.Column="0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            Margin="15, 0, 0, 0"
             Style="{StaticResource TitleCell}"
             Text="{Binding Name, Mode=OneWay, FallbackValue='Tên sản phẩm'}" />
         <TextBlock
             x:Name="Code"
             Grid.Column="1"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            Margin="5, 0, 0, 0"
             Style="{StaticResource TitleCell}"
             Text="{Binding Id, Mode=OneWay, FallbackValue='Mã sản phẩm'}" />
         <TextBlock
             x:Name="Quantity"
             Grid.Column="2"
             HorizontalAlignment="Left"
+            Margin="5, 0, 0, 0"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}"
             Text="{Binding Quantity, Mode=OneWay, FallbackValue='10'}" />
         <TextBlock
             x:Name="Unit"
             Grid.Column="3"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
             Style="{StaticResource TitleCell}"
             Text="{Binding PriceSales_String, Mode=OneWay, FallbackValue='10.000'}" />
         <TextBlock

@@ -51,7 +51,7 @@
                               Margin="20,0"/>
                 <ListView x:Name="Listcategory"
                       Grid.Row="2"
-                      Margin="10, 0, 10, 0"
+                      Margin="22,0"
                       ItemContainerStyle="{StaticResource ListViewContainerStyle}"
                       ItemsSource="{Binding CurrentCategories}">
 
