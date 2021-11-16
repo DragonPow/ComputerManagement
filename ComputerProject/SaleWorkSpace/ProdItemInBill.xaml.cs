@@ -20,6 +20,13 @@ namespace ComputerProject.SaleWorkSpace
     /// </summary>
     public partial class ProdItemInBill : UserControl
     {
+        public static DependencyProperty NumberProperties = DependencyProperty.Register(nameof(number), typeof(string), typeof(ProdItemInBill), new PropertyMetadata("0"));
+
+        public string number
+        {
+            get { return (string)GetValue(NumberProperties); }
+            set { SetValue(NumberProperties, value); }
+        }
         public ProdItemInBill()
         {
             InitializeComponent();
