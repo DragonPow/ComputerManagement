@@ -1,7 +1,9 @@
-﻿using ComputerProject.CategoryWorkspace;
+﻿using ComputerProject.BillWorkSpace;
+using ComputerProject.CategoryWorkspace;
 using ComputerProject.HelperService;
 using ComputerProject.OverViewWorkSpace;
 using ComputerProject.SaleWorkSpace;
+using ComputerProject.SettingWorkSpace;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -61,9 +63,11 @@ namespace ComputerProject.ApplicationWorkspace
             {
                 new OverViewViewModel(),
                 saleVM,
+                new ProductWorkSpace.ProductTabView(),
                 new CategoryViewModel(),
+                new BillPage(),
                 customerTab,
-                new ProductWorkSpace.ProductTabView()
+                new SettingViewModel()
             };
             CurrentViewModel = TabViewModels[0];
         }
