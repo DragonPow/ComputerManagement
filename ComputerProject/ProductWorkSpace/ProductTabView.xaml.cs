@@ -23,7 +23,7 @@ namespace ComputerProject.ProductWorkSpace
     public partial class ProductTabView : UserControl, ITabView
     {
         public string ViewName => "Sản phẩm";
-        public PackIconKind ViewIcon => PackIconKind.Contact;
+        public PackIconKind ViewIcon => PackIconKind.DesktopMacDashboard;
 
         public ProductTabView()
         {

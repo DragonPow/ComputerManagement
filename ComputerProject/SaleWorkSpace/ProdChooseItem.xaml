@@ -10,7 +10,7 @@
              xmlns:model="clr-namespace:ComputerProject.Model"
              mc:Ignorable="d"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
-             Height="60"
+             d:DesignHeight="60"
              d:DesignWidth="350">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,12 +21,14 @@
         <Image Grid.Column="0"
                Source="{Binding Key.Image, FallbackValue = {StaticResource DefaultImage}, TargetNullValue={StaticResource DefaultImage}}"
                Stretch="UniformToFill"
+               Height="60"
+               VerticalAlignment="Center"
                HorizontalAlignment="Center" />
         <StackPanel Grid.Column="1"
                     VerticalAlignment="Center">
             <TextBlock Text="{Binding Key.Name, FallbackValue='Error name'}"
-                       TextWrapping="WrapWithOverflow"
                        FontWeight="DemiBold"
+                       TextWrapping="WrapWithOverflow"
                        FontSize="{x:Static font:Font.SmallBody}"
                        FontFamily="{StaticResource Mulish}"
                        Margin="10,10,10,0"

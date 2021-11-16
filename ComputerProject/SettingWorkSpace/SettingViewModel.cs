@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ComputerProject.SettingWorkSpace
@@ -14,17 +15,30 @@ namespace ComputerProject.SettingWorkSpace
     class SettingViewModel : HelperService.BaseViewModel, ITabView
     {
         #region Field
+
+
         public string ViewName = "Thiết lập";
         public PackIconKind ViewIcon => PackIconKind.Settings;
 
-        public string _storeName;
-        public string _storePhone;
-        public string _storeAddress;
-        public string _pointToMoney;
-        public string _moneyToPoint;
-        public string _maxPoint;
+        Visibility buttonStoreVisibility_Edit = Visibility.Hidden;
+        Visibility buttonStoreVisibility_Read = Visibility.Visible;
+        Visibility buttonPointVisibility_Edit = Visibility.Hidden;
+        Visibility buttonPointVisibility_Read = Visibility.Visible;
 
+        bool _storeEditMode = false;
+        bool _pointEditMode = false;
+
+        private string _storeName;
+        private string _storePhone;
+        private string _storeAddress;
+        private string _pointToMoney;
+        private string _moneyToPoint;
+        private string _maxPoint;
+
+        
         ICommand _saveStoreCommand;
+        ICommand _changeStoreCommand;
+        ICommand _changePointCommand;
         ICommand _savePointCommand;
         ICommand _cancelPointCommand;
         ICommand _cancelStoreCommand;
@@ -52,7 +66,7 @@ namespace ComputerProject.SettingWorkSpace
             set
             {
                 this._storeName = value;
-                OnPropertyChanged(nameof(_storeName));
+                OnPropertyChanged();
             }
         }
 
@@ -62,7 +76,7 @@ namespace ComputerProject.SettingWorkSpace
             set
             {
                 _storePhone = value;
-                OnPropertyChanged(nameof(_storePhone));
+                OnPropertyChanged();
             }
         }
 
@@ -72,7 +86,7 @@ namespace ComputerProject.SettingWorkSpace
             set
             {
                 _storeAddress = value;
-                OnPropertyChanged(nameof(_storeAddress));
+                OnPropertyChanged();
             }
         }
         public string PointToMoney
@@ -80,8 +94,8 @@ namespace ComputerProject.SettingWorkSpace
             get => _pointToMoney;
             set
             {
-                _storePhone = value;
-                OnPropertyChanged(nameof(_pointToMoney));
+                _pointToMoney = value;
+                OnPropertyChanged();
             }
         }
 
@@ -91,7 +105,7 @@ namespace ComputerProject.SettingWorkSpace
             set
             {
                 _moneyToPoint = value;
-                OnPropertyChanged(nameof(_moneyToPoint));
+                OnPropertyChanged();
             }
         }
 
@@ -100,8 +114,81 @@ namespace ComputerProject.SettingWorkSpace
             get => _maxPoint;
             set
             {
-                _storePhone = value;
-                OnPropertyChanged(nameof(_maxPoint));
+                _maxPoint = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool StoreEditMode
+        {
+            get => _storeEditMode;
+            set
+            {
+                _storeEditMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool PointEditMode
+        {
+            get => _pointEditMode;
+            set
+            {
+                _pointEditMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility ButtonPointVisibility_Edit
+        {
+            get => buttonPointVisibility_Edit;
+            set
+            {
+                buttonPointVisibility_Edit = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility ButtonPointVisibility_Read
+        {
+            get => buttonPointVisibility_Read;
+            set
+            {
+                buttonPointVisibility_Read = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility ButtonStoreVisibility_Edit
+        {
+            get => buttonStoreVisibility_Edit;
+            set
+            {
+                buttonStoreVisibility_Edit = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility ButtonStoreVisibility_Read
+        {
+            get => buttonStoreVisibility_Read;
+            set
+            {
+                buttonStoreVisibility_Read = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand ChangeStoreCommand
+        {
+            get
+            {
+                if (_changeStoreCommand == null)
+                {
+                    _changeStoreCommand = new RelayCommand(a => 
+                    ChangeStore());
+                }
+                return _changeStoreCommand;
             }
         }
 
@@ -115,7 +202,7 @@ namespace ComputerProject.SettingWorkSpace
                     {
                         try
                         {
-                            Save_store();
+                            Save_store(); 
                         }
                         catch (InvalidOperationException e)
                         {
@@ -124,8 +211,9 @@ namespace ComputerProject.SettingWorkSpace
                         }
 
                     });
-
+                    
                 }
+                
                 return _saveStoreCommand;
 
             }
@@ -137,12 +225,29 @@ namespace ComputerProject.SettingWorkSpace
                 if (_cancelStoreCommand == null)
                 {
                     _cancelStoreCommand = new RelayCommand(a => {
-                        LoadStoreData();
+                        LoadData();
+                        StoreEditMode = false;
+                        ButtonStoreVisibility_Read = Visibility.Visible;
+                        ButtonStoreVisibility_Edit = Visibility.Hidden;
                     });
                 }
                 return _cancelStoreCommand;
             }
         }
+
+        public ICommand ChangepointCommand
+        {
+            get
+            {
+                if (_changePointCommand == null)
+                {
+                    _changePointCommand = new RelayCommand(a =>
+                    ChangePoint());
+                }
+                return _changePointCommand;
+            }
+        }
+
         public ICommand SavePointCommand
         {
             get
@@ -153,7 +258,8 @@ namespace ComputerProject.SettingWorkSpace
                     {
                         try
                         {
-                            Save_store();
+                            Save_point();
+                            
                         }
                         catch (InvalidOperationException e)
                         {
@@ -162,9 +268,11 @@ namespace ComputerProject.SettingWorkSpace
                         }
 
                     });
+                   
 
                 }
-                return _saveStoreCommand;
+     
+                return _savePointCommand;
 
             }
         }
@@ -172,24 +280,28 @@ namespace ComputerProject.SettingWorkSpace
         {
             get
             {
-                if (_cancelStoreCommand == null)
+                if (_cancelPointCommand == null)
                 {
-                    _cancelStoreCommand = new RelayCommand(a => {
-                        LoadPointData();
+                    _cancelPointCommand = new RelayCommand(a =>{
+                        LoadData();
+                        PointEditMode = false;
+                        ButtonPointVisibility_Read = Visibility.Visible;
+                        ButtonPointVisibility_Edit = Visibility.Hidden;
+
                     });
                 }
-                return _cancelStoreCommand;
+                return _cancelPointCommand;
             }
         }
         #endregion
 
-        #region commmand
+        #region Constructor
         public SettingViewModel()
         {
-            LoadStoreData();
+            LoadData();
         }
 
-        public void LoadStoreData()
+        public void LoadData()
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
@@ -197,15 +309,8 @@ namespace ComputerProject.SettingWorkSpace
                 StoreName = data.value.ToString();
                 data = db.REGULATIONs.Where(p => p.name == "StorePhone").FirstOrDefault();
                 StorePhone = data.value.ToString();
-                data = db.REGULATIONs.Where(p => p.name == "StoreAddress").FirstOrDefault();
+                data = db.REGULATIONs.Where(p => p.name == "StoreAdress").FirstOrDefault();
                 StoreAddress = data.value.ToString();
-            }
-        }
-        public void LoadPointData()
-        {
-            using (ComputerManagementEntities db = new ComputerManagementEntities())
-            {
-                var data = db.REGULATIONs.Where(p => p.name == "StoreName").FirstOrDefault();
                 data = db.REGULATIONs.Where(p => p.name == "PointToMoney").FirstOrDefault();
                 PointToMoney = data.value.ToString();
                 data = db.REGULATIONs.Where(p => p.name == "MoneyToPoint").FirstOrDefault();
@@ -227,14 +332,13 @@ namespace ComputerProject.SettingWorkSpace
                 data.value = StoreName;
                 data = db.REGULATIONs.Where(p => p.name == "StorePhone").FirstOrDefault();
                 data.value = StorePhone;
-                data = db.REGULATIONs.Where(p => p.name == "StoreAddress").FirstOrDefault();
+                data = db.REGULATIONs.Where(p => p.name == "StoreAdress").FirstOrDefault();
                 data.value = StoreAddress;
-                data = db.REGULATIONs.Where(p => p.name == "PointToMoney").FirstOrDefault();
-                data.value = PointToMoney;
-                data = db.REGULATIONs.Where(p => p.name == "MoneyToPoint").FirstOrDefault();
-                data.value = MoneyToPoint;
-                data = db.REGULATIONs.Where(p => p.name == "MaxPoint").FirstOrDefault();
-                data.value = MaxPoint;
+                db.SaveChanges();
+                StoreEditMode = false;
+                ButtonStoreVisibility_Read = Visibility.Visible;
+                ButtonStoreVisibility_Edit = Visibility.Hidden;
+                MessageBoxCustom.ShowDialog("Lưu thông tin cửa hàng thành công!", "Thông báo", PackIconKind.AlertCircleCheck);
             }
         }
         public void Save_point()
@@ -252,7 +356,24 @@ namespace ComputerProject.SettingWorkSpace
                 data.value = MoneyToPoint;
                 data = db.REGULATIONs.Where(p => p.name == "MaxPoint").FirstOrDefault();
                 data.value = MaxPoint;
+                db.SaveChanges();
+                PointEditMode = false;
+                ButtonPointVisibility_Read = Visibility.Visible;
+                ButtonPointVisibility_Edit = Visibility.Hidden;
+                MessageBoxCustom.ShowDialog("Lưu thông tin điểm thưởng thành công!", "Thông báo", PackIconKind.AlertCircleCheck);
             }
+        }
+        private void ChangeStore()
+        {
+            StoreEditMode = true;
+            ButtonStoreVisibility_Read = Visibility.Hidden;
+            ButtonStoreVisibility_Edit = Visibility.Visible;
+        }
+        private void ChangePoint()
+        {
+            PointEditMode = true;
+            ButtonPointVisibility_Read = Visibility.Hidden;
+            ButtonPointVisibility_Edit = Visibility.Visible;
         }
         #endregion
 

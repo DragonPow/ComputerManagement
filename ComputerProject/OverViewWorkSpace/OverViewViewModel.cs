@@ -16,7 +16,7 @@ namespace ComputerProject.OverViewWorkSpace
     {
         #region Field
         public string ViewName = "Tổng quan";
-        public PackIconKind ViewIcon => PackIconKind.ChartArc;
+        public PackIconKind ViewIcon => PackIconKind.ChartPie;
         public SeriesCollection SeriesCollection { get; set; }
         public List<string> Barlable { get; set; }
         

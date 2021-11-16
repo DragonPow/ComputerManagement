@@ -8,9 +8,9 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="700"
-             d:DesignWidth="340"
+             Width="350"
              d:DataContext="{d:DesignInstance Type={x:Type local:SaleViewModel}}">
-    <Grid Margin="20,0,0,0">
+    <Grid Margin="10,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
