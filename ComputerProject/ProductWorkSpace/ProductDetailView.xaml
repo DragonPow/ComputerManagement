@@ -52,6 +52,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <local:ProInfor
+                    IsEnabled="False"
                     DataContext="{Binding}"
                     VisibilityAddImage="Hidden" />
 

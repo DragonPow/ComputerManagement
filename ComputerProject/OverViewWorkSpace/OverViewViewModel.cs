@@ -15,7 +15,7 @@ namespace ComputerProject.OverViewWorkSpace
     class OverViewViewModel : BaseViewModel, ITabView
     {
         #region Field
-        public string ViewName = "Tổng quan";
+        public string ViewName => "Tổng quan";
         public PackIconKind ViewIcon => PackIconKind.ChartArc;
         public SeriesCollection SeriesCollection { get; set; }
         public List<string> Barlable { get; set; }
@@ -86,7 +86,6 @@ namespace ComputerProject.OverViewWorkSpace
                     PointForeground = Brushes.Transparent,
                     PointGeometry = null,
                     Foreground = Brushes.Black,
-                    ToolTip = ""
                   },
 
                 };
@@ -97,8 +96,6 @@ namespace ComputerProject.OverViewWorkSpace
         {
             if (value >= 100000) return (value / 1000000).ToString() + "tr";
             if (value >= 100000000) return (value / 1000000000).ToString() + "tỉ";
-
-
             return null;
         }
 
