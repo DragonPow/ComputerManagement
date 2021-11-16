@@ -41,7 +41,7 @@
                         <DataTrigger Binding="{Binding TitleViewName}"
                                      Value="DetailCategory">
                             <Setter Property="Text"
-                                    Value="Chi tiết danh mục" />
+                                    Value="Chỉnh sửa danh mục" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

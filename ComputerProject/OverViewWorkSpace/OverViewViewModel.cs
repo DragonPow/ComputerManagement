@@ -19,10 +19,12 @@ namespace ComputerProject.OverViewWorkSpace
         public PackIconKind ViewIcon => PackIconKind.ChartArc;
         public SeriesCollection SeriesCollection { get; set; }
         public List<string> Barlable { get; set; }
-        
-    public Func<double, string> Formatter { get; set; } = value => FormatLable(value);
 
         
+        public Func<double, string> Formatter { get; set; } = value => FormatLable(value);
+        DateTime to = DateTime.Now;
+        DateTime from = DateTime.Now.AddDays(-29);
+
         #endregion
 
         #region Properties
@@ -46,9 +48,10 @@ namespace ComputerProject.OverViewWorkSpace
             ChartValues<double> Values = new ChartValues<double>();
             Barlable = new List<string>();
 
+            
             using (ComputerManagementEntities context = new ComputerManagementEntities())
             {
-                TotalNomalBill = context.BILLs.Count();
+                TotalNomalBill = context.BILLs.Where(b=> b.createTime <=to && b.createTime >= from).Count();
                 TotalWarrantyBill = context.BILL_REPAIR.Count();
                 TotalBill = TotalNomalBill + TotalWarrantyBill;
 

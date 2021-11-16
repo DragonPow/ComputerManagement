@@ -31,8 +31,8 @@
             <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="120"/>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock
@@ -58,7 +58,6 @@
         <TextBlock
             x:Name="cellPoint"
             Grid.Column="4"
-            Grid.ColumnSpan="1"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
             Text="Điểm thưởng" />
     </Grid>
