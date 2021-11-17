@@ -27,7 +27,7 @@
         <Border Grid.Row="1"
                 Background="White"
                 CornerRadius="8"
-                Margin="30,0,30,10">
+                Margin="20,0,20,10">
             <Grid Margin="10,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
