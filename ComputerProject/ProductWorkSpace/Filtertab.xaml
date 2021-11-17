@@ -14,7 +14,7 @@
              Background="White"
              Tag="FilterProductView"
              d:DesignHeight="1044"
-             d:DesignWidth="318"
+             d:DesignWidth="250"
              d:DataContext="{d:DesignInstance Type={x:Type saleworkspace:FilterProductViewModel}}">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="dataFromEnum"
@@ -25,8 +25,8 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <StackPanel Width="318">
-        <StackPanel HorizontalAlignment="Left"
+    <StackPanel Width="250">
+        <!--<StackPanel HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Orientation="Horizontal"
                     Grid.Column="0"
@@ -39,17 +39,17 @@
                     Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
                 <materialDesign:PackIcon Kind="ArrowLeft"
                                          Foreground="{StaticResource Title}" />
-            </Button>
-            <TextBlock FontSize="25"
+            </Button>-->
+        <TextBlock FontSize="20"
                        FontWeight="SemiBold"
                        FontFamily="{StaticResource Mulish}"
                        Foreground="{StaticResource Title}"
-                       Margin="20,3,0,0"
+                       Margin="20"
+                   HorizontalAlignment="Center"
                        VerticalAlignment="Center">
                 Bộ lọc
-            </TextBlock>
-        </StackPanel>
-        <StackPanel Margin="30, 20, 30, 0">
+        </TextBlock>
+        <StackPanel Margin="20,0">
             <TextBlock FontWeight="SemiBold"
                        FontFamily="{StaticResource Mulish}"
                        Text="   Danh mục"
@@ -73,11 +73,11 @@
                                    FontSize="{x:Static localfont:Font.Body}"
                                    MarginText="5"
                                    CornerRadiusText="3"
-                                   Margin="30, 0, 30, 0"
+                                   Margin="20,0"
                                    IsTabStop="False"
                                    KeyboardNavigation.TabIndex="0">
         </localcustom:TextboxCustom>
-        <StackPanel Margin="30, 10, 30, 0">
+        <StackPanel Margin="20, 10, 20, 0">
             <TextBlock FontSize="{x:Static localfont:Font.Body}"
                        FontWeight="SemiBold"
                        FontFamily="{StaticResource Mulish}"
@@ -99,7 +99,7 @@
                       SelectedItem="{Binding StateProduct}"
                       SelectedIndex="0"/>
         </StackPanel>
-        <StackPanel Margin="30, 0, 30, 0">
+        <StackPanel Margin="20,0">
             <TextBlock FontSize="{x:Static localfont:Font.Body}"
                        FontWeight="SemiBold"
                        FontFamily="{StaticResource Mulish}"
@@ -131,7 +131,7 @@
                    FontFamily="{StaticResource Mulish}"
                    Text="   Khoảng giá"
                    Foreground="Black"
-                   Margin="30, 0, 30, 10"
+                   Margin="20, 0, 20, 10"
                    VerticalAlignment="Top">
         </TextBlock>
         <Grid Margin="0, 0, 0, 20">
@@ -150,7 +150,7 @@
                      FontSize="{x:Static localfont:Font.Body}"
                      FontFamily="{StaticResource Mulish}"
                      VerticalScrollBarVisibility="Auto"
-                     Margin="30, 0, 0, 0"
+                     Margin="20,0,0,0"
                      Padding="9"
                      Background="{StaticResource Background}"
                      BorderBrush="#DBD7F4" />
@@ -175,21 +175,21 @@
         </Grid>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
-                    Margin="30, 10, 30, 0">
+                    Margin="20">
             <Button Style="{StaticResource MaterialDesignOutlinedButton}"
                     materialDesign:ButtonAssist.CornerRadius="5"
                     Background="Transparent"
                     BorderBrush="{StaticResource MainColor}"
                     Foreground="{StaticResource MainColor}"
-                    Width="100"
-                    Height="40"
+                    Width="80"
+                    Height="30"
                     Content="Đặt lại"
                     Margin="0, 0, 20, 0"
                     Command="{Binding UndoCommand}" />
             <Button 
                     Background="{StaticResource MainColor}"
-                    Width="100"
-                    Height="40"
+                    Width="80"
+                    Height="30"
                     Content="Lọc"
                     Margin="20, 0, 0, 0"
                     Foreground="White"
