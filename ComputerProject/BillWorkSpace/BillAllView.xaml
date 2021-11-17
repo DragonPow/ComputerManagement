@@ -27,7 +27,7 @@
         <Border Grid.Row="1"
                 Background="White"
                 CornerRadius="8"
-                Margin="30,0,30,20">
+                Margin="30,0,30,10">
             <Grid Margin="10,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
@@ -186,7 +186,7 @@
         </Border>
         <custom:PageControl Grid.Row="2"
                             HorizontalAlignment="Center"
-                            Margin="0,0,0,20" 
+                            Margin="0,0,0,10" 
                             CurrentPage="{Binding CurrentPage, UpdateSourceTrigger=PropertyChanged}"
                             MaxPage="{Binding TotalPage, UpdateSourceTrigger=PropertyChanged}"
                             PageChanged="PageControl_PageChanged"/>

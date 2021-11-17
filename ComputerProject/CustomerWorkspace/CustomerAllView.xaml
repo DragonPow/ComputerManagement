@@ -27,7 +27,6 @@
         </TextBlock>
         <localcustom:PageControl
             Grid.Row="4"
-            Width="150"
             HorizontalAlignment="Center"
             CurrentPage="{Binding CurrentPage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             DockPanel.Dock="Bottom"

@@ -30,7 +30,6 @@
                 VerticalAlignment="Top"
                 CurrentPage="1"
                 Grid.Row="4"
-                Width="150"
                 DockPanel.Dock="Bottom"
                 />
         <Border
