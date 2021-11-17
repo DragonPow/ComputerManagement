@@ -25,7 +25,6 @@
                    Margin="30,20"
                    Text="Danh mục" />
         <localcustom:PageControl
-                MaxPage="10"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 CurrentPage="1"
