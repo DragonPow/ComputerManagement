@@ -338,6 +338,16 @@ namespace ComputerProject.SaleWorkSpace
         public SaleViewModel()
         {
             _repository = new SaleRepository();
+            CurrentFilter = new FilterProductViewModel(CurrentFilter);
+            CurrentFilter.FilterClickedEvent += new EventHandler((o, e) =>
+            {
+                VisibleProducts = _repository.SearchFilterProduct(CurrentFilter);
+                if (CurrentFilter.CategoryType != null)
+                {
+                    CurrentCategory = Categories.Where(i => i.Name == CurrentFilter.CategoryType.Name).FirstOrDefault();
+                }
+            });
+
             LoadData();
         }
         public SaleViewModel(SaleRepository repository)

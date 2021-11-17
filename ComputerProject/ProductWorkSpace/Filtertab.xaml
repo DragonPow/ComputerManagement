@@ -186,8 +186,7 @@
                     Content="Đặt lại"
                     Margin="0, 0, 20, 0"
                     Command="{Binding UndoCommand}" />
-            <Button 
-                    Background="{StaticResource MainColor}"
+            <Button Background="{StaticResource MainColor}"
                     Width="80"
                     Height="35"
                     Content="Lọc"

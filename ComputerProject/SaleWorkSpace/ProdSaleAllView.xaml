@@ -104,7 +104,7 @@
                             </Border>
                            
                         </materialDesign:PopupBox.ToggleContent>
-                        <filter:Filtertab/>
+                        <filter:Filtertab DataContext="{Binding CurrentFilter}"/>
                     </materialDesign:PopupBox>
                 </Grid>
 
