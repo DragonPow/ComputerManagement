@@ -15,7 +15,7 @@ namespace ComputerProject.BillWorkSpace
         #region Fields
         NavigationService _navigator;
         BillRepository _repository;
-        public BusyViewModel BusyService = new BusyViewModel();
+        public BusyViewModel BusyService { get; private set; } = new BusyViewModel();
 
         int _maxBillsInPage = 10;
         Collection<BILL> _bills;
@@ -26,8 +26,7 @@ namespace ComputerProject.BillWorkSpace
         DateTime? _timeFrom;
         DateTime? _timeTo;
 
-        ICommand _searchBillbyStringCommand;
-        ICommand _searchBillbyTimeCommand;
+        ICommand _searchBillCommand;
         ICommand _exportPdfCommand;
         ICommand _deleteBillCommand;
         ICommand _showDetailBillCommand;
@@ -120,26 +119,15 @@ namespace ComputerProject.BillWorkSpace
             }
         }
 
-        public ICommand SearchBillbyStringCommand
+        public ICommand SearchBillCommand
         {
             get
             {
-                if (null == _searchBillbyStringCommand)
+                if (null == _searchBillCommand)
                 {
-                    _searchBillbyStringCommand = new RelayCommand(s => SearchBill(TextSearch));
+                    _searchBillCommand = new RelayCommand(s => SearchBill(TextSearch, TimeFrom, TimeTo));
                 }
-                return _searchBillbyStringCommand;
-            }
-        }
-        public ICommand SearchBillbyTimeCommand
-        {
-            get
-            {
-                if (null == _searchBillbyTimeCommand)
-                {
-                    _searchBillbyTimeCommand = new RelayCommand(t => SearchBill(TimeFrom, TimeTo));
-                }
-                return _searchBillbyTimeCommand;
+                return _searchBillCommand;
             }
         }
         public ICommand ExportPdfCommand
@@ -190,6 +178,7 @@ namespace ComputerProject.BillWorkSpace
 
         public HistoryBillViewModel(int maxBillsInPage = 8)
         {
+            //BusyService = new BusyViewModel();
             this._maxBillsInPage = maxBillsInPage;
             _repository = new BillRepository();
         }
@@ -221,13 +210,9 @@ namespace ComputerProject.BillWorkSpace
             this._navigator = navigator;
         }
 
-        private void SearchBill(string text)
+        private void SearchBill(string text, DateTime? timeFrom, DateTime? timeTo)
         {
-            LoadBillsAsync(1, text);
-        }
-        private void SearchBill(DateTime? timeFrom, DateTime? timeTo)
-        {
-            LoadBillsAsync(1, null, timeFrom, timeTo);
+            LoadBillsAsync(1, text, timeFrom, timeTo);
         }
         private void ExportPdf(Collection<BILL> bills)
         {

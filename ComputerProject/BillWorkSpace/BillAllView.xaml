@@ -104,12 +104,11 @@
                             Padding="15,0"
                             Height="35"
                             VerticalAlignment="Center"
-                            
                             BorderBrush="{StaticResource MainColor}"
                             Style="{StaticResource MaterialDesignOutlinedButton}"
                             materialDesign:ButtonAssist.CornerRadius="5"
                             Content="Áp dụng"
-                            Command="{Binding}"/>
+                            Command="{Binding SearchBillCommand}" />
                     <Button Grid.Column="6"
                             Margin="10,0"
                             Padding="10,0"

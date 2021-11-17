@@ -34,10 +34,5 @@ namespace ComputerProject.BillWorkSpace
                 dc.ShowDetailBillCommand.Execute((sender as ListViewItem).DataContext);
             }
         }
-
-        private void ListViewItem_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
-        {
-
-        }
     }
 }
