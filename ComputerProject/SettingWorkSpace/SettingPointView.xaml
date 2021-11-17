@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:ComputerProject.SettingWorkSpace"
              xmlns:custom="clr-namespace:ComputerProject.CustomControl"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type={x:Type local:SettingViewModel}}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -54,6 +55,7 @@
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 Background="{StaticResource MainColor}"
                 Content="Chỉnh sửa"
+                materialDesign:ButtonAssist.CornerRadius="5"
                 Visibility="{Binding ButtonPointVisibility_Read}"
                 Command="{Binding ChangepointCommand}">
             </Button>
@@ -66,6 +68,7 @@
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 Background="{StaticResource MainColor}"
                 Content="Lưu"
+                    materialDesign:ButtonAssist.CornerRadius="5"
                 Command="{Binding SavePointCommand}">
                 </Button>
                 <Button
@@ -78,6 +81,7 @@
                 BorderBrush="{StaticResource MainColor}"
                 Foreground="{StaticResource MainColor}" 
                 Content="Hủy"
+                    materialDesign:ButtonAssist.CornerRadius="5"
                 Command="{Binding CancelPointCommand}">
                 </Button>
             </StackPanel>
