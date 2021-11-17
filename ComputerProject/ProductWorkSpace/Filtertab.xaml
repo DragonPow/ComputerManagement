@@ -89,11 +89,11 @@
 
             <ComboBox x:Name="State"
                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                      FontSize="16"
                       Background="{StaticResource Background}"
                       BorderBrush="#DBD7F4"
                       Margin="0, 0, 0, 10"
                       Padding="8"
+                      FontSize="{x:Static localfont:Font.Body}"
                       FontFamily="{StaticResource Mulish}"
                       ItemsSource="{Binding Source={StaticResource dataFromEnum}}" 
                       SelectedItem="{Binding StateProduct}"
@@ -120,7 +120,7 @@
             <TextBox x:Name="Waranty"
                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
                      BorderThickness="0"    
-                     FontSize="16"
+                     FontSize="{x:Static localfont:Font.Body}"
                      Text="{Binding TimeWarranty}"
                      
                      FontFamily="{StaticResource Mulish}" />
@@ -182,14 +182,14 @@
                     BorderBrush="{StaticResource MainColor}"
                     Foreground="{StaticResource MainColor}"
                     Width="80"
-                    Height="30"
+                    Height="35"
                     Content="Đặt lại"
                     Margin="0, 0, 20, 0"
                     Command="{Binding UndoCommand}" />
             <Button 
                     Background="{StaticResource MainColor}"
                     Width="80"
-                    Height="30"
+                    Height="35"
                     Content="Lọc"
                     Margin="20, 0, 0, 0"
                     Foreground="White"

@@ -109,7 +109,7 @@
                             Style="{StaticResource MaterialDesignOutlinedButton}"
                             materialDesign:ButtonAssist.CornerRadius="5"
                             Content="Áp dụng"
-                            Command="{Binding ExportPdfCommand}"/>
+                            Command="{Binding}"/>
                     <Button Grid.Column="6"
                             Margin="10,0"
                             Padding="10,0"
