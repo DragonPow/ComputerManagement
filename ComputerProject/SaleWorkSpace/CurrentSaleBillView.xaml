@@ -160,7 +160,7 @@
                                 MaxWidth="150"
                                 BorderBrush="{StaticResource Icon}"
                                 HorizontalAlignment="Right">
-                            <TextBox Text="{Binding CurrentPoint, FallbackValue='0'}"
+                            <TextBox Text="{Binding CurrentPoint, UpdateSourceTrigger=PropertyChanged, FallbackValue='0'}"
                                      BorderThickness="0"
                                      BorderBrush="{x:Null}"
                                      VerticalAlignment="Center"

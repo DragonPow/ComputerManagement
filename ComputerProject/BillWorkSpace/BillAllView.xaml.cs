@@ -33,9 +33,9 @@ namespace ComputerProject.BillWorkSpace
                 HistoryBillViewModel dataContext = this.DataContext as HistoryBillViewModel;
                 if (dataContext != null)
                 {
-                    if (dataContext.SearchBillbyStringCommand.CanExecute(null))
+                    if (dataContext.SearchBillCommand.CanExecute(null))
                     {
-                        dataContext.SearchBillbyStringCommand.Execute(tbxSearch.Text);
+                        dataContext.SearchBillCommand.Execute(tbxSearch.Text);
                     }
                 }
             }
