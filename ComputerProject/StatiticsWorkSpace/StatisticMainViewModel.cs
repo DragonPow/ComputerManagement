@@ -14,6 +14,12 @@ namespace ComputerProject.StatiticsWorkSpace
 {
     class StatisticMainViewModel : BusyViewModel
     {
+        int maxTopSale = 5;
+
+        public StatisticMainViewModel()
+        {
+            maxTopSale = 5;
+        }
 
         System.Threading.CancellationTokenSource operationSelecteMonth = new System.Threading.CancellationTokenSource();
         protected DateTime selectedDate = DateTime.Now.AddMonths(-1);
@@ -105,9 +111,8 @@ namespace ComputerProject.StatiticsWorkSpace
             get
             {
                 var series = new SeriesCollection();
-                int max = 5;
 
-                for (int i = 0; i < max && i < revenuePerCate.Count; i++)
+                for (int i = 0; i < maxTopSale && i < revenuePerCate.Count; i++)
                 {
                     var c = revenuePerCate[i];
                     series.Add(new PieSeries()
@@ -117,10 +122,10 @@ namespace ComputerProject.StatiticsWorkSpace
                     });
                 }
 
-                if (series.Count == max)
+                if (series.Count == maxTopSale)
                 {
                     int money = 0;
-                    for (int i = max; i < revenuePerCate.Count; i++)
+                    for (int i = maxTopSale; i < revenuePerCate.Count; i++)
                     {
                         var c = revenuePerCate[i];
                         money += c.Money;
@@ -141,7 +146,7 @@ namespace ComputerProject.StatiticsWorkSpace
         {
             get
             {
-                var rs =  revenuePerProd.Take(5).ToList();
+                var rs = revenuePerProd.Take(5).ToList();
 
                 return rs;
             }
@@ -166,13 +171,13 @@ namespace ComputerProject.StatiticsWorkSpace
                     }
                 }
 
-               return values;
+                return values;
             }
         }
 
         void LoadProductImage()
         {
-            for(int i = 0; i<revenuePerProd.Count; i++)
+            for (int i = 0; i < revenuePerProd.Count && i < maxTopSale; i++)
             {
                 Console.WriteLine("Load image for " + revenuePerProd[i].ProductName);
                 var pd = revenuePerProd.Where(prod => prod.ProductID == revenuePerProd[i].ProductID).FirstOrDefault();
@@ -249,7 +254,7 @@ namespace ComputerProject.StatiticsWorkSpace
                         d.StartTime = new DateTime(_year, _month, (int)d.Tag);
                     }
                 }
-                
+
 
                 var lastRp = db.REPORTs.Where(r => r.year == lastMonth.Year && r.month == lastMonth.Month).FirstOrDefault();
                 if (lastRp != null)
@@ -298,7 +303,7 @@ namespace ComputerProject.StatiticsWorkSpace
                 productSaleByDay.Add(new ReportModel()
                 {
                     ProductID = day.ProductID,
-                    ProductName  =day.ProductName,
+                    ProductName = day.ProductName,
                     CategoryID = day.CategoryID,
                     CategoryName = day.CategoryName,
                     Money = day.Money,
@@ -325,7 +330,7 @@ namespace ComputerProject.StatiticsWorkSpace
                 }
             }
 
-            revenuePerCate = productSaleByDay.GroupBy(p => new { p.CategoryID , p.CategoryName}).Select(
+            revenuePerCate = productSaleByDay.GroupBy(p => new { p.CategoryID, p.CategoryName }).Select(
             g => new ReportModel()
             {
                 CategoryID = g.Key.CategoryID,
@@ -336,7 +341,7 @@ namespace ComputerProject.StatiticsWorkSpace
             }
             ).ToList();
 
-            revenuePerProd = productSaleByDay.GroupBy(p => new { p.ProductID , p.ProductName}).Select(g => new ReportModel()
+            revenuePerProd = productSaleByDay.GroupBy(p => new { p.ProductID, p.ProductName }).Select(g => new ReportModel()
             {
                 ProductID = g.Key.ProductID,
                 ProductName = g.Key.ProductName,
@@ -423,6 +428,21 @@ namespace ComputerProject.StatiticsWorkSpace
             int rate = (nw - old) * 100 / old;
             if (rate > 0) return "+$1%".Replace("$1", rate.ToString());
             return "$1%".Replace("$1", rate.ToString());
+        }
+
+        public String[] LabelDays
+        {
+            get
+            {
+                var rs = new List<string>();
+                int maxDay = DateTime.DaysInMonth(YearSelected, MonthSelected);
+                for (int i = 0; i < maxDay; i++)
+                {
+                    rs.Add("$1".Replace("$1", (i + 1).ToString()));
+                }
+
+                return rs.ToArray();
+            }
         }
     }
 }

@@ -13,6 +13,7 @@
     d:DesignHeight="750"
     d:DesignWidth="1380"
     Background="{StaticResource Background}"
+    Foreground="Black"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -108,7 +109,7 @@
                     FontSize="16"
                     FontWeight="DemiBold"
                     Foreground="#11142D"
-                    Text="Top bán chạy" />
+                    Text="Top 5 bán chạy" />
                 <Separator Margin="10,0,10,20" Background="{StaticResource Divition}" />
                 <ListView Margin="10,0,0,0" ItemsSource="{Binding CollectionTopSale}">
                     <ListView.ItemTemplate>
@@ -162,10 +163,10 @@
                         local:DatePickerDateFormat.DateFormat="MM-yyyy"
                         materialDesign:HintAssist.Hint="Chọn tháng"
                         BorderBrush="{StaticResource MainColor}"
+                        IsEnabled="{Binding IsFree}"
                         SelectedDate="{Binding SelectedDate}"
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                        Text="MMM-yyyy"
-                        IsEnabled="{Binding IsFree}"/>
+                        Text="MMM-yyyy" />
                     <Button
                         Grid.Column="2"
                         Margin="10,0,20,0"
@@ -185,11 +186,14 @@
                     </lvc:CartesianChart.SeriesColors>
 
                     <lvc:CartesianChart.Series>
-                        <lvc:LineSeries Title="Doanh thu" Values="{Binding Path=RevenueCollection}" />
+                        <lvc:LineSeries
+                            Title="Doanh thu"
+                            Fill="#FFBAD3F7"
+                            Values="{Binding Path=RevenueCollection}" />
                     </lvc:CartesianChart.Series>
 
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Title="Ngày" Labels="{Binding Barlable}">
+                        <lvc:Axis Title="Ngày" Labels="{Binding LabelDays}">
                             <lvc:Axis.Separator>
                                 <lvc:Separator Step="1" />
                             </lvc:Axis.Separator>
@@ -213,8 +217,8 @@
             Grid.Row="1"
             Grid.RowSpan="4"
             Grid.ColumnSpan="4"
-            Height="150"
             Width="200"
+            Height="150"
             Background="#7FBBB9B9"
             Visibility="{Binding BusyVisibility, FallbackValue=Collapsed}" />
     </Grid>
