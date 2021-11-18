@@ -10,7 +10,6 @@
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="400">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel x:Name="CusInfor">
             <TextBlock Grid.Row="0"
                        Margin="20,20,20,10"
@@ -104,6 +103,4 @@
                                        Text="{Binding Point_String, Mode=TwoWay}"
                                        Texthint="0" />
         </StackPanel>
-    </ScrollViewer>
-
 </UserControl>

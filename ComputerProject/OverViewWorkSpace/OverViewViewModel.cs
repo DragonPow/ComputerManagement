@@ -43,6 +43,7 @@ namespace ComputerProject.OverViewWorkSpace
         #endregion
 
         #region Constructor
+
         public OverViewViewModel()
         {
             DateTime date = DateTime.Now.AddDays(-6);
@@ -79,7 +80,7 @@ namespace ComputerProject.OverViewWorkSpace
                 //Values = new ChartValues<double>(v);
                 #endregion
             }
-           
+
         }
         #endregion
 

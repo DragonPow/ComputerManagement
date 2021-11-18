@@ -12,7 +12,6 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
     <Border Background="White" CornerRadius="8">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <Grid Margin="20">
                 <StackPanel x:Name="ProInform" HorizontalAlignment="Stretch">
                     <localcustom:TextboxCustom
@@ -184,8 +183,6 @@
                 </StackPanel>
 
             </Grid>
-        </ScrollViewer>
-       
     </Border>
    
 </UserControl>

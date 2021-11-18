@@ -299,6 +299,7 @@
                                     
                                     Zoom="X"
                                     LegendLocation="Top"
+                                    Hoverable="True"
                                     >
                     <lvc:CartesianChart.Series>
                         <lvc:LineSeries
