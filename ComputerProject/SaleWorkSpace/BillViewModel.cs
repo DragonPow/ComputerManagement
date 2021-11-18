@@ -87,6 +87,7 @@ namespace ComputerProject.SaleWorkSpace
             {
                 using (var db = new ComputerManagementEntities())
                 {
+                    db.Database.Log = Console.WriteLine;
                     db.BILLs.Add(CurrentBill.CastToModel());
                     db.SaveChanges();
                 }

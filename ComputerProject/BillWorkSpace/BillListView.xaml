@@ -19,8 +19,8 @@
         </ListView.ItemTemplate>
         <ListView.ItemContainerStyle>
             <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewContainerStyle}">
-                <!--<EventSetter Event="MouseDoubleClick"
-                             Handler="ListViewItem_MouseDoubleClick" />-->
+                <EventSetter Event="MouseDoubleClick"
+                             Handler="ListViewItem_MouseDoubleClick" />
             </Style>
         </ListView.ItemContainerStyle>
     </ListView>

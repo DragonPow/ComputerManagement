@@ -10,7 +10,7 @@
              d:DesignWidth="200"
              mc:Ignorable="d">
 
-    <Grid Height="35">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
@@ -23,6 +23,8 @@
         <Button Grid.Column="6"
                 Width="Auto"
                 Height="Auto"
+                Margin="2"
+                Padding="2"
                 Click="Button_Skip_Next_Click"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignIconButton}"
@@ -33,6 +35,8 @@
         <Button Grid.Column="0"
                 Width="Auto"
                 Height="Auto"
+                Margin="2"
+                Padding="2"
                 Click="Button_Skip_Back_Click"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignIconButton}"
@@ -43,6 +47,8 @@
         <Button Grid.Column="5"
                 Width="Auto"
                 Height="Auto"
+                Margin="2"
+                Padding="2"
                 Click="Button_Next_Click"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignIconButton}"
@@ -53,6 +59,8 @@
         <Button Grid.Column="1"
                 Width="Auto"
                 Height="Auto"
+                Margin="2"
+                Padding="2"
                 Click="Button_Back_Click"
                 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignIconButton}"
@@ -66,6 +74,7 @@
                    VerticalAlignment="Center"
                    FontFamily="{StaticResource Mulish}"
                    FontSize="12"
+                   Margin="2"
                    FontWeight="DemiBold"
                    Foreground="{StaticResource MainColor}"
                    Text="/ " />
@@ -78,6 +87,7 @@
                  BorderThickness="0"
                  FontFamily="{StaticResource Mulish}"
                  FontSize="12"
+                 Margin="2"
                  FontWeight="DemiBold"
                  Foreground="{StaticResource MainColor}"
                  Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PageControl}}, Path=CurrentPage, Mode=TwoWay}" />
@@ -87,6 +97,7 @@
                    VerticalAlignment="Center"
                    FontFamily="{StaticResource Mulish}"
                    FontSize="12"
+                   Margin="2"
                    FontWeight="DemiBold"
                    Foreground="{StaticResource MainColor}"
                    Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PageControl}}, Path=MaxPage}" />

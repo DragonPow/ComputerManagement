@@ -34,6 +34,7 @@ namespace ComputerProject.SaleWorkSpace
         Model.Category _currentCategory;
         Model.Category _currentRootCategory;
         int _currentPoint;
+        int _pointMoney = -1;
         IFilterProductState _currentFilter;
         bool _isPriceLowToHight;
 
@@ -52,8 +53,28 @@ namespace ComputerProject.SaleWorkSpace
 
         #region Properties
         public int TotalPriceProduct => ProductsInBill == null ? 0 : ProductsInBill.Sum(p => p.Value * p.Key.PriceSale);
-        public int TotalPriceBill => TotalPriceProduct;
+        public int TotalPriceBill
+        {
+            get
+            {
+                int value = TotalPriceProduct - CurrentPoint * PointMoney;
 
+                if (value <= 0) return 0;
+                return value;
+            }
+        }
+        public int PointMoney
+        {
+            get
+            {
+                if (_pointMoney < 0)
+                {
+                    _pointMoney = _repository.GetPointToMoney();
+                    OnPropertyChanged(nameof(TotalPriceBill));
+                }
+                return _pointMoney;
+            }
+        }
         public Collection<Product> VisibleProducts
         {
             get => _visibleProduct;
@@ -151,6 +172,7 @@ namespace ComputerProject.SaleWorkSpace
                 {
                     _currentPoint = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(TotalPriceBill));
                 }
             }
         }
@@ -316,6 +338,16 @@ namespace ComputerProject.SaleWorkSpace
         public SaleViewModel()
         {
             _repository = new SaleRepository();
+            CurrentFilter = new FilterProductViewModel(CurrentFilter);
+            CurrentFilter.FilterClickedEvent += new EventHandler((o, e) =>
+            {
+                VisibleProducts = _repository.SearchFilterProduct(CurrentFilter);
+                if (CurrentFilter.CategoryType != null)
+                {
+                    CurrentCategory = Categories.Where(i => i.Name == CurrentFilter.CategoryType.Name).FirstOrDefault();
+                }
+            });
+
             LoadData();
         }
         public SaleViewModel(SaleRepository repository)

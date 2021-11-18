@@ -27,7 +27,7 @@
         <Border Grid.Row="1"
                 Background="White"
                 CornerRadius="8"
-                Margin="30,0,30,20">
+                Margin="20,0,20,10">
             <Grid Margin="10,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
@@ -36,16 +36,17 @@
                 </Grid.RowDefinitions>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.2*" />
+                        <ColumnDefinition Width="0.9*" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="120" />
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="0.4*" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="0.4*" />
-                        <ColumnDefinition Width="0.5*" />
                     </Grid.ColumnDefinitions>
                     <custom:Search x:Name="tbxSearch"
                                    Texthint="Mã hóa đơn hoặc số điện thoại"
-                                   Width="400"
+                                   Width="380"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Left"
                                    Margin="10,0"
@@ -57,7 +58,7 @@
                                FontSize="{x:Static font:Font.Body}"
                                FontFamily="{StaticResource Mulish}"
                                Foreground="Black"
-                               Margin="30,0,10,0" />
+                               Margin="10,0,10,0" />
                     <TextBlock  Grid.Column="3"
                                 Text="Đến ngày"
                                 Margin="10,0"
@@ -73,7 +74,7 @@
                             CornerRadius="8"
                             Margin="1">
                         <DatePicker BorderBrush="#DBD7F4"
-                                    Padding="10"
+                                    Padding="8"
                                     Foreground="Black"
                                     FontFamily="{StaticResource Mulish}"
                                     FontSize="{x:Static font:Font.Body}"
@@ -89,7 +90,7 @@
                             BorderBrush="#DBD7F4"
                             CornerRadius="8">
                         <DatePicker BorderBrush="#DBD7F4"
-                                    Padding="10"
+                                    Padding="8"
                                     Foreground="Black"
                                     FontFamily="{StaticResource Mulish}"
                                     FontSize="{x:Static font:Font.Body}"
@@ -99,27 +100,37 @@
                                     Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                     </Border>
                     <Button Grid.Column="5"
+                            Margin="15,0,0,0"
+                            Padding="15,0"
+                            Height="35"
+                            VerticalAlignment="Center"
+                            BorderBrush="{StaticResource MainColor}"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            materialDesign:ButtonAssist.CornerRadius="5"
+                            Content="Áp dụng"
+                            Command="{Binding SearchBillCommand}" />
+                    <Button Grid.Column="6"
                             Margin="10,0"
                             Padding="10,0"
-                            Height="40"
+                            Height="35"
                             VerticalAlignment="Center"
                             Background="{StaticResource MainColor}"
                             BorderBrush="{StaticResource MainColor}"
                             Style="{StaticResource MaterialDesignRaisedButton}"
-                            materialDesign:ButtonAssist.CornerRadius="8"
+                            materialDesign:ButtonAssist.CornerRadius="5"
                             HorizontalAlignment="Right"
                             Command="{Binding ExportPdfCommand}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Export"
-                                                     Width="24"
-                                                     Height="24"
+                                                     Width="18"
+                                                     Height="18"
                                                      Foreground="White"></materialDesign:PackIcon>
                             <TextBlock Text="Xuất cùng lúc"
                                        VerticalAlignment="Center"
                                        FontSize="{x:Static font:Font.Body}"
                                        FontFamily="{StaticResource Mulish}"
                                        Foreground="White"
-                                       Margin="10,0"></TextBlock>
+                                       Margin="5,0"></TextBlock>
                         </StackPanel>
                     </Button>
                 </Grid>
@@ -186,7 +197,7 @@
         </Border>
         <custom:PageControl Grid.Row="2"
                             HorizontalAlignment="Center"
-                            Margin="0,0,0,20" 
+                            Margin="0,0,0,10" 
                             CurrentPage="{Binding CurrentPage, UpdateSourceTrigger=PropertyChanged}"
                             MaxPage="{Binding TotalPage, UpdateSourceTrigger=PropertyChanged}"
                             PageChanged="PageControl_PageChanged"/>

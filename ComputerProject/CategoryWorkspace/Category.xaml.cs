@@ -25,6 +25,14 @@ namespace ComputerProject.CategoryWorkspace
             InitializeComponent();
         }
 
-       
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var datacontext = this.DataContext as ListCategoryViewModel;
+            var param = (sender as ListViewItem).DataContext;
+            if (datacontext.OpenDetailCategoryCommand.CanExecute(param))
+            {
+                datacontext.OpenDetailCategoryCommand.Execute(param);
+            }
+        }
     }
 }

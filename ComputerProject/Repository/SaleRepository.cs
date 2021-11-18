@@ -58,11 +58,19 @@ namespace ComputerProject.Repository
         {
             using (var db = new ComputerManagementEntities())
             {
-                foreach(var pro in products)
+                foreach (var pro in products)
                 {
                     pro.Image = await db.PRODUCTs.Where(i => i.id == pro.Id).Select(i => i.image).FirstAsync();
                     Console.WriteLine("image name {0} load done", pro.Name);
                 }
+            }
+        }
+
+        public int GetPointToMoney()
+        {
+            using (var db = new ComputerManagementEntities())
+            {
+                return int.Parse(db.REGULATIONs.Where(i => i.name == "PointToMoney").Select(i => i.value).First());
             }
         }
 
@@ -115,7 +123,7 @@ namespace ComputerProject.Repository
                 {
                     var task_c = db.PRODUCTs.Include(i => i.CATEGORY).Where(i => i.id == item.Id).AsNoTracking().Select(i => i.CATEGORY).FirstAsync();
                     item.CategoryProduct = new Category(await task_c);
-                } 
+                }
             }
         }
 
