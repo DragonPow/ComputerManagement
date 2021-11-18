@@ -155,19 +155,22 @@
                                 Margin="10,0,0,0"
                                 BorderThickness="1"
                                 CornerRadius="5"
-                                Padding="20,0,5,0"
+                                Padding="10,0,5,0"
                                 MinWidth="80"
                                 MaxWidth="150"
                                 BorderBrush="{StaticResource Icon}"
                                 HorizontalAlignment="Right">
-                            <TextBox Text="{Binding CurrentPoint, UpdateSourceTrigger=PropertyChanged, FallbackValue='0'}"
+                            <TextBox PreviewTextInput="PreviewTextInput"
+                                    Text="{Binding CurrentPoint, UpdateSourceTrigger=PropertyChanged, FallbackValue='0'}"
                                      BorderThickness="0"
                                      BorderBrush="{x:Null}"
+                                     MinWidth="80"                              
+                                     HorizontalContentAlignment="Right"
                                      VerticalAlignment="Center"
                                      HorizontalAlignment="Right"
                                      FontSize="{x:Static font:Font.Body}"
                                      FontFamily="{StaticResource Mulish}"
-                                     Foreground="Black" />
+                                     Foreground="Black" ></TextBox>
                         </Border>
                     </Grid>
                 </Border>

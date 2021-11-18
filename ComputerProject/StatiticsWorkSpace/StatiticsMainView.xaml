@@ -15,7 +15,7 @@
     Background="{StaticResource Background}"
     Foreground="Black"
     mc:Ignorable="d">
-    <Grid>
+    <Grid Margin="20,10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.2*" />
             <ColumnDefinition Width="1.2*" />
@@ -23,9 +23,9 @@
             <ColumnDefinition Width="1.5*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="52*" />
-            <RowDefinition Height="130*" />
-            <RowDefinition Height="129*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="150*" />
+            <RowDefinition Height="150*" />
             <RowDefinition Height="157*" />
             <RowDefinition Height="283*" />
         </Grid.RowDefinitions>
@@ -34,12 +34,12 @@
             Grid.RowSpan="2"
             Grid.Column="2"
             Grid.ColumnSpan="2"
-            Margin="20.4,0,20,0.4"
+            Margin="10,5"
             Background="White"
             CornerRadius="8">
             <DockPanel>
                 <TextBlock
-                    Margin="10,5,5,5"
+                    Margin="10,15,0,0"
                     DockPanel.Dock="Top"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="16"
@@ -52,7 +52,7 @@
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <lvc:PieChart
-                        Margin="15,0,0,0"
+                        Margin="10,0,0,0"
                         InnerRadius="0"
                         LegendLocation="Right"
                         Series="{Binding CategoteryPieSeries}" />
@@ -60,7 +60,7 @@
             </DockPanel>
         </Border>
         <TextBlock
-            Margin="20,19,-0.8,-1"
+            Margin="10,10,10,15"
             VerticalAlignment="Center"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Title}"
@@ -71,35 +71,35 @@
             Title="Khách hàng"
             Grid.Row="1"
             Grid.Column="0"
-            Margin="15,10,15.2,9.6"
+           Margin="5"
             Percent="-21%"
             Value="{Binding CountNewCustomer}" />
         <local:OverviewCardView
             Title="Đơn hàng"
             Grid.Row="1"
             Grid.Column="1"
-            Margin="14.8,10,14.6,9.6"
+            Margin="5"
             Percent="{Binding RateBill}"
             Value="{Binding CountNewBill}" />
         <local:OverviewCardView
             Title="Doanh thu"
             Grid.Row="2"
             Grid.Column="0"
-            Margin="15,10.4,15.2,10.4"
+            Margin="5"
             Percent="{Binding RateRevenue}"
             Value="{Binding Revenue_String}" />
         <local:OverviewCardView
             Title="Sửa chữa bảo hành"
             Grid.Row="2"
             Grid.Column="1"
-            Margin="14.8,10.4,14.6,10.4"
+            Margin="5"
             Percent="{Binding RateRepair}"
             Value="{Binding CountNewRepair}" />
         <Border
             Grid.Row="3"
             Grid.RowSpan="2"
             Grid.Column="3"
-            Margin="20.2,9.6,20,10.4"
+            Margin="10"
             Background="White"
             CornerRadius="8">
             <StackPanel>
@@ -135,7 +135,7 @@
             Grid.RowSpan="2"
             Grid.Column="0"
             Grid.ColumnSpan="3"
-            Margin="10,9.6,9.8,10.4"
+            Margin="10"
             Background="White"
             CornerRadius="8">
             <DockPanel>
@@ -146,7 +146,7 @@
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
-                        Margin="10"
+                        Margin="10,15"
                         FontFamily="{StaticResource Mulish}"
                         FontSize="18"
                         FontWeight="DemiBold"
@@ -157,7 +157,7 @@
                         x:Name="DateTimePicker"
                         Grid.Column="1"
                         Width="140"
-                        Margin="10,0,20,0"
+                        Margin="10,15,20,0"
                         Padding="8"
                         local:DatePickerCalendar.IsMonthYear="True"
                         local:DatePickerDateFormat.DateFormat="MM-yyyy"
@@ -167,7 +167,7 @@
                         SelectedDate="{Binding SelectedDate}"
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                         Text="MMM-yyyy" />
-                    <Button
+                    <!--<Button
                         Grid.Column="2"
                         Margin="10,0,20,0"
                         HorizontalAlignment="Right"
@@ -176,7 +176,7 @@
                         FontFamily="{StaticResource Mulish}"
                         FontSize="16"
                         FontWeight="DemiBold"
-                        Style="{StaticResource MaterialDesignRaisedButton}" />
+                        Style="{StaticResource MaterialDesignRaisedButton}" />-->
                 </Grid>
                 <lvc:CartesianChart Height="{Binding ActualHeight, ElementName=StaticsMainView, Mode=OneWay}" Zoom="X">
                     <lvc:CartesianChart.SeriesColors>
