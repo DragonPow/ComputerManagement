@@ -20,6 +20,7 @@
                               Background="White"
                               Margin="10"
                               Width="400"
+                              PreviewTextInput="PreviewTextInput"
                               IsEnabled="{Binding PointEditMode}"
                               Text="{Binding PointToMoney, Mode=TwoWay}"
                               MarginText="10"/>
@@ -29,6 +30,7 @@
                               CornerRadiusText="5"
                               FontSize="16"
                               Width="400"
+                              PreviewTextInput="PreviewTextInput"
                               Margin="10"
                               IsEnabled="{Binding PointEditMode}"
                               Text="{Binding MoneyToPoint, Mode=TwoWay}"
@@ -40,6 +42,7 @@
                               CornerRadiusText="5"
                               FontSize="16"
                               Margin="10"
+                              PreviewTextInput="PreviewTextInput"
                               Width="400"
                               IsEnabled="{Binding PointEditMode}"
                               Text="{Binding MaxPoint, Mode=TwoWay}"

@@ -61,11 +61,11 @@
                                Margin="10,0,10,0" />
                     <TextBlock  Grid.Column="3"
                                 Text="Đến ngày"
-                                Margin="10,0"
+                                Margin="10,10,0,10"
                                 VerticalAlignment="Center"
                                 FontSize="{x:Static font:Font.Body}"
                                 FontFamily="{StaticResource Mulish}"
-                                Foreground="Black" />
+                                Foreground="Black" HorizontalAlignment="Left" Width="59" />
                     <Border x:Name="tbxDateStart"
                             Grid.Column="2"
                             VerticalAlignment="Center"
