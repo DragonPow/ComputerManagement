@@ -30,5 +30,9 @@ namespace ComputerProject.SettingWorkSpace
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+        private void PreviewKeydown(object sender, KeyEventArgs e)
+        {
+            e.Handled = e.Key == Key.Space;
+        }
     }
 }

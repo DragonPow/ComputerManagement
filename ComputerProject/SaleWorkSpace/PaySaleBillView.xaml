@@ -9,7 +9,7 @@
               xmlns:converter="clr-namespace:ComputerProject.Converter"
              mc:Ignorable="d"
              d:DesignHeight="700"
-             d:DesignWidth="650"
+             d:DesignWidth="700"
              MinWidth="600"
              Tag="BillViewModel"
              d:DataContext="{d:DesignInstance Type={x:Type local:BillViewModel}}"

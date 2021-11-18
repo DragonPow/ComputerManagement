@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:ComputerProject.SaleWorkSpace"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
              xmlns:model="clr-namespace:ComputerProject.Model"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="40"
              d:DesignWidth="800"
@@ -46,14 +47,20 @@
                 Margin="5,0"
                 BorderBrush="{StaticResource Icon}">
             <TextBox 
-                     Text="{Binding Seri, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      BorderThickness="0"
                      Margin="5,0"
                      Grid.Column="2"
                      VerticalAlignment="Center"
                      FontSize="{x:Static font:Font.Body}"
                      FontFamily="{StaticResource Mulish}"
-                     Foreground="Black" />
+                     Foreground="Black" >
+                <TextBox.Text>
+                    <Binding
+                      Path="Seri"
+                        UpdateSourceTrigger="PropertyChanged">
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </Border>
 
     </Grid>
