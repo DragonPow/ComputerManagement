@@ -311,6 +311,9 @@
     <Compile Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml.cs">
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DETAIL_REPORT_REVENUE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Helper\ViewModel\BusyViewModel.cs" />
     <Compile Include="Helper\ViewModel\PagingViewModel.cs" />
     <Compile Include="Helper\Interface\ISearchable.cs" />
@@ -495,6 +498,8 @@
     <Compile Include="StatiticsWorkSpace\OverviewCardView.xaml.cs">
       <DependentUpon>OverviewCardView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatiticsWorkSpace\ReportModel.cs" />
+    <Compile Include="StatiticsWorkSpace\StatisticMainViewModel.cs" />
     <Compile Include="StatiticsWorkSpace\StatiticsMainView.xaml.cs">
       <DependentUpon>StatiticsMainView.xaml</DependentUpon>
     </Compile>
@@ -504,6 +509,7 @@
     <Compile Include="StatiticsWorkSpace\TopProductItemView.xaml.cs">
       <DependentUpon>TopProductItemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatiticsWorkSpace\TopProductItemViewModel.cs" />
     <Compile Include="Validation\InitClass.cs" />
     <Compile Include="WindowTest.xaml.cs">
       <DependentUpon>WindowTest.xaml</DependentUpon>

@@ -101,6 +101,7 @@ namespace ComputerProject
                 rs.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad; // important here
                 rs.StreamSource = ms;
                 rs.EndInit();
+                rs.Freeze();
             }
 
             return rs;
@@ -119,6 +120,26 @@ namespace ComputerProject
             }
 
             return bm;
+        }
+
+        public static String getMoneyLabel(int money)
+        {
+            string[] prefix = new string[] { "k", "tr", "tỷ" };
+            int i = 0;
+            while (money / 1000000 != 0)
+            {
+                money /= 1000;
+                i++;
+            }
+            if (money < 1000) { return money.ToString(); }
+            double rs = money / 1000d;
+            return String.Format("{0:0.#}", rs) + prefix[i];
+        }
+
+        public static void SetTimeOut(System.Data.Entity.DbContext db, int secs)
+        {
+            var dbContext = (db as System.Data.Entity.Infrastructure.IObjectContextAdapter).ObjectContext;
+            dbContext.CommandTimeout = secs;
         }
     }
 }
