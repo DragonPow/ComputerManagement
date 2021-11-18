@@ -12,8 +12,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <TextBlock Text="Thiết lập điểm thưởng" Margin="10" FontSize="{x:Static font:Font.Title}" FontFamily="{StaticResource Mulish}" FontWeight="Bold" Foreground="{StaticResource Title}"/>
-        <custom:TextboxCustom x:Name="PointToMoney" 
-                              Title="Tỉ lệ quy đổi điểm thành tiền khuyến mãi(%)" 
+        <custom:TextboxCustom x:Name="PointToMoney"
+                              Title="Quy đổi 1 điểm thành tiền khuyến mãi(VNĐ)" 
                               HorizontalAlignment="Left"
                               CornerRadiusText="5"
                               FontSize="16"
@@ -25,7 +25,7 @@
                               Text="{Binding PointToMoney, Mode=TwoWay}"
                               MarginText="10"/>
         <custom:TextboxCustom x:Name="MoneyToPoint" 
-                              Title="Tỉ lệ quy đổi tiền hóa đơn thành điểm(%)" 
+                              Title="Quy đổi tiền hóa đơn thành 1 điểm(VNĐ)" 
                               HorizontalAlignment="Left"
                               CornerRadiusText="5"
                               FontSize="16"

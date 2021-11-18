@@ -30,6 +30,7 @@
                               FontSize="16"
                               Width="400"
                               Margin="10"
+                              PreviewTextInput="PreviewTextInput"
                               IsEnabled="{Binding StoreEditMode}"
                               Text="{Binding StorePhone, Mode=TwoWay}"
                               Background="White"
