@@ -274,8 +274,7 @@ namespace ComputerProject.ProductWorkSpace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                var dbContext = (db as System.Data.Entity.Infrastructure.IObjectContextAdapter).ObjectContext;
-                dbContext.CommandTimeout = 120;
+                FormatHelper.SetTimeOut(db, 120);
 
                 var data = db.PRODUCTs.Where(p => p.id.Equals(productID)).Select(p => p.image).FirstOrDefault();
 

@@ -50,6 +50,7 @@
           <Property Name="address" Type="nvarchar" MaxLength="200" />
           <Property Name="birthday" Type="char" MaxLength="10" />
           <Property Name="point" Type="int" Nullable="false" />
+          <Property Name="createTime" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="DETAIL_REPORT_CATEGORY">
           <Key>
@@ -73,6 +74,16 @@
           <Property Name="day" Type="tinyint" Nullable="false" />
           <Property Name="amount" Type="int" Nullable="false" />
           <Property Name="money" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETAIL_REPORT_REVENUE">
+          <Key>
+            <PropertyRef Name="reportId" />
+            <PropertyRef Name="day" />
+          </Key>
+          <Property Name="reportId" Type="int" Nullable="false" />
+          <Property Name="day" Type="tinyint" Nullable="false" />
+          <Property Name="money" Type="int" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ITEM_BILL">
           <Key>
@@ -126,6 +137,9 @@
           <Property Name="month" Type="tinyint" Nullable="false" />
           <Property Name="year" Type="smallint" Nullable="false" />
           <Property Name="totalMoney" Type="int" Nullable="false" />
+          <Property Name="newBill" Type="int" />
+          <Property Name="newCustomer" Type="int" />
+          <Property Name="newRepair" Type="int" />
         </EntityType>
         <EntityType Name="SPECIFICATION">
           <Key>
@@ -252,6 +266,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__DETAIL_RE__repor__503BEA1C">
+          <End Role="REPORT" Type="Self.REPORT" Multiplicity="1" />
+          <End Role="DETAIL_REPORT_REVENUE" Type="Self.DETAIL_REPORT_REVENUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REPORT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DETAIL_REPORT_REVENUE">
+              <PropertyRef Name="reportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ITEM_BILL__billI__14270015">
           <End Role="BILL" Type="Self.BILL" Multiplicity="1" />
           <End Role="ITEM_BILL" Type="Self.ITEM_BILL" Multiplicity="*" />
@@ -355,6 +381,7 @@
           <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DETAIL_REPORT_CATEGORY" EntityType="Self.DETAIL_REPORT_CATEGORY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DETAIL_REPORT_PRODUCT" EntityType="Self.DETAIL_REPORT_PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETAIL_REPORT_REVENUE" EntityType="Self.DETAIL_REPORT_REVENUE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ITEM_BILL" EntityType="Self.ITEM_BILL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ITEM_BILL_SERI" EntityType="Self.ITEM_BILL_SERI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
@@ -397,6 +424,10 @@
           <AssociationSet Name="FK__DETAIL_RE__repor__367C1819" Association="Self.FK__DETAIL_RE__repor__367C1819">
             <End Role="REPORT" EntitySet="REPORT" />
             <End Role="DETAIL_REPORT_CATEGORY" EntitySet="DETAIL_REPORT_CATEGORY" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DETAIL_RE__repor__503BEA1C" Association="Self.FK__DETAIL_RE__repor__503BEA1C">
+            <End Role="REPORT" EntitySet="REPORT" />
+            <End Role="DETAIL_REPORT_REVENUE" EntitySet="DETAIL_REPORT_REVENUE" />
           </AssociationSet>
           <AssociationSet Name="FK__ITEM_BILL__billI__14270015" Association="Self.FK__ITEM_BILL__billI__14270015">
             <End Role="BILL" EntitySet="BILL" />
@@ -517,6 +548,11 @@
             <End Role="SPECIFICATION_TYPE" EntitySet="SPECIFICATION_TYPE" />
             <End Role="SPECIFICATION" EntitySet="SPECIFICATIONs" />
           </AssociationSet>
+          <EntitySet Name="DETAIL_REPORT_REVENUE" EntityType="QuanLyCuaHangViTinhModel.DETAIL_REPORT_REVENUE" />
+          <AssociationSet Name="FK__DETAIL_RE__repor__503BEA1C" Association="QuanLyCuaHangViTinhModel.FK__DETAIL_RE__repor__503BEA1C">
+            <End Role="REPORT" EntitySet="REPORTs" />
+            <End Role="DETAIL_REPORT_REVENUE" EntitySet="DETAIL_REPORT_REVENUE" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="BILL">
           <Key>
@@ -577,6 +613,7 @@
           <Property Name="point" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BILLs" Relationship="QuanLyCuaHangViTinhModel.FK__BILL__customerId__66603565" FromRole="CUSTOMER" ToRole="BILL" />
           <NavigationProperty Name="BILL_REPAIR" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__40058253" FromRole="CUSTOMER" ToRole="BILL_REPAIR" />
+          <Property Name="createTime" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="DETAIL_REPORT_CATEGORY">
           <Key>
@@ -669,6 +706,10 @@
           <Property Name="totalMoney" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DETAIL_REPORT_CATEGORY" Relationship="QuanLyCuaHangViTinhModel.FK__DETAIL_RE__repor__367C1819" FromRole="REPORT" ToRole="DETAIL_REPORT_CATEGORY" />
           <NavigationProperty Name="DETAIL_REPORT_PRODUCT" Relationship="QuanLyCuaHangViTinhModel.FK__DETAIL_RE__repor__2DE6D218" FromRole="REPORT" ToRole="DETAIL_REPORT_PRODUCT" />
+          <Property Name="newBill" Type="Int32" />
+          <Property Name="newCustomer" Type="Int32" />
+          <Property Name="newRepair" Type="Int32" />
+          <NavigationProperty Name="DETAIL_REPORT_REVENUE" Relationship="QuanLyCuaHangViTinhModel.FK__DETAIL_RE__repor__503BEA1C" FromRole="REPORT" ToRole="DETAIL_REPORT_REVENUE" />
         </EntityType>
         <EntityType Name="SPECIFICATION">
           <Key>
@@ -895,6 +936,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DETAIL_REPORT_REVENUE">
+          <Key>
+            <PropertyRef Name="reportId" />
+            <PropertyRef Name="day" />
+          </Key>
+          <Property Name="reportId" Type="Int32" Nullable="false" />
+          <Property Name="day" Type="Byte" Nullable="false" />
+          <Property Name="money" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="REPORT" Relationship="QuanLyCuaHangViTinhModel.FK__DETAIL_RE__repor__503BEA1C" FromRole="DETAIL_REPORT_REVENUE" ToRole="REPORT" />
+        </EntityType>
+        <Association Name="FK__DETAIL_RE__repor__503BEA1C">
+          <End Type="QuanLyCuaHangViTinhModel.REPORT" Role="REPORT" Multiplicity="1" />
+          <End Type="QuanLyCuaHangViTinhModel.DETAIL_REPORT_REVENUE" Role="DETAIL_REPORT_REVENUE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REPORT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DETAIL_REPORT_REVENUE">
+              <PropertyRef Name="reportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -942,6 +1006,7 @@
           <EntitySetMapping Name="CUSTOMERs">
             <EntityTypeMapping TypeName="QuanLyCuaHangViTinhModel.CUSTOMER">
               <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
                 <ScalarProperty Name="point" ColumnName="point" />
                 <ScalarProperty Name="birthday" ColumnName="birthday" />
                 <ScalarProperty Name="address" ColumnName="address" />
@@ -1022,6 +1087,9 @@
           <EntitySetMapping Name="REPORTs">
             <EntityTypeMapping TypeName="QuanLyCuaHangViTinhModel.REPORT">
               <MappingFragment StoreEntitySet="REPORT">
+                <ScalarProperty Name="newRepair" ColumnName="newRepair" />
+                <ScalarProperty Name="newCustomer" ColumnName="newCustomer" />
+                <ScalarProperty Name="newBill" ColumnName="newBill" />
                 <ScalarProperty Name="totalMoney" ColumnName="totalMoney" />
                 <ScalarProperty Name="year" ColumnName="year" />
                 <ScalarProperty Name="month" ColumnName="month" />
@@ -1044,6 +1112,16 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETAIL_REPORT_REVENUE">
+            <EntityTypeMapping TypeName="QuanLyCuaHangViTinhModel.DETAIL_REPORT_REVENUE">
+              <MappingFragment StoreEntitySet="DETAIL_REPORT_REVENUE">
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="money" ColumnName="money" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="reportId" ColumnName="reportId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

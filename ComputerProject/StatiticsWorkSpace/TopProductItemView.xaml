@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.StatiticsWorkSpace"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="305">
+             d:DesignHeight="50" d:DesignWidth="305"
+             d:DataContext="{d:DesignInstance Type=local:ReportModel}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
@@ -15,6 +16,7 @@
 
         <Image
             Stretch="Fill"
+            Source="{Binding Image, TargetNullValue={x:Null}}"
             >
         </Image>
 
@@ -27,6 +29,7 @@
             FontWeight="DemiBold"
             Foreground="#11142D"
             VerticalAlignment="Top"
+            Text="{Binding ProductName}"
             >
             
         </TextBlock>
@@ -40,6 +43,7 @@
             Margin="0, 10, 10, 0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
+            Text="{Binding Amount}"
             >
 
         </TextBlock>

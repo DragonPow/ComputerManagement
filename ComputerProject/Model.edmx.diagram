@@ -35,6 +35,8 @@
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__1CBC4616" />
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__SPECIFICA__produ__22751F6C" />
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__SPECIFICA__speci__236943A5" />
+        <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.DETAIL_REPORT_REVENUE" Width="1.5" PointX="15.125" PointY="2.375" />
+        <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__DETAIL_RE__repor__503BEA1C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

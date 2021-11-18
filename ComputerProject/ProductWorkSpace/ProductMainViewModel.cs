@@ -17,7 +17,7 @@ namespace ComputerProject.ProductWorkSpace
         public ProductMainViewModel():base()
         {
             PropertyChanged += ProductMainViewModel_PropertyChanged;
-            step = 2;
+            step = 20;
         }
 
         public ProductMainViewModel(MultipleControlViewModel navigation) : this()
