@@ -226,7 +226,7 @@
                     CornerRadius="5"
                     Grid.ColumnSpan="3">
                 <TextBox Margin="5,0"
-                         Text="{Binding CurrentBill.MoneyCustomer, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=true}"
+                         Text="{Binding CurrentBill.MoneyCustomer, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                          FontWeight="DemiBold"
                          MaxWidth="250"
                          BorderThickness="0"
@@ -245,7 +245,7 @@
                        Grid.ColumnSpan="3" />
             <TextBlock Grid.Row="1"
                        Margin="0,5,10,5"
-                       Text="{Binding CurrentBill.ExcessCash, StringFormat='\{0:N0}đ', NotifyOnValidationError=True}"
+                       Text="{Binding CurrentBill.ExcessCash, StringFormat='\{0:N0}đ', ValidatesOnDataErrors=True}"
                        FontWeight="DemiBold"
                        VerticalAlignment="Center"
                        FontSize="{x:Static font:Font.Body}"

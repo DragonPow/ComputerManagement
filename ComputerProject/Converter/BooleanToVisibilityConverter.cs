@@ -12,6 +12,9 @@ namespace ComputerProject.Converter
     [ValueConversion(typeof(bool),typeof(Visibility))]
     public class BooleanToVisibilityConverter : IValueConverter
     {
+        public Visibility TrueValue { get; set; } = Visibility.Visible;
+        public Visibility FalseValue { get; set; } = Visibility.Visible;
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Visibility v;
@@ -20,7 +23,7 @@ namespace ComputerProject.Converter
                 throw new InvalidOperationException("Target must be type Visibility");
             }
 
-            v = (bool)value ? Visibility.Visible : Visibility.Hidden;
+            v = (bool)value ? TrueValue : FalseValue;
             return v;
         }
 

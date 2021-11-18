@@ -140,17 +140,17 @@ namespace ComputerProject.Model
                             error = "Must be positive number PointCustomer";
                         }
                         break;
-                    case nameof(Products):
-                        if (Products.Any(i => String.IsNullOrWhiteSpace(i.Seri)))
+                    case nameof(ExcessCash):
+                        if (ExcessCash < 0)
                         {
-                            error = "Seri of product must not null";
+                            error = "Must be positive number ExcessCash";
                         }
                         break;
                 }
 
                 if (ErrorCollection.ContainsKey(columnName))
                 {
-                    if (error == null) ErrorCollection[columnName] = error;
+                    if (error != null) ErrorCollection[columnName] = error;
                     else ErrorCollection.Remove(columnName);
                 }
                 else if (error != null)
@@ -162,7 +162,7 @@ namespace ComputerProject.Model
                 return error;
             }
         }
-        public bool HasErrorData => ErrorCollection.Any();
+        public bool HasErrorData => ErrorCollection.Any() || Products.Any(i => i.HasError);
 
         public Bill(BILL bill)
         {

@@ -8,6 +8,7 @@ using ComputerProject.Helper;
 using ComputerProject.HelperService;
 using ComputerProject.Repository;
 using System.Data.Entity.Migrations;
+using System.Linq;
 
 namespace ComputerProject.SaleWorkSpace
 {
@@ -130,7 +131,15 @@ namespace ComputerProject.SaleWorkSpace
                 using (var db = new ComputerManagementEntities())
                 {
                     db.Database.Log = Console.WriteLine;
-                    db.BILLs.AddOrUpdate(CurrentBill.CastToModel());
+                    BILL b = CurrentBill.CastToModel();
+                    db.BILLs.AddOrUpdate(b);
+
+                    foreach(var item in b.ITEM_BILL)
+                    {
+                        var product = db.PRODUCTs.Where(i => i.id == item.productId).First();
+                        product.quantity -= item.quantity;
+                    }
+
                     db.SaveChanges();
                 }
                 return true;

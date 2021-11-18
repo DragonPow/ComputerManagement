@@ -106,6 +106,7 @@ namespace ComputerProject.Repository
                 PriceSale = i.priceSales,
                 Producer = i.producer,
                 Warranty = i.warrantyTime ?? 0,
+                Quantity = i.quantity,
             }).ToList();
 
             LoadAsyncImageProducts(listBaseDb);

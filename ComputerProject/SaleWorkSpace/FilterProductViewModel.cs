@@ -9,7 +9,7 @@ namespace ComputerProject.SaleWorkSpace
     {
         Model.Category CategoryType { get; set; }
         string Supplier { get; set; }
-        stateProduct StateProduct {get; }
+        stateProduct StateProduct { get; }
         int PriceHighest { get; set; }
         int PriceLowest { get; set; }
         int TimeWarranty { get; set; }
@@ -25,6 +25,7 @@ namespace ComputerProject.SaleWorkSpace
         int _priceLowest;
         int _timeWarranty;
         IFilterProductState _initState;
+        bool _isSaleView;
 
         ICommand _filterCommand;
         ICommand _undoCommand;
@@ -60,7 +61,7 @@ namespace ComputerProject.SaleWorkSpace
             get => _stateProduct;
             set
             {
-                if (value!=_stateProduct)
+                if (value != _stateProduct)
                 {
                     _stateProduct = value;
                     OnPropertyChanged();
@@ -102,13 +103,25 @@ namespace ComputerProject.SaleWorkSpace
                     OnPropertyChanged();
                 }
             }
-        } 
+        }
+        public bool IsSaleView
+        {
+            get => _isSaleView;
+            set
+            {
+                if (value != _isSaleView)
+                {
+                    _isSaleView = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public ICommand FilterCommand
         {
             get
             {
-                if (null==_filterCommand)
+                if (null == _filterCommand)
                 {
                     _filterCommand = new RelayCommand(a => Filter());
                 }
@@ -128,9 +141,10 @@ namespace ComputerProject.SaleWorkSpace
         }
         #endregion //Properties
 
-        public FilterProductViewModel(IFilterProductState initstate)
+        public FilterProductViewModel(IFilterProductState initstate, bool isSaleView = false)
         {
             this._initState = initstate;
+            this.IsSaleView = isSaleView;
 
             if (initstate != null)
             {

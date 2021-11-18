@@ -26,7 +26,7 @@ namespace ComputerProject.SaleWorkSpace
         public CustomerSaleView()
         {
             InitializeComponent();
-            timeDelayText = new Timer(2000);
+            timeDelayText = new Timer(1500);
             timeDelayText.Elapsed += TimeDelayText_Elapsed;
             completebox.TextChanged += Completebox_TextChanged;
             completebox.SelectionChanged += Completebox_SelectionChanged;

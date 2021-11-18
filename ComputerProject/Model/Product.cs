@@ -50,6 +50,7 @@ namespace ComputerProject.Model
         string _decription;
         string _producer;
         int _warranty;
+        int _quantity;
 
 
         public int Id
@@ -150,7 +151,18 @@ namespace ComputerProject.Model
                 }
             }
         }
-
+        public int Quantity
+        {
+            get => _quantity;
+            set
+            {
+                if (value != _quantity)
+                {
+                    _quantity = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public Product()
         {
@@ -169,6 +181,7 @@ namespace ComputerProject.Model
             this.Decription = product.Decription;
             this.CategoryProduct = product.CategoryProduct;
             this.Warranty = product.Warranty;
+            this.Quantity = product.Quantity;
         }
 
         public Product(PRODUCT product)
@@ -186,6 +199,7 @@ namespace ComputerProject.Model
             if (product.CATEGORY != null) CategoryProduct = new Model.Category(product.CATEGORY);
             Decription = product.description;
             Warranty = product.warrantyTime?? 0;
+            Quantity = product.quantity;
         }
 
         public PRODUCT CastToModel()
@@ -199,6 +213,7 @@ namespace ComputerProject.Model
             p.description = this.Decription;
             p.CATEGORY = this.CategoryProduct.CastToModel();
             p.warrantyTime = this.Warranty == 0 ? this.Warranty : (int?)null;
+            p.quantity = this.Quantity;
 
             return p;
         }

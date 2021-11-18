@@ -34,6 +34,7 @@ namespace ComputerProject.Repository
 
             return query.OrderByDescending(i => i.createTime).ThenBy(i => i.id);
         }
+
         /// <summary>
         /// Load bill from database
         /// </summary>
@@ -81,15 +82,15 @@ namespace ComputerProject.Repository
             }
         }
 
-        public Collection<BILL> LoadBills(int maxNumberInPage, int numberPage = 1)
-        {
-            return LoadBills(maxNumberInPage, numberPage, null, null, null);
-        }
+        //public Collection<BILL> LoadBills(int maxNumberInPage, int numberPage = 1)
+        //{
+        //    return LoadBills(maxNumberInPage, numberPage, null, null, null);
+        //}
 
-        public Collection<BILL> LoadBills(int maxNumberInPage, DateTime? timeFrom, DateTime? timeTo, int numberPage = 1)
-        {
-            return LoadBills(maxNumberInPage, numberPage, null, timeFrom, timeTo);
-        }
+        //public Collection<BILL> LoadBills(int maxNumberInPage, DateTime? timeFrom, DateTime? timeTo, int numberPage = 1)
+        //{
+        //    return LoadBills(maxNumberInPage, numberPage, null, timeFrom, timeTo);
+        //}
 
         public int LoadNumberPages(int maxNumberInPage, string text = null, DateTime? timeFrom = null, DateTime? timeTo = null)
         {
@@ -100,10 +101,10 @@ namespace ComputerProject.Repository
             }
         }
 
-        public int LoadNumberPages(int maxNumberInPage, DateTime? timeFrom, DateTime? timeTo)
-        {
-            return LoadNumberPages(maxNumberInPage, null, timeFrom, timeTo);
-        }
+        //public int LoadNumberPages(int maxNumberInPage, DateTime? timeFrom, DateTime? timeTo)
+        //{
+        //    return LoadNumberPages(maxNumberInPage, null, timeFrom, timeTo);
+        //}
 
         public void RemoveAsync(BILL bill)
         {
