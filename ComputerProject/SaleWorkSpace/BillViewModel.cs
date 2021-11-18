@@ -61,7 +61,7 @@ namespace ComputerProject.SaleWorkSpace
                             if (SuccessConfirm())
                             {
                                 PaymentSuccessEvent?.Invoke(this, null);
-                                var rs = MessageBoxCustom.ShowDialog("Thanh toán hóa đơn thành công, có muốn in hóa đơn không?", "Thông báo", MaterialDesignThemes.Wpf.PackIconKind.QuestionAnswer);
+                                var rs = MessageBoxCustom.ShowDialog("Thanh toán hóa đơn thành công! \nBạn có muốn in hóa đơn không?", "Thông báo", MaterialDesignThemes.Wpf.PackIconKind.QuestionAnswer);
                                 if (rs == MessageBoxResultCustom.Yes) PrintPDF();
 
                                 CloseWindow();
@@ -73,7 +73,7 @@ namespace ComputerProject.SaleWorkSpace
                         }
                         else
                         {
-                            MessageBoxCustom.ShowDialog("Yêu cầu nhập đúng thông tin", "Thông báo", MaterialDesignThemes.Wpf.PackIconKind.InformationCircle);
+                            MessageBoxCustom.ShowDialog("Yêu cầu nhập đúng và đầy đủ thông tin!", "Thông báo", MaterialDesignThemes.Wpf.PackIconKind.InformationCircle);
                         }
                     });
                 }

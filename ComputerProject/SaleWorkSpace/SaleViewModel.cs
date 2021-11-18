@@ -241,7 +241,7 @@ namespace ComputerProject.SaleWorkSpace
                         }
                         else if (this.HasError)
                         {
-                            MessageBoxCustom.ShowDialog("Vui lòng nhập đúng tất cả thông tin", "Thông báo", PackIconKind.Information);
+                            MessageBoxCustom.ShowDialog("Vui lòng nhập đúng và đầy đủ tất cả thông tin.", "Thông báo", PackIconKind.Information);
                         }
                         else OpenPaymentView(ProductsInBill, CurrentCustomer);
                     });
@@ -263,7 +263,7 @@ namespace ComputerProject.SaleWorkSpace
                         }
                         catch (InvalidOperationException e1)
                         {
-                            MessageBoxCustom.ShowDialog("Không đủ hàng trong kho để bán", "Thông báo", PackIconKind.WarningBox);
+                            MessageBoxCustom.ShowDialog("Không đủ hàng trong kho để bán.", "Thông báo", PackIconKind.WarningBox);
                         }
                     });
                 }
@@ -373,11 +373,11 @@ namespace ComputerProject.SaleWorkSpace
                     case nameof(CurrentPoint):
                         if (CurrentPoint > CurrentCustomer?.point)
                         {
-                            error = "Point use is larger than the number of " + CurrentCustomer.name;
+                            error = "Điểm vượt quá điểm của khách hàng.";
                         }
                         else if (CurrentPoint > MaxPoint)
                         {
-                            error = "Point use is larger than max number point used in store";
+                            error = "Điểm vượt quá quy định.";
                         }
                         break;
                 }
