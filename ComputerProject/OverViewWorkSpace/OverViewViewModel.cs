@@ -42,6 +42,7 @@ namespace ComputerProject.OverViewWorkSpace
         #endregion
 
         #region Constructor
+
         public OverViewViewModel()
         {
             DateTime date = DateTime.Now.AddDays(-6);
@@ -88,6 +89,7 @@ namespace ComputerProject.OverViewWorkSpace
                     Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#200477BF"),
                     PointForeground = Brushes.Transparent,
                     PointGeometry = null,
+                    ToolTip = true,
                     Foreground = Brushes.Black,
                   },
 
