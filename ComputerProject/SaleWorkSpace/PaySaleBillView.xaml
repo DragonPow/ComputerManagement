@@ -22,8 +22,7 @@
             <Image Source="/ComputerProject;component/Resource/Image/logo.png"
                    Width="40"
                    Height="40"></Image>
-            <TextBlock x:Name="NameStore"
-                       Text="KiotStore"
+            <TextBlock Text="{Binding CurrentStoreInformation.Name, Mode=OneWay, FallbackValue='Name Store'}"
                        FontSize="{x:Static font:Font.Title}"
                        FontWeight="DemiBold"
                        Foreground="{StaticResource MainColor}"
@@ -32,8 +31,7 @@
         </StackPanel>
         <Border BorderBrush="{StaticResource MainColor}"
                 BorderThickness="0,0,0,2">
-            <TextBlock x:Name="StoreAddress"
-                       Text="Đường Ngô Quyền, quận Thủ Đức, Tp.Thủ Đức, TP.Hồ Chí Minh"
+            <TextBlock Text="{Binding CurrentStoreInformation.Address, Mode=OneWay, FallbackValue='Address Store'}"
                        FontSize="14"
                        Foreground="{StaticResource Icon}"
                        VerticalAlignment="Center"
@@ -258,8 +256,7 @@
         <StackPanel  Orientation="Horizontal"
                      HorizontalAlignment="Right"
                      Margin="0 20">
-            <Button x:Name="btnPrint"
-                    Style="{StaticResource MaterialDesignOutlinedButton}"
+            <Button Style="{StaticResource MaterialDesignOutlinedButton}"
                     materialDesign:ButtonAssist.CornerRadius="5"
                     BorderBrush="{StaticResource MainColor}"
                     Margin="20,0"
@@ -267,9 +264,9 @@
                     Width="100"
                     Height="40"
                     Content="Hủy"
-                    Padding="30,0"></Button>
-            <Button x:Name="btnAccept"
-                    Background="{StaticResource MainColor}"
+                    Padding="30,0" 
+                    Command="{Binding CancelCommand}"/>
+            <Button Background="{StaticResource MainColor}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Command="{Binding ConfirmCommand}"
                     materialDesign:ButtonAssist.CornerRadius="5"

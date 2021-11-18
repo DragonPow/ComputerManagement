@@ -422,8 +422,17 @@ namespace ComputerProject.SaleWorkSpace
         private void OpenPaymentView(IDictionary<Product, int> productsInBill, CUSTOMER currentCustomer)
         {
             var vm = new BillViewModel(productsInBill, currentCustomer, TotalPriceBill);
+            vm.PaymentSuccessEvent += (s, e) => ClearPayment();
+
             WindowService.ShowWindow(vm, new PaySaleBillView());
         }
+
+        private void ClearPayment()
+        {
+            Clear(CurrentCustomer);
+            Clear(ProductsInBill);
+        }
+
         private void AddToBill(Product product, int quantity)
         {
             if (ProductsInBill.ContainsKey(product))
@@ -495,17 +504,19 @@ namespace ComputerProject.SaleWorkSpace
         {
             //RequestOpenView?.Invoke(this, new RequestViewArgs(ProductViewModel, product));
         }
-        private void Clear(object list)
+        private void Clear(object information)
         {
-            if (list == null) return;
+            if (information == null) return;
 
-            if (list == CurrentCustomer)
+            if (information == CurrentCustomer)
             {
                 CurrentCustomer = null;
             }
-            else if (list == ProductsInBill)
+            else if (information == ProductsInBill)
             {
                 ProductsInBill.Clear();
+                OnPropertyChanged(nameof(TotalPriceProduct));
+                OnPropertyChanged(nameof(TotalPriceBill));
             }
         }
     }

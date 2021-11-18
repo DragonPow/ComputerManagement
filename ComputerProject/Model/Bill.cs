@@ -12,6 +12,7 @@ namespace ComputerProject.Model
 {
     public class Bill : BaseViewModel, IDataErrorInfo
     {
+        #region Fields
         int _id;
         DateTime _timeCreated;
         Collection<ProductInBill> _products;
@@ -19,7 +20,9 @@ namespace ComputerProject.Model
         int _pointCustomer;
         int _totalMoney;
         CUSTOMER _customer;
+        #endregion //Fields
 
+        #region Properties
         public int Id
         {
             get => _id;
@@ -44,7 +47,6 @@ namespace ComputerProject.Model
                 }
             }
         }
-
         public Collection<ProductInBill> Products
         {
             get => _products;
@@ -102,43 +104,65 @@ namespace ComputerProject.Model
             get => _customer;
             set
             {
-                if (value!=_customer)
+                if (value != _customer)
                 {
                     _customer = value;
                     OnPropertyChanged();
                 }
             }
         }
+        #endregion //Properties
 
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         public string Error => null;
-
-        public string this[string columnName] {
+        public string this[string columnName]
+        {
             get
             {
-                switch(columnName)
+                string error = null;
+                switch (columnName)
                 {
                     case nameof(TotalMoney):
                         if (TotalMoney < 0)
                         {
-                            return "Must be positive number TotalMoney";
+                            error = "Must be positive number TotalMoney";
                         }
                         break;
                     case nameof(MoneyCustomer):
                         if (MoneyCustomer < 0)
                         {
-                            return "Must be positive number MoneyCustomer";
+                            error = "Must be positive number MoneyCustomer";
                         }
                         break;
                     case nameof(PointCustomer):
                         if (PointCustomer < 0)
                         {
-                            return "Must be positive number PointCustomer";
+                            error = "Must be positive number PointCustomer";
+                        }
+                        break;
+                    case nameof(Products):
+                        if (Products.Any(i => String.IsNullOrWhiteSpace(i.Seri)))
+                        {
+                            error = "Seri of product must not null";
                         }
                         break;
                 }
-                return null;
+
+                if (ErrorCollection.ContainsKey(columnName))
+                {
+                    if (error == null) ErrorCollection[columnName] = error;
+                    else ErrorCollection.Remove(columnName);
+                }
+                else if (error != null)
+                {
+                    ErrorCollection.Add(columnName, error);
+                }
+
+                OnPropertyChanged(nameof(ErrorCollection));
+                return error;
             }
         }
+        public bool HasErrorData => ErrorCollection.Any();
 
         public Bill(BILL bill)
         {
