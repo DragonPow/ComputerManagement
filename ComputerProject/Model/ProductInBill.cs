@@ -51,7 +51,7 @@ namespace ComputerProject.Model
                     case nameof(Seri):
                         if (string.IsNullOrWhiteSpace(Seri))
                         {
-                            error = "Seri not null or white space, product name: " + this.Name;
+                            error = "Không được để trống hoặc khoảng trắng!";
                         }
                         break;
                 }
