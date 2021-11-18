@@ -31,7 +31,7 @@ namespace ComputerProject.StatiticsWorkSpace
 
         public string ViewName => "Thống kê";
 
-        public PackIconKind ViewIcon => PackIconKind.ChartDoughnut;
+        public PackIconKind ViewIcon => PackIconKind.Equalizer;
 
         public StatiticsMainView()
         {
