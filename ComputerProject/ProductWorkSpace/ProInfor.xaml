@@ -8,11 +8,10 @@
     xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance Type=local:ProductAddViewModel}"
-    d:DesignHeight="500"
+    d:DesignHeight="900"
     d:DesignWidth="400"
     mc:Ignorable="d">
     <Border Background="White" CornerRadius="8">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <Grid Margin="20">
                 <StackPanel x:Name="ProInform" HorizontalAlignment="Stretch">
                     <localcustom:TextboxCustom
@@ -132,6 +131,7 @@
                 x:Name="Quantity"
                 Title="    Số lượng"
                 Margin="0,10,0,10"
+                        PreviewTextInput="PreviewTextInput"
                 VerticalAlignment="Center"
                 CornerRadiusText="5"
                 FontFamily="{StaticResource Mulish}"
@@ -143,6 +143,7 @@
                     <localcustom:TextboxCustom
                 x:Name="Price"
                 Title="    Giá gốc"
+                PreviewTextInput="PreviewTextInput"
                 Margin="0,10,0,10"
                 VerticalAlignment="Center"
                 CornerRadiusText="5"
@@ -164,6 +165,7 @@
                 IsTabStop="False"
                 KeyboardNavigation.TabIndex="0"
                 MarginText="10"
+                        PreviewTextInput="PreviewTextInput"
                 Text="{Binding PriceSales_String, Mode=TwoWay}" />
                     <localcustom:TextboxCustom
                 x:Name="Description"
@@ -181,8 +183,6 @@
                 </StackPanel>
 
             </Grid>
-        </ScrollViewer>
-       
     </Border>
    
 </UserControl>

@@ -296,10 +296,20 @@
                                     Margin="10,0"
                                     Foreground="Black"
                                     Height="{Binding ActualHeight, ElementName=StaticsMainView, Mode=OneWay}"
-                                    Series="{Binding SeriesCollection}" 
+                                    
                                     Zoom="X"
                                     LegendLocation="Top"
+                                    Hoverable="True"
                                     >
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries
+                            Title="Doanh số"
+                            Fill="#FFBAD3F7"
+                            PointGeometry=""
+                            Values="{Binding Path= Values}" 
+                            />
+                        
+                    </lvc:CartesianChart.Series>
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis 
                                 Labels="{Binding Barlable}" 

@@ -9,6 +9,11 @@ namespace ComputerProject
 {
     public class BusyViewModel : BaseViewModel
     {
+        public BusyViewModel()
+        {
+            IsBusy = false;
+        }
+
         public System.Windows.Visibility BusyVisibility => IsBusy ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
         public bool IsFree => !IsBusy;
 
@@ -50,6 +55,15 @@ namespace ComputerProject
             IsBusy = true;
             await Task.Run(() => busyTask(cancellationToken), cancellationToken);
             IsBusy = false;
+            if (!cancellationToken.IsCancellationRequested)
+            {
+                callback?.Invoke();
+            }
+        }
+
+        public async void DoInBackGround(Action busyTask, System.Threading.CancellationToken cancellationToken, Action callback = null)
+        {
+            await Task.Run(() => busyTask(), cancellationToken);
             if (!cancellationToken.IsCancellationRequested)
             {
                 callback?.Invoke();

@@ -174,6 +174,7 @@ namespace ComputerProject.CustomerWorkspace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
+                this._model.createTime = DateTime.Now;
                 this._model = db.CUSTOMERs.Add(this._model);
                 db.SaveChanges();
             }

@@ -66,6 +66,7 @@
                                          CornerRadiusText="3"
                                          FontSize="{x:Static font:Font.Body}"
                                          IsTabStop="False"
+                                         PreviewTextInput="PreviewTextInput"
                                          KeyboardNavigation.TabIndex="0"
                                          MarginText="10"
                                          Text="{Binding PhoneNumber, Mode=TwoWay}" />
@@ -110,7 +111,7 @@
                                              VerticalAlignment="Center"
                                              CornerRadiusText="3"
                                              FontSize="{x:Static font:Font.Body}"
-                                             IsEnabled="False"
+                                             PreviewTextInput="PreviewTextInput"
                                              IsTabStop="False"
                                              KeyboardNavigation.TabIndex="0"
                                              MarginText="10"

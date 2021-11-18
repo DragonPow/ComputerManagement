@@ -24,6 +24,7 @@ namespace ComputerProject.OverViewWorkSpace
         public Func<double, string> Formatter { get; set; } = value => FormatLable(value);
         DateTime to = DateTime.Now;
         DateTime from = DateTime.Now.AddDays(-29);
+        public ChartValues<double> Values { get; set; }
 
         #endregion
 
@@ -42,10 +43,12 @@ namespace ComputerProject.OverViewWorkSpace
         #endregion
 
         #region Constructor
+
         public OverViewViewModel()
         {
             DateTime date = DateTime.Now.AddDays(-6);
-            ChartValues<double> Values = new ChartValues<double>();
+            Values = new ChartValues<double>();
+
             Barlable = new List<string>();
 
             
@@ -63,7 +66,7 @@ namespace ComputerProject.OverViewWorkSpace
                 {
                     Barlable.Add(date.Day.ToString() + "/" + date.Month.ToString());
                     dayrevenue = context.BILLs.Where(b => b.createTime.Day == date.Day && b.createTime.Month == date.Month && b.createTime.Year == date.Year).Select(b => b.totalMoney).DefaultIfEmpty(0).Sum();
-                    Values.Add(dayrevenue);
+                    if (dayrevenue != 0) Values.Add(dayrevenue); else Values.Add(0);
                     date = date.AddDays(1);
                 }
                 #region query ver02
@@ -78,20 +81,6 @@ namespace ComputerProject.OverViewWorkSpace
                 #endregion
             }
 
-            SeriesCollection = new SeriesCollection
-                {
-                  new LineSeries
-                  {
-                    Title = "Doanh số",
-                    Values = Values,
-                    Width = 50,
-                    Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#200477BF"),
-                    PointForeground = Brushes.Transparent,
-                    PointGeometry = null,
-                    Foreground = Brushes.Black,
-                  },
-
-                };
         }
         #endregion
 

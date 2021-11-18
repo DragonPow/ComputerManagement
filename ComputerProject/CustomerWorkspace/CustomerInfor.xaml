@@ -10,7 +10,6 @@
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="400">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel x:Name="CusInfor">
             <TextBlock Grid.Row="0"
                        Margin="20,20,20,10"
@@ -38,6 +37,7 @@
                                        Grid.Row="2"
                                        Margin="20,10"
                                        CornerRadiusText="3"
+                                       PreviewTextInput="PreviewTextInput"
                                        FontFamily="{StaticResource Mulish}"
                                        FontSize="{x:Static localfont:Font.Body}"
                                        MarginText="8"
@@ -91,6 +91,7 @@
             <localcustom:TextboxCustom x:Name="Point"
                                        Title="   Điểm thưởng"
                                        Grid.Row="5"
+                                       PreviewTextInput="PreviewTextInput"
                                        IsTabStop="False"
                                        KeyboardNavigation.TabIndex="0"
                                        Margin="20,10"
@@ -102,6 +103,4 @@
                                        Text="{Binding Point_String, Mode=TwoWay}"
                                        Texthint="0" />
         </StackPanel>
-    </ScrollViewer>
-
 </UserControl>

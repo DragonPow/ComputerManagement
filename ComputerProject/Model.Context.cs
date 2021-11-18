@@ -38,5 +38,6 @@ namespace ComputerProject
         public virtual DbSet<REPORT> REPORTs { get; set; }
         public virtual DbSet<SPECIFICATION> SPECIFICATIONs { get; set; }
         public virtual DbSet<SPECIFICATION_TYPE> SPECIFICATION_TYPE { get; set; }
+        public virtual DbSet<DETAIL_REPORT_REVENUE> DETAIL_REPORT_REVENUE { get; set; }
     }
 }

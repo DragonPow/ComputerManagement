@@ -13,23 +13,40 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ComputerProject.ApplicationWorkspace;
 using LiveCharts;
 using LiveCharts.Wpf;
+using MaterialDesignThemes.Wpf;
 
 namespace ComputerProject.StatiticsWorkSpace
 {
     /// <summary>
     /// Interaction logic for StatiticsMainView.xaml
     /// </summary>
-    public partial class StatiticsMainView : System.Windows.Controls.UserControl
+    public partial class StatiticsMainView : System.Windows.Controls.UserControl, ITabView
     {
         public SeriesCollection SeriesCollection { get; set; }
         public List <string> Barlable { get; set; }
         public Func<double, string> Formatter { get; set; } = value => value.ToString("N");
+
+        public string ViewName => "Thống kê";
+
+        public PackIconKind ViewIcon => PackIconKind.ChartDoughnut;
+
         public StatiticsMainView()
         {
             InitializeComponent();
-            InitData();
+            
+            //InitData();
+        }
+
+        public void BeginVM() {
+            if (DataContext == null)
+            {
+                var vm = new StatisticMainViewModel();
+                vm.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                DataContext = vm;
+            }
         }
 
         private void InitData()

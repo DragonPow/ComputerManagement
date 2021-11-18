@@ -206,7 +206,8 @@ namespace ComputerProject.SettingWorkSpace
                         }
                         catch (InvalidOperationException e)
                         {
-                            MessageBoxCustom.ShowDialog("Vui lòng nhập đầy đủ thông tin!", "Lỗi", PackIconKind.Error);
+                            if (e.Message == "Empty data!") MessageBoxCustom.ShowDialog("Vui lòng nhập đầy đủ thông tin!", "Lỗi", PackIconKind.Error);
+                            else if (e.Message == "Wrong PhoneNumber") MessageBoxCustom.ShowDialog("Số điện thoại không hợp lệ!", "Lỗi", PackIconKind.Error);
                             return;
                         }
 
@@ -269,6 +270,7 @@ namespace ComputerProject.SettingWorkSpace
                         catch (InvalidOperationException e)
                         {
                             MessageBoxCustom.ShowDialog("Vui lòng nhập đầy đủ thông tin!", "Lỗi", PackIconKind.Error);
+                            
                             return;
                         }
 
@@ -334,6 +336,10 @@ namespace ComputerProject.SettingWorkSpace
             {
                 throw new InvalidOperationException("Empty data!");
             }
+            if (!CheckPhoneNumber())
+            {
+                throw new InvalidOperationException("Wrong PhoneNumber");
+            }
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
                 var data = db.REGULATIONs.Where(p => p.name == "StoreName").FirstOrDefault();
@@ -355,6 +361,7 @@ namespace ComputerProject.SettingWorkSpace
             {
                 throw new InvalidOperationException("Empty data!");
             }
+         
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
                 var data = db.REGULATIONs.Where(p => p.name == "StoreName").FirstOrDefault();
@@ -382,6 +389,14 @@ namespace ComputerProject.SettingWorkSpace
             PointEditMode = true;
             ButtonPointVisibility_Read = Visibility.Hidden;
             ButtonPointVisibility_Edit = Visibility.Visible;
+        }
+        private bool CheckPhoneNumber()
+        {
+            if (StorePhone == null || StorePhone.Trim().Length != 10 || StorePhone[0]!='0' || !StorePhone.Trim().All(c => "0123456789".IndexOf(c) > -1))
+            {
+                return false;
+            }
+            return true;
         }
         #endregion
 
