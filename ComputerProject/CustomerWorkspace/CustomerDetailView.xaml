@@ -56,7 +56,10 @@
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
-                    <local:CustomerInfor x:Name="CusInfor" IsEnabled="False" />
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <local:CustomerInfor x:Name="CusInfor" IsEnabled="False" />
+                    </ScrollViewer>
                     <StackPanel
                         x:Name="ButtonEditMode"
                         Grid.Row="6"

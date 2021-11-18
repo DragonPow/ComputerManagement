@@ -299,6 +299,7 @@
                                     Series="{Binding SeriesCollection}" 
                                     Zoom="X"
                                     LegendLocation="Top"
+                                    Hoverable="True"
                                     >
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis 
