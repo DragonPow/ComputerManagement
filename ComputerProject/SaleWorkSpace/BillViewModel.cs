@@ -9,6 +9,7 @@ using ComputerProject.HelperService;
 using ComputerProject.Repository;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ComputerProject.SaleWorkSpace
 {
@@ -141,6 +142,8 @@ namespace ComputerProject.SaleWorkSpace
                     }
 
                     db.SaveChanges();
+
+                    Task.Run(() => AddBonusPointToCustomer(b));
                 }
                 return true;
             }
@@ -148,6 +151,20 @@ namespace ComputerProject.SaleWorkSpace
             {
                 Console.WriteLine(e.Message);
                 return false;
+            }
+        }
+
+        private void AddBonusPointToCustomer(BILL b)
+        {
+            using (var db = new ComputerManagementEntities())
+            {
+                int moneyToPoint = int.Parse(db.REGULATIONs.Where(i => i.name == "MoneyToPoint").Select(i => i.value).First());
+                var child = db.CUSTOMERs.Where(i => i.id == b.customerId).First();
+                child.point += b.totalMoney / moneyToPoint;
+
+                db.SaveChanges();
+
+                Console.WriteLine("Add {0} point for {1} success", b.totalMoney / moneyToPoint, b.CUSTOMER.name);
             }
         }
         private void PrintPDF()

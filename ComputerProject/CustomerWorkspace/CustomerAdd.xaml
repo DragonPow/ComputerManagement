@@ -1,173 +1,164 @@
-﻿<UserControl
-    x:Class="ComputerProject.CustomerWorkspace.CustomerAdd"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:ComputerProject.CustomControl"
-    xmlns:customer="clr-namespace:ComputerProject.CustomerWorkspace"
-    xmlns:converter="clr-namespace:ComputerProject.Converter"
-    xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="768"
-    d:DesignWidth="1366"
-    xmlns:font="clr-namespace:ComputerProject.Resource.Font"
-    d:DataContext="{d:DesignInstance Type=customer:CustomerViewModel}"
-    Background="{StaticResource Background}"
-    mc:Ignorable="d">
+﻿<UserControl x:Class="ComputerProject.CustomerWorkspace.CustomerAdd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ComputerProject.CustomControl"
+             xmlns:customer="clr-namespace:ComputerProject.CustomerWorkspace"
+             xmlns:converter="clr-namespace:ComputerProject.Converter"
+             xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="768"
+             d:DesignWidth="1366"
+             xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+             d:DataContext="{d:DesignInstance Type=customer:CustomerViewModel}"
+             Background="{StaticResource Background}"
+             mc:Ignorable="d">
     <UserControl.Resources>
-        <converter:RevertBooleanConverter x:Key="revertBool"/>
+        <converter:RevertBooleanConverter x:Key="revertBool" />
+        <converter:BooleanToVisibilityConverter x:Key="visibilityConverter"
+                                                TrueValue="Hidden"
+                                                FalseValue="Visible" />
     </UserControl.Resources>
     <StackPanel>
 
-        <StackPanel
-            Grid.Row="0"
-            Margin="20"
-            HorizontalAlignment="Left"
-            Orientation="Horizontal">
-            <Button
-                x:Name="BtnBack"
-                Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
-                Style="{StaticResource MaterialDesignIconButton}"
-                ToolTip="Trở về">
-                <materialDesign:PackIcon Foreground="{StaticResource Title}" Kind="ArrowLeft" />
+        <StackPanel Grid.Row="0"
+                    Margin="20"
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal">
+            <Button x:Name="BtnBack"
+                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    ToolTip="Trở về"
+                    Visibility="{Binding IsWindowView, Converter={StaticResource visibilityConverter}}">
+                <materialDesign:PackIcon Foreground="{StaticResource Title}"
+                                         Kind="ArrowLeft" />
             </Button>
-            <TextBlock
-                Margin="20,3,0,0"
-                VerticalAlignment="Center"
-                FontFamily="{StaticResource Mulish}"
-                FontSize="{x:Static localfont:Font.TitleView}"
-                FontWeight="DemiBold"
-                Foreground="{StaticResource Title}">
+            <TextBlock Margin="20,3,0,0"
+                       VerticalAlignment="Center"
+                       FontFamily="{StaticResource Mulish}"
+                       FontSize="{x:Static localfont:Font.TitleView}"
+                       FontWeight="DemiBold"
+                       Foreground="{StaticResource Title}">
                 Thêm khách hàng
             </TextBlock>
 
         </StackPanel>
         <Grid>
-            <Border
-                Height="auto"
-                Margin="50,0"
-                Background="White"
-                BorderThickness="1"
-                CornerRadius="8">
+            <Border Height="auto"
+                    Margin="50,0"
+                    Background="White"
+                    BorderThickness="1"
+                    CornerRadius="8">
                 <StackPanel Margin="20">
-                    <local:TextboxCustom
-                        Title="    Tên khách hàng"
-                        Margin="10"
-                        VerticalAlignment="Center"
-                        CornerRadiusText="3"
-                        FontSize="{x:Static font:Font.Body}"
-                        IsTabStop="False"
-                        KeyboardNavigation.TabIndex="0"
-                        MarginText="10"
-                        Text="{Binding FullName, Mode=TwoWay}" />
-                    <local:TextboxCustom
-                        Title="    Số điện thoại"
-                        Margin="10"
-                        VerticalAlignment="Center"
-                        CornerRadiusText="3"
-                        FontSize="{x:Static font:Font.Body}"
-                        IsTabStop="False"
-                        KeyboardNavigation.TabIndex="0"
-                        MarginText="10"
-                        Text="{Binding PhoneNumber, Mode=TwoWay}" />
+                    <local:TextboxCustom Title="    Tên khách hàng"
+                                         Margin="10"
+                                         VerticalAlignment="Center"
+                                         CornerRadiusText="3"
+                                         FontSize="{x:Static font:Font.Body}"
+                                         IsTabStop="False"
+                                         KeyboardNavigation.TabIndex="0"
+                                         MarginText="10"
+                                         Text="{Binding FullName, Mode=TwoWay}" />
+                    <local:TextboxCustom Title="    Số điện thoại"
+                                         Margin="10"
+                                         VerticalAlignment="Center"
+                                         CornerRadiusText="3"
+                                         FontSize="{x:Static font:Font.Body}"
+                                         IsTabStop="False"
+                                         KeyboardNavigation.TabIndex="0"
+                                         MarginText="10"
+                                         Text="{Binding PhoneNumber, Mode=TwoWay}" />
                     <Grid Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
-                        <StackPanel
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            VerticalAlignment="Center">
-                            <TextBlock
-                                Margin="0,0,0,14"
-                                VerticalAlignment="Top"
-                                FontFamily="{StaticResource Mulish}"
-                                FontSize="{x:Static localfont:Font.Body}"
-                                FontWeight="SemiBold"
-                                Foreground="Black"
-                                Text="   Ngày sinh" />
+                        <StackPanel Grid.Row="2"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center">
+                            <TextBlock Margin="0,0,0,14"
+                                       VerticalAlignment="Top"
+                                       FontFamily="{StaticResource Mulish}"
+                                       FontSize="{x:Static localfont:Font.Body}"
+                                       FontWeight="SemiBold"
+                                       Foreground="Black"
+                                       Text="   Ngày sinh" />
 
-                            <Border
-                                Height="50"
-                                VerticalAlignment="Center"
-                                Background="{StaticResource Background}"
-                                BorderBrush="#DBD7F4"
-                                BorderThickness="1"
-                                CornerRadius="3">
-                                <DatePicker
-                                    x:Name="datetimepicker"
-                                    Height="50"
-                                    Margin="5,0,5,0"
-                                    Padding="1"
-                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                            <Border Height="50"
+                                    VerticalAlignment="Center"
+                                    Background="{StaticResource Background}"
                                     BorderBrush="#DBD7F4"
-                                    FontFamily="{StaticResource Mulish}"
-                                    FontSize="{x:Static font:Font.Body}"
-                                    Foreground="#11142D"
-                                    SelectedDate="{Binding Birthday, Mode=TwoWay}"
-                                    Text="12/12/2021" />
+                                    BorderThickness="1"
+                                    CornerRadius="3">
+                                <DatePicker x:Name="datetimepicker"
+                                            Height="50"
+                                            Margin="5,0,5,0"
+                                            Padding="1"
+                                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                            BorderBrush="#DBD7F4"
+                                            FontFamily="{StaticResource Mulish}"
+                                            FontSize="{x:Static font:Font.Body}"
+                                            Foreground="#11142D"
+                                            SelectedDate="{Binding Birthday, Mode=TwoWay}"
+                                            Text="12/12/2021" />
                             </Border>
                         </StackPanel>
-                        <local:TextboxCustom
-                            Title="    Điểm thưởng"
-                            Grid.Column="1"
-                            Margin="20,0,0,0"
-                            VerticalAlignment="Center"
-                            CornerRadiusText="3"
-                             FontSize="{x:Static font:Font.Body}"
-                            IsEnabled="False"
-                            IsTabStop="False"
-                            KeyboardNavigation.TabIndex="0"
-                            MarginText="10"
-                            Texthint="0" />
+                        <local:TextboxCustom Title="    Điểm thưởng"
+                                             Grid.Column="1"
+                                             Margin="20,0,0,0"
+                                             VerticalAlignment="Center"
+                                             CornerRadiusText="3"
+                                             FontSize="{x:Static font:Font.Body}"
+                                             IsEnabled="False"
+                                             IsTabStop="False"
+                                             KeyboardNavigation.TabIndex="0"
+                                             MarginText="10"
+                                             Texthint="0" />
                     </Grid>
 
-                    <local:TextboxCustom
-                        Title="    Địa chỉ"
-                        Margin="10"
-                        VerticalAlignment="Center"
-                        CornerRadiusText="3"
-                        FontSize="{x:Static font:Font.Body}"
-                        IsTabStop="False"
-                        KeyboardNavigation.TabIndex="0"
-                        MarginText="10"
-                        MaxLines="1"
-                        Text="{Binding Address}" />
+                    <local:TextboxCustom Title="    Địa chỉ"
+                                         Margin="10"
+                                         VerticalAlignment="Center"
+                                         CornerRadiusText="3"
+                                         FontSize="{x:Static font:Font.Body}"
+                                         IsTabStop="False"
+                                         KeyboardNavigation.TabIndex="0"
+                                         MarginText="10"
+                                         MaxLines="1"
+                                         Text="{Binding Address}" />
                 </StackPanel>
             </Border>
 
-            <local:BusyView Margin="50,0" BorderThickness="1"
-                            Visibility="{Binding BusyVisibility}"/>
+            <local:BusyView Margin="50,0"
+                            BorderThickness="1"
+                            Visibility="{Binding BusyVisibility}" />
         </Grid>
 
 
-        <StackPanel
-            Grid.Row="2"
-            Margin="60,30,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Orientation="Horizontal"
-            IsEnabled="{Binding IsBusy, Converter={StaticResource ResourceKey=revertBool}}">
-            <Button
-                x:Name="btnSave"
-                Width="100"
-                Height="40"
-                Margin="0,0,20,0"
-                Background="{StaticResource MainColor}"
-                Style="{StaticResource MaterialDesignRaisedButton}">
+        <StackPanel Grid.Row="2"
+                    Margin="60,30,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal"
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource ResourceKey=revertBool}}">
+            <Button x:Name="btnSave"
+                    Width="100"
+                    Height="40"
+                    Margin="0,0,20,0"
+                    Background="{StaticResource MainColor}"
+                    Style="{StaticResource MaterialDesignRaisedButton}">
                 Lưu
             </Button>
-            <Button
-                x:Name="btnCancel"
-                Width="120"
-                Height="40"
-                Margin="20,0,0,0"
-                Background="Transparent"
-                BorderBrush="{StaticResource MainColor}"
-                Foreground="{StaticResource MainColor}"
-                Style="{StaticResource MaterialDesignOutlinedButton}">
+            <Button x:Name="btnCancel"
+                    Width="120"
+                    Height="40"
+                    Margin="20,0,0,0"
+                    Background="Transparent"
+                    BorderBrush="{StaticResource MainColor}"
+                    Foreground="{StaticResource MainColor}"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    Visibility="{Binding IsWindowView, Converter={StaticResource visibilityConverter}}">
                 Hủy
             </Button>
 

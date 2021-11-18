@@ -11,11 +11,13 @@ namespace ComputerProject.CustomerWorkspace
     public class CustomerViewModel: BusyViewModel
     {
         private CUSTOMER _model;
+        private bool _isWindowView;
         public CUSTOMER Model => _model;
 
-        public CustomerViewModel()
+        public CustomerViewModel(bool isWindowView = false)
         {
             this._model = new CUSTOMER();
+            this.IsWindowView = isWindowView;
         }
 
         public CustomerViewModel(CUSTOMER model)
@@ -94,6 +96,19 @@ namespace ComputerProject.CustomerWorkspace
                 catch (Exception)
                 {
                     OnPropertyChanged(nameof(Point_String));
+                }
+            }
+        }
+
+        public bool IsWindowView
+        {
+            get => _isWindowView;
+            private set
+            {
+                if (value!=_isWindowView)
+                {
+                    _isWindowView = value;
+                    OnPropertyChanged();
                 }
             }
         }

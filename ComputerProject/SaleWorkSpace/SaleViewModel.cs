@@ -10,6 +10,7 @@ using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ using System.Windows.Threading;
 
 namespace ComputerProject.SaleWorkSpace
 {
-    public class SaleViewModel : HelperService.BaseViewModel, ITabView
+    public class SaleViewModel : HelperService.BaseViewModel, ITabView, IDataErrorInfo
     {
         #region Fields
         public string ViewName => "Bán hàng";
@@ -34,7 +35,8 @@ namespace ComputerProject.SaleWorkSpace
         Model.Category _currentCategory;
         Model.Category _currentRootCategory;
         int _currentPoint;
-        int _pointMoney = -1;
+        int _pointToMoney = -1;
+        int _maxPoint = -1;
         IFilterProductState _currentFilter;
         bool _isPriceLowToHight;
 
@@ -56,22 +58,33 @@ namespace ComputerProject.SaleWorkSpace
         {
             get
             {
-                int value = TotalPriceProduct - CurrentPoint * PointMoney;
+                int value = TotalPriceProduct - CurrentPoint * PointToMoney;
 
                 if (value <= 0) return 0;
                 return value;
             }
         }
-        public int PointMoney
+        public int PointToMoney
         {
             get
             {
-                if (_pointMoney < 0)
+                if (_pointToMoney < 0)
                 {
-                    _pointMoney = _repository.GetPointToMoney();
+                    _pointToMoney = _repository.GetPointToMoney();
                     OnPropertyChanged(nameof(TotalPriceBill));
                 }
-                return _pointMoney;
+                return _pointToMoney;
+            }
+        }
+        public int MaxPoint
+        {
+            get
+            {
+                if (_maxPoint < 0)
+                {
+                    _maxPoint = _repository.GetMaxPointUse();
+                }
+                return _maxPoint;
             }
         }
         public Collection<Product> VisibleProducts
@@ -170,6 +183,7 @@ namespace ComputerProject.SaleWorkSpace
             {
                 if (value != _currentPoint)
                 {
+                    if (CurrentCustomer == null && value != 0) throw new InvalidCastException("The user not null");
                     _currentPoint = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(TotalPriceBill));
@@ -219,11 +233,15 @@ namespace ComputerProject.SaleWorkSpace
                     {
                         if (ProductsInBill == null || ProductsInBill.Count == 0)
                         {
-                            MessageBoxCustom.ShowDialog("Vui lòng chọn sản phẩm.", "Lỗi", PackIconKind.Error);
+                            MessageBoxCustom.ShowDialog("Vui lòng chọn sản phẩm.", "Thông báo", PackIconKind.Information);
                         }
                         else if (CurrentCustomer == null)
                         {
                             MessageBoxCustom.ShowDialog("Vui lòng chọn khách hàng.", "Thông báo", PackIconKind.Information);
+                        }
+                        else if (this.HasError)
+                        {
+                            MessageBoxCustom.ShowDialog("Vui lòng nhập đúng tất cả thông tin", "Thông báo", PackIconKind.Information);
                         }
                         else OpenPaymentView(ProductsInBill, CurrentCustomer);
                     });
@@ -313,7 +331,7 @@ namespace ComputerProject.SaleWorkSpace
             {
                 if (null == _searchCustomerCommand)
                 {
-                    _searchCustomerCommand = new RelayCommand(s => SearchCustomerbyName(s as string));
+                    _searchCustomerCommand = new RelayCommand(s => SearchCustomerbyPhone(s as string));
                 }
                 return _searchCustomerCommand;
             }
@@ -340,8 +358,45 @@ namespace ComputerProject.SaleWorkSpace
                 return _clearCommand;
             }
         }
+
         public event EventHandler<RequestViewArgs> RequestOpenDetailProductView;
-        public event EventHandler RequestAddNewCustomer;
+
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
+        public string Error => null;
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = null;
+                switch (columnName)
+                {
+                    case nameof(CurrentPoint):
+                        if (CurrentPoint > CurrentCustomer?.point)
+                        {
+                            error = "Point use is larger than the number of " + CurrentCustomer.name;
+                        }
+                        else if (CurrentPoint > MaxPoint)
+                        {
+                            error = "Point use is larger than max number point used in store";
+                        }
+                        break;
+                }
+
+                if (ErrorCollection.ContainsKey(columnName))
+                {
+                    if (error != null) ErrorCollection[columnName] = error;
+                    else ErrorCollection.Remove(columnName);
+                }
+                else if (error != null)
+                {
+                    ErrorCollection.Add(columnName, error);
+                }
+
+                OnPropertyChanged(nameof(ErrorCollection));
+                return error;
+            }
+        }
+        public bool HasError => ErrorCollection.Any();
         #endregion //Properties
 
         public SaleViewModel()
@@ -360,6 +415,7 @@ namespace ComputerProject.SaleWorkSpace
             Task.Run(LoadFilterControl);
             Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
             Task.Run(LoadCategoryControl);
+            ReloadPoint();
         }
         private void LoadCategoryControl()
         {
@@ -390,6 +446,11 @@ namespace ComputerProject.SaleWorkSpace
                 VisibleProducts = FilterByCategory(_products);
                 VisibleProducts = FilterByFilterControl(VisibleProducts, CurrentFilter);
             });
+        }
+        public void ReloadPoint()
+        {
+            _pointToMoney = -1;
+            _maxPoint = -1;
         }
         //private void SearchRootCategory()
         //{
@@ -444,6 +505,7 @@ namespace ComputerProject.SaleWorkSpace
         {
             Clear(CurrentCustomer);
             Clear(ProductsInBill);
+            CurrentPoint = 0;
         }
         private void AddToBill(Product product, int quantity)
         {
@@ -511,25 +573,27 @@ namespace ComputerProject.SaleWorkSpace
         }
         private void OpenAddCustomerView()
         {
-            RequestAddNewCustomer?.Invoke(this, null);
+            var vm = new CustomerViewModel(true);
+            WindowService.ShowWindow(vm, new CustomerAdd());
         }
         private void SearchProductbyName(string text)
         {
             if (text != null)
             {
                 VisibleProducts = FilterByCategory(_products);
-                text = text.Trim();
-                VisibleProducts = new ObservableCollection<Product>(VisibleProducts.Where(i => i.Name.Contains(text)));
+                text = text.Trim().ToLower();
+
+                VisibleProducts = new ObservableCollection<Product>(VisibleProducts.Where(i => FormatHelper.ConvertTo_TiengDongLao(i.Name).ToLower().Contains(text)));
             }
         }
         private void SortProductbyPrice()
         {
             IsPriceLowToHight = !IsPriceLowToHight;
         }
-        private void SearchCustomerbyName(string text)
+        private void SearchCustomerbyPhone(string phone)
         {
             int number = 5;
-            ListSearchCustomer = _repository.SearchCustomer(text, number);
+            ListSearchCustomer = _repository.SearchCustomer(phone, number);
         }
         private void ShowDetail(Model.Product product)
         {

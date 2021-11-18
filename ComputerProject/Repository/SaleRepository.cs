@@ -74,6 +74,14 @@ namespace ComputerProject.Repository
             }
         }
 
+        public int GetMaxPointUse()
+        {
+            using (var db = new ComputerManagementEntities())
+            {
+                return int.Parse(db.REGULATIONs.Where(i => i.name == "MaxPoint").Select(i => i.value).First());
+            }
+        }
+
         public Collection<Category> LoadCategories()
         {
             var categoryRepo = new CategoryRepository();
@@ -128,11 +136,11 @@ namespace ComputerProject.Repository
             }
         }
 
-        public Collection<CUSTOMER> SearchCustomer(string text, int number)
+        public Collection<CUSTOMER> SearchCustomer(string phone, int number)
         {
             using (var db = new ComputerManagementEntities())
             {
-                var query = db.CUSTOMERs.AsNoTracking().Where(i => i.phone.Contains(text)).OrderBy(p => p.phone).Take(number);
+                var query = db.CUSTOMERs.AsNoTracking().Where(i => i.phone.Contains(phone)).OrderBy(p => p.phone).Take(number);
                 Collection<CUSTOMER> list = new ObservableCollection<CUSTOMER>(query.AsEnumerable());
 
                 return list;

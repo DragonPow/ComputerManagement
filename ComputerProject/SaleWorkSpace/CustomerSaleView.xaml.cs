@@ -29,13 +29,20 @@ namespace ComputerProject.SaleWorkSpace
             timeDelayText = new Timer(1500);
             timeDelayText.Elapsed += TimeDelayText_Elapsed;
             completebox.TextChanged += Completebox_TextChanged;
-            completebox.SelectionChanged += Completebox_SelectionChanged;
         }
 
         private void Completebox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             timeDelayText.Stop();
+
+            if (completebox.SelectedItem != null)
+            {
+                SaleViewModel dataContext = this.DataContext as SaleViewModel;
+                dataContext.CurrentCustomer = completebox.SelectedItem as CUSTOMER;
+            }
+
             completebox.Text = null;
+            //completebox.SelectedItem = null;
             //Console.WriteLine((completebox.SelectedItem as CUSTOMER)?.name??"nothing to bind");
         }
 
