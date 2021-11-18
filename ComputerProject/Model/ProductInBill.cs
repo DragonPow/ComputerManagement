@@ -1,13 +1,14 @@
 ﻿using ComputerProject.HelperService;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ComputerProject.Model
 {
-    public class ProductInBill : Product
+    public class ProductInBill : Product, IDataErrorInfo
     {
         string _seri;
         int _priceUnit;
@@ -37,6 +38,39 @@ namespace ComputerProject.Model
                 }
             }
         }
+
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
+        public string Error => null;
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = null;
+                switch(columnName)
+                {
+                    case nameof(Seri):
+                        if (string.IsNullOrWhiteSpace(Seri))
+                        {
+                            error = "Seri not null or white space, product name: " + this.Name;
+                        }
+                        break;
+                }
+
+                if (ErrorCollection.ContainsKey(columnName))
+                {
+                    if (error != null) ErrorCollection[columnName] = error;
+                    else ErrorCollection.Remove(columnName);
+                }
+                else if (error != null)
+                {
+                    ErrorCollection.Add(columnName, error);
+                }
+
+                OnPropertyChanged(nameof(ErrorCollection));
+                return error;
+            }
+        }
+        public bool HasError => ErrorCollection.Any();
 
         public ProductInBill(Product product) : base(product)
         {

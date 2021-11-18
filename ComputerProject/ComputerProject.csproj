@@ -340,6 +340,7 @@
       <DependentUpon>WarrantyCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Regulation.cs" />
+    <Compile Include="Model\StoreInformation.cs" />
     <Compile Include="OverViewWorkSpace\OverViewMainView.xaml.cs">
       <DependentUpon>OverViewMainView.xaml</DependentUpon>
     </Compile>
@@ -359,6 +360,7 @@
       <DependentUpon>ProductEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Repository\BillRepository.cs" />
+    <Compile Include="Repository\StoreRepository.cs" />
     <Compile Include="SaleWorkSpace\SelectedTabCategory.xaml.cs">
       <DependentUpon>SelectedTabCategory.xaml</DependentUpon>
     </Compile>

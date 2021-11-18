@@ -10,6 +10,7 @@ using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ using System.Windows.Threading;
 
 namespace ComputerProject.SaleWorkSpace
 {
-    public class SaleViewModel : HelperService.BaseViewModel, ITabView
+    public class SaleViewModel : HelperService.BaseViewModel, ITabView, IDataErrorInfo
     {
         #region Fields
         public string ViewName => "Bán hàng";
@@ -34,7 +35,8 @@ namespace ComputerProject.SaleWorkSpace
         Model.Category _currentCategory;
         Model.Category _currentRootCategory;
         int _currentPoint;
-        int _pointMoney = -1;
+        int _pointToMoney = -1;
+        int _maxPoint = -1;
         IFilterProductState _currentFilter;
         bool _isPriceLowToHight;
 
@@ -50,29 +52,39 @@ namespace ComputerProject.SaleWorkSpace
         ICommand _clearCommand;
         #endregion //Fields
 
-
         #region Properties
         public int TotalPriceProduct => ProductsInBill == null ? 0 : ProductsInBill.Sum(p => p.Value * p.Key.PriceSale);
         public int TotalPriceBill
         {
             get
             {
-                int value = TotalPriceProduct - CurrentPoint * PointMoney;
+                int value = TotalPriceProduct - CurrentPoint * PointToMoney;
 
                 if (value <= 0) return 0;
                 return value;
             }
         }
-        public int PointMoney
+        public int PointToMoney
         {
             get
             {
-                if (_pointMoney < 0)
+                if (_pointToMoney < 0)
                 {
-                    _pointMoney = _repository.GetPointToMoney();
+                    _pointToMoney = _repository.GetPointToMoney();
                     OnPropertyChanged(nameof(TotalPriceBill));
                 }
-                return _pointMoney;
+                return _pointToMoney;
+            }
+        }
+        public int MaxPoint
+        {
+            get
+            {
+                if (_maxPoint < 0)
+                {
+                    _maxPoint = _repository.GetMaxPointUse();
+                }
+                return _maxPoint;
             }
         }
         public Collection<Product> VisibleProducts
@@ -143,7 +155,7 @@ namespace ComputerProject.SaleWorkSpace
                 {
                     _currentCategory = value;
                     OnPropertyChanged();
-                    OnCategoryChanged();
+                    VisibleProducts = FilterByCategory(_products);
                 }
             }
         }
@@ -159,7 +171,8 @@ namespace ComputerProject.SaleWorkSpace
 
                     _currentCategory = _currentRootCategory?.ChildCategories[0] ?? null;
                     OnPropertyChanged(nameof(CurrentCategory));
-                    OnCategoryChanged();
+
+                    VisibleProducts = FilterByCategory(_products);
                 }
             }
         }
@@ -170,6 +183,7 @@ namespace ComputerProject.SaleWorkSpace
             {
                 if (value != _currentPoint)
                 {
+                    if (CurrentCustomer == null && value != 0) throw new InvalidCastException("The user not null");
                     _currentPoint = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(TotalPriceBill));
@@ -219,11 +233,15 @@ namespace ComputerProject.SaleWorkSpace
                     {
                         if (ProductsInBill == null || ProductsInBill.Count == 0)
                         {
-                            MessageBoxCustom.ShowDialog("Vui lòng chọn sản phẩm.", "Lỗi", PackIconKind.Error);
+                            MessageBoxCustom.ShowDialog("Vui lòng chọn sản phẩm.", "Thông báo", PackIconKind.Information);
                         }
                         else if (CurrentCustomer == null)
                         {
                             MessageBoxCustom.ShowDialog("Vui lòng chọn khách hàng.", "Thông báo", PackIconKind.Information);
+                        }
+                        else if (this.HasError)
+                        {
+                            MessageBoxCustom.ShowDialog("Vui lòng nhập đúng tất cả thông tin", "Thông báo", PackIconKind.Information);
                         }
                         else OpenPaymentView(ProductsInBill, CurrentCustomer);
                     });
@@ -237,7 +255,17 @@ namespace ComputerProject.SaleWorkSpace
             {
                 if (null == _addProductInBillCommand)
                 {
-                    _addProductInBillCommand = new RelayCommand(product => AddToBill(product as Model.Product, 1));
+                    _addProductInBillCommand = new RelayCommand(product =>
+                    {
+                        try
+                        {
+                            AddToBill(product as Model.Product, 1);
+                        }
+                        catch (InvalidOperationException e1)
+                        {
+                            MessageBoxCustom.ShowDialog("Không đủ hàng trong kho để bán", "Thông báo", PackIconKind.WarningBox);
+                        }
+                    });
                 }
                 return _addProductInBillCommand;
             }
@@ -253,24 +281,24 @@ namespace ComputerProject.SaleWorkSpace
                 return _removeProductInBillCommand;
             }
         }
-        public ICommand FilterProductsCommand
-        {
-            get
-            {
-                if (null == _filterProductsCommand)
-                {
-                    _filterProductsCommand = new RelayCommand(a => OpenFilterControl());
-                }
-                return _filterProductsCommand;
-            }
-        }
+        //public ICommand FilterProductsCommand
+        //{
+        //    get
+        //    {
+        //        if (null == _filterProductsCommand)
+        //        {
+        //            _filterProductsCommand = new RelayCommand(a => OpenFilterControl());
+        //        }
+        //        return _filterProductsCommand;
+        //    }
+        //}
         public ICommand SortProductsCommand
         {
             get
             {
                 if (null == _sortProductsCommand)
                 {
-                    _sortProductsCommand = new RelayCommand(a => Sort());
+                    _sortProductsCommand = new RelayCommand(a => SortProductbyPrice());
                 }
                 return _sortProductsCommand;
             }
@@ -292,7 +320,7 @@ namespace ComputerProject.SaleWorkSpace
             {
                 if (null == _searchProductCommand)
                 {
-                    _searchProductCommand = new RelayCommand(s => SearchProduct(s as string));
+                    _searchProductCommand = new RelayCommand(s => SearchProductbyName(s as string));
                 }
                 return _searchProductCommand;
             }
@@ -303,7 +331,7 @@ namespace ComputerProject.SaleWorkSpace
             {
                 if (null == _searchCustomerCommand)
                 {
-                    _searchCustomerCommand = new RelayCommand(s => SearchCustomer(s as string));
+                    _searchCustomerCommand = new RelayCommand(s => SearchCustomerbyPhone(s as string));
                 }
                 return _searchCustomerCommand;
             }
@@ -330,53 +358,99 @@ namespace ComputerProject.SaleWorkSpace
                 return _clearCommand;
             }
         }
-        public event EventHandler<RequestViewArgs> RequestOpenDetailProductView;
-        public event EventHandler RequestAddNewCustomer;
-        #endregion //Properties
 
+        public event EventHandler<RequestViewArgs> RequestOpenDetailProductView;
+
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
+        public string Error => null;
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = null;
+                switch (columnName)
+                {
+                    case nameof(CurrentPoint):
+                        if (CurrentPoint > CurrentCustomer?.point)
+                        {
+                            error = "Point use is larger than the number of " + CurrentCustomer.name;
+                        }
+                        else if (CurrentPoint > MaxPoint)
+                        {
+                            error = "Point use is larger than max number point used in store";
+                        }
+                        break;
+                }
+
+                if (ErrorCollection.ContainsKey(columnName))
+                {
+                    if (error != null) ErrorCollection[columnName] = error;
+                    else ErrorCollection.Remove(columnName);
+                }
+                else if (error != null)
+                {
+                    ErrorCollection.Add(columnName, error);
+                }
+
+                OnPropertyChanged(nameof(ErrorCollection));
+                return error;
+            }
+        }
+        public bool HasError => ErrorCollection.Any();
+        #endregion //Properties
 
         public SaleViewModel()
         {
             _repository = new SaleRepository();
-            CurrentFilter = new FilterProductViewModel(CurrentFilter);
-            CurrentFilter.FilterClickedEvent += new EventHandler((o, e) =>
-            {
-                VisibleProducts = _repository.SearchFilterProduct(CurrentFilter);
-                if (CurrentFilter.CategoryType != null)
-                {
-                    CurrentCategory = Categories.Where(i => i.Name == CurrentFilter.CategoryType.Name).FirstOrDefault();
-                }
-            });
-
             LoadData();
         }
         public SaleViewModel(SaleRepository repository)
         {
             this._repository = repository;
+            LoadData();
         }
 
         public void LoadData()
         {
-            var loadProductTask = Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
+            Task.Run(LoadFilterControl);
+            Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
+            Task.Run(LoadCategoryControl);
+            ReloadPoint();
+        }
+        private void LoadCategoryControl()
+        {
+            //Load data
+            Categories = _repository.LoadCategories();
 
-            Task.Run(() =>
+            //Add "All" text to UI for category tab
+            var null_category = new Category();
+            Categories.Insert(0, null_category);
+            foreach (var category in Categories)
             {
-                Categories = _repository.LoadCategories();
+                if (category.ChildCategories == null) category.ChildCategories = new ObservableCollection<Model.Category>();
+                category.ChildCategories.Insert(0, null_category);
+            }
 
-                //Add "all" to UI for category tab
-                var null_category = new Category();
-                Categories.Insert(0, null_category);
-                foreach (var category in Categories)
-                {
-                    if (category.ChildCategories == null) category.ChildCategories = new ObservableCollection<Model.Category>();
-                    category.ChildCategories.Insert(0, null_category);
-                }
+            //Set current Category to "All"
+            _currentRootCategory = Categories[0];
+            _currentCategory = _currentRootCategory.ChildCategories[0];
 
-                _currentRootCategory = Categories[0];
-                _currentCategory = _currentRootCategory.ChildCategories[0];
-                OnPropertyChanged(nameof(CurrentRootCategory));
-                OnPropertyChanged(nameof(CurrentCategory));
+            OnPropertyChanged(nameof(CurrentRootCategory));
+            OnPropertyChanged(nameof(CurrentCategory));
+        }
+        private void LoadFilterControl()
+        {
+            CurrentFilter = new FilterProductViewModel(CurrentFilter, true);
+            CurrentFilter.FilterClickedEvent += new EventHandler((o, e) =>
+            {
+                VisibleProducts = FilterByCategory(_products);
+                VisibleProducts = FilterByFilterControl(VisibleProducts, CurrentFilter);
             });
+        }
+        public void ReloadPoint()
+        {
+            _pointToMoney = -1;
+            _maxPoint = -1;
         }
         //private void SearchRootCategory()
         //{
@@ -393,25 +467,26 @@ namespace ComputerProject.SaleWorkSpace
         //        VisibleProducts = _products;
         //    }
         //}
-        private void OnCategoryChanged()
+        private Collection<Product> FilterByCategory(Collection<Product> products)
         {
-            if (_products == null) return;
+            if (products == null) return null;
+
             if (CurrentCategory != null && CurrentCategory.Name != null)
             {
                 //Current tab category is child
-                VisibleProducts = new ObservableCollection<Model.Product>(_products.Where(i => i.CategoryProduct.Id == CurrentCategory.Id));
+                return new ObservableCollection<Model.Product>(products.Where(i => i.CategoryProduct.Id == CurrentCategory.Id));
             }
             else if (CurrentRootCategory != null)
             {
                 //Current tab category is root
                 if (CurrentRootCategory.Name != null)
                 {
-                    VisibleProducts = new ObservableCollection<Model.Product>(_products.Where(i => CurrentRootCategory.ChildCategories.Any(child => child.Id == i.CategoryProduct.Id)));
+                    return new ObservableCollection<Model.Product>(products.Where(i => CurrentRootCategory.ChildCategories.Any(child => child.Id == i.CategoryProduct.Id)));
                 }
                 else
                 {
                     //Show all products in store
-                    VisibleProducts = _products;
+                    return products;
                 }
             }
             else
@@ -422,11 +497,27 @@ namespace ComputerProject.SaleWorkSpace
         private void OpenPaymentView(IDictionary<Product, int> productsInBill, CUSTOMER currentCustomer)
         {
             var vm = new BillViewModel(productsInBill, currentCustomer, TotalPriceBill);
+            vm.PaymentSuccessEvent += (s, e) => ClearPayment();
+
             WindowService.ShowWindow(vm, new PaySaleBillView());
+        }
+        private void ClearPayment()
+        {
+            Clear(CurrentCustomer);
+            Clear(ProductsInBill);
+            CurrentPoint = 0;
         }
         private void AddToBill(Product product, int quantity)
         {
-            if (ProductsInBill.ContainsKey(product))
+            bool containProduct = ProductsInBill.ContainsKey(product);
+            int totalQuantity = quantity + (containProduct ? ProductsInBill[product] : 0);
+
+            if (product.Quantity < totalQuantity)
+            {
+                throw new InvalidOperationException("Quantity not enough to buy");
+            }
+
+            if (containProduct)
             {
                 ProductsInBill[product] += quantity;
             }
@@ -434,6 +525,7 @@ namespace ComputerProject.SaleWorkSpace
             {
                 ProductsInBill.Add(product, quantity);
             }
+
             OnPropertyChanged(nameof(TotalPriceProduct));
             OnPropertyChanged(nameof(TotalPriceBill));
         }
@@ -454,58 +546,72 @@ namespace ComputerProject.SaleWorkSpace
             OnPropertyChanged(nameof(TotalPriceProduct));
             OnPropertyChanged(nameof(TotalPriceBill));
         }
-        private void OpenFilterControl()
-        {
-            FilterProductViewModel filter = new FilterProductViewModel(CurrentFilter);
-            filter.FilterClickedEvent += new EventHandler((o, e) =>
-              {
-                  CurrentFilter = filter;
-                  VisibleProducts = _repository.SearchFilterProduct(CurrentFilter);
-                  if (CurrentFilter.CategoryType != null)
-                  {
-                      CurrentCategory = Categories.Where(i => i.Name == CurrentFilter.CategoryType.Name).FirstOrDefault();
-                  }
-              });
+        //private void OpenFilterControl()
+        //{
+        //    FilterProductViewModel filter = new FilterProductViewModel(CurrentFilter);
+        //    filter.FilterClickedEvent += new EventHandler((o, e) =>
+        //      {
+        //          //CurrentFilter = filter;
+        //          //VisibleProducts = _repository.SearchFilterProduct(CurrentFilter);
+        //          FilterByCategory();
+        //          VisibleProducts = SearchFilterProduct(VisibleProducts, CurrentFilter);
+        //          //if (CurrentFilter.CategoryType != null)
+        //          //{
+        //          //    CurrentCategory = Categories.Where(i => i.Name == CurrentFilter.CategoryType.Name).FirstOrDefault();
+        //          //}
+        //      });
 
-            WindowService.ShowWindow(filter, new Filtertab());
+        //    WindowService.ShowWindow(filter, new Filtertab());
+        //}
+        public Collection<Product> FilterByFilterControl(Collection<Product> products, IFilterProductState filter)
+        {
+            IEnumerable<Model.Product> filteredProducts = products.Where(i => (!(filter.Supplier == null || filter.Supplier.Trim() == "") ? i.Producer.ToLower().Contains(filter.Supplier.Trim().ToLower()) : true)
+                                                                && i.PriceSale >= filter.PriceLowest
+                                                                && (filter.PriceHighest > 0 ? i.PriceSale <= filter.PriceHighest : true)
+                                                                && (filter.TimeWarranty > 0 ? i.Warranty == filter.TimeWarranty : true));
+            return new ObservableCollection<Product>(filteredProducts);
         }
         private void OpenAddCustomerView()
         {
-            RequestAddNewCustomer?.Invoke(this, null);
+            var vm = new CustomerViewModel(true);
+            WindowService.ShowWindow(vm, new CustomerAdd());
         }
-        private void SearchProduct(string text)
+        private void SearchProductbyName(string text)
         {
             if (text != null)
             {
-                OnCategoryChanged();
-                text = text.Trim();
-                VisibleProducts = new ObservableCollection<Product>(VisibleProducts.Where(i => i.Name.Contains(text)));
+                VisibleProducts = FilterByCategory(_products);
+                text = text.Trim().ToLower();
+
+                VisibleProducts = new ObservableCollection<Product>(VisibleProducts.Where(i => FormatHelper.ConvertTo_TiengDongLao(i.Name).ToLower().Contains(text)));
             }
         }
-        private void Sort()
+        private void SortProductbyPrice()
         {
             IsPriceLowToHight = !IsPriceLowToHight;
         }
-        private void SearchCustomer(string text)
+        private void SearchCustomerbyPhone(string phone)
         {
             int number = 5;
-            ListSearchCustomer = _repository.SearchCustomer(text, number);
+            ListSearchCustomer = _repository.SearchCustomer(phone, number);
         }
         private void ShowDetail(Model.Product product)
         {
             //RequestOpenView?.Invoke(this, new RequestViewArgs(ProductViewModel, product));
         }
-        private void Clear(object list)
+        private void Clear(object information)
         {
-            if (list == null) return;
+            if (information == null) return;
 
-            if (list == CurrentCustomer)
+            if (information == CurrentCustomer)
             {
                 CurrentCustomer = null;
             }
-            else if (list == ProductsInBill)
+            else if (information == ProductsInBill)
             {
                 ProductsInBill.Clear();
+                OnPropertyChanged(nameof(TotalPriceProduct));
+                OnPropertyChanged(nameof(TotalPriceBill));
             }
         }
     }

@@ -46,7 +46,7 @@
                 Margin="5,0"
                 BorderBrush="{StaticResource Icon}">
             <TextBox 
-                     Text="{Binding Seri}"
+                     Text="{Binding Seri, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      BorderThickness="0"
                      Margin="5,0"
                      Grid.Column="2"

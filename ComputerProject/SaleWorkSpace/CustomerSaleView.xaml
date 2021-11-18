@@ -107,7 +107,7 @@
                                              FontFamily="{StaticResource Mulish}"
                                              ItemsSource="{Binding ListSearchCustomer}"
                                              ValueMemberPath="phone"
-                                             SelectedItem="{Binding CurrentCustomer, Mode=OneWayToSource}">
+                                             SelectionChanged="Completebox_SelectionChanged">
                         <Toolkit:AutoCompleteBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical"
