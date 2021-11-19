@@ -41,6 +41,20 @@ namespace ComputerProject.Helper
             window.Tag = View.Tag;
             window.ShowDialog();
         }
+        public static void ShowSingelWindow(object ViewModel, UserControl View)
+        {
+            var window = new Window();
+
+            window.Content = View;
+            window.SizeToContent = SizeToContent.WidthAndHeight;
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.DataContext = ViewModel;
+            window.WindowStyle = WindowStyle.SingleBorderWindow;
+            window.ResizeMode = ResizeMode.NoResize;
+            window.BorderThickness = new Thickness(1);
+            window.Tag = View.Tag;
+            window.ShowDialog();
+        }
 
         public static List<Window> FindWindowbyTag(string nameWindow)
         {

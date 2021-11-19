@@ -499,7 +499,7 @@ namespace ComputerProject.SaleWorkSpace
             var vm = new BillViewModel(productsInBill, currentCustomer, TotalPriceBill);
             vm.PaymentSuccessEvent += (s, e) => ClearPayment();
 
-            WindowService.ShowWindow(vm, new PaySaleBillView());
+            WindowService.ShowSingelWindow(vm, new PaySaleBillView());
         }
         private void ClearPayment()
         {
