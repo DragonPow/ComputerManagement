@@ -1,5 +1,7 @@
-﻿using LiveCharts;
+﻿using ComputerProject.ApplicationWorkspace;
+using LiveCharts;
 using LiveCharts.Wpf;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +22,15 @@ namespace ComputerProject.OverViewWorkSpace
     /// <summary>
     /// Interaction logic for OverViewMainView.xaml
     /// </summary>
-    public partial class OverViewMainView : UserControl
+    public partial class OverViewMainView : UserControl, ITabView
     {
-       
+        public string ViewName => "Tổng quan";
+        public PackIconKind ViewIcon => PackIconKind.ChartArc;
         public OverViewMainView()
         {
             InitializeComponent();
+            if ( DataContext == null )
+                 DataContext = new OverViewViewModel();
         }
     }
 }
