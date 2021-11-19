@@ -6,26 +6,22 @@ using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace ComputerProject.OverViewWorkSpace
 {
-    class OverViewViewModel : BaseViewModel, ITabView
+    class OverViewViewModel : BaseViewModel
     {
         #region Field
-        public string ViewName => "Tổng quan";
-        public PackIconKind ViewIcon => PackIconKind.ChartArc;
         public SeriesCollection SeriesCollection { get; set; }
         public List<string> Barlable { get; set; }
-
-        
         public Func<double, string> Formatter { get; set; } = value => FormatLable(value);
         DateTime to = DateTime.Now;
         DateTime from = DateTime.Now.AddDays(-29);
         public ChartValues<double> Values { get; set; }
-
         #endregion
 
         #region Properties
@@ -37,15 +33,14 @@ namespace ComputerProject.OverViewWorkSpace
 
         public int TotalProStop { get; set; }
 
-        string ITabView.ViewName => ViewName;
-
-        PackIconKind ITabView.ViewIcon => ViewIcon;
+      
         #endregion
 
         #region Constructor
 
         public OverViewViewModel()
         {
+
             DateTime date = DateTime.Now.AddDays(-6);
             Values = new ChartValues<double>();
 

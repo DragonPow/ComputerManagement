@@ -33,9 +33,7 @@
         <saleWS:SaleAllView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type overviewWS:OverViewViewModel}">
-        <overviewWS:OverViewMainView />
-    </DataTemplate>
+  
     <DataTemplate DataType="{x:Type SettingWS:SettingViewModel}">
         <SettingWS:SettingAllView />
     </DataTemplate>

@@ -65,7 +65,7 @@ namespace ComputerProject.ApplicationWorkspace
 
             TabViewModels = new ObservableCollection<ITabView>()
             {
-                new OverViewViewModel(),
+                 new OverViewWorkSpace.OverViewMainView(),
                 saleVM,
                 new ProductWorkSpace.ProductTabView(),
                 new CategoryViewModel(),
