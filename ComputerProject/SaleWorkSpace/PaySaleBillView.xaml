@@ -9,8 +9,8 @@
               xmlns:converter="clr-namespace:ComputerProject.Converter"
              mc:Ignorable="d"
              d:DesignHeight="700"
-             d:DesignWidth="700"
-             MinWidth="600"
+             d:DesignWidth="750"
+             MinWidth="650"
              Tag="BillViewModel"
              d:DataContext="{d:DesignInstance Type={x:Type local:BillViewModel}}"
              Background="White">
@@ -120,8 +120,8 @@
             <Grid Background="{StaticResource Background}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="240" />
-                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition Width="140" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="STT"
@@ -139,7 +139,7 @@
                            FontWeight="Bold" />
                 <TextBlock Grid.Column="3"
                            Text="Đơn giá"
-                           Margin="20,0"
+                           Margin="30,0,10,0"
                            VerticalAlignment="Center"
                            FontSize="{x:Static font:Font.Body}"
                            FontFamily="{StaticResource Mulish}"
@@ -207,37 +207,31 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Tiền khách đưa"
                        Margin="10"
                        FontWeight="DemiBold"
                        VerticalAlignment="Center"
                        FontSize="{x:Static font:Font.Body}"
-                       Foreground="{StaticResource Icon}"
-                       Grid.ColumnSpan="3" />
-            <Border Margin="0,5,5,5"
-                    HorizontalAlignment="Right"
-                    Padding="30,0,0,0"
-                    MinWidth="100"
-                    BorderThickness="1"
-                    BorderBrush="{StaticResource MainColor}"
-                    CornerRadius="5"
-                    Grid.ColumnSpan="3">
-                <TextBox Margin="5,0"
-                         Text="{Binding CurrentBill.MoneyCustomer, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                       Foreground="{StaticResource Icon}"/>
+            <TextBox   Text="{Binding CurrentBill.MoneyCustomer, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                          FontWeight="DemiBold"
                          MaxWidth="250"
-                         MinWidth="80"
+                         MinWidth="130"
+                         Height="30"
+                         Padding="5"
+                       VerticalContentAlignment="Center"
+                       Grid.Column="2"
+                         BorderThickness="1.5"
+                        HorizontalAlignment="Right"
                          PreviewTextInput="PreviewTextInput"
-                         BorderThickness="0"
                          HorizontalContentAlignment="Right"
                          VerticalAlignment="Center"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          FontSize="{x:Static font:Font.Body}"
-                         HorizontalAlignment="Right"
                          Foreground="Black" />
-            </Border>
             <TextBlock Grid.Row="1"
                        Text="Tiền thừa"
                        Margin="10,5"
