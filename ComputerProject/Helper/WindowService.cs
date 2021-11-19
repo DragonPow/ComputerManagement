@@ -51,7 +51,6 @@ namespace ComputerProject.Helper
             window.DataContext = ViewModel;
             window.WindowStyle = WindowStyle.SingleBorderWindow;
             window.ResizeMode = ResizeMode.NoResize;
-            window.BorderThickness = new Thickness(1);
             window.Tag = View.Tag;
             window.ShowDialog();
         }
