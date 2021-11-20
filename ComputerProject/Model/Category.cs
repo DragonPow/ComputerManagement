@@ -64,29 +64,45 @@ namespace ComputerProject.Model
             }
         }
 
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new Dictionary<string, string>();
         public string Error => null;
-
         public string this[string columnName]
         {
             get
             {
+                string error = null;
                 switch (columnName)
                 {
                     case nameof(Name):
                         {
                             if (String.IsNullOrWhiteSpace(_name))
-                                return "Name is not null";
+                                error = "Name is not null";
                             break;
                         }
                     case nameof(Id):
                         {
-                            if (_id < 0) return "Id is not negative integer";
+                            if (_id < 0) error = "Id is not negative integer";
                             break;
                         }
                 }
-                return null;
+
+                if (ErrorCollection.ContainsKey(columnName))
+                {
+                    if (error != null) ErrorCollection[columnName] = error;
+                    else ErrorCollection.Remove(columnName);
+                }
+                else if (error != null)
+                {
+                    ErrorCollection.Add(columnName, error);
+                }
+
+                OnPropertyChanged(nameof(ErrorCollection));
+                return error;
             }
         }
+        public bool HasErrorData => ErrorCollection.Any() ||
+            (ChildCategories?.Any(i => i.HasErrorData) ?? false) ||
+            (SpecificationTypes?.Any(i => i.HasErrorData) ?? false);
 
         public Category()
         {

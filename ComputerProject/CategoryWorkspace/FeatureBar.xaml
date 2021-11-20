@@ -6,12 +6,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.CategoryWorkspace"
              xmlns:local1="clr-namespace:ComputerProject.CustomControl"
+             xmlns:converter="clr-namespace:ComputerProject.Converter"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
              d:DesignHeight="100"
              d:DesignWidth="1340"
              Background="White"
              xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
              d:DataContext="{d:DesignInstance Type=local:ListCategoryViewModel}">
+    <UserControl.Resources>
+        <converter:MultiConverter x:Key="multiConverter" />
+        <sys:Boolean x:Key="TrueBoolean">True</sys:Boolean>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -20,25 +26,29 @@
         <local1:Search Grid.Column="0"
                        HorizontalAlignment="Left"
                        Texthint="Tên danh mục"
-                       IsTabStop="False" KeyboardNavigation.TabIndex="0" 
+                       IsTabStop="False"
+                       KeyboardNavigation.TabIndex="0"
                        Margin="20, 0, 0, 0">
         </local1:Search>
-        <Button
-                        x:Name="btnCreate"
-                        Grid.Column="1"
-                        Height="35"
-                        HorizontalAlignment="Right"
-                        Margin="0, 0, 20, 0"
-                        Background="#FF0477BF"
-                         Command="{Binding OpenDetailCategoryCommand}"
-                        CommandParameter="{x:Null}"
-                        materialDesign:ButtonAssist.CornerRadius="5"
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        ToolTip="Thêm danh mục">
-            <TextBlock
-                            FontFamily="/ComputerProject;component/Resource/Font/Mulish-VariableFont_wght.ttf"
-                            FontSize="16"
-                            Foreground="White">
+        <Button x:Name="btnCreate"
+                Grid.Column="1"
+                Height="35"
+                HorizontalAlignment="Right"
+                Margin="0, 0, 20, 0"
+                Background="#FF0477BF"
+                Command="{Binding OpenDetailCategoryCommand}"
+                materialDesign:ButtonAssist.CornerRadius="5"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                ToolTip="Thêm danh mục">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource multiConverter}">
+                    <Binding Source="{x:Null}"/>
+                    <Binding Source="{StaticResource TrueBoolean}" />
+                </MultiBinding>
+            </Button.CommandParameter>
+            <TextBlock FontFamily="/ComputerProject;component/Resource/Font/Mulish-VariableFont_wght.ttf"
+                       FontSize="16"
+                       Foreground="White">
                             + Thêm mới
             </TextBlock>
         </Button>

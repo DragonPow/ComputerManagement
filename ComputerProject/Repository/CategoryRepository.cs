@@ -20,18 +20,18 @@ namespace ComputerProject.Repository
                 _context.Configuration.LazyLoadingEnabled = false;
 
                 IEnumerable<CATEGORY> listEntity = null;
-                IQueryable<CATEGORY> query = null;
+                IQueryable<CATEGORY> query = _context.CATEGORies.Include(c => c.CATEGORY11).AsNoTracking();
 
                 if (name == null)
                 {
-                    query = _context.CATEGORies.Include(c => c.CATEGORY11).Where(i => i.parentCategoryId == null);
+                    query = query.Where(i => i.parentCategoryId == null);
                 }
                 else
                 {
-                    query = _context.CATEGORies.Include(c => c.CATEGORY11).Where(i => i.name.Contains(name) && i.parentCategoryId == null);
+                    query = query.Where(i => i.name.Contains(name) && i.parentCategoryId == null);
                 }
 
-                listEntity = query.ToList();
+                listEntity = query.AsEnumerable();
 
                 foreach (var i in listEntity)
                 {
@@ -50,10 +50,7 @@ namespace ComputerProject.Repository
 
             using (var _context = new ComputerManagementEntities())
             {
-                _context.Configuration.LazyLoadingEnabled = false;
-                _context.Configuration.AutoDetectChangesEnabled = false;
-
-                List<CATEGORY> listEntity = _context.CATEGORies.Include(i => i.SPECIFICATION_TYPE).Where(i => i.parentCategoryId == rootId).ToList();
+                var listEntity = _context.CATEGORies.Include(i => i.SPECIFICATION_TYPE).Where(i => i.parentCategoryId == rootId).AsNoTracking().ToList();
 
                 foreach (var i in listEntity)
                 {
@@ -93,23 +90,41 @@ namespace ComputerProject.Repository
             using (var _context = new ComputerManagementEntities())
             {
                 CATEGORY c = category.CastToModel();
+
+                //Add new category in UI
                 _context.Entry(c).State = c.id == 0 ? EntityState.Added : EntityState.Modified;
                 foreach (var child in c.CATEGORY11)
                 {
+                    //Add or Update category which insert to UI
                     _context.Entry(child).State = child.id == 0 ? EntityState.Added : EntityState.Modified;
                     foreach (var spec in child.SPECIFICATION_TYPE)
                     {
                         _context.Entry(spec).State = spec.id == 0 ? EntityState.Added : EntityState.Modified;
                     }
+
+                    //Remove specification and spec_product which deleted from UI
+                    if (_context.Entry(child).State == EntityState.Modified)
+                    {
+                        var spec_in_UI = child.SPECIFICATION_TYPE.Select(i => i.id);
+                        var spec_deleted = _context.SPECIFICATION_TYPE.Include(i => i.SPECIFICATIONs)
+                                                                                                .AsEnumerable()
+                                                                                                .Where(i => spec_in_UI.Contains(i.id));
+                        foreach (var spec in spec_deleted)
+                        {
+                            _context.SPECIFICATIONs.RemoveRange(spec.SPECIFICATIONs);
+                        }
+                        _context.SPECIFICATION_TYPE.RemoveRange(spec_deleted);
+                    }
                 }
                 _context.SaveChanges();
+
                 ChangeIdRuntime(category, c);
 
-                //Remove category is delete from db
-                var listDBCategories = _context.CATEGORies.Include(i=>i.SPECIFICATION_TYPE).Where(i => i.parentCategoryId == c.id).AsEnumerable();
+                //Remove category which deleted from UI
+                var listDBCategories = _context.CATEGORies.Include(i => i.SPECIFICATION_TYPE).Where(i => i.parentCategoryId == c.id).AsEnumerable();
                 var categoriesDeleted = listDBCategories.Where(i1 => !category.ChildCategories.Any(i2 => i1.id == i2.Id)).AsEnumerable();
 
-                foreach(var i in categoriesDeleted)
+                foreach (var i in categoriesDeleted)
                 {
                     _context.SPECIFICATION_TYPE.RemoveRange(i.SPECIFICATION_TYPE);
                 }
@@ -157,8 +172,7 @@ namespace ComputerProject.Repository
         {
             using (var _context = new ComputerManagementEntities())
             {
-                var findCategory = _context.CATEGORies.FirstOrDefault(c => c.name == category.Name && c.id != category.Id && c.parentCategoryId == null);
-                return findCategory != null;
+                return _context.CATEGORies.Any(c => c.name == category.Name && c.id != category.Id && c.parentCategoryId == null);
             }
         }
 

@@ -13,7 +13,7 @@ namespace ComputerProject.Converter
     public class BooleanToVisibilityConverter : IValueConverter
     {
         public Visibility TrueValue { get; set; } = Visibility.Visible;
-        public Visibility FalseValue { get; set; } = Visibility.Visible;
+        public Visibility FalseValue { get; set; } = Visibility.Hidden;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

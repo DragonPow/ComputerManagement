@@ -40,26 +40,24 @@
                        FontSize="{x:Static localfont:Font.Body}"
                        Text="{Binding RelativeSource={RelativeSource FindAncestor, 
                                AncestorType={x:Type local:PropertiesRow}}, 
-                               Path=number}"
-                       >
+                               Path=number}">
             </TextBlock>
             <TextBox x:Name="NameProperties"
-
-                       materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                       BorderThickness="0"
-                       Grid.Column="1"
-                        Background="Transparent"
-                       materialDesign:HintAssist.Hint="Tên thuộc tính"
-                       HorizontalAlignment="Stretch"
-                       VerticalAlignment="Center"
-                       Margin="10, 0, 0,0"
-                       Text="{Binding Name}" 
-                       TextWrapping="Wrap"
-                       Style="{StaticResource TitleCell}">
+                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                     BorderThickness="0"
+                     Grid.Column="1"
+                     Background="Transparent"
+                     materialDesign:HintAssist.Hint="Tên thuộc tính"
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Center"
+                     Margin="10, 0, 0,0"
+                     Text="{Binding Name, ValidatesOnDataErrors=True}"
+                     TextWrapping="Wrap"
+                     Style="{StaticResource TitleCell}">
             </TextBox>
             <Button Grid.Column="3"
                     x:Name="btnDelete"
-                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                     BorderThickness="0"
                     Style="{StaticResource MaterialDesignIconButton}"
                     FontFamily="{StaticResource Mulish}"
@@ -73,6 +71,6 @@
                        Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
             </Button>
         </Grid>
-        <Separator Background="{StaticResource Divition}"/>
+        <Separator Background="{StaticResource Divition}" />
     </StackPanel>
 </UserControl>

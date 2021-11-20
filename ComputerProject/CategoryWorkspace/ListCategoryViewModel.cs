@@ -17,6 +17,8 @@ namespace ComputerProject.CategoryWorkspace
         CategoryRepository _repository;
 
         Collection<Model.Category> _categories;
+        bool _openWithEditMode;
+
         ICommand _openDetailCategoryCommand;
         ICommand _deleteCategoryCommand;
         ICommand _searchCommand;
@@ -36,6 +38,18 @@ namespace ComputerProject.CategoryWorkspace
             }
         }
         public Collection<Model.Category> VisibleCategories { get; private set; }
+        public bool OpenDetailCategoryWithEditMode
+        {
+            get => _openWithEditMode;
+            set
+            {
+                if (value != _openWithEditMode)
+                {
+                    _openWithEditMode = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public ICommand OpenDetailCategoryCommand
         {
@@ -43,10 +57,10 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (null == _openDetailCategoryCommand)
                 {
-                    _openDetailCategoryCommand = new RelayCommand(parentCategory =>
+                    _openDetailCategoryCommand = new RelayCommand(parameter =>
                     {
-                        if (parentCategory == null || parentCategory is Model.Category) ShowDetail((Model.Category)parentCategory);
-                        else throw new ArgumentException("Not is a Category");
+                        var values = (object[])parameter;
+                        ShowDetail((Model.Category)values[0], (bool)values[1]);
                     });
                 }
                 return _openDetailCategoryCommand;
@@ -100,15 +114,18 @@ namespace ComputerProject.CategoryWorkspace
             });
         }
 
-        private void ShowDetail(Model.Category parentCategory)
+        private void ShowDetail(Model.Category parentCategory, bool isEditMode)
         {
             var newPage = new DetailCategoryViewModel(_navigator);
 
             //Init Data
-            if (parentCategory == null) newPage.IsEditMode = false;
+            if (parentCategory == null) newPage.IsEditMode = true;
+            else newPage.IsEditMode = isEditMode;
+
             newPage.LoadData(parentCategory);
             newPage.DetailCategoryChangedEventHandler += OnDetailCategoryChanged;
 
+            //Set navigator
             if (_navigator != null) _navigator.Back = () => _navigator?.NavigateTo(this);
             _navigator?.NavigateTo(newPage);
         }
