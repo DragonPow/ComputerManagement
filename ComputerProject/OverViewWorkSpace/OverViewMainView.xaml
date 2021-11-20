@@ -295,7 +295,6 @@
                 <lvc:CartesianChart 
                                     Margin="10,0"
                                     Foreground="Black"
-                                    Height="{Binding ActualHeight, ElementName=StaticsMainView, Mode=OneWay}"
                                     
                                     Zoom="X"
                                     LegendLocation="Top"
