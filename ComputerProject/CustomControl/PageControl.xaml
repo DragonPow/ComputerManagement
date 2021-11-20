@@ -26,7 +26,6 @@
                 Margin="2"
                 Padding="2"
                 Click="Button_Skip_Next_Click"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignIconButton}"
                 ToolTip="Trang cuối">
             <materialDesign:PackIcon Foreground="{StaticResource MainColor}"
@@ -38,7 +37,6 @@
                 Margin="2"
                 Padding="2"
                 Click="Button_Skip_Back_Click"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignIconButton}"
                 ToolTip="Trang đầu">
             <materialDesign:PackIcon Foreground="{StaticResource MainColor}"
@@ -50,7 +48,6 @@
                 Margin="2"
                 Padding="2"
                 Click="Button_Next_Click"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignIconButton}"
                 ToolTip="Trang kế">
             <materialDesign:PackIcon Foreground="{StaticResource MainColor}"
@@ -62,7 +59,6 @@
                 Margin="2"
                 Padding="2"
                 Click="Button_Back_Click"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignIconButton}"
                 ToolTip="Trang trước">
             <materialDesign:PackIcon Foreground="{StaticResource MainColor}"

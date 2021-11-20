@@ -24,14 +24,13 @@
             <Setter Property="Margin" Value="15" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
         <sys:Double x:Key="IconSize">22</sys:Double>
     </UserControl.Resources>
     <Grid
        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-        Background="{Binding RelativeSource={RelativeSource FindAncestor, 
-                               AncestorType={x:Type local:CustomerAllViewRow}}, 
-                               Path=Backgrounds}">
+       >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220" />
             <ColumnDefinition Width="150" />

@@ -119,10 +119,20 @@
                     </ListView.ItemTemplate>
 
                     <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
+                        <Style TargetType="{x:Type ListViewItem}">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            <Setter Property="Padding" Value="0" />
-                            <Setter Property="Margin" Value="0,0,0,10" />
+                            <Setter Property="Background" Value="Transparent" />
+
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border x:Name="Bd"  Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" >
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
@@ -167,18 +177,8 @@
                         SelectedDate="{Binding SelectedDate}"
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                         Text="MMM-yyyy" />
-                    <!--<Button
-                        Grid.Column="2"
-                        Margin="10,0,20,0"
-                        HorizontalAlignment="Right"
-                        Background="{StaticResource MainColor}"
-                        Content="Chi tiết"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="16"
-                        FontWeight="DemiBold"
-                        Style="{StaticResource MaterialDesignRaisedButton}" />-->
                 </Grid>
-                <lvc:CartesianChart Height="{Binding ActualHeight, ElementName=StaticsMainView, Mode=OneWay}" Zoom="X">
+                <lvc:CartesianChart  Zoom="X">
                     <lvc:CartesianChart.SeriesColors>
                         <lvc:ColorsCollection>
                             <Color>#0477BF</Color>
