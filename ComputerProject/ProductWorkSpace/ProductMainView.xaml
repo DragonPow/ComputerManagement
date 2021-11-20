@@ -92,7 +92,6 @@
                             materialDesign:ButtonAssist.CornerRadius="5"
                             Background="#F7F8FC"
                             BorderBrush="{StaticResource MainColor}"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                             Style="{StaticResource MaterialDesignOutlinedButton}"
                             ToolTip="Lọc">
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
