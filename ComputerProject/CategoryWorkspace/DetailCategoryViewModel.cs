@@ -23,6 +23,9 @@ namespace ComputerProject.CategoryWorkspace
         public BusyViewModel BusyService { get; private set; } = new BusyViewModel();
         public string TitleViewName { get; private set; }
 
+        static readonly string DUPLICATE_CATEGORY_NAME = "At least two item have same name";
+        static readonly string DUPLICATE_SPECIFICATION_NAME = "At least two spec in one category have same name";
+
         Model.Category _currentParentCategory;
         Model.Category _currentChildCateogry;
         bool _isEditMode;
@@ -155,9 +158,17 @@ namespace ComputerProject.CategoryWorkspace
                             {
                                 MessageBoxCustom.ShowDialog("Tên danh mục đã tồn tại", "Lỗi", PackIconKind.ErrorOutline);
                             }
-                            catch (InvalidOperationException)
+                            catch (InvalidOperationException e)
                             {
-                                MessageBoxCustom.ShowDialog("Tên danh mục con không được trùng nhau", "Lỗi", PackIconKind.ErrorOutline);
+                                if (e.Message == DUPLICATE_CATEGORY_NAME)
+                                {
+                                    MessageBoxCustom.ShowDialog("Tên danh mục con không được trùng nhau", "Lỗi", PackIconKind.ErrorOutline);
+                                }
+                                else if (e.Message == DUPLICATE_SPECIFICATION_NAME)
+                                {
+                                    MessageBoxCustom.ShowDialog("Tên thông số trong cùng 1 danh mục không được trùng nhau", "Lỗi", PackIconKind.ErrorOutline);
+                                }
+                                
                             }
                         }
                     });
@@ -306,7 +317,15 @@ namespace ComputerProject.CategoryWorkspace
                 //Check if 2 category have same name
                 if (CurrentParentCategory.ChildCategories.Select(i => i.Name.Trim()).Distinct().Count() < CurrentParentCategory.ChildCategories.Count())
                 {
-                    throw new InvalidOperationException("At lease two item have same name");
+                    throw new InvalidOperationException(DUPLICATE_CATEGORY_NAME);
+                }
+
+                foreach(var childCategory in CurrentChildCategory.ChildCategories)
+                {
+                    if (childCategory.SpecificationTypes.Select(i=>i.Name.Trim()).Distinct().Count() < childCategory.SpecificationTypes.Count())
+                    {
+                        throw new InvalidCastException(DUPLICATE_SPECIFICATION_NAME);
+                    }
                 }
             }
 

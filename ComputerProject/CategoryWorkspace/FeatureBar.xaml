@@ -28,7 +28,8 @@
                        Texthint="Tên danh mục"
                        IsTabStop="False"
                        KeyboardNavigation.TabIndex="0"
-                       Margin="20, 0, 0, 0">
+                       Margin="20, 0, 0, 0"
+                       KeyDown="Search_KeyDown">
         </local1:Search>
         <Button x:Name="btnCreate"
                 Grid.Column="1"

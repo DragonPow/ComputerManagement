@@ -17,6 +17,7 @@ namespace ComputerProject.CategoryWorkspace
         CategoryRepository _repository;
 
         Collection<Model.Category> _categories;
+        Collection<Model.Category> _visibleCategories;
         bool _openWithEditMode;
 
         ICommand _openDetailCategoryCommand;
@@ -33,11 +34,22 @@ namespace ComputerProject.CategoryWorkspace
                 if (value != _categories)
                 {
                     VisibleCategories = _categories = value;
+                    OnPropertyChanged();
                 }
-                OnPropertyChanged();
             }
         }
-        public Collection<Model.Category> VisibleCategories { get; private set; }
+        public Collection<Model.Category> VisibleCategories
+        {
+            get => _visibleCategories;
+            set
+            {
+                if (value != _visibleCategories)
+                {
+                    _visibleCategories = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public bool OpenDetailCategoryWithEditMode
         {
             get => _openWithEditMode;
@@ -100,7 +112,7 @@ namespace ComputerProject.CategoryWorkspace
             _repository = new CategoryRepository();
         }
 
-        public void setNaigator(NavigationService baseNavigator)
+        public void setNavigator(NavigationService baseNavigator)
         {
             _navigator = baseNavigator;
         }
@@ -135,19 +147,21 @@ namespace ComputerProject.CategoryWorkspace
             if (!CurrentCategories.Contains(e))
             {
                 CurrentCategories.Add(e);
+                VisibleCategories = CurrentCategories;
             }
-            OnPropertyChanged(nameof(CurrentCategories));
         }
 
         private void Delete(Model.Category category)
         {
             CurrentCategories.Remove(category);
+            VisibleCategories = CurrentCategories;
             Task.Run(() => _repository.Delete(category.Id));
         }
 
         private void SearchCategory(string name)
         {
-            VisibleCategories = (Collection<Model.Category>)CurrentCategories.Where(c => c.Name == name);
+            string name_converted = FormatHelper.ConvertTo_TiengDongLao(name).ToLower().Trim();
+            VisibleCategories =  new ObservableCollection<Model.Category>(CurrentCategories.Where(c => FormatHelper.ConvertTo_TiengDongLao(c.Name).ToLower().Trim().Contains(name_converted)));
             //OnPropertyChanged(nameof(VisibleCategories));
         }
     }

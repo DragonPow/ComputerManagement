@@ -15,8 +15,7 @@
         <StaticResource ResourceKey="Background" />
     </UserControl.Background>
 
-    <DockPanel
-        >
+    <DockPanel>
         <TextBlock DockPanel.Dock="Top"
                    FontSize="{x:Static localfont:Font.Title}"
                    FontWeight="Bold"
@@ -24,18 +23,15 @@
                    Foreground="{StaticResource Title}"
                    Margin="30,20"
                    Text="Danh mục" />
-        <localcustom:PageControl
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                CurrentPage="1"
-                Grid.Row="4"
-                DockPanel.Dock="Bottom"
-                />
-        <Border
-            CornerRadius="8"
-              Background="White"
-              Margin="20,0,20,0">
-            <Grid >
+        <localcustom:PageControl HorizontalAlignment="Center"
+                                 VerticalAlignment="Top"
+                                 CurrentPage="1"
+                                 Grid.Row="4"
+                                 DockPanel.Dock="Bottom" />
+        <Border CornerRadius="8"
+                Background="White"
+                Margin="20,0,20,0">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="50" />
@@ -43,15 +39,15 @@
                 </Grid.RowDefinitions>
 
                 <local:FeatureBar x:Name="Feature"
-                              DataContext="{Binding .}"
-                              Margin="0,20"/>
+                                  DataContext="{Binding .}"
+                                  Margin="0,20" />
                 <local:TableTitle Grid.Row="1"
-                              Margin="20,0"/>
+                                  Margin="20,0" />
                 <ListView x:Name="Listcategory"
-                      Grid.Row="2"
-                      Margin="22,0"
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      ItemsSource="{Binding CurrentCategories}">
+                          Grid.Row="2"
+                          Margin="22,0"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ItemsSource="{Binding VisibleCategories}">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>

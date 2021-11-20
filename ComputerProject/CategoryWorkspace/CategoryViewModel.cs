@@ -24,7 +24,7 @@ namespace ComputerProject.CategoryWorkspace
             _navigator = new NavigationService(mainPage);
             _navigator.OnCurrentPageChangedEvent += OnCurrentPageChanged;
 
-            mainPage.setNaigator(_navigator);
+            mainPage.setNavigator(_navigator);
         }
 
         private void OnCurrentPageChanged()
