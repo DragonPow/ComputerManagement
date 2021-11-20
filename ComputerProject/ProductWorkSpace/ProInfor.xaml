@@ -97,7 +97,6 @@
                     Foreground="Black"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="{x:Static localfont:Font.Body}"
-                    IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
                     ItemsSource="{Binding CategoryList}"
                     SelectedItem="{Binding SelectedCategory_String}"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}" />

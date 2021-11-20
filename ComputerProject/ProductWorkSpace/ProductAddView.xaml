@@ -31,7 +31,6 @@
                 x:Name="BtnBack"
                 Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
                 Command="{Binding CommandClickBack}"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignIconButton}"
                 ToolTip="Trở về">
                 <materialDesign:PackIcon Foreground="{StaticResource Title}" Kind="ArrowLeft" />
