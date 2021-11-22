@@ -426,6 +426,20 @@ namespace ComputerProject.CustomerWorkspace
             }
         }
 
+        System.Threading.CancellationTokenSource operationSearchBill = new System.Threading.CancellationTokenSource();
+        protected string billSearchContent = "";
+        public string BillSearchContent
+        {
+            get => billSearchContent;
+            set
+            {
+                if (value.Equals(BillSearchContent)) return;
+
+                billSearchContent = value;
+                OnPropertyChanged(BillSearchContent);
+                GetBills();
+            }
+        }
         protected List<CustomerDetailViewBillRowViewModel> listBill;
         public List<CustomerDetailViewBillRowViewModel> ListBill
         {
@@ -438,6 +452,9 @@ namespace ComputerProject.CustomerWorkspace
         }
         public void GetBills()
         {
+            operationSearchBill.Cancel();
+            operationSearchBill = new System.Threading.CancellationTokenSource();
+
             List<CustomerDetailViewBillRowViewModel> bills = new List<CustomerDetailViewBillRowViewModel>();
             void task()
             {
@@ -447,18 +464,18 @@ namespace ComputerProject.CustomerWorkspace
             {
                 ListBill = bills;
             }
-            DoBusyTask(task, callback);
+            DoBusyTask(task, operationSearchBill.Token, callback);
         }
         public List<CustomerDetailViewBillRowViewModel> GetBillsFromDB()
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
                 //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Spec: " + s);
-                var data = db.BILLs.Where(b => b.customerId == _model.id).Select(b => new CustomerDetailViewBillRowViewModel()
+                var data = db.BILLs.Where(b => b.customerId == _model.id && b.id.ToString().Contains(BillSearchContent)).Select(b => new CustomerDetailViewBillRowViewModel()
                 {
                     BillType = "Mua hàng",
                     BillTotalMoney = b.totalMoney,
-                    BillId = b.id.ToString(),
+                    BillId = b.id,
                     BillDay = b.createTime,
                 });
 

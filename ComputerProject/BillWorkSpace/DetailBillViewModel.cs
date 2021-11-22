@@ -73,6 +73,17 @@ namespace ComputerProject.BillWorkSpace
         public event EventHandler<int> BillDeletedEvent = null;
         #endregion //Properties
 
+        public DetailBillViewModel(int billId, System.Windows.Controls.UserControl control)
+        {
+            _repository = new BillRepository();
+            CurrentBill = new Model.Bill(_repository.LoadDetailBill(billId));
+
+            var commandClose = new RelayCommand((o) =>
+            {
+                System.Windows.Window.GetWindow(control).Close();
+            });
+            _backViewCommand = commandClose;
+        }
 
         public DetailBillViewModel(BILL bill)
         {
