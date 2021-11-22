@@ -266,6 +266,8 @@
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\IndexCategoryConverter.cs" />
     <Compile Include="Converter\ListCategoryToStringCommaConverter.cs" />
+    <Compile Include="Converter\MultiConverter.cs" />
+    <Compile Include="Converter\NullObjectConverter.cs" />
     <Compile Include="Converter\ProductStatusConverter.cs" />
     <Compile Include="Converter\RevertBooleanConverter.cs" />
     <Compile Include="CustomControl\BusyView.xaml.cs">

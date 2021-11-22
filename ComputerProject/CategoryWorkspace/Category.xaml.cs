@@ -28,7 +28,8 @@ namespace ComputerProject.CategoryWorkspace
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var datacontext = this.DataContext as ListCategoryViewModel;
-            var param = (sender as ListViewItem).DataContext;
+
+            var param = new object[] { (sender as ListViewItem).DataContext, false };
             if (datacontext.OpenDetailCategoryCommand.CanExecute(param))
             {
                 datacontext.OpenDetailCategoryCommand.Execute(param);

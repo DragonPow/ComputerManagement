@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerProject.CustomControl;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,19 @@ namespace ComputerProject.CategoryWorkspace
         public FeatureBar()
         {
             InitializeComponent();
-        }  
+        }
+
+        private void Search_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                string textSearch = (sender as Search).Text;
+                var datacontext = (sender as Control).DataContext as ListCategoryViewModel;
+                if (datacontext != null && datacontext.SearchCommand.CanExecute(textSearch)) 
+                {
+                    datacontext.SearchCommand.Execute(textSearch);
+                }
+            }
+        }
     }
 }

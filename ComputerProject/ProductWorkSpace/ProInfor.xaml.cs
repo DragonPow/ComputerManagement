@@ -23,10 +23,18 @@ namespace ComputerProject.ProductWorkSpace
     {
         public static readonly DependencyProperty VisibilityAddImageProperties = DependencyProperty.Register(nameof(VisibilityAddImage), typeof(Visibility), typeof(ProInfor), new PropertyMetadata(Visibility.Visible));
 
+        public static readonly DependencyProperty ModeInforProperties = DependencyProperty.Register(nameof(ModeInfor), typeof(Mode), typeof(ProInfor), new PropertyMetadata(Mode.edit));
+        
         public Visibility VisibilityAddImage
         {
             get { return (Visibility)GetValue(VisibilityAddImageProperties); }
             set { SetValue(VisibilityAddImageProperties, value); }
+        }
+
+        public Mode ModeInfor
+        {
+            get { return (Mode)GetValue(ModeInforProperties); }
+            set { SetValue(ModeInforProperties, value); }
         }
         public ProInfor()
         {
@@ -37,5 +45,22 @@ namespace ComputerProject.ProductWorkSpace
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+    }
+
+   
+    public enum Mode : byte
+    {
+        //
+        // Summary:
+        //    Disable Name of product
+        edit = 0,
+        //
+        // Summary:
+        //     All of the element are readonly
+        onlyread = 1,
+        //
+        // Summary:
+        //    All of the element are enable
+        insert = 2
     }
 }
