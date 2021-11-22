@@ -11,6 +11,8 @@
     d:DesignHeight="750"
     d:DesignWidth="1380"
     Background="{StaticResource Background}"
+    
+    d:DataContext="{d:DesignInstance Type=local:CustomerViewModel}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -193,32 +195,10 @@
             </Border>
 
         </Grid>
-        <Border
-            x:Name="busy"
-            Grid.Column="0"
+        <localcustom:BusyView
+            Grid.Row="1"
             Grid.ColumnSpan="2"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Panel.ZIndex="15"
-            Background="#40000000"
-            CornerRadius="4"
-            IsHitTestVisible="True"
-            Visibility="{Binding BusyVisibility, FallbackValue=Hidden}">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Control
-                    Width="55"
-                    Margin="0"
-                    Foreground="Blue"
-                    Style="{StaticResource WaitSpinnerStyle}" />
-                <TextBlock
-                    Margin="0,5"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="16"
-                    FontWeight="Bold"
-                    Foreground="White"
-                    Text="Đang tải..." />
-            </StackPanel>
-        </Border>
+            Visibility="{Binding BusyVisibility}"
+            />
     </Grid>
 </UserControl>

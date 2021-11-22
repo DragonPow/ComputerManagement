@@ -86,38 +86,39 @@ namespace ComputerProject.CustomerWorkspace
 
         private async void Save()
         {
-            string error = ViewModel.GetInvalid(); // Check invalid data
+            ViewModel.CheckInvalid(); // Check invalid data
 
-            if (error != null)
+            if (ViewModel.Error != null)
             {
-                CustomMessageBox.MessageBox.Show(error);
+                CustomMessageBox.MessageBox.Show(ViewModel.Error);
                 return;
             }
 
             try
             {
+                ViewModel.IsBusy = true;
                 if (oldVM.PhoneNumber.Trim() != ViewModel.PhoneNumber.Trim())
                 {
-                    ViewModel.IsBusy = true;
-                    error = await CustomerViewModel.GetDuplicateAsync(ViewModel);
+                    await ViewModel.CheckDuplicatePhoneAsync();
                 }
 
-                if (error == null)
+                if (ViewModel.Error == null)
                 {
-                    ViewModel.IsBusy = true;
                     await ViewModel.UpdateToDBAsycn();
-                    ViewModel.IsBusy = false;
+                }
 
-                    CustomMessageBox.MessageBox.Show("Cập nhật thông tin thành công");
-                    ViewModel.CopyTo(oldVM);
-                    OnCancelEdit(null, null);
-
+                ViewModel.IsBusy = false;
+                if (ViewModel.Error != null)
+                {
+                    CustomMessageBox.MessageBox.Show(ViewModel.Error);
                 }
                 else
                 {
-                    ViewModel.IsBusy = false;
-                    CustomMessageBox.MessageBox.Show(error);
+                    CustomMessageBox.MessageBox.Show("Cập nhật thông tin thành công");
+                    ViewModel.CopyTo(oldVM);
+                    OnCancelEdit(null, null);
                 }
+                ViewModel.Error = null;
             }
             catch (Exception) when (!HelperService.Environment.IsDebug)
             {
@@ -134,6 +135,7 @@ namespace ComputerProject.CustomerWorkspace
                 await ViewModel.DeleteFromDBAsync();
                 ViewModel.IsBusy = false;
 
+                CustomMessageBox.MessageBox.Show("Xóa khách hàng thành công");
                 SwitchMode_readonly();
                 ClickedBack?.Invoke(this, null);
             }

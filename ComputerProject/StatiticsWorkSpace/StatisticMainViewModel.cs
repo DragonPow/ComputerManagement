@@ -35,10 +35,10 @@ namespace ComputerProject.StatiticsWorkSpace
 
                 selectedDate = value;
 
-                CountNewBill = 0;
+                /*CountNewBill = 0;
                 CountNewCustomer = 0;
                 CountNewRepair = 0;
-                Revenue = 0;
+                Revenue = 0;*/
 
                 DoBusyTask(() => GetReport(selectedDate.Year, selectedDate.Month), operationSelecteMonth.Token, () =>
                 {
@@ -205,7 +205,7 @@ namespace ComputerProject.StatiticsWorkSpace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Get: " + s);
+                //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Get: " + s);
 
                 FormatHelper.SetTimeOut(db, 120);
 
@@ -289,7 +289,7 @@ namespace ComputerProject.StatiticsWorkSpace
 
         protected void CalcReport(int _year, int _month, ComputerManagementEntities db)
         {
-            db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Calc: " + s);
+            //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Calc: " + s);
             var data1 = db.ITEM_BILL.Where(b => b.BILL.createTime.Month == _month && b.BILL.createTime.Year == _year).GroupBy(b => new
             {
                 productID = b.PRODUCT.id,

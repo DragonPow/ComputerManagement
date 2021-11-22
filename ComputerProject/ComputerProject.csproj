@@ -293,6 +293,7 @@
     <Compile Include="CustomerWorkspace\CustomerAllViewRow.xaml.cs">
       <DependentUpon>CustomerAllViewRow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomerWorkspace\CustomerDetailViewBillRowViewModel.cs" />
     <Compile Include="CustomerWorkspace\CustomerDetailViewModel.cs" />
     <Compile Include="CustomerWorkspace\CustomerInfor.xaml.cs">
       <DependentUpon>CustomerInfor.xaml</DependentUpon>

@@ -61,6 +61,20 @@ namespace ComputerProject
             }
         }
 
+        public async void DoBusyTask(Action[] busyTasks, System.Threading.CancellationToken cancellationToken, Action[] callback = null)
+        {
+            IsBusy = true;
+            for(int i = 0; i< busyTasks.Length && !cancellationToken.IsCancellationRequested; i++)
+            {
+                await Task.Run(() => busyTasks[i], cancellationToken);
+                if (!cancellationToken.IsCancellationRequested)
+                {
+                    callback[i]?.Invoke();
+                }
+            }
+            IsBusy = false;
+        }
+
         public async void DoInBackGround(Action busyTask, System.Threading.CancellationToken cancellationToken, Action callback = null)
         {
             await Task.Run(() => busyTask(), cancellationToken);

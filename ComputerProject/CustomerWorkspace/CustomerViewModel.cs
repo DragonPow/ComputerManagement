@@ -8,11 +8,16 @@ using System.Threading.Tasks;
 
 namespace ComputerProject.CustomerWorkspace
 {
-    public class CustomerViewModel: BusyViewModel
+    public class CustomerViewModel : BusyViewModel
     {
         private CUSTOMER _model;
         private bool _isWindowView;
         public CUSTOMER Model => _model;
+
+        public CustomerViewModel()
+        {
+            this._model = new CUSTOMER();
+        }
 
         public CustomerViewModel(bool isWindowView = false)
         {
@@ -50,7 +55,26 @@ namespace ComputerProject.CustomerWorkspace
             get => _model.phone;
             set
             {
-                _model.phone = value.Trim();
+                if (value == null) return;
+
+                value = value.Trim();
+                if (value.Length != 10)
+                {
+                    error = "Số điện thoại phải có độ dài 10 chữ số";
+                }
+                else if (value.IndexOf('0') != 0)
+                {
+                    error = "Số điện thoại phải bắt đầu bằng 0";
+                }
+                else if (!value.All(c => "0123456789".IndexOf(c) > -1))
+                {
+                    error = "Số điện thoại không hợp lệ";
+                }
+                else
+                {
+                    // OK 
+                    _model.phone = value;
+                }
                 OnPropertyChanged(nameof(PhoneNumber));
             }
         }
@@ -65,7 +89,19 @@ namespace ComputerProject.CustomerWorkspace
             get => _model.birthday == null ? DateTime.Now.AddYears(-4) : DateTime.ParseExact(_model.birthday, "dd/MM/yyyy", System.Globalization.CultureInfo.GetCultureInfo("vi"));
             set
             {
-                _model.birthday = value.ToString("dd/MM/yyyy");
+                if (value == null) return;
+
+                var formats = new string[] { "dd/MM/yyyy", "d/MM/yyyy", "dd/M/yyyy" };
+                if (Birthday.Year > DateTime.Now.Year - 3)
+                {
+                    error = "Khách chưa đủ 4 tuổi";
+                }
+                else
+                {
+                    // OK
+                    _model.birthday = value.ToString("dd/MM/yyyy");
+                }
+                
                 OnPropertyChanged(nameof(Birthday));
                 OnPropertyChanged(nameof(Birthday_String));
             }
@@ -89,7 +125,17 @@ namespace ComputerProject.CustomerWorkspace
             {
                 try
                 {
-                    _model.point = int.Parse(value.ToString());
+                    int a = -1;
+                    if (value == "" || !int.TryParse(value, out a))
+                    {
+                        error = "Điểm thưởng không hợp lệ";
+                    }
+                    else
+                    {
+                        //OK
+                        _model.point = a;
+                    }
+                    
                     OnPropertyChanged(nameof(Point));
                     OnPropertyChanged(nameof(Point_String));
                 }
@@ -105,7 +151,7 @@ namespace ComputerProject.CustomerWorkspace
             get => _isWindowView;
             private set
             {
-                if (value!=_isWindowView)
+                if (value != _isWindowView)
                 {
                     _isWindowView = value;
                     OnPropertyChanged();
@@ -113,60 +159,44 @@ namespace ComputerProject.CustomerWorkspace
             }
         }
 
-        public string GetInvalid()
+        protected string error = null;
+        public string Error {
+            get => error;
+            set => error = value;
+        }
+
+        public void CheckInvalid()
         {
             if (FullName == null || FullName.Trim().Length < 1)
             {
-                return "Tên không hợp lệ";
-            }
-
-            if (PhoneNumber == null || PhoneNumber.Trim().Length < 10 || !PhoneNumber.Trim().All(c => "0123456789".IndexOf(c) > -1))
-            {
-                return "Số điện thoại không hợp lệ";
-            }
-
-            DateTime dt;
-            var formats = new string[] { "dd/MM/yyyy", "d/MM/yyyy", "dd/M/yyyy" };
-            if (Birthday == null)
-            {
-                return "Ngày sinh không hợp lệ";
-            }
-            if (Birthday.Year > DateTime.Now.Year - 3)
-            {
-                return "Khách chưa đủ 4 tuổi";
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Check if a customer is already exist in database
-        /// </summary>
-        /// <param name="target">Target</param>
-        /// <returns>Return null not duplicate. Return duplicate-detail if duplicated.</returns>
-        public static async Task<string> GetDuplicateAsync(CustomerViewModel target)
-        {
-            using (ComputerManagementEntities db = new ComputerManagementEntities())
-            {
-                var old = await Task.Run(() => db.CUSTOMERs.Where(c => c.phone == target.PhoneNumber).FirstOrDefault());
-                if (old != null)
-                {
-                    return "Số điện thoại đã được đăng kí trước đó";
-                }
-                else return null;
+                error = "Tên không hợp lệ";
             }
         }
 
-        public static string GetDuplicate(CustomerViewModel target)
+        public static bool GetDuplicatePhone(CustomerViewModel target)
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                var old = db.CUSTOMERs.Where(c => c.phone == target.PhoneNumber).FirstOrDefault();
-                if (old != null)
-                {
-                    return "Số điện thoại đã đư đăng kí trước đó";
-                }
-                else return null;
+                var old = db.CUSTOMERs.Where(c => c.phone == target.PhoneNumber).Select(c => new { c.phone, c.id }).FirstOrDefault();
+                return old != null;
+            }
+        }
+
+        public static Task<bool> GetDuplicatePhoneAsync(CustomerViewModel target)
+        {
+            return Task.Run<bool>(() => GetDuplicatePhone(target));
+        }
+
+        public async Task CheckDuplicatePhoneAsync()
+        {
+            await Task.Run(CheckDuplicatePhoneAsync);
+        }
+
+        public void CheckDuplicatePhone()
+        {
+            if (GetDuplicatePhone(this))
+            {
+                error = "Số điện đã được sử dụng. Vui lòng chọn số khác.";
             }
         }
 
@@ -320,7 +350,7 @@ namespace ComputerProject.CustomerWorkspace
 
         public void Insert(Action callback = null)
         {
-            string error = GetInvalid(); // Check invalid data
+            CheckInvalid(); // Check invalid data
 
             if (error != null)
             {
@@ -328,33 +358,41 @@ namespace ComputerProject.CustomerWorkspace
                 return;
             }
 
-            DoBusyTask(() =>
+            void save_CB()
             {
-                error = CustomerViewModel.GetDuplicate(this); // Busy task
-                
-            }, ()=>
-            {
-                if (error == null)
+                if (Error != null)
                 {
-                    try
-                    {
-                        DoBusyTask(InsertToDB, () =>
-                        {
-                            CustomMessageBox.MessageBox.Show("Đã thêm khách hàng mới vào cơ sở dữ liệu thành công");
-                            callback?.Invoke(); // Callback
-                        });
-                    }
-                    catch (Exception) when (!HelperService.Environment.IsDebug)
-                    {
-                        IsBusy = false;
-                        CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
-                    }
+                    CustomMessageBox.MessageBox.Show(Error);
                 }
                 else
                 {
-                    CustomMessageBox.MessageBox.Show(error);
+                    CustomMessageBox.MessageBox.Show("Đã thêm khách hàng mới vào cơ sở dữ liệu thành công");
+                    callback?.Invoke();
                 }
-            });
+                Error = null;
+            }
+            void save()
+            {
+                if (Error != null)
+                {
+                    try
+                    {
+                        InsertToDB();
+                    }
+                    catch (Exception) when (!HelperService.Environment.IsDebug)
+                    {
+                        error = FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01");
+                    }
+                }
+            }
+
+            void checkDup_CB()
+            {
+                DoBusyTask(save, save_CB);
+            }
+
+
+            DoBusyTask(CheckDuplicatePhone, checkDup_CB);
         }
 
         public void CopyTo(CUSTOMER other, bool includeID = false)
@@ -372,5 +410,19 @@ namespace ComputerProject.CustomerWorkspace
         {
             this.CopyTo(other._model, includeID);
         }
+
+        public bool HasInBill()
+        {
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            {
+                var bill = db.BILLs.Where(b => b.customerId == Model.id).Select(b => new
+                {
+                    b.id,
+                    b.customerId,
+                }).FirstOrDefault();
+
+                return bill != null;
+            }
+        } 
     }
 }

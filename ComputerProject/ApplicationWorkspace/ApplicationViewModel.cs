@@ -55,10 +55,14 @@ namespace ComputerProject.ApplicationWorkspace
 
         public ApplicationViewModel()
         {
-            var customerTab = new CustomerWorkspace.CustomerTabView(true);
+            var customerTab = new CustomerWorkspace.CustomerTabView();
+            customerTab.BeginVM();
 
             var statisticTab = new StatiticsWorkSpace.StatiticsMainView();
             statisticTab.BeginVM();
+
+            var prodTab = new ProductWorkSpace.ProductTabView();
+            prodTab.BeginVM();
 
             SaleViewModel saleVM = new SaleViewModel();
             saleVM.RequestOpenDetailProductView += SaleVM_RequestOpenDetailProduct;
@@ -67,7 +71,7 @@ namespace ComputerProject.ApplicationWorkspace
             {
                  new OverViewWorkSpace.OverViewMainView(),
                 saleVM,
-                new ProductWorkSpace.ProductTabView(),
+                prodTab,
                 new CategoryViewModel(),
                 new BillPage(),
                 customerTab,

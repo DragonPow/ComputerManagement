@@ -29,5 +29,15 @@ namespace ComputerProject.ProductWorkSpace
         {
             InitializeComponent();
         }
+
+        public void BeginVM()
+        {
+            if (DataContext == null)
+            {
+                var vm = new ProductTabViewModel();
+                vm.Validation();
+                DataContext = vm;
+            }
+        }
     }
 }

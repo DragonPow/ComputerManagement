@@ -13,9 +13,12 @@ namespace ComputerProject.ProductWorkSpace
         public ProductTabViewModel()
         {
             mainVM = new ProductMainViewModel(this);
-            mainVM.CountPage();
             CurrentViewModel = mainVM;
         }
 
+        public void Validation()
+        {
+            mainVM.CountPage();
+        }
     }
 }

@@ -56,12 +56,20 @@ namespace ComputerProject.CustomerWorkspace
 
         private void BtnDeleteItem_Click(object sender, EventArgs e)
         {
-            var msb = new CustomMessageBox.MessageBox("Bạn muốn xóa khách hàng?" + Environment.NewLine + "Dữ liệu đã xóa sẽ không thể hoàn tác.", "", "Tôi hiểu", "Hủy", MaterialDesignThemes.Wpf.PackIconKind.Warning
-                , () =>
-                {
-                    Delete((sender as CustomerAllViewRow).ViewModel);
-                });
-            msb.ShowDialog();
+            var item = (sender as CustomerAllViewRow).ViewModel;
+            if (!item.HasInBill())
+            {
+                var msb = new CustomMessageBox.MessageBox("Bạn muốn xóa khách hàng?" + Environment.NewLine + "Dữ liệu đã xóa sẽ không thể hoàn tác.", "Thông báo", "Tôi hiểu", "Hủy", MaterialDesignThemes.Wpf.PackIconKind.Warning
+                    , () =>
+                    {
+                        Delete(item);
+                    });
+                msb.ShowDialog();
+            }
+            else
+            {
+                CustomMessageBox.MessageBox.Show("Không thể xóa khách đã mua hàng");
+            }
         }
 
         private void Delete(CustomerViewModel item)
