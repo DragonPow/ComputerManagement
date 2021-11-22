@@ -122,7 +122,7 @@ namespace ComputerProject.ProductWorkSpace
         {
             get
             {
-                if (WarrantyTime == null) return "";
+                if (WarrantyTime == null || WarrantyTime.Value == 0) return "";
 
                 return Math.Round(WarrantyTime.Value / 12d, 1).ToString() + " năm";
             }
@@ -199,14 +199,14 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        public static List<ProductViewModel> FindByName(string name, int startIndex, int count)
+        public static List<ProductViewModel> FindByNameOrID(string str, int startIndex, int count, int orderMode = 0)
         {
             try
             {
                 using (ComputerManagementEntities db = new ComputerManagementEntities())
                 {
-                    string nameDL = FormatHelper.ConvertTo_TiengDongLao(name);
-                    var data = db.PRODUCTs.Where(p => p.nameIndex.Contains(nameDL)).Select(
+                    string nameDL = FormatHelper.ConvertTo_TiengDongLao(str);
+                    var data1 = db.PRODUCTs.Where(p => p.nameIndex.Contains(nameDL) || p.id.ToString().Contains(str)).Select(
                         p => new
                         {
                             p.name,
@@ -219,9 +219,20 @@ namespace ComputerProject.ProductWorkSpace
                             p.description,
                             p.categoryId
                         }
-                        ).OrderBy(p => p.name).Skip(startIndex).Take(count).ToList();
+                    );
 
-                    Console.WriteLine("l = " + data.Count);
+                    switch (orderMode)
+                    {
+                        case 0:
+                            data1 = data1.OrderBy(p => p.name).Skip(startIndex).Take(count);
+                            break;
+                        case 1:
+                            data1 = data1.OrderBy(p => p.priceSales).Skip(startIndex).Take(count);
+                            break;
+                    }
+
+                    var data = data1.ToList();
+
                     var rs = new List<ProductViewModel>();
 
                     foreach (var p in data)
@@ -260,12 +271,12 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        public static int CountByName(string name)
+        public static int CountByName(string str)
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                string nameDL = FormatHelper.ConvertTo_TiengDongLao(name);
-                int rs = db.PRODUCTs.Where(p => p.nameIndex.Contains(nameDL)).Count();
+                string nameDL = FormatHelper.ConvertTo_TiengDongLao(str);
+                int rs = db.PRODUCTs.Where(p => p.nameIndex.Contains(nameDL) || p.id.ToString().Contains(str)).Count();
                 return rs;
             }
         }

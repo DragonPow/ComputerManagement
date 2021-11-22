@@ -12,6 +12,7 @@ namespace ComputerProject.ProductWorkSpace
 {
     class ProductMainViewModel: PagingViewModel<ProductViewModel>
     {
+        int orderMode;
         MultipleControlViewModel viewController;
 
         public ProductMainViewModel():base()
@@ -23,6 +24,7 @@ namespace ComputerProject.ProductWorkSpace
         public ProductMainViewModel(MultipleControlViewModel navigation) : this()
         {
             viewController = navigation;
+            orderMode = 0;
         }
 
         private void ProductMainViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -49,7 +51,7 @@ namespace ComputerProject.ProductWorkSpace
             List<ProductViewModel> l = null;
             void task()
             {
-                l = ProductViewModel.FindByName(searchContent, currentStartIndex, step);
+                l = ProductViewModel.FindByNameOrID(searchContent, currentStartIndex, step, orderMode);
             }
             void callback()
             {
@@ -58,6 +60,10 @@ namespace ComputerProject.ProductWorkSpace
             DoBusyTask(task, searchOperation.Token, callback);
         }
 
+        /// <summary>
+        /// Count max page
+        /// </summary>
+        /// <param name="resetPage">Remain current page number if true. Reset page number (to 1) if set true</param>
         public void CountPage(bool resetPage = true)
         {
             Console.WriteLine("CountPage");
@@ -156,6 +162,12 @@ namespace ComputerProject.ProductWorkSpace
             if (item == null) return;
 
             Console.WriteLine("Delete item : " + item.Name);
+        }
+
+        public void OnClick_ButtonPrice(object obj)
+        {
+            orderMode = orderMode == 0 ? 1 : 0;
+            CountPage(false);
         }
     }
 }
