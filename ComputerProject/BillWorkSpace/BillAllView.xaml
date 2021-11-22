@@ -182,6 +182,7 @@
                                Text="Điểm thưởng sử dụng"
                                FontWeight="DemiBold"
                                Margin="20,0"
+                               Grid.ColumnSpan="2"
                                VerticalAlignment="Center"
                                FontSize="{x:Static font:Font.Body}"
                                FontFamily="{StaticResource Mulish}"

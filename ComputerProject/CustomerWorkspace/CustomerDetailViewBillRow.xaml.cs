@@ -22,7 +22,7 @@ namespace ComputerProject.CustomerWorkspace
             Number.Text = "1";
             CreateDay.Text = "12/2/2021";
             Type.Text = "Bảo hành, sữa chữa";
-            Content.Text = "Laptop HP 15s-fq2602TU";
+          //  Content.Text = "Laptop HP 15s-fq2602TU";
             Total.Text = "4.3000.000";
         }
     }
