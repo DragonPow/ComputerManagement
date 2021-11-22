@@ -9,6 +9,7 @@ namespace ComputerProject.ProductWorkSpace
 {
     class ProductViewModel : BusyViewModel
     {
+        protected string error;
         protected PRODUCT product;
         public PRODUCT Product
         {
@@ -56,7 +57,11 @@ namespace ComputerProject.ProductWorkSpace
             set
             {
                 int val = FormatHelper.CheckMoney(value);
-                if (val < 1) return;
+                if (val < 1)
+                {
+                    error = "Giá gốc không hợp lệ";
+                    val = 0;
+                }
 
                 Product.priceOrigin = val;
                 OnPropertyChanged(nameof(PriceOrigin));
@@ -71,7 +76,11 @@ namespace ComputerProject.ProductWorkSpace
             set
             {
                 int val = FormatHelper.CheckMoney(value);
-                if (val < 1) return;
+                if (val < 1)
+                {
+                    error = "Giá bán không hợp lệ";
+                    val = 0;
+                }
 
                 Product.priceSales = val;
                 OnPropertyChanged(nameof(PriceSales));
@@ -140,7 +149,7 @@ namespace ComputerProject.ProductWorkSpace
         }
         public int CategoryId
         {
-            get => Product.id;
+            get => Product.categoryId;
             set
             {
                 Product.categoryId = value;
@@ -151,21 +160,18 @@ namespace ComputerProject.ProductWorkSpace
         {
             get
             {
-                string rs;
-                var input = this;
-                if (input.IsStopSelling)
+                if (IsStopSelling)
                 {
-                    rs = "Ngừng bán";
+                    return "Ngừng bán";
                 }
-                else if (input.Quantity < 1)
+                else if (Quantity < 1)
                 {
-                    rs = "Hết hàng";
+                    return "Hết hàng";
                 }
                 else
                 {
-                    rs = "Đang bán";
+                    return "Đang bán";
                 }
-                return rs;
             }
         }
 
@@ -175,18 +181,18 @@ namespace ComputerProject.ProductWorkSpace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                
+                var old = db.PRODUCTs.Where(p => p.id == Product.id).FirstOrDefault();
+                //if (old == null) return;
+
                 if (hasInBill)
                 {
-                    db.PRODUCTs.Attach(Product);
-                    Product.isStopSelling = true;
-                    db.SaveChanges();
+                    old.isStopSelling = true;
                 }
                 else
                 {
-                    db.PRODUCTs.Remove(Product);
-                    db.SaveChanges();
+                    db.PRODUCTs.Remove(old);
                 }
+                db.SaveChanges();
             }
         }
 
@@ -194,8 +200,12 @@ namespace ComputerProject.ProductWorkSpace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                var data = db.ITEM_BILL.Where(b => b.productId == productId).Select(b => b.unitPrice).FirstOrDefault();
-                return data != 0;
+                var data = db.ITEM_BILL.Where(b => b.productId == productId).Select(b => new
+                {
+                    b.billId,
+                    b.productId
+                }).FirstOrDefault();
+                return data != null;
             }
         }
 
@@ -209,22 +219,23 @@ namespace ComputerProject.ProductWorkSpace
                     var data1 = db.PRODUCTs.Where(p => p.nameIndex.Contains(nameDL) || p.id.ToString().Contains(str)).Select(
                         p => new
                         {
-                            p.name,
-                            p.id,
-                            p.priceOrigin,
-                            p.priceSales,
-                            p.quantity,
-                            p.warrantyTime,
-                            p.producer,
-                            p.description,
-                            p.categoryId
+                            name = p.name,
+                            id = p.id,
+                            priceOrigin = p.priceOrigin,
+                            priceSales = p.priceSales,
+                            quantity = p.quantity,
+                            warrantyTime = p.warrantyTime,
+                            producer = p.producer,
+                            description = p.description,
+                            categoryId = p.categoryId,
+                            isStopSelling = p.isStopSelling,
                         }
                     );
 
                     switch (orderMode)
                     {
                         case 0:
-                            data1 = data1.OrderBy(p => p.name).Skip(startIndex).Take(count);
+                            data1 = data1.OrderByDescending(p => p.priceSales).Skip(startIndex).Take(count);
                             break;
                         case 1:
                             data1 = data1.OrderBy(p => p.priceSales).Skip(startIndex).Take(count);
@@ -247,7 +258,8 @@ namespace ComputerProject.ProductWorkSpace
                             warrantyTime = p.warrantyTime,
                             producer = p.producer,
                             description = p.description,
-                            categoryId = p.categoryId
+                            categoryId = p.categoryId,
+                            isStopSelling = p.isStopSelling,
                         }));
                     }
 
@@ -324,59 +336,13 @@ namespace ComputerProject.ProductWorkSpace
             destination.categoryId = source.categoryId;
             destination.name = source.name;
             destination.nameIndex = source.nameIndex;
-
-            /*if (source.image != null && !source.image.Equals(destination.image))
-            {
-                destination.image = new byte[source.image.Length];
-                source.image.CopyTo(destination.image, 0);
-            }*/
+            destination.warrantyTime = source.warrantyTime;
+            destination.description = source.description;
 
             destination.producer = source.producer;
             destination.quantity = source.quantity;
             destination.priceOrigin = source.priceOrigin;
             destination.priceSales = source.priceSales;
-
-            if (source.SPECIFICATIONs == null)
-            {
-                destination.SPECIFICATIONs = null;
-                return;
-            }
-
-            /*if (destination.categoryId != source.categoryId || destination.SPECIFICATIONs == null)
-            {
-                if (destination.SPECIFICATIONs != null)
-                {
-                    destination.SPECIFICATIONs.Clear();
-                }
-                else
-                {
-                    destination.SPECIFICATIONs = new List<SPECIFICATION>(source.SPECIFICATIONs.Count);
-                }
-
-                foreach (var spec in source.SPECIFICATIONs)
-                {
-                    destination.SPECIFICATIONs.Add(new SPECIFICATION()
-                    {
-                        productId = spec.productId,
-                        specificationTypeId = spec.specificationTypeId,
-                        value = spec.value
-                    });
-                }
-            }
-            else
-            {
-                var destinationSpecs = (List<SPECIFICATION>)destination.SPECIFICATIONs;
-                foreach (var spec in source.SPECIFICATIONs)
-                {
-                    for (int i = 0; i < destinationSpecs.Count; i++)
-                    {
-                        if (destinationSpecs[i].specificationTypeId == spec.specificationTypeId)
-                        {
-                            destinationSpecs[i].value = spec.value;
-                        }
-                    }
-                }
-            }*/
         }
     }
 }

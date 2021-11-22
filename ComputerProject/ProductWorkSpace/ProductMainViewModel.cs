@@ -12,7 +12,7 @@ namespace ComputerProject.ProductWorkSpace
 {
     class ProductMainViewModel: PagingViewModel<ProductViewModel>
     {
-        int orderMode;
+        int orderMode = 0;
         MultipleControlViewModel viewController;
 
         public ProductMainViewModel():base()
@@ -88,7 +88,10 @@ namespace ComputerProject.ProductWorkSpace
                     {
                         CurrentPage = maxPage;
                     }
-                    CurrentPage = CurrentPage;
+                    else
+                    {
+                        CurrentPage = CurrentPage;
+                    }
                 }
             }
 
@@ -120,6 +123,7 @@ namespace ComputerProject.ProductWorkSpace
         public RelayCommand CommandDetailItem => new RelayCommand(OnClick_DetailItem);
         public RelayCommand CommandEditItem => new RelayCommand(OnClick_EditItem);
         public RelayCommand CommandDeleteItem => new RelayCommand(OnClick_DeleteItem);
+        public RelayCommand CommandSortPrice => new RelayCommand(OnClick_ButtonPrice);
 
         public void OnClick_DetailItem(object sender)
         {
@@ -162,6 +166,29 @@ namespace ComputerProject.ProductWorkSpace
             if (item == null) return;
 
             Console.WriteLine("Delete item : " + item.Name);
+
+            bool hasInBill = false;
+            void task1()
+            {
+                hasInBill = ProductViewModel.HasInBill(item.Id);
+            }
+            void task2()
+            {
+                string msg = hasInBill ? "Sản phẩm đã được bán trước đó. Sẽ tiến hành ngừng bán sản phẩm." : "Dữ liệu đã xóa sẽ không thể hoàn tác.";
+                var msb = new CustomMessageBox.MessageBox(msg, "Xóa sản phẩm", "Tôi hiểu", "Hủy", MaterialDesignThemes.Wpf.PackIconKind.Warning
+                , () =>
+                {
+                    DoBusyTask(() => item.DeleteFromDB(hasInBill), callback);
+                });
+                msb.ShowDialog();
+            }
+
+            void callback()
+            {
+                BackAndRefresh(null, null);
+            }
+
+            DoBusyTask(task1, task2);
         }
 
         public void OnClick_ButtonPrice(object obj)

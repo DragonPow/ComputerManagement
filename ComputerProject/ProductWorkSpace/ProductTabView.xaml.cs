@@ -28,10 +28,6 @@ namespace ComputerProject.ProductWorkSpace
         public ProductTabView()
         {
             InitializeComponent();
-            if (DataContext == null)
-            {
-                DataContext = new ProductTabViewModel();
-            }
         }
     }
 }
