@@ -213,7 +213,7 @@ namespace ComputerProject.StatiticsWorkSpace
                     CalcReport(_year, _month, db);
                     if (SelectedDate < new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1))
                     {
-                        SaveResult();
+                        //SaveResult();
                     }
                 }
                 else
