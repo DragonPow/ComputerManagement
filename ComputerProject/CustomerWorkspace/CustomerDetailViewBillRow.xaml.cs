@@ -16,6 +16,7 @@ namespace ComputerProject.CustomerWorkspace
             InitializeComponent();
             //InitData();
         }
+
         public void InitData()
         {
             Number.Text = "1";

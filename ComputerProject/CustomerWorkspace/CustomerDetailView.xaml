@@ -142,7 +142,7 @@
                 Background="White"
                 CornerRadius="8">
                 <StackPanel>
-                    <Grid IsEnabled="False">
+                    <Grid IsEnabled="True">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="2*" />
@@ -167,7 +167,8 @@
                             FontSize="{x:Static localfont:Font.Body}"
                             IsTabStop="False"
                             KeyboardNavigation.TabIndex="0"
-                            Texthint="Mã hóa đơn" />
+                            Texthint="Mã hóa đơn"
+                            Text="{Binding BillSearchContent, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                     <local:CustomerDetailViewBillTitle
                         Grid.Row="1"
@@ -181,7 +182,8 @@
                         ItemsSource="{Binding ListBill}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <local:CustomerDetailViewBillRow DataContext="{Binding}" />
+                                <local:CustomerDetailViewBillRow DataContext="{Binding}" 
+                                                                 MouseDoubleClick="CustomerDetailViewBillRow_MouseDoubleClick"/>
                             </DataTemplate>
                         </ListView.ItemTemplate>
 

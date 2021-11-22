@@ -176,6 +176,11 @@ namespace ComputerProject.CustomerWorkspace
             ViewModel.GetBills();
         }
 
-       
+        private void CustomerDetailViewBillRow_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var item = (CustomerDetailViewBillRowViewModel)(sender as CustomerDetailViewBillRow).DataContext;
+
+            item.CommandOpenDetailBill.Execute(null);
+        }
     }
 }
