@@ -16,6 +16,8 @@ namespace ComputerProject.ProductWorkSpace
 
         public override void Prepare()
         {
+            quantity_String = Quantity.ToString();
+            warranty_String = WarrantyTime.ToString();
             LoadCatagotery();
             LoadImage();
             LoadSpecification();
@@ -99,7 +101,7 @@ namespace ComputerProject.ProductWorkSpace
                 var msb = new CustomMessageBox.MessageBox(msg, "Xóa sản phẩm", "Tôi hiểu", "Hủy", MaterialDesignThemes.Wpf.PackIconKind.Warning
                 , () =>
                 {
-                    DoBusyTask(task2, callback);
+                    DoBusyTask(() => DeleteFromDB(hasInBill), callback);
                 });
                 msb.ShowDialog();
             }

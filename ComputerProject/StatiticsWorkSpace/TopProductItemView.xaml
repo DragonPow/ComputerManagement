@@ -21,7 +21,7 @@
             >
             <Image
             Stretch="Fill"
-            Source="{Binding Image, TargetNullValue={x:Null}}"
+            Source="{Binding Image, TargetNullValue={StaticResource NoImage}}"
             >
             </Image>
         </Border>

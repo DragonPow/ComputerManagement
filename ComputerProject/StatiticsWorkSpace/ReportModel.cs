@@ -41,5 +41,6 @@ namespace ComputerProject.StatiticsWorkSpace
         public DateTime EndTime { get; set; }
 
         public object Tag;
+        public int Day { get; set; }
     }
 }

@@ -66,7 +66,7 @@
                             materialDesign:ButtonAssist.CornerRadius="5"
                             Background="#F7F8FC"
                             BorderBrush="{StaticResource MainColor}"
-                            Command="{Binding Clicked_Add}"
+                            Command="{Binding CommandSortPrice}"
                             Style="{StaticResource MaterialDesignOutlinedButton}"
                             ToolTip="Thêm sản phẩm">
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">

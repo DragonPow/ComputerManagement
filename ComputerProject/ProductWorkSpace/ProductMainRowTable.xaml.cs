@@ -43,8 +43,8 @@ namespace ComputerProject.ProductWorkSpace
 
         public ICommand CommandDelete
         {
-            get => (ICommand)GetValue(CommandEditProperty);
-            set => SetValue(CommandEditProperty, value);
+            get => (ICommand)GetValue(CommandDeleteProperty);
+            set => SetValue(CommandDeleteProperty, value);
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)

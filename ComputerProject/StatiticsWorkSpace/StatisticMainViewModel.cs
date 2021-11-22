@@ -35,12 +35,25 @@ namespace ComputerProject.StatiticsWorkSpace
 
                 selectedDate = value;
 
+                CountNewBill = 0;
+                CountNewCustomer = 0;
+                CountNewRepair = 0;
+                Revenue = 0;
+
                 DoBusyTask(() => GetReport(selectedDate.Year, selectedDate.Month), operationSelecteMonth.Token, () =>
                 {
                     OnPropertyChanged(nameof(CountNewBill));
+                    OnPropertyChanged(nameof(RateBill));
+
                     OnPropertyChanged(nameof(CountNewCustomer));
+                    OnPropertyChanged(nameof(countNewCustomer_Rate));
+
                     OnPropertyChanged(nameof(CountNewRepair));
-                    OnPropertyChanged(nameof(Revenue));
+                    OnPropertyChanged(nameof(RateRepair));
+
+                    OnPropertyChanged(nameof(Revenue_String));
+                    OnPropertyChanged(nameof(RateRevenue));
+
                     OnPropertyChanged(nameof(CollectionTopSale));
                     OnPropertyChanged(nameof(CategoteryPieSeries));
                     OnPropertyChanged(nameof(RevenueCollection));
@@ -243,7 +256,7 @@ namespace ComputerProject.StatiticsWorkSpace
 
                     revenuePerDay = db.DETAIL_REPORT_REVENUE.Where(dt => dt.reportId == rp.id).Select(dt => new ReportModel()
                     {
-                        Tag = dt.day,
+                        Day = dt.day,
                         Amount = dt.amount,
                         Money = dt.money,
                     }).ToList();
@@ -251,7 +264,7 @@ namespace ComputerProject.StatiticsWorkSpace
 
                     foreach (var d in revenuePerDay)
                     {
-                        d.StartTime = new DateTime(_year, _month, (int)d.Tag);
+                        d.StartTime = new DateTime(_year, _month, d.Day);
                     }
                 }
 
@@ -424,7 +437,7 @@ namespace ComputerProject.StatiticsWorkSpace
 
         String Rate(int nw, int old)
         {
-            if (old == 0) return "100%";
+            if (old == 0) return "999%";
             int rate = (nw - old) * 100 / old;
             if (rate > 0) return "+$1%".Replace("$1", rate.ToString());
             return "$1%".Replace("$1", rate.ToString());

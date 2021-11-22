@@ -11,14 +11,18 @@ namespace ComputerProject.ProductWorkSpace
 {
     class ProductAddViewModel : ProductViewModel, IBackable
     {
-        public ProductAddViewModel()
+        public ProductAddViewModel():base()
         {
-            
         }
 
         public virtual void Prepare()
         {
-            this.Product = new PRODUCT();
+            this.Product = new PRODUCT()
+            {
+                warrantyTime = 0,
+                quantity = 0,
+            };
+            quantity_String = Quantity.ToString();
             DoBusyTask(GetCategoryList);
         }
 
@@ -133,13 +137,50 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        protected string error;
+        protected string quantity_String;
+        public string Quantity_String
+        {
+            get => quantity_String;
+            set
+            {
+                int a = -1;
+                if (value != null && value != string.Empty && int.TryParse(value, out a))
+                {
+                    Product.quantity = a;
+                    OnPropertyChanged(nameof(Quantity));
+                }
+                else
+                {
+                    error = "Số lượng không hợp lệ";
+                }
+                quantity_String = value;
+                OnPropertyChanged(nameof(Quantity_String));
+            }
+        }
+
+        protected string warranty_String;
+        public string Warranty_String
+        {
+            get => Product.warrantyTime.ToString();
+            set
+            {
+                int a = -1;
+                if (int.TryParse(value, out a))
+                {
+                    Product.warrantyTime = a;
+                }
+                OnPropertyChanged(nameof(WarrantyTime));
+                OnPropertyChanged(nameof(Warranty_String));
+            }
+        }
 
         public RelayCommand CommandSave => new RelayCommand((o) => OnSave());
         protected virtual void OnSave()
         {
             void task()
             {
+                if (error != null) return;
+
                 CheckInvalid();
                 if (error != null) return;
 
@@ -159,6 +200,8 @@ namespace ComputerProject.ProductWorkSpace
                     CustomMessageBox.MessageBox.Show("Thêm sản phẩm thành công");
                     InsertOK?.Invoke(this, null);
                 }
+
+                error = null;
             }
             DoBusyTask(task, callback);
         }
@@ -167,19 +210,23 @@ namespace ComputerProject.ProductWorkSpace
         {
             if (PriceOrigin < 1 || PriceSales < 1)
             {
-                error = "Định dạng giá tiền không hợp lệ";
+                error = "Giá không hợp lệ";
+            }
+            else if (PriceSales > PriceOrigin)
+            {
+                error = "Giá bán phải nhỏ hơn hoặc bằng giá gốc";
             }
             else if (Name == null || Name.Trim().Length < 1)
             {
-                error = "Tên không đucợ để trống";
+                error = "Vui lòng nhập tên sản phẩm";
             }
             else if (Quantity < 1)
             {
                 error = "Số lượng không hợp lệ";
             }
-            else
+            else if (SelectedCategory_String == null)
             {
-                error = null;
+                error = "Vui lòng chọn 1 danh mục";
             }
         }
 
@@ -189,10 +236,6 @@ namespace ComputerProject.ProductWorkSpace
             if (temp != null && temp.IsStopSelling == false)
             {
                 error = "Sản phẩm đã tồn tại, vui lòng chọn tên khác";
-            }
-            else
-            {
-                error = null;
             }
         }
 

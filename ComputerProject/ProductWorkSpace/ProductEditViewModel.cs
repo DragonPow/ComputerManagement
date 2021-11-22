@@ -18,6 +18,7 @@ namespace ComputerProject.ProductWorkSpace
 
         public override void Prepare()
         {
+            quantity_String = Quantity.ToString();
             void task3()
             {
                 if (oldModel.image == null)
@@ -165,6 +166,8 @@ namespace ComputerProject.ProductWorkSpace
         {
             void task()
             {
+                if (error != null) return;
+
                 CheckInvalid();
                 if (error != null) return;
 
@@ -188,6 +191,8 @@ namespace ComputerProject.ProductWorkSpace
                     EndEdit();
                     UpdateOK?.Invoke(this, null);
                 }
+
+                error = null;
             }
             DoBusyTask(task, callback);
         }
