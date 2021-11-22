@@ -141,7 +141,6 @@
                                            IsTabStop="False"
                                            KeyboardNavigation.TabIndex="0"
                                            IsEnabled="{Binding IsEditMode}">
-
                 </localcustom:TextboxCustom>
                 <local:PropertiesTitlexaml Grid.Row="1"
                                            x:Name="BtnAddSpeci"
@@ -214,7 +213,8 @@
                     FontFamily="{StaticResource Mulish}"
                     FontSize="16"
                     Foreground="{StaticResource MainColor}"
-                    BorderBrush="{StaticResource MainColor}">
+                    BorderBrush="{StaticResource MainColor}"
+                    IsEnabled="{Binding BusyService.IsFree}">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Style.Triggers>
@@ -245,7 +245,8 @@
                     FontSize="16"
                     FontWeight="DemiBold"
                     Background="{StaticResource MainColor}"
-                    BorderBrush="White">
+                    BorderBrush="White"
+                    IsEnabled="{Binding BusyService.IsFree}">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Style.Triggers>
