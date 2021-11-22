@@ -53,7 +53,7 @@
             </Grid.ColumnDefinitions>
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <local:ProInfor
-                    IsEnabled="False"
+                    ModeInfor="onlyread"
                     DataContext="{Binding}"
                     VisibilityAddImage="Hidden" />
             </ScrollViewer>
