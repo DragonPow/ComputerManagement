@@ -10,7 +10,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    d:DesignHeight="200"
+    d:DesignHeight="50"
     d:DesignWidth="1200"
     Background="Transparent"
     d:DataContext="{d:DesignInstance Type=local:CustomerViewModel}"
@@ -36,7 +36,7 @@
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="120" />
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="150" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
@@ -61,10 +61,12 @@
             x:Name="cellAddress"
             Grid.Column="3"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
-            Text="{Binding Address}" />
+            Text="{Binding Address}" 
+            Margin="20"/>
         <TextBlock
             x:Name="cellPoint"
             Grid.Column="4"
+            Margin="30,0,5,0"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
             Text="{Binding Point_String}" />
         <Button

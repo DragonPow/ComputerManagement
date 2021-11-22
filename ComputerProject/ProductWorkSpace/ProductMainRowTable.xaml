@@ -91,6 +91,7 @@
         <Button
             x:Name="btnDelete"
             Grid.Column="7"
+            Margin="0,5"
             Click="btnDelete_Click"
             Style="{StaticResource MaterialDesignIconButton}"
             ToolTip="Xóa sản phẩm">

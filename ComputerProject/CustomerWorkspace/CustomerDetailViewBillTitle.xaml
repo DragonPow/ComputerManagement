@@ -18,11 +18,11 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.16*"></ColumnDefinition>
+            <ColumnDefinition Width="50"></ColumnDefinition>
+            <ColumnDefinition Width="0.2*"></ColumnDefinition>
             <ColumnDefinition Width="0.2*"></ColumnDefinition>
             <ColumnDefinition Width="0.2*"></ColumnDefinition>
             <ColumnDefinition Width="0.3*"></ColumnDefinition>
-            <ColumnDefinition Width="0.16*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <TextBlock
@@ -45,7 +45,7 @@
             FontSize="{x:Static localfont:Font.Body}"
             Margin="10, 0, 0, 0"
             Style="{StaticResource TitleCell}">
-            Ngày tạo
+            Mã hóa đơn
         </TextBlock>
         <TextBlock
             x:Name="Type"
@@ -56,7 +56,7 @@
             FontSize="{x:Static localfont:Font.Body}"
             Margin="10, 0, 0, 0"
             Style="{StaticResource TitleCell}">
-            Loại hóa đơn
+            Ngày tạo
         </TextBlock>
         <TextBlock
             x:Name="Content"
@@ -67,7 +67,7 @@
             FontSize="{x:Static localfont:Font.Body}"
             Margin="10, 0, 0, 0"
             Style="{StaticResource TitleCell}">
-        Nội dung
+        Loại hóa đơn
         </TextBlock>
         <TextBlock
             x:Name="Total"

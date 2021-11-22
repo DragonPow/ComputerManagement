@@ -32,6 +32,7 @@
                                        IsTabStop="False"
                                        KeyboardNavigation.TabIndex="0"
                                        Foreground="#11142D"
+                                       IsReadOnly="True"
                                        Text="{Binding name, Mode=TwoWay}" />
 
             <localcustom:TextboxCustom x:Name="Phone"
@@ -43,6 +44,7 @@
                                        FontSize="{x:Static localfont:Font.Body}"
                                        MarginText="8"
                                        IsTabStop="False"
+                                       IsReadOnly="True"
                                        KeyboardNavigation.TabIndex="0"
                                        Foreground="#11142D"
                                        Text="{Binding phone, Mode=TwoWay}" />
@@ -70,6 +72,7 @@
                                 Foreground="#11142D"
                                 Text="12/12/2021"
                                 Padding="10"
+                                IsEnabled="False"
                                 FontFamily="{StaticResource Mulish}"
                                 FontSize="{x:Static localfont:Font.Body}"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
@@ -88,6 +91,7 @@
                                        FontSize="{x:Static localfont:Font.Body}"
                                        MarginText="8"
                                        Foreground="#11142D"
+                                       IsReadOnly="True"
                                        Text="{Binding address, Mode=TwoWay}" />
             <localcustom:TextboxCustom x:Name="Point"
                                        Title="   Điểm thưởng"
@@ -100,6 +104,7 @@
                                        FontSize="{x:Static localfont:Font.Body}"
                                        MarginText="8"
                                        Foreground="#11142D"
+                                       IsReadOnly="True"
                                        Text="{Binding point, Mode=TwoWay}"
                                        Texthint="0" />
         </StackPanel>

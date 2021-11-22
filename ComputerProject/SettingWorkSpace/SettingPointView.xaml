@@ -39,7 +39,7 @@
                               Background="White"
                               MarginText="10"/>
         <custom:TextboxCustom x:Name="MaxPoint" 
-                              Title="Tỉ lệ sử dụng điểm tối đa dựa trên giá trị hóa đơn(%)" 
+                              Title="Điểm sử dụng tôi đa(Điểm)" 
                               HorizontalAlignment="Left"
                               CornerRadiusText="5"
                               FontSize="16"

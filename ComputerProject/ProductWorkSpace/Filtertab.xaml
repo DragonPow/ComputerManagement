@@ -15,7 +15,7 @@
              Background="White"
              Tag="FilterProductView"
              d:DesignHeight="1044"
-             d:DesignWidth="250"
+             d:DesignWidth="300"
              d:DataContext="{d:DesignInstance Type={x:Type saleworkspace:FilterProductViewModel}}">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="dataFromEnum"
@@ -29,7 +29,7 @@
                                                 FalseValue="Visible" 
                                                 x:Key="visibilityConverter"/>
     </UserControl.Resources>
-    <StackPanel Width="250">
+    <StackPanel>
         <!--<StackPanel HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Orientation="Horizontal"
@@ -48,7 +48,7 @@
                        FontWeight="SemiBold"
                        FontFamily="{StaticResource Mulish}"
                        Foreground="{StaticResource Title}"
-                       Margin="20"
+                       Margin="15"
                    HorizontalAlignment="Center"
                        VerticalAlignment="Center">
                 Bộ lọc
@@ -78,11 +78,11 @@
                                    FontSize="{x:Static localfont:Font.Body}"
                                    MarginText="5"
                                    CornerRadiusText="3"
-                                   Margin="20,0"
+                                   Margin="20,5"
                                    IsTabStop="False"
                                    KeyboardNavigation.TabIndex="0">
         </localcustom:TextboxCustom>
-        <StackPanel Margin="20, 10, 20, 0"
+        <StackPanel Margin="20, 5, 20, 0"
                     Visibility="{Binding IsSaleView, Converter={StaticResource visibilityConverter}}">
             <TextBlock FontSize="{x:Static localfont:Font.Body}"
                        FontWeight="SemiBold"
@@ -105,7 +105,7 @@
                       SelectedItem="{Binding StateProduct}"
                       SelectedIndex="0"/>
         </StackPanel>
-        <StackPanel Margin="20,0">
+        <StackPanel Margin="20,5">
             <TextBlock FontSize="{x:Static localfont:Font.Body}"
                        FontWeight="SemiBold"
                        FontFamily="{StaticResource Mulish}"
@@ -121,7 +121,7 @@
                 BorderThickness="1"
                 BorderBrush="#DBD7F4"
                 Padding="5"
-                Margin="0, 0, 0, 10"
+                Margin="0, 0, 0, 5"
                 >
             <TextBox x:Name="Waranty"
                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
@@ -137,14 +137,14 @@
                    FontFamily="{StaticResource Mulish}"
                    Text="   Khoảng giá"
                    Foreground="Black"
-                   Margin="20, 0, 20, 10"
+                   Margin="20, 5, 20, 10"
                    VerticalAlignment="Top">
         </TextBlock>
         <Grid Margin="0, 0, 0, 20">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="135" />
                 <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="0.15*" />
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="135" />
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0"
                      x:Name="From"
@@ -152,7 +152,6 @@
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      VerticalAlignment="Top"
                      AcceptsReturn="True"
-                     TextWrapping="Wrap"
                      FontSize="{x:Static localfont:Font.Body}"
                      FontFamily="{StaticResource Mulish}"
                      VerticalScrollBarVisibility="Auto"
@@ -161,21 +160,18 @@
                      Background="{StaticResource Background}"
                      BorderBrush="#DBD7F4" />
             <Separator Grid.Column="1"
-                       Margin="5"
-                       
-                       ></Separator>
+                       Margin="2" ></Separator>
             <TextBox Grid.Column="2"
                      x:Name="To"
                      Text="{Binding PriceHighest}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      VerticalAlignment="Top"
                      AcceptsReturn="True"
-                     TextWrapping="Wrap"
                      Padding="9"
                      FontSize="{x:Static localfont:Font.Body}"
                      FontFamily="{StaticResource Mulish}"
                      VerticalScrollBarVisibility="Auto"
-                     Margin="0, 0, 30, 0"
+                     Margin="0, 0, 20, 0"
                      Background="{StaticResource Background}"
                      BorderBrush="#DBD7F4" />
         </Grid>
@@ -187,13 +183,13 @@
                     Background="Transparent"
                     BorderBrush="{StaticResource MainColor}"
                     Foreground="{StaticResource MainColor}"
-                    Width="80"
+                    Width="100"
                     Height="35"
                     Content="Đặt lại"
                     Margin="0, 0, 20, 0"
                     Command="{Binding UndoCommand}" />
             <Button Background="{StaticResource MainColor}"
-                    Width="80"
+                    Width="100"
                     Height="35"
                     Content="Lọc"
                     Margin="20, 0, 0, 0"
