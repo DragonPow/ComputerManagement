@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ComputerProject
 {
-    class PagingViewModel<T> : BusyViewModel
+    public class PagingViewModel<T> : BusyViewModel
     {
         protected List<T> itemList;
         public List<T> ItemList
@@ -69,5 +69,75 @@ namespace ComputerProject
             }
         }
 
+        protected virtual List<T> _search()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual int _countMax()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Search()
+        {
+            Console.WriteLine("Search");
+            searchOperation.Cancel();
+            searchOperation = new CancellationTokenSource();
+
+            List<T> l = null;
+            void task()
+            {
+                l = _search();
+            }
+            void callback()
+            {
+                ItemList = l;
+            }
+            DoBusyTask(task, searchOperation.Token, callback);
+        }
+
+        /// <summary>
+        /// Count max page
+        /// </summary>
+        /// <param name="resetPage">Remain current page number if true. Reset page number (to 1) if set true</param>
+        public void CountPage(bool resetPage = true)
+        {
+            Console.WriteLine("CountPage");
+            countOperation.Cancel();
+            countOperation = new CancellationTokenSource();
+
+            int max = 0;
+            void task()
+            {
+                max = _countMax();
+            }
+            void callback()
+            {
+                MaxPage = max % step > 0 ? max / step + 1 : max / step;
+                if (resetPage)
+                {
+                    CurrentPage = 1;
+                }
+                else
+                {
+                    if (CurrentPage > MaxPage)
+                    {
+                        CurrentPage = maxPage;
+                    }
+                    else
+                    {
+                        CurrentPage = CurrentPage;
+                    }
+                }
+            }
+
+            DoBusyTask(task, countOperation.Token, callback);
+        }
+
+        public void Validation()
+        {
+            CountPage(true);
+        }
     }
 }

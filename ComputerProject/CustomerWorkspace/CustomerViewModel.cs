@@ -189,7 +189,7 @@ namespace ComputerProject.CustomerWorkspace
 
         public async Task CheckDuplicatePhoneAsync()
         {
-            await Task.Run(CheckDuplicatePhoneAsync);
+            await Task.Run(CheckDuplicatePhone);
         }
 
         public void CheckDuplicatePhone()
@@ -354,7 +354,7 @@ namespace ComputerProject.CustomerWorkspace
 
             if (error != null)
             {
-                CustomMessageBox.MessageBox.Show(error);
+                CustomMessageBox.MessageBox.ShowError(error);
                 return;
             }
 
@@ -362,11 +362,11 @@ namespace ComputerProject.CustomerWorkspace
             {
                 if (Error != null)
                 {
-                    CustomMessageBox.MessageBox.Show(Error);
+                    CustomMessageBox.MessageBox.ShowError(Error);
                 }
                 else
                 {
-                    CustomMessageBox.MessageBox.Show("Đã thêm khách hàng mới vào cơ sở dữ liệu thành công");
+                    CustomMessageBox.MessageBox.ShowNotify("Đã thêm khách hàng mới vào cơ sở dữ liệu thành công");
                     callback?.Invoke();
                 }
                 Error = null;
@@ -382,6 +382,7 @@ namespace ComputerProject.CustomerWorkspace
                     catch (Exception) when (!HelperService.Environment.IsDebug)
                     {
                         error = FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01");
+                        CustomMessageBox.MessageBox.ShowError(Error);
                     }
                 }
             }

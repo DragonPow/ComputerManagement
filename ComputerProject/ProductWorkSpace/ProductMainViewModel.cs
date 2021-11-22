@@ -42,60 +42,14 @@ namespace ComputerProject.ProductWorkSpace
         }
 
 
-        public void Search()
+        protected override List<ProductViewModel> _search()
         {
-            Console.WriteLine("Search");
-            searchOperation.Cancel();
-            searchOperation = new CancellationTokenSource();
-
-            List<ProductViewModel> l = null;
-            void task()
-            {
-                l = ProductViewModel.FindByNameOrID(searchContent, currentStartIndex, step, orderMode);
-            }
-            void callback()
-            {
-                ItemList = l;
-            }
-            DoBusyTask(task, searchOperation.Token, callback);
+            return ProductViewModel.FindByNameOrID(SearchContent, currentStartIndex, step, orderMode);
         }
 
-        /// <summary>
-        /// Count max page
-        /// </summary>
-        /// <param name="resetPage">Remain current page number if true. Reset page number (to 1) if set true</param>
-        public void CountPage(bool resetPage = true)
+        protected override int _countMax()
         {
-            Console.WriteLine("CountPage");
-            countOperation.Cancel();
-            countOperation = new CancellationTokenSource();
-
-            int max = 0;
-            void task()
-            {
-                max = ProductViewModel.CountByName(SearchContent);
-            }
-            void callback()
-            {
-                MaxPage = max % step > 0 ? max / step + 1 : max / step;
-                if (resetPage)
-                {
-                    CurrentPage = 1;
-                }
-                else
-                {
-                    if (CurrentPage > MaxPage)
-                    {
-                        CurrentPage = maxPage;
-                    }
-                    else
-                    {
-                        CurrentPage = CurrentPage;
-                    }
-                }
-            }
-
-            DoBusyTask(task, countOperation.Token, callback);
+            return ProductViewModel.CountByName(SearchContent);
         }
 
         public RelayCommand Clicked_Add => new RelayCommand((obj) => OpenAdd());

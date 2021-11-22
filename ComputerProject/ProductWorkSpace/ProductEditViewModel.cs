@@ -183,11 +183,11 @@ namespace ComputerProject.ProductWorkSpace
             {
                 if (error != null)
                 {
-                    CustomMessageBox.MessageBox.Show(error);
+                    CustomMessageBox.MessageBox.ShowError(error);
                 }
                 else
                 {
-                    CustomMessageBox.MessageBox.Show("Lưu thay đổi thành công");
+                    CustomMessageBox.MessageBox.ShowNotify("Lưu thay đổi thành công");
                     EndEdit();
                     UpdateOK?.Invoke(this, null);
                 }

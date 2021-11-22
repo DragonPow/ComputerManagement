@@ -193,11 +193,11 @@ namespace ComputerProject.ProductWorkSpace
             {
                 if (error != null)
                 {
-                    CustomMessageBox.MessageBox.Show(error);
+                    CustomMessageBox.MessageBox.ShowError(error);
                 }
                 else
                 {
-                    CustomMessageBox.MessageBox.Show("Thêm sản phẩm thành công");
+                    CustomMessageBox.MessageBox.ShowNotify("Thêm sản phẩm thành công");
                     InsertOK?.Invoke(this, null);
                 }
 

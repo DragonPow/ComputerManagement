@@ -10,25 +10,22 @@ using System.Windows;
 
 namespace ComputerProject.CustomerWorkspace
 {
-    public class CustomerAllViewModel : BusyViewModel
+    public class CustomerAllViewModel : PagingViewModel<CustomerViewModel>
     {
         public CustomerAllViewModel()
         {
-            customerList = new List<CustomerViewModel>();
+            ItemList = new List<CustomerViewModel>();
             this.PropertyChanged += CustomerAllViewModel_PropertyChanged;
         }
 
         public CustomerAllViewModel(IList<CustomerViewModel> list) : this()
         {
-            customerList = new List<CustomerViewModel>(list);
+            ItemList = new List<CustomerViewModel>(list);
         }
-
-        CancellationTokenSource countOperation = new CancellationTokenSource();
-        CancellationTokenSource searchOperation = new CancellationTokenSource();
 
         private void CustomerAllViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(SearchContent))
+            /*if (e.PropertyName == nameof(SearchContent))
             {
                 countOperation.Cancel();
                 countOperation = new CancellationTokenSource();
@@ -45,97 +42,28 @@ namespace ComputerProject.CustomerWorkspace
             {
                 //Console.WriteLine("Page = " + CurrentPage);
                 SearchAsync();
+            }*/
+
+            if (e.PropertyName == nameof(SearchContent))
+            {
+                CountPage();
+            }
+
+            if (e.PropertyName == nameof(CurrentPage))
+            {
+                Console.WriteLine("Page = " + CurrentPage);
+                Search();
             }
         }
 
-        private List<CustomerViewModel> customerList;
-        public List<CustomerViewModel> CustomerList { get => customerList; 
-            set
-            {
-                customerList = value;
-                OnPropertyChanged(nameof(CustomerList));
-            }
+        protected override List<CustomerViewModel> _search()
+        {
+            return CustomerViewModel.FindByPhone(searchContent, currentStartIndex, step);
         }
 
-        public String searchContent = "";
-        public String SearchContent
+        protected override int _countMax()
         {
-            get => searchContent;
-            set
-            {
-                if (value == null) { value = ""; }
-
-                if (searchContent.Equals(value)) return;
-
-                searchContent = value;
-
-                OnPropertyChanged(nameof(SearchContent));
-            }
-        }
-
-
-        public int currentStartIndex = 0;
-        public int step = 20;
-
-        int maxPage = 1;
-        public int MaxPage
-        {
-            get => maxPage;
-            set
-            {
-                maxPage = value;
-                OnPropertyChanged(nameof(MaxPage));
-            }
-        }
-
-        public int CurrentPage
-        {
-            get
-            {
-                return currentStartIndex / step + 1;
-            }
-
-            set
-            {
-                if (value < 1 || value > MaxPage) return;
-                currentStartIndex = (value - 1) * step;
-                OnPropertyChanged(nameof(CurrentPage));
-            }
-        }
-
-        public void SearchAsync()
-        {
-            searchOperation.Cancel();
-            searchOperation = new CancellationTokenSource();
-
-            List<CustomerViewModel> data = null;
-            DoBusyTask(() =>
-            {
-                data = CustomerViewModel.FindByPhone(searchContent, currentStartIndex, step);
-            }, searchOperation.Token, () =>
-            {
-                CustomerList = data;
-            });
-        }
-
-        public void CountMaxPage()
-        {
-            int max = CustomerViewModel.CountByPhone(searchContent);
-            MaxPage = max % step > 0 ? max / step + 1 : max / step;
-        }
-
-        public void ReloadCurrentPage()
-        {
-            countOperation.Cancel();
-            countOperation = new CancellationTokenSource();
-
-            DoBusyTask(CountMaxPage, countOperation.Token, () => {
-                if (CurrentPage > MaxPage)
-                {
-                    CurrentPage = maxPage;
-                }
-                CurrentPage = CurrentPage;
-            });
+            return CustomerViewModel.CountByPhone(searchContent);
         }
 
         public void Delete(CustomerViewModel vm)
@@ -144,8 +72,8 @@ namespace ComputerProject.CustomerWorkspace
 
             void callback()
             {
-                customerList.Remove(vm);
-                ReloadCurrentPage();
+                CustomMessageBox.MessageBox.ShowNotify("Xóa khách hàng thành công");
+                Validation();
             }
 
             DoBusyTask(task, callback);
