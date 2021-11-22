@@ -12,176 +12,178 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
     <Border Background="White" CornerRadius="8">
-            <Grid Margin="20">
-                <StackPanel x:Name="ProInform" HorizontalAlignment="Stretch">
-                    <localcustom:TextboxCustom
-                x:Name="Code"
-                Title="    Mã sản phẩm"
-                Margin="0,0,0,10"
-                VerticalAlignment="Center"
-                CornerRadiusText="5"
-                FontFamily="{StaticResource Mulish}"
-                FontSize="{x:Static localfont:Font.Body}"
-                IsTabStop="False"
-                KeyboardNavigation.TabIndex="0"
-                MarginText="10"
-                Visibility="Collapsed" />
+        <Grid Margin="20">
+            <StackPanel x:Name="ProInform" HorizontalAlignment="Stretch">
+                <localcustom:TextboxCustom
+                    x:Name="Code"
+                    Title="    Mã sản phẩm"
+                    Margin="0,0,0,10"
+                    VerticalAlignment="Center"
+                    CornerRadiusText="5"
+                    FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Body}"
+                    IsTabStop="False"
+                    KeyboardNavigation.TabIndex="0"
+                    MarginText="10"
+                    Visibility="Collapsed" />
 
-                    <Grid Margin="0,0,0,10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-                        <Image
-                    Width="110"
-                    Height="80"
-                    Source="{Binding SelectedImage, TargetNullValue={StaticResource NoImage}}"
-                    Stretch="Fill" />
-                        <Grid Grid.Column="1" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ProInfor}}, Path=VisibilityAddImage}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="1*" />
-                            </Grid.RowDefinitions>
-                            <TextBlock
-                        x:Name="TblChoosseImage"
-                        Margin="15,5"
-                        VerticalAlignment="Center"
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Width="110"
+                        Height="80"
+                        Source="{Binding SelectedImage, TargetNullValue={StaticResource NoImage}}"
+                        Stretch="Fill" />
+                    <Grid Grid.Column="1" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ProInfor}}, Path=VisibilityAddImage}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            x:Name="TblChoosseImage"
+                            Margin="15,5"
+                            VerticalAlignment="Center"
+                            FontFamily="{StaticResource Mulish}"
+                            FontSize="{x:Static localfont:Font.Body}"
+                            FontWeight="SemiBold"
+                            Foreground="Black">
+                            Chọn ảnh sản phẩm
+                        </TextBlock>
+                        <Button
+                            x:Name="BtnAddImage"
+                            Grid.Row="1"
+                            Margin="15,0,50,0"
+                            HorizontalAlignment="Stretch"
+                            Background="{StaticResource MainColor}"
+                            BorderBrush="{StaticResource MainColor}"
+                            Command="{Binding CommandPickImage}"
+                            Content="Tải ảnh lên"
+                            FontFamily="{StaticResource Mulish}"
+                            FontSize="{x:Static localfont:Font.Body}"
+                            Style="{StaticResource MaterialDesignRaisedButton}" />
+                    </Grid>
+                </Grid>
+
+                <localcustom:TextboxCustom
+                    x:Name="ProductName"
+                    Title="    Tên sản phẩm"
+                    Margin="0,10,0,10"
+                    VerticalAlignment="Center"
+                    CornerRadiusText="5"
+                    FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Body}"
+                    IsTabStop="False"
+                    KeyboardNavigation.TabIndex="0"
+                    MarginText="10"
+                    Text="{Binding Name, Mode=TwoWay}" />
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock
+                        Margin="0,0,0,10"
+                        VerticalAlignment="Top"
                         FontFamily="{StaticResource Mulish}"
                         FontSize="{x:Static localfont:Font.Body}"
                         FontWeight="SemiBold"
-                        Foreground="Black">
-                        Chọn ảnh sản phẩm
-                            </TextBlock>
-                            <Button
-                        x:Name="BtnAddImage"
-                        Grid.Row="1"
-                        Margin="15,0,50,0"
-                        HorizontalAlignment="Stretch"
-                        Background="{StaticResource MainColor}"
-                        BorderBrush="{StaticResource MainColor}"
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        Command="{Binding CommandPickImage}"
-                        Content="Tải ảnh lên"
+                        Foreground="Black"
+                        Text="   Danh mục" />
+
+                    <ComboBox
+                        x:Name="Category"
+                        Padding="15"
+                        Background="{StaticResource Background}"
+                        BorderBrush="#DBD7F4"
                         FontFamily="{StaticResource Mulish}"
-                        FontSize="{x:Static localfont:Font.Body}" />
-                        </Grid>
-                    </Grid>
-
-                    <localcustom:TextboxCustom
-                x:Name="ProductName"
-                Title="    Tên sản phẩm"
-                Margin="0,10,0,10"
-                VerticalAlignment="Center"
-                CornerRadiusText="5"
-                FontFamily="{StaticResource Mulish}"
-                FontSize="{x:Static localfont:Font.Body}"
-                IsTabStop="False"
-                KeyboardNavigation.TabIndex="0"
-                MarginText="10"
-                Text="{Binding Name, Mode=TwoWay}" />
-                    <StackPanel Margin="0,0,0,10">
-                        <TextBlock
-                    Margin="0,0,0,10"
-                    VerticalAlignment="Top"
-                    FontFamily="{StaticResource Mulish}"
-                    FontSize="{x:Static localfont:Font.Body}"
-                    FontWeight="SemiBold"
-                    Foreground="Black"
-                    Text="   Danh mục" />
-
-                        <ComboBox
-                    x:Name="Category"
-                    Padding="15"
-                    Background="{StaticResource Background}"
-                    BorderBrush="#DBD7F4"
-                    Foreground="Black"
-                    FontFamily="{StaticResource Mulish}"
-                    FontSize="{x:Static localfont:Font.Body}"
-                    ItemsSource="{Binding CategoryList}"
-                    SelectedItem="{Binding SelectedCategory_String}"
-                    Style="{StaticResource MaterialDesignOutlinedComboBox}" />
-                    </StackPanel>
-                    <localcustom:TextboxCustom
-                x:Name="WarrantyPeriod"
-                Title="    Hạn bảo hành"
-                Margin="0,10,0,0"
-                VerticalAlignment="Center"
-                CornerRadiusText="5"
-                FontFamily="{StaticResource Mulish}"
-                FontSize="{x:Static localfont:Font.Body}"
-                IsTabStop="False"
-                KeyboardNavigation.TabIndex="0"
-                MarginText="10"
-                Text="{Binding WarrantyTime, Mode=TwoWay}" />
-
-                    <localcustom:TextboxCustom
-                x:Name="Procedure"
-                Title="    Nhà cung cấp"
-                Margin="0,10,0,0"
-                VerticalAlignment="Center"
-                CornerRadiusText="5"
-                FontFamily="{StaticResource Mulish}"
-                FontSize="{x:Static localfont:Font.Body}"
-                IsTabStop="False"
-                KeyboardNavigation.TabIndex="0"
-                MarginText="10"
-                Text="{Binding Producer, Mode=TwoWay}" />
-                    <localcustom:TextboxCustom
-                x:Name="Quantity"
-                Title="    Số lượng"
-                Margin="0,10,0,10"
-                        PreviewTextInput="PreviewTextInput"
-                VerticalAlignment="Center"
-                CornerRadiusText="5"
-                FontFamily="{StaticResource Mulish}"
-                FontSize="{x:Static localfont:Font.Body}"
-                IsTabStop="False"
-                KeyboardNavigation.TabIndex="0"
-                MarginText="10"
-                Text="{Binding Quantity, Mode=TwoWay}" />
-                    <localcustom:TextboxCustom
-                x:Name="Price"
-                Title="    Giá gốc"
-                PreviewTextInput="PreviewTextInput"
-                Margin="0,10,0,10"
-                VerticalAlignment="Center"
-                CornerRadiusText="5"
-                FontFamily="{StaticResource Mulish}"
-                FontSize="{x:Static localfont:Font.Body}"
-                IsTabStop="False"
-                KeyboardNavigation.TabIndex="0"
-                MarginText="10"
-                Text="{Binding PriceOrigin_String, Mode=TwoWay}" />
-
-                    <localcustom:TextboxCustom
-                x:Name="PriceSales"
-                Title="    Giá bán"
-                Margin="0,10,0,10"
-                VerticalAlignment="Center"
-                CornerRadiusText="5"
-                FontFamily="{StaticResource Mulish}"
-                FontSize="{x:Static localfont:Font.Body}"
-                IsTabStop="False"
-                KeyboardNavigation.TabIndex="0"
-                MarginText="10"
-                        PreviewTextInput="PreviewTextInput"
-                Text="{Binding PriceSales_String, Mode=TwoWay}" />
-                    <localcustom:TextboxCustom
-                x:Name="Description"
-                Title="    Mô tả"
-                Margin="0,10,0,10"
-                VerticalAlignment="Center"
-                CornerRadiusText="5"
-                FontFamily="{StaticResource Mulish}"
-                FontSize="{x:Static localfont:Font.Body}"
-                IsTabStop="False"
-                KeyboardNavigation.TabIndex="0"
-                MarginText="10"
-                MinHeight="100"
-                Text="{Binding Description, Mode=TwoWay}" />
+                        FontSize="{x:Static localfont:Font.Body}"
+                        Foreground="Black"
+                        ItemsSource="{Binding CategoryList}"
+                        SelectedItem="{Binding SelectedCategory_String}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                 </StackPanel>
 
-            </Grid>
+                <localcustom:TextboxCustom
+                    x:Name="Quantity"
+                    Title="    Số lượng"
+                    Margin="0,10,0,10"
+                    VerticalAlignment="Center"
+                    CornerRadiusText="5"
+                    FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Body}"
+                    IsTabStop="False"
+                    KeyboardNavigation.TabIndex="0"
+                    MarginText="10"
+                    PreviewTextInput="PreviewTextInput"
+                    Text="{Binding Quantity_String, Mode=TwoWay}" />
+                <localcustom:TextboxCustom
+                    x:Name="Price"
+                    Title="    Giá gốc"
+                    Margin="0,10,0,10"
+                    VerticalAlignment="Center"
+                    CornerRadiusText="5"
+                    FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Body}"
+                    IsTabStop="False"
+                    KeyboardNavigation.TabIndex="0"
+                    MarginText="10"
+                    PreviewTextInput="PreviewTextInput"
+                    Text="{Binding PriceOrigin_String, Mode=TwoWay}" />
+
+                <localcustom:TextboxCustom
+                    x:Name="PriceSales"
+                    Title="    Giá bán"
+                    Margin="0,10,0,10"
+                    VerticalAlignment="Center"
+                    CornerRadiusText="5"
+                    FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Body}"
+                    IsTabStop="False"
+                    KeyboardNavigation.TabIndex="0"
+                    MarginText="10"
+                    PreviewTextInput="PreviewTextInput"
+                    Text="{Binding PriceSales_String, Mode=TwoWay}" />
+                <localcustom:TextboxCustom
+                    x:Name="WarrantyPeriod"
+                    Title="    Hạn bảo hành (tháng)"
+                    Margin="0,10,0,0"
+                    VerticalAlignment="Center"
+                    CornerRadiusText="5"
+                    FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Body}"
+                    IsTabStop="False"
+                    KeyboardNavigation.TabIndex="0"
+                    MarginText="10"
+                    PreviewTextInput="PreviewTextInput"
+                    Text="{Binding Warranty_String, Mode=TwoWay}" />
+
+                <localcustom:TextboxCustom
+                    x:Name="Procedure"
+                    Title="    Nhà cung cấp"
+                    Margin="0,10,0,0"
+                    VerticalAlignment="Center"
+                    CornerRadiusText="5"
+                    FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Body}"
+                    IsTabStop="False"
+                    KeyboardNavigation.TabIndex="0"
+                    MarginText="10"
+                    Text="{Binding Producer, Mode=TwoWay}" />
+                <localcustom:TextboxCustom
+                    x:Name="Description"
+                    Title="    Mô tả"
+                    MinHeight="100"
+                    Margin="0,10,0,10"
+                    VerticalAlignment="Center"
+                    CornerRadiusText="5"
+                    FontFamily="{StaticResource Mulish}"
+                    FontSize="{x:Static localfont:Font.Body}"
+                    IsTabStop="False"
+                    KeyboardNavigation.TabIndex="0"
+                    MarginText="10"
+                    Text="{Binding Description, Mode=TwoWay}" />
+            </StackPanel>
+
+        </Grid>
     </Border>
-   
+
 </UserControl>
