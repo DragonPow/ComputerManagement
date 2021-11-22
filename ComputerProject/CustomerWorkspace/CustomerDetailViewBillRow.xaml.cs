@@ -14,7 +14,7 @@ namespace ComputerProject.CustomerWorkspace
         public CustomerDetailViewBillRow()
         {
             InitializeComponent();
-            InitData();
+            //InitData();
         }
         public void InitData()
         {

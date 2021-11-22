@@ -163,6 +163,8 @@ namespace ComputerProject.CustomerWorkspace
             ViewModel.ButtonGroupVisibility_Edit = System.Windows.Visibility.Visible;
             ViewModel.ButtonGroupVisibility_Read = System.Windows.Visibility.Hidden;
             ViewModel.Title = "Chỉnh sửa khách hàng";
+
+            ViewModel.GetBills();
         }
 
         public void SwitchMode_readonly()
@@ -171,6 +173,7 @@ namespace ComputerProject.CustomerWorkspace
             ViewModel.ButtonGroupVisibility_Edit = System.Windows.Visibility.Hidden;
             ViewModel.ButtonGroupVisibility_Read = System.Windows.Visibility.Visible;
             ViewModel.Title = "Chi tiết khách hàng";
+            ViewModel.GetBills();
         }
 
        

@@ -35,7 +35,8 @@
             VerticalAlignment="Center"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
-            Style="{StaticResource TitleCell}" />
+            Style="{StaticResource TitleCell}"
+            Text="{Binding BillId}" />
         <TextBlock
             x:Name="CreateDay"
             Grid.Column="1"
@@ -44,7 +45,8 @@
             VerticalAlignment="Center"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
-            Style="{StaticResource TitleCell}" />
+            Style="{StaticResource TitleCell}"
+            Text="{Binding BillDay_String}" />
         <TextBlock
             x:Name="Type"
             Grid.Column="2"
@@ -53,7 +55,8 @@
             VerticalAlignment="Center"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
-            Style="{StaticResource TitleCell}" />
+            Style="{StaticResource TitleCell}"
+            Text="{Binding BillType}" />
         <TextBlock
             x:Name="Content"
             Grid.Column="3"
@@ -71,7 +74,8 @@
             VerticalAlignment="Center"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
-            Style="{StaticResource TitleCell}" />
+            Style="{StaticResource TitleCell}"
+            Text="{Binding BillTotalMoney_String}" />
 
     </Grid>
 </UserControl>
