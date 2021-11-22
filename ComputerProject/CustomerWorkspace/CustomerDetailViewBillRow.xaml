@@ -18,7 +18,7 @@
             <Setter Property="Foreground" Value="Black" />
         </Style>
     </UserControl.Resources>
-    <Grid Height="70">
+    <Grid Height="50">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50" />
             <ColumnDefinition Width="0.2*" />
