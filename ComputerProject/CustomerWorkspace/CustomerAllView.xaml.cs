@@ -68,7 +68,7 @@ namespace ComputerProject.CustomerWorkspace
             }
             else
             {
-                CustomMessageBox.MessageBox.Show("Không thể xóa khách đã mua hàng");
+                CustomMessageBox.MessageBox.ShowNotify("Không thể xóa khách đã mua hàng");
             }
         }
 
@@ -77,11 +77,12 @@ namespace ComputerProject.CustomerWorkspace
             try
             {
                 ViewModel.Delete(item);
+
             }
             catch (Exception) when (!HelperService.Environment.IsDebug)
             {
                 ViewModel.IsBusy = false;
-                CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
+                CustomMessageBox.MessageBox.ShowNotify(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
             }
         }
 

@@ -80,7 +80,7 @@
                     Grid.Row="2"
                     Margin="20,0,10,0"
                     ItemContainerStyle="{StaticResource ListViewContainerStyle}"
-                    ItemsSource="{Binding CustomerList}">
+                    ItemsSource="{Binding ItemList}">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>

@@ -30,6 +30,8 @@ namespace ComputerProject.CustomerWorkspace
 
             var detailView = new CustomerDetailView();
             detailView.ClickedBack += OnBackFrom_EditItem;
+            detailView.DeletedOK += DetailView_DeletedOK;
+            detailView.EditOK += DetailView_EditOK;
 
             ListViews = new List<Control>()
                 {
@@ -37,6 +39,22 @@ namespace ComputerProject.CustomerWorkspace
                 };
 
             CurrentMainViewIndex = 0;
+        }
+
+        private void BackMainAndRefresh()
+        {
+            Validation();
+            CurrentMainViewIndex = 0;
+        }
+
+        private void DetailView_EditOK(object sender, EventArgs e)
+        {
+            BackMainAndRefresh();
+        }
+
+        private void DetailView_DeletedOK(object sender, EventArgs e)
+        {
+            BackMainAndRefresh();
         }
 
         private void OnClick_Create(object sender, EventArgs e)
@@ -54,7 +72,6 @@ namespace ComputerProject.CustomerWorkspace
             addView.DataContext = null;
 
             CurrentMainViewIndex = 0;
-            mainVM.ReloadCurrentPage();
         }
         private void OnBackFrom_EditItem(object sender, EventArgs e)
         {
@@ -62,12 +79,11 @@ namespace ComputerProject.CustomerWorkspace
             editView.DataContext = null;
 
             CurrentMainViewIndex = 0;
-            mainVM.ReloadCurrentPage();
         }
 
         private void AddView_SavedOK(object sender, EventArgs e)
         {
-            OnBackFrom_Create(sender, e);
+            BackMainAndRefresh();
         }
 
         private void OnClick_EditItem(object sender, EventArgs e)
@@ -88,12 +104,13 @@ namespace ComputerProject.CustomerWorkspace
             var editView = ListViews[2] as CustomerDetailView;
             editView.DataContext = new CustomerDetailViewModel(rowVM.Model);
 
+            editView.SwitchMode_readonly();
             CurrentMainViewIndex = 2;
         }
 
         public void Validation()
         {
-            mainVM.SearchAsync();
+            mainVM.Validation();
         }
     }
 }

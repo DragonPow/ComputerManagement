@@ -189,7 +189,7 @@ namespace ComputerProject.CustomerWorkspace
 
         public async Task CheckDuplicatePhoneAsync()
         {
-            await Task.Run(CheckDuplicatePhoneAsync);
+            await Task.Run(CheckDuplicatePhone);
         }
 
         public void CheckDuplicatePhone()
@@ -354,7 +354,7 @@ namespace ComputerProject.CustomerWorkspace
 
             if (error != null)
             {
-                CustomMessageBox.MessageBox.Show(error);
+                CustomMessageBox.MessageBox.ShowError(error);
                 return;
             }
 
@@ -362,11 +362,11 @@ namespace ComputerProject.CustomerWorkspace
             {
                 if (Error != null)
                 {
-                    CustomMessageBox.MessageBox.Show(Error);
+                    CustomMessageBox.MessageBox.ShowError(Error);
                 }
                 else
                 {
-                    CustomMessageBox.MessageBox.Show("Đã thêm khách hàng mới vào cơ sở dữ liệu thành công");
+                    CustomMessageBox.MessageBox.ShowNotify("Đã thêm khách hàng mới vào cơ sở dữ liệu thành công");
                     callback?.Invoke();
                 }
                 Error = null;
@@ -382,6 +382,7 @@ namespace ComputerProject.CustomerWorkspace
                     catch (Exception) when (!HelperService.Environment.IsDebug)
                     {
                         error = FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01");
+                        CustomMessageBox.MessageBox.ShowError(Error);
                     }
                 }
             }
@@ -423,6 +424,48 @@ namespace ComputerProject.CustomerWorkspace
 
                 return bill != null;
             }
-        } 
+        }
+
+        protected List<CustomerDetailViewBillRowViewModel> listBill;
+        public List<CustomerDetailViewBillRowViewModel> ListBill
+        {
+            get => listBill;
+            set
+            {
+                listBill = value;
+                OnPropertyChanged(nameof(ListBill));
+            }
+        }
+        public void GetBills()
+        {
+            List<CustomerDetailViewBillRowViewModel> bills = new List<CustomerDetailViewBillRowViewModel>();
+            void task()
+            {
+                bills = GetBillsFromDB();
+            }
+            void callback()
+            {
+                ListBill = bills;
+            }
+            DoBusyTask(task, callback);
+        }
+        public List<CustomerDetailViewBillRowViewModel> GetBillsFromDB()
+        {
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            {
+                //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Spec: " + s);
+                var data = db.BILLs.Where(b => b.customerId == _model.id).Select(b => new CustomerDetailViewBillRowViewModel()
+                {
+                    BillType = "Mua hàng",
+                    BillTotalMoney = b.totalMoney,
+                    BillId = b.id.ToString(),
+                    BillDay = b.createTime,
+                });
+
+                var rs = data.ToList();
+
+                return rs;
+            }
+        }
     }
 }

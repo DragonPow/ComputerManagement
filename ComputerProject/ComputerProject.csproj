@@ -317,6 +317,7 @@
     <Compile Include="DETAIL_REPORT_REVENUE.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Interface\IPagingViewModel.cs" />
     <Compile Include="Helper\ViewModel\BusyViewModel.cs" />
     <Compile Include="Helper\ViewModel\PagingViewModel.cs" />
     <Compile Include="Helper\Interface\ISearchable.cs" />

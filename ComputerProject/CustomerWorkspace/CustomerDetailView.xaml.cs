@@ -36,6 +36,8 @@ namespace ComputerProject.CustomerWorkspace
         }
 
         public event EventHandler ClickedBack;
+        public event EventHandler DeletedOK;
+        public event EventHandler EditOK;
 
         private void OnSaveEdit(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -61,9 +63,17 @@ namespace ComputerProject.CustomerWorkspace
 
         private void OnDelete(object sender, System.Windows.RoutedEventArgs e)
         {
-            var msb = new CustomMessageBox.MessageBox("Bạn muốn xóa khách hàng?" + Environment.NewLine + "Dữ liệu đã xóa sẽ không thể hoàn tác.", "", "Tôi hiểu", "Hủy", MaterialDesignThemes.Wpf.PackIconKind.Warning
-                , Delete);
-            msb.ShowDialog();
+            var item = ViewModel;
+            if (!item.HasInBill())
+            {
+                var msb = new CustomMessageBox.MessageBox("Bạn muốn xóa khách hàng?" + Environment.NewLine + "Dữ liệu đã xóa sẽ không thể hoàn tác.", "Thông báo", "Tôi hiểu", "Hủy", MaterialDesignThemes.Wpf.PackIconKind.Warning
+                    , Delete);
+                msb.ShowDialog();
+            }
+            else
+            {
+                CustomMessageBox.MessageBox.ShowNotify("Không thể xóa khách đã mua hàng");
+            }
         }
 
         private void OnBack(object sender, System.Windows.RoutedEventArgs e)
@@ -90,14 +100,14 @@ namespace ComputerProject.CustomerWorkspace
 
             if (ViewModel.Error != null)
             {
-                CustomMessageBox.MessageBox.Show(ViewModel.Error);
+                CustomMessageBox.MessageBox.ShowError(ViewModel.Error);
                 return;
             }
 
             try
             {
                 ViewModel.IsBusy = true;
-                if (oldVM.PhoneNumber.Trim() != ViewModel.PhoneNumber.Trim())
+                if (!oldVM.PhoneNumber.Trim().Equals(ViewModel.PhoneNumber.Trim()))
                 {
                     await ViewModel.CheckDuplicatePhoneAsync();
                 }
@@ -110,20 +120,21 @@ namespace ComputerProject.CustomerWorkspace
                 ViewModel.IsBusy = false;
                 if (ViewModel.Error != null)
                 {
-                    CustomMessageBox.MessageBox.Show(ViewModel.Error);
+                    CustomMessageBox.MessageBox.ShowError(ViewModel.Error);
                 }
                 else
                 {
-                    CustomMessageBox.MessageBox.Show("Cập nhật thông tin thành công");
+                    CustomMessageBox.MessageBox.ShowNotify("Cập nhật thông tin thành công");
                     ViewModel.CopyTo(oldVM);
                     OnCancelEdit(null, null);
+                    EditOK?.Invoke(ViewModel, null);
                 }
                 ViewModel.Error = null;
             }
             catch (Exception) when (!HelperService.Environment.IsDebug)
             {
                 ViewModel.IsBusy = false;
-                CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
+                CustomMessageBox.MessageBox.ShowError(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
             }
         }
 
@@ -135,14 +146,14 @@ namespace ComputerProject.CustomerWorkspace
                 await ViewModel.DeleteFromDBAsync();
                 ViewModel.IsBusy = false;
 
-                CustomMessageBox.MessageBox.Show("Xóa khách hàng thành công");
+                CustomMessageBox.MessageBox.ShowNotify("Xóa khách hàng thành công");
                 SwitchMode_readonly();
-                ClickedBack?.Invoke(this, null);
+                DeletedOK?.Invoke(this, null);
             }
             catch (Exception) when (!HelperService.Environment.IsDebug)
             {
                 ViewModel.IsBusy = false;
-                CustomMessageBox.MessageBox.Show(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
+                CustomMessageBox.MessageBox.ShowNotify(FormatHelper.GetErrorMessage("Đã xảy ra lỗi khi truy cập cơ sở dữ liệu", "DB-01"));
             }
         }
 
@@ -152,14 +163,17 @@ namespace ComputerProject.CustomerWorkspace
             ViewModel.ButtonGroupVisibility_Edit = System.Windows.Visibility.Visible;
             ViewModel.ButtonGroupVisibility_Read = System.Windows.Visibility.Hidden;
             ViewModel.Title = "Chỉnh sửa khách hàng";
+
+            ViewModel.GetBills();
         }
 
-        private void SwitchMode_readonly()
+        public void SwitchMode_readonly()
         {
             CusInfor.IsEnabled = false;
             ViewModel.ButtonGroupVisibility_Edit = System.Windows.Visibility.Hidden;
             ViewModel.ButtonGroupVisibility_Read = System.Windows.Visibility.Visible;
             ViewModel.Title = "Chi tiết khách hàng";
+            ViewModel.GetBills();
         }
 
        

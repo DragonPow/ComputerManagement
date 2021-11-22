@@ -30,10 +30,23 @@ namespace ComputerProject.CustomMessageBox
             InitializeComponent();
         }
 
-        public static void Show(string messageBoxText, string comfirmText = "OK", PackIconKind icon = PackIconKind.Notifications)
+        public static void ShowNotify(string messageBoxText, string comfirmText = "OK", PackIconKind icon = PackIconKind.Notifications)
         {
             MessageBox box = new MessageBox();
             box.txtTitle.Text = "Thông báo";
+            box.txtMessage.Text = messageBoxText;
+            box.btnOk.Content = comfirmText;
+            box.btnCancel.Visibility = Visibility.Collapsed;
+            box.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            box.msgLogo.Kind = icon;
+            box.ShowDialog();
+        }
+
+        public static void ShowError(string messageBoxText, string comfirmText = "OK", PackIconKind icon = PackIconKind.Notifications)
+        {
+            MessageBox box = new MessageBox();
+            box.txtTitle.Text = "Lỗi";
             box.txtMessage.Text = messageBoxText;
             box.btnOk.Content = comfirmText;
             box.btnCancel.Visibility = Visibility.Collapsed;
