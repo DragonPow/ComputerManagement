@@ -15,6 +15,7 @@ namespace ComputerProject.Model
         string _name;
         int _categoryId;
 
+        #region Properties
         public int Id
         {
             get => _id;
@@ -71,7 +72,8 @@ namespace ComputerProject.Model
                 return error;
             }
         }
-        public bool HasErrorData => ErrorCollection.Any();
+        public bool HasErrorData => ErrorCollection.Any(); 
+        #endregion //Properties
 
         public Specification_type()
         {

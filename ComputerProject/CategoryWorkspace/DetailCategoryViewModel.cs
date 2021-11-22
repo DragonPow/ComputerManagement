@@ -23,8 +23,9 @@ namespace ComputerProject.CategoryWorkspace
         public BusyViewModel BusyService { get; private set; } = new BusyViewModel();
         public string TitleViewName { get; private set; }
 
-        static readonly string DUPLICATE_CATEGORY_NAME = "At least two item have same name";
+        static readonly string DUPLICATE_CHILD_CATEGORY_NAME = "At least two item have same name";
         static readonly string DUPLICATE_SPECIFICATION_NAME = "At least two spec in one category have same name";
+        static readonly string DUPLICATE_ROOT_CATEGORY_NAME = "Root Category Exsists";
 
         Model.Category _currentParentCategory;
         Model.Category _currentChildCateogry;
@@ -80,6 +81,7 @@ namespace ComputerProject.CategoryWorkspace
             }
         }
         public event EventHandler<Model.Category> DetailCategoryChangedEventHandler;
+        public event EventHandler<Model.Category> DeleteCategoryChangedEventHandler;
 
         public ICommand AddSpecificationCommand
         {
@@ -153,22 +155,27 @@ namespace ComputerProject.CategoryWorkspace
                             try
                             {
                                 Save();
+                                DetailCategoryChangedEventHandler?.Invoke(this, this.CurrentParentCategory);
                             }
-                            catch (ArgumentException)
+                            catch (ArgumentException e1)
                             {
-                                MessageBoxCustom.ShowDialog("Tên danh mục đã tồn tại", "Lỗi", PackIconKind.ErrorOutline);
+                                if (e1.Message == DUPLICATE_ROOT_CATEGORY_NAME)
+                                {
+                                    MessageBoxCustom.ShowDialog("Tên danh mục đã tồn tại", "Lỗi", PackIconKind.ErrorOutline);
+                                }
+                                else throw e1;
                             }
-                            catch (InvalidOperationException e)
+                            catch (InvalidOperationException e2)
                             {
-                                if (e.Message == DUPLICATE_CATEGORY_NAME)
+                                if (e2.Message == DUPLICATE_CHILD_CATEGORY_NAME)
                                 {
                                     MessageBoxCustom.ShowDialog("Tên danh mục con không được trùng nhau", "Lỗi", PackIconKind.ErrorOutline);
                                 }
-                                else if (e.Message == DUPLICATE_SPECIFICATION_NAME)
+                                else if (e2.Message == DUPLICATE_SPECIFICATION_NAME)
                                 {
                                     MessageBoxCustom.ShowDialog("Tên thông số trong cùng 1 danh mục không được trùng nhau", "Lỗi", PackIconKind.ErrorOutline);
                                 }
-                                
+                                else throw e2;
                             }
                         }
                     });
@@ -236,6 +243,10 @@ namespace ComputerProject.CategoryWorkspace
             _repository = new CategoryRepository();
         }
 
+        public void LoadAsyncData(Model.Category parentCategory = null)
+        {
+            BusyService.DoBusyTask(() => LoadData(parentCategory));
+        }
         public void LoadData(Model.Category parentCategory = null)
         {
             CurrentChildCategory = null;
@@ -252,7 +263,6 @@ namespace ComputerProject.CategoryWorkspace
                 TitleViewName = "DetailCategory";
                 CurrentParentCategory = parentCategory;
                 CurrentParentCategory.ChildCategories = _repository.LoadChildCategories(CurrentParentCategory.Id);
-                //Task.Run(() => _repository.LoadSpecification(parentCategory));
             }
         }
 
@@ -297,7 +307,11 @@ namespace ComputerProject.CategoryWorkspace
         {
             if (category == CurrentParentCategory)
             {
-                if (category.Id != 0) _repository.Delete(category.Id);
+                if (category.Id != 0)
+                {
+                    _repository.Delete(category.Id);
+                    DeleteCategoryChangedEventHandler?.Invoke(this, this.CurrentParentCategory);
+                }
                 NavigateBackPage();
             }
             else
@@ -310,19 +324,19 @@ namespace ComputerProject.CategoryWorkspace
         {
             if (isParentCategoryExists())
             {
-                throw new ArgumentException("Root Category Exsists");
+                throw new ArgumentException(DUPLICATE_ROOT_CATEGORY_NAME);
             }
             if (CurrentParentCategory.ChildCategories != null)
             {
                 //Check if 2 category have same name
                 if (CurrentParentCategory.ChildCategories.Select(i => i.Name.Trim()).Distinct().Count() < CurrentParentCategory.ChildCategories.Count())
                 {
-                    throw new InvalidOperationException(DUPLICATE_CATEGORY_NAME);
+                    throw new InvalidOperationException(DUPLICATE_CHILD_CATEGORY_NAME);
                 }
 
-                foreach(var childCategory in CurrentChildCategory.ChildCategories)
+                foreach (var childCategory in CurrentParentCategory.ChildCategories)
                 {
-                    if (childCategory.SpecificationTypes.Select(i=>i.Name.Trim()).Distinct().Count() < childCategory.SpecificationTypes.Count())
+                    if (childCategory.SpecificationTypes != null && childCategory.SpecificationTypes.Select(i => i.Name.Trim()).Distinct().Count() < childCategory.SpecificationTypes.Count())
                     {
                         throw new InvalidCastException(DUPLICATE_SPECIFICATION_NAME);
                     }
@@ -337,8 +351,6 @@ namespace ComputerProject.CategoryWorkspace
 
             IsEditMode = false;
             CurrentChildCategory = null;
-
-            DetailCategoryChangedEventHandler?.Invoke(this, this.CurrentParentCategory);
         }
         private bool isParentCategoryExists()
         {
