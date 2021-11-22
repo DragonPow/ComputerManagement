@@ -15,45 +15,16 @@ using ComputerProject.Model;
 
 namespace ComputerProject.CategoryWorkspace
 {
-    //public interface IMemento
-    //{
-    //    void StoreState();
-    //    void RestoreState();
-    //}
-    //public interface IDetailCategoryMemento
-    //{
-    //    Collection<Model.Category> ChildCategories { get; }
-    //    Collection<Model.Specification_type> Specifications { get; }
-    //}
-    //public interface IBaseMemento
-    //{
-    //    void ClearState();
-    //}
-    //public class DetailCategoryMemento : IDetailCategoryMemento, IBaseMemento
-    //{
-    //    public Collection<Model.Category> ChildCategories { get; set; } = null;
-    //    public Collection<Model.Specification_type> Specifications { get; set; } = null;
-    //    public DetailCategoryMemento(Collection<Model.Category> childCategories, Collection<Model.Specification_type> specifications)
-    //    {
-    //        this.ChildCategories = new Collection<Model.Category>(childCategories);
-    //        this.Specifications = new Collection<Model.Specification_type>(specifications);
-    //    }
-    //    public void ClearState()
-    //    {
-    //        ChildCategories.Clear();
-    //        Specifications.Clear();
-
-    //        ChildCategories = null;
-    //        Specifications = null;
-    //    }
-    //}
-
     public class DetailCategoryViewModel : BaseViewModel
     {
         #region Fields
         NavigationService _navigator;
         CategoryRepository _repository;
+        public BusyViewModel BusyService { get; private set; } = new BusyViewModel();
         public string TitleViewName { get; private set; }
+
+        static readonly string DUPLICATE_CATEGORY_NAME = "At least two item have same name";
+        static readonly string DUPLICATE_SPECIFICATION_NAME = "At least two spec in one category have same name";
 
         Model.Category _currentParentCategory;
         Model.Category _currentChildCateogry;
@@ -67,6 +38,8 @@ namespace ComputerProject.CategoryWorkspace
         ICommand _openEditCommand;
         ICommand _cancelEditCommand;
         ICommand _backPageCommand;
+
+        public bool HasErrorData => CurrentParentCategory.HasErrorData;
         #endregion //Fields
 
         #region Properties
@@ -147,7 +120,14 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (_deleteCategoryCommand == null)
                 {
-                    _deleteCategoryCommand = new RelayCommand(category => Delete((Model.Category)category), (category) => IsEditMode || category == CurrentParentCategory);
+                    _deleteCategoryCommand = new RelayCommand(category =>
+                    {
+                        var rs = MessageBoxCustom.ShowDialog("Chắc chắn xóa danh mục này hay không?", "Thông báo", PackIconKind.QuestionAnswer);
+                        if (rs == MessageBoxResultCustom.Yes)
+                        {
+                            Delete((Model.Category)category);
+                        }
+                    }, category => IsEditMode || category == CurrentParentCategory);
                 }
                 return _deleteCategoryCommand;
             }
@@ -160,18 +140,36 @@ namespace ComputerProject.CategoryWorkspace
                 {
                     _saveEditCommand = new RelayCommand(a =>
                     {
-                        try
+                        if (String.IsNullOrWhiteSpace(CurrentParentCategory.Name))
                         {
-                            Save();
-                            MessageBoxCustom.ShowDialog("Lưu thành công", "Thông báo");
+                            MessageBoxCustom.ShowDialog("Tên danh mục không được để trống", "Lỗi", PackIconKind.ErrorOutline);
                         }
-                        catch (ArgumentNullException e2)
+                        else if (CurrentParentCategory.ChildCategories != null && CurrentParentCategory.ChildCategories.Any(i => i.HasErrorData))
                         {
-                            MessageBoxCustom.ShowDialog("Không được để trống tên", "Thông báo");
+                            MessageBoxCustom.ShowDialog("Phải điền đầy đủ thông tin danh mục con", "Thông báo", PackIconKind.InformationCircle);
                         }
-                        catch (ArgumentException e1)
+                        else
                         {
-                            MessageBoxCustom.ShowDialog("Tên danh mục đã tồn tại", "Lỗi");
+                            try
+                            {
+                                Save();
+                            }
+                            catch (ArgumentException)
+                            {
+                                MessageBoxCustom.ShowDialog("Tên danh mục đã tồn tại", "Lỗi", PackIconKind.ErrorOutline);
+                            }
+                            catch (InvalidOperationException e)
+                            {
+                                if (e.Message == DUPLICATE_CATEGORY_NAME)
+                                {
+                                    MessageBoxCustom.ShowDialog("Tên danh mục con không được trùng nhau", "Lỗi", PackIconKind.ErrorOutline);
+                                }
+                                else if (e.Message == DUPLICATE_SPECIFICATION_NAME)
+                                {
+                                    MessageBoxCustom.ShowDialog("Tên thông số trong cùng 1 danh mục không được trùng nhau", "Lỗi", PackIconKind.ErrorOutline);
+                                }
+                                
+                            }
                         }
                     });
                 }
@@ -218,7 +216,7 @@ namespace ComputerProject.CategoryWorkspace
                         }
                         catch (ArgumentException e)
                         {
-                            var rs = MessageBoxCustom.ShowDialog("Thay đổi chưa được lưu, đồng ý hủy bỏ?", "Thông báo");
+                            var rs = MessageBoxCustom.ShowDialog("Thay đổi chưa được lưu, đồng ý thoát?", "Thông báo");
                             if (rs == MessageBoxResultCustom.Yes)
                             {
                                 NavigateBackPage();
@@ -248,7 +246,6 @@ namespace ComputerProject.CategoryWorkspace
                 CurrentParentCategory = new Model.Category();
                 CurrentParentCategory.ChildCategories = new ObservableCollection<Model.Category>();
                 CurrentParentCategory.SpecificationTypes = new ObservableCollection<Model.Specification_type>();
-                IsEditMode = true;
             }
             else
             {
@@ -256,7 +253,6 @@ namespace ComputerProject.CategoryWorkspace
                 CurrentParentCategory = parentCategory;
                 CurrentParentCategory.ChildCategories = _repository.LoadChildCategories(CurrentParentCategory.Id);
                 //Task.Run(() => _repository.LoadSpecification(parentCategory));
-                IsEditMode = false;
             }
         }
 
@@ -275,7 +271,7 @@ namespace ComputerProject.CategoryWorkspace
 
         public void AddChildCategory()
         {
-            CurrentChildCategory = new Model.Category() { Name = "Danh mục mới"};
+            CurrentChildCategory = new Model.Category() { Name = "Danh mục mới" };
             CurrentParentCategory.ChildCategories.Add(CurrentChildCategory);
         }
 
@@ -284,7 +280,7 @@ namespace ComputerProject.CategoryWorkspace
             Model.Specification_type specification = new Model.Specification_type();
 
             if (category?.SpecificationTypes == null) specification.Number = 1;
-            else specification.Number = (int) CurrentChildCategory?.SpecificationTypes.Count() + 1;
+            else specification.Number = (int)CurrentChildCategory?.SpecificationTypes.Count() + 1;
 
             if (CurrentChildCategory.SpecificationTypes == null)
                 CurrentChildCategory.SpecificationTypes = new ObservableCollection<Specification_type>();
@@ -310,24 +306,39 @@ namespace ComputerProject.CategoryWorkspace
             }
         }
 
-        public async void Save()
+        public void Save()
         {
-            if (String.IsNullOrWhiteSpace(CurrentParentCategory.Name))
-            {
-                throw new ArgumentNullException("Name is null or while space");
-            }
-            else if (isParentCategoryExists())
+            if (isParentCategoryExists())
             {
                 throw new ArgumentException("Root Category Exsists");
             }
-            else
+            if (CurrentParentCategory.ChildCategories != null)
             {
-                var task = Task.Run(()=>_repository?.Save(CurrentParentCategory));
-                IsEditMode = false;
-                CurrentChildCategory = null;
+                //Check if 2 category have same name
+                if (CurrentParentCategory.ChildCategories.Select(i => i.Name.Trim()).Distinct().Count() < CurrentParentCategory.ChildCategories.Count())
+                {
+                    throw new InvalidOperationException(DUPLICATE_CATEGORY_NAME);
+                }
 
-                DetailCategoryChangedEventHandler?.Invoke(this, this.CurrentParentCategory);
+                foreach(var childCategory in CurrentChildCategory.ChildCategories)
+                {
+                    if (childCategory.SpecificationTypes.Select(i=>i.Name.Trim()).Distinct().Count() < childCategory.SpecificationTypes.Count())
+                    {
+                        throw new InvalidCastException(DUPLICATE_SPECIFICATION_NAME);
+                    }
+                }
             }
+
+            BusyService.DoBusyTask(() => _repository.Save(CurrentParentCategory), () =>
+            {
+                MessageBoxCustom.ShowDialog("Lưu thành công", "Thông báo", PackIconKind.InformationCircle);
+                NavigateBackPage();
+            });
+
+            IsEditMode = false;
+            CurrentChildCategory = null;
+
+            DetailCategoryChangedEventHandler?.Invoke(this, this.CurrentParentCategory);
         }
         private bool isParentCategoryExists()
         {
@@ -347,7 +358,7 @@ namespace ComputerProject.CategoryWorkspace
 
         private void NavigateBackPage()
         {
-            foreach(var child in CurrentParentCategory.ChildCategories)
+            foreach (var child in CurrentParentCategory.ChildCategories)
             {
                 child.SpecificationTypes = null;
             }
