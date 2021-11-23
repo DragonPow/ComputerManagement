@@ -1,6 +1,8 @@
-﻿using ComputerProject.HelperService;
+﻿using ComputerProject.CustomMessageBox;
+using ComputerProject.HelperService;
 using ComputerProject.Model;
 using ComputerProject.Repository;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +15,10 @@ namespace ComputerProject.BillWorkSpace
     public class DetailBillViewModel : BaseViewModel
     {
         #region Fields
-        BillRepository _repository;
+        BillRepository _repository = new BillRepository();
         NavigationService _navigator;
+        public BusyViewModel BusyService { get; private set; } = new BusyViewModel();
+
         Model.Bill _bill;
 
         ICommand _exportBillCommand;
@@ -53,7 +57,19 @@ namespace ComputerProject.BillWorkSpace
             {
                 if (null == _deleteBillCommand)
                 {
-                    _deleteBillCommand = new RelayCommand(_ => DeleteBill(CurrentBill));
+                    _deleteBillCommand = new RelayCommand(_ =>
+                    {
+                        var rs = MessageBoxCustom.ShowDialog("Hóa đơn bị xóa sẽ không thể hoàn tác", "Thông báo", PackIconKind.InformationCircle);
+                        if (rs == MessageBoxResultCustom.Yes)
+                        {
+                            BusyService.DoBusyTask(() => DeleteBill(CurrentBill),
+                                () =>
+                                {
+                                    MessageBoxCustom.ShowDialog("Xóa hóa đơn thành công", "Thông báo", PackIconKind.DoneOutline);
+                                    NavigateBack();
+                                });
+                        }
+                    });
                 }
                 return _deleteBillCommand;
             }
@@ -75,8 +91,8 @@ namespace ComputerProject.BillWorkSpace
 
         public DetailBillViewModel(int billId, System.Windows.Controls.UserControl control)
         {
-            _repository = new BillRepository();
-            CurrentBill = new Model.Bill(_repository.LoadDetailBill(billId));
+            LoadAsyncData(billId);
+            //CurrentBill = new Model.Bill(_repository.LoadDetailBill(billId));
 
             var commandClose = new RelayCommand((o) =>
             {
@@ -85,14 +101,22 @@ namespace ComputerProject.BillWorkSpace
             _backViewCommand = commandClose;
         }
 
-        public DetailBillViewModel(BILL bill)
+        public DetailBillViewModel(int billId)
         {
-            _repository = new BillRepository();
-            CurrentBill = new Model.Bill(_repository.LoadDetailBill(bill.id));
+            LoadAsyncData(billId);
         }
+
         public void setNavigator(NavigationService navigator)
         {
             this._navigator = navigator;
+        }
+        public void LoadAsyncData(int billId)
+        {
+            BusyService.DoBusyTask(() => LoadData(billId));
+        }
+        public void LoadData(int billId)
+        {
+            CurrentBill = new Model.Bill(_repository.LoadDetailBill(billId));
         }
 
         private void ExportPDF(Model.Bill bill)
@@ -102,7 +126,6 @@ namespace ComputerProject.BillWorkSpace
         private void DeleteBill(Model.Bill bill)
         {
             _repository.Delete(CurrentBill);
-            NavigateBack();
             BillDeletedEvent?.Invoke(this, bill.Id);
         }
         private void NavigateBack()

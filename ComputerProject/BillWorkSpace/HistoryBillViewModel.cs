@@ -1,5 +1,8 @@
-﻿using ComputerProject.HelperService;
+﻿using ComputerProject.CustomMessageBox;
+using ComputerProject.Helper;
+using ComputerProject.HelperService;
 using ComputerProject.Repository;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +13,7 @@ using System.Windows.Input;
 
 namespace ComputerProject.BillWorkSpace
 {
-    public class HistoryBillViewModel : BaseViewModel
+    public class HistoryBillViewModel : Helper.BaseViewModel
     {
         #region Fields
         NavigationService _navigator;
@@ -125,7 +128,13 @@ namespace ComputerProject.BillWorkSpace
             {
                 if (null == _searchBillCommand)
                 {
-                    _searchBillCommand = new RelayCommand(s => SearchBill(TextSearch, TimeFrom, TimeTo));
+                    _searchBillCommand = new RelayCommand(s =>
+                    {
+                        if (isValidSearch())
+                        {
+                            SearchBill(TextSearch, TimeFrom, TimeTo);
+                        }
+                    });
                 }
                 return _searchBillCommand;
             }
@@ -147,7 +156,18 @@ namespace ComputerProject.BillWorkSpace
             {
                 if (null == _deleteBillCommand)
                 {
-                    _deleteBillCommand = new RelayCommand(b => DeleteBill(b as BILL));
+                    _deleteBillCommand = new RelayCommand(b =>
+                    {
+                        var rs = MessageBoxCustom.ShowDialog("Hóa đơn bị xóa sẽ không thể hoàn tác", "Thông báo", PackIconKind.InformationCircle);
+                        if (rs == MessageBoxResultCustom.Yes)
+                        {
+                            BusyService.DoBusyTask(() =>
+                            {
+                                DeleteBill(b as BILL);
+                                LoadBills(CurrentPage);
+                            }, () => MessageBoxCustom.ShowDialog("Xóa hóa đơn thành công", "Thông báo", PackIconKind.DoneOutline));
+                        }
+                    });
                 }
                 return _deleteBillCommand;
             }
@@ -183,15 +203,14 @@ namespace ComputerProject.BillWorkSpace
             _repository = new BillRepository();
         }
 
-        public async void LoadBills(int pageNumber = 1, string text = null, DateTime? timeFrom = null, DateTime? timeTo = null)
+        public void LoadBills(int pageNumber = 1, string text = null, DateTime? timeFrom = null, DateTime? timeTo = null)
         {
             TextSearch = text;
             TimeFrom = timeFrom;
             TimeTo = timeTo;
 
-            var taskLoadTotalPage = Task.Run(() => TotalPage = _repository.LoadNumberPages(_maxBillsInPage, TextSearch, TimeFrom, TimeTo));
+            TotalPage = _repository.LoadNumberPages(_maxBillsInPage, TextSearch, TimeFrom, TimeTo);
 
-            await taskLoadTotalPage;
             if (TotalPage < CurrentPage)
             {
                 CurrentPage = TotalPage;
@@ -223,9 +242,7 @@ namespace ComputerProject.BillWorkSpace
             if (CurrentBills.Contains(bill))
             {
                 CurrentBills.Remove(bill);
-                _repository.RemoveAsync(bill);
-
-                LoadBillsAsync(CurrentPage);
+                _repository.Delete(new Model.Bill(bill));
             }
             else
             {
@@ -236,7 +253,7 @@ namespace ComputerProject.BillWorkSpace
         {
             if (_navigator == null) throw new NullReferenceException("Navigator is null");
 
-            DetailBillViewModel vm = new DetailBillViewModel(bill);
+            DetailBillViewModel vm = new DetailBillViewModel(bill.id);
             vm.setNavigator(_navigator);
             vm.BillDeletedEvent += (sender, id) =>
             {
@@ -248,7 +265,25 @@ namespace ComputerProject.BillWorkSpace
         }
         private void ChangePage(int pageNumber)
         {
-            CurrentBills = _repository.LoadBills(_maxBillsInPage, CurrentPage = pageNumber);
+            LoadBillsAsync(CurrentPage = pageNumber, TextSearch, TimeFrom, TimeTo);
+            //CurrentBills = _repository.LoadBills(_maxBillsInPage, CurrentPage = pageNumber);
+        }
+        private bool isValidSearch()
+        {
+            bool rs = true;
+            if (TimeFrom.HasValue && TimeTo.HasValue)
+            {
+                Console.WriteLine("Time from: {0}", TimeFrom.Value.Date);
+                Console.WriteLine("Time to: {0}", TimeTo.Value.Date);
+
+                if (TimerService.CheckDayLarger(TimeFrom.Value, TimeTo.Value))
+                {
+                    rs = rs && false;
+                    MessageBoxCustom.ShowDialog("Ngày bắt đầu phải bé hơn ngày kết thúc", "Lỗi", PackIconKind.ErrorOutline);
+                }
+            }
+
+            return rs;
         }
     }
 }

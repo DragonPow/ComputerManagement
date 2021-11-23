@@ -17,7 +17,6 @@ namespace ComputerProject.Repository
             using (var _context = new ComputerManagementEntities())
             {
                 //_context.Configuration.AutoDetectChangesEnabled = false;
-                _context.Configuration.LazyLoadingEnabled = false;
 
                 IEnumerable<CATEGORY> listEntity = null;
                 IQueryable<CATEGORY> query = _context.CATEGORies.Include(c => c.CATEGORY11).AsNoTracking();

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.BillWorkSpace"
+             xmlns:customcontrol="clr-namespace:ComputerProject.CustomControl"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:Customer="clr-namespace:ComputerProject.CustomerWorkspace"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
@@ -50,8 +51,11 @@
             <Border Background="White"
                     CornerRadius="8"
                     Margin="20,0">
-                <local:CustomerInBillInfor DataContext="{Binding CurrentBill.Customer}"/>
+                <local:CustomerInBillInfor DataContext="{Binding CurrentBill.Customer}" />
             </Border>
+            <customcontrol:BusyView Visibility="{Binding BusyService.BusyVisibility, TargetNullValue=Hidden}"
+                                    Grid.Column="0"
+                                    Margin="20,0" />
             <Border Grid.Column="1"
                     Background="White"
                     CornerRadius="8"
@@ -277,6 +281,9 @@
                     </Grid>
                 </Grid>
             </Border>
+            <customcontrol:BusyView Visibility="{Binding BusyService.BusyVisibility, TargetNullValue=Hidden}"
+                                    Grid.Column="1"
+                                    Margin="0,0,20,0" />
         </Grid>
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"

@@ -319,6 +319,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Helper\Interface\IPagingViewModel.cs" />
+    <Compile Include="Helper\TimerService.cs" />
     <Compile Include="Helper\ViewModel\BusyViewModel.cs" />
     <Compile Include="Helper\ViewModel\PagingViewModel.cs" />
     <Compile Include="Helper\Interface\ISearchable.cs" />
@@ -344,6 +345,7 @@
     <Compile Include="InsuranceWorkSpace\WarrantyCard.xaml.cs">
       <DependentUpon>WarrantyCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\CUSTOMER.cs" />
     <Compile Include="Model\Regulation.cs" />
     <Compile Include="Model\StoreInformation.cs" />
     <Compile Include="OverViewWorkSpace\OverViewMainView.xaml.cs">

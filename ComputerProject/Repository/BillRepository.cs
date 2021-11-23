@@ -14,20 +14,12 @@ namespace ComputerProject.Repository
     {
         private IQueryable<BILL> CreateQuery(ComputerManagementEntities db, string text, DateTime? timeFrom, DateTime? timeTo)
         {
-            IQueryable<BILL> query = db.BILLs.AsQueryable();
+            IQueryable<BILL> query = db.BILLs.AsNoTracking().AsQueryable();
 
             if (!String.IsNullOrWhiteSpace(text))
             {
                 text.Trim();
-                int number;
-                if (int.TryParse(text, out number))
-                {
-                    query = query.Where(i => i.id == number || i.CUSTOMER.phone.Contains(text));
-                }
-                else
-                {
-                    query = query.Where(i => i.CUSTOMER.phone.Contains(text));
-                }
+                query = query.Where(i => i.id.ToString().Contains(text) || i.CUSTOMER.phone.Contains(text));
             }
             if (timeFrom.HasValue) query = query.Where(i => i.createTime.Year >= timeFrom.Value.Year && i.createTime.Month >= timeFrom.Value.Month && i.createTime.Day >= timeFrom.Value.Day);
             if (timeTo.HasValue) query = query.Where(i => i.createTime.Year <= timeTo.Value.Year && i.createTime.Month <= timeTo.Value.Month && i.createTime.Day <= timeTo.Value.Day);
@@ -106,7 +98,7 @@ namespace ComputerProject.Repository
         //    return LoadNumberPages(maxNumberInPage, null, timeFrom, timeTo);
         //}
 
-        public void RemoveAsync(BILL bill)
+        public void Remove(BILL bill)
         {
             using (var db = new ComputerManagementEntities())
             {
@@ -120,17 +112,22 @@ namespace ComputerProject.Repository
         public BILL LoadDetailBill(int billId)
         {
             BILL bill = null;
-            try
+            using (var db = new ComputerManagementEntities())
             {
-                using (var db = new ComputerManagementEntities())
-                {
-                    db.Configuration.LazyLoadingEnabled = false;
-                    bill = db.BILLs.Include(i => i.CUSTOMER).Include(i => i.ITEM_BILL).Include(i => i.ITEM_BILL_SERI.Select(j => j.PRODUCT)).Where(i => i.id == billId).First();
-                }
-            }
-            catch (ArgumentNullException e)
-            {
-                throw e;
+                db.Configuration.LazyLoadingEnabled = false;
+                bill = db.BILLs.AsNoTracking()
+                    .Include(i=>i.CUSTOMER)
+                    .Include(i => i.ITEM_BILL)
+                    .Include(i => i.ITEM_BILL_SERI.Select(j => j.PRODUCT))
+                    .Where(i => i.id == billId)
+                    .First();
+
+                Console.WriteLine(bill.CUSTOMER.birthday);
+
+                //bill.CUSTOMER.birthday = db.CUSTOMERs.AsNoTracking()
+                //    .Where(i => i.id == bill.customerId)
+                //    .Select(i => i.birthday)
+                //    .First();
             }
             return bill;
         }

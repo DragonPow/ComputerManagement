@@ -77,7 +77,7 @@
                                 FontSize="{x:Static localfont:Font.Body}"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 BorderThickness="2"
-                                SelectedDate="{Binding birthday, StringFormat=dd/MM/yyyy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                SelectedDate="{Binding birthday, Mode=OneWay}" />
                 </Border>
             </StackPanel>
             <localcustom:TextboxCustom x:Name="Adress"
