@@ -12,6 +12,7 @@ using ComputerProject.ApplicationWorkspace;
 using ComputerProject.InsuranceWorkSpace;
 using ComputerProject.Repository;
 using ComputerProject.OverViewWorkSpace;
+using System.Data.Entity;
 
 namespace ComputerProject
 {
@@ -23,37 +24,17 @@ namespace ComputerProject
         protected override void OnStartup(StartupEventArgs e)
         {
 
-            var vm = new ApplicationViewModel();
-            var view = new ApplicationWindow();
-            view.DataContext = vm;
-            view.Show();
-
-
-
-            //var vm = new ListCategoryViewModel();
-            //var view = new WindowTest();
-            //vm.LoadAsyncCategories();
+            //var vm = new ApplicationViewModel();
+            //var view = new ApplicationWindow();
             //view.DataContext = vm;
             //view.Show();
 
-            //using (var db = new ComputerManagementEntities())
-            //{
-            //    CATEGORY c = new CATEGORY()
-            //    {
-            //        name = "Thử nghiệm",
-            //        CATEGORY11 = new List<CATEGORY>()
-            //    {
-            //        new CATEGORY() {name = "Test child 1"},
-            //        new CATEGORY() {name = "Test child 2"},
-            //    },
-            //        SPECIFICATION_TYPE = new List<SPECIFICATION_TYPE>()
-            //    {
-            //        new SPECIFICATION_TYPE() { name = "Spec 1"},
-            //        new SPECIFICATION_TYPE() { name = "Spec 2"},
-            //    }
-            //    };
-            //    db.SaveChanges();
-            //}
+            using (var db = new ComputerManagementEntities())
+            {
+                int id = db.BILLs.OrderByDescending(i => i.id).Select(i => i.id).Skip(1).FirstOrDefault();
+                var b = (new BillRepository()).LoadDetailBill(id);
+                Helper.PrintPDF.Instance.createBill(new Model.Bill(b));
+            }
 
             //WindowTest test = new WindowTest();
             //test.Show();

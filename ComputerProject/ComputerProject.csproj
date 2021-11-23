@@ -54,11 +54,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetProjects.Input.Toolkit, Version=6.0.90.0, Culture=neutral, PublicKeyToken=79778c5f2eed289b, processorArchitecture=MSIL">
       <HintPath>packages\DotNetProjects.WpfToolkit.Input.6.0.90\lib\net40\DotNetProjects.Input.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
@@ -319,6 +325,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Helper\Interface\IPagingViewModel.cs" />
+    <Compile Include="Helper\PrintPDF.cs" />
     <Compile Include="Helper\TimerService.cs" />
     <Compile Include="Helper\ViewModel\BusyViewModel.cs" />
     <Compile Include="Helper\ViewModel\PagingViewModel.cs" />
@@ -820,6 +827,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resource\Font\VUARIAL.TTF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\VUARIALBOLD.TTF" />
+    <Resource Include="Resource\Font\VUARIALBOLDITALIC.TTF" />
+    <Resource Include="Resource\Font\VUARIALITALIC.TTF" />
     <Resource Include="Resource\Font\Mulish-VariableFont_wght.ttf" />
     <Resource Include="Resource\Font\Mulish-Italic-VariableFont_wght.ttf" />
   </ItemGroup>
