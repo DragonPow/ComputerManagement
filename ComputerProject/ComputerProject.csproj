@@ -846,6 +846,8 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resource\Image\unnamed.png" />
+    <Resource Include="Resource\Image\ImageDefault.png" />
     <Resource Include="Resource\Image\SettingPoint.png" />
     <Resource Include="Resource\Image\SettingQA.png" />
     <Resource Include="Resource\Image\SettingStore.png" />

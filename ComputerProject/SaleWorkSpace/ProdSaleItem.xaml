@@ -11,12 +11,7 @@
              Height="210"
              Width="200"
              d:DataContext="{d:DesignInstance Type={x:Type model:Product}}">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
-            <i:InvokeCommandAction Command="{Binding DataContext.AddProductInBillCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
-                                   CommandParameter="{Binding .}" />
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
+   
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -28,6 +23,9 @@
                Stretch="UniformToFill"
                Height="120"
                Margin="7"></Image>
+        <Border Visibility="Hidden" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Background="Black" Width="68" Height="68" CornerRadius="200" Opacity="0.7">
+            <TextBlock Text="Hết hàng" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource Mulish}" FontSize="{x:Static font:Font.Body}" Foreground="White"/>
+        </Border>
         <TextBlock Text="{Binding Name, FallbackValue='Laptop HP 15s-fq2602T'}"
                        TextWrapping="WrapWithOverflow"
                        FontSize="{x:Static font:Font.Body}"

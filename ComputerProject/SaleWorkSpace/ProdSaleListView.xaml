@@ -18,7 +18,14 @@
         </ListView.ItemsPanel>
         <ListView.ItemTemplate>
             <DataTemplate>
-                <local:ProdSaleItem />
+                <local:ProdSaleItem >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                            <i:InvokeCommandAction Command="{Binding DataContext.AddProductInBillCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
+                                   CommandParameter="{Binding .}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </local:ProdSaleItem>
             </DataTemplate>
         </ListView.ItemTemplate>
 
