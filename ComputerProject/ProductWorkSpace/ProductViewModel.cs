@@ -209,7 +209,7 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        public static List<ProductViewModel> FindByNameOrID(string str, int startIndex, int count, int orderMode = 0)
+        public static List<ProductViewModel> FindByNameOrID(string str, int startIndex, int count, int orderMode = 0, SaleWorkSpace.IFilterProductState filter = null)
         {
             try
             {
@@ -232,6 +232,15 @@ namespace ComputerProject.ProductWorkSpace
                         }
                     );
 
+                    if (filter != null)
+                    {
+                        data1 = data1.Where(i => (!(filter.Supplier == null || filter.Supplier.Trim() == "") ? i.producer.ToLower().Contains(filter.Supplier.Trim().ToLower()) : true)
+                                                                && i.priceSales >= filter.PriceLowest
+                                                                && (filter.PriceHighest > 0 ? i.priceSales <= filter.PriceHighest : true)
+                                                                && (filter.TimeWarranty > 0 ? i.warrantyTime == filter.TimeWarranty : true)
+                                                                && i.isStopSelling == (filter.StateProduct == Model.stateProduct.Stop));
+                    }
+
                     switch (orderMode)
                     {
                         case 0:
@@ -241,6 +250,7 @@ namespace ComputerProject.ProductWorkSpace
                             data1 = data1.OrderBy(p => p.priceSales).Skip(startIndex).Take(count);
                             break;
                     }
+
 
                     var data = data1.ToList();
 

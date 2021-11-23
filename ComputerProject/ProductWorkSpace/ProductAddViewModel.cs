@@ -85,7 +85,7 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        protected void GetCategoryList()
+        public static Dictionary<int, string> GetCategoryListFromDB()
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
@@ -95,14 +95,20 @@ namespace ComputerProject.ProductWorkSpace
                     c.name
                 });
 
-                cateDict = new Dictionary<int, string>();
+                var rs = new Dictionary<int, string>();
                 foreach (var row in data)
                 {
-                    cateDict.Add(row.id, row.name);
+                    rs.Add(row.id, row.name);
                 }
 
-                OnPropertyChanged(nameof(CategoryList));
+                return rs;
             }
+        }
+
+        protected void GetCategoryList()
+        {
+            cateDict = GetCategoryListFromDB();
+            OnPropertyChanged(nameof(CategoryList));
         }
 
         private void GetSpecificationList()
