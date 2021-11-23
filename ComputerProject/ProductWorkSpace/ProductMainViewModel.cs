@@ -1,4 +1,5 @@
 ﻿using ComputerProject.HelperService;
+using ComputerProject.SaleWorkSpace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,37 @@ namespace ComputerProject.ProductWorkSpace
     {
         int orderMode = 0;
         MultipleControlViewModel viewController;
+        
+        private FilterProductViewModel _currentFilter;
+        public FilterProductViewModel CurrentFilter
+        {
+            get => _currentFilter;
+            set
+            {
+                if (value != _currentFilter)
+                {
+                    _currentFilter = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private void LoadFilterControl()
+        {
+            CurrentFilter = new FilterProductViewModel(null, true);
+            CurrentFilter.FilterClickedEvent += new EventHandler((o, e) =>
+            {
+                Console.WriteLine("Filter clicked");
+                Validation();
+            });
+        }
+
 
         public ProductMainViewModel():base()
         {
             PropertyChanged += ProductMainViewModel_PropertyChanged;
             step = 20;
+            LoadFilterControl();
         }
 
         public ProductMainViewModel(MultipleControlViewModel navigation) : this()
@@ -44,7 +71,7 @@ namespace ComputerProject.ProductWorkSpace
 
         protected override List<ProductViewModel> _search()
         {
-            return ProductViewModel.FindByNameOrID(SearchContent, currentStartIndex, step, orderMode);
+            return ProductViewModel.FindByNameOrID(SearchContent, currentStartIndex, step, orderMode, CurrentFilter);
         }
 
         protected override int _countMax()
