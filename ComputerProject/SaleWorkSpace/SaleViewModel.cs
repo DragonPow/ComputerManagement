@@ -581,9 +581,9 @@ namespace ComputerProject.SaleWorkSpace
             if (text != null)
             {
                 VisibleProducts = FilterByCategory(_products);
-                text = text.Trim().ToLower();
+                text = FormatHelper.ConvertTo_TiengDongLao(text.Trim().ToLower());
 
-                VisibleProducts = new ObservableCollection<Product>(VisibleProducts.Where(i => FormatHelper.ConvertTo_TiengDongLao(i.Name).ToLower().Contains(text)));
+                VisibleProducts = new ObservableCollection<Product>(VisibleProducts.Where(i => FormatHelper.ConvertTo_TiengDongLao(i.Name).Trim().ToLower().Contains(text)));
             }
         }
         private void SortProductbyPrice()

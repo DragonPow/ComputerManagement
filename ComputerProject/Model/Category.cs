@@ -151,16 +151,16 @@ namespace ComputerProject.Model
 
         public CATEGORY CastToModel()
         {
-            CATEGORY c = new CATEGORY() { id = this.Id, name = this.Name, CATEGORY11 = new List<CATEGORY>(), SPECIFICATION_TYPE = new List<SPECIFICATION_TYPE>() };
+            CATEGORY rootCategory = new CATEGORY() { id = this.Id, name = this.Name, CATEGORY11 = new List<CATEGORY>(), SPECIFICATION_TYPE = new List<SPECIFICATION_TYPE>() };
 
             //Get child categories
             if (this.ChildCategories != null)
                 foreach (var i in this.ChildCategories)
                 {
                     var child = i.CastToModel();
-                    if (c.id == 0) child.parentCategoryId = null;
-                    else child.parentCategoryId = c.id;
-                    c.CATEGORY11.Add(child);
+                    if (rootCategory.id != 0) child.parentCategoryId = rootCategory.id;
+                    //else child.parentCategoryId = null;
+                    rootCategory.CATEGORY1.Add(child);
                 }
 
             //Get specification if it is child category
@@ -168,11 +168,12 @@ namespace ComputerProject.Model
                 foreach (var i in this.SpecificationTypes)
                 {
                     var spec = i.CastToModel();
-                    spec.categoryId = c.id;
-                    c.SPECIFICATION_TYPE.Add(spec);
+                    //spec.CATEGORY = rootCategory;
+                    spec.categoryId = rootCategory.id;
+                    rootCategory.SPECIFICATION_TYPE.Add(spec);
                 }
 
-            return c;
+            return rootCategory;
         }
 
         public static Collection<Model.Category> GetChildCategory(ICollection<CATEGORY> list)

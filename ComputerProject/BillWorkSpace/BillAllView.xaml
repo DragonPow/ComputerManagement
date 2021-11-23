@@ -75,12 +75,13 @@
                             Margin="1">
                         <DatePicker BorderBrush="#DBD7F4"
                                     Padding="8"
+                                    x:Name="TimeFrom"
                                     Foreground="Black"
                                     FontFamily="{StaticResource Mulish}"
                                     FontSize="{x:Static font:Font.Body}"
                                     IsTabStop="False"
                                     KeyboardNavigation.TabIndex="0"
-                                    SelectedDate="{Binding TimeFrom, StringFormat='\{dd/MM/yyyy}'}"
+                                    SelectedDate="{Binding TimeFrom}"
                                     Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                     </Border>
                     <Border x:Name="tbxDateEnd"
@@ -91,12 +92,13 @@
                             CornerRadius="8">
                         <DatePicker BorderBrush="#DBD7F4"
                                     Padding="8"
+                                    x:Name="TimeTo"
                                     Foreground="Black"
                                     FontFamily="{StaticResource Mulish}"
                                     FontSize="{x:Static font:Font.Body}"
                                     IsTabStop="False"
                                     KeyboardNavigation.TabIndex="0"
-                                    SelectedDate="{Binding TimeTo, StringFormat='\{dd/MM/yyyy}'}"
+                                    SelectedDate="{Binding TimeTo}"
                                     Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                     </Border>
                     <Button Grid.Column="5"
@@ -182,6 +184,7 @@
                                Text="Điểm thưởng sử dụng"
                                FontWeight="DemiBold"
                                Margin="20,0"
+                               Grid.ColumnSpan="2"
                                VerticalAlignment="Center"
                                FontSize="{x:Static font:Font.Body}"
                                FontFamily="{StaticResource Mulish}"

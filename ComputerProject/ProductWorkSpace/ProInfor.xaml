@@ -11,6 +11,23 @@
     d:DesignHeight="900"
     d:DesignWidth="400"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="style_Text" TargetType="localcustom:TextboxCustom">
+            <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
+            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="15" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="CornerRadiusText" Value="5"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="KeyboardNavigation.TabIndex" Value="0"/>
+            <Setter Property="MarginText" Value="10"/>
+            <Setter Property="IsReadOnly" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:ProInfor}}, 
+                               Path=Isreadonly}"/>
+        </Style>
+    </UserControl.Resources>
     <Border Background="White" CornerRadius="8">
         <Grid Margin="20">
             <StackPanel x:Name="ProInform" HorizontalAlignment="Stretch">
@@ -18,14 +35,8 @@
                     x:Name="Code"
                     Title="    Mã sản phẩm"
                     Margin="0,0,0,10"
-                    VerticalAlignment="Center"
-                    CornerRadiusText="5"
-                    FontFamily="{StaticResource Mulish}"
-                    FontSize="{x:Static localfont:Font.Body}"
-                    IsTabStop="False"
-                    KeyboardNavigation.TabIndex="0"
-                    MarginText="10"
-                    Visibility="Collapsed" />
+                    Visibility="Collapsed"
+                    Style="{DynamicResource ResourceKey=style_Text}"/>
 
                 <Grid Margin="0,0,0,10">
                     <Grid.ColumnDefinitions>
@@ -68,16 +79,14 @@
                 </Grid>
 
                 <localcustom:TextboxCustom
+                    IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:ProInfor}}, 
+                               Path=IsEnable}"
                     x:Name="ProductName"
                     Title="    Tên sản phẩm"
                     Margin="0,10,0,10"
-                    VerticalAlignment="Center"
-                    CornerRadiusText="5"
-                    FontFamily="{StaticResource Mulish}"
                     FontSize="{x:Static localfont:Font.Body}"
-                    IsTabStop="False"
-                    KeyboardNavigation.TabIndex="0"
-                    MarginText="10"
+                    Style="{DynamicResource ResourceKey=style_Text}"
                     Text="{Binding Name, Mode=TwoWay}" />
                 <StackPanel Margin="0,0,0,10">
                     <TextBlock
@@ -106,26 +115,16 @@
                     x:Name="Quantity"
                     Title="    Số lượng"
                     Margin="0,10,0,10"
-                    VerticalAlignment="Center"
-                    CornerRadiusText="5"
-                    FontFamily="{StaticResource Mulish}"
                     FontSize="{x:Static localfont:Font.Body}"
-                    IsTabStop="False"
-                    KeyboardNavigation.TabIndex="0"
-                    MarginText="10"
+                    Style="{DynamicResource ResourceKey=style_Text}"
                     PreviewTextInput="PreviewTextInput"
                     Text="{Binding Quantity_String, Mode=TwoWay}" />
                 <localcustom:TextboxCustom
                     x:Name="Price"
                     Title="    Giá gốc"
                     Margin="0,10,0,10"
-                    VerticalAlignment="Center"
-                    CornerRadiusText="5"
-                    FontFamily="{StaticResource Mulish}"
                     FontSize="{x:Static localfont:Font.Body}"
-                    IsTabStop="False"
-                    KeyboardNavigation.TabIndex="0"
-                    MarginText="10"
+                    Style="{DynamicResource ResourceKey=style_Text}"
                     PreviewTextInput="PreviewTextInput"
                     Text="{Binding PriceOrigin_String, Mode=TwoWay}" />
 
@@ -133,26 +132,16 @@
                     x:Name="PriceSales"
                     Title="    Giá bán"
                     Margin="0,10,0,10"
-                    VerticalAlignment="Center"
-                    CornerRadiusText="5"
-                    FontFamily="{StaticResource Mulish}"
-                    FontSize="{x:Static localfont:Font.Body}"
-                    IsTabStop="False"
-                    KeyboardNavigation.TabIndex="0"
-                    MarginText="10"
+                   FontSize="{x:Static localfont:Font.Body}"
+                    Style="{DynamicResource ResourceKey=style_Text}"
                     PreviewTextInput="PreviewTextInput"
                     Text="{Binding PriceSales_String, Mode=TwoWay}" />
                 <localcustom:TextboxCustom
                     x:Name="WarrantyPeriod"
                     Title="    Hạn bảo hành (tháng)"
                     Margin="0,10,0,0"
-                    VerticalAlignment="Center"
-                    CornerRadiusText="5"
-                    FontFamily="{StaticResource Mulish}"
                     FontSize="{x:Static localfont:Font.Body}"
-                    IsTabStop="False"
-                    KeyboardNavigation.TabIndex="0"
-                    MarginText="10"
+                    Style="{DynamicResource ResourceKey=style_Text}"
                     PreviewTextInput="PreviewTextInput"
                     Text="{Binding Warranty_String, Mode=TwoWay}" />
 
@@ -160,26 +149,16 @@
                     x:Name="Procedure"
                     Title="    Nhà cung cấp"
                     Margin="0,10,0,0"
-                    VerticalAlignment="Center"
-                    CornerRadiusText="5"
-                    FontFamily="{StaticResource Mulish}"
                     FontSize="{x:Static localfont:Font.Body}"
-                    IsTabStop="False"
-                    KeyboardNavigation.TabIndex="0"
-                    MarginText="10"
+                    Style="{DynamicResource ResourceKey=style_Text}"
                     Text="{Binding Producer, Mode=TwoWay}" />
                 <localcustom:TextboxCustom
                     x:Name="Description"
                     Title="    Mô tả"
                     MinHeight="100"
                     Margin="0,10,0,10"
-                    VerticalAlignment="Center"
-                    CornerRadiusText="5"
-                    FontFamily="{StaticResource Mulish}"
                     FontSize="{x:Static localfont:Font.Body}"
-                    IsTabStop="False"
-                    KeyboardNavigation.TabIndex="0"
-                    MarginText="10"
+                    Style="{DynamicResource ResourceKey=style_Text}"
                     Text="{Binding Description, Mode=TwoWay}" />
             </StackPanel>
 

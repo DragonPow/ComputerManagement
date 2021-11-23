@@ -24,6 +24,7 @@ namespace ComputerProject.BillWorkSpace
         public BillAllView()
         {
             InitializeComponent();
+            TimeFrom.Language = TimeTo.Language = System.Windows.Markup.XmlLanguage.GetLanguage(System.Globalization.CultureInfo.GetCultureInfo("vi").IetfLanguageTag);
         }
 
         private void tbxSearch_KeyDown(object sender, KeyEventArgs e)

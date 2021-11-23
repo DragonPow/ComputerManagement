@@ -134,21 +134,37 @@ namespace ComputerProject.CategoryWorkspace
             if (parentCategory == null) newPage.IsEditMode = true;
             else newPage.IsEditMode = isEditMode;
 
-            newPage.LoadData(parentCategory);
+            newPage.LoadAsyncData(parentCategory);
             newPage.DetailCategoryChangedEventHandler += OnDetailCategoryChanged;
+            newPage.DeleteCategoryChangedEventHandler += OnDeleteCategoryChanged;
 
             //Set navigator
             if (_navigator != null) _navigator.Back = () => _navigator?.NavigateTo(this);
             _navigator?.NavigateTo(newPage);
         }
 
+        private void OnDeleteCategoryChanged(object sender, Model.Category e)
+        {
+            //if (ContainRootCategory(e.Name))
+            //{
+            //    var category = CurrentCategories.Where(i => i.Name == e.Name).First();
+            //    CurrentCategories.Remove(category);
+            //}
+            Delete(e);
+        }
+
         private void OnDetailCategoryChanged(object sender, Model.Category e)
         {
-            if (!CurrentCategories.Contains(e))
+            if (!ContainRootCategory(e.Name))
             {
                 CurrentCategories.Add(e);
-                VisibleCategories = CurrentCategories;
+                //VisibleCategories = CurrentCategories;
             }
+        }
+
+        private bool ContainRootCategory(string name)
+        {
+            return CurrentCategories.Any(i=>i.Name == name);
         }
 
         private void Delete(Model.Category category)

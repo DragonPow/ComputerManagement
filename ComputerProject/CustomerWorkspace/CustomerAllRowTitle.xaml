@@ -30,7 +30,7 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
@@ -59,6 +59,7 @@
             x:Name="cellPoint"
             Grid.Column="4"
             Style="{DynamicResource ResourceKey=styleCell_Text}"
-            Text="Điểm thưởng" />
+            Text="Điểm thưởng"
+            Margin="30,0"/>
     </Grid>
 </UserControl>

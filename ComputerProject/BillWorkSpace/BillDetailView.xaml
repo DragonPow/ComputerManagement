@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.BillWorkSpace"
+             xmlns:customcontrol="clr-namespace:ComputerProject.CustomControl"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:Customer="clr-namespace:ComputerProject.CustomerWorkspace"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
@@ -11,6 +12,7 @@
              mc:Ignorable="d"
              d:DesignHeight="700"
              d:DesignWidth="1300"
+             MinWidth="1100"
              d:DataContext="{d:DesignInstance Type={x:Type local:DetailBillViewModel}}">
     <UserControl.Resources>
         <converter:IndexCategoryConverter x:Key="IndexConver" />
@@ -43,14 +45,17 @@
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.8*" />
+                <ColumnDefinition Width="380" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
             <Border Background="White"
                     CornerRadius="8"
                     Margin="20,0">
-                <local:CustomerInBillInfor IsEnabled="False" DataContext="{Binding CurrentBill.Customer}"/>
+                <local:CustomerInBillInfor DataContext="{Binding CurrentBill.Customer}" />
             </Border>
+            <customcontrol:BusyView Visibility="{Binding BusyService.BusyVisibility, TargetNullValue=Hidden}"
+                                    Grid.Column="0"
+                                    Margin="20,0" />
             <Border Grid.Column="1"
                     Background="White"
                     CornerRadius="8"
@@ -116,9 +121,9 @@
                               Background="{StaticResource Background}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="1.2*" />
+                                <ColumnDefinition Width="330" />
                                 <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1.2*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="STT"
                                        Margin="20,0,0,0"
@@ -276,6 +281,9 @@
                     </Grid>
                 </Grid>
             </Border>
+            <customcontrol:BusyView Visibility="{Binding BusyService.BusyVisibility, TargetNullValue=Hidden}"
+                                    Grid.Column="1"
+                                    Margin="0,0,20,0" />
         </Grid>
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
