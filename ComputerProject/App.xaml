@@ -28,8 +28,8 @@
             <FontFamily x:Key="Mulish">pack:/Resource/Font/Mulish-VariableFont_wght.ttf</FontFamily>
             <FontFamily x:Key="MulishItalic">pack:/Resource/Font/Mulish-Italic-VariableFont_wght.ttf</FontFamily>
 
-            <BitmapImage x:Key="DefaultImage" UriSource="/ComputerProject;component/Resource/Image/Product.jpg" />
-            <BitmapImage x:Key="NoImage" UriSource="/ComputerProject;component/Resource/Image/Product.jpg" />
+            <BitmapImage x:Key="DefaultImage" UriSource="/ComputerProject;component/Resource/Image/unnamed.png" />
+            <BitmapImage x:Key="NoImage" UriSource="/ComputerProject;component/Resource/Image/ImageDefault.png" />
 
             <Style x:Key="WaitSpinnerStyle" TargetType="Control">
                 <Setter Property="Foreground" Value="#888" />
