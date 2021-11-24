@@ -52,15 +52,14 @@
             <local:ProInfor
                     IsEnabled="False"
                     DataContext="{Binding}"
-                    VisibilityAddImage="Hidden" /><local:ProInfor
+                    VisibilityAddImage="Hidden" />
+            <local:ProInfor
                     IsEnabled="False"
                     DataContext="{Binding}"
                     VisibilityAddImage="Hidden" />
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                <local:ProInfor  DataContext="{Binding}" />
-            </ScrollViewer>
-            
-            <local:Specification
+            <local:ProInfor  DataContext="{Binding}" />
+
+                <local:Specification
                 Grid.Column="1"
                 Margin="20,0,0,0"
                 DataContext="{Binding}" />

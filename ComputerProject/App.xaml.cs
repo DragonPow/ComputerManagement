@@ -24,17 +24,17 @@ namespace ComputerProject
         protected override void OnStartup(StartupEventArgs e)
         {
 
-            //var vm = new ApplicationViewModel();
-            //var view = new ApplicationWindow();
-            //view.DataContext = vm;
-            //view.Show();
+            var vm = new ApplicationViewModel();
+            var view = new ApplicationWindow();
+            view.DataContext = vm;
+            view.Show();
 
-            using (var db = new ComputerManagementEntities())
-            {
-                int id = db.BILLs.OrderByDescending(i => i.id).Select(i => i.id).Skip(1).FirstOrDefault();
-                var b = (new BillRepository()).LoadDetailBill(id);
-                Helper.PrintPDF.Instance.createBill(new Model.Bill(b));
-            }
+            //using (var db = new ComputerManagementEntities())
+            //{
+            //    int id = db.BILLs.OrderByDescending(i => i.id).Select(i => i.id).Skip(1).FirstOrDefault();
+            //    var b = (new BillRepository()).LoadDetailBill(id);
+            //    Helper.PrintPDF.Instance.createBill(new Model.Bill(b));
+            //}
 
             //WindowTest test = new WindowTest();
             //test.Show();

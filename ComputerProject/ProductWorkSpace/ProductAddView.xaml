@@ -53,11 +53,9 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <local:ProInfor  DataContext="{Binding }" ModeInfor="insert" />
-            </ScrollViewer>
-                
-            <local:Specification Grid.Column="1" Margin="20,0,0,0" DataContext="{Binding }"/>
+
+                <local:Specification Grid.Column="1" Margin="20,0,0,0" DataContext="{Binding }"/>
 
         </Grid>
         <StackPanel
