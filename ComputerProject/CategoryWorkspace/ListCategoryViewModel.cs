@@ -1,5 +1,7 @@
-﻿using ComputerProject.HelperService;
+﻿using ComputerProject.CustomMessageBox;
+using ComputerProject.HelperService;
 using ComputerProject.Repository;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +17,7 @@ namespace ComputerProject.CategoryWorkspace
         #region Fields
         NavigationService _navigator;
         CategoryRepository _repository;
+        public BusyViewModel BusyService { get; private set; } = new BusyViewModel();
 
         Collection<Model.Category> _categories;
         Collection<Model.Category> _visibleCategories;
@@ -86,8 +89,12 @@ namespace ComputerProject.CategoryWorkspace
                 {
                     _deleteCategoryCommand = new RelayCommand(category =>
                     {
-                        if (category is Model.Category) Delete((Model.Category)category);
-                        else throw new ArgumentException("Not is a Category");
+                        var rs = MessageBoxCustom.ShowDialog("Chắc chắn xóa danh mục này hay không?", "Thông báo", PackIconKind.QuestionAnswer);
+                        if (rs == MessageBoxResultCustom.Yes)
+                        {
+                            Delete((Model.Category)category);
+                            MessageBoxCustom.ShowDialog("Xóa thành công", "Thông báo", PackIconKind.DoneOutline);
+                        }
                     });
                 }
                 return _deleteCategoryCommand;
@@ -120,7 +127,7 @@ namespace ComputerProject.CategoryWorkspace
 
         public void LoadAsyncCategories(string name = null)
         {
-            var task = Task.Run(() =>
+            BusyService.DoBusyTask(() =>
             {
                 CurrentCategories = _repository.LoadCategories(name);
             });
@@ -171,7 +178,7 @@ namespace ComputerProject.CategoryWorkspace
         {
             CurrentCategories.Remove(category);
             VisibleCategories = CurrentCategories;
-            Task.Run(() => _repository.Delete(category.Id));
+            //Task.Run(() => _repository.Delete(category.Id));
         }
 
         private void SearchCategory(string name)

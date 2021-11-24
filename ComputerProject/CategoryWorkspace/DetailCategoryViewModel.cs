@@ -312,6 +312,7 @@ namespace ComputerProject.CategoryWorkspace
                     _repository.Delete(category.Id);
                     DeleteCategoryChangedEventHandler?.Invoke(this, this.CurrentParentCategory);
                 }
+                MessageBoxCustom.ShowDialog("Xóa thành công", "Thông báo", PackIconKind.DoneOutline);
                 NavigateBackPage();
             }
             else
