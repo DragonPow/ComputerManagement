@@ -238,7 +238,7 @@ namespace ComputerProject.ProductWorkSpace
                                                                 && i.priceSales >= filter.PriceLowest
                                                                 && (filter.PriceHighest > 0 ? i.priceSales <= filter.PriceHighest : true)
                                                                 && (filter.TimeWarranty > 0 ? i.warrantyTime == filter.TimeWarranty : true)
-                                                                && i.isStopSelling == (filter.StateProduct == Model.stateProduct.Stop));
+                                                                );
                     }
 
                     switch (orderMode)
