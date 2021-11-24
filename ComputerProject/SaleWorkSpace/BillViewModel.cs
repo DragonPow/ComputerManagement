@@ -134,6 +134,7 @@ namespace ComputerProject.SaleWorkSpace
                     db.Database.Log = Console.WriteLine;
                     BILL b = CurrentBill.CastToModel();
                     db.BILLs.AddOrUpdate(b);
+                    db.Entry(b.CUSTOMER).State = System.Data.Entity.EntityState.Unchanged;
 
                     foreach(var item in b.ITEM_BILL)
                     {

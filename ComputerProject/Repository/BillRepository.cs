@@ -14,7 +14,7 @@ namespace ComputerProject.Repository
     {
         private IQueryable<BILL> CreateQuery(ComputerManagementEntities db, string text, DateTime? timeFrom, DateTime? timeTo)
         {
-            IQueryable<BILL> query = db.BILLs.AsNoTracking().AsQueryable();
+            IQueryable<BILL> query = db.BILLs.AsQueryable();
 
             if (!String.IsNullOrWhiteSpace(text))
             {
