@@ -111,14 +111,14 @@
             CornerRadius="8">
             <StackPanel>
                 <TextBlock
-                    Margin="20,10,0,10"
+                    Margin="15,15,0,10"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="16"
                     FontWeight="DemiBold"
                     Foreground="#11142D"
                     Text="Top 5 bán chạy" />
                 <Separator Margin="10,0,10,10" Background="{StaticResource Divition}" />
-                <ListView Margin="10,0,0,0" ItemsSource="{Binding CollectionTopSale}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView Margin="5,0,0,0" ItemsSource="{Binding CollectionTopSale}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <local:TopProductItemView DataContext="{Binding}" Margin="0,5" />
@@ -163,7 +163,7 @@
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
-                        Margin="10,15"
+                        Margin="15"
                         FontFamily="{StaticResource Mulish}"
                         FontSize="18"
                         FontWeight="DemiBold"
