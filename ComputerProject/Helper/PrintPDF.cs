@@ -77,8 +77,8 @@ namespace ComputerProject.Helper
             }
             catch (IOException e)
             {
-                Console.WriteLine("File is used by another process");
-                MessageBoxCustom.ShowDialog("Tệp tin đang được mở, vui lòng tắt tệp tin trước rồi thử lại", "Lỗi", PackIconKind.ErrorOutline);
+                Console.WriteLine(e.Message);
+                MessageBoxCustom.ShowDialog("Không thể thao tác trên tệp tin", "Lỗi", PackIconKind.ErrorOutline);
                 return false;
             }
 

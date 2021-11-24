@@ -106,6 +106,21 @@ namespace ComputerProject.SaleWorkSpace
                 if (null == _productsInBill)
                 {
                     _productsInBill = new ObservableConcurrentDictionary<Product, int>();
+                    var products = (ObservableConcurrentDictionary<Product, int>)_productsInBill;
+
+                    void setOutOfStock(KeyValuePair<Product,int> dicProduct)
+                    {
+                        var product = dicProduct.Key;
+                        product.IsOutOfStock = (product.Quantity - dicProduct.Value) == 0;
+                    }
+
+                    products.PropertyChanged += (s, e) =>
+                      {
+                          foreach (var dicProduct in products)
+                          {
+                              setOutOfStock(dicProduct);
+                          }
+                      };
                 }
                 return _productsInBill;
             }
@@ -130,6 +145,7 @@ namespace ComputerProject.SaleWorkSpace
                 if (value != _currentCustomer)
                 {
                     _currentCustomer = value;
+                    CurrentPoint = 0;
                     OnPropertyChanged();
                 }
             }
@@ -402,21 +418,27 @@ namespace ComputerProject.SaleWorkSpace
         public SaleViewModel()
         {
             _repository = new SaleRepository();
-            LoadData();
+            //LoadData();
         }
         public SaleViewModel(SaleRepository repository)
         {
             this._repository = repository;
-            LoadData();
+            //LoadData();
         }
 
-        public void LoadData()
+        public async void LoadData()
         {
-            Task.Run(LoadFilterControl);
-            Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
+            ResetData();
+            
             Task.Run(LoadCategoryControl);
-            ReloadPoint();
+            Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
+            Task.Run(LoadFilterControl);
         }
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
+
         private void LoadCategoryControl()
         {
             //Load data
@@ -440,17 +462,23 @@ namespace ComputerProject.SaleWorkSpace
         }
         private void LoadFilterControl()
         {
-            CurrentFilter = new FilterProductViewModel(CurrentFilter, true);
-            CurrentFilter.FilterClickedEvent += new EventHandler((o, e) =>
+            if (CurrentFilter == null)
             {
-                VisibleProducts = FilterByCategory(_products);
-                VisibleProducts = FilterByFilterControl(VisibleProducts, CurrentFilter);
-            });
+                CurrentFilter = new FilterProductViewModel(CurrentFilter, true);
+                CurrentFilter.FilterClickedEvent += new EventHandler((o, e) =>
+                {
+                    VisibleProducts = FilterByCategory(_products);
+                    VisibleProducts = FilterByFilterControl(VisibleProducts, CurrentFilter);
+                });
+            }
         }
-        public void ReloadPoint()
+        public void ResetData()
         {
             _pointToMoney = -1;
             _maxPoint = -1;
+            _currentCategory = _currentRootCategory = null;
+            Clear(CurrentCustomer);
+            Clear(ProductsInBill);
         }
         //private void SearchRootCategory()
         //{
@@ -491,7 +519,7 @@ namespace ComputerProject.SaleWorkSpace
             }
             else
             {
-                throw new ArgumentNullException();
+                throw new ArgumentException();
             }
         }
         private void OpenPaymentView(IDictionary<Product, int> productsInBill, CUSTOMER currentCustomer)
@@ -510,9 +538,9 @@ namespace ComputerProject.SaleWorkSpace
         private void AddToBill(Product product, int quantity)
         {
             bool containProduct = ProductsInBill.ContainsKey(product);
-            int totalQuantity = quantity + (containProduct ? ProductsInBill[product] : 0);
+            //int totalQuantity = quantity + (containProduct ? ProductsInBill[product] : 0);
 
-            if (product.Quantity < totalQuantity)
+            if (product.IsOutOfStock)
             {
                 throw new InvalidOperationException("Quantity not enough to buy");
             }

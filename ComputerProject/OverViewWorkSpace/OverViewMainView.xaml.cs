@@ -32,5 +32,14 @@ namespace ComputerProject.OverViewWorkSpace
             if ( DataContext == null )
                  DataContext = new OverViewViewModel();
         }
+
+        public void LoadData()
+        {
+
+        }
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
     }
 }

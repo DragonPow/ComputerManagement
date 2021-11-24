@@ -70,6 +70,16 @@ namespace ComputerProject.StatiticsWorkSpace
             DateTimePicker.Language = System.Windows.Markup.XmlLanguage.GetLanguage(System.Globalization.CultureInfo.GetCultureInfo("vi").IetfLanguageTag);
 
         }
+
+        public void LoadData()
+        {
+
+        }
+
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
     }
 }
  

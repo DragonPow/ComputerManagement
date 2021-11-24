@@ -31,5 +31,15 @@ namespace ComputerProject.BillWorkSpace
         {
             OnPropertyChanged(nameof(CurrentPage));
         }
+
+        public void LoadData()
+        {
+
+        }
+
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
     }
 }

@@ -14,15 +14,32 @@
    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="135"></RowDefinition>
             <RowDefinition Height="0.4*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Image Grid.Row="0"
-               Source="{Binding Image, IsAsync=True, FallbackValue={StaticResource DefaultImage}, TargetNullValue={StaticResource DefaultImage}}"
                Stretch="UniformToFill"
-               Height="120"
-               Margin="7"></Image>
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Margin="7">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsOutOfStock}"
+                                     Value="True">
+                            <Setter Property="Source"
+                                    Value="{StaticResource DefaultImage}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsOutOfStock}"
+                                     Value="False">
+                            <Setter Property="Source"
+                                    Value="{Binding Image, IsAsync=True, FallbackValue={StaticResource DefaultImage}, TargetNullValue={StaticResource DefaultImage}}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
         <Border Visibility="Hidden" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Background="Black" Width="68" Height="68" CornerRadius="200" Opacity="0.7">
             <TextBlock Text="Hết hàng" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource Mulish}" FontSize="{x:Static font:Font.Body}" Foreground="White"/>
         </Border>

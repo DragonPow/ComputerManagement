@@ -15,21 +15,33 @@ namespace ComputerProject.CategoryWorkspace
         public BaseViewModel CurrentPage => _navigator?.CurrentPage;
         public string ViewName => "Danh mục";
         public PackIconKind ViewIcon => PackIconKind.Ballot;
+        private BaseViewModel _mainPage;
 
         public CategoryViewModel()
         {
             var mainPage = new ListCategoryViewModel();
-            mainPage.LoadAsyncCategories();
+            //mainPage.LoadAsyncCategories();
 
             _navigator = new NavigationService(mainPage);
             _navigator.OnCurrentPageChangedEvent += OnCurrentPageChanged;
 
             mainPage.setNavigator(_navigator);
+
+            _mainPage = mainPage;
         }
 
         private void OnCurrentPageChanged()
         {
             OnPropertyChanged(nameof(CurrentPage));
+        }
+
+        public void LoadData()
+        {
+            (_mainPage as ListCategoryViewModel).LoadAsyncCategories();
+        }
+        public bool AllowChangeTab()
+        {
+            return true;
         }
     }
 }

@@ -29,6 +29,8 @@
                     Value="Black"></Setter>
         </Style>
         <converter:ListCategoryToStringCommaConverter x:Key="CategoryLv2Converter" />
+        <converter:MultiConverter x:Key="multiConverter" />
+        <sys:Boolean x:Key="TrueBoolean">True</sys:Boolean>
     </UserControl.Resources>
     <Grid >
         <Grid.ColumnDefinitions>
@@ -69,8 +71,14 @@
                 FontFamily="{StaticResource Mulish}"
                 Style="{StaticResource MaterialDesignIconButton}"
                 ToolTip="Chỉnh sửa danh mục"
-                Command="{Binding DataContext.OpenDetailCategoryCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
-                CommandParameter="{Binding Path=DataContext, RelativeSource={RelativeSource  AncestorType={x:Type UserControl}}}">
+                Command="{Binding DataContext.OpenDetailCategoryCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource multiConverter}">
+                    <Binding Path="DataContext"
+                             RelativeSource="{RelativeSource  AncestorType={x:Type UserControl}}" />
+                    <Binding Source="{StaticResource TrueBoolean}" />
+                </MultiBinding>
+            </Button.CommandParameter>
             <Image Height="22"
                    Width="22"
                    Source="/ComputerProject;component/Resource/Icon/akar-icons_edit.png" />

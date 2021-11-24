@@ -11,5 +11,7 @@ namespace ComputerProject.ApplicationWorkspace
     {
         string ViewName { get; }
         PackIconKind ViewIcon { get; }
+        void LoadData();
+        bool AllowChangeTab();
     }
 }

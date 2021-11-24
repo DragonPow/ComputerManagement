@@ -41,5 +41,14 @@ namespace ComputerProject.CustomerWorkspace
                 DataContext = vm;
             }
         }
+
+        public void LoadData()
+        {
+
+        }
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
     }
 }

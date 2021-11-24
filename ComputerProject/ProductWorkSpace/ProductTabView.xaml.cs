@@ -39,5 +39,14 @@ namespace ComputerProject.ProductWorkSpace
                 DataContext = vm;
             }
         }
+
+        public void LoadData()
+        {
+
+        }
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
     }
 }

@@ -330,6 +330,11 @@ namespace ComputerProject.SettingWorkSpace
             }
         }
 
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
+
         public void Save_store()
         {
             if (StoreName == "" || StorePhone == "" || StoreAddress == "")

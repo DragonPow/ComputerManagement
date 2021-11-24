@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.StatiticsWorkSpace"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="305"
+             d:DesignHeight="70" d:DesignWidth="305"
              d:DataContext="{d:DesignInstance Type=local:ReportModel}">
     <Grid
         VerticalAlignment="Center"
         >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="70"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="72"/>
         </Grid.ColumnDefinitions>
@@ -21,7 +21,7 @@
             >
             <Image
             Stretch="Fill"
-            Source="{Binding Image, TargetNullValue={StaticResource NoImage}}"
+            Source="{Binding Image, TargetNullValue={StaticResource DefaultImage}}"
             >
             </Image>
         </Border>

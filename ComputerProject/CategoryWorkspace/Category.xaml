@@ -23,6 +23,7 @@
                    Foreground="{StaticResource Title}"
                    Margin="30,20"
                    Text="Danh mục" />
+
         <Border CornerRadius="8"
                 Background="White"
                 Margin="20,0,20, 20">
@@ -57,6 +58,9 @@
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
+                <localcustom:BusyView Visibility="{Binding BusyService.BusyVisibility, FallbackValue=Hidden}"
+                                      Grid.Row="2"
+                                      Margin="20,0" />
             </Grid>
         </Border>
     </DockPanel>

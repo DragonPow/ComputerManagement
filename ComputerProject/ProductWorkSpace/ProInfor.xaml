@@ -29,8 +29,8 @@
         </Style>
     </UserControl.Resources>
     <Border Background="White" CornerRadius="8">
-        <Grid Margin="20">
-            <StackPanel x:Name="ProInform" HorizontalAlignment="Stretch">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="ProInform" Margin="20" HorizontalAlignment="Stretch">
                 <localcustom:TextboxCustom
                     x:Name="Code"
                     Title="    Mã sản phẩm"
@@ -43,11 +43,15 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <Image
-                        Width="110"
-                        Height="80"
+                    <Grid  Width="110"
+                        Height="70">
+                        <Image
+                       VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
                         Source="{Binding SelectedImage, TargetNullValue={StaticResource NoImage}}"
-                        Stretch="Fill" />
+                        Stretch="UniformToFill" />
+                    </Grid>
+
                     <Grid Grid.Column="1" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ProInfor}}, Path=VisibilityAddImage}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*" />
@@ -161,8 +165,9 @@
                     Style="{DynamicResource ResourceKey=style_Text}"
                     Text="{Binding Description, Mode=TwoWay}" />
             </StackPanel>
+        </ScrollViewer>
+      
 
-        </Grid>
     </Border>
 
 </UserControl>
