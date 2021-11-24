@@ -57,6 +57,16 @@
                     <ContentPresenter />
                 </Border>
             </ControlTemplate>
+            <ControlTemplate x:Key="DefaultTemplate" TargetType="ListViewItem" >
+                <Border BorderThickness="1"
+                                    Background="White"
+                                    BorderBrush="{StaticResource Icon}"
+                                    CornerRadius="8"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="8,5">
+                    <ContentPresenter />
+                </Border>
+            </ControlTemplate>
         </ListView.Resources>
 
         <ListView.ItemContainerStyle>
@@ -65,20 +75,7 @@
                 <Setter Property="VerticalContentAlignment" Value="Stretch" />
                 <Setter Property="Padding"
                         Value="0" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="ListViewItem">
-                            <Border BorderThickness="1"
-                                    Background="White"
-                                    BorderBrush="{StaticResource Icon}"
-                                    CornerRadius="8"
-                                    HorizontalAlignment="Stretch"
-                                    Margin="8,5">
-                                <ContentPresenter />
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="Template" Value="{StaticResource DefaultTemplate}"/>
                 <Style.Triggers>
                     <MultiTrigger>
                         <MultiTrigger.Conditions>
@@ -90,6 +87,10 @@
                         <Setter Property="Template"
                                 Value="{StaticResource SelectedTemplate}" />
                     </MultiTrigger>
+                    <DataTrigger Binding="{Binding Path=IsOutOfStock}" Value="True" >
+                        <Setter Property="Template"
+                                Value="{StaticResource DefaultTemplate}" />
+                    </DataTrigger>
                 </Style.Triggers>
             </Style>
         </ListView.ItemContainerStyle>
