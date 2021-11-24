@@ -9,10 +9,14 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance Type=local:CustomerViewModel}"
+    xmlns:converter="clr-namespace:ComputerProject.Converter"
     d:DesignHeight="750"
     d:DesignWidth="1380"
     Background="{StaticResource Background}"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <converter:IndexCategoryConverter x:Key="IndexConver" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -53,23 +57,27 @@
                 Background="White"
                 CornerRadius="8">
                 <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="251*"/>
+                        <ColumnDefinition Width="89*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Margin="0,0,0,0.4">
                         <local:CustomerInfor x:Name="CusInfor" IsEnabled="False" />
                     </ScrollViewer>
                     <StackPanel
                         x:Name="ButtonEditMode"
-                        Grid.Row="6"
-                        Margin="0,20"
+                        Grid.Row="1"
+                        Margin="20,19.6,20,0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         IsEnabled="{Binding IsFree}"
                         Orientation="Horizontal"
-                        Visibility="{Binding ButtonGroupVisibility_Edit, FallbackValue=Hidden}">
+                        Visibility="{Binding ButtonGroupVisibility_Edit, FallbackValue=Hidden}" Grid.ColumnSpan="2">
                         <Button
                             Width="100"
                             Height="40"
@@ -100,12 +108,12 @@
                     <StackPanel
                         x:Name="ButtonReadMode"
                         Grid.Row="1"
-                        Margin="30,20"
+                        Margin="20,19.6,20,0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         IsEnabled="{Binding IsFree}"
                         Orientation="Horizontal"
-                        Visibility="{Binding ButtonGroupVisibility_Read}">
+                        Visibility="{Binding ButtonGroupVisibility_Read}" Grid.ColumnSpan="2">
                         <Button
                             x:Name="BtnDelete"
                             Width="100"
@@ -183,7 +191,9 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <local:CustomerDetailViewBillRow DataContext="{Binding}" 
-                                                                 MouseDoubleClick="CustomerDetailViewBillRow_MouseDoubleClick"/>
+                                                                 MouseDoubleClick="CustomerDetailViewBillRow_MouseDoubleClick"
+                                                                 number="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                                                 AncestorType={x:Type ListViewItem}}, Converter= {StaticResource IndexConver }}"/>
                             </DataTemplate>
                         </ListView.ItemTemplate>
 

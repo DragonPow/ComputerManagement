@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 
@@ -11,6 +12,13 @@ namespace ComputerProject.CustomerWorkspace
     /// </summary>
     public partial class CustomerDetailViewBillRow : UserControl
     {
+        public static DependencyProperty NumberProperties = DependencyProperty.Register(nameof(number), typeof(string), typeof(CustomerDetailViewBillRow), new PropertyMetadata("0"));
+
+        public string number
+        {
+            get { return (string)GetValue(NumberProperties); }
+            set { SetValue(NumberProperties, value); }
+        }
         public CustomerDetailViewBillRow()
         {
             InitializeComponent();

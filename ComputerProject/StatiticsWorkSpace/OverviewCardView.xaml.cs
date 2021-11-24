@@ -73,6 +73,7 @@ namespace ComputerProject.StatiticsWorkSpace
         }
         private static object CoerceIcon(DependencyObject d, object value)
         {
+            if (value == null) return null;
             double min = double.Parse(((OverviewCardView)d).Percent.Substring(0, ((OverviewCardView)d).Percent.Length -2));
             return min > 0 ? "ArrowUp" : "ArrowDown";
         }
@@ -82,6 +83,7 @@ namespace ComputerProject.StatiticsWorkSpace
         }
         private static object CoerceColorFore(DependencyObject d, object value)
         {
+            if (value == null) return null;
             double min = double.Parse(((OverviewCardView)d).Percent.Substring(0, ((OverviewCardView)d).Percent.Length - 2));
             return min > 0 ? (SolidColorBrush)new BrushConverter().ConvertFromString( "#42BDA1") : (SolidColorBrush)new BrushConverter().ConvertFromString("#F04461");
         }

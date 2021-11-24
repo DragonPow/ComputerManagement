@@ -35,7 +35,9 @@
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static localfont:Font.Body}"
             Style="{StaticResource TitleCell}"
-            Text="{Binding BillId}" />
+            Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:CustomerDetailViewBillRow}}, 
+                               Path=number}" />
         <TextBlock
             x:Name="IDBill"
             Grid.Column="3"

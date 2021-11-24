@@ -12,7 +12,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
-             d:DesignHeight="67"
+             d:DesignHeight="55"
              d:DesignWidth="1310"
              d:DataContext="{d:DesignInstance model:Category, IsDesignTimeCreatable=True}"
              Background="Transparent">
@@ -37,12 +37,6 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="40"></ColumnDefinition>
-            <ColumnDefinition Width="50"></ColumnDefinition>
-        </Grid.ColumnDefinitions>-->
 
         <TextBlock x:Name="CategoryLv1"
                    FontFamily="{StaticResource Mulish}"
@@ -50,9 +44,9 @@
                    Style="{StaticResource CellTitle}"
                    Grid.Column="0"
                    TextWrapping="Wrap"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   Margin="15, 0, 0, 0"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   Padding="15,20,0,20"
                    Text="{Binding Name}">
 
         </TextBlock>
@@ -63,9 +57,9 @@
                    Style="{StaticResource CellTitle}"
                    Grid.Column="1"
                    TextWrapping="Wrap"
-                   Margin="15, 0, 0, 0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   Padding="15,20,0,20"
                    Text="{Binding ChildCategories, Converter={StaticResource CategoryLv2Converter}}" />
         <Button Grid.Column="2"
                 x:Name="btnEdit"

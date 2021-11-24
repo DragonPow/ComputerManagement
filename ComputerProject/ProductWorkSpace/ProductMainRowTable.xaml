@@ -19,8 +19,9 @@
             <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
             <Setter Property="FontSize" Value="{x:Static localfont:Font.Body}" />
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="15, 17, 0, 17"/>
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -38,34 +39,29 @@
         <TextBlock
             x:Name="Name"
             Grid.Column="0"
-            Margin="15, 0, 0, 0"
             Style="{StaticResource TitleCell}"
             Text="{Binding Name, Mode=OneWay, FallbackValue='Tên sản phẩm'}" />
         <TextBlock
             x:Name="Code"
             Grid.Column="1"
-            Margin="20, 0, 0, 0"
             Style="{StaticResource TitleCell}"
             Text="{Binding Id, Mode=OneWay, FallbackValue='Mã sản phẩm'}" />
         <TextBlock
             x:Name="Quantity"
             Grid.Column="2"
             HorizontalAlignment="Left"
-            Margin="20, 0, 0, 0"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}"
             Text="{Binding Quantity, Mode=OneWay, FallbackValue='10'}" />
         <TextBlock
             x:Name="Unit"
             Grid.Column="3"
-            Margin="15, 0, 0, 0"
             Style="{StaticResource TitleCell}"
             Text="{Binding PriceSales_String, Mode=OneWay, FallbackValue='10.000'}" />
         <TextBlock
             x:Name="State"
             Grid.Column="4"
             HorizontalAlignment="Left"
-            Margin="20, 0, 0, 0"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}"
             Text="{Binding Status, Mode=OneWay, FallbackValue='Tình trạng'}" />
@@ -74,7 +70,6 @@
             Grid.Column="5"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="20, 0, 0, 0"
             Style="{StaticResource TitleCell}"
             Text="{Binding WarrantyYear_String, Mode=OneWay, FallbackValue='Bao hanh'}" />
         <Button

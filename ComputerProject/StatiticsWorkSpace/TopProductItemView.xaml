@@ -51,8 +51,7 @@
             VerticalAlignment="Top"
             >
             <Run Text="{Binding Amount}"/>
-
-
+            <Run Text=" sp"/>
         </TextBlock>
     </Grid>
 </UserControl>
