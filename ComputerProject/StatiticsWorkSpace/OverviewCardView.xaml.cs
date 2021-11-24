@@ -62,7 +62,7 @@ namespace ComputerProject.StatiticsWorkSpace
             ((OverviewCardView)d).CoerceValue(Iconproperties);
             ((OverviewCardView)d).CoerceValue(ColorForeproperties);
         }
-        private static object CoercePercent(DependencyObject d,object value)
+        private static string CoercePercent(DependencyObject d,object value)
         {
             return value.ToString();
         }
@@ -83,7 +83,7 @@ namespace ComputerProject.StatiticsWorkSpace
         }
         private static object CoerceColorFore(DependencyObject d, object value)
         {
-            if (value == null) return null;
+            if (value == null) return Colors.White;
             double min = double.Parse(((OverviewCardView)d).Percent.Substring(0, ((OverviewCardView)d).Percent.Length - 2));
             return min > 0 ? (SolidColorBrush)new BrushConverter().ConvertFromString( "#42BDA1") : (SolidColorBrush)new BrushConverter().ConvertFromString("#F04461");
         }

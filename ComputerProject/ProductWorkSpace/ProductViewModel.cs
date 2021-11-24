@@ -135,7 +135,7 @@ namespace ComputerProject.ProductWorkSpace
 
                 // return Math.Round(WarrantyTime.Value / 12d, 1).ToString() + " năm";
 
-                return WarrantyTime.Value.ToString();
+                return WarrantyTime.Value.ToString() +  " tháng";
             }
         }
 

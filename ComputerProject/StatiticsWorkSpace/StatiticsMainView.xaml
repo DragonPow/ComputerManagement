@@ -55,7 +55,14 @@
                         Margin="10,0,0,0"
                         InnerRadius="0"
                         LegendLocation="Right"
-                        Series="{Binding CategoteryPieSeries}" />
+                        Series="{Binding CategoteryPieSeries}" >
+                        <lvc:PieChart.AxisY>
+                            <lvc:Axis
+                            Title="Doanh thu"
+                            LabelFormatter="{Binding FormaterLabelMoney}"
+                            MinValue="0" />
+                        </lvc:PieChart.AxisY>
+                    </lvc:PieChart>                   
                 </Grid>
             </DockPanel>
         </Border>
