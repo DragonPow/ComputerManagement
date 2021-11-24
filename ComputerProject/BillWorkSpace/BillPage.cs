@@ -16,6 +16,7 @@ namespace ComputerProject.BillWorkSpace
 
         public BaseViewModel CurrentPage => _navigator?.CurrentPage;
         private NavigationService _navigator;
+        private BaseViewModel _mainPage;
 
         public BillPage()
         {
@@ -25,6 +26,8 @@ namespace ComputerProject.BillWorkSpace
             _navigator = new NavigationService(initView);
             initView.SetNavigator(_navigator);
             _navigator.OnCurrentPageChangedEvent += OnCurrentPageChanged;
+
+            _mainPage = initView;
         }
 
         private void OnCurrentPageChanged()

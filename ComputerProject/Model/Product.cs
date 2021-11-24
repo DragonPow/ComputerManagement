@@ -50,8 +50,8 @@ namespace ComputerProject.Model
         Model.Category _category;
         string _decription;
         string _producer;
-        int _warranty;
-        int _quantity;
+        int _warranty = -1;
+        int _quantity = -1;
         bool _isOutOfStock; 
         #endregion //Fields
 

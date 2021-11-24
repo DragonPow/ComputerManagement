@@ -1,4 +1,5 @@
-﻿using ComputerProject.Model;
+﻿using ComputerProject.Helper;
+using ComputerProject.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,8 +22,20 @@ namespace ComputerProject.Repository
                 text.Trim();
                 query = query.Where(i => i.id.ToString().Contains(text) || i.CUSTOMER.phone.Contains(text));
             }
-            if (timeFrom.HasValue) query = query.Where(i => i.createTime.Year >= timeFrom.Value.Year && i.createTime.Month >= timeFrom.Value.Month && i.createTime.Day >= timeFrom.Value.Day);
-            if (timeTo.HasValue) query = query.Where(i => i.createTime.Year <= timeTo.Value.Year && i.createTime.Month <= timeTo.Value.Month && i.createTime.Day <= timeTo.Value.Day);
+            if (timeFrom.HasValue)
+            {
+                var timefrom = timeFrom.Value;
+                query = query.Where(i => i.createTime.Year > timefrom.Year ||
+                                            (i.createTime.Year == timefrom.Year && i.createTime.Month > timefrom.Month) ||
+                                            (i.createTime.Year == timefrom.Year && i.createTime.Month == timefrom.Month && i.createTime.Day >= timefrom.Day));
+            }
+            if (timeTo.HasValue)
+            {
+                var timeto = timeTo.Value;
+                query = query.Where(i => timeto.Year > i.createTime.Year ||
+                                            (timeto.Year == i.createTime.Year && timeto.Month > i.createTime.Month) ||
+                                            (timeto.Year == i.createTime.Year && timeto.Month == i.createTime.Month && timeto.Day >= i.createTime.Day));
+            }
 
             return query.OrderByDescending(i => i.createTime).ThenBy(i => i.id);
         }
@@ -43,6 +56,7 @@ namespace ComputerProject.Repository
 
             using (var db = new ComputerManagementEntities())
             {
+                db.Database.Log = Console.WriteLine;
                 var query = CreateQuery(db, text, timeFrom, timeTo);
                 if (maxNumberInPage > 0) query = query.Skip((numberPage - 1) * maxNumberInPage).Take(maxNumberInPage);
 

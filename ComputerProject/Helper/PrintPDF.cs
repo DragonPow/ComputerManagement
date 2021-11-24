@@ -83,7 +83,7 @@ namespace ComputerProject.Helper
             }
 
             os = new FileStream(dirFile, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
-            defaultSize = new Rectangle(PageSize.A4.Width, 300 + productInBill.Count * 24 + productInBill.Count(i => i.Name.Length > 16) * 15);
+            defaultSize = new Rectangle(PageSize.A4.Width, 310 + productInBill.Count * 24 + productInBill.Count(i => i.Name.Length > 16) * 15);
             doc = new Document(defaultSize);
             doc.SetMargins(0, 0, 0, 0);
 
@@ -122,7 +122,7 @@ namespace ComputerProject.Helper
         private Paragraph createTitle()
         {
             Paragraph title = new Paragraph();
-            title.Add(new Paragraph(store.Name, new Font(basef, 18, Font.BOLD))
+            title.Add(new Paragraph(store.Name, new Font(basef, 20, Font.BOLD))
             { Alignment = Element.ALIGN_CENTER, SpacingAfter = 10 });
             title.Add(new Paragraph("Địa chỉ: " + store.Address, new Font(basef, 10, Font.ITALIC))
             { Alignment = Element.ALIGN_CENTER, SpacingAfter = 2 });
@@ -147,7 +147,7 @@ namespace ComputerProject.Helper
             table.SetWidths(columnWidths);
             int defaultBorder = PdfPCell.BOTTOM_BORDER | PdfPCell.TOP_BORDER;
 
-            table.AddCell(new PdfPCell(new Phrase("Tên món ăn", new Font(basef, 12, Font.BOLD)))
+            table.AddCell(new PdfPCell(new Phrase("Tên sản phẩm", new Font(basef, 12, Font.BOLD)))
             { Border = defaultBorder, VerticalAlignment = PdfPCell.ALIGN_MIDDLE, PaddingBottom = 10, PaddingTop = 8 });
             table.AddCell(new PdfPCell(new Phrase("Số lượng", new Font(basef, 12, Font.BOLD)))
             { HorizontalAlignment = PdfPCell.ALIGN_CENTER, Border = defaultBorder, VerticalAlignment = PdfPCell.ALIGN_MIDDLE, PaddingBottom = 10, PaddingTop = 8 });
@@ -225,11 +225,11 @@ namespace ComputerProject.Helper
             columns[1] = 55;
             table.SetWidths(columns);
             table.AddCell(new PdfPCell(new Phrase("Khách hàng: " + info.Customer.name, font)) { HorizontalAlignment = PdfPCell.ALIGN_LEFT, Border = PdfPCell.NO_BORDER });
-            table.AddCell(new PdfPCell(new Phrase("Ngày mua" + info.TimeCreated.ToString(" hh:mm:ss, dd/MM/yyyy"), font)) { HorizontalAlignment = PdfPCell.ALIGN_RIGHT, Border = PdfPCell.NO_BORDER });
+            table.AddCell(new PdfPCell(new Phrase("Ngày mua: " + info.TimeCreated.ToString(" hh:mm:ss, dd/MM/yyyy"), font)) { HorizontalAlignment = PdfPCell.ALIGN_RIGHT, Border = PdfPCell.NO_BORDER });
             table.SpacingAfter = 20;
 
             table.AddCell(new PdfPCell(new Phrase("Số điện thoại: " + info.Customer.phone, font)) { HorizontalAlignment = PdfPCell.ALIGN_LEFT, Border = PdfPCell.NO_BORDER });
-            table.AddCell(new PdfPCell(new Phrase("")) { Border = PdfPCell.NO_BORDER});
+            table.AddCell(new PdfPCell(new Phrase("Mã hóa đơn: " + info.Id.ToString(), font)) { Border = PdfPCell.NO_BORDER});
 
             return table;
         }
