@@ -22,26 +22,31 @@
                Stretch="UniformToFill"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
-               Margin="7">
-            <Image.Style>
-                <Style TargetType="Image">
+               Margin="7"
+                 Source="{Binding Image, IsAsync=True, FallbackValue={StaticResource DefaultImage}, TargetNullValue={StaticResource DefaultImage}}" >
+        </Image>
+        <Border Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Background="Black" Width="68" Height="68" CornerRadius="200" Opacity="0.7">
+            <TextBlock Text="Hết hàng" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource Mulish}" FontSize="{x:Static font:Font.Body}" Foreground="White"/>
+            <Border.Style>
+                <Style>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsOutOfStock}"
                                      Value="True">
-                            <Setter Property="Source"
-                                    Value="{StaticResource DefaultImage}" />
+                            <Setter Property="Border.Visibility"
+                                    Value="Visible" />
+                            <Setter Property="TextBlock.Visibility"
+                                    Value="Visible" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding IsOutOfStock}"
                                      Value="False">
-                            <Setter Property="Source"
-                                    Value="{Binding Image, IsAsync=True, FallbackValue={StaticResource DefaultImage}, TargetNullValue={StaticResource DefaultImage}}" />
+                            <Setter Property="Border.Visibility"
+                                    Value="Hidden" />
+                            <Setter Property="TextBlock.Visibility"
+                                    Value="Hidden" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </Image.Style>
-        </Image>
-        <Border Visibility="Hidden" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Background="Black" Width="68" Height="68" CornerRadius="200" Opacity="0.7">
-            <TextBlock Text="Hết hàng" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource Mulish}" FontSize="{x:Static font:Font.Body}" Foreground="White"/>
+            </Border.Style>
         </Border>
         <TextBlock Text="{Binding Name, FallbackValue='Laptop HP 15s-fq2602T'}"
                        TextWrapping="WrapWithOverflow"
