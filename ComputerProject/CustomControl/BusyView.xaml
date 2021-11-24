@@ -29,7 +29,7 @@
                 VerticalAlignment="Center"
                 FontSize="16"
                 FontWeight="Bold"
-                Foreground="White"
+                Foreground="Black"
                 Text="Đang tải..." />
         </StackPanel>
     </Border>

@@ -23,14 +23,10 @@
                    Foreground="{StaticResource Title}"
                    Margin="30,20"
                    Text="Danh mục" />
-        <!--<localcustom:PageControl HorizontalAlignment="Center"
-                                 VerticalAlignment="Top"
-                                 CurrentPage="1"
-                                 Grid.Row="4"
-                                 DockPanel.Dock="Bottom" />-->
+
         <Border CornerRadius="8"
                 Background="White"
-                Margin="20,0,20,0">
+                Margin="20,0,20, 20">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
