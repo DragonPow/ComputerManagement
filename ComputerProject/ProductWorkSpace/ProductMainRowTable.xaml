@@ -71,7 +71,9 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Style="{StaticResource TitleCell}"
-            Text="{Binding WarrantyYear_String, Mode=OneWay, FallbackValue='Bao hanh'}" />
+            >
+            <Run  Text="{Binding WarrantyYear_String, Mode=OneWay, FallbackValue='Bao hanh'}"/>
+        </TextBlock>
         <Button
             x:Name="btnEdit"
             Grid.Column="6"
