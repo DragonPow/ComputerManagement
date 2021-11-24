@@ -170,7 +170,8 @@ namespace ComputerProject.SaleWorkSpace
         }
         private void PrintPDF()
         {
-            throw new NotImplementedException();
+            var p = new Helper.PrintPDF();
+            p.createBill(CurrentBill);
         }
         private void CloseWindow()
         {

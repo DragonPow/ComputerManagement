@@ -15,7 +15,7 @@ using MaterialDesignThemes.Wpf;
 
 namespace ComputerProject.Helper
 {
-    class PrintPDF
+    public class PrintPDF
     {
         #region Fields
         private readonly string dest = @".\Bill\"; //Path.Combine(AppManager.GetPreferencesFolder(), "Bill.pdf");
@@ -65,7 +65,7 @@ namespace ComputerProject.Helper
         {
             store = StoreRepository.GetStoreInformation();
         }
-        public bool createBill(Bill info)
+        public bool createBill(Bill info, bool openAfterComplete = false)
         {
             var productInBill = info.Products;
             string dirFile = Path.Combine(dest, "Bill" + info.Id + ".pdf");
@@ -113,9 +113,10 @@ namespace ComputerProject.Helper
             os.Dispose();
             writer.Dispose();
 
-            //Open file PDF
-            //Process.Start(dest);
             Console.WriteLine("Create file {0} success", dirFile);
+
+            //Open file PDF
+            if (openAfterComplete) Process.Start(dirFile);
             return true;
 
         }

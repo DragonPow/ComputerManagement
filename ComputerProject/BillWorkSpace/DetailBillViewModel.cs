@@ -121,7 +121,8 @@ namespace ComputerProject.BillWorkSpace
 
         private void ExportPDF(Model.Bill bill)
         {
-            throw new NotImplementedException();
+            var p = new Helper.PrintPDF();
+            p.createBill(bill, true);
         }
         private void DeleteBill(Model.Bill bill)
         {
