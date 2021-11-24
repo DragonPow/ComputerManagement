@@ -106,6 +106,21 @@ namespace ComputerProject.SaleWorkSpace
                 if (null == _productsInBill)
                 {
                     _productsInBill = new ObservableConcurrentDictionary<Product, int>();
+                    var products = (ObservableConcurrentDictionary<Product, int>)_productsInBill;
+
+                    void setOutOfStock(KeyValuePair<Product,int> dicProduct)
+                    {
+                        var product = dicProduct.Key;
+                        product.IsOutOfStock = (product.Quantity - dicProduct.Value) == 0;
+                    }
+
+                    products.PropertyChanged += (s, e) =>
+                      {
+                          foreach (var dicProduct in products)
+                          {
+                              setOutOfStock(dicProduct);
+                          }
+                      };
                 }
                 return _productsInBill;
             }
@@ -130,6 +145,7 @@ namespace ComputerProject.SaleWorkSpace
                 if (value != _currentCustomer)
                 {
                     _currentCustomer = value;
+                    CurrentPoint = 0;
                     OnPropertyChanged();
                 }
             }
@@ -522,9 +538,9 @@ namespace ComputerProject.SaleWorkSpace
         private void AddToBill(Product product, int quantity)
         {
             bool containProduct = ProductsInBill.ContainsKey(product);
-            int totalQuantity = quantity + (containProduct ? ProductsInBill[product] : 0);
+            //int totalQuantity = quantity + (containProduct ? ProductsInBill[product] : 0);
 
-            if (product.Quantity < totalQuantity)
+            if (product.IsOutOfStock)
             {
                 throw new InvalidOperationException("Quantity not enough to buy");
             }

@@ -41,6 +41,7 @@ namespace ComputerProject.Model
 
     public class Product : BaseViewModel
     {
+        #region Fields
         int _id;
         string _name;
         int _priceOrigin;
@@ -51,8 +52,10 @@ namespace ComputerProject.Model
         string _producer;
         int _warranty;
         int _quantity;
+        bool _isOutOfStock; 
+        #endregion //Fields
 
-
+        #region Properties
         public int Id
         {
             get => _id;
@@ -108,7 +111,7 @@ namespace ComputerProject.Model
             get => _category;
             set
             {
-                if (value!=_category)
+                if (value != _category)
                 {
                     _category = value;
                     OnPropertyChanged();
@@ -144,7 +147,7 @@ namespace ComputerProject.Model
             get => _warranty;
             set
             {
-                if (value!=_warranty)
+                if (value != _warranty)
                 {
                     _warranty = value;
                     OnPropertyChanged();
@@ -160,9 +163,24 @@ namespace ComputerProject.Model
                 {
                     _quantity = value;
                     OnPropertyChanged();
+
+                    if (_quantity == 0) IsOutOfStock = true;
                 }
             }
         }
+        public bool IsOutOfStock
+        {
+            get => _isOutOfStock;
+            set
+            {
+                if (value != _isOutOfStock)
+                {
+                    _isOutOfStock = value;
+                    OnPropertyChanged();
+                }
+            }
+        } 
+        #endregion //Properties
 
         public Product()
         {
@@ -216,12 +234,6 @@ namespace ComputerProject.Model
             p.quantity = this.Quantity;
 
             return p;
-        }
-
-        ~Product()
-        {
-            Console.WriteLine(this.Name + " is dispose");
-            //GC.SuppressFinalize(this);
         }
     }
 }

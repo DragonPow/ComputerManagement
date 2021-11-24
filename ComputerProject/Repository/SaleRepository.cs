@@ -140,7 +140,10 @@ namespace ComputerProject.Repository
         {
             using (var db = new ComputerManagementEntities())
             {
-                var query = db.CUSTOMERs.AsNoTracking().Where(i => i.phone.Contains(phone)).OrderBy(p => p.phone).Take(number);
+                var query = db.CUSTOMERs.AsNoTracking()
+                    .Where(i => i.phone.Contains(phone))
+                    .OrderBy(p => p.phone)
+                    .Take(number);
                 Collection<CUSTOMER> list = new ObservableCollection<CUSTOMER>(query.AsEnumerable());
 
                 return list;
