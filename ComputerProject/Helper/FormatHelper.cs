@@ -46,19 +46,22 @@ namespace ComputerProject
             else return 0;
         }
 
-        public static byte[] ImageToBytes(Bitmap image)
+        public static byte[] ImageToBytes(Bitmap image, bool needScale = true)
         {
             if (image == null) return null;
             byte[] rs;
 
-            float width = 192, height = 108;
-            int h = image.Height, w = image.Width;
-            var scale = Math.Min(width / w, height / h);
-            var newSize = new Size((int)(w * scale), (int)(h * scale));
+            if (needScale)
+            {
+                var desSize = new SizeF(185, 120);
 
-            image = new Bitmap(image, newSize);
+                int h = image.Height, w = image.Width;
+                var scaleFactor = Math.Min(desSize.Width / w, desSize.Height / h);
+                var newSize = new Size((int)(w * scaleFactor), (int)(h * scaleFactor));
 
-            //image = Scale(image);
+                image = new Bitmap(image, newSize);
+                //image = Scale(image);
+            }
 
             using (var ms = new MemoryStream())
             {
