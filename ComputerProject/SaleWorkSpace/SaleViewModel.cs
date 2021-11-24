@@ -402,20 +402,21 @@ namespace ComputerProject.SaleWorkSpace
         public SaleViewModel()
         {
             _repository = new SaleRepository();
-            LoadData();
+            //LoadData();
         }
         public SaleViewModel(SaleRepository repository)
         {
             this._repository = repository;
-            LoadData();
+            //LoadData();
         }
 
-        public void LoadData()
+        public async void LoadData()
         {
-            Task.Run(LoadFilterControl);
-            Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
+            ResetData();
+            
             Task.Run(LoadCategoryControl);
-            ReloadPoint();
+            Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
+            Task.Run(LoadFilterControl);
         }
         private void LoadCategoryControl()
         {
@@ -440,17 +441,23 @@ namespace ComputerProject.SaleWorkSpace
         }
         private void LoadFilterControl()
         {
-            CurrentFilter = new FilterProductViewModel(CurrentFilter, true);
-            CurrentFilter.FilterClickedEvent += new EventHandler((o, e) =>
+            if (CurrentFilter == null)
             {
-                VisibleProducts = FilterByCategory(_products);
-                VisibleProducts = FilterByFilterControl(VisibleProducts, CurrentFilter);
-            });
+                CurrentFilter = new FilterProductViewModel(CurrentFilter, true);
+                CurrentFilter.FilterClickedEvent += new EventHandler((o, e) =>
+                {
+                    VisibleProducts = FilterByCategory(_products);
+                    VisibleProducts = FilterByFilterControl(VisibleProducts, CurrentFilter);
+                });
+            }
         }
-        public void ReloadPoint()
+        public void ResetData()
         {
             _pointToMoney = -1;
             _maxPoint = -1;
+            _currentCategory = _currentRootCategory = null;
+            Clear(CurrentCustomer);
+            Clear(ProductsInBill);
         }
         //private void SearchRootCategory()
         //{
@@ -491,7 +498,7 @@ namespace ComputerProject.SaleWorkSpace
             }
             else
             {
-                throw new ArgumentNullException();
+                throw new ArgumentException();
             }
         }
         private void OpenPaymentView(IDictionary<Product, int> productsInBill, CUSTOMER currentCustomer)

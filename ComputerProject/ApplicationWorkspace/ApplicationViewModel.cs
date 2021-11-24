@@ -47,11 +47,24 @@ namespace ComputerProject.ApplicationWorkspace
             {
                 if (value != _currentViewModel)
                 {
+                    if (value != null)
+                    {
+                        RequestChangeTab?.Invoke(this, value.ViewName);
+                    }
+                    else RequestChangeTab?.Invoke(this, null);
+
                     _currentViewModel = value;
                     OnPropertyChanged();
+
+                    _currentViewModel.LoadData();
                 }
             }
         }
+
+        /// <summary>
+        /// Event occurs before tab change
+        /// </summary>
+        public event EventHandler<string> RequestChangeTab;
 
         public ApplicationViewModel()
         {

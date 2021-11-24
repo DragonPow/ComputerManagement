@@ -41,5 +41,10 @@ namespace ComputerProject.CustomerWorkspace
                 DataContext = vm;
             }
         }
+
+        public void LoadData()
+        {
+
+        }
     }
 }

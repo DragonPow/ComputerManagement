@@ -31,5 +31,10 @@ namespace ComputerProject.CategoryWorkspace
         {
             OnPropertyChanged(nameof(CurrentPage));
         }
+
+        public void LoadData()
+        {
+
+        }
     }
 }
