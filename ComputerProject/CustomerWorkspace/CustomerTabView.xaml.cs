@@ -46,5 +46,9 @@ namespace ComputerProject.CustomerWorkspace
         {
 
         }
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
     }
 }

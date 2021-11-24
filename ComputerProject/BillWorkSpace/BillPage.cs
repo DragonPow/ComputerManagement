@@ -36,5 +36,10 @@ namespace ComputerProject.BillWorkSpace
         {
 
         }
+
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
     }
 }

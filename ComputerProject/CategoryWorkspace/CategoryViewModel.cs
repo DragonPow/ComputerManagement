@@ -36,5 +36,9 @@ namespace ComputerProject.CategoryWorkspace
         {
 
         }
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
     }
 }

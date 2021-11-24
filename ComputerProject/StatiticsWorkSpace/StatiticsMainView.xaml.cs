@@ -75,6 +75,11 @@ namespace ComputerProject.StatiticsWorkSpace
         {
 
         }
+
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
     }
 }
  

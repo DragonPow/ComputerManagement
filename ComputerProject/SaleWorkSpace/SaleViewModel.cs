@@ -418,6 +418,11 @@ namespace ComputerProject.SaleWorkSpace
             Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
             Task.Run(LoadFilterControl);
         }
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
+
         private void LoadCategoryControl()
         {
             //Load data

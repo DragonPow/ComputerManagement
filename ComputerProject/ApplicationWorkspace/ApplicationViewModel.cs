@@ -47,11 +47,7 @@ namespace ComputerProject.ApplicationWorkspace
             {
                 if (value != _currentViewModel)
                 {
-                    if (value != null)
-                    {
-                        RequestChangeTab?.Invoke(this, value.ViewName);
-                    }
-                    else RequestChangeTab?.Invoke(this, null);
+                    if (_currentViewModel != null && !_currentViewModel.AllowChangeTab()) return;
 
                     _currentViewModel = value;
                     OnPropertyChanged();

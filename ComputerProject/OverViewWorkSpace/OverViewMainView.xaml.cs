@@ -37,5 +37,9 @@ namespace ComputerProject.OverViewWorkSpace
         {
 
         }
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
     }
 }
