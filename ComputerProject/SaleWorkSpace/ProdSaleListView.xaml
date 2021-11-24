@@ -18,13 +18,29 @@
         </ListView.ItemsPanel>
         <ListView.ItemTemplate>
             <DataTemplate>
-                <local:ProdSaleItem >
+                <local:ProdSaleItem>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
                             <i:InvokeCommandAction Command="{Binding DataContext.AddProductInBillCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
                                    CommandParameter="{Binding .}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
+                    <UserControl.Style>
+                        <Style TargetType="UserControl">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsOutOfStock}"
+                                     Value="True">
+                                    <Setter Property="IsEnabled"
+                                    Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsOutOfStock}"
+                                     Value="False">
+                                    <Setter Property="IsEnabled"
+                                    Value="True" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </UserControl.Style>
                 </local:ProdSaleItem>
             </DataTemplate>
         </ListView.ItemTemplate>

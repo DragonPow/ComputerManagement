@@ -11,7 +11,7 @@
              Height="210"
              Width="200"
              d:DataContext="{d:DesignInstance Type={x:Type model:Product}}">
-   
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="135"></RowDefinition>
@@ -22,7 +22,7 @@
                Stretch="UniformToFill"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
-               Margin="7"
+               Margin="8"
                  Source="{Binding Image, IsAsync=True, FallbackValue={StaticResource DefaultImage}, TargetNullValue={StaticResource DefaultImage}}" >
         </Image>
         <Border Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Background="Black" Width="68" Height="68" CornerRadius="200" Opacity="0.7">
