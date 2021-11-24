@@ -43,7 +43,7 @@ namespace ComputerProject.SaleWorkSpace
         ICommand _paymentCommand;
         ICommand _addProductInBillCommand;
         ICommand _removeProductInBillCommand;
-        ICommand _filterProductsCommand;
+        //ICommand _filterProductsCommand;
         ICommand _sortProductsCommand;
         ICommand _addCustomerCommand;
         ICommand _searchProductCommand;
@@ -106,19 +106,20 @@ namespace ComputerProject.SaleWorkSpace
                 if (null == _productsInBill)
                 {
                     _productsInBill = new ObservableConcurrentDictionary<Product, int>();
-                    var products = (ObservableConcurrentDictionary<Product, int>)_productsInBill;
+                    var dicProduct = (ObservableConcurrentDictionary<Product, int>)_productsInBill;
 
-                    void setOutOfStock(KeyValuePair<Product,int> dicProduct)
+                    void setOutOfStock(Product product)
                     {
-                        var product = dicProduct.Key;
-                        product.IsOutOfStock = (product.Quantity - dicProduct.Value) == 0;
+                        int quantityInBill = dicProduct.ContainsKey(product) ? dicProduct[product] : 0;
+                        product.IsOutOfStock = (product.Quantity - quantityInBill) == 0;
                     }
 
-                    products.PropertyChanged += (s, e) =>
+                    dicProduct.PropertyChanged += (s, e) =>
                       {
-                          foreach (var dicProduct in products)
+                          if (_products != null)
+                          foreach (var product in _products)
                           {
-                              setOutOfStock(dicProduct);
+                              setOutOfStock(product);
                           }
                       };
                 }
