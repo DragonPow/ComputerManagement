@@ -100,7 +100,11 @@
                                         <Setter  TargetName="Bd"
                                     Property="BorderBrush" Value="{StaticResource MainColor}" />
                                         <Setter  TargetName="Bd"
-                                                   Property="Background" Value="#DBD7F4"/>
+                                                   Property="Background" Value="#F7F8FC"/>
+                                        <Setter TargetName="Bd" 
+                                                Property="BorderThickness" Value="2"/>
+                                        <Setter TargetName="Bd" 
+                                                Property="Margin" Value="7,4"/>
                                     </MultiTrigger.Setters>
                                     
                                 </MultiTrigger>
