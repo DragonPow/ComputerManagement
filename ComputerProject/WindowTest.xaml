@@ -14,11 +14,11 @@
         xmlns:statitic="clr-namespace:ComputerProject.StatiticsWorkSpace"
         xmlns:Setting="clr-namespace:ComputerProject.SettingWorkSpace"
         mc:Ignorable="d"
-        Title="WindowTest" Height="700" Width="1100"
+        Title="WindowTest" Height="750" Width="1200"
        
         d:DesignHeight="1000" d:DesignWidth="1100" WindowStartupLocation="CenterOwner">
 
     <Grid Background="{StaticResource Background}">
-        <Setting:SettingAllView/>
+        <insurance:InsuranceDetailView/>
     </Grid>
 </Window>

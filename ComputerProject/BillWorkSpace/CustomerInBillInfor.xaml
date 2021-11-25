@@ -11,9 +11,12 @@
              d:DesignHeight="600"
              d:DesignWidth="400"
              d:DataContext="{d:DesignInstance Type={x:Type local:CUSTOMER}}">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel x:Name="CusInfor">
-            <TextBlock Grid.Row="0"
+    <Border Background="White"
+                    CornerRadius="8"
+                    >
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="CusInfor">
+                <TextBlock Grid.Row="0"
                        Margin="20,20,20,10"
                        VerticalAlignment="Center"
                        FontFamily="{StaticResource Mulish}"
@@ -21,7 +24,7 @@
                        FontWeight="SemiBold"
                        Foreground="{StaticResource Title}"><Run Text="Thông tin cá nhân" /></TextBlock>
 
-            <localcustom:TextboxCustom x:Name="Name"
+                <localcustom:TextboxCustom x:Name="Name"
                                        Title="   Tên khách hàng"
                                        Grid.Row="1"
                                        Margin="20,10"
@@ -35,7 +38,7 @@
                                        IsReadOnly="True"
                                        Text="{Binding name, Mode=TwoWay}" />
 
-            <localcustom:TextboxCustom x:Name="Phone"
+                <localcustom:TextboxCustom x:Name="Phone"
                                        Title="   Số điện thoại"
                                        Grid.Row="2"
                                        Margin="20,10"
@@ -48,11 +51,11 @@
                                        KeyboardNavigation.TabIndex="0"
                                        Foreground="#11142D"
                                        Text="{Binding phone, Mode=TwoWay}" />
-            <StackPanel Grid.Row="3"
+                <StackPanel Grid.Row="3"
                         Grid.Column="0"
                         Margin="20,10"
                         VerticalAlignment="Top">
-                <TextBlock Margin="0,0,0,10"
+                    <TextBlock Margin="0,0,0,10"
                            VerticalAlignment="Top"
                            FontFamily="{StaticResource Mulish}"
                            FontSize="{x:Static localfont:Font.Body}"
@@ -60,13 +63,13 @@
                            Foreground="Black"
                            Text="   Ngày sinh" />
 
-                <Border VerticalAlignment="Center"
+                    <Border VerticalAlignment="Center"
                         Background="{StaticResource Background}"
                         BorderBrush="#DBD7F4"
                         BorderThickness="1"
                         CornerRadius="3"
                         Height="45">
-                    <DatePicker Height="49"
+                        <DatePicker Height="49"
                                 x:Name="Birthday"
                                 BorderBrush="#DBD7F4"
                                 Foreground="#11142D"
@@ -78,9 +81,9 @@
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 BorderThickness="2"
                                 SelectedDate="{Binding birthday, Mode=OneWay}" />
-                </Border>
-            </StackPanel>
-            <localcustom:TextboxCustom x:Name="Adress"
+                    </Border>
+                </StackPanel>
+                <localcustom:TextboxCustom x:Name="Adress"
                                        Title="   Địa chỉ"
                                        Grid.Row="4"
                                        Margin="20,10"
@@ -93,7 +96,7 @@
                                        Foreground="#11142D"
                                        IsReadOnly="True"
                                        Text="{Binding address, Mode=TwoWay}" />
-            <localcustom:TextboxCustom x:Name="Point"
+                <localcustom:TextboxCustom x:Name="Point"
                                        Title="   Điểm thưởng"
                                        Grid.Row="5"
                                        IsTabStop="False"
@@ -107,7 +110,8 @@
                                        IsReadOnly="True"
                                        Text="{Binding point, Mode=TwoWay}"
                                        Texthint="0" />
-        </StackPanel>
-    </ScrollViewer>
+            </StackPanel>
+        </ScrollViewer>
+    </Border>
 
 </UserControl>
