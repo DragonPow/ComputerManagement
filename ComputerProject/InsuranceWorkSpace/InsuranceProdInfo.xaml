@@ -9,22 +9,20 @@
              xmlns:Custom="clr-namespace:ComputerProject.CustomControl"
              mc:Ignorable="d" 
              d:DesignHeight="1100" d:DesignWidth="400">
-    <Border  Background="White" CornerRadius="8">
-        <ScrollViewer Margin="0,10">
-            <StackPanel  Margin="20,0">
-                <Grid Margin="0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
+    <StackPanel  Margin="20,0">
+        <Grid Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
                                    Text="Thông tin sản phẩm"
                                    VerticalAlignment="Center"
                                    FontSize="16"
                                    FontWeight="Bold"
                                    FontFamily="{StaticResource Mulish}"
                                    Foreground="{StaticResource Title}"></TextBlock>
-                    <Button x:Name="btnRenew"
+            <Button x:Name="btnRenew"
                                 Grid.Column="1"
                                 Width="auto"
                                 Height="auto"
@@ -33,14 +31,14 @@
                                 Style="{StaticResource MaterialDesignIconButton}"
                                 Background="{x:Null}"
                                 BorderBrush="{x:Null}">
-                        <materialDesign:PackIcon Kind="Autorenew"
+                <materialDesign:PackIcon Kind="Autorenew"
                                                      Width="18"
                                                      Height="18"
                                                      VerticalAlignment="Center"
                                                      Foreground="{StaticResource Icon}" />
-                    </Button>
-                </Grid>
-                <Custom:TextboxCustom x:Name="ProdSerial" 
+            </Button>
+        </Grid>
+        <Custom:TextboxCustom x:Name="ProdSerial" 
                                       Title="Số seri sản phẩm" 
                                       Text="LT12345671621" 
                                       TextWrapping="WrapWithOverflow" 
@@ -49,7 +47,7 @@
                                       CornerRadiusText="5" 
                                       FontFamily="{StaticResource Mulish}" 
                                       FontSize="{x:Static font:Font.Body}"></Custom:TextboxCustom>
-                <Custom:TextboxCustom x:Name="ProdName" 
+        <Custom:TextboxCustom x:Name="ProdName" 
                                       Title="Tên sản phẩm" 
                                       TextWrapping="WrapWithOverflow" 
                                       Text="Laptop HP 15s-fq2602TU" 
@@ -58,7 +56,7 @@
                                       CornerRadiusText="5" 
                                       FontFamily="{StaticResource Mulish}" 
                                       FontSize="{x:Static font:Font.Body}"></Custom:TextboxCustom>
-                <Custom:TextboxCustom x:Name="IDSaleBill" 
+        <Custom:TextboxCustom x:Name="IDSaleBill" 
                                       Title="Mã hóa đơn mua hàng" 
                                       Text="Laptop HP 15s-fq2602TU" 
                                       IsEnabled="False" 
@@ -67,7 +65,7 @@
                                       CornerRadiusText="5" 
                                       FontFamily="{StaticResource Mulish}" 
                                       FontSize="{x:Static font:Font.Body}"></Custom:TextboxCustom>
-                <Custom:TextboxCustom x:Name="InsuranceExpiryDate" 
+        <Custom:TextboxCustom x:Name="InsuranceExpiryDate" 
                                       Title="Hạn bảo hành" 
                                       Text="Laptop HP 15s-fq2602TU" 
                                       IsEnabled="False" 
@@ -76,7 +74,7 @@
                                       CornerRadiusText="5" 
                                       FontFamily="{StaticResource Mulish}" 
                                       FontSize="{x:Static font:Font.Body}"></Custom:TextboxCustom>
-                <Custom:TextboxCustom x:Name="AccessoriesIncluded"
+        <Custom:TextboxCustom x:Name="AccessoriesIncluded"
                                       Title="Phụ kiện đính kèm" 
                                       Text="Laptop HP 15s-fq2602TU" 
                                       TextWrapping="WrapWithOverflow" 
@@ -84,7 +82,5 @@
                                       CornerRadiusText="5"  
                                       FontFamily="{StaticResource Mulish}" 
                                       FontSize="{x:Static font:Font.Body}"></Custom:TextboxCustom>
-            </StackPanel>
-        </ScrollViewer>
-    </Border>
+    </StackPanel>
 </UserControl>

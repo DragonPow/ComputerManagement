@@ -336,9 +336,6 @@
     <Compile Include="InsuranceWorkSpace\BillPayMoneyView.xaml.cs">
       <DependentUpon>BillPayMoneyView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InsuranceWorkSpace\InsuCustomerInfo.xaml.cs">
-      <DependentUpon>InsuCustomerInfo.xaml</DependentUpon>
-    </Compile>
     <Compile Include="InsuranceWorkSpace\InsurancEditView.xaml.cs">
       <DependentUpon>InsurancEditView.xaml</DependentUpon>
     </Compile>
@@ -605,10 +602,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InsuranceWorkSpace\BillPayMoneyView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="InsuranceWorkSpace\InsuCustomerInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
