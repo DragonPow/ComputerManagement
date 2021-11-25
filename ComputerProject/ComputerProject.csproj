@@ -330,17 +330,23 @@
     <Compile Include="Helper\ViewModel\BusyViewModel.cs" />
     <Compile Include="Helper\ViewModel\PagingViewModel.cs" />
     <Compile Include="Helper\Interface\ISearchable.cs" />
+    <Compile Include="InsuranceWorkSpace\AddInsuView.xaml.cs">
+      <DependentUpon>AddInsuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InsuranceWorkSpace\BillPayMoneyView.xaml.cs">
       <DependentUpon>BillPayMoneyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceWorkSpace\InsuCustomerInfo.xaml.cs">
+      <DependentUpon>InsuCustomerInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceWorkSpace\InsurancEditView.xaml.cs">
+      <DependentUpon>InsurancEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="InsuranceWorkSpace\InsuranceInfor.xaml.cs">
       <DependentUpon>InsuranceInfor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InsuranceWorkSpace\InsurancePayBillItem.xaml.cs">
-      <DependentUpon>InsurancePayBillItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="InsuranceWorkSpace\InsuranceProdView.xaml.cs">
-      <DependentUpon>InsuranceProdView.xaml</DependentUpon>
+    <Compile Include="InsuranceWorkSpace\InsuranceProdInfo.xaml.cs">
+      <DependentUpon>InsuranceProdInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Bill.cs" />
     <Compile Include="InsuranceWorkSpace\InsuranceBillView.xaml.cs">
@@ -348,9 +354,6 @@
     </Compile>
     <Compile Include="InsuranceWorkSpace\InsuranceDetailView.xaml.cs">
       <DependentUpon>InsuranceDetailView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="InsuranceWorkSpace\InsuranceItemInBill.xaml.cs">
-      <DependentUpon>InsuranceItemInBill.xaml</DependentUpon>
     </Compile>
     <Compile Include="InsuranceWorkSpace\WarrantyCard.xaml.cs">
       <DependentUpon>WarrantyCard.xaml</DependentUpon>
@@ -597,7 +600,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InsuranceWorkSpace\AddInsuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InsuranceWorkSpace\BillPayMoneyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\InsuCustomerInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -613,6 +624,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InsuranceWorkSpace\InsurancEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InsuranceWorkSpace\InsuranceInfor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -621,19 +636,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InsuranceWorkSpace\InsuranceItemInBill.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="InsuranceWorkSpace\InsuranceListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InsuranceWorkSpace\InsurancePayBillItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="InsuranceWorkSpace\InsuranceProdView.xaml">
+    <Page Include="InsuranceWorkSpace\InsuranceProdInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

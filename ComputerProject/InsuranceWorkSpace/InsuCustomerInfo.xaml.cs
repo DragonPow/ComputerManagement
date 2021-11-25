@@ -16,18 +16,11 @@ using System.Windows.Shapes;
 namespace ComputerProject.InsuranceWorkSpace
 {
     /// <summary>
-    /// Interaction logic for InsurancePayBillItem.xaml
+    /// Interaction logic for InsuCustomerInfo.xaml
     /// </summary>
-    public partial class InsurancePayBillItem : UserControl
+    public partial class InsuCustomerInfo : UserControl
     {
-        public static DependencyProperty NumberProperties = DependencyProperty.Register(nameof(number), typeof(string), typeof(InsurancePayBillItem), new PropertyMetadata("0"));
-
-        public string number
-        {
-            get { return (string)GetValue(NumberProperties); }
-            set { SetValue(NumberProperties, value); }
-        }
-        public InsurancePayBillItem()
+        public InsuCustomerInfo()
         {
             InitializeComponent();
         }

@@ -11,7 +11,7 @@
              d:DesignHeight="1100" d:DesignWidth="400">
     <Border  Background="White" CornerRadius="8">
         <ScrollViewer Margin="0,10">
-            <StackPanel  Margin="20,10">
+            <StackPanel  Margin="20,0">
                 <Grid Margin="0,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -40,44 +40,8 @@
                                                      Foreground="{StaticResource Icon}" />
                     </Button>
                 </Grid>
-                <Custom:TextboxCustom x:Name="ProdSerial" 
-                                      Title="Số seri sản phẩm" 
-                                      Text="LT12345671621" 
-                                      TextWrapping="WrapWithOverflow" 
-                                      MarginText="10" 
-                                      Margin="0,5" 
-                                      CornerRadiusText="5" 
-                                      FontFamily="{StaticResource Mulish}" 
-                                      FontSize="{x:Static font:Font.Body}"></Custom:TextboxCustom>
-                <Custom:TextboxCustom x:Name="ProdName" 
-                                      Title="Tên sản phẩm" 
-                                      TextWrapping="WrapWithOverflow" 
-                                      Text="Laptop HP 15s-fq2602TU" 
-                                      MarginText="10" 
-                                      Margin="0,5" 
-                                      CornerRadiusText="5" 
-                                      FontFamily="{StaticResource Mulish}" 
-                                      FontSize="{x:Static font:Font.Body}"></Custom:TextboxCustom>
-                <Custom:TextboxCustom x:Name="IDSaleBill" 
-                                      Title="Mã hóa đơn mua hàng" 
-                                      Text="Laptop HP 15s-fq2602TU" 
-                                      IsEnabled="False" 
-                                      TextWrapping="WrapWithOverflow" 
-                                      MarginText="10" Margin="0,5" 
-                                      CornerRadiusText="5" 
-                                      FontFamily="{StaticResource Mulish}" 
-                                      FontSize="{x:Static font:Font.Body}"></Custom:TextboxCustom>
-                <Custom:TextboxCustom x:Name="InsuranceExpiryDate" 
-                                      Title="Hạn bảo hành" 
-                                      Text="Laptop HP 15s-fq2602TU" 
-                                      IsEnabled="False" 
-                                      TextWrapping="WrapWithOverflow" 
-                                      MarginText="10" Margin="0,5" 
-                                      CornerRadiusText="5" 
-                                      FontFamily="{StaticResource Mulish}" 
-                                      FontSize="{x:Static font:Font.Body}"></Custom:TextboxCustom>
                 <StackPanel
-                            Margin="0,10"
+                            Margin="0,5"
                             VerticalAlignment="Center">
                     <TextBlock
                                 Margin="0,0,0,10"
@@ -109,7 +73,7 @@
                     </Border>
                 </StackPanel>
                 <StackPanel
-                           Margin="0,10"
+                           Margin="0,5"
                             VerticalAlignment="Center">
                     <TextBlock
                                 Margin="0,0,0,10"
@@ -145,7 +109,7 @@
                                 FontWeight="SemiBold"
                                 FontSize="{x:Static font:Font.Body}"
                                 FontFamily="{StaticResource Mulish}"
-                                Text="Tình trạng"
+                                Text="Tình trạng sửa chữa"
                                 Foreground="Black"                   
                                 Margin="0, 0, 0, 10"
                                 VerticalAlignment="Top">
@@ -162,17 +126,8 @@
                                     ItemsSource="{Binding ShortStringList}" />
                     </Border>
                 </StackPanel>
-                <Custom:TextboxCustom x:Name="AccessoriesIncluded"
-                                      Title="Phụ kiện đính kèm" 
-                                      Text="Laptop HP 15s-fq2602TU" 
-                                      TextWrapping="WrapWithOverflow" 
-                                      MarginText="10" Margin="0,5" 
-                                      CornerRadiusText="5"  
-                                      FontFamily="{StaticResource Mulish}" 
-                                      FontSize="{x:Static font:Font.Body}"></Custom:TextboxCustom>
                 <Custom:TextboxCustom x:Name="DescStatus" 
                                       Text="" 
-                                      MinHeight="100"
                                       Title="Mô tả tình trạng máy"  
                                       MarginText="10" Margin="0,5" 
                                       TextWrapping="WrapWithOverflow" 
@@ -181,7 +136,14 @@
                                       FontSize="{x:Static font:Font.Body}"></Custom:TextboxCustom>
                 <Custom:TextboxCustom x:Name="DescError" 
                                       Text="" Title="Mô tả lỗi"  
-                                      MinHeight="100"
+                                      MarginText="10" Margin="0,5" 
+                                      CornerRadiusText="5" 
+                                      TextWrapping="WrapWithOverflow" 
+                                      FontFamily="{StaticResource Mulish}" 
+                                      FontSize="{x:Static font:Font.Body}"></Custom:TextboxCustom>
+                <Custom:TextboxCustom x:Name="DescInsurance" 
+                                      Text="" Title="Chi tiết sửa chữa, bảo hành"  
+                                      MinHeight="80"
                                       MarginText="10" Margin="0,5" 
                                       CornerRadiusText="5" 
                                       TextWrapping="WrapWithOverflow" 
