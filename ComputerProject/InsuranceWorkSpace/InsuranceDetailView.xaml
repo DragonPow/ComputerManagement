@@ -7,9 +7,10 @@
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:Custom="clr-namespace:ComputerProject.CustomControl"
              xmlns:Sale="clr-namespace:ComputerProject.SaleWorkSpace"
+             xmlns:Bill="clr-namespace:ComputerProject.BillWorkSpace"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="1300">
+             d:DesignHeight="700" d:DesignWidth="1300">
     <Grid Background="{StaticResource Background}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -17,28 +18,59 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="20,10">
-            <Button x:Name="btnBack" Style="{StaticResource MaterialDesignIconButton}" Width="40" Height="40" Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
+            <Button x:Name="btnBack"
+                    Style="{StaticResource MaterialDesignIconButton}" 
+                    Width="40" 
+                    Height="40" 
+                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
                 <materialDesign:PackIcon Kind="ArrowLeft" Foreground="{StaticResource Title}" />
             </Button>
-            <TextBlock x:Name="txtTitleView" Text="Chi tiết hóa đơn" Foreground="{StaticResource Title}" FontSize="{x:Static font:Font.TitleView}" VerticalAlignment="Center" FontWeight="DemiBold" Margin="20,0"></TextBlock>
+            <TextBlock x:Name="txtTitleView" 
+                       Text="Chi tiết bảo hành, sửa chữa" 
+                       Foreground="{StaticResource Title}" 
+                       FontSize="{x:Static font:Font.TitleView}" 
+                       VerticalAlignment="Center"
+                       FontWeight="DemiBold" 
+                       Margin="20,0"></TextBlock>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="380"/>
                 <ColumnDefinition Width="1.7*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Sale:CustomerSaleView x:Name="CustomerSearch" Margin="20,0"/>
-            <local:InsuranceInfor x:Name="InsuranceInfor" Grid.Row="1"/>
-            <local:InsuranceProdView Grid.Column="1" Grid.RowSpan="2"/>
+            <Bill:CustomerInBillInfor x:Name="CustomerInfo" 
+                                      Margin="20,0"
+                                      Grid.RowSpan="2" 
+                                      Grid.Column="0"
+                                      Grid.Row="0"
+                                      Grid.ColumnSpan="1" />
+            <local:InsuranceInfor x:Name="InsuranceInfor" Grid.Column="1" />
+            <local:BillPayMoneyView  Grid.Column="1" 
+                                     Grid.Row="2" 
+                                     Margin="0,10,0,0"/>
 
         </Grid>
         <StackPanel Grid.Row="2"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="20">
-            <Button x:Name="btnDelete" Style="{StaticResource MaterialDesignOutlinedButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{StaticResource Warning}" Margin="20,0"  Foreground="{StaticResource Warning}" Width="100" Height="35" Content="Xóa" Padding="30,0"></Button>
-            <Button x:Name="btnPrint" Background="{StaticResource MainColor}"   Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="5" Height="35" Padding="30,0" Content='Chỉnh sửa' Foreground="White"> </Button>
+            <Button x:Name="btnDelete" 
+                    Style="{StaticResource MaterialDesignOutlinedButton}" 
+                    materialDesign:ButtonAssist.CornerRadius="5" 
+                    BorderBrush="{StaticResource Warning}" Margin="20,0"  
+                    Foreground="{StaticResource Warning}" 
+                    Width="100" Height="35" 
+                    Content="Xóa" 
+                    Padding="30,0"></Button>
+            <Button x:Name="btnPrint" 
+                    Background="{StaticResource MainColor}"   
+                    Style="{StaticResource MaterialDesignRaisedButton}" 
+                    materialDesign:ButtonAssist.CornerRadius="5" 
+                    Height="35" 
+                    Padding="30,0" 
+                    Content='Chỉnh sửa' 
+                    Foreground="White"> </Button>
 
         </StackPanel>
     </Grid>

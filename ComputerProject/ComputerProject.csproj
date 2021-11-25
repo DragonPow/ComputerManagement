@@ -330,6 +330,9 @@
     <Compile Include="Helper\ViewModel\BusyViewModel.cs" />
     <Compile Include="Helper\ViewModel\PagingViewModel.cs" />
     <Compile Include="Helper\Interface\ISearchable.cs" />
+    <Compile Include="InsuranceWorkSpace\BillPayMoneyView.xaml.cs">
+      <DependentUpon>BillPayMoneyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InsuranceWorkSpace\InsuranceInfor.xaml.cs">
       <DependentUpon>InsuranceInfor.xaml</DependentUpon>
     </Compile>
@@ -591,6 +594,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerWorkspace\CustomerTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\BillPayMoneyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

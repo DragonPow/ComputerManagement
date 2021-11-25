@@ -48,11 +48,8 @@
                 <ColumnDefinition Width="380" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <Border Background="White"
-                    CornerRadius="8"
-                    Margin="20,0">
-                <local:CustomerInBillInfor DataContext="{Binding CurrentBill.Customer}" />
-            </Border>
+
+            <local:CustomerInBillInfor DataContext="{Binding CurrentBill.Customer}" Margin="20,0" />
             <customcontrol:BusyView Visibility="{Binding BusyService.BusyVisibility, TargetNullValue=Hidden}"
                                     Grid.Column="0"
                                     Margin="20,0" />

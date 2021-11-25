@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ComputerProject.InsuranceWorkSpace
 {
     /// <summary>
-    /// Interaction logic for InsuranceProdView.xaml
+    /// Interaction logic for InsuranceProdInfo.xaml
     /// </summary>
-    public partial class InsuranceProdView : UserControl
+    public partial class InsuranceProdInfo : UserControl
     {
-        public InsuranceProdView()
+        public InsuranceProdInfo()
         {
             InitializeComponent();
         }

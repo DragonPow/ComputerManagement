@@ -11,7 +11,7 @@
              d:DesignHeight="700" d:DesignWidth="1300">
     <Grid Background="{StaticResource Background}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="410"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Border BorderThickness="0,0,1,0" BorderBrush="{StaticResource Icon}">
@@ -28,10 +28,10 @@
                         <ImageBrush ImageSource="/ComputerProject;component/Resource/Image/background.png"/>
                     </Grid.Background>
                     <TextBlock x:Name="StoreName" Text="{Binding StoreName}" Grid.ColumnSpan="2" Foreground="White" Margin="20,20,20,10" FontSize="30" FontFamily="{StaticResource Mulish}" FontWeight="DemiBold"/>
-                    <StackPanel Grid.Row="1" Margin="20,0" Orientation="Horizontal" >
-                        <TextBlock Text="Địa chỉ: " Foreground="White"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}"></TextBlock>
-                        <TextBlock x:Name="StoreAddress" Grid.Column="1" Text="{Binding StoreAddress}"  TextWrapping="WrapWithOverflow" Foreground="White"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Width="269"  />
-                    </StackPanel>
+                    <TextBlock Grid.Row="1" Margin="20,0" TextWrapping="WrapWithOverflow"  Foreground="White"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}">
+                        Địa chỉ: 
+                        <Run Text="{Binding StoreAddress}"  Foreground="White"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}"  />
+                    </TextBlock>
                     <StackPanel Grid.Row="2" Margin="20,5,0,10" Orientation="Horizontal" >
                         <TextBlock Text="Số điện thoại: " Foreground="White"   FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" ></TextBlock>
                         <TextBlock x:Name="StoreNumber" Text="{Binding StorePhone}"  TextWrapping="WrapWithOverflow" Foreground="White"  FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}"  />
