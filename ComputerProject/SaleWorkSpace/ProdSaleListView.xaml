@@ -45,7 +45,7 @@
             </DataTemplate>
         </ListView.ItemTemplate>
 
-        <ListView.Resources>
+        <!--<ListView.Resources>
             <ControlTemplate x:Key="SelectedTemplate"
                              TargetType="ListViewItem">
                 <Border BorderThickness="2"
@@ -67,7 +67,7 @@
                     <ContentPresenter />
                 </Border>
             </ControlTemplate>
-        </ListView.Resources>
+        </ListView.Resources>-->
 
         <ListView.ItemContainerStyle>
             <Style TargetType="ListViewItem">
@@ -75,8 +75,44 @@
                 <Setter Property="VerticalContentAlignment" Value="Stretch" />
                 <Setter Property="Padding"
                         Value="0" />
-                <Setter Property="Template" Value="{StaticResource DefaultTemplate}"/>
-                <Style.Triggers>
+                <Setter Property="Template" >
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListViewItem">
+                            <Border 
+                                    x:Name="Bd"
+                                    BorderThickness="1"
+                                    Background="White"
+                                    BorderBrush="{StaticResource Icon}"
+                                    CornerRadius="8"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="8,5">
+                                <ContentPresenter />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsSelected"
+                                       Value="true" />
+                                        <Condition Property="Selector.IsSelectionActive"
+                                       Value="true" />
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.Setters>
+                                        <Setter  TargetName="Bd"
+                                    Property="BorderBrush" Value="{StaticResource MainColor}" />
+                                        <Setter  TargetName="Bd"
+                                                   Property="Background" Value="#F7F8FC"/>
+                                        <Setter TargetName="Bd" 
+                                                Property="BorderThickness" Value="2"/>
+                                        <Setter TargetName="Bd" 
+                                                Property="Margin" Value="7,4"/>
+                                    </MultiTrigger.Setters>
+                                    
+                                </MultiTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <!--<Style.Triggers>
                     <MultiTrigger>
                         <MultiTrigger.Conditions>
                             <Condition Property="IsSelected"
@@ -84,14 +120,11 @@
                             <Condition Property="Selector.IsSelectionActive"
                                        Value="true" />
                         </MultiTrigger.Conditions>
-                        <Setter Property="Template"
-                                Value="{StaticResource SelectedTemplate}" />
+                        <Setter  TargetName="Bd"
+                                Property="BorderBrush" Value="{StaticResource MainColor}" />
                     </MultiTrigger>
-                    <DataTrigger Binding="{Binding Path=IsOutOfStock}" Value="True" >
-                        <Setter Property="Template"
-                                Value="{StaticResource DefaultTemplate}" />
-                    </DataTrigger>
-                </Style.Triggers>
+                   
+                </Style.Triggers>-->
             </Style>
         </ListView.ItemContainerStyle>
     </ListView>
