@@ -15,7 +15,6 @@
         VerticalAlignment="Stretch"
         Panel.ZIndex="15"
         Background="#10000000"
-        CornerRadius="4"
         IsHitTestVisible="True">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Control

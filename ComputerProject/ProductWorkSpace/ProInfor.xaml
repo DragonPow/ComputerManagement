@@ -114,6 +114,28 @@
                         SelectedItem="{Binding SelectedCategory_String}"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                 </StackPanel>
+                <StackPanel Margin="0,0,0,10">
+                    <TextBlock
+                        Margin="0,0,0,10"
+                        VerticalAlignment="Top"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        FontWeight="SemiBold"
+                        Foreground="Black"
+                        Text="   Trạng thái" />
+
+                    <ComboBox
+                        x:Name="Statte"
+                        Padding="15"
+                        Background="{StaticResource Background}"
+                        BorderBrush="#DBD7F4"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static localfont:Font.Body}"
+                        Foreground="Black"
+                        ItemsSource="{Binding CategoryList}"
+                        SelectedItem="{Binding SelectedCategory_String}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                </StackPanel>
 
                 <localcustom:TextboxCustom
                     x:Name="Quantity"
