@@ -14,12 +14,51 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Tổng hóa đơn"  Margin="10,5" FontWeight="Bold" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource MainColor}"/>
-            <TextBlock Grid.Row="1" Text="Tiền khách đưa"  Margin="10,0" Visibility="{Binding}" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" Foreground="{StaticResource Icon}"/>
-            <TextBlock Grid.Row="2" Text="Tiền thừa" Margin="10,5" Visibility="{Binding}" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" Foreground="{StaticResource Icon}"/>
-            <TextBlock x:Name="txtTotalBill" Text="16,474,000" Grid.Row="0" Margin="10,5" FontWeight="Bold" VerticalAlignment="Center" FontSize="18" HorizontalAlignment="Right" Foreground="{StaticResource MainColor}"/>
-            <TextBlock x:Name="txtReceiveMoney" Text="16,500,000" Visibility="{Binding}" Grid.Row="1" Margin="10,0"  FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" HorizontalAlignment="Right" Foreground="Black"/>
-            <TextBlock x:Name="txtExchangeMoney" Text="26,000" Visibility="{Binding}" Grid.Row="2" Margin="10,5" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" HorizontalAlignment="Right" Foreground="Black"/>
+            <TextBlock Grid.Row="0"
+                       Text="Tổng hóa đơn"  
+                       Margin="10,5"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center" 
+                       FontSize="16" 
+                       Foreground="{StaticResource MainColor}"/>
+            <TextBlock Grid.Row="1" 
+                       Text="Tiền khách đưa" 
+                       Margin="10,0"
+                       FontWeight="DemiBold" VerticalAlignment="Center"
+                       FontSize="{x:Static font:Font.Body}" 
+                       Foreground="{StaticResource Icon}"/>
+            <TextBlock Grid.Row="2" 
+                       Text="Tiền thừa"
+                       Margin="10,5" 
+                       FontWeight="DemiBold"
+                       VerticalAlignment="Center"
+                       FontSize="{x:Static font:Font.Body}"
+                       Foreground="{StaticResource Icon}"/>
+            <TextBlock x:Name="txtTotalBill" 
+                       Text="16,474,000"
+                       Grid.Row="0" Margin="10,5" 
+                       FontWeight="Bold"
+                       VerticalAlignment="Center" 
+                       FontSize="18"
+                       HorizontalAlignment="Right"
+                       Foreground="{StaticResource MainColor}"/>
+            <TextBlock x:Name="txtReceiveMoney" 
+                       Text="16,500,000" 
+                       Grid.Row="1" Margin="10,0" 
+                       FontWeight="DemiBold" 
+                       VerticalAlignment="Center" 
+                       FontSize="{x:Static font:Font.Body}" 
+                       HorizontalAlignment="Right"
+                       Foreground="Black"/>
+            <TextBlock x:Name="txtExchangeMoney"
+                       Text="26,000" 
+                       Grid.Row="2"
+                       Margin="10,5" 
+                       FontWeight="DemiBold" 
+                       VerticalAlignment="Center" 
+                       FontSize="{x:Static font:Font.Body}" 
+                       HorizontalAlignment="Right"
+                       Foreground="Black"/>
         </Grid>
     </Border>
    
