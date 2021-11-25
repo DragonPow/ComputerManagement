@@ -108,6 +108,16 @@
                                     </MultiTrigger.Setters>
                                     
                                 </MultiTrigger>
+                                <DataTrigger Binding="{Binding Path=IsOutOfStock}" Value="True" >
+                                    <Setter  TargetName="Bd"
+                                    Property="BorderBrush" Value="{StaticResource Icon}" />
+                                    <Setter  TargetName="Bd"
+                                                   Property="Background" Value="white"/>
+                                    <Setter TargetName="Bd" 
+                                                Property="BorderThickness" Value="1"/>
+                                    <Setter TargetName="Bd" 
+                                                Property="Margin" Value="8,5"/>
+                                </DataTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
