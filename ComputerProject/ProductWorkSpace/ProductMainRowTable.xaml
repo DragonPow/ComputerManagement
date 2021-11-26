@@ -19,9 +19,9 @@
             <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
             <Setter Property="FontSize" Value="{x:Static localfont:Font.Body}" />
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="Padding" Value="20,17"/>
+            <Setter Property="Padding" Value="15"/>
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -49,8 +49,6 @@
         <TextBlock
             x:Name="Quantity"
             Grid.Column="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
             Style="{StaticResource TitleCell}"
             Text="{Binding Quantity, Mode=OneWay, FallbackValue='10'}" />
         <TextBlock
@@ -61,15 +59,12 @@
         <TextBlock
             x:Name="State"
             Grid.Column="4"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
             Style="{StaticResource TitleCell}"
             Text="{Binding Status, Mode=OneWay, FallbackValue='Tình trạng'}" />
         <TextBlock
             x:Name="WarrantyYear"
             Grid.Column="5"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
             Style="{StaticResource TitleCell}"
             >
             <Run  Text="{Binding WarrantyYear_String, Mode=OneWay, FallbackValue='Bao hanh'}"/>
@@ -78,6 +73,8 @@
             x:Name="btnEdit"
             Grid.Column="6"
             Click="btnEdit_Click"
+            Height="40"
+            Width="40"
             Style="{StaticResource MaterialDesignIconButton}"
             ToolTip="Chỉnh sửa sản phẩm">
             <Image
@@ -88,7 +85,9 @@
         <Button
             x:Name="btnDelete"
             Grid.Column="7"
-            Margin="0,5"
+            Height="40"
+            Width="40"
+            Margin="0,5,10,5"
             Click="btnDelete_Click"
             Style="{StaticResource MaterialDesignIconButton}"
             ToolTip="Xóa sản phẩm">

@@ -18,6 +18,7 @@
             <Setter Property="Foreground" Value="#11142D" />
             <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="15,0"/>
         </Style>
     </UserControl.Resources>
     <Grid Height="50">

@@ -12,7 +12,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
-             d:DesignHeight="55"
+             d:DesignHeight="50"
              d:DesignWidth="1310"
              d:DataContext="{d:DesignInstance model:Category, IsDesignTimeCreatable=True}"
              Background="Transparent">
@@ -48,7 +48,7 @@
                    TextWrapping="Wrap"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Stretch"
-                   Padding="15,20,0,20"
+                   Padding="15,15,0,15"
                    Text="{Binding Name}">
 
         </TextBlock>
@@ -61,7 +61,7 @@
                    TextWrapping="Wrap"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Stretch"
-                   Padding="15,20,0,20"
+                   Padding="15,15,0,15"
                    Text="{Binding ChildCategories, Converter={StaticResource CategoryLv2Converter}}" />
         <Button Grid.Column="2"
                 x:Name="btnEdit"
