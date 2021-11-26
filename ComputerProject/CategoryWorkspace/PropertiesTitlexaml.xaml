@@ -27,7 +27,7 @@
                    Foreground="{StaticResource Title}"
                    Margin="20,3,0,0"
                    VerticalAlignment="Center">
-            Thuộc tính thông số
+            Thuộc tính thông số 
         </TextBlock>
         <Button x:Name="Btn_add"
                 Grid.Column="1"

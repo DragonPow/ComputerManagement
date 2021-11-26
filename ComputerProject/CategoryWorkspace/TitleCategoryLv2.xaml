@@ -28,7 +28,7 @@
                        FontFamily="{StaticResource Mulish}"
                        Foreground="{StaticResource Title}"
                        VerticalAlignment="Center"
-                       Text="Danh mục con" />
+                       Text="Danh mục cấp 2" />
             <Button x:Name="Btn_add"
                     Grid.Column="1"
                     HorizontalAlignment="Right"

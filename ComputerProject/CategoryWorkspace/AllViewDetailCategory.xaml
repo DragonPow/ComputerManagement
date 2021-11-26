@@ -42,10 +42,16 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <localcustom:TextboxCustom x:Name="NameCategory"
+                <StackPanel>
+                    <TextBlock Text="Danh mục cấp 1"
+                               Foreground="{StaticResource Title}"
+                               FontSize="{x:Static localfont:Font.SubTitle}"
+                               FontFamily="{StaticResource Mulish}"
+                               FontWeight="Medium"
+                               Margin="10"/>
+                    <localcustom:TextboxCustom x:Name="NameCategory"
                                            CornerRadiusText="3"
                                            Text="{Binding CurrentParentCategory.Name, FallbackValue='Tên'}"
                                            Title="Tên danh mục"
@@ -55,11 +61,13 @@
                                            IsTabStop="False"
                                            KeyboardNavigation.TabIndex="0"
                                            IsEnabled="{Binding IsEditMode}" />
-                <local:TitleCategoryLv2 x:Name="Btn_Add_Catelv2"
+                    <local:TitleCategoryLv2 x:Name="Btn_Add_Catelv2"
                                         Grid.Row="1"
                                         Margin="15,0"
                                         VerticalAlignment="Bottom"
                                         DataContext="{Binding .}" />
+                </StackPanel>
+               
                 <localcustom:BusyView Visibility="{Binding BusyService.BusyVisibility, FallbackValue=Hidden}"
                                       Grid.Row="2"
                                       Margin="5,0" />
@@ -124,39 +132,46 @@
                   Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
+
                     <RowDefinition Height="0.9*" />
                 </Grid.RowDefinitions>
-
-                <localcustom:TextboxCustom x:Name="NameCategoryLv2"
+                <StackPanel>
+                    <TextBlock Text="Danh mục cấp 2"
+                               Foreground="{StaticResource Title}"
+                               FontSize="{x:Static localfont:Font.SubTitle}"
+                               FontFamily="{StaticResource Mulish}"
+                               FontWeight="Medium"
+                               Margin="15,10"/>
+                    <localcustom:TextboxCustom x:Name="NameCategoryLv2"
                                            HorizontalAlignment="Left"
                                            Width="300"
                                            CornerRadiusText="3"
                                            Text="{Binding CurrentChildCategory.Name, UpdateSourceTrigger=PropertyChanged}"
-                                           Title="Tên danh mục con"
+                                           Title="Tên danh mục cấp 2"
                                            FontSize="{x:Static localfont:Font.Body}"
                                            Margin="15"
                                            MarginText="3"
                                            IsTabStop="False"
                                            KeyboardNavigation.TabIndex="0"
                                            IsEnabled="{Binding IsEditMode}">
-                </localcustom:TextboxCustom>
-                <local:PropertiesTitlexaml Grid.Row="1"
+                    </localcustom:TextboxCustom>
+                    <local:PropertiesTitlexaml Grid.Row="1"
                                            x:Name="BtnAddSpeci"
                                            VerticalAlignment="Center"
                                            d:LayoutOverrides="LeftMargin, RightMargin"
                                            DataContext="{Binding .}"
                                            Margin="0,0, 0, 5" />
-                <!--<localcustom:Search Grid.Row="1"
+                    <!--<localcustom:Search Grid.Row="1"
                                 HorizontalAlignment="Left"
                                 Margin="20, 0, 0, 20"
                                 x:Name="Search"
                                 Width="500"
                                 Texthint="Tìm theo danh mục"/>-->
 
-                <local:TittlePropertiesTable Grid.Row="2"
+                    <local:TittlePropertiesTable Grid.Row="2"
                                              Margin="5,0" />
+                </StackPanel>
+               
 
                 <localcustom:BusyView Visibility="{Binding BusyService.BusyVisibility, FallbackValue=Hidden}"
                                       Grid.Row="3"

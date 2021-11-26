@@ -109,7 +109,7 @@
                                          materialDesign:HintAssist.Hint="{TemplateBinding Texthint}"
                                          materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                          BorderThickness="0"
-                                         Foreground="#545454"
+                                         Foreground="#11142D"
                                          TabIndex="{Binding Path=TabIndex, RelativeSource={RelativeSource AncestorType={x:Type local:TextboxCustom}}}"
                                          Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
