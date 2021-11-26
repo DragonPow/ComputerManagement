@@ -81,7 +81,11 @@ namespace ComputerProject.OverViewWorkSpace
 
         static string FormatLable(double value)
         {
-            if (value >= 100000) return (value / 1000000).ToString() + "tr";
+            if (value >= 100000)
+            {
+                return (value / 1000000).ToString() + "triệu";
+            }
+
             if (value >= 100000000) return (value / 1000000000).ToString() + "tỉ";
             return null;
         }
