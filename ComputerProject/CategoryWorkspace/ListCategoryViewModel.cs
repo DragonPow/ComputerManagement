@@ -5,6 +5,7 @@ using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -92,7 +93,10 @@ namespace ComputerProject.CategoryWorkspace
                         var rs = MessageBoxCustom.ShowDialog("Chắc chắn xóa danh mục này hay không?", "Thông báo", PackIconKind.QuestionAnswer);
                         if (rs == MessageBoxResultCustom.Yes)
                         {
-                            Delete((Model.Category)category);
+                            var c = category as Model.Category;
+
+                            DeleteAsync(c);
+
                             MessageBoxCustom.ShowDialog("Xóa thành công", "Thông báo", PackIconKind.DoneOutline);
                         }
                     });
@@ -142,50 +146,87 @@ namespace ComputerProject.CategoryWorkspace
             else newPage.IsEditMode = isEditMode;
 
             newPage.LoadAsyncData(parentCategory);
-            newPage.DetailCategoryChangedEventHandler += OnDetailCategoryChanged;
-            newPage.DeleteCategoryChangedEventHandler += OnDeleteCategoryChanged;
+            newPage.CategoryChangedEventHandler += OnDetailCategoryChanged;
+            //newPage.DeleteCategoryChangedEventHandler += OnDeleteCategoryChanged;
 
             //Set navigator
-            if (_navigator != null) _navigator.Back = () => _navigator?.NavigateTo(this);
-            _navigator?.NavigateTo(newPage);
+            if (_navigator != null) _navigator.Back = () => _navigator.NavigateTo(this);
+            _navigator.NavigateTo(newPage);
         }
 
-        private void OnDeleteCategoryChanged(object sender, Model.Category e)
+        //private void OnDeleteCategoryChanged(object sender, CategoryChangedEventArg e)
+        //{
+        //    //if (ContainRootCategory(e.Name))
+        //    //{
+        //    //    var category = CurrentCategories.Where(i => i.Name == e.Name).First();
+        //    //    CurrentCategories.Remove(category);
+        //    //}
+        //    Delete(e);
+        //}
+
+        private void OnDetailCategoryChanged(object sender, CategoryChangedEventArg e)
         {
-            //if (ContainRootCategory(e.Name))
+            //if (!ContainRootCategory(e.Name))
             //{
-            //    var category = CurrentCategories.Where(i => i.Name == e.Name).First();
-            //    CurrentCategories.Remove(category);
+            //    CurrentCategories.Add(e);
+            //    //VisibleCategories = CurrentCategories;
             //}
-            Delete(e);
-        }
-
-        private void OnDetailCategoryChanged(object sender, Model.Category e)
-        {
-            if (!ContainRootCategory(e.Name))
+            switch (e.State)
             {
-                CurrentCategories.Add(e);
-                //VisibleCategories = CurrentCategories;
+                case EntityState.Modified:
+                    {
+                        if (CurrentCategories.Contains(e.Category))
+                        {
+                            //Modified
+                        }
+                        else
+                        {
+                            //Add new category
+                            CurrentCategories.Add(e.Category);
+                        }
+                        break;
+                    }
+                case EntityState.Deleted:
+                    {
+                        DeleteAsync(e.Category);
+                        break;
+                    }
+                case EntityState.Unchanged:
+                    {
+                        ReloadCategoryAsync(e.Category.Id);
+                        break;
+                    }
+                default: throw new ArgumentOutOfRangeException();
             }
         }
 
         private bool ContainRootCategory(string name)
         {
-            return CurrentCategories.Any(i=>i.Name == name);
+            return CurrentCategories.Any(i => i.Name == name);
         }
 
-        private void Delete(Model.Category category)
+        private void DeleteAsync(Model.Category category)
         {
             CurrentCategories.Remove(category);
             VisibleCategories = CurrentCategories;
-            //Task.Run(() => _repository.Delete(category.Id));
+            BusyService.DoBusyTask(() => _repository.Delete(category.Id));
+        }
+
+        private void ReloadCategoryAsync(int id)
+        {
+            var category = CurrentCategories.First(i => i.Id == id);
+            BusyService.DoBusyTask(() =>
+            {
+                category = new Model.Category(_repository.LoadDetailCategory(id));
+            });
         }
 
         private void SearchCategory(string name)
         {
             string name_converted = FormatHelper.ConvertTo_TiengDongLao(name).ToLower().Trim();
-            VisibleCategories =  new ObservableCollection<Model.Category>(CurrentCategories.Where(c => FormatHelper.ConvertTo_TiengDongLao(c.Name).ToLower().Trim().Contains(name_converted)));
-            //OnPropertyChanged(nameof(VisibleCategories));
+            VisibleCategories = new ObservableCollection<Model.Category>(
+                CurrentCategories.Where(c => FormatHelper.ConvertTo_TiengDongLao(c.Name).ToLower().Trim().Contains(name_converted))
+                );
         }
     }
 }

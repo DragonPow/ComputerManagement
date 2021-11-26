@@ -43,6 +43,27 @@ namespace ComputerProject.Repository
             return list;
         }
 
+        public CATEGORY LoadDetailCategory(int id, bool isloadSpecifications = false)
+        {
+            CATEGORY category = null;
+            using (var _context = new ComputerManagementEntities())
+            {
+                IQueryable<CATEGORY> query = _context.CATEGORies.AsNoTracking();
+
+                if (isloadSpecifications)
+                {
+                    query = query.Include(i => i.CATEGORY11.Select(c => c.SPECIFICATION_TYPE));
+                }
+                else
+                {
+                    query = query.Include(i => i.CATEGORY11);
+                }
+
+                category = query.Where(i => i.id == id).First();
+            }
+
+            return category;
+        }
         public ObservableCollection<Model.Category> LoadChildCategories(int rootId)
         {
             var list = new ObservableCollection<Model.Category>();
