@@ -64,6 +64,7 @@ namespace ComputerProject.Repository
 
             return category;
         }
+
         public ObservableCollection<Model.Category> LoadChildCategories(int rootId)
         {
             var list = new ObservableCollection<Model.Category>();
@@ -106,121 +107,210 @@ namespace ComputerProject.Repository
             }
         }
 
-        public void Save(Model.Category category)
+        public bool CanDelete(int categoryid)
         {
-            //CATEGORY c = category.CastToModel();
-            using (var _context = new ComputerManagementEntities())
+            using (var db = new ComputerManagementEntities())
             {
-                _context.Database.Log = Console.WriteLine;
-                CATEGORY dbCategory = _context.CATEGORies.Include(i=>i.CATEGORY11).Where(i => i.id == category.Id).FirstOrDefault();
-                if (dbCategory == null)
+                return categoryid == 0 ? true : db.PRODUCTs.AsNoTracking().Any(i => i.categoryId == categoryid);
+            }
+        }
+
+        //public void Save(Model.Category category)
+        //{
+        //    //CATEGORY c = category.CastToModel();
+        //    using (var _context = new ComputerManagementEntities())
+        //    {
+        //        _context.Database.Log = Console.WriteLine;
+        //        CATEGORY dbCategory = _context.CATEGORies.Include(i=>i.CATEGORY11).Where(i => i.id == category.Id).FirstOrDefault();
+        //        if (dbCategory == null)
+        //        {
+        //            dbCategory = category.CastToModel();
+        //            _context.CATEGORies.Add(dbCategory);
+        //        }
+        //        else
+        //        {
+        //            _context.Entry(dbCategory).State = EntityState.Modified;
+
+        //            dbCategory.name = category.Name;
+
+        //            //Check change in child category
+        //            foreach (var child in dbCategory.CATEGORY11.AsEnumerable())
+        //            {
+        //                //Load specification_type from db
+        //                child.SPECIFICATION_TYPE = _context.CATEGORies.Where(i => i.id == child.id).FirstOrDefault().SPECIFICATION_TYPE;
+
+        //                var checkCategory = category.ChildCategories.FirstOrDefault(i => i.Id == child.id);
+        //                if (checkCategory != null)
+        //                {
+        //                    //Update category & specification_type
+        //                    foreach (var spec in child.SPECIFICATION_TYPE.AsEnumerable())
+        //                    {
+        //                        var checkSpec = checkCategory.SpecificationTypes?.FirstOrDefault(i => i.Id == spec.id);
+        //                        if (checkSpec != null)
+        //                        {
+        //                            //Update specification_type
+        //                            spec.name = checkSpec.Name;
+        //                            _context.Entry(spec).State = EntityState.Modified;
+        //                        }
+        //                        else
+        //                        {
+        //                            //Remove specification_type
+        //                            _context.Entry(spec).State = EntityState.Deleted;
+        //                            //_context.SPECIFICATION_TYPE.Remove(spec);
+        //                        }
+        //                    }
+
+        //                    var newSpecs = checkCategory.SpecificationTypes?.Where(i => i.Id == 0).ToList();
+        //                    if (newSpecs != null)
+        //                        foreach (var newSpec in newSpecs)
+        //                        {
+        //                            SPECIFICATION_TYPE s = newSpec.CastToModel();
+        //                            //child.SPECIFICATION_TYPE.Add(s);
+
+        //                            _context.Entry(s).State = EntityState.Added;
+        //                        }
+
+        //                    child.name = checkCategory.Name;
+        //                    _context.Entry(child).State = EntityState.Modified;
+        //                }
+        //                else
+        //                {
+        //                    //Remove category & spec
+        //                    //_context.SPECIFICATION_TYPE.RemoveRange(child.SPECIFICATION_TYPE);
+        //                    //_context.CATEGORies.Remove(child);
+        //                    foreach(var s in child.SPECIFICATION_TYPE.AsEnumerable())
+        //                    {
+        //                        _context.Entry(s).State = EntityState.Deleted;
+        //                    }
+        //                    _context.Entry(child).State = EntityState.Deleted;
+        //                }
+        //            }
+
+        //            var newCategories = category.ChildCategories.Where(i => i.Id == 0).ToList();
+        //            foreach (var newCategory in newCategories)
+        //            {
+        //                CATEGORY c = new CATEGORY() { name = newCategory.Name, SPECIFICATION_TYPE = new List<SPECIFICATION_TYPE>() };
+        //                if (newCategory.SpecificationTypes != null)
+        //                    foreach (var s in newCategory.SpecificationTypes)
+        //                    {
+        //                        c.SPECIFICATION_TYPE.Add(s.CastToModel());
+        //                    }
+        //                dbCategory.CATEGORY11.Add(c);
+        //            }
+        //        }
+
+        //        //foreach (var child in c.CATEGORY1)
+        //        //{
+        //        //    //Add or Update category which insert to UI
+        //        //    foreach (var spec in child.SPECIFICATION_TYPE)
+        //        //    {
+        //        //        _context.Entry(spec).State = spec.id == 0 ? EntityState.Added : EntityState.Modified;
+        //        //    }
+
+        //        //    _context.Entry(child).State = child.id == 0 ? EntityState.Added : EntityState.Modified;
+
+        //        //    //Remove specification and spec_product which deleted from UI
+        //        //    if (_context.Entry(child).State == EntityState.Modified)
+        //        //    {
+        //        //        var spec_in_UI = child.SPECIFICATION_TYPE.Select(i => i.id);
+        //        //        var spec_deleted = _context.SPECIFICATION_TYPE.Include(i => i.SPECIFICATIONs)
+        //        //                                                                                .AsEnumerable()
+        //        //                                                                                .Where(i => spec_in_UI.Contains(i.id));
+        //        //        foreach (var spec in spec_deleted)
+        //        //        {
+        //        //            _context.SPECIFICATIONs.RemoveRange(spec.SPECIFICATIONs);
+        //        //        }
+        //        //        _context.SPECIFICATION_TYPE.RemoveRange(spec_deleted);
+        //        //    }
+        //        //}
+        //        _context.SaveChanges();
+
+        //        //Update Id in UI
+        //        ChangeIdRuntime(category, dbCategory);
+
+        //        //Remove category which deleted from UI
+        //        //DeleteUICategoryFromDb(dbCategory);
+        //    }
+        //}
+
+        public void Save(Model.Category UIcategory)
+        {
+            using (var db = new ComputerManagementEntities())
+            {
+                if (UIcategory.Id == 0)
                 {
-                    dbCategory = category.CastToModel();
-                    _context.CATEGORies.Add(dbCategory);
+                    db.CATEGORies.Add(UIcategory.CastToModel());
                 }
                 else
                 {
-                    _context.Entry(dbCategory).State = EntityState.Modified;
+                    var category = new CATEGORY() { id = UIcategory.Id, name = UIcategory.Name };
 
-                    dbCategory.name = category.Name;
+                    db.Entry(category).State = EntityState.Modified;
 
-                    //Check change in child category
-                    foreach (var child in dbCategory.CATEGORY11.AsEnumerable())
+                    var deletedIdCategories = new List<CATEGORY>();
+                    var deletedIdSpecs = new List<SPECIFICATION_TYPE>();
+
+                    //Check modified category
+                    db.Entry(category).Collection(i => i.CATEGORY11).Load();
+
+                    foreach (var child in category.CATEGORY11)
                     {
-                        //Load specification_type from db
-                        child.SPECIFICATION_TYPE = _context.CATEGORies.Where(i => i.id == child.id).FirstOrDefault().SPECIFICATION_TYPE;
+                        db.Entry(child).Collection(i => i.SPECIFICATION_TYPE).Load();
+                        Model.Category changeCategory = UIcategory.ChildCategories.FirstOrDefault(i => i.Id == child.id);
+                        bool existsCategory = changeCategory != null;
 
-                        var checkCategory = category.ChildCategories.FirstOrDefault(i => i.Id == child.id);
-                        if (checkCategory != null)
+                        if (existsCategory)
                         {
-                            //Update category & specification_type
-                            foreach (var spec in child.SPECIFICATION_TYPE.AsEnumerable())
-                            {
-                                var checkSpec = checkCategory.SpecificationTypes?.FirstOrDefault(i => i.Id == spec.id);
-                                if (checkSpec != null)
-                                {
-                                    //Update specification_type
-                                    spec.name = checkSpec.Name;
-                                    _context.Entry(spec).State = EntityState.Modified;
-                                }
-                                else
-                                {
-                                    //Remove specification_type
-                                    _context.Entry(spec).State = EntityState.Deleted;
-                                    //_context.SPECIFICATION_TYPE.Remove(spec);
-                                }
-                            }
-
-                            var newSpecs = checkCategory.SpecificationTypes?.Where(i => i.Id == 0).ToList();
-                            if (newSpecs != null)
-                                foreach (var newSpec in newSpecs)
-                                {
-                                    SPECIFICATION_TYPE s = newSpec.CastToModel();
-                                    //child.SPECIFICATION_TYPE.Add(s);
-
-                                    _context.Entry(s).State = EntityState.Added;
-                                }
-
-                            child.name = checkCategory.Name;
-                            _context.Entry(child).State = EntityState.Modified;
+                            child.name = changeCategory.Name;
                         }
                         else
                         {
-                            //Remove category & spec
-                            //_context.SPECIFICATION_TYPE.RemoveRange(child.SPECIFICATION_TYPE);
-                            //_context.CATEGORies.Remove(child);
-                            foreach(var s in child.SPECIFICATION_TYPE.AsEnumerable())
+                            deletedIdCategories.Add(child);
+                        }
+
+                        foreach(var spec in child.SPECIFICATION_TYPE)
+                        {
+                            Model.Specification_type changeSpec = changeCategory?.SpecificationTypes?.FirstOrDefault(i => i.Id == spec.id);
+                            bool existsSpec = changeSpec != null;
+
+                            if (existsCategory && existsSpec)
                             {
-                                _context.Entry(s).State = EntityState.Deleted;
+                                spec.name = changeSpec.Name;
                             }
-                            _context.Entry(child).State = EntityState.Deleted;
+                            else
+                            {
+                                deletedIdSpecs.Add(spec);
+                            }
+                        }
+
+                        //Add new spec
+                        IEnumerable<Model.Specification_type> newSpecs = changeCategory?.SpecificationTypes?.Where(i => i.Id == 0).AsEnumerable();
+                        if (newSpecs != null)
+                        {
+                            foreach (var newSpec in newSpecs)
+                            {
+                                var s = new SPECIFICATION_TYPE() { name = newSpec.Name };
+                                child.SPECIFICATION_TYPE.Add(s);
+                            }
                         }
                     }
 
-                    var newCategories = category.ChildCategories.Where(i => i.Id == 0).ToList();
-                    foreach (var newCategory in newCategories)
+
+                    //Delete spec and category in db
+                    db.SPECIFICATION_TYPE.RemoveRange(deletedIdSpecs);
+                    db.CATEGORies.RemoveRange(deletedIdCategories);
+
+                    //Check added category
+                    IEnumerable<Model.Category> newCategories = UIcategory.ChildCategories.Where(i => i.Id == 0).AsEnumerable();
+                    foreach(var newCategory in newCategories)
                     {
-                        CATEGORY c = new CATEGORY() { name = newCategory.Name, SPECIFICATION_TYPE = new List<SPECIFICATION_TYPE>() };
-                        if (newCategory.SpecificationTypes != null)
-                            foreach (var s in newCategory.SpecificationTypes)
-                            {
-                                c.SPECIFICATION_TYPE.Add(s.CastToModel());
-                            }
-                        dbCategory.CATEGORY11.Add(c);
+                        var c = newCategory.CastToModel();
+                        category.CATEGORY11.Add(c);
                     }
                 }
+                //var category = db.CATEGORies.Include(c=>c.CATEGORY11.Select(s=>s.SPECIFICATION_TYPE)).First(i=>i.id == UIcategory.Id);
 
-                //foreach (var child in c.CATEGORY1)
-                //{
-                //    //Add or Update category which insert to UI
-                //    foreach (var spec in child.SPECIFICATION_TYPE)
-                //    {
-                //        _context.Entry(spec).State = spec.id == 0 ? EntityState.Added : EntityState.Modified;
-                //    }
-
-                //    _context.Entry(child).State = child.id == 0 ? EntityState.Added : EntityState.Modified;
-
-                //    //Remove specification and spec_product which deleted from UI
-                //    if (_context.Entry(child).State == EntityState.Modified)
-                //    {
-                //        var spec_in_UI = child.SPECIFICATION_TYPE.Select(i => i.id);
-                //        var spec_deleted = _context.SPECIFICATION_TYPE.Include(i => i.SPECIFICATIONs)
-                //                                                                                .AsEnumerable()
-                //                                                                                .Where(i => spec_in_UI.Contains(i.id));
-                //        foreach (var spec in spec_deleted)
-                //        {
-                //            _context.SPECIFICATIONs.RemoveRange(spec.SPECIFICATIONs);
-                //        }
-                //        _context.SPECIFICATION_TYPE.RemoveRange(spec_deleted);
-                //    }
-                //}
-                _context.SaveChanges();
-
-                //Update Id in UI
-                ChangeIdRuntime(category, dbCategory);
-
-                //Remove category which deleted from UI
-                //DeleteUICategoryFromDb(dbCategory);
+                db.SaveChanges();
             }
         }
 
@@ -246,33 +336,14 @@ namespace ComputerProject.Repository
             if (category.ChildCategories != null)
                 foreach (var child in category.ChildCategories)
                 {
-                    ChangeIdRuntime(child, dbCategory.CATEGORY11.Where(c => c.name == child.Name).First());
+                    ChangeIdRuntime(child, dbCategory.CATEGORY11.First(c => c.name == child.Name));
                 }
 
             if (category.SpecificationTypes != null)
                 foreach (var spec in category.SpecificationTypes)
                 {
-                    if (spec.Id == 0) spec.Id = dbCategory.SPECIFICATION_TYPE.Where(i => i.name == spec.Name).Select(i => i.id).First();
+                    spec.Id = dbCategory.SPECIFICATION_TYPE.First(i => i.name == spec.Name).id;
                 }
-
-            //if (category.Id == 0)
-            //{
-            //    var id = _context.CATEGORies.Where(i => i.name == category.Name).Select(i => i.id).Single();
-            //    category.Id = id;
-            //}
-
-            //if (category.ChildCategories != null)
-            //    foreach (var child in category.ChildCategories)
-            //    {
-            //        ChangeIdRuntime(child, _context);
-            //    }
-
-            //if (category.SpecificationTypes != null)
-            //    foreach (var spec in category.SpecificationTypes)
-            //    {
-            //        var id = _context.SPECIFICATION_TYPE.Where(i => i.name == category.Name).Select(i => i.id).Single();
-            //        spec.Id = id;
-            //    }
         }
 
         public bool IsRootCategoryExists(Model.Category category)

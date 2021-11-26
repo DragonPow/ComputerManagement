@@ -90,20 +90,28 @@ namespace ComputerProject.CategoryWorkspace
                 {
                     _deleteCategoryCommand = new RelayCommand(category =>
                     {
-                        var rs = MessageBoxCustom.ShowDialog("Chắc chắn xóa danh mục này hay không?", "Thông báo", PackIconKind.QuestionAnswer);
-                        if (rs == MessageBoxResultCustom.Yes)
+                        var c = (Model.Category)category;
+
+                        if (CanDelete(c.Id))
                         {
-                            var c = category as Model.Category;
+                            var rs = MessageBoxCustom.ShowDialog("Chắc chắn xóa danh mục này hay không?", "Thông báo", PackIconKind.QuestionAnswer);
+                            if (rs == MessageBoxResultCustom.Yes)
+                            {
+                                DeleteAsync(c);
 
-                            DeleteAsync(c);
-
-                            MessageBoxCustom.ShowDialog("Xóa thành công", "Thông báo", PackIconKind.DoneOutline);
+                                MessageBoxCustom.ShowDialog("Xóa thành công", "Thông báo", PackIconKind.DoneOutline);
+                            }
+                        }
+                        else
+                        {
+                            MessageBoxCustom.ShowDialog("Vui lòng xóa sản phẩm sử dụng danh mục này trước", "Thông báo", PackIconKind.WarningCircleOutline);
                         }
                     });
                 }
                 return _deleteCategoryCommand;
             }
         }
+
         public ICommand SearchCommand
         {
             get
@@ -127,7 +135,6 @@ namespace ComputerProject.CategoryWorkspace
         {
             _navigator = baseNavigator;
         }
-
 
         public void LoadAsyncCategories(string name = null)
         {
@@ -153,16 +160,6 @@ namespace ComputerProject.CategoryWorkspace
             if (_navigator != null) _navigator.Back = () => _navigator.NavigateTo(this);
             _navigator.NavigateTo(newPage);
         }
-
-        //private void OnDeleteCategoryChanged(object sender, CategoryChangedEventArg e)
-        //{
-        //    //if (ContainRootCategory(e.Name))
-        //    //{
-        //    //    var category = CurrentCategories.Where(i => i.Name == e.Name).First();
-        //    //    CurrentCategories.Remove(category);
-        //    //}
-        //    Delete(e);
-        //}
 
         private void OnDetailCategoryChanged(object sender, CategoryChangedEventArg e)
         {
@@ -193,16 +190,11 @@ namespace ComputerProject.CategoryWorkspace
                     }
                 case EntityState.Unchanged:
                     {
-                        ReloadCategoryAsync(e.Category.Id);
+                        //ReloadCategoryAsync(e.Category.Id);
                         break;
                     }
                 default: throw new ArgumentOutOfRangeException();
             }
-        }
-
-        private bool ContainRootCategory(string name)
-        {
-            return CurrentCategories.Any(i => i.Name == name);
         }
 
         private void DeleteAsync(Model.Category category)
@@ -212,21 +204,17 @@ namespace ComputerProject.CategoryWorkspace
             BusyService.DoBusyTask(() => _repository.Delete(category.Id));
         }
 
-        private void ReloadCategoryAsync(int id)
-        {
-            var category = CurrentCategories.First(i => i.Id == id);
-            BusyService.DoBusyTask(() =>
-            {
-                category = new Model.Category(_repository.LoadDetailCategory(id));
-            });
-        }
-
         private void SearchCategory(string name)
         {
             string name_converted = FormatHelper.ConvertTo_TiengDongLao(name).ToLower().Trim();
             VisibleCategories = new ObservableCollection<Model.Category>(
                 CurrentCategories.Where(c => FormatHelper.ConvertTo_TiengDongLao(c.Name).ToLower().Trim().Contains(name_converted))
                 );
+        }
+
+        private bool CanDelete(int categoryId)
+        {
+            return _repository.CanDelete(categoryId);
         }
     }
 }

@@ -136,16 +136,24 @@ namespace ComputerProject.CategoryWorkspace
                 {
                     _deleteCategoryCommand = new RelayCommand(category =>
                     {
-                        var rs = MessageBoxCustom.ShowDialog("Chắc chắn xóa danh mục này hay không?", "Thông báo", PackIconKind.QuestionAnswer);
-                        if (rs == MessageBoxResultCustom.Yes)
+                        var c = (Model.Category)category;
+                        if (CanDelete(c.Id))
                         {
-                            Delete((Model.Category)category);
+                            var rs = MessageBoxCustom.ShowDialog("Chắc chắn xóa danh mục này hay không?", "Thông báo", PackIconKind.QuestionAnswer);
+                            if (rs == MessageBoxResultCustom.Yes)
+                            {
+                                Delete(c);
+                            }
+                        }
+                        else
+                        {
+                            MessageBoxCustom.ShowDialog("Vui lòng xóa sản phẩm sử dụng danh mục này trước", "Thông báo", PackIconKind.WarningCircleOutline);
                         }
                     }, category => IsEditMode || category == CurrentParentCategory);
                 }
                 return _deleteCategoryCommand;
             }
-        }
+        }                                                   
         public ICommand SaveEditCommand
         {
             get
@@ -215,7 +223,14 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (_cancelEditCommand == null)
                 {
-                    _cancelEditCommand = new RelayCommand(a => Cancel());
+                    _cancelEditCommand = new RelayCommand(a =>
+                    {
+                        var rs = MessageBoxCustom.ShowDialog("Thay đổi chưa được lưu, đồng ý quay lại giá trị ban đầu?", "Thông báo");
+                        if (rs == MessageBoxResultCustom.Yes)
+                        {
+                            BusyService.DoBusyTask(Cancel);
+                        }
+                    });
                 }
                 return _cancelEditCommand;
             }
@@ -385,6 +400,10 @@ namespace ComputerProject.CategoryWorkspace
                 child.SpecificationTypes = null;
             }
             _navigator?.Back();
+        }
+        private bool CanDelete(int categoryId)
+        {
+            return _repository.CanDelete(categoryId);
         }
     }
 }
