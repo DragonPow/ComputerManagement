@@ -47,10 +47,10 @@
                 <StackPanel>
                     <TextBlock Text="Danh mục cấp 1"
                                Foreground="{StaticResource Title}"
-                               FontSize="{x:Static localfont:Font.SubTitle}"
+                               FontSize="20"
                                FontFamily="{StaticResource Mulish}"
                                FontWeight="Medium"
-                               Margin="10"/>
+                               Margin="15,20,0,0"/>
                     <localcustom:TextboxCustom x:Name="NameCategory"
                                            CornerRadiusText="3"
                                            Text="{Binding CurrentParentCategory.Name, FallbackValue='Tên'}"
@@ -138,10 +138,10 @@
                 <StackPanel>
                     <TextBlock Text="Danh mục cấp 2"
                                Foreground="{StaticResource Title}"
-                               FontSize="{x:Static localfont:Font.SubTitle}"
+                               FontSize="20"
                                FontFamily="{StaticResource Mulish}"
                                FontWeight="Medium"
-                               Margin="15,10"/>
+                               Margin="15,20,0,0"/>
                     <localcustom:TextboxCustom x:Name="NameCategoryLv2"
                                            HorizontalAlignment="Left"
                                            Width="300"
@@ -235,7 +235,7 @@
                                     <ControlTemplate TargetType="{x:Type Button}">
                                         <Border
                                             x:Name="bd"
-                                            CornerRadius="8"
+                                            CornerRadius="5"
                                             Background="Transparent"
                                             BorderBrush="{StaticResource MainColor}"
                                             BorderThickness="1"
@@ -302,7 +302,7 @@
                                     <ControlTemplate TargetType="{x:Type Button}">
                                         <Border
                                             x:Name="bd"
-                                            CornerRadius="8"
+                                            CornerRadius="5"
                                             Background="{StaticResource MainColor}"
                                             BorderBrush="{StaticResource MainColor}"
                                             BorderThickness="1"

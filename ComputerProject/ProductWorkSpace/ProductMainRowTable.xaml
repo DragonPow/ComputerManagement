@@ -19,9 +19,9 @@
             <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
             <Setter Property="FontSize" Value="{x:Static localfont:Font.Body}" />
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="Margin" Value="20,0"/>
+            <Setter Property="Padding" Value="20,17"/>
         </Style>
     </UserControl.Resources>
     <Grid>

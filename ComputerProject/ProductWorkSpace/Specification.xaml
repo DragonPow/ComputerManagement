@@ -18,7 +18,7 @@
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
-                    Margin="30,20"
+                    Margin="20"
                     VerticalAlignment="Center"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="20"

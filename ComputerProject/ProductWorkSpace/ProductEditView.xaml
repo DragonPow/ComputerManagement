@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <StackPanel
             Grid.Row="0"
-            Margin="30,10"
+            Margin="10,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Stretch"
             Orientation="Horizontal">
