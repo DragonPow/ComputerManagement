@@ -204,76 +204,92 @@
                     Grid.Column="1"
                     Margin="20"
                     HorizontalAlignment="Right">
-            <Button x:Name="BtnDelete"
-                    Background="Transparent"
-                    Width="100"
+            <Border
+                CornerRadius="8"
+                Background="Transparent"
+                BorderBrush="{StaticResource MainColor}"
+                BorderThickness="1"
+                Width="100"
                     Height="40"
                     Margin="20,0"
+                >
+                <Button x:Name="BtnDelete"
+                    Background="Transparent"
                     FontWeight="DemiBold"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="16"
+                    BorderThickness="0"
                     Foreground="{StaticResource MainColor}"
-                    BorderBrush="{StaticResource MainColor}"
                     IsEnabled="{Binding BusyService.IsFree}">
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsEditMode}"
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsEditMode}"
                                          Value="True">
-                                <Setter Property="Content"
+                                    <Setter Property="Content"
                                         Value="Hủy" />
-                                <Setter Property="Command"
+                                    <Setter Property="Command"
                                         Value="{Binding CancelEditCommand}" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding IsEditMode}"
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsEditMode}"
                                          Value="False">
-                                <Setter Property="Content"
+                                    <Setter Property="Content"
                                         Value="Xóa" />
-                                <Setter Property="Command"
+                                    <Setter Property="Command"
                                         Value="{Binding DeleteCategoryCommand}" />
-                                <Setter Property="CommandParameter"
+                                    <Setter Property="CommandParameter"
                                         Value="{Binding CurrentParentCategory}" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button x:Name="BtnEdit"
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Border>
+           
+            <Border
+                CornerRadius="8"
+                 Background="{StaticResource MainColor}"
+                BorderBrush="{StaticResource MainColor}"
+                >
+                <Button
+                    x:Name="BtnEdit"
                     Width="120"
                     Height="40"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="16"
                     FontWeight="DemiBold"
-                    Background="{StaticResource MainColor}"
                     BorderBrush="White"
+                    Background="Transparent"
                     IsEnabled="{Binding BusyService.IsFree}">
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsEditMode}"
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsEditMode}"
                                          Value="True">
-                                <Setter Property="Command"
+                                    <Setter Property="Command"
                                         Value="{Binding SaveEditCommand}" />
-                                <Setter Property="CommandParameter"
+                                    <Setter Property="CommandParameter"
                                         Value="{Binding CurrentParentCategory}" />
-                                <Setter Property="Content"
+                                    <Setter Property="Content"
                                         Value="Lưu" />
-                                <Setter Property="Foreground"
+                                    <Setter Property="Foreground"
                                         Value="White" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding IsEditMode}"
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsEditMode}"
                                          Value="False">
-                                <Setter Property="Command"
+                                    <Setter Property="Command"
                                         Value="{Binding OpenEditCommand}" />
-                                <Setter Property="Content"
+                                    <Setter Property="Content"
                                         Value="Chỉnh sửa" />
-                                <Setter Property="Foreground"
+                                    <Setter Property="Foreground"
                                         Value="White" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Border>
+           
 
         </StackPanel>
 
