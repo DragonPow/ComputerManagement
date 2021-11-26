@@ -219,7 +219,16 @@ namespace ComputerProject.BillWorkSpace
 
             CurrentBills = _repository.LoadBills(_maxBillsInPage, CurrentPage, TextSearch, TimeFrom, TimeTo);
         }
-
+        public void LoadData()
+        {
+            ResetSearchData();
+            BusyService.DoBusyTask(() => LoadBills(1));
+        }
+        private void ResetSearchData()
+        {
+            TextSearch = null;
+            TimeFrom = TimeTo = null;
+        }
         public void LoadBillsAsync(int pageNumber = 1, string text = null, DateTime? timeFrom = null, DateTime? timeTo = null)
         {
             BusyService.DoBusyTask(() => LoadBills(pageNumber, text, timeFrom, timeTo));

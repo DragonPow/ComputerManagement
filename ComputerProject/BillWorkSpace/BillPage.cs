@@ -1,4 +1,5 @@
 ﻿using ComputerProject.ApplicationWorkspace;
+using ComputerProject.CustomMessageBox;
 using ComputerProject.HelperService;
 using MaterialDesignThemes.Wpf;
 using System;
@@ -21,7 +22,7 @@ namespace ComputerProject.BillWorkSpace
         public BillPage()
         {
             var initView = new HistoryBillViewModel();
-            initView.LoadBillsAsync();
+            //initView.LoadBillsAsync();
 
             _navigator = new NavigationService(initView);
             initView.SetNavigator(_navigator);
@@ -37,11 +38,16 @@ namespace ComputerProject.BillWorkSpace
 
         public void LoadData()
         {
-
+            var vm = _mainPage as HistoryBillViewModel;
+            vm.LoadBillsAsync();
         }
 
         public bool AllowChangeTab()
         {
+            if (CurrentPage != _mainPage)
+            {
+                _navigator.NavigateTo(_mainPage);
+            }
             return true;
         }
     }

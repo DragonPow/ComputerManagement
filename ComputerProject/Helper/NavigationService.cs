@@ -17,7 +17,7 @@ namespace ComputerProject.HelperService
             get => _currentPageViewModel;
             private set
             {
-                if (value!=_currentPageViewModel)
+                if (value != _currentPageViewModel)
                 {
                     _currentPageViewModel = value;
                 }

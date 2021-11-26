@@ -1,4 +1,5 @@
 ﻿using ComputerProject.ApplicationWorkspace;
+using ComputerProject.CustomMessageBox;
 using ComputerProject.HelperService;
 using MaterialDesignThemes.Wpf;
 using System;
@@ -37,10 +38,23 @@ namespace ComputerProject.CategoryWorkspace
 
         public void LoadData()
         {
-            (_mainPage as ListCategoryViewModel).LoadAsyncCategories();
+            var vm = _mainPage as ListCategoryViewModel;
+            vm.LoadAsyncCategories();
         }
         public bool AllowChangeTab()
         {
+            if (CurrentPage is DetailCategoryViewModel vm)
+            {
+                if (!vm.IsEditMode)
+                {
+                    var rs = MessageBoxCustom.ShowDialog("Mọi thay đổi chưa được lưu, xác nhận chuyển trang không?", "Thông báo", PackIconKind.WarningCircleOutline);
+                    return rs == MessageBoxResultCustom.Yes;
+                }
+                else
+                {
+                    vm.BackPageCommand.Execute(null);
+                }
+            }
             return true;
         }
     }

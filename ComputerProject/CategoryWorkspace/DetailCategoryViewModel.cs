@@ -12,9 +12,21 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 using ComputerProject.Model;
+using System.Data.Entity;
 
 namespace ComputerProject.CategoryWorkspace
 {
+    public class CategoryChangedEventArg : EventArgs
+    {
+        public Model.Category Category;
+        public EntityState State;
+
+        public CategoryChangedEventArg(Model.Category category, EntityState state)
+        {
+            this.Category = category;
+            this.State = state;
+        }
+    }
     public class DetailCategoryViewModel : BaseViewModel
     {
         #region Fields
@@ -80,8 +92,8 @@ namespace ComputerProject.CategoryWorkspace
                 }
             }
         }
-        public event EventHandler<Model.Category> DetailCategoryChangedEventHandler;
-        public event EventHandler<Model.Category> DeleteCategoryChangedEventHandler;
+        public event EventHandler<CategoryChangedEventArg> CategoryChangedEventHandler;
+        //public event EventHandler<Model.Category> DeleteCategoryChangedEventHandler;
 
         public ICommand AddSpecificationCommand
         {
@@ -124,16 +136,24 @@ namespace ComputerProject.CategoryWorkspace
                 {
                     _deleteCategoryCommand = new RelayCommand(category =>
                     {
-                        var rs = MessageBoxCustom.ShowDialog("Chắc chắn xóa danh mục này hay không?", "Thông báo", PackIconKind.QuestionAnswer);
-                        if (rs == MessageBoxResultCustom.Yes)
+                        var c = (Model.Category)category;
+                        if (CanDelete(c.Id))
                         {
-                            Delete((Model.Category)category);
+                            var rs = MessageBoxCustom.ShowDialog("Chắc chắn xóa danh mục này hay không?", "Thông báo", PackIconKind.QuestionAnswer);
+                            if (rs == MessageBoxResultCustom.Yes)
+                            {
+                                Delete(c);
+                            }
+                        }
+                        else
+                        {
+                            MessageBoxCustom.ShowDialog("Vui lòng xóa sản phẩm sử dụng danh mục này trước", "Thông báo", PackIconKind.WarningCircleOutline);
                         }
                     }, category => IsEditMode || category == CurrentParentCategory);
                 }
                 return _deleteCategoryCommand;
             }
-        }
+        }                                                   
         public ICommand SaveEditCommand
         {
             get
@@ -154,8 +174,11 @@ namespace ComputerProject.CategoryWorkspace
                         {
                             try
                             {
-                                Save();
-                                DetailCategoryChangedEventHandler?.Invoke(this, this.CurrentParentCategory);
+                                if (canSave())
+                                {
+                                    Save();
+                                    CategoryChangedEventHandler?.Invoke(this, new CategoryChangedEventArg(this.CurrentParentCategory, EntityState.Modified));
+                                }
                             }
                             catch (ArgumentException e1)
                             {
@@ -200,7 +223,14 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (_cancelEditCommand == null)
                 {
-                    _cancelEditCommand = new RelayCommand(a => Cancel());
+                    _cancelEditCommand = new RelayCommand(a =>
+                    {
+                        var rs = MessageBoxCustom.ShowDialog("Thay đổi chưa được lưu, đồng ý quay lại giá trị ban đầu?", "Thông báo");
+                        if (rs == MessageBoxResultCustom.Yes)
+                        {
+                            BusyService.DoBusyTask(Cancel);
+                        }
+                    });
                 }
                 return _cancelEditCommand;
             }
@@ -213,22 +243,14 @@ namespace ComputerProject.CategoryWorkspace
                 {
                     _backPageCommand = new RelayCommand(a =>
                     {
-                        try
-                        {
-                            if (IsEditMode)
-                            {
-                                throw new ArgumentException("Is not save");
-                            }
-                            NavigateBackPage();
-                        }
-                        catch (ArgumentException e)
+                        if (IsEditMode)
                         {
                             var rs = MessageBoxCustom.ShowDialog("Thay đổi chưa được lưu, đồng ý thoát?", "Thông báo");
-                            if (rs == MessageBoxResultCustom.Yes)
-                            {
-                                NavigateBackPage();
-                            }
+                            if (rs == MessageBoxResultCustom.No) { return; }
                         }
+
+                        CategoryChangedEventHandler(this, new CategoryChangedEventArg(CurrentParentCategory, EntityState.Unchanged));
+                        NavigateBackPage();
                     });
                 }
                 return _backPageCommand;
@@ -265,26 +287,27 @@ namespace ComputerProject.CategoryWorkspace
                 CurrentParentCategory.ChildCategories = _repository.LoadChildCategories(CurrentParentCategory.Id);
             }
         }
-
-        public void ReloadData()
+        private void ReloadData()
         {
+            CurrentParentCategory.ChildCategories = null;
             if (CurrentParentCategory.Id == 0)
             {
-                CurrentParentCategory.ChildCategories.Clear();
+
             }
             else
             {
-                CurrentParentCategory.ChildCategories.Clear();
-                CurrentParentCategory.ChildCategories = _repository.LoadChildCategories(CurrentParentCategory.Id);
+                var category = new Model.Category(_repository.LoadDetailCategory(CurrentParentCategory.Id));
+
+                //CurrentParentCategory.ChildCategories = _repository.LoadChildCategories(CurrentParentCategory.Id);
+                CurrentParentCategory.Name = category.Name;
+                CurrentParentCategory.ChildCategories = category.ChildCategories;
             }
         }
-
         public void AddChildCategory()
         {
             CurrentChildCategory = new Model.Category() { Name = "Danh mục mới" };
             CurrentParentCategory.ChildCategories.Add(CurrentChildCategory);
         }
-
         public void AddSpecification(Model.Category category)
         {
             Model.Specification_type specification = new Model.Specification_type();
@@ -297,20 +320,18 @@ namespace ComputerProject.CategoryWorkspace
             CurrentChildCategory.SpecificationTypes.Add(specification);
 
         }
-
         public void DeleteSpecificationType(Model.Specification_type specification)
         {
             CurrentChildCategory.SpecificationTypes.Remove(specification);
         }
-
         public void Delete(Model.Category category)
         {
             if (category == CurrentParentCategory)
             {
                 if (category.Id != 0)
                 {
-                    _repository.Delete(category.Id);
-                    DeleteCategoryChangedEventHandler?.Invoke(this, this.CurrentParentCategory);
+                    //_repository.Delete(category.Id);
+                    CategoryChangedEventHandler?.Invoke(this, new CategoryChangedEventArg(this.CurrentParentCategory, EntityState.Deleted));
                 }
                 MessageBoxCustom.ShowDialog("Xóa thành công", "Thông báo", PackIconKind.DoneOutline);
                 NavigateBackPage();
@@ -320,8 +341,19 @@ namespace ComputerProject.CategoryWorkspace
                 CurrentParentCategory.ChildCategories.Remove(category);
             }
         }
-
         public void Save()
+        {
+            BusyService.DoBusyTask(() => _repository.Save(CurrentParentCategory), () =>
+            {
+                MessageBoxCustom.ShowDialog("Lưu thành công", "Thông báo", PackIconKind.InformationCircle);
+                NavigateBackPage();
+            });
+
+            IsEditMode = false;
+            CurrentChildCategory = null;
+        }
+
+        private bool canSave()
         {
             if (isParentCategoryExists())
             {
@@ -344,38 +376,34 @@ namespace ComputerProject.CategoryWorkspace
                 }
             }
 
-            BusyService.DoBusyTask(() => _repository.Save(CurrentParentCategory), () =>
-            {
-                MessageBoxCustom.ShowDialog("Lưu thành công", "Thông báo", PackIconKind.InformationCircle);
-                NavigateBackPage();
-            });
-
-            IsEditMode = false;
-            CurrentChildCategory = null;
+            return true;
         }
+
         private bool isParentCategoryExists()
         {
             return _repository.IsRootCategoryExists(this.CurrentParentCategory);
         }
-
         public void OpenEditMode()
         {
             IsEditMode = true;
         }
-
         public void Cancel()
         {
             ReloadData();
             IsEditMode = false;
         }
-
-        private void NavigateBackPage()
+        public void NavigateBackPage()
         {
+            ReloadData();
             foreach (var child in CurrentParentCategory.ChildCategories)
             {
                 child.SpecificationTypes = null;
             }
             _navigator?.Back();
+        }
+        private bool CanDelete(int categoryId)
+        {
+            return _repository.CanDelete(categoryId);
         }
     }
 }
