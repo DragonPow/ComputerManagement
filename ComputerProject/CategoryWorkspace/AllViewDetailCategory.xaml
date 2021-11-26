@@ -219,25 +219,51 @@
                     Grid.Column="1"
                     Margin="20"
                     HorizontalAlignment="Right">
-            <Border
-                CornerRadius="8"
-                Background="Transparent"
-                BorderBrush="{StaticResource MainColor}"
-                BorderThickness="1"
-                Width="100"
-                    Height="40"
-                    Margin="20,0"
-                >
-                <Button x:Name="BtnDelete"
-                    Background="Transparent"
-                    FontWeight="DemiBold"
-                    FontFamily="{StaticResource Mulish}"
-                    FontSize="16"
-                    BorderThickness="0"
-                    Foreground="{StaticResource MainColor}"
-                    IsEnabled="{Binding BusyService.IsFree}">
+            
+                <Button 
+                    >
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                        <Setter Property="FontFamily" Value="{StaticResource Mulish}"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Foreground" Value="{StaticResource MainColor}"/>
+                        <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border
+                                            x:Name="bd"
+                                            CornerRadius="8"
+                                            Background="Transparent"
+                                            BorderBrush="{StaticResource MainColor}"
+                                            BorderThickness="1"
+                                            Width="100"
+                                            Height="40"
+                                            Padding="4"
+                                            Margin="20,0">
+                                        <ContentPresenter 
+                                            x:Name="BtnDelete"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            IsEnabled="{Binding BusyService.IsFree}"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsMouseOver" Value="True" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter TargetName="bd" Property="Background" Value="#190477BF" />
+                                        </MultiTrigger>
+                                        <DataTrigger  Binding="{Binding IsEditMode}"
+                                                     Value="False">
+                                            <Setter TargetName="bd" Property="BorderBrush" Value="Red"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsEditMode}"
                                          Value="True">
@@ -254,30 +280,53 @@
                                         Value="{Binding DeleteCategoryCommand}" />
                                     <Setter Property="CommandParameter"
                                         Value="{Binding CurrentParentCategory}" />
+                                    <Setter Property="Foreground" Value="Red"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
                 </Button>
-            </Border>
-           
-            <Border
-                CornerRadius="8"
-                 Background="{StaticResource MainColor}"
-                BorderBrush="{StaticResource MainColor}"
-                >
+
                 <Button
                     x:Name="BtnEdit"
-                    Width="120"
-                    Height="40"
-                    FontFamily="{StaticResource Mulish}"
-                    FontSize="16"
-                    FontWeight="DemiBold"
-                    BorderBrush="White"
-                    Background="Transparent"
                     IsEnabled="{Binding BusyService.IsFree}">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="FontWeight" Value="DemiBold"/>
+                            <Setter Property="FontFamily" Value="{StaticResource Mulish}"/>
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource MainColor}"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border
+                                            x:Name="bd"
+                                            CornerRadius="8"
+                                            Background="{StaticResource MainColor}"
+                                            BorderBrush="{StaticResource MainColor}"
+                                            BorderThickness="1"
+                                            Width="120"
+                                            Height="40"
+                                            Padding="4"
+                                            >
+                                            <ContentPresenter 
+                                            x:Name="BtnDelete"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            IsEnabled="{Binding BusyService.IsFree}"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsMouseOver" Value="True" />
+                                                </MultiTrigger.Conditions>
+                                            <Setter TargetName="bd" Property="Background" Value="#2983BC" />
+                                            </MultiTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsEditMode}"
                                          Value="True">
@@ -303,7 +352,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
-            </Border>
+        
            
 
         </StackPanel>
