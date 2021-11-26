@@ -26,7 +26,7 @@ namespace ComputerProject.ProductWorkSpace
         public static readonly DependencyProperty ModeInforProperties = DependencyProperty.Register(nameof(ModeInfor), typeof(Mode), typeof(ProInfor), new FrameworkPropertyMetadata(Mode.insert, new PropertyChangedCallback(OnModeInfoChange), new CoerceValueCallback(CoreModeInfo)));
         public static readonly DependencyProperty IsreadonlyProperties = DependencyProperty.Register(nameof(Isreadonly), typeof(bool), typeof(ProInfor), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnIsreadonlyChange), new CoerceValueCallback(CoreIsreadonly)));
         public static readonly DependencyProperty IsEnableProperties = DependencyProperty.Register(nameof(IsEnable), typeof(bool), typeof(ProInfor), new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnIsEnableChange), new CoerceValueCallback(CoreIsEnable)));
-
+    
 
         public Visibility VisibilityAddImage
         {

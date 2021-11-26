@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:ComputerProject.ProductWorkSpace"
     xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
     xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
+    xmlns:localconvert="clr-namespace:ComputerProject.Converter"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance Type=local:ProductAddViewModel}"
     d:DesignHeight="900"
@@ -27,6 +28,7 @@
                                AncestorType={x:Type local:ProInfor}}, 
                                Path=Isreadonly}"/>
         </Style>
+        <localconvert:RevertBooleanConverter x:Key="revertbool"/>
     </UserControl.Resources>
     <Border Background="White" CornerRadius="8">
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
@@ -111,6 +113,13 @@
                         FontSize="{x:Static localfont:Font.Body}"
                         Foreground="Black"
                         ItemsSource="{Binding CategoryList}"
+                        IsEditable="False"
+                        IsHitTestVisible="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:ProInfor}}, 
+                               Path=Isreadonly,Converter={StaticResource revertbool}}"
+                        Focusable="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:ProInfor}}, 
+                               Path=Isreadonly,Converter={StaticResource revertbool}}"
                         SelectedItem="{Binding SelectedCategory_String}"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                 </StackPanel>
@@ -132,6 +141,13 @@
                         FontFamily="{StaticResource Mulish}"
                         FontSize="{x:Static localfont:Font.Body}"
                         Foreground="Black"
+                        IsEditable="False"
+                        Focusable="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:ProInfor}}, 
+                               Path=Isreadonly,Converter={StaticResource revertbool}}"
+                         IsHitTestVisible="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:ProInfor}}, 
+                               Path=Isreadonly,Converter={StaticResource revertbool}}"
                         ItemsSource="{Binding CategoryList}"
                         SelectedItem="{Binding SelectedCategory_String}"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}" />
