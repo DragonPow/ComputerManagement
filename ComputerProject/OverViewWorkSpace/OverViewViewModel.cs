@@ -151,7 +151,7 @@ namespace ComputerProject.OverViewWorkSpace
         {
             using (ComputerManagementEntities context = new ComputerManagementEntities())
             {
-
+                DateTime now = DateTime.Now;
                 await Task.Run(getproinfo = () =>
                 {
                     TotalProProvie = context.PRODUCTs.Where(p => p.isStopSelling == false).Count();
@@ -161,8 +161,8 @@ namespace ComputerProject.OverViewWorkSpace
                 });
                 await Task.Run( getbillinfo = () =>
                 {
-                    TotalNomalBill = context.BILLs.Where(b => b.createTime <= to && b.createTime >= from).Count();
-                    TotalWarrantyBill = context.BILL_REPAIR.Where(b => b.timeReceive <= to && b.timeReceive >= from).Count();
+                    TotalNomalBill = context.BILLs.Where(b => b.createTime <=  now && b.createTime >= from).Count();
+                    TotalWarrantyBill = context.BILL_REPAIR.Where(b => b.timeReceive <= now && b.timeReceive >= from).Count();
                     TotalBill = TotalNomalBill + TotalWarrantyBill;
                 });
 
