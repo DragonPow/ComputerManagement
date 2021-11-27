@@ -36,7 +36,7 @@ namespace ComputerProject.BillWorkSpace
             OnPropertyChanged(nameof(CurrentPage));
         }
 
-        public void LoadData()
+        public void LoadDataAsync()
         {
             var vm = _mainPage as HistoryBillViewModel;
             vm.LoadBillsAsync();

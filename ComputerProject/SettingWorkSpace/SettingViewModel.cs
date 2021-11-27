@@ -229,7 +229,7 @@ namespace ComputerProject.SettingWorkSpace
                         MessageBoxResultCustom result = MessageBoxCustom.ShowDialog("Thông tin chỉnh sửa chưa được lưu.\nBạn muốn hủy chỉnh sửa?", "Thông báo", PackIconKind.Error);
                         if (result == MessageBoxResultCustom.Yes)
                         {
-                            LoadData();
+                            LoadDataAsync();
                             StoreEditMode = false;
                             ButtonStoreVisibility_Read = Visibility.Visible;
                             ButtonStoreVisibility_Edit = Visibility.Hidden;
@@ -293,7 +293,7 @@ namespace ComputerProject.SettingWorkSpace
                         MessageBoxResultCustom result= MessageBoxCustom.ShowDialog("Thông tin chỉnh sửa chưa được lưu. \nBạn muốn hủy chỉnh sửa?", "Thông báo", PackIconKind.Error);
                         if (result==MessageBoxResultCustom.Yes)
                         {
-                            LoadData();
+                            LoadDataAsync();
                             PointEditMode = false;
                             ButtonPointVisibility_Read = Visibility.Visible;
                             ButtonPointVisibility_Edit = Visibility.Hidden;
@@ -308,10 +308,10 @@ namespace ComputerProject.SettingWorkSpace
         #region Constructor
         public SettingViewModel()
         {
-            LoadData();
+            LoadDataAsync();
         }
 
-        public void LoadData()
+        public void LoadDataAsync()
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {

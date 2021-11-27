@@ -26,20 +26,23 @@ namespace ComputerProject.OverViewWorkSpace
     {
         public string ViewName => "Tổng quan";
         public PackIconKind ViewIcon => PackIconKind.ChartArc;
+        OverViewViewModel vm = new OverViewViewModel();
         public OverViewMainView()
         {
             InitializeComponent();
             if ( DataContext == null )
-                 DataContext = new OverViewViewModel();
+                 DataContext = vm;
         }
 
-        public void LoadData()
-        {
-
-        }
+       
         public bool AllowChangeTab()
         {
             return true;
+        }
+
+        public void LoadDataAsync()
+        {
+            vm.LoadRevenueTodayAsyc();
         }
     }
 }

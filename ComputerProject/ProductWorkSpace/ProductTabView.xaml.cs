@@ -40,7 +40,7 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        public void LoadData()
+        public void LoadDataAsync()
         {
 
         }

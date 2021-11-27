@@ -427,7 +427,7 @@ namespace ComputerProject.SaleWorkSpace
             //LoadData();
         }
 
-        public async void LoadData()
+        public async void LoadDataAsync()
         {
             ResetData();
             
