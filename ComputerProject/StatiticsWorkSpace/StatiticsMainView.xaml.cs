@@ -71,7 +71,7 @@ namespace ComputerProject.StatiticsWorkSpace
 
         }
 
-        public void LoadData()
+        public void LoadDataAsync()
         {
 
         }

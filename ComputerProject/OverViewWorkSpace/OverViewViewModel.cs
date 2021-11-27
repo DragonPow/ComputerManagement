@@ -1,15 +1,9 @@
-﻿using ComputerProject.ApplicationWorkspace;
-using ComputerProject.HelperService;
+﻿using ComputerProject.HelperService;
 using LiveCharts;
-using LiveCharts.Wpf;
-using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
 
 namespace ComputerProject.OverViewWorkSpace
 {
@@ -19,21 +13,96 @@ namespace ComputerProject.OverViewWorkSpace
         public SeriesCollection SeriesCollection { get; set; }
         public List<string> Barlable { get; set; }
         public Func<double, string> Formatter { get; set; } = value => FormatLable(value);
+        public ChartValues<double> Values { get; set; }
+
         DateTime to = DateTime.Now;
         DateTime from = DateTime.Now.AddDays(-29);
-        public ChartValues<double> Values { get; set; }
+
+        int _totalbill;
+        int _totalwarranrybill;
+        int _totalnormalbill;
+
+        int _totalpro;
+        int _totalprostop;
+        int _totalproprovide;
+
+        private Action getbillinfo;
+        private Action getproinfo;
         #endregion
 
         #region Properties
-        public int TotalBill{ get; set; }
-        public int TotalWarrantyBill { get; set; }
-        public int TotalNomalBill { get; set; }
-        public int TotalPro { get; set; }
-        public int TotalProProvie { get; set; }
+        public int TotalBill {
+            get => _totalbill;
+            set
+            {
+                if (value != _totalbill)
+                {
+                    _totalbill = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public int TotalWarrantyBill
+        {
+            get => _totalwarranrybill;
+            set
+            {
+                if (value != _totalwarranrybill)
+                {
+                    _totalwarranrybill = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public int TotalNomalBill
+        {
+            get => _totalnormalbill;
+            set
+            {
+                if (value != _totalnormalbill)
+                {
+                    _totalnormalbill = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public int TotalPro
+        {
+            get => _totalpro;
+            set
+            {
+                if (value != _totalpro)
+                {
+                    _totalpro = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public int TotalProProvie
+        {
+            get => _totalproprovide;
+            set
+            {
+                if (value != _totalproprovide)
+                {
+                    _totalproprovide = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        public int TotalProStop { get; set; }
-
-      
+        public int TotalProStop
+        {
+            get => _totalprostop;
+            set
+            {
+                if (value != _totalprostop)
+                {
+                    _totalprostop = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         #endregion
 
         #region Constructor
@@ -46,11 +115,11 @@ namespace ComputerProject.OverViewWorkSpace
 
             Barlable = new List<string>();
 
-            
             using (ComputerManagementEntities context = new ComputerManagementEntities())
             {
-                TotalNomalBill = context.BILLs.Where(b=> b.createTime <=to && b.createTime >= from).Count();
-                TotalWarrantyBill = context.BILL_REPAIR.Count();
+
+                TotalNomalBill = context.BILLs.Where(b => b.createTime <= to && b.createTime >= from).Count();
+                TotalWarrantyBill = context.BILL_REPAIR.Where(b => b.timeReceive <= to && b.timeReceive >= from).Count();
                 TotalBill = TotalNomalBill + TotalWarrantyBill;
 
                 TotalProProvie = context.PRODUCTs.Where(p => p.isStopSelling == false).Count();
@@ -77,6 +146,33 @@ namespace ComputerProject.OverViewWorkSpace
             }
 
         }
+
+        public async void LoadRevenueTodayAsyc()
+        {
+            using (ComputerManagementEntities context = new ComputerManagementEntities())
+            {
+
+                await Task.Run(getproinfo = () =>
+                {
+                    TotalProProvie = context.PRODUCTs.Where(p => p.isStopSelling == false).Count();
+                    TotalProStop = context.PRODUCTs.Where(p => p.isStopSelling).Count();
+                    TotalPro = TotalProProvie + TotalProStop;
+
+                });
+                await Task.Run( getbillinfo = () =>
+                {
+                    TotalNomalBill = context.BILLs.Where(b => b.createTime <= to && b.createTime >= from).Count();
+                    TotalWarrantyBill = context.BILL_REPAIR.Where(b => b.timeReceive <= to && b.timeReceive >= from).Count();
+                    TotalBill = TotalNomalBill + TotalWarrantyBill;
+                });
+
+                
+                Values[Values.Count - 1] = context.BILLs.Where(b => b.createTime.Day == to.Day && b.createTime.Month == to.Month && b.createTime.Year == to.Year).Select(b => b.totalMoney).DefaultIfEmpty(0).Sum();
+
+            }
+        }
+
+        
         #endregion
 
         static string FormatLable(double value)

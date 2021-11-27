@@ -36,7 +36,7 @@ namespace ComputerProject.CategoryWorkspace
             OnPropertyChanged(nameof(CurrentPage));
         }
 
-        public void LoadData()
+        public void LoadDataAsync()
         {
             var vm = _mainPage as ListCategoryViewModel;
             vm.LoadAsyncCategories();

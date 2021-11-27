@@ -42,7 +42,7 @@ namespace ComputerProject.CustomerWorkspace
             }
         }
 
-        public void LoadData()
+        public void LoadDataAsync()
         {
 
         }

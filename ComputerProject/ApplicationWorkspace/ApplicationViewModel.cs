@@ -52,7 +52,7 @@ namespace ComputerProject.ApplicationWorkspace
                     _currentViewModel = value;
                     OnPropertyChanged();
 
-                    _currentViewModel.LoadData();
+                    _currentViewModel.LoadDataAsync();
                 }
             }
         }
