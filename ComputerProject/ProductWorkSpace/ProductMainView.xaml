@@ -111,7 +111,7 @@
                         </materialDesign:PopupBox>
                         <Button
                             Grid.Column="1"
-                            Margin="5,0,10,0"
+                            Margin="25,0,10,0"
                             HorizontalAlignment="Right"
                             materialDesign:ButtonAssist.CornerRadius="5"
                             Background="{StaticResource MainColor}"
