@@ -34,8 +34,10 @@ namespace ComputerProject.SettingWorkSpace
         private string _pointToMoney;
         private string _moneyToPoint;
         private string _maxPoint;
+        private Action getStoreinfo;
+        private Action getPointinfo;
 
-        
+
         ICommand _saveStoreCommand;
         ICommand _changeStoreCommand;
         ICommand _changePointCommand;
@@ -311,22 +313,28 @@ namespace ComputerProject.SettingWorkSpace
             LoadDataAsync();
         }
 
-        public void LoadDataAsync()
+        public async void LoadDataAsync()
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                var data = db.REGULATIONs.Where(p => p.name == "StoreName").FirstOrDefault();
-                StoreName = data.value.ToString();
-                data = db.REGULATIONs.Where(p => p.name == "StorePhone").FirstOrDefault();
-                StorePhone = data.value.ToString();
-                data = db.REGULATIONs.Where(p => p.name == "StoreAdress").FirstOrDefault();
-                StoreAddress = data.value.ToString();
-                data = db.REGULATIONs.Where(p => p.name == "PointToMoney").FirstOrDefault();
-                PointToMoney = data.value.ToString();
-                data = db.REGULATIONs.Where(p => p.name == "MoneyToPoint").FirstOrDefault();
-                MoneyToPoint = data.value.ToString();
-                data = db.REGULATIONs.Where(p => p.name == "MaxPoint").FirstOrDefault();
-                MaxPoint = data.value.ToString();
+                await Task.Run(getStoreinfo = ()=>
+                {
+                    var data = db.REGULATIONs.Where(p => p.name == "StoreName").FirstOrDefault();
+                    StoreName = data.value.ToString();
+                    data = db.REGULATIONs.Where(p => p.name == "StorePhone").FirstOrDefault();
+                    StorePhone = data.value.ToString();
+                    data = db.REGULATIONs.Where(p => p.name == "StoreAdress").FirstOrDefault();
+                    StoreAddress = data.value.ToString();
+                });
+                await Task.Run(getPointinfo = () =>
+                {
+                    var data = db.REGULATIONs.Where(p => p.name == "PointToMoney").FirstOrDefault();
+                    PointToMoney = data.value.ToString();
+                    data = db.REGULATIONs.Where(p => p.name == "MoneyToPoint").FirstOrDefault();
+                    MoneyToPoint = data.value.ToString();
+                    data = db.REGULATIONs.Where(p => p.name == "MaxPoint").FirstOrDefault();
+                    MaxPoint = data.value.ToString();
+                });
             }
         }
 
