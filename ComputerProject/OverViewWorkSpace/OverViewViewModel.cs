@@ -179,10 +179,10 @@ namespace ComputerProject.OverViewWorkSpace
         {
             if (value >= 100000)
             {
-                return (value / 1000000).ToString() + "triệu";
+                return (value / 1000000).ToString() + " triệu";
             }
 
-            if (value >= 100000000) return (value / 1000000000).ToString() + "tỉ";
+            if (value >= 100000000) return (value / 1000000000).ToString() + " tỉ";
             return null;
         }
 
