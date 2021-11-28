@@ -45,7 +45,7 @@
                               FontSize="16"
                               Margin="10"
                               PreviewKeyDown="PreviewKeydown"
-                              PreviewTextInput="PreviewTextInputMaxpoint"
+                              PreviewTextInput="PreviewTextInput"
                               Width="400"
                               IsEnabled="{Binding PointEditMode}"
                               Text="{Binding MaxPoint, Mode=TwoWay}"
