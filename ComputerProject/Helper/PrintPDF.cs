@@ -230,7 +230,7 @@ namespace ComputerProject.Helper
             table.SpacingAfter = 20;
 
             table.AddCell(new PdfPCell(new Phrase("Số điện thoại: " + info.Customer.phone, font)) { HorizontalAlignment = PdfPCell.ALIGN_LEFT, Border = PdfPCell.NO_BORDER });
-            table.AddCell(new PdfPCell(new Phrase("Mã hóa đơn: " + info.Id.ToString(), font)) { Border = PdfPCell.NO_BORDER});
+            table.AddCell(new PdfPCell(new Phrase("Mã hóa đơn: " + info.Id.ToString(), font)) { HorizontalAlignment = PdfPCell.ALIGN_RIGHT, Border = PdfPCell.NO_BORDER});
 
             return table;
         }

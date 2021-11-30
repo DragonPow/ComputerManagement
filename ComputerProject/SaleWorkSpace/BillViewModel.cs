@@ -144,6 +144,8 @@ namespace ComputerProject.SaleWorkSpace
 
                     db.SaveChanges();
 
+                    CurrentBill.Id = b.id;
+
                     Task.Run(() => AddBonusPointToCustomer(b));
                 }
                 return true;
@@ -171,7 +173,7 @@ namespace ComputerProject.SaleWorkSpace
         private void PrintPDF()
         {
             var p = new Helper.PrintPDF();
-            p.createBill(CurrentBill);
+            p.createBill(CurrentBill, true);
         }
         private void CloseWindow()
         {
