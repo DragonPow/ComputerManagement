@@ -278,18 +278,22 @@ namespace ComputerProject.CategoryWorkspace
                 TitleViewName = "AddCategory";
                 CurrentParentCategory = new Model.Category();
                 CurrentParentCategory.ChildCategories = new ObservableCollection<Model.Category>();
-                CurrentParentCategory.SpecificationTypes = new ObservableCollection<Model.Specification_type>();
+                //CurrentParentCategory.SpecificationTypes = new ObservableCollection<Model.Specification_type>();
             }
             else
             {
                 TitleViewName = "DetailCategory";
                 CurrentParentCategory = parentCategory;
-                CurrentParentCategory.ChildCategories = _repository.LoadChildCategories(CurrentParentCategory.Id);
+                CurrentParentCategory.ChildCategories = _repository.LoadChildCategories(CurrentParentCategory.Id, true);
             }
         }
         private void ReloadData()
         {
-            CurrentParentCategory.ChildCategories = null;
+            //foreach (var child in CurrentParentCategory.ChildCategories)
+            //{
+            //    child.SpecificationTypes = null;
+            //}
+
             if (CurrentParentCategory.Id == 0)
             {
 
@@ -395,10 +399,7 @@ namespace ComputerProject.CategoryWorkspace
         public void NavigateBackPage()
         {
             ReloadData();
-            foreach (var child in CurrentParentCategory.ChildCategories)
-            {
-                child.SpecificationTypes = null;
-            }
+
             _navigator?.Back();
         }
         private bool CanDelete(int categoryId)

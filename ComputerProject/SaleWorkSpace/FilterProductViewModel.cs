@@ -1,4 +1,5 @@
-﻿using ComputerProject.HelperService;
+﻿using ComputerProject.CustomMessageBox;
+using ComputerProject.HelperService;
 using ComputerProject.Model;
 using System;
 using System.Windows.Input;
@@ -187,6 +188,11 @@ namespace ComputerProject.SaleWorkSpace
 
         public void Filter()
         {
+            if (PriceLowest > PriceHighest)
+            {
+                MessageBoxCustom.ShowDialog("Giá tiền phía sau phải lớn hơn phía trước", "Thông báo", MaterialDesignThemes.Wpf.PackIconKind.InfoCircleOutline);
+                return;
+            }
             FilterClickedEvent?.Invoke(this, null);
         }
 

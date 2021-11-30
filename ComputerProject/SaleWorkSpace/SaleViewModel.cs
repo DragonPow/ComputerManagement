@@ -435,6 +435,7 @@ namespace ComputerProject.SaleWorkSpace
             Task.Run(() => VisibleProducts = _products = _repository.LoadProducts());
             Task.Run(LoadFilterControl);
         }
+
         public bool AllowChangeTab()
         {
             return true;
@@ -461,6 +462,7 @@ namespace ComputerProject.SaleWorkSpace
             OnPropertyChanged(nameof(CurrentRootCategory));
             OnPropertyChanged(nameof(CurrentCategory));
         }
+
         private void LoadFilterControl()
         {
             if (CurrentFilter == null)
@@ -473,6 +475,7 @@ namespace ComputerProject.SaleWorkSpace
                 });
             }
         }
+
         public void ResetData()
         {
             _pointToMoney = -1;
@@ -481,6 +484,7 @@ namespace ComputerProject.SaleWorkSpace
             Clear(CurrentCustomer);
             Clear(ProductsInBill);
         }
+
         //private void SearchRootCategory()
         //{
         //    VisibleProducts = _products = _repository.LoadProducts(CurrentRootCategory);
@@ -496,6 +500,7 @@ namespace ComputerProject.SaleWorkSpace
         //        VisibleProducts = _products;
         //    }
         //}
+
         private Collection<Product> FilterByCategory(Collection<Product> products)
         {
             if (products == null) return null;
@@ -523,6 +528,7 @@ namespace ComputerProject.SaleWorkSpace
                 throw new ArgumentException();
             }
         }
+
         private void OpenPaymentView(IDictionary<Product, int> productsInBill, CUSTOMER currentCustomer)
         {
             var vm = new BillViewModel(productsInBill, currentCustomer, TotalPriceBill);
@@ -530,12 +536,14 @@ namespace ComputerProject.SaleWorkSpace
 
             WindowService.ShowSingelWindow(vm, new PaySaleBillView());
         }
+
         private void ClearPayment()
         {
             Clear(CurrentCustomer);
             Clear(ProductsInBill);
             CurrentPoint = 0;
         }
+
         private void AddToBill(Product product, int quantity)
         {
             bool containProduct = ProductsInBill.ContainsKey(product);
@@ -558,6 +566,7 @@ namespace ComputerProject.SaleWorkSpace
             OnPropertyChanged(nameof(TotalPriceProduct));
             OnPropertyChanged(nameof(TotalPriceBill));
         }
+
         private void RemoveToBill(Product product, int quantity)
         {
             if (ProductsInBill.ContainsKey(product))
@@ -575,6 +584,7 @@ namespace ComputerProject.SaleWorkSpace
             OnPropertyChanged(nameof(TotalPriceProduct));
             OnPropertyChanged(nameof(TotalPriceBill));
         }
+
         //private void OpenFilterControl()
         //{
         //    FilterProductViewModel filter = new FilterProductViewModel(CurrentFilter);
@@ -592,6 +602,7 @@ namespace ComputerProject.SaleWorkSpace
 
         //    WindowService.ShowWindow(filter, new Filtertab());
         //}
+
         public Collection<Product> FilterByFilterControl(Collection<Product> products, IFilterProductState filter)
         {
             IEnumerable<Model.Product> filteredProducts = products.Where(i => (!(filter.Supplier == null || filter.Supplier.Trim() == "") ? i.Producer.ToLower().Contains(filter.Supplier.Trim().ToLower()) : true)
@@ -600,11 +611,13 @@ namespace ComputerProject.SaleWorkSpace
                                                                 && (filter.TimeWarranty > 0 ? i.Warranty == filter.TimeWarranty : true));
             return new ObservableCollection<Product>(filteredProducts);
         }
+
         private void OpenAddCustomerView()
         {
             var vm = new CustomerViewModel(true);
             WindowService.ShowWindow(vm, new CustomerAdd());
         }
+
         private void SearchProductbyName(string text)
         {
             if (text != null)
@@ -615,19 +628,23 @@ namespace ComputerProject.SaleWorkSpace
                 VisibleProducts = new ObservableCollection<Product>(VisibleProducts.Where(i => FormatHelper.ConvertTo_TiengDongLao(i.Name).Trim().ToLower().Contains(text)));
             }
         }
+
         private void SortProductbyPrice()
         {
             IsPriceLowToHight = !IsPriceLowToHight;
         }
+
         private void SearchCustomerbyPhone(string phone)
         {
             int number = 5;
             ListSearchCustomer = _repository.SearchCustomer(phone, number);
         }
+
         private void ShowDetail(Model.Product product)
         {
             //RequestOpenView?.Invoke(this, new RequestViewArgs(ProductViewModel, product));
         }
+
         private void Clear(object information)
         {
             if (information == null) return;

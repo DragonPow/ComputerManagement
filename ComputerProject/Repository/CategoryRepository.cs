@@ -65,13 +65,19 @@ namespace ComputerProject.Repository
             return category;
         }
 
-        public ObservableCollection<Model.Category> LoadChildCategories(int rootId)
+        public ObservableCollection<Model.Category> LoadChildCategories(int rootId, bool isloadSpecifications = false)
         {
             var list = new ObservableCollection<Model.Category>();
 
             using (var _context = new ComputerManagementEntities())
             {
-                var listEntity = _context.CATEGORies.Include(i => i.SPECIFICATION_TYPE).Where(i => i.parentCategoryId == rootId).AsNoTracking().ToList();
+                IQueryable<CATEGORY> query = _context.CATEGORies.AsNoTracking().Where(i => i.parentCategoryId == rootId);
+                if (isloadSpecifications)
+                {
+                    query = query.Include(i => i.SPECIFICATION_TYPE);
+                }
+                var listEntity = query.AsEnumerable();
+                //var listEntity = _context.CATEGORies.AsNoTracking().Include(i => i.SPECIFICATION_TYPE).Where(i => i.parentCategoryId == rootId).AsEnumerable();
 
                 foreach (var i in listEntity)
                 {
