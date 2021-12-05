@@ -18,7 +18,7 @@ namespace ComputerProject.ProductWorkSpace
 
         public void Validation()
         {
-            mainVM.CountPage();
+            mainVM.Validation();
         }
     }
 }

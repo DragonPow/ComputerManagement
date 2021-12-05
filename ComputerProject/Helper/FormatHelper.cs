@@ -145,9 +145,13 @@ namespace ComputerProject
             dbContext.CommandTimeout = secs;
         }
 
-        public static DateTime FormatDateText(string dateText)
+        public static DateTime TextToDateTime(string dateText)
         {
             return DateTime.ParseExact(dateText, "dd/MM/yyyy", System.Globalization.CultureInfo.GetCultureInfo("vi"));
+        }
+        public static string DatetimeToDateString(DateTime date)
+        {
+            return date.ToShortDateString();
         }
     }
 }

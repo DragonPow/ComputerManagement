@@ -10,7 +10,7 @@ namespace ComputerProject
     {
         public DateTime formatedBirthday
         {
-            get => FormatHelper.FormatDateText(birthday);
+            get => FormatHelper.TextToDateTime(birthday);
         }
     }
 }

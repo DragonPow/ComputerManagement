@@ -20,9 +20,34 @@ namespace ComputerProject.InsuranceWorkSpace
     /// </summary>
     public partial class InsuranceItem : UserControl
     {
+        public static DependencyProperty CommandClickEditProperty = DependencyProperty.Register(nameof(CommandClickEdit), typeof(ICommand), typeof(InsuranceItem));
+        public static DependencyProperty CommandClickDeleteProperty = DependencyProperty.Register(nameof(CommandClickDelete), typeof(ICommand), typeof(InsuranceItem));
+
         public InsuranceItem()
         {
             InitializeComponent();
+        }
+
+        public ICommand CommandClickEdit
+        {
+            get => (ICommand) GetValue(CommandClickEditProperty);
+            set => SetValue(CommandClickEditProperty, value);
+        }
+
+        public ICommand CommandClickDelete
+        {
+            get => (ICommand)GetValue(CommandClickDeleteProperty);
+            set => SetValue(CommandClickDeleteProperty, value);
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            CommandClickEdit.Execute(DataContext);
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            CommandClickDelete.Execute(DataContext);
         }
     }
 }

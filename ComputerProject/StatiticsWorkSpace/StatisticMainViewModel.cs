@@ -46,7 +46,7 @@ namespace ComputerProject.StatiticsWorkSpace
                     OnPropertyChanged(nameof(RateBill));
 
                     OnPropertyChanged(nameof(CountNewCustomer));
-                    OnPropertyChanged(nameof(countNewCustomer_Rate));
+                    OnPropertyChanged(nameof(RateCustomer));
 
                     OnPropertyChanged(nameof(CountNewRepair));
                     OnPropertyChanged(nameof(RateRepair));
@@ -80,7 +80,7 @@ namespace ComputerProject.StatiticsWorkSpace
             }
         }
         public String CountNewCustomer_String => CountNewCustomer.ToString();
-        protected String countNewCustomer_Rate => Rate(CountNewCustomer, lastCustomerCount);
+        public String RateCustomer => Rate(CountNewCustomer, lastCustomerCount);
 
         protected int countNewBill;
         public int CountNewBill
@@ -437,7 +437,7 @@ namespace ComputerProject.StatiticsWorkSpace
 
         String Rate(int nw, int old)
         {
-            if (old == 0) return "999%";
+            if (old == 0) return string.Empty;
             int rate = (nw - old) * 100 / old;
             if (rate > 0) return "+$1%".Replace("$1", rate.ToString());
             return "$1%".Replace("$1", rate.ToString());

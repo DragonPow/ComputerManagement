@@ -46,7 +46,7 @@ namespace ComputerProject.CustomerWorkspace
 
             if (e.PropertyName == nameof(SearchContent))
             {
-                CountPage();
+                Validation();
             }
 
             if (e.PropertyName == nameof(CurrentPage))
