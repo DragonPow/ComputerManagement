@@ -77,13 +77,15 @@ namespace ComputerProject.ApplicationWorkspace
             {
                  new OverViewWorkSpace.OverViewMainView(),
                 saleVM,
+                new InsuranceWorkSpace.InsuranceTabView(),
                 prodTab,
                 new CategoryViewModel(),
                 new BillPage(),
+                 
                 customerTab,
                 statisticTab,
                 new SettingViewModel(),
-                 new InsuranceWorkSpace.InsuranceTabView(),
+                
             };
             CurrentViewModel = TabViewModels[0];
         }

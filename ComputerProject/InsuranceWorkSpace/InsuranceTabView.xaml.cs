@@ -30,7 +30,7 @@ namespace ComputerProject.InsuranceWorkSpace
 
         public string ViewName => "Sửa chữa";
 
-        public PackIconKind ViewIcon => PackIconKind.Vpn;
+        public PackIconKind ViewIcon => PackIconKind.HammerWrench;
 
         public bool AllowChangeTab()
         {

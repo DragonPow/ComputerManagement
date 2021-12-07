@@ -11,7 +11,7 @@ namespace ComputerProject.InsuranceWorkSpace
     {
         private List<String> sortTypes = new List<string>() {
             "Ngày tiếp nhận: Thấp đến cao",
-            "Ngày tiếp nhận: Cao đến thâp",
+            "Ngày tiếp nhận: Cao đến thấp",
             "Số điện thoại: A -> Z",
             "Số điện thoại: Z -> A"
             };
