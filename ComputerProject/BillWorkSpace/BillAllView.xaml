@@ -146,19 +146,19 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="150" />
                         <ColumnDefinition Width="90" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="1"
                                Text="Mã hóa đơn"
-                               FontWeight="DemiBold"
+                               FontWeight="Bold"
                                VerticalAlignment="Center"
                                FontSize="{x:Static font:Font.Body}"
                                FontFamily="{StaticResource Mulish}"
                                Foreground="Black" />
                     <TextBlock Grid.Column="2"
                                Text="Ngày tạo"
-                               FontWeight="DemiBold"
+                               FontWeight="Bold"
                                Margin="15,0"
                                VerticalAlignment="Center"
                                FontSize="{x:Static font:Font.Body}"
@@ -166,7 +166,7 @@
                                Foreground="Black" />
                     <TextBlock Grid.Column="3"
                                Text="Số điện thoại"
-                               FontWeight="DemiBold"
+                               FontWeight="Bold"
                                Margin="15,0"
                                VerticalAlignment="Center"
                                FontSize="{x:Static font:Font.Body}"
@@ -174,7 +174,7 @@
                                Foreground="Black" />
                     <TextBlock Grid.Column="4"
                                Text="Tổng hóa đơn"
-                               FontWeight="DemiBold"
+                               FontWeight="Bold"
                                Margin="15,0"
                                VerticalAlignment="Center"
                                FontSize="{x:Static font:Font.Body}"
@@ -182,7 +182,7 @@
                                Foreground="Black" />
                     <TextBlock Grid.Column="5"
                                Text="Điểm thưởng sử dụng"
-                               FontWeight="DemiBold"
+                               FontWeight="Bold"
                                Margin="15,0"
                                Grid.ColumnSpan="2"
                                VerticalAlignment="Center"

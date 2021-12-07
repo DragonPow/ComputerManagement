@@ -275,18 +275,12 @@
         </ScrollViewer>
     <Grid Background="{StaticResource MainColor}" Margin="0,20,0,0">
         <TextBlock Text="Tổng hóa đơn" Margin="10,5" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="16" Foreground="White"/>
-        <TextBox Margin="5,3"
-                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                  MaxWidth="300" 
-                  MinWidth="100"
+        <TextBlock Margin="5,3"
                    Text="16,599,000" 
                    FontWeight="DemiBold"
                    VerticalAlignment="Center" 
                    FontSize="16" 
                  Padding="5"
-                 PreviewTextInput="PreviewTextInput"
-                 BorderBrush="White"
-                 HorizontalContentAlignment="Right"
                    HorizontalAlignment="Right" 
                    Foreground="White"/>
     </Grid>

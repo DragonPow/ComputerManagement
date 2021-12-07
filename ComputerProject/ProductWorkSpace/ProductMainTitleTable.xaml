@@ -12,13 +12,14 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="TitleCell" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Foreground" Value="#11142D" />
             <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
             <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Margin" Value="15,0"/>
+            <Setter Property="Margin" Value="0,0"/>
         </Style>
     </UserControl.Resources>
     <Grid Height="50">
@@ -36,68 +37,38 @@
         <TextBlock
             x:Name="Name"
             Grid.Column="0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Margin="15, 0, 0, 0"
-            FontFamily="{StaticResource Mulish}"
-            FontSize="{x:Static localfont:Font.Body}"
-            FontWeight="Bold"
+            Margin="15,0"
             Style="{StaticResource TitleCell}">
             Tên sản phẩm
         </TextBlock>
         <TextBlock
             x:Name="Code"
             Grid.Column="1"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontFamily="{StaticResource Mulish}"
-            FontSize="{x:Static localfont:Font.Body}"
-            FontWeight="Bold"
             Style="{StaticResource TitleCell}">
             Mã sản phẩm
         </TextBlock>
         <TextBlock
             x:Name="Quantity"
             Grid.Column="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontFamily="{StaticResource Mulish}"
-            FontSize="{x:Static localfont:Font.Body}"
-            FontWeight="Bold"
             Style="{StaticResource TitleCell}">
             Số lượng
         </TextBlock>
         <TextBlock
             x:Name="Unit"
             Grid.Column="3"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontFamily="{StaticResource Mulish}"
-            FontSize="{x:Static localfont:Font.Body}"
-            FontWeight="Bold"
             Style="{StaticResource TitleCell}">
             Đơn giá
         </TextBlock>
         <TextBlock
             x:Name="State"
             Grid.Column="4"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontFamily="{StaticResource Mulish}"
-            FontSize="{x:Static localfont:Font.Body}"
-            FontWeight="Bold"
             Style="{StaticResource TitleCell}">
             Trạng thái
         </TextBlock>
         <TextBlock
             x:Name="Number"
             Grid.Column="5"
-            Grid.ColumnSpan="3"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            FontFamily="{StaticResource Mulish}"
-            FontSize="{x:Static localfont:Font.Body}"
-            FontWeight="Bold"
+            Grid.ColumnSpan="2"
             Style="{StaticResource TitleCell}">
             Hạn bảo hành
         </TextBlock>

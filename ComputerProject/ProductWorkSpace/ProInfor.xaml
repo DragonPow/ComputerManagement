@@ -185,6 +185,7 @@
                     FontSize="{x:Static localfont:Font.Body}"
                     Style="{DynamicResource ResourceKey=style_Text}"
                     PreviewTextInput="PreviewTextInput"
+                    IsReadOnly="True"
                     Text="{Binding Warranty_String, Mode=TwoWay}" />
 
                 <localcustom:TextboxCustom
