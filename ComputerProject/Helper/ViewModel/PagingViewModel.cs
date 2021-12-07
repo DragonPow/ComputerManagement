@@ -101,7 +101,7 @@ namespace ComputerProject
         /// Count max page
         /// </summary>
         /// <param name="resetPage">Remain current page number if true. Reset page number (to 1) if set true</param>
-        public void CountPage(bool resetPage = true)
+        public void CalculatePage(bool resetPage)
         {
             Console.WriteLine("CountPage");
             countOperation.Cancel();
@@ -137,7 +137,7 @@ namespace ComputerProject
 
         public void Validation()
         {
-            CountPage(true);
+            CalculatePage(true);
         }
     }
 }

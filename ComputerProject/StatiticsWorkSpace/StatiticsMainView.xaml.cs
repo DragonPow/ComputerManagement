@@ -40,15 +40,6 @@ namespace ComputerProject.StatiticsWorkSpace
             //InitData();
         }
 
-        public void BeginVM() {
-            if (DataContext == null)
-            {
-                var vm = new StatisticMainViewModel();
-                vm.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                DataContext = vm;
-            }
-        }
-
         private void InitData()
         {
             DataContext = this;
@@ -73,7 +64,12 @@ namespace ComputerProject.StatiticsWorkSpace
 
         public void LoadDataAsync()
         {
-
+            if (DataContext == null)
+            {
+                var vm = new StatisticMainViewModel();
+                vm.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                DataContext = vm;
+            }
         }
 
         public bool AllowChangeTab()

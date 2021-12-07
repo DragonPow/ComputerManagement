@@ -32,7 +32,7 @@ namespace ComputerProject.CustomerWorkspace
             InitializeComponent();
         }
 
-        public void BeginVM()
+        public void LoadDataAsync()
         {
             if (DataContext == null)
             {
@@ -40,11 +40,6 @@ namespace ComputerProject.CustomerWorkspace
                 vm.Validation();
                 DataContext = vm;
             }
-        }
-
-        public void LoadDataAsync()
-        {
-
         }
         public bool AllowChangeTab()
         {

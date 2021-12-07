@@ -35,7 +35,12 @@ namespace ComputerProject.ProductWorkSpace
             CurrentFilter = new FilterProductViewModel(null, true);
             CurrentFilter.FilterClickedEvent += new EventHandler((o, e) =>
             {
-                Console.WriteLine("Filter clicked");
+                //Console.WriteLine("Filter clicked submit");
+                Validation();
+            });
+            CurrentFilter.UndoFilterEvent += new EventHandler((o, e) =>
+            {
+                //Console.WriteLine("Filter clicked reset");
                 Validation();
             });
         }
@@ -58,7 +63,7 @@ namespace ComputerProject.ProductWorkSpace
         {
             if (e.PropertyName == nameof(SearchContent))
             {
-                CountPage();
+                Validation();
             }
 
             if (e.PropertyName == nameof(CurrentPage))
@@ -97,7 +102,7 @@ namespace ComputerProject.ProductWorkSpace
         public void BackAndRefresh(object sender, EventArgs e)
         {
             viewController.CurrentViewModel = this;
-            CountPage(false);
+            CalculatePage(false);
         }
 
 
@@ -175,7 +180,7 @@ namespace ComputerProject.ProductWorkSpace
         public void OnClick_ButtonPrice(object obj)
         {
             orderMode = orderMode == 0 ? 1 : 0;
-            CountPage(false);
+            CalculatePage(false);
         }
     }
 }

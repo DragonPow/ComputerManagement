@@ -55,14 +55,14 @@
                         Margin="10,0,0,0"
                         InnerRadius="0"
                         LegendLocation="Right"
-                        Series="{Binding CategoteryPieSeries}" >
+                        Series="{Binding CategoteryPieSeries}">
                         <lvc:PieChart.AxisY>
                             <lvc:Axis
-                            Title="Doanh thu"
-                            LabelFormatter="{Binding FormaterLabelMoney}"
-                            MinValue="0" />
+                                Title="Doanh thu"
+                                LabelFormatter="{Binding FormaterLabelMoney}"
+                                MinValue="0" />
                         </lvc:PieChart.AxisY>
-                    </lvc:PieChart>                   
+                    </lvc:PieChart>
                 </Grid>
             </DockPanel>
         </Border>
@@ -78,8 +78,8 @@
             Title="Khách hàng"
             Grid.Row="1"
             Grid.Column="0"
-           Margin="5"
-            Percent="-21%"
+            Margin="5"
+            Percent="{Binding RateCustomer}"
             Value="{Binding CountNewCustomer}" />
         <local:OverviewCardView
             Title="Đơn hàng"
@@ -118,10 +118,13 @@
                     Foreground="#11142D"
                     Text="Top 5 bán chạy" />
                 <Separator Margin="10,0,10,10" Background="{StaticResource Divition}" />
-                <ListView Margin="5,0,0,0" ItemsSource="{Binding CollectionTopSale}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView
+                    Margin="5,0,0,0"
+                    ItemsSource="{Binding CollectionTopSale}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <local:TopProductItemView DataContext="{Binding}" Margin="0,5" />
+                            <local:TopProductItemView Margin="0,5" DataContext="{Binding}" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
@@ -133,8 +136,11 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                        <Border x:Name="Bd"  Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" >
-                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        <Border
+                                            x:Name="Bd"
+                                            Padding="{TemplateBinding Padding}"
+                                            Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                                         </Border>
                                     </ControlTemplate>
                                 </Setter.Value>
@@ -185,7 +191,7 @@
                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                         Text="MMM-yyyy" />
                 </Grid>
-                <lvc:CartesianChart  Zoom="X">
+                <lvc:CartesianChart Zoom="X">
                     <lvc:CartesianChart.SeriesColors>
                         <lvc:ColorsCollection>
                             <Color>#0477BF</Color>

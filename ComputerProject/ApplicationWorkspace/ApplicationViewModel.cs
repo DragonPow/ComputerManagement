@@ -65,13 +65,10 @@ namespace ComputerProject.ApplicationWorkspace
         public ApplicationViewModel()
         {
             var customerTab = new CustomerWorkspace.CustomerTabView();
-            customerTab.BeginVM();
 
             var statisticTab = new StatiticsWorkSpace.StatiticsMainView();
-            statisticTab.BeginVM();
 
             var prodTab = new ProductWorkSpace.ProductTabView();
-            prodTab.BeginVM();
 
             SaleViewModel saleVM = new SaleViewModel();
             saleVM.RequestOpenDetailProductView += SaleVM_RequestOpenDetailProduct;
