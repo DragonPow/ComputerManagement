@@ -1,4 +1,5 @@
-﻿using ComputerProject.HelperService;
+﻿using ComputerProject.Helper.Interface;
+using ComputerProject.HelperService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ComputerProject.ProductWorkSpace
 {
-    class ProductTabViewModel: MultipleControlViewModel
+    class ProductTabViewModel: MultipleControlViewModel, IValidable
     {
         ProductMainViewModel mainVM;
         public ProductTabViewModel()

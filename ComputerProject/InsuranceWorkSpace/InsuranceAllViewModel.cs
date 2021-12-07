@@ -9,11 +9,24 @@ namespace ComputerProject.InsuranceWorkSpace
 {
     class InsuranceAllViewModel: PagingViewModel<InsuranceViewModel>
     {
+        private List<String> sortTypes = new List<string>() {
+            "Ngày tiếp nhận: Thấp đến cao",
+            "Ngày tiếp nhận: Cao đến thâp",
+            "Số điện thoại: A -> Z",
+            "Số điện thoại: Z -> A"
+            };
+        public List<String> SortTypes => sortTypes;
+        public String SelectedSortType
+        {
+            get;set;
+        }
+
         MultipleControlViewModel viewController;
         public InsuranceAllViewModel()
         {
             this.PropertyChanged += InsuranceAllViewModel_PropertyChanged;
             step = 20;
+            SelectedSortType = sortTypes[1];
         }
 
         public InsuranceAllViewModel(MultipleControlViewModel viewController):this()
@@ -35,7 +48,7 @@ namespace ComputerProject.InsuranceWorkSpace
 
         protected override List<InsuranceViewModel> _search()
         {
-            return InsuranceViewModel.FindByPhoneOrID(SearchContent, currentStartIndex, step);
+            return InsuranceViewModel.FindByPhoneOrID(SearchContent, currentStartIndex, step, sortTypes.IndexOf(SelectedSortType));
         }
 
         protected override int _countMax()

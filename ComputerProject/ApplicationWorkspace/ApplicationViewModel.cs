@@ -82,7 +82,8 @@ namespace ComputerProject.ApplicationWorkspace
                 new BillPage(),
                 customerTab,
                 statisticTab,
-                new SettingViewModel()
+                new SettingViewModel(),
+                 new InsuranceWorkSpace.InsuranceTabView(),
             };
             CurrentViewModel = TabViewModels[0];
         }

@@ -30,7 +30,7 @@ namespace ComputerProject
             return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
         }
 
-        public static string ToMoney(int val, bool hasCurrency = false)
+        public static string ToMoney(long val, bool hasCurrency = false)
         {
             var rs = hasCurrency ? val.ToString("N0", System.Globalization.CultureInfo.GetCultureInfo("vi")) + "VND" : val.ToString("N0");
             return rs;
@@ -53,7 +53,7 @@ namespace ComputerProject
 
             if (needScale)
             {
-                var desSize = new SizeF(185, 120);
+                var desSize = new SizeF(185*2, 120*2);
 
                 int h = image.Height, w = image.Width;
                 var scaleFactor = Math.Min(desSize.Width / w, desSize.Height / h);

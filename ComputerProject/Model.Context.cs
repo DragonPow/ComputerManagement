@@ -18,7 +18,6 @@ namespace ComputerProject
         public ComputerManagementEntities()
             : base("name=ComputerManagementEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -27,7 +26,6 @@ namespace ComputerProject
         }
     
         public virtual DbSet<BILL> BILLs { get; set; }
-        public virtual DbSet<BILL_REPAIR> BILL_REPAIR { get; set; }
         public virtual DbSet<CATEGORY> CATEGORies { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
         public virtual DbSet<DETAIL_REPORT_CATEGORY> DETAIL_REPORT_CATEGORY { get; set; }
@@ -40,5 +38,6 @@ namespace ComputerProject
         public virtual DbSet<SPECIFICATION> SPECIFICATIONs { get; set; }
         public virtual DbSet<SPECIFICATION_TYPE> SPECIFICATION_TYPE { get; set; }
         public virtual DbSet<DETAIL_REPORT_REVENUE> DETAIL_REPORT_REVENUE { get; set; }
+        public virtual DbSet<BILL_REPAIR> BILL_REPAIR { get; set; }
     }
 }

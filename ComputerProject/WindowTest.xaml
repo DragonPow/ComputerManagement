@@ -1,24 +1,27 @@
-﻿<Window x:Class="ComputerProject.Test.WindowTest"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
-        xmlns:test="clr-namespace:ComputerProject.CustomerWorkspace"
-        xmlns:bill="clr-namespace:ComputerProject.BillWorkSpace"
-        xmlns:pro="clr-namespace:ComputerProject.ProductWorkSpace"
-        xmlns:overview="clr-namespace:ComputerProject.OverViewWorkSpace"
-        xmlns:wanrantycard="clr-namespace:ComputerProject.InsuranceWorkSpace"
-        xmlns:local="clr-namespace:ComputerProject.Test"
-        xmlns:insurance="clr-namespace:ComputerProject.InsuranceWorkSpace"
-        xmlns:statitic="clr-namespace:ComputerProject.StatiticsWorkSpace"
-        xmlns:Setting="clr-namespace:ComputerProject.SettingWorkSpace"
-        mc:Ignorable="d"
-        Title="WindowTest" Height="750" Width="1200"
-       
-        d:DesignHeight="1000" d:DesignWidth="1100" WindowStartupLocation="CenterOwner">
+﻿<Window
+    x:Class="ComputerProject.Test.WindowTest"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Setting="clr-namespace:ComputerProject.SettingWorkSpace"
+    xmlns:bill="clr-namespace:ComputerProject.BillWorkSpace"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:insurance="clr-namespace:ComputerProject.InsuranceWorkSpace"
+    xmlns:local="clr-namespace:ComputerProject.Test"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:overview="clr-namespace:ComputerProject.OverViewWorkSpace"
+    xmlns:pro="clr-namespace:ComputerProject.ProductWorkSpace"
+    xmlns:statitic="clr-namespace:ComputerProject.StatiticsWorkSpace"
+    xmlns:test="clr-namespace:ComputerProject.CustomerWorkspace"
+    xmlns:wanrantycard="clr-namespace:ComputerProject.InsuranceWorkSpace"
+    Title="WindowTest"
+    Width="1200"
+    Height="750"
+    d:DesignHeight="1000"
+    d:DesignWidth="1100"
+    WindowStartupLocation="CenterOwner"
+    mc:Ignorable="d">
 
     <Grid Background="{StaticResource Background}">
-        <insurance:InsurancEditView/>
+        <insurance:InsuranceTabView DataContext="{x:Null}"/>
     </Grid>
 </Window>

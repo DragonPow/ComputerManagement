@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ComputerProject.ApplicationWorkspace;
+using ComputerProject.Helper.Interface;
+using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +21,29 @@ namespace ComputerProject.InsuranceWorkSpace
     /// <summary>
     /// Interaction logic for InsuranceTabView.xaml
     /// </summary>
-    public partial class InsuranceTabView : UserControl
+    public partial class InsuranceTabView : UserControl, ITabView
     {
         public InsuranceTabView()
         {
             InitializeComponent();
+        }
+
+        public string ViewName => "Sửa chữa";
+
+        public PackIconKind ViewIcon => PackIconKind.Vpn;
+
+        public bool AllowChangeTab()
+        {
+            return true;
+        }
+
+        public void LoadDataAsync()
+        {
+            if (DataContext == null)
+            {
+                DataContext = new InsuranceTabViewModel();
+            }
+            (DataContext as IValidable).Validation();
         }
     }
 }
