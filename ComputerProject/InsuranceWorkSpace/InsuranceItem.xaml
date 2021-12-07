@@ -10,7 +10,6 @@
              d:DesignHeight="50" d:DesignWidth="1300">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60"/>
             <ColumnDefinition Width="1.2*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -20,27 +19,17 @@
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="number"
-                   Grid.Column="0"
-                   Text="1"
-                   VerticalAlignment="Stretch" 
-                   Padding="0,17" 
-                   HorizontalAlignment="Center"
-                   FontWeight="DemiBold"  
-                   FontSize="{x:Static font:Font.Body}" 
-                   FontFamily="{StaticResource Mulish}" 
-                   Foreground="Black"/>
         <TextBlock x:Name="txtInsuranceID"
-                   Grid.Column="1"
+                   Grid.Column="0"
                    Text="LTM123"
                    VerticalAlignment="Stretch" 
-                   Padding="0,17" 
+                   Padding="20,17" 
                    FontWeight="DemiBold"  
                    FontSize="{x:Static font:Font.Body}" 
                    FontFamily="{StaticResource Mulish}" 
                    Foreground="Black"/>
         <TextBlock x:Name="txtDateReception" 
-                   Grid.Column="2" 
+                   Grid.Column="1" 
                    Text="1/2/2021" 
                    Padding="10,17" 
                    VerticalAlignment="Stretch" 
@@ -48,7 +37,7 @@
                    FontFamily="{StaticResource Mulish}" 
                    Foreground="Black"/>
         <TextBlock x:Name="txtCusPhoneNumber" 
-                   Grid.Column="3" 
+                   Grid.Column="2" 
                    Text="1235478910" 
                    Padding="10,17" 
                    VerticalAlignment="Stretch" 
@@ -56,7 +45,7 @@
                    FontFamily="{StaticResource Mulish}" 
                    Foreground="Black"/>
         <TextBlock x:Name="txtStatus" 
-                   Grid.Column="4" 
+                   Grid.Column="3" 
                    Text="Chưa sửa" 
                    Padding="10,17" 
                    VerticalAlignment="Stretch" 
@@ -64,14 +53,14 @@
                    FontFamily="{StaticResource Mulish}" 
                    Foreground="Black"/>
         <TextBlock x:Name="txtDateReceive" 
-                   Grid.Column="5" 
+                   Grid.Column="4" 
                    Text="5/2/2021" 
                    Padding="10,17" 
                    VerticalAlignment="Stretch" 
                    FontSize="{x:Static font:Font.Body}" 
                    FontFamily="{StaticResource Mulish}" 
                    Foreground="Black"/>
-        <TextBlock x:Name="txtTotal" Grid.Column="6" Text="250,000" Padding="10,17" VerticalAlignment="Stretch" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+        <TextBlock x:Name="txtTotal" Grid.Column="5" Text="250,000" Padding="10,17" VerticalAlignment="Stretch" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
         <Button x:Name="btnEdit" Grid.Column="7"  Style="{StaticResource MaterialDesignIconButton}"  >
             <Image Width="24" 
                    Height="24" 

@@ -41,7 +41,7 @@
                                    FontWeight="Bold"
                                    FontFamily="{StaticResource Mulish}"
                                    Foreground="{StaticResource Title}"></TextBlock>
-            <Button x:Name="btnRenew"
+            <Button x:Name="btn"
                                 Grid.Column="1"
                                 Width="auto"
                                 Height="auto"
@@ -60,13 +60,6 @@
                                                      Foreground="{StaticResource Icon}" />
             </Button>
         </Grid>
-        <Custom:TextboxCustom x:Name="ProdSerial" 
-                                      Title="Số seri sản phẩm" 
-                                      Text="LT12345671621" 
-                                      TextWrapping="WrapWithOverflow" 
-                                      MarginText="10" 
-                                      Margin="0,5" 
-                                      Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
         <Custom:TextboxCustom x:Name="ProdName" 
                                       Title="Tên sản phẩm" 
                                       TextWrapping="WrapWithOverflow" 
@@ -74,6 +67,41 @@
                                       MarginText="10" 
                                       Margin="0,5" 
                               Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Custom:TextboxCustom x:Name="ProdSerial" 
+                                      Title="Số seri sản phẩm" 
+                                      Text="LT12345671621" 
+                                      TextWrapping="WrapWithOverflow" 
+                                      MarginText="10" 
+                                      Margin="0,5" 
+                                      Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
+            <Button x:Name="btnRenew"
+                                Grid.Column="1"
+                                Width="35"
+                                Height="35"
+                                Margin="10,0,0,10"
+                                Padding="5"
+                    VerticalAlignment="Bottom"
+                                Style="{StaticResource MaterialDesignIconButton}"
+                                Background="{x:Null}"
+                                BorderBrush="{x:Null}"
+                       IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                               AncestorType={x:Type local:InsuranceProdInfo}}, 
+                                               Path=Isreadonly,Converter={StaticResource revertbool}}">
+                <materialDesign:PackIcon Kind="CheckCircle"
+                                                     Width="25"
+                                                     Height="25"
+                                                     Padding="0" 
+                                                     Margin="0"
+                                                     VerticalAlignment="Center"
+                                                     Foreground="{StaticResource Icon}" />
+            </Button>
+        </Grid>
+     
         <Custom:TextboxCustom x:Name="IDSaleBill" 
                                       Title="Mã hóa đơn mua hàng" 
                                       Text="Laptop HP 15s-fq2602TU" 
@@ -81,9 +109,9 @@
                                       TextWrapping="WrapWithOverflow" 
                                       MarginText="10" Margin="0,5" 
                                      Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
-        <Custom:TextboxCustom x:Name="InsuranceExpiryDate" 
-                                      Title="Hạn bảo hành" 
-                                      Text="Laptop HP 15s-fq2602TU" 
+        <Custom:TextboxCustom x:Name="InsuranceDate" 
+                                      Title="Ngày kết thúc bảo hành" 
+                                      Text="15/2/2022" 
                                       IsEnabled="False" 
                                       TextWrapping="WrapWithOverflow" 
                                       MarginText="10" Margin="0,5" 

@@ -24,7 +24,7 @@
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="150" />
             <ColumnDefinition Width="90" />
         </Grid.ColumnDefinitions>
         <CheckBox IsChecked="False"
@@ -40,35 +40,35 @@
                    Foreground="Black" />
         <TextBlock Grid.Column="2"
                    Text="{Binding createTime, StringFormat=dd/MM/yyyy}"
-                   Padding="20,17"
+                   Padding="15,17"
                    VerticalAlignment="Stretch"
                    FontSize="{x:Static font:Font.Body}"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
         <TextBlock Grid.Column="3"
                    Text="{Binding CUSTOMER.phone}"
-                   Padding="20,17"
+                   Padding="15,17"
                    VerticalAlignment="Stretch"
                    FontSize="{x:Static font:Font.Body}"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
         <TextBlock Grid.Column="4"
                    Text="{Binding totalMoney, StringFormat='\{0:N0} đ'}"
-                   Padding="20,17"
+                   Padding="15,17"
                    VerticalAlignment="Stretch"
                    FontSize="{x:Static font:Font.Body}"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
         <TextBlock Grid.Column="5"
                    Text="{Binding pointCustomer, StringFormat='\{0:N0}'}"
-                   Padding="20,17"
+                   Padding="15,17"
                    VerticalAlignment="Stretch"
                    FontSize="{x:Static font:Font.Body}"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
         <Button Grid.Column="6"
                 Style="{StaticResource MaterialDesignIconButton}"
-                Margin="20,0"
+                Margin="15,0"
                 Command="{Binding DataContext.DeleteBillCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
                 CommandParameter="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
             <Image Width="18"
