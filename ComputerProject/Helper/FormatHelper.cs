@@ -32,7 +32,7 @@ namespace ComputerProject
 
         public static string ToMoney(int val, bool hasCurrency = false)
         {
-            var rs = hasCurrency ? val.ToString("N0") + "VND" : val.ToString("N0");
+            var rs = hasCurrency ? val.ToString("N0", System.Globalization.CultureInfo.GetCultureInfo("vi")) + "VND" : val.ToString("N0");
             return rs;
         }
 
@@ -152,6 +152,20 @@ namespace ComputerProject
         public static string DatetimeToDateString(DateTime date)
         {
             return date.ToShortDateString();
+        }
+
+        public static string ConvertBillID(int id)
+        {
+            return string.Format("HD{0}", id.ToString("000000000"));
+        }
+        public static string ConvertBillRepairID(int id, bool isWarranty)
+        {
+            if (isWarranty)
+            {
+                return string.Format("BH{0}", id.ToString("000000000"));
+            }
+
+            return string.Format("HD{0}", id.ToString("000000000"));
         }
     }
 }

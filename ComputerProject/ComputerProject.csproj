@@ -337,6 +337,7 @@
       <DependentUpon>BillPayMoneyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="InsuranceWorkSpace\InsuranceAllViewModel.cs" />
+    <Compile Include="InsuranceWorkSpace\InsuranceBillViewModel.cs" />
     <Compile Include="InsuranceWorkSpace\InsurancEditView.xaml.cs">
       <DependentUpon>InsurancEditView.xaml</DependentUpon>
     </Compile>

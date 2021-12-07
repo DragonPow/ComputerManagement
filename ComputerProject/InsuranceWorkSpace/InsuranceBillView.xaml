@@ -1,99 +1,119 @@
-﻿<UserControl x:Class="ComputerProject.InsuranceWorkSpace.InsuranceBillView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ComputerProject.InsuranceWorkSpace"
-        xmlns:font="clr-namespace:ComputerProject.Resource.Font"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:converter="clr-namespace:ComputerProject.Converter" 
-        mc:Ignorable="d" 
-        d:DesignHeight="710" Width="800" Background="White">
+﻿<UserControl
+    x:Class="ComputerProject.InsuranceWorkSpace.InsuranceBillView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:ComputerProject.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+    xmlns:local="clr-namespace:ComputerProject.InsuranceWorkSpace"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="800"
+    d:DataContext="{d:DesignInstance Type=local:InsuranceBillViewModel}"
+    d:DesignHeight="710"
+    Background="White"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <converter:IndexCategoryConverter x:Key="IndexConver" />
     </UserControl.Resources>
     <StackPanel Margin="20,10">
         <StackPanel Orientation="Horizontal">
-            <Image Source="/ComputerProject;component/Resource/Image/logo.png" Width="40" Height="40"></Image>
-            <TextBlock x:Name="NameStore" 
-                       Text="KiotStore" 
-                       FontSize="{x:Static font:Font.Title}" 
-                       FontWeight="DemiBold" Foreground="{StaticResource MainColor}" 
-                       VerticalAlignment="Center" Margin="20,0"></TextBlock>
+            <Image
+                Width="40"
+                Height="40"
+                Source="/ComputerProject;component/Resource/Image/logo.png" />
+            <TextBlock
+                x:Name="NameStore"
+                Margin="20,0"
+                VerticalAlignment="Center"
+                FontSize="{x:Static font:Font.Title}"
+                FontWeight="DemiBold"
+                Foreground="{StaticResource MainColor}"
+                Text="{Binding StoreName}" />
         </StackPanel>
         <Border BorderBrush="{StaticResource MainColor}" BorderThickness="0,0,0,2">
-            <TextBlock x:Name="StoreAddress" 
-                       Text="Đường Ngô Quyền, quận Thủ Đức, Tp.Thủ Đức, TP.Hồ Chí Minh" 
-                       FontSize="14"  Foreground="{StaticResource Icon}" 
-                       VerticalAlignment="Center" 
-                       Margin="0,5" ></TextBlock>
+            <TextBlock
+                x:Name="StoreAddress"
+                Margin="0,5"
+                VerticalAlignment="Center"
+                FontSize="14"
+                Foreground="{StaticResource Icon}"
+                Text="{Binding StoreAddress}" />
         </Border>
-        <TextBlock Text="HÓA ĐƠN SỬA CHỮA BẢO HÀNH" 
-                   Padding="30,5,30,10" 
-                   Background="{StaticResource MainColor}" 
-                   FontWeight="DemiBold" 
-                   HorizontalAlignment="Right" 
-                   Foreground="White" 
-                   FontSize="{x:Static font:Font.Title}"/>
+        <TextBlock
+            Padding="30,5,30,10"
+            HorizontalAlignment="Right"
+            Background="{StaticResource MainColor}"
+            FontSize="{x:Static font:Font.Title}"
+            FontWeight="DemiBold"
+            Foreground="White"
+            Text="HÓA ĐƠN SỬA CHỮA BẢO HÀNH" />
         <ScrollViewer Height="370">
             <StackPanel>
                 <StackPanel Grid.Row="4">
                     <TextBlock
-                    Margin="0, 5"
-                    Grid.Row="2"
-                    FontFamily="{StaticResource Mulish}"
-                    FontWeight="Bold"
-                    FontSize="16"
-                    Text="Thông tin hóa đơn"
-                    VerticalAlignment="Bottom">
-                    </TextBlock>
+                        Grid.Row="2"
+                        Margin="0,5"
+                        VerticalAlignment="Bottom"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Text="Thông tin hóa đơn" />
                     <Border
-                Padding="10, 5, 10, 5"
-                x:Name="CusInfor"
-                BorderBrush="#E2E2EA"
-                BorderThickness="1" >
+                        x:Name="CusInfor"
+                        Padding="10,5,10,5"
+                        BorderBrush="#E2E2EA"
+                        BorderThickness="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.5*"/>
-                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1.5*" />
+                                <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Margin="0, 5, 0, 5" 
-                                       FontFamily="{StaticResource Mulish}" 
-                                       FontWeight="Regular" 
-                                       FontSize="15" 
-                                       VerticalAlignment="Bottom" >
-                                        Khách hàng:
-                                        <Run Text=" Huỳnh Thị Minh Nhực"></Run>
+                            <TextBlock
+                                Grid.Row="0"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                <Run Text="Khách hàng: " />
+                                <Run Text="{Binding CustomerName}" />
                             </TextBlock>
-                            <TextBlock Grid.Row="1" Margin="0, 5, 0, 5" 
-                                       FontFamily="{StaticResource Mulish}" 
-                                       FontWeight="Regular" 
-                                       FontSize="15" 
-                                       VerticalAlignment="Bottom" >
-                                        Số điện thoại:
-                                        <Run Text="0125713642"></Run>
+                            <TextBlock
+                                Grid.Row="1"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                <Run Text="Số điện thoại: " />
+                                <Run Text="{Binding CustomerPhone}" />
                             </TextBlock>
-                            <TextBlock Grid.Row="0" Grid.Column="1"
-                                       Margin="0, 5, 0, 5" 
-                                       FontFamily="{StaticResource Mulish}" 
-                                       FontWeight="Regular" 
-                                       FontSize="15" 
-                                       VerticalAlignment="Bottom" >
-                                        Mã phiếu:
-                                        <Run Text=" BH012"></Run>
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                <Run Text="Mã phiếu: " />
+                                <Run Text="{Binding Id_String}" />
                             </TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="1"
-                                       Margin="0, 5, 0, 5" 
-                                       FontFamily="{StaticResource Mulish}" 
-                                       FontWeight="Regular" 
-                                       FontSize="15" 
-                                       VerticalAlignment="Bottom" >
-                                       Ngày tạo:
-                                        <Run Text="12/12/2021"></Run>
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                <Run Text="Ngày tạo: " />
+                                <Run Text="{Binding TimeReceive_String}" />
                             </TextBlock>
                         </Grid>
 
@@ -102,80 +122,70 @@
 
 
 
-                <StackPanel
-            Grid.Row="5"
-            x:Name="ProInfor"
-            >
+                <StackPanel x:Name="ProInfor" Grid.Row="5">
                     <TextBlock
-                Grid.Row="2"
-                Margin="0, 10, 0, 5"
-                FontFamily="{StaticResource Mulish}"
-                FontWeight="Bold"
-                FontSize="16"
-                Text="Thông tin sản phẩm"
-                VerticalAlignment="Bottom"
-            >
-                    </TextBlock>
+                        Grid.Row="2"
+                        Margin="0,10,0,5"
+                        VerticalAlignment="Bottom"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Text="Thông tin sản phẩm" />
                     <Border
-                Padding="10, 5, 10, 5"
-                BorderBrush="#E2E2EA"
-                BorderThickness="1"
-                >
+                        Padding="10,5,10,5"
+                        BorderBrush="#E2E2EA"
+                        BorderThickness="1">
                         <StackPanel>
                             <TextBlock
-                Grid.Row="2"
-                Margin="0, 5, 0, 5"
-                FontFamily="{StaticResource Mulish}"
-                FontWeight="Regular"
-                FontSize="15"
-                VerticalAlignment="Bottom"
-            >
-                Tên sản phẩm:
-                <Run Text=" MTXT acer Gaming 5 AN1324-3648hd-MBG3794_đen"></Run>
+                                Grid.Row="2"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                <Run Text="Tên sản phẩm: " />
+                                <Run Text="{Binding ProductName}" />
                             </TextBlock>
                             <TextBlock
-                Grid.Row="2"
-                Margin="0, 5, 0, 5"
-                FontFamily="{StaticResource Mulish}"
-                FontWeight="Regular"
-                FontSize="15"
-                VerticalAlignment="Bottom"
-            >
-                Số seris :
-                <Run Text=" LT132nđnlTJNBV"></Run>
+                                Grid.Row="2"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                <Run Text="Số seris: " />
+
+                                <Run Text="{Binding ProductSeri}" />
                             </TextBlock>
                             <TextBlock
-                Grid.Row="2"
-                Margin="0, 5, 0, 5"
-                FontFamily="{StaticResource Mulish}"
-                FontWeight="Regular"
-                FontSize="15"
-                VerticalAlignment="Bottom"
-            >
-                Hình thức:
-                <Run Text=" Bảo hành"></Run>
+                                Grid.Row="2"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                <Run Text="Hình thức: " />
+                                <Run Text="{Binding Type}" />
                             </TextBlock>
                             <TextBlock
-                Grid.Row="2"
-                Margin="0, 5, 0, 5"
-                FontFamily="{StaticResource Mulish}"
-                FontWeight="Regular"
-                FontSize="15"
-                VerticalAlignment="Bottom"
-            >
-                Ngày hết hạn bảo hành:
-                <Run Text=" 15/08/2021"></Run>
+                                Grid.Row="2"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                <Run Text="Ngày hết hạn bảo hành: " />
+                                <Run Text="{Binding TimeWarrantyEnd}" />
                             </TextBlock>
                             <TextBlock
-                Grid.Row="2"
-                Margin="0, 5, 0, 5"
-                FontFamily="{StaticResource Mulish}"
-                FontWeight="Regular"
-                FontSize="15"
-                VerticalAlignment="Bottom"
-            >
-                Số hóa đơn mua:
-                <Run Text=" Magt12638"></Run>
+                                Grid.Row="2"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                <Run Text="Mã hóa đơn mua: " />
+                                <Run Text="{Binding ProductBillSeri}" />
                             </TextBlock>
                         </StackPanel>
 
@@ -184,171 +194,175 @@
 
 
                 </StackPanel>
-                <StackPanel
-            Grid.Row="6"
-            x:Name="ProState"
-            >
+                <StackPanel x:Name="ProState" Grid.Row="6">
                     <TextBlock
-                Grid.Row="2"
-                Margin="0, 10, 0, 5"
-                FontFamily="{StaticResource Mulish}"
-                FontWeight="Bold"
-                FontSize="16"
-                Text="Tình trạng sản phẩm"
-                VerticalAlignment="Bottom"
-            >
-                    </TextBlock>
+                        Grid.Row="2"
+                        Margin="0,10,0,5"
+                        VerticalAlignment="Bottom"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Text="Tình trạng sản phẩm" />
                     <Border
-                Padding="10, 5, 10, 5"
-                BorderBrush="#E2E2EA"
-                BorderThickness="1"
-                >
+                        Padding="10,5,10,5"
+                        BorderBrush="#E2E2EA"
+                        BorderThickness="1">
                         <StackPanel>
                             <TextBlock
-                Grid.Row="2"
-                Margin="0, 5, 0, 5"
-                FontFamily="{StaticResource Mulish}"
-                FontWeight="Regular"
-                FontSize="15"
-                VerticalAlignment="Bottom"
-            >
-                Mô tả máy:
-                <Run Text=" Có trầy xước nhẹ, máy không có mật khẩu"></Run>
+                                Grid.Row="2"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                Mô tả máy:<Run Text="{Binding DesReceiveItems}" />
                             </TextBlock>
                             <TextBlock
-                Grid.Row="2"
-                Margin="0, 5, 0, 5"
-                FontFamily="{StaticResource Mulish}"
-                FontWeight="Regular"
-                FontSize="15"
-                VerticalAlignment="Bottom"
-            >
-                Mô tả lỗi:
-                <Run Text=" màn hình sọc ngang dọc, liệt bàn phím, máy vô nước"></Run>
+                                Grid.Row="2"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                Mô tả lỗi:<Run Text="{Binding DesProblem}" />
                             </TextBlock>
                             <TextBlock
-                Grid.Row="2"
-                Margin="0, 5, 0, 5"
-                FontFamily="{StaticResource Mulish}"
-                FontWeight="Regular"
-                FontSize="15"
-                VerticalAlignment="Bottom"
-            >
-                Sản phẩm đính kèm:
-                <Run Text=" pin, cục sạc"></Run>
+                                Grid.Row="2"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                Sản phẩm đính kèm:<Run Text="{Binding DesComponents}" />
                             </TextBlock>
                         </StackPanel>
                     </Border>
 
                 </StackPanel>
-                <StackPanel
-            Grid.Row="6"
-            x:Name="InsuranceDetail" >
+                <StackPanel x:Name="InsuranceDetail" Grid.Row="6">
                     <TextBlock
-                Grid.Row="2"
-                Margin="0, 10, 0, 5"
-                FontFamily="{StaticResource Mulish}"
-                FontWeight="Bold"
-                FontSize="16"
-                Text="Chi tiết sửa chữa, bảo hành"
-                VerticalAlignment="Bottom">
-                    </TextBlock>
+                        Grid.Row="2"
+                        Margin="0,10,0,5"
+                        VerticalAlignment="Bottom"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Text="Chi tiết sửa chữa, bảo hành" />
                     <Border
-                Padding="10, 5, 10, 5"
-                BorderBrush="#E2E2EA"
-                BorderThickness="1">
+                        Padding="10,5,10,5"
+                        BorderBrush="#E2E2EA"
+                        BorderThickness="1">
                         <StackPanel>
                             <TextBlock
-                Grid.Row="2"
-                Margin="0, 5, 0, 5"
-                FontFamily="{StaticResource Mulish}"
-                FontWeight="Regular"
-                FontSize="15"
-                VerticalAlignment="Bottom" >
-                <Run Text="Thay màn hình"></Run>
+                                Grid.Row="2"
+                                Margin="0,5,0,5"
+                                VerticalAlignment="Bottom"
+                                FontFamily="{StaticResource Mulish}"
+                                FontSize="15"
+                                FontWeight="Regular">
+                                <Run Text="{Binding DetailRepair}" />
                             </TextBlock>
                         </StackPanel>
                     </Border>
 
+                </StackPanel>
             </StackPanel>
-    </StackPanel>
         </ScrollViewer>
-    <Grid Background="{StaticResource MainColor}" Margin="0,20,0,0">
-        <TextBlock Text="Tổng hóa đơn" Margin="10,5" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="16" Foreground="White"/>
-        <TextBox Margin="5,3"
-                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                  MaxWidth="300" 
-                  MinWidth="100"
-                   Text="16,599,000" 
-                   FontWeight="DemiBold"
-                   VerticalAlignment="Center" 
-                   FontSize="16" 
-                 Padding="5"
-                 PreviewTextInput="PreviewTextInput"
-                 BorderBrush="White"
-                 HorizontalContentAlignment="Right"
-                   HorizontalAlignment="Right" 
-                   Foreground="White"/>
-    </Grid>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-            <TextBlock 
-            Text="Tiền khách đưa"
-            Margin="10" 
-            FontWeight="DemiBold"
-            VerticalAlignment="Center"
-            FontSize="{x:Static font:Font.Body}" 
-            Foreground="{StaticResource Icon}"/>
-            <TextBox Margin="5,0" 
-                     Text="18,000,000" 
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     MaxWidth="250" 
-                     MinWidth="100"
-                     FontWeight="DemiBold" 
-                     BorderThickness="1" 
-                     Padding="5"
-                     PreviewTextInput="PreviewTextInput"
-                     HorizontalContentAlignment="Right"
-                     VerticalAlignment="Center" 
-                     FontSize="{x:Static font:Font.Body}" 
-                     HorizontalAlignment="Right" Foreground="Black"/>
-            <TextBlock Grid.Row="1" 
-                   Text="Tiền thừa" 
-                   Margin="10,0" 
-                   FontWeight="DemiBold"
-                   VerticalAlignment="Center" 
-                   FontSize="{x:Static font:Font.Body}" 
-                   Foreground="{StaticResource Icon}"/>
-        <TextBlock Grid.Row="1" 
-                   Margin="10,5" 
-                   Text="1,401,000" 
-                   FontWeight="DemiBold" 
-                   VerticalAlignment="Center" 
-                   FontSize="{x:Static font:Font.Body}" 
-                   HorizontalAlignment="Right" 
-                   Foreground="Black"/>
-    </Grid>
-    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 20">
-        <Button x:Name="btnCancel" 
-                Style="{StaticResource MaterialDesignOutlinedButton}" 
-                materialDesign:ButtonAssist.CornerRadius="5" 
-                BorderBrush="{StaticResource MainColor}" Margin="20,0"  
-                Foreground="{StaticResource MainColor}" 
-                Width="100" 
-                Height="35" Content="Hủy" Padding="30,0"></Button>
-        <Button x:Name="btnAccept"
-                Background="{StaticResource MainColor}"   
-                Style="{StaticResource MaterialDesignRaisedButton}" 
+        <Grid Margin="0,20,0,0" Background="{StaticResource MainColor}">
+            <TextBlock
+                Margin="10,5"
+                VerticalAlignment="Center"
+                FontSize="16"
+                FontWeight="DemiBold"
+                Foreground="White"
+                Text="Tổng hóa đơn" />
+            <TextBox
+                MinWidth="100"
+                MaxWidth="300"
+                Margin="5,3"
+                Padding="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Right"
+                BorderBrush="White"
+                FontSize="16"
+                FontWeight="DemiBold"
+                Foreground="White"
+                PreviewTextInput="PreviewTextInput"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                Text="{Binding Price}" />
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Margin="10"
+                VerticalAlignment="Center"
+                FontSize="{x:Static font:Font.Body}"
+                FontWeight="DemiBold"
+                Foreground="{StaticResource Icon}"
+                Text="Tiền khách đưa" />
+            <TextBox
+                MinWidth="100"
+                MaxWidth="250"
+                Margin="5,0"
+                Padding="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Right"
+                BorderThickness="1"
+                FontSize="{x:Static font:Font.Body}"
+                FontWeight="DemiBold"
+                Foreground="Black"
+                PreviewTextInput="PreviewTextInput"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                Text="{Binding CustomerMoney}" />
+            <TextBlock
+                Grid.Row="1"
+                Margin="10,0"
+                VerticalAlignment="Center"
+                FontSize="{x:Static font:Font.Body}"
+                FontWeight="DemiBold"
+                Foreground="{StaticResource Icon}"
+                Text="Tiền thừa" />
+            <TextBlock
+                Grid.Row="1"
+                Margin="10,5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                FontSize="{x:Static font:Font.Body}"
+                FontWeight="DemiBold"
+                Foreground="Black"
+                Text="1,401,000" />
+        </Grid>
+        <StackPanel
+            Margin="0,20"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                x:Name="btnCancel"
+                Width="100"
+                Height="35"
+                Margin="20,0"
+                Padding="30,0"
                 materialDesign:ButtonAssist.CornerRadius="5"
-                Width="110" 
-                Height="35" 
-                Content="Xác nhận" 
-                Foreground="White"/>
+                BorderBrush="{StaticResource MainColor}"
+                Content="Hủy"
+                Foreground="{StaticResource MainColor}"
+                Style="{StaticResource MaterialDesignOutlinedButton}" />
+            <Button
+                x:Name="btnAccept"
+                Width="110"
+                Height="35"
+                materialDesign:ButtonAssist.CornerRadius="5"
+                Background="{StaticResource MainColor}"
+                Content="Xác nhận"
+                Foreground="White"
+                Style="{StaticResource MaterialDesignRaisedButton}" />
 
-    </StackPanel>
+        </StackPanel>
     </StackPanel>
 
 </UserControl>

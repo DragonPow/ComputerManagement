@@ -8,7 +8,7 @@ namespace ComputerProject.InsuranceWorkSpace
 {
     class InsuranceViewModel: BusyViewModel
     {
-        BILL_REPAIR _model;
+        protected BILL_REPAIR _model;
 
         public int Id
         {
@@ -20,7 +20,7 @@ namespace ComputerProject.InsuranceWorkSpace
                 OnPropertyChanged(nameof(Id_String));
             }
         }
-        public string Id_String => string.Format("BH{0}", Id.ToString("000000000"));
+        public string Id_String => FormatHelper.ConvertBillRepairID(Id, IsWarranty);
 
         public DateTime TimeDelivery
         {
@@ -62,6 +62,24 @@ namespace ComputerProject.InsuranceWorkSpace
             {
                 _model.desProblem = value;
                 OnPropertyChanged(nameof(DesProblem));
+            }
+        }
+        public string DesComponents
+        {
+            get => "DesComponents";
+            set
+            {
+                //_model.desProblem = value;
+                OnPropertyChanged(nameof(DesComponents));
+            }
+        }
+        public string DetailRepair
+        {
+            get => "DetailRepair";
+            set
+            {
+                //_model.desProblem = value;
+                OnPropertyChanged(nameof(DetailRepair));
             }
         }
         public int Price
@@ -124,13 +142,29 @@ namespace ComputerProject.InsuranceWorkSpace
                 OnPropertyChanged(nameof(SeriId));
             }
         }
-        public string CustomerPhone
+        public string ProductName
         {
-            get => _model.CUSTOMER.phone;
+            get => "ProductName";
         }
-        public string ProductSeri
+
+        public string CustomerName => _model.CUSTOMER.name;
+        public string CustomerPhone => _model.CUSTOMER.phone;
+
+        public string Type => IsWarranty ? "Bảo hành" : "Không bảo hành";
+        public string ProductSeri => IsWarranty ? _model.ITEM_BILL_SERI.seri : null;
+        public string TimeProductSell => IsWarranty ? FormatHelper.DatetimeToDateString(_model.ITEM_BILL_SERI.BILL.createTime) : null;
+        public string ProductBillSeri => IsWarranty ? FormatHelper.ConvertBillID(_model.ITEM_BILL_SERI.billId): null;
+        public string TimeWarrantyEnd
         {
-            get => _model.ITEM_BILL_SERI != null ? _model.ITEM_BILL_SERI.seri : string.Empty;
+            get
+            {
+                if (IsWarranty)
+                {
+                    int warrantymonth = _model.ITEM_BILL_SERI.PRODUCT.warrantyTime.HasValue ? _model.ITEM_BILL_SERI.PRODUCT.warrantyTime.Value : 0;
+                    return FormatHelper.DatetimeToDateString(_model.ITEM_BILL_SERI.BILL.createTime.AddMonths(warrantymonth));
+                }
+                return null;
+            }
         }
 
         public InsuranceViewModel()
