@@ -177,7 +177,7 @@ namespace ComputerProject.InsuranceWorkSpace
             _model = model;
         }
 
-        public static List<InsuranceViewModel> FindByPhoneOrID(string str, int startIndex, int count)
+        public static List<InsuranceViewModel> FindByPhoneOrID(string str, int startIndex, int count, int sortType)
         {
             try
             {
@@ -199,9 +199,31 @@ namespace ComputerProject.InsuranceWorkSpace
                             b.timeDelivery,
                             b.timeReceive,
                             customerPhone = b.CUSTOMER.phone,
+                            customerName = b.CUSTOMER.name,
+                            //productName = b.ITEM_BILL_SERI.nameProduct,
                             productSeri = b.ITEM_BILL_SERI.seri,
+                            productWarrantyTime = b.ITEM_BILL_SERI.PRODUCT.warrantyTime,
+                            billID = b.ITEM_BILL_SERI.billId,
+                            billCreateDate = b.ITEM_BILL_SERI.BILL.createTime
                         }
-                    ).Skip(startIndex).Take(count);
+                    );
+
+                    if (sortType == 0)
+                    {
+                        data1 = data1.OrderBy(b => b.timeReceive).Skip(startIndex).Take(count);
+                    }
+                    else if (sortType == 1)
+                    {
+                        data1 = data1.OrderByDescending(b => b.timeReceive).Skip(startIndex).Take(count);
+                    }
+                    else if (sortType == 2)
+                    {
+                        data1 = data1.OrderBy(b => b.customerPhone).Skip(startIndex).Take(count);
+                    }
+                    else if (sortType == 3)
+                    {
+                        data1 = data1.OrderByDescending(b => b.customerPhone).Skip(startIndex).Take(count);
+                    }
 
                     var data = data1.ToList();
 
@@ -223,7 +245,15 @@ namespace ComputerProject.InsuranceWorkSpace
                             timeDelivery = b.timeDelivery,
                             timeReceive = b.timeReceive,
                             CUSTOMER = new CUSTOMER() { id = b.customerId, phone = b.customerPhone },
-                            ITEM_BILL_SERI = b.seriId.HasValue ? new ITEM_BILL_SERI() { id = b.seriId.Value, seri = b.productSeri } : null,
+                            ITEM_BILL_SERI = b.seriId.HasValue ? new ITEM_BILL_SERI() { 
+                                id = b.seriId.Value, 
+                                seri = b.productSeri , 
+                                billId = b.billID,
+                                BILL = new BILL()
+                                {
+                                    id = b.billID
+                                }
+                                } : null,
                         }));
                     }
 

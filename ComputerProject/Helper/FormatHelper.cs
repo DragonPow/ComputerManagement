@@ -53,7 +53,7 @@ namespace ComputerProject
 
             if (needScale)
             {
-                var desSize = new SizeF(185, 120);
+                var desSize = new SizeF(185*2, 120*2);
 
                 int h = image.Height, w = image.Width;
                 var scaleFactor = Math.Min(desSize.Width / w, desSize.Height / h);

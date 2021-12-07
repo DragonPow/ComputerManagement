@@ -325,6 +325,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Helper\Interface\IPagingViewModel.cs" />
+    <Compile Include="Helper\Interface\IValidable.cs" />
     <Compile Include="Helper\PrintPDF.cs" />
     <Compile Include="Helper\TimerService.cs" />
     <Compile Include="Helper\ViewModel\BusyViewModel.cs" />

@@ -18,6 +18,5 @@ namespace ComputerProject
                 OnPropertyChanged(nameof(CurrentViewModel));
             }
         }
-
     }
 }

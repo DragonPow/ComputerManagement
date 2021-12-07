@@ -114,7 +114,11 @@ namespace ComputerProject
             }
             void callback()
             {
-                MaxPage = max % step > 0 ? max / step + 1 : max / step;
+                max = max % step > 0 ? max / step + 1 : max / step;
+                if (max == 0) max = 1;
+
+                MaxPage = max;
+
                 if (resetPage)
                 {
                     CurrentPage = 1;
