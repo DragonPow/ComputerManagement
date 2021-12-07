@@ -19,12 +19,16 @@ namespace ComputerProject
         public System.DateTime timeReceive { get; set; }
         public string desReceiveItems { get; set; }
         public string desProblem { get; set; }
-        public Nullable<int> price { get; set; }
-        public Nullable<int> customerMoney { get; set; }
+        public Nullable<long> price { get; set; }
+        public Nullable<long> customerMoney { get; set; }
         public bool isWarranty { get; set; }
         public int status { get; set; }
         public int customerId { get; set; }
         public Nullable<int> seriId { get; set; }
+        public string nameProduct { get; set; }
+        public string attachments { get; set; }
+        public Nullable<System.DateTime> warrantyTime { get; set; }
+        public string desDetailRepair { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }
         public virtual ITEM_BILL_SERI ITEM_BILL_SERI { get; set; }

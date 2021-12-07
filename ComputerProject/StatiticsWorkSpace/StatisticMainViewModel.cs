@@ -437,7 +437,7 @@ namespace ComputerProject.StatiticsWorkSpace
 
         String Rate(int nw, int old)
         {
-            if (old == 0) return string.Empty;
+            if (old == 0) return null;
             int rate = (nw - old) * 100 / old;
             if (rate > 0) return "+$1%".Replace("$1", rate.ToString());
             return "$1%".Replace("$1", rate.ToString());

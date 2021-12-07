@@ -66,23 +66,23 @@ namespace ComputerProject.InsuranceWorkSpace
         }
         public string DesComponents
         {
-            get => "DesComponents";
+            get => _model.attachments;
             set
             {
-                //_model.desProblem = value;
+                _model.attachments = value;
                 OnPropertyChanged(nameof(DesComponents));
             }
         }
         public string DetailRepair
         {
-            get => "DetailRepair";
+            get => _model.desDetailRepair;
             set
             {
-                //_model.desProblem = value;
+                _model.desDetailRepair = value;
                 OnPropertyChanged(nameof(DetailRepair));
             }
         }
-        public int Price
+        public long Price
         {
             get => _model.price.HasValue ? _model.price.Value : -1;
             set
@@ -94,7 +94,7 @@ namespace ComputerProject.InsuranceWorkSpace
         }
         public string Price_String => FormatHelper.ToMoney(Price);
 
-        public int CustomerMoney
+        public long CustomerMoney
         {
             get => _model.customerMoney.HasValue ? _model.customerMoney.Value : -1;
             set
@@ -144,7 +144,7 @@ namespace ComputerProject.InsuranceWorkSpace
         }
         public string ProductName
         {
-            get => "ProductName";
+            get => _model.nameProduct;
         }
 
         public string CustomerName => _model.CUSTOMER.name;
@@ -198,9 +198,11 @@ namespace ComputerProject.InsuranceWorkSpace
                             b.status,
                             b.timeDelivery,
                             b.timeReceive,
+                            b.attachments,
+                            b.desDetailRepair,
                             customerPhone = b.CUSTOMER.phone,
                             customerName = b.CUSTOMER.name,
-                            //productName = b.ITEM_BILL_SERI.nameProduct,
+                            b.nameProduct,
                             productSeri = b.ITEM_BILL_SERI.seri,
                             productWarrantyTime = b.ITEM_BILL_SERI.PRODUCT.warrantyTime,
                             billID = b.ITEM_BILL_SERI.billId,
@@ -244,16 +246,24 @@ namespace ComputerProject.InsuranceWorkSpace
                             status = b.status,
                             timeDelivery = b.timeDelivery,
                             timeReceive = b.timeReceive,
-                            CUSTOMER = new CUSTOMER() { id = b.customerId, phone = b.customerPhone },
-                            ITEM_BILL_SERI = b.seriId.HasValue ? new ITEM_BILL_SERI() { 
-                                id = b.seriId.Value, 
-                                seri = b.productSeri , 
-                                billId = b.billID,
-                                BILL = new BILL()
-                                {
-                                    id = b.billID
-                                }
-                                } : null,
+                            nameProduct = b.nameProduct,
+                            desDetailRepair = b.desDetailRepair,
+                            CUSTOMER = new CUSTOMER() { 
+                                id = b.customerId, 
+                                phone = b.customerPhone },
+                            ITEM_BILL_SERI = b.seriId.HasValue ?
+                                new ITEM_BILL_SERI() 
+                                { 
+                                    id = b.seriId.Value, 
+                                    seri = b.productSeri ,
+                                    billId = b.billID,
+                                    BILL = new BILL()
+                                    {
+                                        id = b.billID,
+                                        createTime = b.billCreateDate
+                                    }
+                                } 
+                                : null
                         }));
                     }
 

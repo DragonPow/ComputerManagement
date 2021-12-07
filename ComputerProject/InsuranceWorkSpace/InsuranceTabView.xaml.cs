@@ -34,7 +34,7 @@ namespace ComputerProject.InsuranceWorkSpace
 
         public bool AllowChangeTab()
         {
-            return (DataContext as BusyViewModel).IsFree;
+            return true;
         }
 
         public void LoadDataAsync()
