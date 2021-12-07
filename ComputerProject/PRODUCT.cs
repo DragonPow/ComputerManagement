@@ -12,7 +12,7 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class PRODUCT : Helper.BaseViewModel
+    public partial class PRODUCT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCT()
@@ -25,8 +25,8 @@ namespace ComputerProject
     
         public int id { get; set; }
         public string name { get; set; }
-        public int priceOrigin { get; set; }
-        public int priceSales { get; set; }
+        public long priceOrigin { get; set; }
+        public long priceSales { get; set; }
         public byte[] image { get; set; }
         public string description { get; set; }
         public string producer { get; set; }

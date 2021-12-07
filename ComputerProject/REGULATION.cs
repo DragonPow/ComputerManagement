@@ -12,7 +12,7 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class REGULATION : Helper.BaseViewModel
+    public partial class REGULATION
     {
         public string name { get; set; }
         public string type { get; set; }

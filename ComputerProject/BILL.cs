@@ -12,7 +12,7 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class BILL : Helper.BaseViewModel
+    public partial class BILL
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BILL()
@@ -24,8 +24,8 @@ namespace ComputerProject
         public int id { get; set; }
         public int pointCustomer { get; set; }
         public System.DateTime createTime { get; set; }
-        public int totalMoney { get; set; }
-        public int customerMoney { get; set; }
+        public long totalMoney { get; set; }
+        public long customerMoney { get; set; }
         public int customerId { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }

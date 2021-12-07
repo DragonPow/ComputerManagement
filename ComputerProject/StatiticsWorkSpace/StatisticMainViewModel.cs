@@ -68,7 +68,7 @@ namespace ComputerProject.StatiticsWorkSpace
         protected int lastBillCount;
         protected int lastRepairCount;
         protected int lastCustomerCount;
-        protected int lastRevenue;
+        protected long lastRevenue;
 
         protected int countNewCustomer;
         public int CountNewCustomer
@@ -106,8 +106,8 @@ namespace ComputerProject.StatiticsWorkSpace
         public String CountNewRepair_String => CountNewRepair.ToString();
         public String RateRepair => Rate(CountNewRepair, lastRepairCount);
 
-        protected int revenue;
-        public int Revenue
+        protected long revenue;
+        public long Revenue
         {
             get => revenue;
             set
@@ -131,13 +131,13 @@ namespace ComputerProject.StatiticsWorkSpace
                     series.Add(new PieSeries()
                     {
                         Title = c.CategoryName,
-                        Values = new ChartValues<int>() { c.Money },
+                        Values = new ChartValues<long>() { c.Money },
                     });
                 }
 
                 if (series.Count == maxTopSale)
                 {
-                    int money = 0;
+                    long money = 0;
                     for (int i = maxTopSale; i < revenuePerCate.Count; i++)
                     {
                         var c = revenuePerCate[i];
@@ -146,7 +146,7 @@ namespace ComputerProject.StatiticsWorkSpace
                     series.Add(new PieSeries()
                     {
                         Title = "Khác",
-                        Values = new ChartValues<int>() { money },
+                        Values = new ChartValues<long>() { money },
                     });
                 }
 
@@ -166,11 +166,11 @@ namespace ComputerProject.StatiticsWorkSpace
         }
 
         protected List<ReportModel> revenuePerDay = new List<ReportModel>();
-        public ChartValues<int> RevenueCollection
+        public ChartValues<long> RevenueCollection
         {
             get
             {
-                var values = new ChartValues<int>();
+                var values = new ChartValues<long>();
                 for (int i = 1; i <= DateTime.DaysInMonth(YearSelected, MonthSelected); i++)
                 {
                     var revenueInDay = revenuePerDay.Where(r => r.StartTime.Day == i).FirstOrDefault();
@@ -435,10 +435,10 @@ namespace ComputerProject.StatiticsWorkSpace
         Func<double, string> formaterLabelMoney = new Func<double, string>((d) => FormatHelper.getMoneyLabel((int)d));
         public Func<double, string> FormaterLabelMoney => formaterLabelMoney;
 
-        String Rate(int nw, int old)
+        String Rate(long nw, long old)
         {
             if (old == 0) return "999%";
-            int rate = (nw - old) * 100 / old;
+            int rate = (int)((nw - old) * 100 / old);
             if (rate > 0) return "+$1%".Replace("$1", rate.ToString());
             return "$1%".Replace("$1", rate.ToString());
         }

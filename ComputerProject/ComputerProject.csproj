@@ -321,6 +321,12 @@
     <Compile Include="CustomerWorkspace\CustomerDetailViewBillTitle.xaml.cs">
       <DependentUpon>CustomerDetailViewBillTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DETAIL_REPORT_CATEGORY.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DETAIL_REPORT_PRODUCT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DETAIL_REPORT_REVENUE.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -344,6 +350,27 @@
     </Compile>
     <Compile Include="InsuranceWorkSpace\InsuranceProdInfo.xaml.cs">
       <DependentUpon>InsuranceProdInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ITEM_BILL.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITEM_BILL_SERI.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Bill.cs" />
     <Compile Include="InsuranceWorkSpace\InsuranceBillView.xaml.cs">
@@ -371,10 +398,19 @@
       <DependentUpon>InsuranceListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="OverViewWorkSpace\OverViewViewModel.cs" />
+    <Compile Include="PRODUCT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductWorkSpace\ProductEditViewModel.cs" />
     <Compile Include="ProductWorkSpace\ProductMainRowTableViewModel.cs" />
     <Compile Include="ProductWorkSpace\ProductEditView.xaml.cs">
       <DependentUpon>ProductEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="REGULATION.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\BillRepository.cs" />
     <Compile Include="Repository\StoreRepository.cs" />
@@ -403,6 +439,12 @@
       <DependentUpon>Specification.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingWorkSpace\SettingViewModel.cs" />
+    <Compile Include="SPECIFICATION.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPECIFICATION_TYPE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="StatiticsWorkSpace\DatePickerCalendar.cs" />
     <Compile Include="Helper\WindowService.cs" />
     <Compile Include="ProductWorkSpace\ProductMainTitleTableView.xaml.cs">
@@ -410,21 +452,9 @@
     </Compile>
     <Compile Include="SaleWorkSpace\BillViewModel.cs" />
     <Compile Include="Helper\NavigationService.cs" />
-    <Compile Include="DETAIL_REPORT_CATEGORY.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DETAIL_REPORT_PRODUCT.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Helper\Environment.cs" />
     <Compile Include="Helper\FormatHelper.cs" />
     <Compile Include="Helper\ObservableConcurrentDictionary.cs" />
-    <Compile Include="ITEM_BILL.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ITEM_BILL_SERI.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Helper\CustomMessageBox\MessageBox.xaml.cs">
       <DependentUpon>MessageBox.xaml</DependentUpon>
     </Compile>
@@ -434,9 +464,6 @@
     <Compile Include="Model\ProductInBill.cs" />
     <Compile Include="Model\Specification.cs" />
     <Compile Include="Model\Specification_type.cs" />
-    <Compile Include="PRODUCT.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="ProductWorkSpace\Filtertab.xaml.cs">
       <DependentUpon>Filtertab.xaml</DependentUpon>
     </Compile>
@@ -457,12 +484,6 @@
     </Compile>
     <Compile Include="ProductWorkSpace\ProductMainView.xaml.cs">
       <DependentUpon>ProductMainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="REGULATION.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="REPORT.cs">
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\SaleRepository.cs" />
     <Compile Include="Resource\Font\Font.cs" />
@@ -507,12 +528,6 @@
     </Compile>
     <Compile Include="SettingWorkSpace\SettingStoreView.xaml.cs">
       <DependentUpon>SettingStoreView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SPECIFICATION.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SPECIFICATION_TYPE.cs">
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="StatiticsWorkSpace\OverviewCardView.xaml.cs">
       <DependentUpon>OverviewCardView.xaml</DependentUpon>
@@ -789,21 +804,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -852,20 +852,9 @@
   <ItemGroup>
     <Resource Include="Resource\Icon\IconColor.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />
   <ItemGroup>
-    <Content Include="Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resource\Image\unnamed.png" />
     <Resource Include="Resource\Image\ImageDefault.png" />
     <Resource Include="Resource\Image\SettingPoint.png" />
@@ -889,7 +878,18 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

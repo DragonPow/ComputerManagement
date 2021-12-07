@@ -44,8 +44,8 @@ namespace ComputerProject.Model
         #region Fields
         int _id;
         string _name;
-        int _priceOrigin;
-        int _priceSale;
+        long _priceOrigin;
+        long _priceSale;
         byte[] _image;
         Model.Category _category;
         string _decription;
@@ -73,7 +73,7 @@ namespace ComputerProject.Model
                 }
             }
         }
-        public int PriceOrigin
+        public long PriceOrigin
         {
             get => _priceOrigin; set
             {
@@ -84,7 +84,7 @@ namespace ComputerProject.Model
                 }
             }
         }
-        public int PriceSale
+        public long PriceSale
         {
             get => _priceSale; set
             {

@@ -11,7 +11,7 @@ namespace ComputerProject.Model
     public class ProductInBill : Product, IDataErrorInfo
     {
         string _seri;
-        int _priceUnit;
+        long _priceUnit;
         //int _quantity;
 
         public string Seri
@@ -26,7 +26,7 @@ namespace ComputerProject.Model
                 }
             }
         }
-        public int PriceUnit
+        public long PriceUnit
         {
             get => _priceUnit;
             set
@@ -76,7 +76,7 @@ namespace ComputerProject.Model
         {
             this.PriceUnit = product.PriceSale;
         }
-        public ProductInBill(ITEM_BILL_SERI product, int priceUnit) : base(product.PRODUCT)
+        public ProductInBill(ITEM_BILL_SERI product, long priceUnit) : base(product.PRODUCT)
         {
             this.Seri = product.seri;
             this.PriceUnit = priceUnit;

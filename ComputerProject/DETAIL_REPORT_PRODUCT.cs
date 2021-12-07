@@ -12,15 +12,15 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class DETAIL_REPORT_PRODUCT : Helper.BaseViewModel
+    public partial class DETAIL_REPORT_PRODUCT
     {
         public int reportId { get; set; }
         public int productId { get; set; }
         public byte day { get; set; }
         public int amount { get; set; }
-        public int money { get; set; }
+        public long money { get; set; }
     
-        public virtual PRODUCT PRODUCT { get; set; }
         public virtual REPORT REPORT { get; set; }
+        public virtual PRODUCT PRODUCT { get; set; }
     }
 }

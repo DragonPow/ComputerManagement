@@ -12,21 +12,23 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class BILL_REPAIR : Helper.BaseViewModel
+    public partial class BILL_REPAIR
     {
         public int id { get; set; }
         public Nullable<System.DateTime> timeDelivery { get; set; }
         public System.DateTime timeReceive { get; set; }
         public string desReceiveItems { get; set; }
         public string desProblem { get; set; }
-        public Nullable<int> price { get; set; }
-        public Nullable<int> customerMoney { get; set; }
+        public Nullable<long> price { get; set; }
+        public Nullable<long> customerMoney { get; set; }
         public bool isWarranty { get; set; }
         public int status { get; set; }
         public int customerId { get; set; }
-        public Nullable<int> seriId { get; set; }
+        public Nullable<int> seri { get; set; }
+        public string nameProduct { get; set; }
+        public string attachments { get; set; }
+        public Nullable<System.DateTime> warrantyTime { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }
-        public virtual ITEM_BILL_SERI ITEM_BILL_SERI { get; set; }
     }
 }

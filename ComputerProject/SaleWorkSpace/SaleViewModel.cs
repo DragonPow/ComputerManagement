@@ -53,12 +53,12 @@ namespace ComputerProject.SaleWorkSpace
         #endregion //Fields
 
         #region Properties
-        public int TotalPriceProduct => ProductsInBill == null ? 0 : ProductsInBill.Sum(p => p.Value * p.Key.PriceSale);
-        public int TotalPriceBill
+        public long TotalPriceProduct => ProductsInBill == null ? 0 : ProductsInBill.Sum(p => p.Value * p.Key.PriceSale);
+        public long TotalPriceBill
         {
             get
             {
-                int value = TotalPriceProduct - CurrentPoint * PointToMoney;
+                long value = TotalPriceProduct - CurrentPoint * PointToMoney;
 
                 if (value <= 0) return 0;
                 return value;

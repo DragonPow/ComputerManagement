@@ -12,29 +12,29 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class REPORT : Helper.BaseViewModel
+    public partial class REPORT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public REPORT()
         {
-            this.DETAIL_REPORT_CATEGORY = new HashSet<DETAIL_REPORT_CATEGORY>();
             this.DETAIL_REPORT_PRODUCT = new HashSet<DETAIL_REPORT_PRODUCT>();
             this.DETAIL_REPORT_REVENUE = new HashSet<DETAIL_REPORT_REVENUE>();
+            this.DETAIL_REPORT_CATEGORY = new HashSet<DETAIL_REPORT_CATEGORY>();
         }
     
         public int id { get; set; }
         public byte month { get; set; }
         public short year { get; set; }
-        public int totalMoney { get; set; }
+        public long totalMoney { get; set; }
         public Nullable<int> newBill { get; set; }
         public Nullable<int> newCustomer { get; set; }
         public Nullable<int> newRepair { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DETAIL_REPORT_CATEGORY> DETAIL_REPORT_CATEGORY { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DETAIL_REPORT_PRODUCT> DETAIL_REPORT_PRODUCT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DETAIL_REPORT_REVENUE> DETAIL_REPORT_REVENUE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DETAIL_REPORT_CATEGORY> DETAIL_REPORT_CATEGORY { get; set; }
     }
 }

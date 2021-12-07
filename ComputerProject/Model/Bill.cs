@@ -16,9 +16,9 @@ namespace ComputerProject.Model
         int _id;
         DateTime _timeCreated;
         Collection<ProductInBill> _products;
-        int _moneyCustomer;
+        long _moneyCustomer;
         int _pointCustomer;
-        int _totalMoney;
+        long _totalMoney;
         CUSTOMER _customer;
         #endregion //Fields
 
@@ -59,7 +59,7 @@ namespace ComputerProject.Model
                 }
             }
         }
-        public int MoneyCustomer
+        public long MoneyCustomer
         {
             get => _moneyCustomer;
             set
@@ -84,7 +84,7 @@ namespace ComputerProject.Model
                 }
             }
         }
-        public int TotalMoney
+        public long TotalMoney
         {
             get => _totalMoney;
             set
@@ -97,8 +97,8 @@ namespace ComputerProject.Model
                 }
             }
         }
-        public int ExcessCash => MoneyCustomer - TotalMoney;
-        public int TotalPriceProducts => Products.Sum(i => i.PriceUnit);
+        public long ExcessCash => MoneyCustomer - TotalMoney;
+        public long TotalPriceProducts => Products.Sum(i => i.PriceUnit);
         public CUSTOMER Customer
         {
             get => _customer;
@@ -176,13 +176,13 @@ namespace ComputerProject.Model
 
             foreach (var item in bill.ITEM_BILL_SERI)
             {
-                int unitprice = bill.ITEM_BILL.Where(s => s.productId == item.productId).First().unitPrice;
+                long unitprice = bill.ITEM_BILL.Where(s => s.productId == item.productId).First().unitPrice;
                 ProductInBill product = new ProductInBill(item, unitprice);
 
                 this.Products.Add(product);
             }
         }
-        public Bill(IDictionary<Model.Product, int> listproduct, CUSTOMER customer, int totalMoney = 0)
+        public Bill(IDictionary<Model.Product, int> listproduct, CUSTOMER customer, long totalMoney = 0)
         {
             this.Id = 0;
             this.TimeCreated = DateTime.Now;

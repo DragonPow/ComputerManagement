@@ -14,7 +14,7 @@ namespace ComputerProject.StatiticsWorkSpace
         public int CategoryID { get; set; }
         public String ProductName { get; set; }
         public String CategoryName { get; set; }
-        public int Money { get; set; }
+        public long Money { get; set; }
         public int Amount { get; set; }
 
         /*protected BitmapImage image;

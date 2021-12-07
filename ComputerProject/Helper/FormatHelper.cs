@@ -30,7 +30,7 @@ namespace ComputerProject
             return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
         }
 
-        public static string ToMoney(int val, bool hasCurrency = false)
+        public static string ToMoney(long val, bool hasCurrency = false)
         {
             var rs = hasCurrency ? val.ToString("N0") + "VND" : val.ToString("N0");
             return rs;

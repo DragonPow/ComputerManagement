@@ -12,11 +12,11 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class DETAIL_REPORT_REVENUE : Helper.BaseViewModel
+    public partial class DETAIL_REPORT_REVENUE
     {
         public int reportId { get; set; }
         public byte day { get; set; }
-        public int money { get; set; }
+        public long money { get; set; }
         public int amount { get; set; }
     
         public virtual REPORT REPORT { get; set; }

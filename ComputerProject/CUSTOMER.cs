@@ -12,13 +12,13 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class CUSTOMER : Helper.BaseViewModel
+    public partial class CUSTOMER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CUSTOMER()
         {
-            this.BILLs = new HashSet<BILL>();
             this.BILL_REPAIR = new HashSet<BILL_REPAIR>();
+            this.BILLs = new HashSet<BILL>();
         }
     
         public int id { get; set; }
@@ -30,8 +30,8 @@ namespace ComputerProject
         public Nullable<System.DateTime> createTime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BILL> BILLs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BILL_REPAIR> BILL_REPAIR { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BILL> BILLs { get; set; }
     }
 }

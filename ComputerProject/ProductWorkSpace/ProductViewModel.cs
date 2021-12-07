@@ -50,7 +50,7 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        public int PriceOrigin => Product.priceOrigin;
+        public long PriceOrigin => Product.priceOrigin;
         public string PriceOrigin_String
         {
             get => FormatHelper.ToMoney(PriceOrigin);
@@ -69,7 +69,7 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        public int PriceSales => Product.priceSales;
+        public long PriceSales => Product.priceSales;
         public string PriceSales_String
         {
             get => FormatHelper.ToMoney(PriceSales);

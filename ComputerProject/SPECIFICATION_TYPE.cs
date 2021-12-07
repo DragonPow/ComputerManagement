@@ -12,7 +12,7 @@ namespace ComputerProject
     using System;
     using System.Collections.Generic;
     
-    public partial class SPECIFICATION_TYPE : Helper.BaseViewModel
+    public partial class SPECIFICATION_TYPE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SPECIFICATION_TYPE()

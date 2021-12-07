@@ -12,7 +12,7 @@ namespace ComputerProject.CustomerWorkspace
         public int BillId { get; set; }
         public DateTime BillDay { get; set; }
         public string BillType { get; set; }
-        public int BillTotalMoney { get; set; }
+        public long BillTotalMoney { get; set; }
 
         public string BillTotalMoney_String => FormatHelper.ToMoney(BillTotalMoney);
         public string BillDay_String => BillDay.ToString("dd/MM/yyyy");

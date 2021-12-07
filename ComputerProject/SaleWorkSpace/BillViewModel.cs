@@ -111,7 +111,7 @@ namespace ComputerProject.SaleWorkSpace
             LoadData();
             CurrentBill = new Model.Bill(bill);
         }
-        public BillViewModel(IDictionary<Model.Product, int> listproduct, CUSTOMER customer, int totalMoney)
+        public BillViewModel(IDictionary<Model.Product, int> listproduct, CUSTOMER customer, long totalMoney)
         {
             LoadData();
             CurrentBill = new Model.Bill(listproduct, customer, totalMoney);
@@ -163,7 +163,7 @@ namespace ComputerProject.SaleWorkSpace
             {
                 int moneyToPoint = int.Parse(db.REGULATIONs.Where(i => i.name == "MoneyToPoint").Select(i => i.value).First());
                 var child = db.CUSTOMERs.Where(i => i.id == b.customerId).First();
-                child.point += b.totalMoney / moneyToPoint;
+                child.point += (int)(b.totalMoney / moneyToPoint);
 
                 db.SaveChanges();
 
