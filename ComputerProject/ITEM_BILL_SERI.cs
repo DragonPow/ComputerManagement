@@ -24,10 +24,11 @@ namespace ComputerProject
         public int billId { get; set; }
         public int productId { get; set; }
         public string seri { get; set; }
+        public Nullable<System.DateTime> warrantyEndTime { get; set; }
     
         public virtual BILL BILL { get; set; }
-        public virtual PRODUCT PRODUCT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BILL_REPAIR> BILL_REPAIR { get; set; }
+        public virtual PRODUCT PRODUCT { get; set; }
     }
 }

@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.DETAIL_REPORT_CATEGORY" Width="1.5" PointX="11.75" PointY="5.125" />
         <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.DETAIL_REPORT_PRODUCT" Width="1.5" PointX="10.75" PointY="1.5" />
         <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.ITEM_BILL" Width="1.5" PointX="8.375" PointY="0.625" />
-        <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI" Width="1.5" PointX="8.875" PointY="4.625" />
         <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.PRODUCT" Width="1.5" PointX="6" PointY="4.25" />
         <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.REGULATION" Width="1.5" PointX="1.625" PointY="0.875" />
         <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.REPORT" Width="1.5" PointX="12.875" PointY="1.875" />
@@ -19,7 +18,6 @@
         <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.SPECIFICATION_TYPE" Width="1.5" PointX="1.875" PointY="5.625" />
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__BILL__customerId__66603565" />
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__14270015" />
-        <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__1BC821DD" />
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__CATEGORY__parent__05D8E0BE" />
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__CATEGORY__parent__6A30C649" />
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__DETAIL_RE__categ__37703C52" />
@@ -29,14 +27,16 @@
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__DETAIL_RE__produ__2EDAF651" />
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__DETAIL_RE__repor__2DE6D218" />
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__151B244E" />
-        <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__1CBC4616" />
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__SPECIFICA__produ__22751F6C" />
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__SPECIFICA__speci__236943A5" />
         <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.DETAIL_REPORT_REVENUE" Width="1.5" PointX="15.125" PointY="2.375" />
         <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__DETAIL_RE__repor__503BEA1C" />
-        <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.BILL_REPAIR" Width="1.5" PointX="14.125" PointY="5.875" />
-        <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__43D61337" />
-        <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__44CA3770" />
+        <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.BILL_REPAIR" Width="1.5" PointX="14.5" PointY="5.75" />
+        <EntityTypeShape EntityType="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI" Width="1.5" PointX="8.25" PointY="4.375" />
+        <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__2A164134" />
+        <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__57DD0BE4" />
+        <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__58D1301D" />
+        <AssociationConnector Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__2B0A656D" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

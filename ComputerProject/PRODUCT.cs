@@ -19,8 +19,8 @@ namespace ComputerProject
         {
             this.DETAIL_REPORT_PRODUCT = new HashSet<DETAIL_REPORT_PRODUCT>();
             this.ITEM_BILL = new HashSet<ITEM_BILL>();
-            this.ITEM_BILL_SERI = new HashSet<ITEM_BILL_SERI>();
             this.SPECIFICATIONs = new HashSet<SPECIFICATION>();
+            this.ITEM_BILL_SERI = new HashSet<ITEM_BILL_SERI>();
         }
     
         public int id { get; set; }
@@ -42,8 +42,8 @@ namespace ComputerProject
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ITEM_BILL> ITEM_BILL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ITEM_BILL_SERI> ITEM_BILL_SERI { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SPECIFICATION> SPECIFICATIONs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ITEM_BILL_SERI> ITEM_BILL_SERI { get; set; }
     }
 }

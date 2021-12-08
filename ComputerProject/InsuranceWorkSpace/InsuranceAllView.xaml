@@ -92,7 +92,7 @@
                     VerticalAlignment="Bottom"
                     ToolTip="Thêm danh mục"
                     Padding="7,0"
-                    Command="{Binding AddChildCategoryCommand}">
+                    Command="{Binding CommandInsert}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
                             <TextBlock Text="Thêm mới"

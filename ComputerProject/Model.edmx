@@ -33,7 +33,6 @@
           <Property Name="seriId" Type="int" />
           <Property Name="nameProduct" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="attachments" Type="nvarchar" MaxLength="500" />
-          <Property Name="warrantyTime" Type="smalldatetime" />
           <Property Name="desDetailRepair" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="CATEGORY">
@@ -107,6 +106,7 @@
           <Property Name="billId" Type="int" Nullable="false" />
           <Property Name="productId" Type="int" Nullable="false" />
           <Property Name="seri" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="warrantyEndTime" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="PRODUCT">
           <Key>
@@ -174,7 +174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BILL_REPA__custo__4A8310C6">
+        <Association Name="FK__BILL_REPA__custo__57DD0BE4">
           <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
           <End Role="BILL_REPAIR" Type="Self.BILL_REPAIR" Multiplicity="*" />
           <ReferentialConstraint>
@@ -186,7 +186,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BILL_REPA__seriI__4B7734FF">
+        <Association Name="FK__BILL_REPA__seriI__58D1301D">
           <End Role="ITEM_BILL_SERI" Type="Self.ITEM_BILL_SERI" Multiplicity="0..1" />
           <End Role="BILL_REPAIR" Type="Self.BILL_REPAIR" Multiplicity="*" />
           <ReferentialConstraint>
@@ -397,11 +397,11 @@
             <End Role="CUSTOMER" EntitySet="CUSTOMER" />
             <End Role="BILL" EntitySet="BILL" />
           </AssociationSet>
-          <AssociationSet Name="FK__BILL_REPA__custo__4A8310C6" Association="Self.FK__BILL_REPA__custo__4A8310C6">
+          <AssociationSet Name="FK__BILL_REPA__custo__57DD0BE4" Association="Self.FK__BILL_REPA__custo__57DD0BE4">
             <End Role="CUSTOMER" EntitySet="CUSTOMER" />
             <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
           </AssociationSet>
-          <AssociationSet Name="FK__BILL_REPA__seriI__4B7734FF" Association="Self.FK__BILL_REPA__seriI__4B7734FF">
+          <AssociationSet Name="FK__BILL_REPA__seriI__58D1301D" Association="Self.FK__BILL_REPA__seriI__58D1301D">
             <End Role="ITEM_BILL_SERI" EntitySet="ITEM_BILL_SERI" />
             <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
           </AssociationSet>
@@ -477,7 +477,6 @@
           <EntitySet Name="DETAIL_REPORT_CATEGORY" EntityType="QuanLyCuaHangViTinhModel.DETAIL_REPORT_CATEGORY" />
           <EntitySet Name="DETAIL_REPORT_PRODUCT" EntityType="QuanLyCuaHangViTinhModel.DETAIL_REPORT_PRODUCT" />
           <EntitySet Name="ITEM_BILL" EntityType="QuanLyCuaHangViTinhModel.ITEM_BILL" />
-          <EntitySet Name="ITEM_BILL_SERI" EntityType="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI" />
           <EntitySet Name="PRODUCTs" EntityType="QuanLyCuaHangViTinhModel.PRODUCT" />
           <EntitySet Name="REGULATIONs" EntityType="QuanLyCuaHangViTinhModel.REGULATION" />
           <EntitySet Name="REPORTs" EntityType="QuanLyCuaHangViTinhModel.REPORT" />
@@ -490,10 +489,6 @@
           <AssociationSet Name="FK__ITEM_BILL__billI__14270015" Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__14270015">
             <End Role="BILL" EntitySet="BILLs" />
             <End Role="ITEM_BILL" EntitySet="ITEM_BILL" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ITEM_BILL__billI__1BC821DD" Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__1BC821DD">
-            <End Role="BILL" EntitySet="BILLs" />
-            <End Role="ITEM_BILL_SERI" EntitySet="ITEM_BILL_SERI" />
           </AssociationSet>
           <AssociationSet Name="FK__CATEGORY__parent__05D8E0BE" Association="QuanLyCuaHangViTinhModel.FK__CATEGORY__parent__05D8E0BE">
             <End Role="CATEGORY" EntitySet="CATEGORies" />
@@ -531,10 +526,6 @@
             <End Role="PRODUCT" EntitySet="PRODUCTs" />
             <End Role="ITEM_BILL" EntitySet="ITEM_BILL" />
           </AssociationSet>
-          <AssociationSet Name="FK__ITEM_BILL__produ__1CBC4616" Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__1CBC4616">
-            <End Role="PRODUCT" EntitySet="PRODUCTs" />
-            <End Role="ITEM_BILL_SERI" EntitySet="ITEM_BILL_SERI" />
-          </AssociationSet>
           <AssociationSet Name="FK__SPECIFICA__produ__22751F6C" Association="QuanLyCuaHangViTinhModel.FK__SPECIFICA__produ__22751F6C">
             <End Role="PRODUCT" EntitySet="PRODUCTs" />
             <End Role="SPECIFICATION" EntitySet="SPECIFICATIONs" />
@@ -549,13 +540,22 @@
             <End Role="DETAIL_REPORT_REVENUE" EntitySet="DETAIL_REPORT_REVENUE" />
           </AssociationSet>
           <EntitySet Name="BILL_REPAIR" EntityType="QuanLyCuaHangViTinhModel.BILL_REPAIR" />
-          <AssociationSet Name="FK__BILL_REPA__custo__43D61337" Association="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__43D61337">
+          <EntitySet Name="ITEM_BILL_SERI" EntityType="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI" />
+          <AssociationSet Name="FK__ITEM_BILL__billI__2A164134" Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__2A164134">
+            <End Role="BILL" EntitySet="BILLs" />
+            <End Role="ITEM_BILL_SERI" EntitySet="ITEM_BILL_SERI" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BILL_REPA__custo__57DD0BE4" Association="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__57DD0BE4">
             <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
             <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
           </AssociationSet>
-          <AssociationSet Name="FK__BILL_REPA__seriI__44CA3770" Association="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__44CA3770">
+          <AssociationSet Name="FK__BILL_REPA__seriI__58D1301D" Association="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__58D1301D">
             <End Role="ITEM_BILL_SERI" EntitySet="ITEM_BILL_SERI" />
             <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ITEM_BILL__produ__2B0A656D" Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__2B0A656D">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="ITEM_BILL_SERI" EntitySet="ITEM_BILL_SERI" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="BILL">
@@ -570,7 +570,7 @@
           <Property Name="customerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CUSTOMER" Relationship="QuanLyCuaHangViTinhModel.FK__BILL__customerId__66603565" FromRole="BILL" ToRole="CUSTOMER" />
           <NavigationProperty Name="ITEM_BILL" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__14270015" FromRole="BILL" ToRole="ITEM_BILL" />
-          <NavigationProperty Name="ITEM_BILL_SERI" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__1BC821DD" FromRole="BILL" ToRole="ITEM_BILL_SERI" />
+          <NavigationProperty Name="ITEM_BILL_SERI" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__2A164134" FromRole="BILL" ToRole="ITEM_BILL_SERI" />
         </EntityType>
         <EntityType Name="CATEGORY">
           <Key>
@@ -599,7 +599,7 @@
           <Property Name="point" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BILLs" Relationship="QuanLyCuaHangViTinhModel.FK__BILL__customerId__66603565" FromRole="CUSTOMER" ToRole="BILL" />
           <Property Name="createTime" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="BILL_REPAIR" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__43D61337" FromRole="CUSTOMER" ToRole="BILL_REPAIR" />
+          <NavigationProperty Name="BILL_REPAIR" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__57DD0BE4" FromRole="CUSTOMER" ToRole="BILL_REPAIR" />
         </EntityType>
         <EntityType Name="DETAIL_REPORT_CATEGORY">
           <Key>
@@ -640,18 +640,6 @@
           <NavigationProperty Name="BILL" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__14270015" FromRole="ITEM_BILL" ToRole="BILL" />
           <NavigationProperty Name="PRODUCT" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__151B244E" FromRole="ITEM_BILL" ToRole="PRODUCT" />
         </EntityType>
-        <EntityType Name="ITEM_BILL_SERI">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="billId" Type="Int32" Nullable="false" />
-          <Property Name="productId" Type="Int32" Nullable="false" />
-          <Property Name="seri" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BILL" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__1BC821DD" FromRole="ITEM_BILL_SERI" ToRole="BILL" />
-          <NavigationProperty Name="PRODUCT" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__1CBC4616" FromRole="ITEM_BILL_SERI" ToRole="PRODUCT" />
-          <NavigationProperty Name="BILL_REPAIR" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__44CA3770" FromRole="ITEM_BILL_SERI" ToRole="BILL_REPAIR" />
-          </EntityType>
         <EntityType Name="PRODUCT">
           <Key>
             <PropertyRef Name="id" />
@@ -670,9 +658,9 @@
           <NavigationProperty Name="CATEGORY" Relationship="QuanLyCuaHangViTinhModel.FK__PRODUCT__categor__114A936A" FromRole="PRODUCT" ToRole="CATEGORY" />
           <NavigationProperty Name="DETAIL_REPORT_PRODUCT" Relationship="QuanLyCuaHangViTinhModel.FK__DETAIL_RE__produ__2EDAF651" FromRole="PRODUCT" ToRole="DETAIL_REPORT_PRODUCT" />
           <NavigationProperty Name="ITEM_BILL" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__151B244E" FromRole="PRODUCT" ToRole="ITEM_BILL" />
-          <NavigationProperty Name="ITEM_BILL_SERI" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__1CBC4616" FromRole="PRODUCT" ToRole="ITEM_BILL_SERI" />
           <NavigationProperty Name="SPECIFICATIONs" Relationship="QuanLyCuaHangViTinhModel.FK__SPECIFICA__produ__22751F6C" FromRole="PRODUCT" ToRole="SPECIFICATION" />
           <Property Name="nameIndex" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ITEM_BILL_SERI" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__2B0A656D" FromRole="PRODUCT" ToRole="ITEM_BILL_SERI" />
         </EntityType>
         <EntityType Name="REGULATION">
           <Key>
@@ -738,18 +726,6 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="ITEM_BILL">
-              <PropertyRef Name="billId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ITEM_BILL__billI__1BC821DD">
-          <End Type="QuanLyCuaHangViTinhModel.BILL" Role="BILL" Multiplicity="1" />
-          <End Type="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI" Role="ITEM_BILL_SERI" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BILL">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ITEM_BILL_SERI">
               <PropertyRef Name="billId" />
             </Dependent>
           </ReferentialConstraint>
@@ -862,18 +838,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ITEM_BILL__produ__1CBC4616">
-          <End Type="QuanLyCuaHangViTinhModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
-          <End Type="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI" Role="ITEM_BILL_SERI" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCT">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ITEM_BILL_SERI">
-              <PropertyRef Name="productId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__SPECIFICA__produ__22751F6C">
           <End Type="QuanLyCuaHangViTinhModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
           <End Type="QuanLyCuaHangViTinhModel.SPECIFICATION" Role="SPECIFICATION" Multiplicity="*" />
@@ -938,12 +902,36 @@
           <Property Name="seriId" Type="Int32" />
           <Property Name="nameProduct" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="attachments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="warrantyTime" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="CUSTOMER" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__43D61337" FromRole="BILL_REPAIR" ToRole="CUSTOMER" />
-          <NavigationProperty Name="ITEM_BILL_SERI" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__44CA3770" FromRole="BILL_REPAIR" ToRole="ITEM_BILL_SERI" />
           <Property Name="desDetailRepair" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CUSTOMER" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__57DD0BE4" FromRole="BILL_REPAIR" ToRole="CUSTOMER" />
+          <NavigationProperty Name="ITEM_BILL_SERI" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__58D1301D" FromRole="BILL_REPAIR" ToRole="ITEM_BILL_SERI" />
         </EntityType>
-        <Association Name="FK__BILL_REPA__custo__43D61337">
+        <EntityType Name="ITEM_BILL_SERI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="billId" Type="Int32" Nullable="false" />
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="seri" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="warrantyEndTime" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="BILL" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__2A164134" FromRole="ITEM_BILL_SERI" ToRole="BILL" />
+          <NavigationProperty Name="BILL_REPAIR" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__58D1301D" FromRole="ITEM_BILL_SERI" ToRole="BILL_REPAIR" />
+          <NavigationProperty Name="PRODUCT" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__2B0A656D" FromRole="ITEM_BILL_SERI" ToRole="PRODUCT" />
+        </EntityType>
+        <Association Name="FK__ITEM_BILL__billI__2A164134">
+          <End Type="QuanLyCuaHangViTinhModel.BILL" Role="BILL" Multiplicity="1" />
+          <End Type="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI" Role="ITEM_BILL_SERI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BILL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ITEM_BILL_SERI">
+              <PropertyRef Name="billId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BILL_REPA__custo__57DD0BE4">
           <End Type="QuanLyCuaHangViTinhModel.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
           <End Type="QuanLyCuaHangViTinhModel.BILL_REPAIR" Role="BILL_REPAIR" Multiplicity="*" />
           <ReferentialConstraint>
@@ -955,7 +943,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BILL_REPA__seriI__44CA3770">
+        <Association Name="FK__BILL_REPA__seriI__58D1301D">
           <End Type="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI" Role="ITEM_BILL_SERI" Multiplicity="0..1" />
           <End Type="QuanLyCuaHangViTinhModel.BILL_REPAIR" Role="BILL_REPAIR" Multiplicity="*" />
           <ReferentialConstraint>
@@ -964,6 +952,18 @@
             </Principal>
             <Dependent Role="BILL_REPAIR">
               <PropertyRef Name="seriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ITEM_BILL__produ__2B0A656D">
+          <End Type="QuanLyCuaHangViTinhModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI" Role="ITEM_BILL_SERI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ITEM_BILL_SERI">
+              <PropertyRef Name="productId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1035,16 +1035,6 @@
                 <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
                 <ScalarProperty Name="productId" ColumnName="productId" />
                 <ScalarProperty Name="billId" ColumnName="billId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ITEM_BILL_SERI">
-            <EntityTypeMapping TypeName="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI">
-              <MappingFragment StoreEntitySet="ITEM_BILL_SERI">
-                <ScalarProperty Name="seri" ColumnName="seri" />
-                <ScalarProperty Name="productId" ColumnName="productId" />
-                <ScalarProperty Name="billId" ColumnName="billId" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1120,7 +1110,6 @@
             <EntityTypeMapping TypeName="QuanLyCuaHangViTinhModel.BILL_REPAIR">
               <MappingFragment StoreEntitySet="BILL_REPAIR">
                 <ScalarProperty Name="desDetailRepair" ColumnName="desDetailRepair" />
-                <ScalarProperty Name="warrantyTime" ColumnName="warrantyTime" />
                 <ScalarProperty Name="attachments" ColumnName="attachments" />
                 <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
                 <ScalarProperty Name="seriId" ColumnName="seriId" />
@@ -1133,6 +1122,17 @@
                 <ScalarProperty Name="desReceiveItems" ColumnName="desReceiveItems" />
                 <ScalarProperty Name="timeReceive" ColumnName="timeReceive" />
                 <ScalarProperty Name="timeDelivery" ColumnName="timeDelivery" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ITEM_BILL_SERI">
+            <EntityTypeMapping TypeName="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI">
+              <MappingFragment StoreEntitySet="ITEM_BILL_SERI">
+                <ScalarProperty Name="warrantyEndTime" ColumnName="warrantyEndTime" />
+                <ScalarProperty Name="seri" ColumnName="seri" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="billId" ColumnName="billId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

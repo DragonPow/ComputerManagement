@@ -27,7 +27,6 @@ namespace ComputerProject
         public Nullable<int> seriId { get; set; }
         public string nameProduct { get; set; }
         public string attachments { get; set; }
-        public Nullable<System.DateTime> warrantyTime { get; set; }
         public string desDetailRepair { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }
