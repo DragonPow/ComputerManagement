@@ -24,10 +24,10 @@ namespace ComputerProject
         protected override void OnStartup(StartupEventArgs e)
         {
 
-            /*var vm = new ApplicationViewModel();
+            var vm = new ApplicationViewModel();
             var view = new ApplicationWindow();
             view.DataContext = vm;
-            view.Show();*/
+            view.Show();
 
             //using (var db = new ComputerManagementEntities())
             //{
@@ -36,11 +36,11 @@ namespace ComputerProject
             //    Helper.PrintPDF.Instance.createBill(new Model.Bill(b));
             //}
 
-            WindowTest test = new WindowTest();
+            /*WindowTest test = new WindowTest();
             var view = new InsuranceTabView();
             test.Content = view;
             view.LoadDataAsync();
-            test.Show();
+            test.Show();*/
         }
     }
 }
