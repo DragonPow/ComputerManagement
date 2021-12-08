@@ -177,14 +177,24 @@ namespace ComputerProject.InsuranceWorkSpace
             _model = model;
         }
 
-        public static List<InsuranceViewModel> FindByPhoneOrID(string str, int startIndex, int count, int sortType)
+        public static List<InsuranceViewModel> FindByPhoneOrID(string str, int statusFilter, int startIndex, int count, int sortType)
         {
             try
             {
                 using (ComputerManagementEntities db = new ComputerManagementEntities())
                 {
+                    db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Insur: " + s);
                     string nameDL = FormatHelper.ConvertTo_TiengDongLao(str);
-                    var data1 = db.BILL_REPAIR.Where(p => p.CUSTOMER.phone.Contains(nameDL) || p.id.ToString().Contains(str)).Select(
+                    var data1 = db.BILL_REPAIR.Where(p => p.CUSTOMER.phone.Contains(nameDL) || p.id.ToString().Contains(str));
+
+                    // Filter by status
+                    if (statusFilter > 0 && statusFilter < 4)
+                    {
+                        data1 = data1.Where(b => b.status == statusFilter - 1);
+                    }
+
+                    // Select 
+                    var data2 = data1.Select(
                         b => new
                         {
                             b.id,
@@ -210,24 +220,26 @@ namespace ComputerProject.InsuranceWorkSpace
                         }
                     );
 
+                    // Sort
                     if (sortType == 0)
                     {
-                        data1 = data1.OrderBy(b => b.timeReceive).Skip(startIndex).Take(count);
+                        data2 = data2.OrderBy(b => b.timeReceive);
                     }
                     else if (sortType == 1)
                     {
-                        data1 = data1.OrderByDescending(b => b.timeReceive).Skip(startIndex).Take(count);
+                        data2 = data2.OrderByDescending(b => b.timeReceive);
                     }
                     else if (sortType == 2)
                     {
-                        data1 = data1.OrderBy(b => b.customerPhone).Skip(startIndex).Take(count);
+                        data2 = data2.OrderBy(b => b.customerPhone);
                     }
                     else if (sortType == 3)
                     {
-                        data1 = data1.OrderByDescending(b => b.customerPhone).Skip(startIndex).Take(count);
+                        data2 = data2.OrderByDescending(b => b.customerPhone);
                     }
 
-                    var data = data1.ToList();
+                    // Paging and get data
+                    var data = data2.Skip(startIndex).Take(count).ToList();
 
                     var rs = new List<InsuranceViewModel>();
 
@@ -277,16 +289,22 @@ namespace ComputerProject.InsuranceWorkSpace
             }
         }
 
-        public static int CountByPhoneOrID(string str)
+        public static int CountByPhoneOrID(string str, int statusFilter)
         {
             try
             {
                 using (ComputerManagementEntities db = new ComputerManagementEntities())
                 {
                     string nameDL = FormatHelper.ConvertTo_TiengDongLao(str);
-                    var rs = db.BILL_REPAIR.Where(p => p.CUSTOMER.phone.Contains(nameDL) || p.id.ToString().Contains(str)).Count();
+                    var data1 = db.BILL_REPAIR.Where(p => p.CUSTOMER.phone.Contains(nameDL) || p.id.ToString().Contains(str));
 
-                    return rs;
+                    // Filter by status
+                    if (statusFilter > 0 && statusFilter < 4)
+                    {
+                        data1 = data1.Where(b => b.status == statusFilter - 1);
+                    }
+
+                    return data1.Count();
                 }
             }
             catch (Exception e) when (!HelperService.Environment.IsDebug)

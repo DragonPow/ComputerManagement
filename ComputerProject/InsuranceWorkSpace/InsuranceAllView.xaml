@@ -80,26 +80,29 @@
                         FontFamily="{StaticResource Mulish}"
                         FontSize="{x:Static font:Font.Body}"
                         Foreground="Black"
-                        ItemsSource="{Binding}"
+                        ItemsSource="{Binding BillStatus}"
+                        SelectedItem="{Binding SelectedBillStatus}"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}" />
-                    <Button x:Name="Btn_add"
-                    Grid.Column="3"
-                    HorizontalAlignment="Right"
-                            Margin="10,0"
-                    Background="{StaticResource MainColor}"
-                    BorderBrush="{StaticResource MainColor}"
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    VerticalAlignment="Bottom"
-                    ToolTip="Thêm danh mục"
-                    Padding="7,0"
-                    Command="{Binding CommandInsert}">
+                    <Button
+                        x:Name="Btn_add"
+                        Grid.Column="3"
+                        Margin="10,0"
+                        Padding="7,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Background="{StaticResource MainColor}"
+                        BorderBrush="{StaticResource MainColor}"
+                        Command="{Binding CommandInsert}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        ToolTip="Thêm danh mục">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
-                            <TextBlock Text="Thêm mới"
-                               FontSize="14"
-                               VerticalAlignment="Center"
-                                       Margin="7,0"
-                               Foreground="White" />
+                            <materialDesign:PackIcon VerticalAlignment="Center" Kind="Plus" />
+                            <TextBlock
+                                Margin="7,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Foreground="White"
+                                Text="Thêm mới" />
                         </StackPanel>
                     </Button>
                 </Grid>
@@ -118,24 +121,78 @@
                         <ColumnDefinition Width="50" />
                         <ColumnDefinition Width="50" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock  Grid.Column="0" Text="Mã phiếu" FontWeight="DemiBold" VerticalAlignment="Center" Margin="20,0" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-                    <TextBlock  Grid.Column="1" Text="Ngày tiếp nhận" FontWeight="DemiBold" Margin="10,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-                    <TextBlock  Grid.Column="2" Text="Số điện thoại" FontWeight="DemiBold" Margin="10,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-                    <TextBlock  Grid.Column="3" Text="Tình trạng" FontWeight="DemiBold" Margin="10,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-                    <TextBlock  Grid.Column="4" Text="Ngày trả hàng" FontWeight="DemiBold" Margin="10,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
-                    <TextBlock  Grid.Column="5" Text="Tổng tiền" FontWeight="DemiBold" Margin="10,0" VerticalAlignment="Center" FontSize="{x:Static font:Font.Body}" FontFamily="{StaticResource Mulish}" Foreground="Black"/>
+                    <TextBlock
+                        Grid.Column="0"
+                        Margin="20,0"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static font:Font.Body}"
+                        FontWeight="DemiBold"
+                        Foreground="Black"
+                        Text="Mã phiếu" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static font:Font.Body}"
+                        FontWeight="DemiBold"
+                        Foreground="Black"
+                        Text="Ngày tiếp nhận" />
+                    <TextBlock
+                        Grid.Column="2"
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static font:Font.Body}"
+                        FontWeight="DemiBold"
+                        Foreground="Black"
+                        Text="Số điện thoại" />
+                    <TextBlock
+                        Grid.Column="3"
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static font:Font.Body}"
+                        FontWeight="DemiBold"
+                        Foreground="Black"
+                        Text="Tình trạng" />
+                    <TextBlock
+                        Grid.Column="4"
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static font:Font.Body}"
+                        FontWeight="DemiBold"
+                        Foreground="Black"
+                        Text="Ngày trả hàng" />
+                    <TextBlock
+                        Grid.Column="5"
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource Mulish}"
+                        FontSize="{x:Static font:Font.Body}"
+                        FontWeight="DemiBold"
+                        Foreground="Black"
+                        Text="Tổng tiền" />
                 </Grid>
                 <local:InsuranceListView
                     Grid.Row="2"
                     Margin="10,0"
                     DataContext="{Binding}" />
+                <custom:BusyView
+                    Grid.Row="2"
+                    Margin="10,0"
+                    Visibility="{Binding BusyVisibility}" />
             </Grid>
         </Border>
         <custom:PageControl
             Grid.Row="2"
             Margin="0,0,0,20"
             HorizontalAlignment="Center"
-            CurrentPage="{Binding CurrentPage}"
+            CurrentPage="{Binding CurrentPage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             MaxPage="{Binding MaxPage}" />
+
+
     </Grid>
 </UserControl>
