@@ -5,12 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.InsuranceWorkSpace"
                        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:Custom="clr-namespace:ComputerProject.CustomControl"
-             xmlns:Sale="clr-namespace:ComputerProject.SaleWorkSpace"
-             xmlns:Bill="clr-namespace:ComputerProject.BillWorkSpace"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="1300">
+             d:DesignHeight="700" d:DesignWidth="1300"
+             d:DataContext="{d:DesignInstance Type={x:Type local:InsuranceDetailViewModel}}">
     <Grid Background="{StaticResource Background}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -22,6 +20,7 @@
                     Style="{StaticResource MaterialDesignIconButton}" 
                     Width="40" 
                     Height="40" 
+                    Command="{Binding NavigateBackCommand}"
                     Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
                 <materialDesign:PackIcon Kind="ArrowLeft" Foreground="{StaticResource Title}" />
             </Button>
@@ -43,15 +42,16 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Sale:CustomerSaleView Margin="0,0,20,10"/>
+            <local:CustomerInsurView Margin="0,0,20,10"/>
             <Border Grid.Row="1" Grid.RowSpan="2" Margin="0,0,20,0"  Background="White" CornerRadius="8">
                 <ScrollViewer Margin="0,10">
-                    <local:InsuranceProdInfo />
+                    <local:InsuranceProdInfo DataContext="{Binding}"/>
                 </ScrollViewer>
             </Border>
             <Border  Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Background="White" CornerRadius="8">
                 <ScrollViewer Margin="0,10">
-                    <local:InsuranceInfor x:Name="InsuranceInfor" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"/>
+                    <local:InsuranceInfor x:Name="InsuranceInfor" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
+                                          DataContext="{Binding}"/>
                 </ScrollViewer>
             </Border>
             <Border Background="White" CornerRadius="8" Grid.Column="1" Grid.Row="2" Margin="0,10,0,0">
@@ -70,7 +70,7 @@
                   Style="{StaticResource MaterialDesignOutlinedTextBox}"
                   MaxWidth="300" 
                   MinWidth="110"
-                   Text="16,599,000" 
+                   Text="{Binding CurrentBill.price}" 
                    FontWeight="Bold"
                    VerticalAlignment="Center" 
                    FontSize="16" 
@@ -85,22 +85,27 @@
 
         </Grid>
         <StackPanel Grid.Row="2"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="20">
-            <Button x:Name="btncancel" 
-                    Style="{StaticResource MaterialDesignOutlinedButton}" 
-                    materialDesign:ButtonAssist.CornerRadius="5" 
+            <Button x:Name="btncancel"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonAssist.CornerRadius="5"
                     BorderBrush="{StaticResource Warning}"
-                    Foreground="{StaticResource Warning}" 
-                    Width="100" Height="35" 
-                    Content="Hủy" 
-                    Padding="30,0"></Button>
-            <Button x:Name="btnSave" 
-                    Style="{StaticResource MaterialDesignOutlinedButton}" 
-                    materialDesign:ButtonAssist.CornerRadius="5" 
-                    BorderBrush="{StaticResource MainColor}" Margin="20,0"  
-                    Foreground="{StaticResource MainColor}" 
-                    Width="100" Height="35" 
-                    Content="Lưu" 
-                    Padding="30,0"></Button>
+                    Foreground="{StaticResource Warning}"
+                    Width="100"
+                    Height="35"
+                    Content="Hủy"
+                    Padding="30,0"
+                    Command="{Binding CancelCommand}" />
+            <Button x:Name="btnSave"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonAssist.CornerRadius="5"
+                    BorderBrush="{StaticResource MainColor}"
+                    Margin="20,0"
+                    Foreground="{StaticResource MainColor}"
+                    Width="100"
+                    Height="35"
+                    Content="Lưu"
+                    Padding="30,0" 
+                    Command="{Binding SaveCommand}"/>
             <Button Background="{StaticResource MainColor}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     materialDesign:ButtonAssist.CornerRadius="5"
@@ -108,7 +113,7 @@
                     Foreground="White"
                     Content="Thanh toán"
                     Width="120"
-                    Command="{Binding}">
+                    Command="{Binding PaymentCommand}">
             </Button>
 
         </StackPanel>

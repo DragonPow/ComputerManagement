@@ -9,7 +9,8 @@
              xmlns:Custom="clr-namespace:ComputerProject.CustomControl"
              xmlns:localconvert="clr-namespace:ComputerProject.Converter"
              mc:Ignorable="d" 
-             d:DesignHeight="1100" d:DesignWidth="700">
+             d:DesignHeight="1100" d:DesignWidth="700"
+             d:DataContext="{d:DesignInstance Type={x:Type local:InsuranceDetailViewModel}}">
     <UserControl.Resources>
         <Style x:Key="style_Text" TargetType="Custom:TextboxCustom">
             <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
@@ -26,7 +27,7 @@
                                AncestorType={x:Type local:InsuranceInfor}}, 
                                Path=Isreadonly}"/>
         </Style>
-        <localconvert:RevertBooleanConverter x:Key="revertbool"/>
+        <localconvert:RevertBooleanConverter x:Key="revertbool" />
     </UserControl.Resources>
 
     <StackPanel  Margin="20,0">
@@ -48,6 +49,8 @@
                                 Height="auto"
                                 Margin="10,0"
                                 Padding="5"
+                    Command="{Binding ClearObjectCommand}"
+                    CommandParameter="{x:Static local:TypeObject.InforRepair}"
                                IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                AncestorType={x:Type local:InsuranceInfor}}, 
                                                Path=Isreadonly,Converter={StaticResource revertbool}}"
@@ -102,7 +105,7 @@
                                     FontFamily="{StaticResource Mulish}"
                                     FontSize="{x:Static font:Font.Body}"
                                     Foreground="#11142D"
-                                    Text="12/12/2021" />
+                                    Text="{Binding CurrentBill.timeDelivery}" />
                 </Border>
             </StackPanel>
             <StackPanel
@@ -141,7 +144,7 @@
                                     FontFamily="{StaticResource Mulish}"
                                     FontSize="{x:Static font:Font.Body}"
                                     Foreground="#11142D"
-                                    Text="12/12/2021" />
+                                    Text="{Binding CurrentBill.timeReceive}" />
                 </Border>
             </StackPanel>
         </Grid>
@@ -173,20 +176,21 @@
                                     Focusable="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                AncestorType={x:Type local:InsuranceInfor}}, 
                                                Path=Isreadonly,Converter={StaticResource revertbool}}"
-                                    ItemsSource="{Binding ShortStringList}" />
+                                    ItemsSource="{Binding BillStatus}" 
+                    SelectedItem="{Binding StatusBillSelected}"/>
             </Border>
         </StackPanel>
         <Custom:TextboxCustom x:Name="DescStatus" 
-                                      Text="" 
+                                      Text="{Binding CurrentBill.desReceiveItems}" 
                                       Title="Mô tả tình trạng máy"  
                                       MarginText="10" Margin="0,5"
                                 Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
         <Custom:TextboxCustom x:Name="DescError" 
-                                      Text="" Title="Mô tả lỗi"  
+                                      Text="{Binding CurrentBill.desProblem}" Title="Mô tả lỗi"  
                                       MarginText="10" Margin="0,5"
                                 Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
         <Custom:TextboxCustom x:Name="DescInsurance" 
-                                      Text="" Title="Chi tiết sửa chữa, bảo hành"  
+                                      Text="{Binding CurrentBill.desDetailRepair}" Title="Chi tiết sửa chữa, bảo hành"  
                                       MinHeight="80"
                                       MarginText="10" Margin="0,5" 
                                 Style="{DynamicResource style_Text}"></Custom:TextboxCustom>

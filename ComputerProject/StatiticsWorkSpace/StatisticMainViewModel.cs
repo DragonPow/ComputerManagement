@@ -281,7 +281,7 @@ namespace ComputerProject.StatiticsWorkSpace
                 {
                     lastCustomerCount = db.CUSTOMERs.Where(c => c.createTime.Value.Year == lastMonth.Year && c.createTime.Value.Month == lastMonth.Month).Count();
                     lastBillCount = db.BILLs.Where(b => b.createTime.Year == lastMonth.Year && b.createTime.Month == lastMonth.Month).Count();
-                    lastRepairCount = db.BILL_REPAIR.Where(b => b.timeReceive.Year == lastMonth.Year && b.timeReceive.Month == lastMonth.Month).Count();
+                    lastRepairCount = db.BILL_REPAIR.Where(b => b.timeReceive.Value.Year == lastMonth.Year && b.timeReceive.Value.Month == lastMonth.Month).Count();
                     lastRevenue = db.BILLs.Where(b => b.createTime.Year == lastMonth.Year && b.createTime.Month == lastMonth.Month).GroupBy(d => d.createTime.Month).Select(g => g.Sum(d => d.totalMoney)).FirstOrDefault();
                 }
             }
@@ -373,7 +373,7 @@ namespace ComputerProject.StatiticsWorkSpace
 
             CountNewBill = db.BILLs.Where(b => b.createTime.Year == _year && b.createTime.Month == _month).Count();
 
-            CountNewRepair = db.BILL_REPAIR.Where(b => b.timeReceive.Year == _year && b.timeReceive.Month == _month).Count();
+            CountNewRepair = db.BILL_REPAIR.Where(b => b.timeReceive.Value.Year == _year && b.timeReceive.Value.Month == _month).Count();
 
             Revenue = productSaleByDay.GroupBy(d => d.StartTime.Month).Select(g => g.Sum(d => d.Money)).FirstOrDefault();
 

@@ -39,6 +39,36 @@ namespace ComputerProject
             callback?.Invoke();
         }
 
+        public Task<T> GetTask<T>(Func<T> busyTask, Action callback = null)
+        {
+            IsBusy = true;
+            var rs = Task.Run(busyTask);
+            rs.ContinueWith((task) =>
+            {
+                IsBusy = false;
+                callback?.Invoke();
+            });
+
+            return rs;
+        }
+
+        public async void GetTask(Task task, Action callback = null)
+        {
+            IsBusy = true;
+            await task;
+            IsBusy = false;
+            callback?.Invoke();
+        }
+
+        public async Task<T> GetTask<T>(Task<T> task, Action callback = null)
+        {
+            IsBusy = true;
+            var rs = await Task.Run(() => task);
+            IsBusy = false;
+            callback?.Invoke();
+            return rs;
+        }
+
         public async void DoBusyTask(Action busyTask, System.Threading.CancellationToken cancellationToken, Action callback = null)
         {
             IsBusy = true;
@@ -82,6 +112,17 @@ namespace ComputerProject
             {
                 callback?.Invoke();
             }
+        }
+
+        public Task WhenAll(params Task[] tasks)
+        {
+            IsBusy = true;
+            return Task.WhenAll(tasks).ContinueWith((_) =>
+            {
+                IsBusy = false;
+                //callback?.Invoke();
+            });
+
         }
     }
 }

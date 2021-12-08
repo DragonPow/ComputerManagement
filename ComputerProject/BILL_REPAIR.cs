@@ -16,7 +16,7 @@ namespace ComputerProject
     {
         public int id { get; set; }
         public Nullable<System.DateTime> timeDelivery { get; set; }
-        public System.DateTime timeReceive { get; set; }
+        public Nullable<System.DateTime> timeReceive { get; set; }
         public string desReceiveItems { get; set; }
         public string desProblem { get; set; }
         public Nullable<long> price { get; set; }

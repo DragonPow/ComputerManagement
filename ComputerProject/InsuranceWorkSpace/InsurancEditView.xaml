@@ -10,7 +10,8 @@
              xmlns:Bill="clr-namespace:ComputerProject.BillWorkSpace"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="1300">
+             d:DesignHeight="700" d:DesignWidth="1300"
+             d:DataContext="{d:DesignInstance Type={x:Type local:InsuranceDetailViewModel}}">
     <Grid Background="{StaticResource Background}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

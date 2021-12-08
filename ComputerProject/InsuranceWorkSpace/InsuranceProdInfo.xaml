@@ -9,7 +9,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:Custom="clr-namespace:ComputerProject.CustomControl"
              mc:Ignorable="d" 
-             d:DesignHeight="1100" d:DesignWidth="400">
+             d:DesignHeight="1100" d:DesignWidth="400"
+             d:DataContext="{d:DesignInstance Type={x:Type local:InsuranceDetailViewModel}}">
     <UserControl.Resources>
         <Style x:Key="style_Text" TargetType="Custom:TextboxCustom">
             <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
@@ -47,6 +48,8 @@
                                 Height="auto"
                                 Margin="10,0"
                                 Padding="5"
+                    Command="{Binding ClearObjectCommand}"
+                    CommandParameter="{x:Static local:TypeObject.Product}"
                                 Style="{StaticResource MaterialDesignIconButton}"
                                 Background="{x:Null}"
                                 BorderBrush="{x:Null}"
@@ -63,7 +66,7 @@
         <Custom:TextboxCustom x:Name="ProdName" 
                                       Title="Tên sản phẩm" 
                                       TextWrapping="WrapWithOverflow" 
-                                      Text="Laptop HP 15s-fq2602TU" 
+                                      Text="{Binding CurrentBill.nameProduct}" 
                                       MarginText="10" 
                                       Margin="0,5" 
                               Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
@@ -74,7 +77,7 @@
             </Grid.ColumnDefinitions>
             <Custom:TextboxCustom x:Name="ProdSerial" 
                                       Title="Số seri sản phẩm" 
-                                      Text="LT12345671621" 
+                                      Text="{Binding CurrentBill.ITEM_BILL_SERI.seri}" 
                                       TextWrapping="WrapWithOverflow" 
                                       MarginText="10" 
                                       Margin="0,5" 
@@ -89,6 +92,7 @@
                                 Style="{StaticResource MaterialDesignIconButton}"
                                 Background="{x:Null}"
                                 BorderBrush="{x:Null}"
+                    Command="{Binding CheckSeriCommand}"
                        IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                AncestorType={x:Type local:InsuranceProdInfo}}, 
                                                Path=Isreadonly,Converter={StaticResource revertbool}}">
@@ -104,21 +108,21 @@
      
         <Custom:TextboxCustom x:Name="IDSaleBill" 
                                       Title="Mã hóa đơn mua hàng" 
-                                      Text="Laptop HP 15s-fq2602TU" 
+                                      Text="{Binding CurrentBill.ITEM_BILL_SERI.billId}" 
                                       IsEnabled="False" 
                                       TextWrapping="WrapWithOverflow" 
                                       MarginText="10" Margin="0,5" 
                                      Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
         <Custom:TextboxCustom x:Name="InsuranceDate" 
                                       Title="Ngày kết thúc bảo hành" 
-                                      Text="15/2/2022" 
+                                      Text="{Binding TimeWarranty, StringFormat='dd/MM/yyyy', TargetNullValue='Không'}" 
                                       IsEnabled="False" 
                                       TextWrapping="WrapWithOverflow" 
                                       MarginText="10" Margin="0,5" 
                                        Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
         <Custom:TextboxCustom x:Name="AccessoriesIncluded"
                                       Title="Phụ kiện đính kèm" 
-                                      Text="Laptop HP 15s-fq2602TU" 
+                                      Text="{Binding CurrentBill.attachments}" 
                                       TextWrapping="WrapWithOverflow" 
                                       MarginText="10" Margin="0,5" 
                                        Style="{DynamicResource style_Text}"></Custom:TextboxCustom>

@@ -36,7 +36,7 @@ namespace ComputerProject.InsuranceWorkSpace
 
         public System.DateTime TimeReceive
         {
-            get => _model.timeReceive;
+            get => _model.timeReceive.Value;
             set
             {
                 _model.timeReceive = value;
@@ -313,7 +313,6 @@ namespace ComputerProject.InsuranceWorkSpace
                 return 0;
             }
         }
-
         public static string StatusToString(int status) {
             if (status == 0)
             {
@@ -326,6 +325,26 @@ namespace ComputerProject.InsuranceWorkSpace
             else if (status == 2)
             {
                 return "Đã thanh toán";
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public static int StringToStatus(string s)
+        {
+            if (s == "Đang sửa chữa")
+            {
+                return 0;
+            }
+            else if (s == "Đã sửa xong")
+            {
+                return 1;
+            }
+            else if (s == "Đã thanh toán")
+            {
+                return 2;
             }
             else
             {

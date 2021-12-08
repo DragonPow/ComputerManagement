@@ -22,7 +22,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="timeDelivery" Type="datetime" />
-          <Property Name="timeReceive" Type="datetime" Nullable="false" />
+          <Property Name="timeReceive" Type="datetime" />
           <Property Name="desReceiveItems" Type="nvarchar" MaxLength="200" />
           <Property Name="desProblem" Type="nvarchar" MaxLength="500" />
           <Property Name="price" Type="bigint" />
@@ -891,7 +891,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="timeDelivery" Type="DateTime" Precision="3" />
-          <Property Name="timeReceive" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="timeReceive" Type="DateTime" Precision="3" />
           <Property Name="desReceiveItems" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="desProblem" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="price" Type="Int64" />

@@ -59,6 +59,7 @@ namespace ComputerProject.InsuranceWorkSpace
         public InsuranceInfor()
         {
             InitializeComponent();
+            DateReceive.Language = DateReception.Language = System.Windows.Markup.XmlLanguage.GetLanguage(System.Globalization.CultureInfo.GetCultureInfo("vi").IetfLanguageTag);
         }
     private new void PreviewTextInput(object sender, TextCompositionEventArgs e)
     {
