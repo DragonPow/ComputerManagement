@@ -10,49 +10,15 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <ListView
-        x:Name="ListBill"
-        ItemsSource="{Binding ItemList}"
-        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-        ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    x:Name="InsuList"
+                    ItemContainerStyle="{StaticResource ListViewContainerStyle}">
+
         <ListView.ItemTemplate>
             <DataTemplate>
-                <local:InsuranceItem DataContext="{Binding}" />
+                <local:InsuranceItem DataContext="{Binding}"/>
             </DataTemplate>
         </ListView.ItemTemplate>
 
-        <ListView.Resources>
-            <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                <Border Background="{StaticResource SelectedItemBackground}" BorderThickness="0">
-                    <local:InsuranceItem />
-                </Border>
-            </ControlTemplate>
-        </ListView.Resources>
-
-        <ListView.ItemContainerStyle>
-            <Style TargetType="ListViewItem">
-                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="ListViewItem">
-                            <local:InsuranceItem />
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
-                        <Setter Property="IsSelected" Value="True" />
-                    </DataTrigger>
-                    <MultiTrigger>
-                        <MultiTrigger.Conditions>
-                            <Condition Property="IsSelected" Value="true" />
-                            <Condition Property="Selector.IsSelectionActive" Value="true" />
-                        </MultiTrigger.Conditions>
-                        <MultiTrigger.Setters>
-                            <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
-                        </MultiTrigger.Setters>
-                    </MultiTrigger>
-                </Style.Triggers>
-            </Style>
-        </ListView.ItemContainerStyle>
     </ListView>
 </UserControl>
