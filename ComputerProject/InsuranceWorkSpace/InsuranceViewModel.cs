@@ -32,7 +32,7 @@ namespace ComputerProject.InsuranceWorkSpace
                 OnPropertyChanged(nameof(TimeDelivery_String));
             }
         }
-        public string TimeDelivery_String => FormatHelper.DatetimeToDateString(TimeDelivery);
+        public string TimeDelivery_String => _model.timeDelivery.HasValue ? FormatHelper.DatetimeToDateString(TimeDelivery) : null;
 
         public System.DateTime TimeReceive
         {
@@ -84,7 +84,7 @@ namespace ComputerProject.InsuranceWorkSpace
         }
         public long Price
         {
-            get => _model.price.HasValue ? _model.price.Value : -1;
+            get => _model.price.HasValue ? _model.price.Value : 0;
             set
             {
                 _model.price = value;
@@ -96,7 +96,7 @@ namespace ComputerProject.InsuranceWorkSpace
 
         public long CustomerMoney
         {
-            get => _model.customerMoney.HasValue ? _model.customerMoney.Value : -1;
+            get => _model.customerMoney.HasValue ? _model.customerMoney.Value : 0;
             set
             {
                 _model.customerMoney = value;

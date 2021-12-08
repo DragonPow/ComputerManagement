@@ -22,6 +22,7 @@ namespace ComputerProject.InsuranceWorkSpace
     {
         public static DependencyProperty CommandClickEditProperty = DependencyProperty.Register(nameof(CommandClickEdit), typeof(ICommand), typeof(InsuranceItem));
         public static DependencyProperty CommandClickDeleteProperty = DependencyProperty.Register(nameof(CommandClickDelete), typeof(ICommand), typeof(InsuranceItem));
+        public static DependencyProperty CommandDoubleClickProperty = DependencyProperty.Register(nameof(CommandDoubleClick), typeof(ICommand), typeof(InsuranceItem));
 
         public InsuranceItem()
         {
@@ -40,14 +41,25 @@ namespace ComputerProject.InsuranceWorkSpace
             set => SetValue(CommandClickDeleteProperty, value);
         }
 
+        public ICommand CommandDoubleClick
+        {
+            get => (ICommand)GetValue(CommandDoubleClickProperty);
+            set => SetValue(CommandDoubleClickProperty, value);
+        }
+
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            CommandClickEdit.Execute(DataContext);
+            CommandClickEdit?.Execute(DataContext);
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            CommandClickDelete.Execute(DataContext);
+            CommandClickDelete?.Execute(DataContext);
+        }
+
+        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            CommandDoubleClick?.Execute(DataContext);
         }
     }
 }
