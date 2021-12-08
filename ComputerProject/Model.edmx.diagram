@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2747d6e6ce1a4200a2de906c8581104c" Name="Diagram1">
-        <EntityTypeShape EntityType="computer_managementModel.BILL_REPAIR" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="computer_managementModel.CATEGORY" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="computer_managementModel.CUSTOMER" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="computer_managementModel.DETAIL_REPORT_PRODUCT" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
@@ -15,7 +14,6 @@
         <EntityTypeShape EntityType="computer_managementModel.REPORT" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="computer_managementModel.SPECIFICATION" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="computer_managementModel.SPECIFICATION_TYPE" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
-        <AssociationConnector Association="computer_managementModel.FK__BILL_REPA__custo__06CD04F7" ManuallyRouted="false" />
         <AssociationConnector Association="computer_managementModel.FK__CATEGORY__parent__07C12930" ManuallyRouted="false" />
         <AssociationConnector Association="computer_managementModel.FK__CATEGORY__parent__08B54D69" ManuallyRouted="false" />
         <AssociationConnector Association="computer_managementModel.FK__SPECIFICA__categ__1332DBDC" ManuallyRouted="false" />
@@ -36,6 +34,9 @@
         <EntityTypeShape EntityType="computer_managementModel.DETAIL_REPORT_CATEGORY" Width="1.5" PointX="3" PointY="4.25" />
         <AssociationConnector Association="computer_managementModel.FK__DETAIL_RE__categ__2EDAF651" />
         <AssociationConnector Association="computer_managementModel.FK__DETAIL_RE__repor__2FCF1A8A" />
+        <EntityTypeShape EntityType="computer_managementModel.BILL_REPAIR" Width="1.5" PointX="7.5" PointY="14.5" />
+        <AssociationConnector Association="computer_managementModel.FK__BILL_REPA__custo__4A8310C6" />
+        <AssociationConnector Association="computer_managementModel.FK__BILL_REPA__seriI__4B7734FF" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

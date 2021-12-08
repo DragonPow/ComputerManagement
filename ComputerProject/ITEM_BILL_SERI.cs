@@ -14,6 +14,12 @@ namespace ComputerProject
     
     public partial class ITEM_BILL_SERI
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ITEM_BILL_SERI()
+        {
+            this.BILL_REPAIR = new HashSet<BILL_REPAIR>();
+        }
+    
         public int id { get; set; }
         public int billId { get; set; }
         public int productId { get; set; }
@@ -21,5 +27,7 @@ namespace ComputerProject
     
         public virtual BILL BILL { get; set; }
         public virtual PRODUCT PRODUCT { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BILL_REPAIR> BILL_REPAIR { get; set; }
     }
 }

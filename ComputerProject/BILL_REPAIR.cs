@@ -24,11 +24,13 @@ namespace ComputerProject
         public bool isWarranty { get; set; }
         public int status { get; set; }
         public int customerId { get; set; }
-        public Nullable<int> seri { get; set; }
+        public Nullable<int> seriId { get; set; }
         public string nameProduct { get; set; }
         public string attachments { get; set; }
         public Nullable<System.DateTime> warrantyTime { get; set; }
+        public string desDetailRepair { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }
+        public virtual ITEM_BILL_SERI ITEM_BILL_SERI { get; set; }
     }
 }

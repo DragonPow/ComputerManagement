@@ -30,10 +30,11 @@
           <Property Name="isWarranty" Type="bit" Nullable="false" />
           <Property Name="status" Type="int" Nullable="false" />
           <Property Name="customerId" Type="int" Nullable="false" />
-          <Property Name="seri" Type="int" />
+          <Property Name="seriId" Type="int" />
           <Property Name="nameProduct" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="attachments" Type="nvarchar" MaxLength="500" />
           <Property Name="warrantyTime" Type="smalldatetime" />
+          <Property Name="desDetailRepair" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="CATEGORY">
           <Key>
@@ -173,7 +174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BILL_REPA__custo__06CD04F7">
+        <Association Name="FK__BILL_REPA__custo__4A8310C6">
           <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
           <End Role="BILL_REPAIR" Type="Self.BILL_REPAIR" Multiplicity="*" />
           <ReferentialConstraint>
@@ -182,6 +183,18 @@
             </Principal>
             <Dependent Role="BILL_REPAIR">
               <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BILL_REPA__seriI__4B7734FF">
+          <End Role="ITEM_BILL_SERI" Type="Self.ITEM_BILL_SERI" Multiplicity="0..1" />
+          <End Role="BILL_REPAIR" Type="Self.BILL_REPAIR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM_BILL_SERI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BILL_REPAIR">
+              <PropertyRef Name="seriId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -384,8 +397,12 @@
             <End Role="CUSTOMER" EntitySet="CUSTOMER" />
             <End Role="BILL" EntitySet="BILL" />
           </AssociationSet>
-          <AssociationSet Name="FK__BILL_REPA__custo__06CD04F7" Association="Self.FK__BILL_REPA__custo__06CD04F7">
+          <AssociationSet Name="FK__BILL_REPA__custo__4A8310C6" Association="Self.FK__BILL_REPA__custo__4A8310C6">
             <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BILL_REPA__seriI__4B7734FF" Association="Self.FK__BILL_REPA__seriI__4B7734FF">
+            <End Role="ITEM_BILL_SERI" EntitySet="ITEM_BILL_SERI" />
             <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
           </AssociationSet>
           <AssociationSet Name="FK__CATEGORY__parent__07C12930" Association="Self.FK__CATEGORY__parent__07C12930">
@@ -453,26 +470,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="computer_managementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="BILL_REPAIR">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="timeDelivery" Type="DateTime" Precision="3" />
-          <Property Name="timeReceive" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="desReceiveItems" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="desProblem" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="price" Type="Int64" />
-          <Property Name="customerMoney" Type="Int64" />
-          <Property Name="isWarranty" Type="Boolean" Nullable="false" />
-          <Property Name="status" Type="Int32" Nullable="false" />
-          <Property Name="customerId" Type="Int32" Nullable="false" />
-          <Property Name="seri" Type="Int32" />
-          <Property Name="nameProduct" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="attachments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="warrantyTime" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__BILL_REPA__custo__06CD04F7" FromRole="BILL_REPAIR" ToRole="CUSTOMER" />
-        </EntityType>
         <EntityType Name="CATEGORY">
           <Key>
             <PropertyRef Name="id" />
@@ -499,8 +496,8 @@
           <Property Name="birthday" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="point" Type="Int32" Nullable="false" />
           <Property Name="createTime" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="BILL_REPAIR" Relationship="Self.FK__BILL_REPA__custo__06CD04F7" FromRole="CUSTOMER" ToRole="BILL_REPAIR" />
           <NavigationProperty Name="BILLs" Relationship="computer_managementModel.FK__BILL__customerId__05D8E0BE" FromRole="CUSTOMER" ToRole="BILL" />
+          <NavigationProperty Name="BILL_REPAIR" Relationship="computer_managementModel.FK__BILL_REPA__custo__4A8310C6" FromRole="CUSTOMER" ToRole="BILL_REPAIR" />
         </EntityType>
         <EntityType Name="DETAIL_REPORT_PRODUCT">
           <Key>
@@ -583,18 +580,6 @@
           <NavigationProperty Name="CATEGORY" Relationship="Self.FK__SPECIFICA__categ__1332DBDC" FromRole="SPECIFICATION_TYPE" ToRole="CATEGORY" />
           <NavigationProperty Name="SPECIFICATIONs" Relationship="Self.FK__SPECIFICA__speci__123EB7A3" FromRole="SPECIFICATION_TYPE" ToRole="SPECIFICATION" />
         </EntityType>
-        <Association Name="FK__BILL_REPA__custo__06CD04F7">
-          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
-          <End Role="BILL_REPAIR" Type="Self.BILL_REPAIR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CUSTOMER">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="BILL_REPAIR">
-              <PropertyRef Name="customerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__CATEGORY__parent__07C12930">
           <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
           <End Role="CATEGORY1" Type="Self.CATEGORY" Multiplicity="*" />
@@ -668,7 +653,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ComputerManagementEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BILL_REPAIR" EntityType="Self.BILL_REPAIR" />
           <EntitySet Name="CATEGORies" EntityType="Self.CATEGORY" />
           <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
           <EntitySet Name="DETAIL_REPORT_PRODUCT" EntityType="Self.DETAIL_REPORT_PRODUCT" />
@@ -678,10 +662,6 @@
           <EntitySet Name="REPORTs" EntityType="Self.REPORT" />
           <EntitySet Name="SPECIFICATIONs" EntityType="Self.SPECIFICATION" />
           <EntitySet Name="SPECIFICATION_TYPE" EntityType="Self.SPECIFICATION_TYPE" />
-          <AssociationSet Name="FK__BILL_REPA__custo__06CD04F7" Association="Self.FK__BILL_REPA__custo__06CD04F7">
-            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
-            <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
-          </AssociationSet>
           <AssociationSet Name="FK__CATEGORY__parent__07C12930" Association="Self.FK__CATEGORY__parent__07C12930">
             <End Role="CATEGORY" EntitySet="CATEGORies" />
             <End Role="CATEGORY1" EntitySet="CATEGORies" />
@@ -750,6 +730,15 @@
             <End Role="REPORT" EntitySet="REPORTs" />
             <End Role="DETAIL_REPORT_CATEGORY" EntitySet="DETAIL_REPORT_CATEGORY" />
           </AssociationSet>
+          <EntitySet Name="BILL_REPAIR" EntityType="computer_managementModel.BILL_REPAIR" />
+          <AssociationSet Name="FK__BILL_REPA__custo__4A8310C6" Association="computer_managementModel.FK__BILL_REPA__custo__4A8310C6">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BILL_REPA__seriI__4B7734FF" Association="computer_managementModel.FK__BILL_REPA__seriI__4B7734FF">
+            <End Role="ITEM_BILL_SERI" EntitySet="ITEM_BILL_SERI" />
+            <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ITEM_BILL_SERI">
           <Key>
@@ -761,6 +750,7 @@
           <Property Name="seri" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BILL" Relationship="computer_managementModel.FK__ITEM_BILL__billI__2A164134" FromRole="ITEM_BILL_SERI" ToRole="BILL" />
           <NavigationProperty Name="PRODUCT" Relationship="computer_managementModel.FK__ITEM_BILL__produ__2B0A656D" FromRole="ITEM_BILL_SERI" ToRole="PRODUCT" />
+          <NavigationProperty Name="BILL_REPAIR" Relationship="computer_managementModel.FK__BILL_REPA__seriI__4B7734FF" FromRole="ITEM_BILL_SERI" ToRole="BILL_REPAIR" />
         </EntityType>
         <EntityType Name="BILL">
           <Key>
@@ -931,32 +921,58 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BILL_REPAIR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="timeDelivery" Type="DateTime" Precision="3" />
+          <Property Name="timeReceive" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="desReceiveItems" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="desProblem" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int64" />
+          <Property Name="customerMoney" Type="Int64" />
+          <Property Name="isWarranty" Type="Boolean" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
+          <Property Name="seriId" Type="Int32" />
+          <Property Name="nameProduct" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="attachments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="warrantyTime" Type="DateTime" Precision="0" />
+          <Property Name="desDetailRepair" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CUSTOMER" Relationship="computer_managementModel.FK__BILL_REPA__custo__4A8310C6" FromRole="BILL_REPAIR" ToRole="CUSTOMER" />
+          <NavigationProperty Name="ITEM_BILL_SERI" Relationship="computer_managementModel.FK__BILL_REPA__seriI__4B7734FF" FromRole="BILL_REPAIR" ToRole="ITEM_BILL_SERI" />
+        </EntityType>
+        <Association Name="FK__BILL_REPA__custo__4A8310C6">
+          <End Type="computer_managementModel.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
+          <End Type="computer_managementModel.BILL_REPAIR" Role="BILL_REPAIR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BILL_REPAIR">
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BILL_REPA__seriI__4B7734FF">
+          <End Type="computer_managementModel.ITEM_BILL_SERI" Role="ITEM_BILL_SERI" Multiplicity="0..1" />
+          <End Type="computer_managementModel.BILL_REPAIR" Role="BILL_REPAIR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM_BILL_SERI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BILL_REPAIR">
+              <PropertyRef Name="seriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="computer_managementModelStoreContainer" CdmEntityContainer="ComputerManagementEntities">
-          <EntitySetMapping Name="BILL_REPAIR">
-            <EntityTypeMapping TypeName="computer_managementModel.BILL_REPAIR">
-              <MappingFragment StoreEntitySet="BILL_REPAIR">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="timeDelivery" ColumnName="timeDelivery" />
-                <ScalarProperty Name="timeReceive" ColumnName="timeReceive" />
-                <ScalarProperty Name="desReceiveItems" ColumnName="desReceiveItems" />
-                <ScalarProperty Name="desProblem" ColumnName="desProblem" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="customerMoney" ColumnName="customerMoney" />
-                <ScalarProperty Name="isWarranty" ColumnName="isWarranty" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="customerId" ColumnName="customerId" />
-                <ScalarProperty Name="seri" ColumnName="seri" />
-                <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
-                <ScalarProperty Name="attachments" ColumnName="attachments" />
-                <ScalarProperty Name="warrantyTime" ColumnName="warrantyTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CATEGORies">
             <EntityTypeMapping TypeName="computer_managementModel.CATEGORY">
               <MappingFragment StoreEntitySet="CATEGORY">
@@ -1097,6 +1113,27 @@
                 <ScalarProperty Name="day" ColumnName="day" />
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
                 <ScalarProperty Name="reportId" ColumnName="reportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BILL_REPAIR">
+            <EntityTypeMapping TypeName="computer_managementModel.BILL_REPAIR">
+              <MappingFragment StoreEntitySet="BILL_REPAIR">
+                <ScalarProperty Name="desDetailRepair" ColumnName="desDetailRepair" />
+                <ScalarProperty Name="warrantyTime" ColumnName="warrantyTime" />
+                <ScalarProperty Name="attachments" ColumnName="attachments" />
+                <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
+                <ScalarProperty Name="seriId" ColumnName="seriId" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="isWarranty" ColumnName="isWarranty" />
+                <ScalarProperty Name="customerMoney" ColumnName="customerMoney" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="desProblem" ColumnName="desProblem" />
+                <ScalarProperty Name="desReceiveItems" ColumnName="desReceiveItems" />
+                <ScalarProperty Name="timeReceive" ColumnName="timeReceive" />
+                <ScalarProperty Name="timeDelivery" ColumnName="timeDelivery" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
