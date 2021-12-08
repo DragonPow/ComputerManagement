@@ -9,29 +9,28 @@ namespace ComputerProject.InsuranceWorkSpace
 {
     class InsuranceAllViewModel: PagingViewModel<InsuranceViewModel>
     {
-        private List<String> sortTypes = new List<string>() {
-            "Ngày tiếp nhận: Thấp đến cao",
-            "Ngày tiếp nhận: Cao đến thấp",
-            "Số điện thoại: A -> Z",
-            "Số điện thoại: Z -> A"
-            };
-        public List<String> SortTypes => sortTypes;
-        public String SelectedSortType
-        {
-            get;set;
-        }
-
         MultipleControlViewModel viewController;
         public InsuranceAllViewModel()
         {
             this.PropertyChanged += InsuranceAllViewModel_PropertyChanged;
             step = 20;
-            SelectedSortType = sortTypes[1];
+            selectedSortType = sortTypes[1];
+            selectedBillStatus = billStatus[0];
         }
 
         public InsuranceAllViewModel(MultipleControlViewModel viewController):this()
         {
             this.viewController = viewController;
+        }
+
+        protected override List<InsuranceViewModel> _search()
+        {
+            return InsuranceViewModel.FindByPhoneOrID(SearchContent, billStatus.IndexOf(SelectedBillStatus), currentStartIndex, step, sortTypes.IndexOf(SelectedSortType));
+        }
+
+        protected override int _countMax()
+        {
+            return InsuranceViewModel.CountByPhoneOrID(SearchContent, billStatus.IndexOf(SelectedBillStatus));
         }
 
         private void InsuranceAllViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -46,14 +45,44 @@ namespace ComputerProject.InsuranceWorkSpace
             }
         }
 
-        protected override List<InsuranceViewModel> _search()
+        private List<String> sortTypes = new List<string>() {
+            "Ngày tiếp nhận: Thấp đến cao",
+            "Ngày tiếp nhận: Cao đến thấp",
+            "Số điện thoại: A -> Z",
+            "Số điện thoại: Z -> A"
+            };
+        public List<String> SortTypes => sortTypes;
+        protected String selectedSortType;
+        public String SelectedSortType
         {
-            return InsuranceViewModel.FindByPhoneOrID(SearchContent, currentStartIndex, step, sortTypes.IndexOf(SelectedSortType));
+            get => selectedSortType;
+            set
+            {
+                if (value.Equals(selectedSortType)) return;
+                selectedSortType = value;
+                OnPropertyChanged(nameof(SelectedSortType));
+                Validation();
+            }
         }
 
-        protected override int _countMax()
+        private List<String> billStatus = new List<string>() {
+            "Tất cả",
+            InsuranceViewModel.StatusToString(0),
+            InsuranceViewModel.StatusToString(1),
+            InsuranceViewModel.StatusToString(2)
+            };
+        public List<String> BillStatus => billStatus;
+        protected String selectedBillStatus;
+        public String SelectedBillStatus
         {
-            return InsuranceViewModel.CountByPhoneOrID(SearchContent);
+            get => selectedBillStatus;
+            set
+            {
+                if (value.Equals(selectedBillStatus)) return;
+                selectedBillStatus = value;
+                OnPropertyChanged(nameof(SelectedBillStatus));
+                Validation();
+            }
         }
 
         public RelayCommand CommandEdit_Item => new RelayCommand(OnClickEdit_Item);
