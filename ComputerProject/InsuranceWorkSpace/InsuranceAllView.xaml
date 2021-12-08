@@ -82,6 +82,26 @@
                         Foreground="Black"
                         ItemsSource="{Binding}"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                    <Button x:Name="Btn_add"
+                    Grid.Column="3"
+                    HorizontalAlignment="Right"
+                            Margin="10,0"
+                    Background="{StaticResource MainColor}"
+                    BorderBrush="{StaticResource MainColor}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    VerticalAlignment="Bottom"
+                    ToolTip="Thêm danh mục"
+                    Padding="7,0"
+                    Command="{Binding AddChildCategoryCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Plus" VerticalAlignment="Center"/>
+                            <TextBlock Text="Thêm mới"
+                               FontSize="14"
+                               VerticalAlignment="Center"
+                                       Margin="7,0"
+                               Foreground="White" />
+                        </StackPanel>
+                    </Button>
                 </Grid>
                 <Grid
                     Grid.Row="1"
