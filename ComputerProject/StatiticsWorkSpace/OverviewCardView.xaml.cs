@@ -64,7 +64,7 @@ namespace ComputerProject.StatiticsWorkSpace
         }
         private static string CoercePercent(DependencyObject d,object value)
         {
-            return value.ToString();
+            return value == null ? "0%" : value.ToString();
         }
 
         private static void OnIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
