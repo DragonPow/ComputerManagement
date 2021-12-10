@@ -26,7 +26,7 @@
         <TextBlock
             x:Name="txtInsuranceID"
             Grid.Column="0"
-            Padding="0,17"
+            Padding="20,17"
             VerticalAlignment="Stretch"
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static font:Font.Body}"
