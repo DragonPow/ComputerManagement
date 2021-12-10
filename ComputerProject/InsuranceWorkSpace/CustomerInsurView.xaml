@@ -162,7 +162,7 @@
                            FontWeight="DemiBold"
                            Foreground="{StaticResource Icon}"></TextBlock>
                 <TextBlock Grid.Column="1"
-                           Text="{Binding CurrentBill.CUSTOMER.name, FallbackValue='-'}"
+                           Text="{Binding CurrentCustomer.name, FallbackValue='-'}"
                            FontSize="{x:Static font:Font.Body}"
                            FontFamily="{StaticResource Mulish}"
                            FontWeight="DemiBold"
@@ -184,7 +184,7 @@
                            FontWeight="DemiBold"
                            Foreground="{StaticResource Icon}"></TextBlock>
                 <TextBlock Grid.Column="1"
-                           Text="{Binding CurrentBill.CUSTOMER.phone, FallbackValue='-'}"
+                           Text="{Binding CurrentCustomer.phone, FallbackValue='-'}"
                            FontSize="{x:Static font:Font.Body}"
                            FontFamily="{StaticResource Mulish}"
                            FontWeight="DemiBold"
@@ -206,7 +206,7 @@
                            FontWeight="DemiBold"
                            Foreground="{StaticResource Icon}"></TextBlock>
                 <TextBlock Grid.Column="1"
-                           Text="{Binding CurrentBill.CUSTOMER.point, FallbackValue='-'}"
+                           Text="{Binding CurrentCustomer.point, FallbackValue='-'}"
                            FontSize="{x:Static font:Font.Body}"
                            FontFamily="{StaticResource Mulish}"
                            FontWeight="DemiBold"

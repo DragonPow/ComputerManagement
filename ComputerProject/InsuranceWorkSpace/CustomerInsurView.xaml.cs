@@ -37,6 +37,7 @@ namespace ComputerProject.InsuranceWorkSpace
             {
                 InsuranceDetailViewModel dataContext = this.DataContext as InsuranceDetailViewModel;
                 dataContext.CurrentBill.CUSTOMER = completebox.SelectedItem as CUSTOMER;
+                dataContext.OnCustomerChanged();
             }
 
             completebox.Text = null;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerProject.Helper;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -51,6 +52,9 @@ namespace ComputerProject.Repository
             {
                 using (var db = new ComputerManagementEntities())
                 {
+                    var warrantyTime = currentBill.ITEM_BILL_SERI.warrantyEndTime;
+                    currentBill.isWarranty = warrantyTime.HasValue && TimerService.CheckDayLarger(warrantyTime.Value, DateTime.Now);
+
                     db.Entry(currentBill).State = EntityState.Added;
                     db.Entry(currentBill.CUSTOMER).State = EntityState.Unchanged;
 

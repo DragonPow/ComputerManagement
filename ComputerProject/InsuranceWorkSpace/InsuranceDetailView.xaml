@@ -15,119 +15,138 @@
              d:DataContext="{d:DesignInstance Type={x:Type local:InsuranceDetailViewModel}}">
     <Grid Background="{StaticResource Background}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="20,10">
+        <StackPanel HorizontalAlignment="Left"
+                    Orientation="Horizontal"
+                    Margin="20,10">
             <Button x:Name="btnBack"
-                    Style="{StaticResource MaterialDesignIconButton}" 
-                    Width="40" 
-                    Height="40" 
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    Width="40"
+                    Height="40"
                     Command="{Binding NavigateBackCommand}"
                     Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
-                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="{StaticResource Title}" />
+                <materialDesign:PackIcon Kind="ArrowLeft"
+                                         Foreground="{StaticResource Title}" />
             </Button>
-            <TextBlock x:Name="txtTitleView" 
-                       Text="Chi tiết bảo hành, sửa chữa" 
-                       Foreground="{StaticResource Title}" 
-                       FontSize="{x:Static font:Font.TitleView}" 
+            <TextBlock x:Name="txtTitleView"
+                       Text="Chi tiết bảo hành, sửa chữa"
+                       Foreground="{StaticResource Title}"
+                       FontSize="{x:Static font:Font.TitleView}"
                        VerticalAlignment="Center"
-                       FontWeight="DemiBold" 
+                       FontWeight="DemiBold"
                        Margin="20,0"></TextBlock>
         </StackPanel>
-        <Grid Grid.Row="1" Margin="20,0">
+        <Grid Grid.Row="1"
+              Margin="20,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Border CornerRadius="8"
-            Background="White" Margin="0,0,20,10">
+                    Background="White"
+                    Margin="0,0,20,10">
                 <StackPanel>
                     <Border Margin="20,5,20,10"
-                    BorderBrush="{StaticResource Icon}"
-                    BorderThickness="0,0,0,1">
+                            BorderBrush="{StaticResource Icon}"
+                            BorderThickness="0,0,0,1">
                         <TextBlock Grid.Column="0"
-                           Margin="0,10"
-                               Text="Khách hàng"
-                               VerticalAlignment="Center"
-                               FontSize="{x:Static font:Font.Body}"
-                               FontWeight="Bold"
-                               FontFamily="{StaticResource Mulish}"
-                               Foreground="Black"></TextBlock>
+                                   Margin="0,10"
+                                   Text="Khách hàng"
+                                   VerticalAlignment="Center"
+                                   FontSize="{x:Static font:Font.Body}"
+                                   FontWeight="Bold"
+                                   FontFamily="{StaticResource Mulish}"
+                                   Foreground="Black"></TextBlock>
 
                     </Border>
                     <Grid Margin="25,5"
-                  Grid.Row="2"
-                  Grid.RowSpan="1">
+                          Grid.Row="2"
+                          Grid.RowSpan="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"></ColumnDefinition>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0"
-                           Margin="0,0,20,0"
-                           Text="Tên khách hàng"
-                           FontSize="{x:Static font:Font.Body}"
-                           FontFamily="{StaticResource Mulish}"
-                           FontWeight="DemiBold"
-                           Foreground="{StaticResource Icon}"></TextBlock>
+                                   Margin="0,0,20,0"
+                                   Text="Tên khách hàng"
+                                   FontSize="{x:Static font:Font.Body}"
+                                   FontFamily="{StaticResource Mulish}"
+                                   FontWeight="DemiBold"
+                                   Foreground="{StaticResource Icon}"></TextBlock>
                         <TextBlock Grid.Column="1"
-                           Text="{Binding CurrentBill.CUSTOMER.name, FallbackValue='-'}"
-                           FontSize="{x:Static font:Font.Body}"
-                           FontFamily="{StaticResource Mulish}"
-                           FontWeight="DemiBold"
-                           HorizontalAlignment="Right"
-                           
-                           Foreground="Black"></TextBlock>
+                                   Text="{Binding CurrentBill.CUSTOMER.name, FallbackValue='-'}"
+                                   FontSize="{x:Static font:Font.Body}"
+                                   FontFamily="{StaticResource Mulish}"
+                                   FontWeight="DemiBold"
+                                   HorizontalAlignment="Right"
+                                   Foreground="Black"></TextBlock>
                     </Grid>
                     <Grid Margin="25,2"
-                  Grid.Row="3"
-                  Grid.RowSpan="1">
+                          Grid.Row="3"
+                          Grid.RowSpan="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"></ColumnDefinition>
-                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="92*"></ColumnDefinition>
+                            <ColumnDefinition Width="7*" />
+                            <ColumnDefinition Width="4*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0"
-                           Margin="0,5,20,10"
-                           Text="Số điện thoại"
-                           FontSize="{x:Static font:Font.Body}"
-                           FontFamily="{StaticResource Mulish}"
-                           FontWeight="DemiBold"
-                           Foreground="{StaticResource Icon}"></TextBlock>
+                                   Margin="0,5,20,10"
+                                   Text="Số điện thoại"
+                                   FontSize="{x:Static font:Font.Body}"
+                                   FontFamily="{StaticResource Mulish}"
+                                   FontWeight="DemiBold"
+                                   Foreground="{StaticResource Icon}"></TextBlock>
                         <TextBlock Grid.Column="1"
-                           Text="{Binding CurrentBill.CUSTOMER.phone, FallbackValue='-'}"
-                           FontSize="{x:Static font:Font.Body}"
-                           FontFamily="{StaticResource Mulish}"
-                           FontWeight="DemiBold"
-                           HorizontalAlignment="Right"
-                           
-                           Foreground="Black"></TextBlock>
+                                   Text="{Binding CurrentBill.CUSTOMER.phone, FallbackValue='-'}"
+                                   FontSize="{x:Static font:Font.Body}"
+                                   FontFamily="{StaticResource Mulish}"
+                                   FontWeight="DemiBold"
+                                   HorizontalAlignment="Right"
+                                   Foreground="Black"
+                                   Grid.ColumnSpan="3"></TextBlock>
                     </Grid>
                 </StackPanel>
             </Border>
-            <Border Grid.Row="1" Grid.RowSpan="2" Margin="0,0,20,0"  Background="White" CornerRadius="8">
+            <Border Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Margin="0,0,20,0"
+                    Background="White"
+                    CornerRadius="8">
                 <ScrollViewer Margin="0,10">
-                    <local:InsuranceProdInfo ModeInfor="onlyread" DataContext="{Binding}"/>
+                    <local:InsuranceProdInfo ModeInfor="onlyread"
+                                             DataContext="{Binding}" />
                 </ScrollViewer>
             </Border>
-            <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Background="White" CornerRadius="8">
+            <Border Grid.Column="1"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Background="White"
+                    CornerRadius="8">
                 <ScrollViewer Margin="0,10">
-                    <local:InsuranceInfor x:Name="InsuranceInfor"  ModeInfor="onlyread"
-                                          DataContext="{Binding}"/>
+                    <local:InsuranceInfor x:Name="InsuranceInfor"
+                                          ModeInfor="onlyread"
+                                          DataContext="{Binding}" />
                 </ScrollViewer>
             </Border>
-            <local:BillPayMoneyView  Grid.Column="1" 
-                                     Grid.Row="2" 
+            <local:BillPayMoneyView  Grid.Column="1"
+                                     Grid.Row="2"
                                      Margin="0,10,0,0"
-                                     DataContext="{Binding}"/>
+                                     DataContext="{Binding}" />
 
         </Grid>
-        <StackPanel Grid.Row="2"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="20">
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="20">
             <Button x:Name="btnDelete"
                     Style="{StaticResource MaterialDesignOutlinedButton}"
                     materialDesign:ButtonAssist.CornerRadius="5"

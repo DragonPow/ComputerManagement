@@ -35,7 +35,7 @@ namespace ComputerProject.InsuranceWorkSpace
         StatusView _status;
         BusyViewModel _busyService = new BusyViewModel();
         readonly InsuranceRepository _repository = new InsuranceRepository();
-        List<string> _billStatus = new List<string>() {
+        List<String> _billStatus = new List<String>() {
             InsuranceViewModel.StatusToString(0),
             InsuranceViewModel.StatusToString(1),
             InsuranceViewModel.StatusToString(2)
@@ -104,7 +104,7 @@ namespace ComputerProject.InsuranceWorkSpace
                 }
             }
         }
-        public List<string> BillStatus => _billStatus;
+        public List<String> BillStatus => _billStatus;
         public string StatusBillSelected
         {
             get => _statusBillSelected;
@@ -132,6 +132,7 @@ namespace ComputerProject.InsuranceWorkSpace
         }
         public string BillID => CurrentBill.ITEM_BILL_SERI?.id.ToString();
         public long? ExcessCashMoney => CurrentBill.customerMoney - CurrentBill.price;
+        public CUSTOMER CurrentCustomer => CurrentBill.CUSTOMER;
 
         public ICommand PaymentCommand
         {
@@ -332,10 +333,11 @@ namespace ComputerProject.InsuranceWorkSpace
 
         public Task LoadDataAsync()
         {
-            var customerTask = Task.Run(LoadCustomer);
-            var insurTask = Task.Run(LoadInformationInsurance);
+            //var customerTask = Task.Run(LoadCustomer);
+            var insurTask = Task.Run(LoadInformationInsurance).ContinueWith((_) => Task.Run(LoadCustomer));
 
-            return BusyService.WhenAll(customerTask, insurTask);
+            return insurTask;
+            //return BusyService.WhenAll(customerTask, insurTask);
         }
 
         private void LoadInformationInsurance()
@@ -345,9 +347,21 @@ namespace ComputerProject.InsuranceWorkSpace
                 _repository.LoadInsurance(CurrentBill);
             }
         }
+        //{
+        //    get => c;
+        //    set
+        //    {
+        //        c = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
         private void LoadCustomer()
         {
             CurrentBill.CUSTOMER = _repository.GetCustomer(CurrentBill.customerId) ?? new CUSTOMER();
+        }
+        public void OnCustomerChanged()
+        {
+            OnPropertyChanged(nameof(CurrentCustomer));
         }
         public void OnNavigateBack()
         {
@@ -381,12 +395,14 @@ namespace ComputerProject.InsuranceWorkSpace
             {
                 case TypeObject.Customer:
                     CurrentBill.CUSTOMER = null;
+                    OnPropertyChanged(nameof(CurrentCustomer));
                     break;
                 case TypeObject.Product:
                     CurrentBill.nameProduct = null;
                     CurrentBill.seriId = null;
                     CurrentBill.ITEM_BILL_SERI = null;
                     CurrentBill.attachments = null;
+                    OnPropertyChanged(nameof(CurrentBill));
                     break;
                 case TypeObject.InforRepair:
                     CurrentBill.timeDelivery = null;
@@ -396,6 +412,7 @@ namespace ComputerProject.InsuranceWorkSpace
                     CurrentBill.desReceiveItems = null;
                     CurrentBill.customerMoney = null;
                     CurrentBill.price = null;
+                    OnPropertyChanged(nameof(CurrentBill));
                     break;
                 default:
                     throw new NullReferenceException();
