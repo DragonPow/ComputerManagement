@@ -9,8 +9,6 @@ namespace ComputerProject.Repository
 {
     public class InsuranceRepository
     {
-        public object EntitState { get; private set; }
-
         public void LoadInsurance(BILL_REPAIR currentBill)
         {
             using (var db = new ComputerManagementEntities())
@@ -19,7 +17,7 @@ namespace ComputerProject.Repository
 
                 //Customer
                 currentBill.customerId = bill.customerId;
-                currentBill.CUSTOMER = bill.CUSTOMER;
+                //currentBill.CUSTOMER = bill.CUSTOMER;
 
                 //Information Product
                 currentBill.nameProduct = bill.nameProduct;
@@ -42,7 +40,8 @@ namespace ComputerProject.Repository
         {
             using (var db = new ComputerManagementEntities())
             {
-                return db.CUSTOMERs.Where(i => i.id == customerId).First();
+                var customer = db.CUSTOMERs.Where(i => i.id == customerId).FirstOrDefault();
+                return customer;
             }
         }
 
@@ -91,7 +90,7 @@ namespace ComputerProject.Repository
         {
             using (var db = new ComputerManagementEntities())
             {
-                return db.ITEM_BILL_SERI.Where(i => i.seri == seri).FirstOrDefault();
+                return db.ITEM_BILL_SERI.Where(i => i.seri == seri).OrderByDescending(i=>i.id).FirstOrDefault();
             }
         }
     }

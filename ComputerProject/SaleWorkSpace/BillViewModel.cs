@@ -16,8 +16,11 @@ namespace ComputerProject.SaleWorkSpace
     public class BillViewModel : Helper.BaseViewModel
     {
         #region Fields
+
         StoreInformation _currentStoreInformation;
         Model.Bill _currentBill;
+        string duplicate_seri;
+
         ICommand _confirmCommand;
         ICommand _printCommand;
         ICommand _cancelCommand;
@@ -58,6 +61,18 @@ namespace ComputerProject.SaleWorkSpace
                     {
                         if (!CurrentBill.HasErrorData)
                         {
+                            if (DuplicateSeri())
+                            {
+                                if (duplicate_seri != null)
+                                {
+                                    MessageBoxCustom.ShowDialog("Sản phẩm có seri: " + duplicate_seri + " đã được bán, vui lòng nhập lại mã số khác", "Thông báo", MaterialDesignThemes.Wpf.PackIconKind.InformationCircleOutline);
+                                }
+                                else
+                                {
+                                    MessageBoxCustom.ShowDialog("2 sản phẩm cùng loại không thể trùng mã số seri", "Thông báo", MaterialDesignThemes.Wpf.PackIconKind.InformationCircleOutline);
+                                }
+                                return;
+                            }
                             if (SuccessConfirm())
                             {
                                 PaymentSuccessEvent?.Invoke(this, null);
@@ -136,7 +151,7 @@ namespace ComputerProject.SaleWorkSpace
                     db.BILLs.AddOrUpdate(b);
                     db.Entry(b.CUSTOMER).State = System.Data.Entity.EntityState.Unchanged;
 
-                    foreach(var item in b.ITEM_BILL)
+                    foreach (var item in b.ITEM_BILL)
                     {
                         var product = db.PRODUCTs.Where(i => i.id == item.productId).First();
                         product.quantity -= item.quantity;
@@ -157,16 +172,45 @@ namespace ComputerProject.SaleWorkSpace
             }
         }
 
+        private bool DuplicateSeri()
+        {
+            var product_group_by_id = CurrentBill.Products.GroupBy(x => x.Id);
+            foreach (var g in product_group_by_id)
+            {
+                var  group_seri = g.Select(i => i.Seri).ToHashSet();
+                if (group_seri.Count != g.Count())
+                {
+                    duplicate_seri = null;
+                    return true;
+                }
+            }
+
+
+            using(var db = new ComputerManagementEntities())
+            {
+                foreach(var product in CurrentBill.Products)
+                {
+                    var isDuplicate = db.ITEM_BILL_SERI.Any(i => i.seri == product.Seri);
+                    if (isDuplicate)
+                    {
+                        duplicate_seri = product.Seri;
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
         private void AddBonusPointToCustomer(BILL b)
         {
             using (var db = new ComputerManagementEntities())
             {
                 int moneyToPoint = int.Parse(db.REGULATIONs.Where(i => i.name == "MoneyToPoint").Select(i => i.value).First());
                 var child = db.CUSTOMERs.Where(i => i.id == b.customerId).First();
+
                 child.point += b.totalMoney / moneyToPoint;
 
                 db.SaveChanges();
-
                 Console.WriteLine("Add {0} point for {1} success", b.totalMoney / moneyToPoint, b.CUSTOMER.name);
             }
         }

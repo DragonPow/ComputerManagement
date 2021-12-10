@@ -42,7 +42,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <local:CustomerInsurView Margin="0,0,20,10"/>
+            <local:CustomerInsurView Margin="0,0,20,10" DataContext="{Binding}"/>
             <Border Grid.Row="1" Grid.RowSpan="2" Margin="0,0,20,0"  Background="White" CornerRadius="8">
                 <ScrollViewer Margin="0,10">
                     <local:InsuranceProdInfo DataContext="{Binding}"/>

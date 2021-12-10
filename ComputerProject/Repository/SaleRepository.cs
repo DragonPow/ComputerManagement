@@ -136,12 +136,18 @@ namespace ComputerProject.Repository
             }
         }
 
-        public Collection<CUSTOMER> SearchCustomer(string phone, int number)
+        public Collection<CUSTOMER> SearchCustomer(string text, int number)
         {
             using (var db = new ComputerManagementEntities())
             {
+                var name = FormatHelper.ConvertTo_TiengDongLao(text.Trim().ToLower());
+
                 var query = db.CUSTOMERs.AsNoTracking()
-                    .Where(i => i.phone.Contains(phone))
+                    .Where( delegate (CUSTOMER i) 
+                    {
+                        var rs = i.phone.Contains(text) || FormatHelper.ConvertTo_TiengDongLao(i.name.ToLower()).Contains(name);
+                        return rs;
+                    })
                     .OrderBy(p => p.phone)
                     .Take(number);
                 Collection<CUSTOMER> list = new ObservableCollection<CUSTOMER>(query.AsEnumerable());

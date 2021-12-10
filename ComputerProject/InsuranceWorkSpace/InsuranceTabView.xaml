@@ -1,17 +1,55 @@
-﻿<UserControl
-    x:Class="ComputerProject.InsuranceWorkSpace.InsuranceTabView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:ComputerProject.InsuranceWorkSpace"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DataContext="{d:DesignInstance Type=local:InsuranceTabViewModel}"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
-    mc:Ignorable="d">
+﻿<UserControl x:Class="ComputerProject.InsuranceWorkSpace.InsuranceTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ComputerProject.InsuranceWorkSpace"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{d:DesignInstance Type=local:InsuranceTabViewModel}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
     <UserControl.Resources>
+        <DataTemplate x:Key="AddView"
+                      DataType="{x:Type local:InsuranceDetailViewModel}">
+            <local:AddInsuView />
+        </DataTemplate>
+        <DataTemplate x:Key="EditView"
+                      DataType="{x:Type local:InsuranceDetailViewModel}">
+            <local:InsurancEditView />
+        </DataTemplate>
+        <DataTemplate x:Key="SeenView"
+                      DataType="{x:Type local:InsuranceDetailViewModel}">
+            <local:InsuranceDetailView />
+        </DataTemplate>
+        
         <DataTemplate DataType="{x:Type local:InsuranceAllViewModel}">
             <local:InsuranceAllView />
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type local:InsuranceDetailViewModel}">
+            <ContentControl Content="{Binding}">
+                <ContentControl.Style>
+                    <Style TargetType="{x:Type ContentControl}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Status}"
+                                         Value="Add">
+                                <Setter Property="ContentTemplate"
+                                        Value="{StaticResource AddView}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Status}"
+                                         Value="Edit">
+                                <Setter Property="ContentTemplate"
+                                        Value="{StaticResource EditView}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Status}"
+                                         Value="View">
+                                <Setter Property="ContentTemplate"
+                                        Value="{StaticResource SeenView}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>

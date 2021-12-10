@@ -67,6 +67,10 @@ namespace ComputerProject.InsuranceWorkSpace
             if (!string.IsNullOrEmpty(completebox.Text))
             {
                 timeDelayText.Start();
+                if (completebox.SelectedItem != null)
+                {
+                    var o = completebox.SelectedItem as CUSTOMER;
+                }
             }
         }
     }

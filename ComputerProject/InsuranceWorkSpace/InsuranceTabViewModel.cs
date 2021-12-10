@@ -12,7 +12,7 @@ namespace ComputerProject.InsuranceWorkSpace
         InsuranceAllViewModel mainViewModel;
         public InsuranceTabViewModel()
         {
-            mainViewModel = new InsuranceAllViewModel();
+            mainViewModel = new InsuranceAllViewModel(this);
             CurrentViewModel = mainViewModel;
         }
 

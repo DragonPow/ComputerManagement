@@ -42,8 +42,6 @@ namespace ComputerProject.SaleWorkSpace
             }
 
             completebox.Text = null;
-            //completebox.SelectedItem = null;
-            //Console.WriteLine((completebox.SelectedItem as CUSTOMER)?.name??"nothing to bind");
         }
 
         private void TimeDelayText_Elapsed(object sender, ElapsedEventArgs e)

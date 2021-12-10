@@ -33,8 +33,8 @@ namespace ComputerProject.InsuranceWorkSpace
         readonly BILL_REPAIR _currentBill;
         DateTime? _timeWarranty;
         StatusView _status;
-        BusyViewModel _busyService;
-        InsuranceRepository _repository;
+        BusyViewModel _busyService = new BusyViewModel();
+        readonly InsuranceRepository _repository = new InsuranceRepository();
         List<string> _billStatus = new List<string>() {
             InsuranceViewModel.StatusToString(0),
             InsuranceViewModel.StatusToString(1),
@@ -67,18 +67,19 @@ namespace ComputerProject.InsuranceWorkSpace
             //    }
             //}
         }
-        public DateTime? TimeWarranty
-        {
-            get => _timeWarranty;
-            private set
-            {
-                if (value != _timeWarranty)
-                {
-                    _timeWarranty = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        public DateTime? TimeWarranty => CurrentBill.ITEM_BILL_SERI?.warrantyEndTime;
+        //{
+        //    get => _timeWarranty;
+        //    private set
+        //    {
+        //        if (value != _timeWarranty)
+        //        {
+        //            _timeWarranty = value;
+
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
         public StatusView Status
         {
             get => _status;
@@ -129,6 +130,8 @@ namespace ComputerProject.InsuranceWorkSpace
                 }
             }
         }
+        public string BillID => CurrentBill.ITEM_BILL_SERI?.id.ToString();
+        public long? ExcessCashMoney => CurrentBill.customerMoney - CurrentBill.price;
 
         public ICommand PaymentCommand
         {
@@ -152,7 +155,7 @@ namespace ComputerProject.InsuranceWorkSpace
                         var success = await Save(CurrentBill);
                         if (success)
                         {
-                            NavigateBack();
+                            OnNavigateBack();
                         }
                         else
                         {
@@ -197,7 +200,7 @@ namespace ComputerProject.InsuranceWorkSpace
 
                         if (success)
                         {
-                            NavigateBack();
+                            OnNavigateBack();
                         }
                         else
                         {
@@ -246,9 +249,13 @@ namespace ComputerProject.InsuranceWorkSpace
                         {
                             MessageBoxCustom.ShowDialog("Đơn hàng này không có thời hạn bảo hành", "Thông báo", PackIconKind.InformationCircleOutline);
                         }
-                        catch(ExpiryWarrantyException)
+                        catch (ExpiryWarrantyException)
                         {
                             MessageBoxCustom.ShowDialog("Đã hết thời gian bảo hành cho món hàng này", "Thông báo", PackIconKind.InformationCircleOutline);
+                        }
+                        catch (Exception e)
+                        {
+                            throw e;
                         }
                     });
                 }
@@ -261,7 +268,7 @@ namespace ComputerProject.InsuranceWorkSpace
             {
                 if (_navigateBackCommand == null)
                 {
-                    _navigateBackCommand = new RelayCommand(_ => NavigateBack());
+                    _navigateBackCommand = new RelayCommand(_ => OnNavigateBack());
                 }
                 return _navigateBackCommand;
             }
@@ -289,6 +296,9 @@ namespace ComputerProject.InsuranceWorkSpace
             }
         }
 
+        public event EventHandler NavigateBack;
+
+
         public InsuranceDetailViewModel(BILL_REPAIR bill = null, StatusView status = StatusView.Add)
         {
             _currentBill = bill ?? new BILL_REPAIR();
@@ -299,6 +309,16 @@ namespace ComputerProject.InsuranceWorkSpace
 
             _busyService = new BusyViewModel();
             _repository = new InsuranceRepository();
+        }
+
+        public InsuranceDetailViewModel(int id, StatusView status = StatusView.Add)
+        {
+            _currentBill = new BILL_REPAIR() { id = id };
+            OnPropertyChanged(nameof(CurrentBill));
+            LoadDataAsync();
+
+            Status = status;
+            StatusBillSelected = InsuranceViewModel.StatusToString(_currentBill.status);
         }
 
         public async void LoadData()
@@ -327,14 +347,11 @@ namespace ComputerProject.InsuranceWorkSpace
         }
         private void LoadCustomer()
         {
-            if (CurrentBill.id != 0)
-            {
-                CurrentBill.CUSTOMER = _repository.GetCustomer(CurrentBill.id);
-            }
+            CurrentBill.CUSTOMER = _repository.GetCustomer(CurrentBill.customerId) ?? new CUSTOMER();
         }
-        private void NavigateBack()
+        public void OnNavigateBack()
         {
-            throw new NotImplementedException();
+            NavigateBack?.Invoke(this, null);
         }
 
         private void OpenPaymentView(BILL_REPAIR currentBill)
@@ -348,7 +365,7 @@ namespace ComputerProject.InsuranceWorkSpace
         private async void Cancel()
         {
             await LoadDataAsync();
-            NavigateBack();
+            OnNavigateBack();
         }
         private Task<bool> Delete(BILL_REPAIR currentBill)
         {
@@ -388,7 +405,8 @@ namespace ComputerProject.InsuranceWorkSpace
         {
             CurrentBill.ITEM_BILL_SERI = _repository.GetBillFromSeri(seri);
             // TODO: Get TimeWarranty from item_bill_seri
-            TimeWarranty = CurrentBill.ITEM_BILL_SERI?.warrantyEndTime;
+            OnPropertyChanged(nameof(TimeWarranty));
+            OnPropertyChanged(nameof(BillID));
 
             if (!TimeWarranty.HasValue)
             {
@@ -413,5 +431,6 @@ namespace ComputerProject.InsuranceWorkSpace
 
         public class NoneTimeWarrantyTimeException : Exception { }
         public class ExpiryWarrantyException : Exception { }
+        public class NotFoundSeriException : Exception { }
     }
 }

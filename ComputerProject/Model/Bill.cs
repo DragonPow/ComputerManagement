@@ -214,7 +214,13 @@ namespace ComputerProject.Model
 
             foreach (var product in this.Products)
             {
-                bill.ITEM_BILL_SERI.Add(new ITEM_BILL_SERI() { BILL = bill, seri = product.Seri, productId = product.Id });
+                bill.ITEM_BILL_SERI.Add(new ITEM_BILL_SERI()
+                {
+                    BILL = bill,
+                    seri = product.Seri,
+                    productId = product.Id,
+                    warrantyEndTime = (product.Warranty != 0) ? (DateTime?)DateTime.Now.AddMonths(product.Warranty) : null,
+                });
 
                 var itembill = bill.ITEM_BILL.Where(i => i.productId == product.Id).FirstOrDefault();
                 if (itembill != null)

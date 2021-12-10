@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ComputerProject.InsuranceWorkSpace.InsuranceDetailViewModel;
 
 namespace ComputerProject.InsuranceWorkSpace
 {
@@ -93,24 +94,27 @@ namespace ComputerProject.InsuranceWorkSpace
         void OnClickEdit_Item(object itemVM)
         {
             InsuranceViewModel vm = itemVM as InsuranceViewModel;
-            CustomMessageBox.MessageBox.ShowNotify("Click edit item : " + vm.Id_String);
+            OpenDetailView(vm.Id, StatusView.Edit);
+            //CustomMessageBox.MessageBox.ShowNotify("Click edit item : " + vm.Id_String);
         }
 
         void OnClickDelete_Item(object itemVM)
         {
             InsuranceViewModel vm = itemVM as InsuranceViewModel;
-            CustomMessageBox.MessageBox.ShowNotify("Click delete item : " + vm.Id_String);
+            //CustomMessageBox.MessageBox.ShowNotify("Click delete item : " + vm.Id_String);
         }
 
         void OnClickDetail_Item(object itemVM)
         {
             InsuranceViewModel vm = itemVM as InsuranceViewModel;
-            CustomMessageBox.MessageBox.ShowNotify("Click detail item : " + vm.Id_String);
+            OpenDetailView(vm.Id, StatusView.View);
+            //CustomMessageBox.MessageBox.ShowNotify("Click detail item : " + vm.Id_String);
         }
 
         void OnClickInsert()
         {
-            CustomMessageBox.MessageBox.ShowNotify("Click insert");
+            OpenDetailView(0, StatusView.Add);
+            //CustomMessageBox.MessageBox.ShowNotify("Click insert");
         }
 
         public void BackToThisView(bool needReloadData)
@@ -120,6 +124,16 @@ namespace ComputerProject.InsuranceWorkSpace
             {
                 Validation();
             }
+        }
+
+        void OpenDetailView(int id, StatusView status)
+        {
+            InsuranceDetailViewModel newView = new InsuranceDetailViewModel(id, status);
+            newView.NavigateBack += (s, e) =>
+            {
+                BackToThisView(true);
+            };
+            viewController.CurrentViewModel = newView;
         }
     }
 }

@@ -93,6 +93,7 @@
                                 Background="{x:Null}"
                                 BorderBrush="{x:Null}"
                     Command="{Binding CheckSeriCommand}"
+                    CommandParameter="{Binding Text, ElementName=ProdSerial}"
                        IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                AncestorType={x:Type local:InsuranceProdInfo}}, 
                                                Path=Isreadonly,Converter={StaticResource revertbool}}">
@@ -107,15 +108,15 @@
         </Grid>
      
         <Custom:TextboxCustom x:Name="IDSaleBill" 
-                                      Title="Mã hóa đơn mua hàng" 
-                                      Text="{Binding CurrentBill.ITEM_BILL_SERI.billId}" 
+                                      Title="Mã hóa đơn mua hàng"
+                              Text="{Binding BillID, Mode=OneWay}" 
                                       IsEnabled="False" 
                                       TextWrapping="WrapWithOverflow" 
                                       MarginText="10" Margin="0,5" 
                                      Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
         <Custom:TextboxCustom x:Name="InsuranceDate" 
                                       Title="Ngày kết thúc bảo hành" 
-                                      Text="{Binding TimeWarranty, StringFormat='dd/MM/yyyy', TargetNullValue='Không'}" 
+                                      Text="{Binding TimeWarranty, StringFormat='dd/MM/yyyy', Mode=OneWay}" 
                                       IsEnabled="False" 
                                       TextWrapping="WrapWithOverflow" 
                                       MarginText="10" Margin="0,5" 
