@@ -105,7 +105,7 @@
                                     FontFamily="{StaticResource Mulish}"
                                     FontSize="{x:Static font:Font.Body}"
                                     Foreground="#11142D"
-                                    Text="{Binding CurrentBill.timeDelivery}" />
+                                    Text="{Binding CurrentBill.timeReceive}" />
                 </Border>
             </StackPanel>
             <StackPanel
@@ -144,7 +144,7 @@
                                     FontFamily="{StaticResource Mulish}"
                                     FontSize="{x:Static font:Font.Body}"
                                     Foreground="#11142D"
-                                    Text="{Binding CurrentBill.timeReceive}" />
+                                    Text="{Binding CurrentBill.timeDelivery}" />
                 </Border>
             </StackPanel>
         </Grid>
@@ -168,8 +168,6 @@
                                     Height="40"
                                     BorderThickness="0"
                                     Background="{x:Null}"
-                                    BorderBrush="#DBD7F4"
-                                    IsEditable="False"
                                     IsHitTestVisible="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                AncestorType={x:Type local:InsuranceInfor}}, 
                                                Path=Isreadonly,Converter={StaticResource revertbool}}"

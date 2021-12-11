@@ -33,7 +33,7 @@ namespace ComputerProject.InsuranceWorkSpace
         readonly BILL_REPAIR _currentBill;
         DateTime? _timeWarranty;
         StatusView _status;
-        BusyViewModel _busyService = new BusyViewModel();
+        readonly BusyViewModel _busyService = new BusyViewModel();
         readonly InsuranceRepository _repository = new InsuranceRepository();
         List<String> _billStatus = new List<String>() {
             InsuranceViewModel.StatusToString(0),
@@ -92,18 +92,7 @@ namespace ComputerProject.InsuranceWorkSpace
                 }
             }
         }
-        public BusyViewModel BusyService
-        {
-            get => _busyService;
-            set
-            {
-                if (value != _busyService)
-                {
-                    _busyService = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        public BusyViewModel BusyService => _busyService;
         public List<String> BillStatus => _billStatus;
         public string StatusBillSelected
         {
@@ -302,20 +291,18 @@ namespace ComputerProject.InsuranceWorkSpace
 
         public InsuranceDetailViewModel(BILL_REPAIR bill = null, StatusView status = StatusView.Add)
         {
-            _currentBill = bill ?? new BILL_REPAIR();
+            _currentBill = bill ?? new BILL_REPAIR() { timeReceive = DateTime.Now};
             OnPropertyChanged(nameof(CurrentBill));
 
             Status = status;
             StatusBillSelected = InsuranceViewModel.StatusToString(_currentBill.status);
-
-            _busyService = new BusyViewModel();
-            _repository = new InsuranceRepository();
         }
 
-        public InsuranceDetailViewModel(int id, StatusView status = StatusView.Add)
+        public InsuranceDetailViewModel(int id, StatusView status)
         {
-            _currentBill = new BILL_REPAIR() { id = id };
+            _currentBill = new BILL_REPAIR() { id = id, timeReceive = DateTime.Now };
             OnPropertyChanged(nameof(CurrentBill));
+
             LoadDataAsync();
 
             Status = status;
