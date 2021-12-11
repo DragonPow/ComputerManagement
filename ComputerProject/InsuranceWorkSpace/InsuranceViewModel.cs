@@ -44,7 +44,7 @@ namespace ComputerProject.InsuranceWorkSpace
                 OnPropertyChanged(nameof(TimeReceive_String));
             }
         }
-        public string TimeReceive_String => FormatHelper.DatetimeToDateString(TimeReceive);
+        public string TimeReceive_String => _model.timeReceive.HasValue ? FormatHelper.DatetimeToDateString(TimeReceive) : null; 
 
         public string DesReceiveItems
         {
