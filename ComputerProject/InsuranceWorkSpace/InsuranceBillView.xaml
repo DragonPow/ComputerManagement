@@ -29,7 +29,7 @@
                 FontSize="{x:Static font:Font.Title}"
                 FontWeight="DemiBold"
                 Foreground="{StaticResource MainColor}"
-                Text="{Binding StoreName}" />
+                Text="{Binding StoreName, Mode=OneWay}" />
         </StackPanel>
         <Border BorderBrush="{StaticResource MainColor}" BorderThickness="0,0,0,2">
             <TextBlock
@@ -38,7 +38,7 @@
                 VerticalAlignment="Center"
                 FontSize="14"
                 Foreground="{StaticResource Icon}"
-                Text="{Binding StoreAddress}" />
+                Text="{Binding StoreAddress, Mode=OneWay}" />
         </Border>
         <TextBlock
             Padding="30,5,30,10"
@@ -81,7 +81,7 @@
                                 FontSize="15"
                                 FontWeight="Regular">
                                 <Run Text="Khách hàng: " />
-                                <Run Text="{Binding CustomerName}" />
+                                <Run Text="{Binding CustomerName, Mode=OneWay}" />
                             </TextBlock>
                             <TextBlock
                                 Grid.Row="1"
@@ -91,7 +91,7 @@
                                 FontSize="15"
                                 FontWeight="Regular">
                                 <Run Text="Số điện thoại: " />
-                                <Run Text="{Binding CustomerPhone}" />
+                                <Run Text="{Binding CustomerPhone, Mode=OneWay}" />
                             </TextBlock>
                             <TextBlock
                                 Grid.Row="0"
@@ -102,7 +102,7 @@
                                 FontSize="15"
                                 FontWeight="Regular">
                                 <Run Text="Mã phiếu: " />
-                                <Run Text="{Binding Id_String}" />
+                                <Run Text="{Binding Id_String, Mode=OneWay}" />
                             </TextBlock>
                             <TextBlock
                                 Grid.Row="1"
@@ -113,7 +113,7 @@
                                 FontSize="15"
                                 FontWeight="Regular">
                                 <Run Text="Ngày tạo: " />
-                                <Run Text="{Binding TimeReceive_String}" />
+                                <Run Text="{Binding TimeReceive_String, Mode=OneWay}" />
                             </TextBlock>
                         </Grid>
 
@@ -144,7 +144,7 @@
                                 FontSize="15"
                                 FontWeight="Regular">
                                 <Run Text="Tên sản phẩm: " />
-                                <Run Text="{Binding ProductName}" />
+                                <Run Text="{Binding ProductName, Mode=OneWay}" />
                             </TextBlock>
                             <TextBlock
                                 Grid.Row="2"
@@ -155,7 +155,7 @@
                                 FontWeight="Regular">
                                 <Run Text="Số seris: " />
 
-                                <Run Text="{Binding ProductSeri}" />
+                                <Run Text="{Binding ProductSeri, Mode=OneWay}" />
                             </TextBlock>
                             <TextBlock
                                 Grid.Row="2"
@@ -165,7 +165,7 @@
                                 FontSize="15"
                                 FontWeight="Regular">
                                 <Run Text="Hình thức: " />
-                                <Run Text="{Binding Type}" />
+                                <Run Text="{Binding Type, Mode=OneWay}" />
                             </TextBlock>
                             <TextBlock
                                 Grid.Row="2"
@@ -175,7 +175,7 @@
                                 FontSize="15"
                                 FontWeight="Regular">
                                 <Run Text="Ngày hết hạn bảo hành: " />
-                                <Run Text="{Binding TimeWarrantyEnd}" />
+                                <Run Text="{Binding TimeWarrantyEnd, Mode=OneWay}" />
                             </TextBlock>
                             <TextBlock
                                 Grid.Row="2"
@@ -185,7 +185,7 @@
                                 FontSize="15"
                                 FontWeight="Regular">
                                 <Run Text="Mã hóa đơn mua: " />
-                                <Run Text="{Binding ProductBillSeri}" />
+                                <Run Text="{Binding ProductBillSeri, Mode=OneWay}" />
                             </TextBlock>
                         </StackPanel>
 
@@ -215,7 +215,7 @@
                                 FontFamily="{StaticResource Mulish}"
                                 FontSize="15"
                                 FontWeight="Regular">
-                                Mô tả máy:<Run Text="{Binding DesReceiveItems}" />
+                                Mô tả máy:<Run Text="{Binding DesReceiveItems, Mode=OneWay}" />
                             </TextBlock>
                             <TextBlock
                                 Grid.Row="2"
@@ -224,7 +224,7 @@
                                 FontFamily="{StaticResource Mulish}"
                                 FontSize="15"
                                 FontWeight="Regular">
-                                Mô tả lỗi:<Run Text="{Binding DesProblem}" />
+                                Mô tả lỗi:<Run Text="{Binding DesProblem, Mode=OneWay}" />
                             </TextBlock>
                             <TextBlock
                                 Grid.Row="2"
@@ -233,7 +233,7 @@
                                 FontFamily="{StaticResource Mulish}"
                                 FontSize="15"
                                 FontWeight="Regular">
-                                Sản phẩm đính kèm:<Run Text="{Binding DesComponents}" />
+                                Sản phẩm đính kèm:<Run Text="{Binding DesComponents, Mode=OneWay}" />
                             </TextBlock>
                         </StackPanel>
                     </Border>
@@ -260,7 +260,7 @@
                                 FontFamily="{StaticResource Mulish}"
                                 FontSize="15"
                                 FontWeight="Regular">
-                                <Run Text="{Binding DetailRepair}" />
+                                <Run Text="{Binding DetailRepair, Mode=OneWay}" />
                             </TextBlock>
                         </StackPanel>
                     </Border>
@@ -290,7 +290,7 @@
                 Foreground="White"
                 PreviewTextInput="PreviewTextInput"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                Text="{Binding Price}" />
+                Text="{Binding Price_String, Mode=OneWay}" />
         </Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -318,7 +318,7 @@
                 Foreground="Black"
                 PreviewTextInput="PreviewTextInput"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                Text="{Binding CustomerMoney}" />
+                Text="{Binding CustomerMoney_String, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock
                 Grid.Row="1"
                 Margin="10,0"
@@ -335,7 +335,7 @@
                 FontSize="{x:Static font:Font.Body}"
                 FontWeight="DemiBold"
                 Foreground="Black"
-                Text="1,401,000" />
+                Text="{Binding CashBack, Mode=OneWay}" />
         </Grid>
         <StackPanel
             Margin="0,20"
@@ -349,6 +349,7 @@
                 Padding="30,0"
                 materialDesign:ButtonAssist.CornerRadius="5"
                 BorderBrush="{StaticResource MainColor}"
+                Command="{Binding CommandCancel, Mode=OneWay}"
                 Content="Hủy"
                 Foreground="{StaticResource MainColor}"
                 Style="{StaticResource MaterialDesignOutlinedButton}" />
@@ -358,6 +359,7 @@
                 Height="35"
                 materialDesign:ButtonAssist.CornerRadius="5"
                 Background="{StaticResource MainColor}"
+                Command="{Binding CommandSubmit, Mode=OneWay}"
                 Content="Xác nhận"
                 Foreground="White"
                 Style="{StaticResource MaterialDesignRaisedButton}" />
