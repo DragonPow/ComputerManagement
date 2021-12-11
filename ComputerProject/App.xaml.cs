@@ -37,9 +37,12 @@ namespace ComputerProject
             //}
 
             /*WindowTest test = new WindowTest();
-            var view = new InsuranceTabView();
+            var view = new InsuranceBillView();
             test.Content = view;
-            view.LoadDataAsync();
+            //view.LoadDataAsync();
+            var vm = new InsuranceBillViewModel();
+            vm.LoadAsync(2);
+            view.DataContext = vm;
             test.Show();*/
         }
     }

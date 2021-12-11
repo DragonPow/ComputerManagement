@@ -313,11 +313,18 @@ namespace ComputerProject.SettingWorkSpace
             LoadDataAsync();
         }
 
-        public async void LoadDataAsync()
+        public SettingViewModel(bool loadData)
+        {
+            if (loadData)
+            {
+                LoadDataAsync();
+            }
+        }
+
+        public void LoadData()
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                await Task.Run(getStoreinfo = ()=>
                 {
                     var data = db.REGULATIONs.Where(p => p.name == "StoreName").FirstOrDefault();
                     StoreName = data.value.ToString();
@@ -325,8 +332,8 @@ namespace ComputerProject.SettingWorkSpace
                     StorePhone = data.value.ToString();
                     data = db.REGULATIONs.Where(p => p.name == "StoreAdress").FirstOrDefault();
                     StoreAddress = data.value.ToString();
-                });
-                await Task.Run(getPointinfo = () =>
+                }
+
                 {
                     var data = db.REGULATIONs.Where(p => p.name == "PointToMoney").FirstOrDefault();
                     PointToMoney = data.value.ToString();
@@ -334,8 +341,13 @@ namespace ComputerProject.SettingWorkSpace
                     MoneyToPoint = data.value.ToString();
                     data = db.REGULATIONs.Where(p => p.name == "MaxPoint").FirstOrDefault();
                     MaxPoint = data.value.ToString();
-                });
+                }
             }
+        }
+
+        public async void LoadDataAsync()
+        {
+            await Task.Run(LoadData);
         }
 
         public bool AllowChangeTab()
