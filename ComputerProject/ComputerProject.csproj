@@ -367,6 +367,7 @@
     <Compile Include="InsuranceWorkSpace\WarrantyCard.xaml.cs">
       <DependentUpon>WarrantyCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\BILL_REPAIR.cs" />
     <Compile Include="Model\CUSTOMER.cs" />
     <Compile Include="Model\Regulation.cs" />
     <Compile Include="Model\StoreInformation.cs" />

@@ -36,7 +36,9 @@ namespace ComputerProject.InsuranceWorkSpace
             if (completebox.SelectedItem != null)
             {
                 InsuranceDetailViewModel dataContext = this.DataContext as InsuranceDetailViewModel;
-                dataContext.CurrentBill.CUSTOMER = completebox.SelectedItem as CUSTOMER;
+                var cus = completebox.SelectedItem as CUSTOMER;
+                dataContext.CurrentBill.CUSTOMER = cus;
+                dataContext.CurrentBill.customerId = cus.id;
                 dataContext.OnCustomerChanged();
             }
 

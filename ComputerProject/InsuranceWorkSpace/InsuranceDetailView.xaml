@@ -9,6 +9,7 @@
              xmlns:Sale="clr-namespace:ComputerProject.SaleWorkSpace"
              xmlns:Bill="clr-namespace:ComputerProject.BillWorkSpace"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+             xmlns:custom="clr-namespace:ComputerProject.CustomControl"
              mc:Ignorable="d"
              d:DesignHeight="700"
              d:DesignWidth="1300"
@@ -116,6 +117,8 @@
                     </Grid>
                 </StackPanel>
             </Border>
+            <custom:BusyView Margin="0,0,20,10"
+                             Visibility="{Binding BusyService.BusyVisibility}" />
             <Border Grid.Row="1"
                     Grid.RowSpan="2"
                     Margin="0,0,20,0"
@@ -126,6 +129,10 @@
                                              DataContext="{Binding}" />
                 </ScrollViewer>
             </Border>
+            <custom:BusyView Grid.Row="1"
+                             Grid.RowSpan="2"
+                             Margin="0,0,20,0"
+                             Visibility="{Binding BusyService.BusyVisibility}" />
             <Border Grid.Column="1"
                     Grid.Row="0"
                     Grid.RowSpan="2"
@@ -141,7 +148,10 @@
                                      Grid.Row="2"
                                      Margin="0,10,0,0"
                                      DataContext="{Binding}" />
-
+            <custom:BusyView Grid.Column="1"
+                             Grid.Row="0"
+                             Grid.RowSpan="3"
+                             Visibility="{Binding BusyService.BusyVisibility}" />
         </Grid>
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"

@@ -52,18 +52,24 @@ namespace ComputerProject.Repository
             {
                 using (var db = new ComputerManagementEntities())
                 {
-                    var warrantyTime = currentBill.ITEM_BILL_SERI.warrantyEndTime;
-                    currentBill.isWarranty = warrantyTime.HasValue && TimerService.CheckDayLarger(warrantyTime.Value, DateTime.Now);
+                    if (currentBill.id == 0)
+                    {
+                        var warrantyTime = currentBill.ITEM_BILL_SERI?.warrantyEndTime;
+                        currentBill.isWarranty = warrantyTime.HasValue && TimerService.CheckDayLarger(warrantyTime.Value, DateTime.Now);
+                    }
 
-                    db.Entry(currentBill).State = EntityState.Added;
+                    //currentBill.CUSTOMER = null;
                     db.Entry(currentBill.CUSTOMER).State = EntityState.Unchanged;
+                    if (currentBill.seriId.HasValue) db.Entry(currentBill.ITEM_BILL_SERI).State = EntityState.Unchanged;
+                    db.Entry(currentBill).State = currentBill.id == 0 ? EntityState.Added : EntityState.Modified;
+
 
                     var rs = await db.SaveChangesAsync();
 
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
