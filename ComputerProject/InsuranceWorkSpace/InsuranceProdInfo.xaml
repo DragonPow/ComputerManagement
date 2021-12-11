@@ -99,7 +99,33 @@
                                                      Foreground="{StaticResource Icon}" />
             </Button>
         </Grid>
-   
+        <StackPanel Margin="0,10">
+            <TextBlock   
+                                FontWeight="SemiBold"
+                                FontSize="{x:Static font:Font.Body}"
+                                FontFamily="{StaticResource Mulish}"
+                                Text="Sản phẩm"
+                                Foreground="Black"                   
+                                Margin="0, 0, 0, 10"
+                                VerticalAlignment="Top">
+            </TextBlock>
+            <ComboBox
+                                    x:Name="Status"
+                                    Padding="15"
+                                    Background="{StaticResource Background}"
+                                    BorderBrush="#DBD7F4"
+                                    FontFamily="{StaticResource Mulish}"
+                                    FontSize="{x:Static font:Font.Body}"
+                                    Foreground="Black"
+                                    IsEditable="False"
+                                     Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                                    IsHitTestVisible="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                               AncestorType={x:Type local:InsuranceInfor}}, 
+                                               Path=Isreadonly,Converter={StaticResource revertbool}}"
+                                    Focusable="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                               AncestorType={x:Type local:InsuranceInfor}}, 
+                                               Path=Isreadonly,Converter={StaticResource revertbool}}"/>
+        </StackPanel>
         <Custom:TextboxCustom x:Name="InsuranceDate" 
                                       Title="Ngày kết thúc bảo hành" 
                                       Text="{Binding TimeWarranty, StringFormat='dd/MM/yyyy', Mode=OneWay}" 
