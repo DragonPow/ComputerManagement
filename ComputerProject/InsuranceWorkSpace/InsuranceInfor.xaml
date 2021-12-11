@@ -178,14 +178,10 @@
                                     ItemsSource="{Binding BillStatus}" 
                     SelectedItem="{Binding StatusBillSelected}"/>
         </StackPanel>
-        <Custom:TextboxCustom x:Name="DescStatus" 
-                                      Text="{Binding CurrentBill.desReceiveItems}" 
-                                      Title="Mô tả tình trạng máy"  
-                                      MarginText="10" Margin="0,5"
-                                Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
         <Custom:TextboxCustom x:Name="DescError" 
                                       Text="{Binding CurrentBill.desProblem}" Title="Mô tả lỗi"  
                                       MarginText="10" Margin="0,5"
+                              MinHeight="50"
                                 Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
         <Custom:TextboxCustom x:Name="DescInsurance" 
                                       Text="{Binding CurrentBill.desDetailRepair}" Title="Chi tiết sửa chữa, bảo hành"  

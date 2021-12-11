@@ -63,13 +63,6 @@
                                                      Foreground="{StaticResource Icon}" />
             </Button>
         </Grid>
-        <Custom:TextboxCustom x:Name="ProdName" 
-                                      Title="Tên sản phẩm" 
-                                      TextWrapping="WrapWithOverflow" 
-                                      Text="{Binding CurrentBill.nameProduct}" 
-                                      MarginText="10" 
-                                      Margin="0,5" 
-                              Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -106,14 +99,7 @@
                                                      Foreground="{StaticResource Icon}" />
             </Button>
         </Grid>
-     
-        <Custom:TextboxCustom x:Name="IDSaleBill" 
-                                      Title="Mã hóa đơn mua hàng"
-                              Text="{Binding CurrentBill.ITEM_BILL_SERI.id, Mode=OneWay}" 
-                                      IsEnabled="False" 
-                                      TextWrapping="WrapWithOverflow" 
-                                      MarginText="10" Margin="0,5" 
-                                     Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
+   
         <Custom:TextboxCustom x:Name="InsuranceDate" 
                                       Title="Ngày kết thúc bảo hành" 
                                       Text="{Binding TimeWarranty, StringFormat='dd/MM/yyyy', Mode=OneWay}" 
@@ -121,6 +107,12 @@
                                       TextWrapping="WrapWithOverflow" 
                                       MarginText="10" Margin="0,5" 
                                        Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
+        <Custom:TextboxCustom x:Name="DescStatus" 
+                                      Text="{Binding CurrentBill.desReceiveItems}" 
+                                      Title="Mô tả sản phẩm"
+                              MinHeight="50"
+                                      MarginText="10" Margin="0,5"
+                                Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
         <Custom:TextboxCustom x:Name="AccessoriesIncluded"
                                       Title="Phụ kiện đính kèm" 
                                       Text="{Binding CurrentBill.attachments}" 
