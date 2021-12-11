@@ -42,7 +42,6 @@
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="120" />
                         <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="0.4*" />
                     </Grid.ColumnDefinitions>
                     <custom:Search x:Name="tbxSearch"
                                    Texthint="Mã hóa đơn hoặc số điện thoại"
@@ -111,30 +110,6 @@
                             materialDesign:ButtonAssist.CornerRadius="5"
                             Content="Áp dụng"
                             Command="{Binding SearchBillCommand}" />
-                    <Button Grid.Column="6"
-                            Margin="10,0"
-                            Padding="10,0"
-                            Height="35"
-                            VerticalAlignment="Center"
-                            Background="{StaticResource MainColor}"
-                            BorderBrush="{StaticResource MainColor}"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            materialDesign:ButtonAssist.CornerRadius="5"
-                            HorizontalAlignment="Right"
-                            Command="{Binding ExportPdfCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Export"
-                                                     Width="18"
-                                                     Height="18"
-                                                     Foreground="White"></materialDesign:PackIcon>
-                            <TextBlock Text="Xuất cùng lúc"
-                                       VerticalAlignment="Center"
-                                       FontSize="{x:Static font:Font.Body}"
-                                       FontFamily="{StaticResource Mulish}"
-                                       Foreground="White"
-                                       Margin="5,0"></TextBlock>
-                        </StackPanel>
-                    </Button>
                 </Grid>
                 <Grid Grid.Row="1"
                       Height="50"

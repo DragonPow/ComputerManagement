@@ -19,7 +19,6 @@
     </i:Interaction.Triggers>-->
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
@@ -27,10 +26,7 @@
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="90" />
         </Grid.ColumnDefinitions>
-        <CheckBox IsChecked="False"
-                  Foreground="{StaticResource MainColor}"
-                  Margin="20,0"></CheckBox>
-        <TextBlock Grid.Column="1"
+        <TextBlock Grid.Column="0"
                    Text="{Binding id}"
                    VerticalAlignment="Stretch"
                    Padding="0,17"
@@ -38,35 +34,35 @@
                    FontSize="{x:Static font:Font.Body}"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
-        <TextBlock Grid.Column="2"
+        <TextBlock Grid.Column="1"
                    Text="{Binding createTime, StringFormat=dd/MM/yyyy}"
                    Padding="15,17"
                    VerticalAlignment="Stretch"
                    FontSize="{x:Static font:Font.Body}"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
-        <TextBlock Grid.Column="3"
+        <TextBlock Grid.Column="2"
                    Text="{Binding CUSTOMER.phone}"
                    Padding="15,17"
                    VerticalAlignment="Stretch"
                    FontSize="{x:Static font:Font.Body}"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
-        <TextBlock Grid.Column="4"
+        <TextBlock Grid.Column="3"
                    Text="{Binding totalMoney, StringFormat='\{0:N0} đ'}"
                    Padding="15,17"
                    VerticalAlignment="Stretch"
                    FontSize="{x:Static font:Font.Body}"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
-        <TextBlock Grid.Column="5"
+        <TextBlock Grid.Column="4"
                    Text="{Binding pointCustomer, StringFormat='\{0:N0}'}"
                    Padding="15,17"
                    VerticalAlignment="Stretch"
                    FontSize="{x:Static font:Font.Body}"
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
-        <Button Grid.Column="6"
+        <Button Grid.Column="5"
                 Style="{StaticResource MaterialDesignIconButton}"
                 Margin="15,0"
                 Command="{Binding DataContext.DeleteBillCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
