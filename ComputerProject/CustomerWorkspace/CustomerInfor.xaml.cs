@@ -21,55 +21,66 @@ namespace ComputerProject.CustomerWorkspace
     /// </summary>
     public partial class CustomerInfor : UserControl
     {
+        public static readonly DependencyProperty ModeInforProperties = DependencyProperty.Register(nameof(ModeInfor), typeof(Mode), typeof(CustomerInfor), new FrameworkPropertyMetadata(Mode.insert, new PropertyChangedCallback(OnModeInfoChange), new CoerceValueCallback(CoreModeInfo)));
+        public static readonly DependencyProperty IsreadonlyProperties = DependencyProperty.Register(nameof(Isreadonly), typeof(bool), typeof(CustomerInfor), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnIsreadonlyChange), new CoerceValueCallback(CoreIsreadonly)));
+
+
+        public Mode ModeInfor
+        {
+            get { return (Mode)GetValue(ModeInforProperties); }
+            set { SetValue(ModeInforProperties, value); }
+        }
+
+        private static void OnModeInfoChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((CustomerInfor)d).CoerceValue(IsreadonlyProperties);
+        }
+        private static object CoreModeInfo(DependencyObject d, object value)
+        {
+            return (Mode)value;
+        }
+
+        public bool Isreadonly
+        {
+            get { return (bool)GetValue(IsreadonlyProperties); }
+            set { SetValue(IsreadonlyProperties, value); }
+        }
+        private static void OnIsreadonlyChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+        private static object CoreIsreadonly(DependencyObject d, object value)
+        {
+            Mode mode = ((CustomerInfor)d).ModeInfor;
+            if (mode == Mode.onlyread) return true;
+            else return false;
+        }
+
         public CustomerInfor()
         {
             InitializeComponent();
             Birthday.Language = System.Windows.Markup.XmlLanguage.GetLanguage(System.Globalization.CultureInfo.GetCultureInfo("vi").IetfLanguageTag);
-        }
-
-        public static readonly DependencyProperty TextNameProperty = DependencyProperty.Register(nameof(TextName), typeof(string), typeof(CustomerInfor), new PropertyMetadata(string.Empty));
-
-        public string TextName
-        {
-            get { return (string)GetValue(TextNameProperty); }
-            set { SetValue(TextNameProperty, value); }
-        }
-
-        public static readonly DependencyProperty TextPhoneProperty = DependencyProperty.Register(nameof(TextPhone), typeof(string), typeof(CustomerInfor), new PropertyMetadata(string.Empty));
-
-        public string TextPhone
-        {
-            get { return (string)GetValue(TextPhoneProperty); }
-            set { SetValue(TextPhoneProperty, value); }
-        }
-
-        public static readonly DependencyProperty TextDateProperty = DependencyProperty.Register(nameof(TextDate), typeof(DateTime?), typeof(CustomerInfor), new PropertyMetadata(DateTime.Now));
-
-        public DateTime TextDate
-        {
-            get { return (DateTime)GetValue(TextDateProperty); }
-            set { SetValue(TextDateProperty, value); }
-        }
-
-        public static readonly DependencyProperty TextAddressProperty = DependencyProperty.Register(nameof(TextAddress), typeof(string), typeof(CustomerInfor), new PropertyMetadata(string.Empty));
-
-        public string TextAddress
-        {
-            get { return (string)GetValue(TextAddressProperty); }
-            set { SetValue(TextAddressProperty, value); }
-        }
-
-        public static readonly DependencyProperty TextPointProperty = DependencyProperty.Register(nameof(TextPoint), typeof(int), typeof(CustomerInfor), new PropertyMetadata(0));
-
-        public int TextPoint
-        {
-            get { return (int)GetValue(TextPointProperty); }
-            set { SetValue(TextPointProperty, value); }
         }
         private new void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+    }
+    public enum Mode : byte
+    {
+        //
+        // Summary:
+        //    Disable Name of product
+        edit = 0,
+        //
+        // Summary:
+        //     All of the element are readonly
+        onlyread = 1,
+        //
+        // Summary:
+        //    All of the element are enable
+        insert = 2,
     }
 }

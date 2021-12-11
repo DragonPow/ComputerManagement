@@ -156,7 +156,19 @@
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"
-                    Margin="20">
+                    Margin="20"
+                    Visibility="Hidden">
+            <StackPanel.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding StatusBillSelected}"
+                                     Value="Đã thanh toán">
+                            <Setter Property="Button.Visibility"
+                                    Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
             <Button x:Name="btnDelete"
                     Style="{StaticResource MaterialDesignOutlinedButton}"
                     materialDesign:ButtonAssist.CornerRadius="5"
@@ -172,6 +184,7 @@
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     materialDesign:ButtonAssist.CornerRadius="5"
                     Height="35"
+                    Width="130"
                     Foreground="White"
                     Command="{Binding ExportCommand}">
                 <StackPanel Orientation="Horizontal">
@@ -181,6 +194,53 @@
                     <TextBlock Text="In hóa đơn"
                                Margin="5,0"></TextBlock>
                 </StackPanel>
+            </Button>
+
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="20">
+            <StackPanel.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding StatusBillSelected}"
+                                     Value="Đã thanh toán">
+                            <Setter Property="Button.Visibility"
+                                    Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <Button x:Name="btnDelete2"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonAssist.CornerRadius="5"
+                    BorderBrush="{StaticResource Warning}"
+                    Foreground="{StaticResource Warning}"
+                    Width="100"
+                    Height="35"
+                    Content="Xóa"
+                    Padding="30,0"
+                    Command="{Binding DeleteCommand}" />
+            <Button x:Name="btnPay"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonAssist.CornerRadius="5"
+                    BorderBrush="{StaticResource MainColor}"
+                    Margin="20,0"
+                    Foreground="{StaticResource MainColor}"
+                    Width="130"
+                    Height="35"
+                    Content="Thanh toán"
+                    Padding="20,0"
+                    Command="{Binding DeleteCommand}" />
+            <Button Background="{StaticResource MainColor}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    materialDesign:ButtonAssist.CornerRadius="5"
+                    Height="35"
+                   Width="130"
+                    Foreground="White"
+                    Content="Chỉnh sửa"
+                    Command="{Binding PaymentCommand}">
             </Button>
 
         </StackPanel>

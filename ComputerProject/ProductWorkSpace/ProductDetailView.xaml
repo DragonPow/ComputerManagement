@@ -60,8 +60,8 @@
             <local:Specification
                 Grid.Column="1"
                 Margin="20,0,0,0"
-                DataContext="{Binding}"
-                IsEnabled="False" />
+                ModeInfor="onlyread"
+                DataContext="{Binding}"/>
         </Grid>
         <StackPanel
             Grid.Row="2"

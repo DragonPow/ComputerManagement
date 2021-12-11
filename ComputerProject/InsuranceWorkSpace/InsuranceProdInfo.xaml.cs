@@ -65,21 +65,6 @@ namespace ComputerProject.InsuranceWorkSpace
             e.Handled = regex.IsMatch(e.Text);
         }
     }
-}
 
-    public enum Mode : byte
-    {
-        //
-        // Summary:
-        //    Disable Name of product
-        edit = 0,
-        //
-        // Summary:
-        //     All of the element are readonly
-        onlyread = 1,
-        //
-        // Summary:
-        //    All of the element are enable
-        insert = 2,
-    }
+}
 

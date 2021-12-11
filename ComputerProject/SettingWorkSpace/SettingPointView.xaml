@@ -73,7 +73,7 @@
                 Margin="0,0,20,0"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 Background="{StaticResource MainColor}"
-                Content="Lưu"
+                Content="Cập nhật"
                     materialDesign:ButtonAssist.CornerRadius="5"
                 Command="{Binding SavePointCommand}">
                 </Button>
