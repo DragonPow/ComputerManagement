@@ -52,18 +52,30 @@ namespace ComputerProject
             return rs;
         }
 
-        public async void GetTask(Task task, Action callback = null)
+        public Task GetTask(Task task, Action callback = null)
         {
             IsBusy = true;
-            await task;
-            IsBusy = false;
-            callback?.Invoke();
+            return task.ContinueWith(_ =>
+            {
+                IsBusy = false;
+                callback?.Invoke();
+            });
+        }
+
+        public Task GetTask(Action task, Action callback = null)
+        {
+            IsBusy = true;
+            return Task.Run(task).ContinueWith(_ =>
+            {
+                IsBusy = false;
+                callback?.Invoke();
+            });
         }
 
         public async Task<T> GetTask<T>(Task<T> task, Action callback = null)
         {
             IsBusy = true;
-            var rs = await Task.Run(() => task);
+            var rs = await task;
             IsBusy = false;
             callback?.Invoke();
             return rs;

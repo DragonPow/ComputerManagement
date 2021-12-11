@@ -77,7 +77,7 @@
             </Grid.ColumnDefinitions>
             <Custom:TextboxCustom x:Name="ProdSerial" 
                                       Title="Số seri sản phẩm" 
-                                      Text="{Binding CurrentBill.ITEM_BILL_SERI.seri}" 
+                                      Text="{Binding CurrentSeriId}" 
                                       TextWrapping="WrapWithOverflow" 
                                       MarginText="10" 
                                       Margin="0,5" 
@@ -93,7 +93,7 @@
                                 Background="{x:Null}"
                                 BorderBrush="{x:Null}"
                     Command="{Binding CheckSeriCommand}"
-                    CommandParameter="{Binding Text, ElementName=ProdSerial}"
+                    CommandParameter="{Binding CurrentSeriId}"
                        IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                AncestorType={x:Type local:InsuranceProdInfo}}, 
                                                Path=Isreadonly,Converter={StaticResource revertbool}}">
@@ -109,7 +109,7 @@
      
         <Custom:TextboxCustom x:Name="IDSaleBill" 
                                       Title="Mã hóa đơn mua hàng"
-                              Text="{Binding BillID, Mode=OneWay}" 
+                              Text="{Binding CurrentBill.ITEM_BILL_SERI.id, Mode=OneWay}" 
                                       IsEnabled="False" 
                                       TextWrapping="WrapWithOverflow" 
                                       MarginText="10" Margin="0,5" 

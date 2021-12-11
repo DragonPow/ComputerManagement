@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerProject.InsuranceWorkSpace"
                        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:custom="clr-namespace:ComputerProject.CustomControl"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="1300"
@@ -38,22 +39,33 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <local:CustomerInsurView Margin="0,0,20,10" DataContext="{Binding}"/>
+            <local:CustomerInsurView Margin="0,0,20,10"
+                                     DataContext="{Binding}" />
+            <custom:BusyView Margin="0,0,20,10"
+                             Visibility="{Binding BusyService.BusyVisibility}" />
             <Border Grid.Row="1" Grid.RowSpan="2" Margin="0,0,20,0"  Background="White" CornerRadius="8">
                 <ScrollViewer Margin="0,10">
                     <local:InsuranceProdInfo DataContext="{Binding}"/>
                 </ScrollViewer>
             </Border>
+            <custom:BusyView Grid.Row="1"
+                             Grid.RowSpan="2"
+                             Margin="0,0,20,0"
+                             Visibility="{Binding BusyService.BusyVisibility}" />
             <Border  Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Background="White" CornerRadius="8">
                 <ScrollViewer Margin="0,10">
                     <local:InsuranceInfor x:Name="InsuranceInfor" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
                                           DataContext="{Binding}"/>
                 </ScrollViewer>
             </Border>
+            <custom:BusyView Grid.Column="1"
+                             Grid.Row="0"
+                             Grid.RowSpan="3"
+                             Visibility="{Binding BusyService.BusyVisibility}" />
             <Border Background="White" CornerRadius="8" Grid.Column="1" Grid.Row="2" Margin="0,10,0,0">
                 <Grid Margin="20,10">
                     <Grid.RowDefinitions>
@@ -81,8 +93,6 @@
                    Foreground="{StaticResource MainColor}"/>
                 </Grid>
             </Border>
-
-
         </Grid>
         <StackPanel Grid.Row="2"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="20">
             <Button x:Name="btncancel"
