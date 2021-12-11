@@ -5,12 +5,30 @@
              xmlns:local="clr-namespace:ComputerProject.CustomerWorkspace"
              xmlns:localcustom="clr-namespace:ComputerProject.CustomControl"
              xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
+              xmlns:localconvert="clr-namespace:ComputerProject.Converter"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              x:Class="ComputerProject.CustomerWorkspace.CustomerInfor"
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="400">
-        <StackPanel x:Name="CusInfor">
+    <UserControl.Resources>
+        <Style x:Key="style_Text" TargetType="localcustom:TextboxCustom">
+            <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
+            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="CornerRadiusText" Value="5"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="KeyboardNavigation.TabIndex" Value="0"/>
+            <Setter Property="MarginText" Value="10"/>
+            <Setter Property="IsReadOnly" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:CustomerInfor}}, 
+                               Path=Isreadonly}"/>
+        </Style>
+        <localconvert:RevertBooleanConverter x:Key="revertbool"/>
+    </UserControl.Resources>
+    <StackPanel x:Name="CusInfor">
             <TextBlock Grid.Row="0"
                        Margin="20,20,20,10"
                        VerticalAlignment="Center"

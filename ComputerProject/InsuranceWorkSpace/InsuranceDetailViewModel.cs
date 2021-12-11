@@ -446,15 +446,15 @@ namespace ComputerProject.InsuranceWorkSpace
             }
             catch (NotFoundSeriException)
             {
-                MessageBoxCustom.ShowDialog("Không tìm thấy đơn hàng tương ứng với mã số seri", "Thông báo", PackIconKind.InformationCircleOutline);
+                MessageBoxCustom.ShowDialog("Không tìm thấy sản phẩm tương ứng với mã số seri", "Thông báo", PackIconKind.InformationCircleOutline);
             }
             catch (NoneTimeWarrantyTimeException)
             {
-                MessageBoxCustom.ShowDialog("Đơn hàng này không có thời hạn bảo hành", "Thông báo", PackIconKind.InformationCircleOutline);
+                MessageBoxCustom.ShowDialog("Sản phẩm này không có thời hạn bảo hành", "Thông báo", PackIconKind.InformationCircleOutline);
             }
             catch (ExpiryWarrantyException)
             {
-                MessageBoxCustom.ShowDialog("Đã hết thời gian bảo hành cho món hàng này", "Thông báo", PackIconKind.InformationCircleOutline);
+                MessageBoxCustom.ShowDialog("Sản phẩm đã hết hạn bảo hành", "Thông báo", PackIconKind.InformationCircleOutline);
             }
             catch (Exception e)
             {
