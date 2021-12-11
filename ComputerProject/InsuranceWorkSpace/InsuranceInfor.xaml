@@ -129,7 +129,7 @@
                                 BorderThickness="1"
                                 CornerRadius="5">
                     <DatePicker
-                                    x:Name="DateReceive"
+                                    x:Name="DateDelivery"
                                     Height="40"
                                     Margin="5,0,5,0"
                                     Padding="1"

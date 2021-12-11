@@ -67,7 +67,7 @@
                     </Grid.RowDefinitions>
 
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Margin="0,0,0,0.4">
-                        <local:CustomerInfor x:Name="CusInfor" IsEnabled="False" />
+                        <local:CustomerInfor x:Name="CusInfor" ModeInfor="onlyread"/>
                     </ScrollViewer>
                     <StackPanel
                         x:Name="ButtonEditMode"

@@ -35,7 +35,10 @@
                 ItemsSource="{Binding SpecificationList}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <local:ProdcutAddSpecificationsRow DataContext="{Binding}" />
+                            <local:ProdcutAddSpecificationsRow DataContext="{Binding}" 
+                                                               ModeInfor="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                                                   AncestorType={x:Type local:Specification}}, 
+                                                                   Path=ModeInfor}" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
