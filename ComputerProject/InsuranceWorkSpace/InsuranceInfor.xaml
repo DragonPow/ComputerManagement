@@ -159,16 +159,15 @@
                                 Margin="0, 0, 0, 10"
                                 VerticalAlignment="Top">
             </TextBlock>
-            <ComboBox
+            <Border BorderBrush="#DBD7F4" CornerRadius="5" BorderThickness="1" Background="{StaticResource Background}">
+                <ComboBox
                                     x:Name="Status"
-                                    Padding="15"
-                                    Background="{StaticResource Background}"
-                                    BorderBrush="#DBD7F4"
-                                    FontFamily="{StaticResource Mulish}"
                                     FontSize="{x:Static font:Font.Body}"
-                                    Foreground="Black"
-                                    IsEditable="False"
-                                     Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                                    FontFamily="{StaticResource Mulish}"
+                                    Padding="10"
+                                    Height="40"
+                                    BorderThickness="0"
+                                    Background="{x:Null}"
                                     IsHitTestVisible="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                AncestorType={x:Type local:InsuranceInfor}}, 
                                                Path=Isreadonly,Converter={StaticResource revertbool}}"
@@ -177,6 +176,7 @@
                                                Path=Isreadonly,Converter={StaticResource revertbool}}"
                                     ItemsSource="{Binding BillStatus}" 
                     SelectedItem="{Binding StatusBillSelected}"/>
+            </Border>
         </StackPanel>
         <Custom:TextboxCustom x:Name="DescStatus" 
                                       Text="{Binding CurrentBill.desReceiveItems}" 
