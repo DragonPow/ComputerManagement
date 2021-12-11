@@ -24,7 +24,7 @@ namespace ComputerProject.InsuranceWorkSpace
 
         public DateTime TimeDelivery
         {
-            get => _model.timeDelivery.Value;
+            get => _model.timeDelivery.HasValue ? _model.timeDelivery.Value : DateTime.MinValue;
             set
             {
                 _model.timeDelivery = value;
@@ -36,7 +36,7 @@ namespace ComputerProject.InsuranceWorkSpace
 
         public System.DateTime TimeReceive
         {
-            get => _model.timeReceive.Value;
+            get => _model.timeReceive.HasValue ? _model.timeReceive.Value : DateTime.MinValue;
             set
             {
                 _model.timeReceive = value;
@@ -213,10 +213,10 @@ namespace ComputerProject.InsuranceWorkSpace
                             customerPhone = b.CUSTOMER.phone,
                             customerName = b.CUSTOMER.name,
                             b.nameProduct,
-                            productSeri = b.ITEM_BILL_SERI.seri,
-                            productWarrantyTime = b.ITEM_BILL_SERI.PRODUCT.warrantyTime,
-                            billID = b.ITEM_BILL_SERI.billId,
-                            billCreateDate = b.ITEM_BILL_SERI.BILL.createTime
+                            productSeri = b.isWarranty ? b.ITEM_BILL_SERI.seri : null,
+                            productWarrantyTime = b.isWarranty ? b.ITEM_BILL_SERI.PRODUCT.warrantyTime : null,
+                            billID = b.isWarranty ? b.ITEM_BILL_SERI.billId : -1,
+                            billCreateDate = b.isWarranty ? b.ITEM_BILL_SERI.BILL.createTime : DateTime.MinValue
                         }
                     );
 
