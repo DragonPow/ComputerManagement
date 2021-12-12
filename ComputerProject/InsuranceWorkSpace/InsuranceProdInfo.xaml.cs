@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ComputerProject.CustomMessageBox;
+using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,7 +60,30 @@ namespace ComputerProject.InsuranceWorkSpace
         public InsuranceProdInfo()
         {
             InitializeComponent();
+            Status.SelectionChanged += Status_SelectionChanged;
         }
+
+        private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var vm = this.DataContext as InsuranceDetailViewModel;
+            try
+            {
+                vm.OnItemBillChanged();
+            }
+            catch (NoneTimeWarrantyTimeException)
+            {
+                MessageBoxCustom.ShowDialog("Sản phẩm này không có thời hạn bảo hành", "Thông báo", PackIconKind.InformationCircleOutline);
+            }
+            catch (ExpiryWarrantyException)
+            {
+                MessageBoxCustom.ShowDialog("Sản phẩm đã hết hạn bảo hành", "Thông báo", PackIconKind.InformationCircleOutline);
+            }
+            catch(Exception i)
+            {
+                throw i;
+            }
+        }
+
         private new void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");

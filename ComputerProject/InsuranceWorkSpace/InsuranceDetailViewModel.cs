@@ -30,6 +30,7 @@ namespace ComputerProject.InsuranceWorkSpace
             View,
         }
 
+        #region Fields
         readonly BILL_REPAIR _currentBill;
         DateTime? _timeWarranty;
         StatusView _status;
@@ -43,6 +44,7 @@ namespace ComputerProject.InsuranceWorkSpace
         string _statusBillSelected;
         Collection<CUSTOMER> _listSearchCustomer;
         string _currentSeriId;
+        List<ITEM_BILL_SERI> _listSearchSeri;
 
         ICommand _paymentCommand;
         ICommand _saveCommand;
@@ -54,8 +56,9 @@ namespace ComputerProject.InsuranceWorkSpace
         ICommand _navigateBackCommand;
         ICommand _searchCustomerCommand;
         ICommand _addCustomerCommand;
+        #endregion //Fields
 
-
+        #region Properties
         public BILL_REPAIR CurrentBill
         {
             get => _currentBill;
@@ -123,6 +126,18 @@ namespace ComputerProject.InsuranceWorkSpace
                 }
             }
         }
+        public List<ITEM_BILL_SERI> ListSearchSeri
+        {
+            get => _listSearchSeri;
+            set
+            {
+                if (value != _listSearchSeri)
+                {
+                    _listSearchSeri = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public ICommand PaymentCommand
         {
@@ -132,14 +147,11 @@ namespace ComputerProject.InsuranceWorkSpace
                 {
                     _paymentCommand = new RelayCommand(_ =>
                     {
-                        if ((CurrentBill.ITEM_BILL_SERI == null && !String.IsNullOrWhiteSpace(CurrentSeriId)) || CurrentSeriId != CurrentBill.ITEM_BILL_SERI.seri)
+                        //Must check seri before save
+                        if (!isCheckSeri())
                         {
-                            if (!CheckSeriWithException())
-                            {
-                                CurrentSeriId = null;
-                                var rs = MessageBoxCustom.ShowDialog("Tiếp tục thực hiện thao tác", "Thông báo", PackIconKind.InformationCircleOutline);
-                                if (rs == MessageBoxResultCustom.No) return;
-                            }
+                            var rs = MessageBoxCustom.ShowDialog("Vui lòng kiểm tra mã Seri trước khi thực hiện thao tác", "Thông báo", PackIconKind.InformationCircleOutline);
+                            return;
                         }
 
                         OpenPaymentView(CurrentBill);
@@ -156,16 +168,11 @@ namespace ComputerProject.InsuranceWorkSpace
                 {
                     _saveCommand = new RelayCommand(async _ =>
                     {
-                        //Check seri before save
-                        if ((CurrentBill.ITEM_BILL_SERI == null && !String.IsNullOrWhiteSpace(CurrentSeriId)) ||
-                            (CurrentBill.ITEM_BILL_SERI != null && (CurrentSeriId != CurrentBill.ITEM_BILL_SERI?.seri)))
+                        //Must check seri before save
+                        if (!isCheckSeri())
                         {
-                            if (!CheckSeriWithException())
-                            {
-                                CurrentSeriId = null;
-                                var rs = MessageBoxCustom.ShowDialog("Tiếp tục thực hiện thao tác", "Thông báo", PackIconKind.InformationCircleOutline);
-                                if (rs == MessageBoxResultCustom.No) return;
-                            }
+                            var rs = MessageBoxCustom.ShowDialog("Vui lòng kiểm tra mã Seri trước khi thực hiện thao tác", "Thông báo", PackIconKind.InformationCircleOutline);
+                            return;
                         }
 
                         if (CurrentBill.HasErrorData)
@@ -305,7 +312,8 @@ namespace ComputerProject.InsuranceWorkSpace
             }
         }
 
-        public event EventHandler NavigateBack;
+        public event EventHandler NavigateBack; 
+        #endregion //Properties
 
 
         public InsuranceDetailViewModel(BILL_REPAIR bill = null, StatusView status = StatusView.Add)
@@ -345,6 +353,7 @@ namespace ComputerProject.InsuranceWorkSpace
             if (CurrentBill.id != 0)
             {
                 _repository.LoadInsurance(CurrentBill);
+                CurrentSeriId = CurrentBill.ITEM_BILL_SERI?.seri;
                 OnPropertyChanged(nameof(CurrentBill));
             }
         }
@@ -356,6 +365,20 @@ namespace ComputerProject.InsuranceWorkSpace
         public void OnCustomerChanged()
         {
             OnPropertyChanged(nameof(CurrentCustomer));
+        }
+        public void OnItemBillChanged()
+        {
+            CurrentBill.seriId = CurrentBill.ITEM_BILL_SERI?.id;
+            OnPropertyChanged(nameof(TimeWarranty));
+
+            if (!TimeWarranty.HasValue)
+            {
+                throw new NoneTimeWarrantyTimeException();
+            }
+            else if (TimeWarranty.Value.Date < DateTime.Now)
+            {
+                throw new ExpiryWarrantyException();
+            }
         }
         public void OnNavigateBack()
         {
@@ -414,23 +437,11 @@ namespace ComputerProject.InsuranceWorkSpace
         }
         private void CheckSeri(string seri)
         {
-            CurrentBill.ITEM_BILL_SERI = _repository.GetBillFromSeri(seri);
-            CurrentBill.seriId = CurrentBill.ITEM_BILL_SERI?.id;
+            ListSearchSeri = _repository.GetBillFromSeri(seri);
 
-            OnPropertyChanged(nameof(TimeWarranty));
-            OnPropertyChanged(nameof(CurrentBill));
-
-            if (CurrentBill.ITEM_BILL_SERI == null)
+            if (ListSearchSeri == null || ListSearchSeri.Count == 0)
             {
                 throw new NotFoundSeriException();
-            }
-            if (!TimeWarranty.HasValue)
-            {
-                throw new NoneTimeWarrantyTimeException();
-            }
-            else if (TimeWarranty.Value.Date < DateTime.Now)
-            {
-                throw new ExpiryWarrantyException();
             }
         }
         private void SearchCustomerbyPhone(string phone)
@@ -455,14 +466,6 @@ namespace ComputerProject.InsuranceWorkSpace
             {
                 MessageBoxCustom.ShowDialog("Không tìm thấy sản phẩm tương ứng với mã số seri", "Thông báo", PackIconKind.InformationCircleOutline);
             }
-            catch (NoneTimeWarrantyTimeException)
-            {
-                MessageBoxCustom.ShowDialog("Sản phẩm này không có thời hạn bảo hành", "Thông báo", PackIconKind.InformationCircleOutline);
-            }
-            catch (ExpiryWarrantyException)
-            {
-                MessageBoxCustom.ShowDialog("Sản phẩm đã hết hạn bảo hành", "Thông báo", PackIconKind.InformationCircleOutline);
-            }
             catch (Exception e)
             {
                 throw e;
@@ -470,9 +473,14 @@ namespace ComputerProject.InsuranceWorkSpace
 
             return false;
         }
-
-        public class NoneTimeWarrantyTimeException : Exception { }
-        public class ExpiryWarrantyException : Exception { }
-        public class NotFoundSeriException : Exception { }
+        private bool isCheckSeri()
+        {
+            return (CurrentBill.ITEM_BILL_SERI == null && !String.IsNullOrWhiteSpace(CurrentSeriId)) ||
+                    (CurrentBill.ITEM_BILL_SERI != null && (CurrentSeriId != CurrentBill.ITEM_BILL_SERI?.seri));
+        }
     }
+
+    public class NoneTimeWarrantyTimeException : Exception { }
+    public class ExpiryWarrantyException : Exception { }
+    public class NotFoundSeriException : Exception { }
 }

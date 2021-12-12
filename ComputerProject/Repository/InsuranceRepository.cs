@@ -97,11 +97,11 @@ namespace ComputerProject.Repository
             }
         }
 
-        public ITEM_BILL_SERI GetBillFromSeri(string seri)
+        public List<ITEM_BILL_SERI> GetBillFromSeri(string seri)
         {
             using (var db = new ComputerManagementEntities())
             {
-                return db.ITEM_BILL_SERI.Where(i => i.seri == seri).OrderByDescending(i=>i.id).FirstOrDefault();
+                return db.ITEM_BILL_SERI.AsNoTracking().Include(i=>i.PRODUCT).Where(i => i.seri == seri).OrderByDescending(i=>i.id).ToList();
             }
         }
     }

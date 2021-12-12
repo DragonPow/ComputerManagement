@@ -1,32 +1,44 @@
 ﻿<UserControl x:Class="ComputerProject.InsuranceWorkSpace.InsuranceProdInfo"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.InsuranceWorkSpace"
-               xmlns:font="clr-namespace:ComputerProject.Resource.Font"
+             xmlns:font="clr-namespace:ComputerProject.Resource.Font"
              xmlns:localconvert="clr-namespace:ComputerProject.Converter"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:Custom="clr-namespace:ComputerProject.CustomControl"
-             mc:Ignorable="d" 
-             d:DesignHeight="1100" d:DesignWidth="400"
+             mc:Ignorable="d"
+             d:DesignHeight="1100"
+             d:DesignWidth="400"
              d:DataContext="{d:DesignInstance Type={x:Type local:InsuranceDetailViewModel}}">
     <UserControl.Resources>
-        <Style x:Key="style_Text" TargetType="Custom:TextboxCustom">
-            <Setter Property="FontFamily" Value="{StaticResource Mulish}" />
-            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="CornerRadiusText" Value="5"/>
-            <Setter Property="IsTabStop" Value="False"/>
-            <Setter Property="KeyboardNavigation.TabIndex" Value="0"/>
-            <Setter Property="MarginText" Value="10"/>
-            <Setter Property="IsReadOnly" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+        <Style x:Key="style_Text"
+               TargetType="Custom:TextboxCustom">
+            <Setter Property="FontFamily"
+                    Value="{StaticResource Mulish}" />
+            <Setter Property="TextWrapping"
+                    Value="WrapWithOverflow" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Foreground"
+                    Value="Black" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="CornerRadiusText"
+                    Value="5" />
+            <Setter Property="IsTabStop"
+                    Value="False" />
+            <Setter Property="KeyboardNavigation.TabIndex"
+                    Value="0" />
+            <Setter Property="MarginText"
+                    Value="10" />
+            <Setter Property="IsReadOnly"
+                    Value="{Binding RelativeSource={RelativeSource FindAncestor, 
                                AncestorType={x:Type local:InsuranceProdInfo}}, 
-                               Path=Isreadonly}"/>
+                               Path=Isreadonly}" />
         </Style>
-        <localconvert:RevertBooleanConverter x:Key="revertbool"/>
+        <localconvert:RevertBooleanConverter x:Key="revertbool" />
     </UserControl.Resources>
 
     <StackPanel  Margin="20,0">
@@ -36,31 +48,31 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
-                                   Text="Thông tin sản phẩm"
-                                   VerticalAlignment="Center"
-                                   FontSize="16"
-                                   FontWeight="Bold"
-                                   FontFamily="{StaticResource Mulish}"
-                                   Foreground="{StaticResource Title}"></TextBlock>
+                       Text="Thông tin sản phẩm"
+                       VerticalAlignment="Center"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       FontFamily="{StaticResource Mulish}"
+                       Foreground="{StaticResource Title}"></TextBlock>
             <Button x:Name="btn"
-                                Grid.Column="1"
-                                Width="auto"
-                                Height="auto"
-                                Margin="10,0"
-                                Padding="5"
+                    Grid.Column="1"
+                    Width="auto"
+                    Height="auto"
+                    Margin="10,0"
+                    Padding="5"
                     Command="{Binding ClearObjectCommand}"
                     CommandParameter="{x:Static local:TypeObject.Product}"
-                                Style="{StaticResource MaterialDesignIconButton}"
-                                Background="{x:Null}"
-                                BorderBrush="{x:Null}"
-                       IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, 
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                AncestorType={x:Type local:InsuranceProdInfo}}, 
                                                Path=Isreadonly,Converter={StaticResource revertbool}}">
                 <materialDesign:PackIcon Kind="Autorenew"
-                                                     Width="18"
-                                                     Height="18"
-                                                     VerticalAlignment="Center"
-                                                     Foreground="{StaticResource Icon}" />
+                                         Width="18"
+                                         Height="18"
+                                         VerticalAlignment="Center"
+                                         Foreground="{StaticResource Icon}" />
             </Button>
         </Grid>
         <Grid>
@@ -68,82 +80,86 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Custom:TextboxCustom x:Name="ProdSerial" 
-                                      Title="Số seri sản phẩm" 
-                                      Text="{Binding CurrentSeriId}" 
-                                      TextWrapping="WrapWithOverflow" 
-                                      MarginText="10" 
-                                      Margin="0,5" 
-                                      Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
+            <Custom:TextboxCustom x:Name="ProdSerial"
+                                  Title="Số seri sản phẩm"
+                                  Text="{Binding CurrentSeriId}"
+                                  TextWrapping="WrapWithOverflow"
+                                  MarginText="10"
+                                  Margin="0,5"
+                                  Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
             <Button x:Name="btnRenew"
-                                Grid.Column="1"
-                                Width="35"
-                                Height="35"
-                                Margin="10,0,0,10"
-                                Padding="5"
+                    Grid.Column="1"
+                    Width="35"
+                    Height="35"
+                    Margin="10,0,0,10"
+                    Padding="5"
                     VerticalAlignment="Bottom"
-                                Style="{StaticResource MaterialDesignIconButton}"
-                                Background="{x:Null}"
-                                BorderBrush="{x:Null}"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
                     Command="{Binding CheckSeriCommand}"
                     CommandParameter="{Binding CurrentSeriId}"
-                       IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, 
+                    IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                AncestorType={x:Type local:InsuranceProdInfo}}, 
                                                Path=Isreadonly,Converter={StaticResource revertbool}}">
                 <materialDesign:PackIcon Kind="CheckCircle"
-                                                     Width="25"
-                                                     Height="25"
-                                                     Padding="0" 
-                                                     Margin="0"
-                                                     VerticalAlignment="Center"
-                                                     Foreground="{StaticResource Icon}" />
+                                         Width="25"
+                                         Height="25"
+                                         Padding="0"
+                                         Margin="0"
+                                         VerticalAlignment="Center"
+                                         Foreground="{StaticResource Icon}" />
             </Button>
         </Grid>
         <StackPanel Margin="0,10">
-            <TextBlock   
-                                FontWeight="SemiBold"
-                                FontSize="{x:Static font:Font.Body}"
-                                FontFamily="{StaticResource Mulish}"
-                                Text="Sản phẩm"
-                                Foreground="Black"                   
-                                Margin="0, 0, 0, 10"
-                                VerticalAlignment="Top">
+            <TextBlock FontWeight="SemiBold"
+                       FontSize="{x:Static font:Font.Body}"
+                       FontFamily="{StaticResource Mulish}"
+                       Text="Sản phẩm"
+                       Foreground="Black"
+                       Margin="0, 0, 0, 10"
+                       VerticalAlignment="Top">
             </TextBlock>
-            <ComboBox
-                                    x:Name="Status"
-                                    Padding="15"
-                                    Background="{StaticResource Background}"
-                                    BorderBrush="#DBD7F4"
-                                    FontFamily="{StaticResource Mulish}"
-                                    FontSize="{x:Static font:Font.Body}"
-                                    Foreground="Black"
-                                    IsEditable="False"
-                                     Style="{StaticResource MaterialDesignOutlinedComboBox}" 
-                                    IsHitTestVisible="{Binding RelativeSource={RelativeSource FindAncestor, 
+            <ComboBox x:Name="Status"
+                      Padding="15"
+                      Background="{StaticResource Background}"
+                      BorderBrush="#DBD7F4"
+                      FontFamily="{StaticResource Mulish}"
+                      FontSize="{x:Static font:Font.Body}"
+                      Foreground="Black"
+                      IsEditable="False"
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      IsHitTestVisible="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                AncestorType={x:Type local:InsuranceInfor}}, 
                                                Path=Isreadonly,Converter={StaticResource revertbool}}"
-                                    Focusable="{Binding RelativeSource={RelativeSource FindAncestor, 
+                      Focusable="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                AncestorType={x:Type local:InsuranceInfor}}, 
-                                               Path=Isreadonly,Converter={StaticResource revertbool}}"/>
+                                               Path=Isreadonly,Converter={StaticResource revertbool}}"
+                      ItemsSource="{Binding ListSearchSeri}"
+                      DisplayMemberPath="PRODUCT.name"
+                      SelectedItem="{Binding CurrentBill.ITEM_BILL_SERI}" />
         </StackPanel>
-        <Custom:TextboxCustom x:Name="InsuranceDate" 
-                                      Title="Ngày kết thúc bảo hành" 
-                                      Text="{Binding TimeWarranty, StringFormat='dd/MM/yyyy', Mode=OneWay}" 
-                                      IsEnabled="False" 
-                                      TextWrapping="WrapWithOverflow" 
-                                      MarginText="10" Margin="0,5" 
-                                       Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
-        <Custom:TextboxCustom x:Name="DescStatus" 
-                                      Text="{Binding CurrentBill.desReceiveItems}" 
-                                      Title="Mô tả sản phẩm"
+        <Custom:TextboxCustom x:Name="InsuranceDate"
+                              Title="Ngày kết thúc bảo hành"
+                              Text="{Binding TimeWarranty, StringFormat='dd/MM/yyyy', Mode=OneWay}"
+                              IsEnabled="False"
+                              TextWrapping="WrapWithOverflow"
+                              MarginText="10"
+                              Margin="0,5"
+                              Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
+        <Custom:TextboxCustom x:Name="DescStatus"
+                              Text="{Binding CurrentBill.desReceiveItems}"
+                              Title="Mô tả sản phẩm"
                               MinHeight="50"
-                                      MarginText="10" Margin="0,5"
-                                Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
+                              MarginText="10"
+                              Margin="0,5"
+                              Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
         <Custom:TextboxCustom x:Name="AccessoriesIncluded"
-                                      Title="Phụ kiện đính kèm" 
-                                      Text="{Binding CurrentBill.attachments}" 
-                                      TextWrapping="WrapWithOverflow" 
-                                      MarginText="10" Margin="0,5" 
-                                       Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
+                              Title="Phụ kiện đính kèm"
+                              Text="{Binding CurrentBill.attachments}"
+                              TextWrapping="WrapWithOverflow"
+                              MarginText="10"
+                              Margin="0,5"
+                              Style="{DynamicResource style_Text}"></Custom:TextboxCustom>
     </StackPanel>
 </UserControl>
