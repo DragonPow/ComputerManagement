@@ -38,11 +38,26 @@
                             <Setter Property="Text"
                                     Value="Danh mục mới" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding TitleViewName}"
-                                     Value="DetailCategory">
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding TitleViewName}"
+                                           Value="DetailCategory" />
+                                <Condition Binding="{Binding IsEditMode}"
+                                           Value="True" />
+                            </MultiDataTrigger.Conditions>
                             <Setter Property="Text"
                                     Value="Chỉnh sửa danh mục" />
-                        </DataTrigger>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding TitleViewName}"
+                                           Value="DetailCategory" />
+                                <Condition Binding="{Binding IsEditMode}"
+                                           Value="False" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Text"
+                                    Value="Chi tiết danh mục" />
+                        </MultiDataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
