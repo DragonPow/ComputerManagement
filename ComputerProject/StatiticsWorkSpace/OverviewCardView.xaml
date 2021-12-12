@@ -82,7 +82,7 @@
             Grid.Row="2"
             Grid.ColumnSpan="2"
             Style="{DynamicResource OverviewCardStyle}"
-            Text="So với cùng kỳ tháng trước"
+            Text="So với tháng trước"
             FontSize="11"
             Foreground="#9FA2B4"
             FontWeight="Regular"

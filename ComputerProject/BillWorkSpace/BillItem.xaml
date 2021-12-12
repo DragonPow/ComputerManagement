@@ -20,9 +20,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="0.7*" />
+            <ColumnDefinition Width="0.8*" />
+            <ColumnDefinition Width="0.8*" />
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="90" />
         </Grid.ColumnDefinitions>
@@ -30,6 +30,7 @@
                    Text="{Binding id}"
                    VerticalAlignment="Stretch"
                    Padding="0,17"
+                   Margin="20,0"
                    FontWeight="DemiBold"
                    FontSize="{x:Static font:Font.Body}"
                    FontFamily="{StaticResource Mulish}"

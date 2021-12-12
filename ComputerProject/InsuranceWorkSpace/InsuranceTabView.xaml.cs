@@ -28,7 +28,7 @@ namespace ComputerProject.InsuranceWorkSpace
             InitializeComponent();
         }
 
-        public string ViewName => "Sửa chữa";
+        public string ViewName => "Bảo hành, sửa chữa";
 
         public PackIconKind ViewIcon => PackIconKind.HammerWrench;
 
