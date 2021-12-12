@@ -183,6 +183,7 @@ namespace ComputerProject.InsuranceWorkSpace
                         var success = await Save(CurrentBill);
                         if (success)
                         {
+                            MessageBoxCustom.ShowDialog("Cập nhật thành công", "Thông báo", PackIconKind.InformationCircleOutline);
                             OnNavigateBack();
                         }
                         else
@@ -387,7 +388,9 @@ namespace ComputerProject.InsuranceWorkSpace
 
         private void OpenPaymentView(BILL_REPAIR currentBill)
         {
-            throw new NotImplementedException();
+            InsuranceBillViewModel vm = new InsuranceBillViewModel();
+            vm.LoadAsync(CurrentBill.id);
+            WindowService.ShowSingelWindow(vm, new InsuranceBillView());
         }
         private Task<bool> Save(BILL_REPAIR currentBill)
         {
@@ -475,8 +478,8 @@ namespace ComputerProject.InsuranceWorkSpace
         }
         private bool isCheckSeri()
         {
-            return (CurrentBill.ITEM_BILL_SERI == null && !String.IsNullOrWhiteSpace(CurrentSeriId)) ||
-                    (CurrentBill.ITEM_BILL_SERI != null && (CurrentSeriId != CurrentBill.ITEM_BILL_SERI?.seri));
+            return (CurrentBill.ITEM_BILL_SERI == null && String.IsNullOrWhiteSpace(CurrentSeriId)) ||
+                    (CurrentBill.ITEM_BILL_SERI != null && CurrentSeriId == CurrentBill.ITEM_BILL_SERI?.seri);
         }
     }
 

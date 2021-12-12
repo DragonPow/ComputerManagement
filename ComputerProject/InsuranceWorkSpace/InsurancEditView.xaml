@@ -1,100 +1,125 @@
 ﻿<UserControl x:Class="ComputerProject.InsuranceWorkSpace.InsurancEditView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ComputerProject.InsuranceWorkSpace"
-                   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:Custom="clr-namespace:ComputerProject.CustomControl"
              xmlns:Sale="clr-namespace:ComputerProject.SaleWorkSpace"
              xmlns:Bill="clr-namespace:ComputerProject.BillWorkSpace"
              xmlns:font="clr-namespace:ComputerProject.Resource.Font"
-             mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="1300"
+             mc:Ignorable="d"
+             d:DesignHeight="700"
+             d:DesignWidth="1300"
              d:DataContext="{d:DesignInstance Type={x:Type local:InsuranceDetailViewModel}}">
     <Grid Background="{StaticResource Background}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="20,10">
+        <StackPanel HorizontalAlignment="Left"
+                    Orientation="Horizontal"
+                    Margin="20,10">
             <Button x:Name="btnBack"
-                    Style="{StaticResource MaterialDesignIconButton}" 
-                    Width="40" 
-                    Height="40" 
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    Width="40"
+                    Height="40"
                     Command="{Binding NavigateBackCommand}"
                     Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
-                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="{StaticResource Title}" />
+                <materialDesign:PackIcon Kind="ArrowLeft"
+                                         Foreground="{StaticResource Title}" />
             </Button>
-            <TextBlock x:Name="txtTitleView" 
-                       Text="Chỉnh sửa bảo hành, sửa chữa" 
-                       Foreground="{StaticResource Title}" 
-                       FontSize="{x:Static font:Font.TitleView}" 
+            <TextBlock x:Name="txtTitleView"
+                       Text="Chỉnh sửa bảo hành, sửa chữa"
+                       Foreground="{StaticResource Title}"
+                       FontSize="{x:Static font:Font.TitleView}"
                        VerticalAlignment="Center"
-                       FontWeight="DemiBold" 
+                       FontWeight="DemiBold"
                        Margin="20,0"></TextBlock>
         </StackPanel>
-        <Grid Grid.Row="1" Margin="20,0">
+        <Grid Grid.Row="1"
+              Margin="20,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <local:CustomerInsurView Margin="0,0,20,10"
                                      DataContext="{Binding}" />
-            <Border Grid.Row="1" Grid.RowSpan="2" Margin="0,0,20,0"  Background="White" CornerRadius="8">
+            <Border Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Margin="0,0,20,0"
+                    Background="White"
+                    CornerRadius="8">
                 <ScrollViewer Margin="0,10">
                     <local:InsuranceProdInfo DataContext="{Binding}" />
                 </ScrollViewer>
             </Border>
-            <Border  Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Background="White" CornerRadius="8">
+            <Border  Grid.Column="1"
+                     Grid.Row="0"
+                     Grid.RowSpan="2"
+                     Background="White"
+                     CornerRadius="8">
                 <ScrollViewer Margin="0,10">
-                    <local:InsuranceInfor x:Name="InsuranceInfor" ModeInfor="edit" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
-                                          DataContext="{Binding}"/>
+                    <local:InsuranceInfor x:Name="InsuranceInfor"
+                                          ModeInfor="edit"
+                                          Grid.Column="1"
+                                          Grid.Row="0"
+                                          Grid.RowSpan="2"
+                                          DataContext="{Binding}" />
                 </ScrollViewer>
             </Border>
-            <Border Background="White" CornerRadius="8" Grid.Column="1" Grid.Row="2" Margin="0,10,0,0">
+            <Border Background="White"
+                    CornerRadius="8"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Margin="0,10,0,0">
                 <Grid Margin="20,10">
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0"
-                       Text="Tổng hóa đơn"  
-                       Margin="10,5"
-                       FontWeight="Bold"
-                       VerticalAlignment="Center" 
-                       FontSize="16" 
-                       Foreground="{StaticResource MainColor}"/>
+                               Text="Tổng hóa đơn"
+                               Margin="10,5"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               FontSize="16"
+                               Foreground="{StaticResource MainColor}" />
                     <TextBox Margin="5,3"
-                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                  MaxWidth="300" 
-                  MinWidth="110"
-                   Text="16,599,000" 
-                   FontWeight="Bold"
-                   VerticalAlignment="Center" 
-                   FontSize="16" 
-                 Padding="5"
-                 PreviewTextInput="PreviewTextInput"
-                 HorizontalContentAlignment="Right"
-                   HorizontalAlignment="Right" 
-                   Foreground="{StaticResource MainColor}"/>
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             MaxWidth="300"
+                             MinWidth="110"
+                             Text="{Binding CurrentBill.price}"
+                             FontWeight="Bold"
+                             VerticalAlignment="Center"
+                             FontSize="16"
+                             Padding="5"
+                             PreviewTextInput="PreviewTextInput"
+                             HorizontalContentAlignment="Right"
+                             HorizontalAlignment="Right"
+                             Foreground="{StaticResource MainColor}" />
                 </Grid>
             </Border>
 
         </Grid>
-        <StackPanel Grid.Row="2"  Orientation="Horizontal" HorizontalAlignment="Right" Margin="20">
-            <Button x:Name="btncancel" 
-                    Style="{StaticResource MaterialDesignOutlinedButton}" 
-                    materialDesign:ButtonAssist.CornerRadius="5" 
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="20">
+            <Button x:Name="btncancel"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonAssist.CornerRadius="5"
                     BorderBrush="{StaticResource Warning}"
-                    Foreground="{StaticResource Warning}" 
-                    Width="100" Height="35" 
-                    Content="Hủy" 
+                    Foreground="{StaticResource Warning}"
+                    Width="100"
+                    Height="35"
+                    Content="Hủy"
                     Margin="20,0"
                     Command="{Binding CancelCommand}"
                     Padding="30,0"></Button>

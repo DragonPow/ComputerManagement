@@ -232,7 +232,7 @@
                     Height="35"
                     Content="Thanh toán"
                     Padding="20,0"
-                    Command="{Binding DeleteCommand}" />
+                    Command="{Binding PaymentCommand}" />
             <Button Background="{StaticResource MainColor}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     materialDesign:ButtonAssist.CornerRadius="5"
