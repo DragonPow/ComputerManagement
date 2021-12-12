@@ -157,19 +157,35 @@ namespace ComputerProject.Helper
             table.AddCell(new PdfPCell(new Phrase("Thành tiền", new Font(basef, 12, Font.BOLD)))
             { HorizontalAlignment = PdfPCell.ALIGN_RIGHT, Border = defaultBorder, VerticalAlignment = PdfPCell.ALIGN_MIDDLE, PaddingBottom = 10, PaddingTop = 8 });
 
-            //add list product
+            //Tranfer seri to quantity
+            Dictionary<int, int> quantity_product = new Dictionary<int, int>();
             foreach (var item in info.Products)
             {
+                if (quantity_product.ContainsKey(item.Id))
+                {
+                    quantity_product[item.Id]++;
+                }
+                else
+                {
+                    quantity_product.Add(item.Id, 1);
+                }
+            }
+
+            //add list product
+            foreach (var product in quantity_product)
+            {
+                ProductInBill item = info.Products.Where(i => i.Id == product.Key).First();
+
                 table.AddCell(new PdfPCell(new Phrase(item.Name, font))
                 { Border = PdfPCell.NO_BORDER, VerticalAlignment = PdfPCell.ALIGN_MIDDLE, PaddingBottom = 10 });
 
-                table.AddCell(new PdfPCell(new Phrase(item.Quantity.ToString(), font))
+                table.AddCell(new PdfPCell(new Phrase(product.Value.ToString(), font))
                 { Border = PdfPCell.NO_BORDER, HorizontalAlignment = PdfPCell.ALIGN_CENTER, VerticalAlignment = PdfPCell.ALIGN_MIDDLE, PaddingBottom = 10 });
 
                 table.AddCell(new PdfPCell(new Phrase(item.PriceUnit.ToString("N0", nfi) + "đ", font))
                 { Border = PdfPCell.NO_BORDER, HorizontalAlignment = PdfPCell.ALIGN_CENTER, VerticalAlignment = PdfPCell.ALIGN_MIDDLE, PaddingBottom = 10 });
 
-                table.AddCell(new PdfPCell(new Phrase((item.PriceUnit * item.Quantity).ToString("N0", nfi) + "đ", font))
+                table.AddCell(new PdfPCell(new Phrase((item.PriceUnit * product.Value).ToString("N0", nfi) + "đ", font))
                 { Border = PdfPCell.NO_BORDER, HorizontalAlignment = PdfPCell.ALIGN_RIGHT, VerticalAlignment = PdfPCell.ALIGN_MIDDLE, PaddingBottom = 10 });
             }
             //----------------------------------------------------------------------------------------------------
