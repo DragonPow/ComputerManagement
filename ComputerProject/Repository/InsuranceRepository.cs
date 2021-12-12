@@ -29,6 +29,7 @@ namespace ComputerProject.Repository
                 //Information Insurance
                 currentBill.timeDelivery = bill.timeDelivery;
                 currentBill.timeReceive = bill.timeReceive;
+                currentBill.status = bill.status;
                 currentBill.desDetailRepair = bill.desDetailRepair;
                 currentBill.desProblem = bill.desProblem;
                 currentBill.desReceiveItems = bill.desReceiveItems;

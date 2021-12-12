@@ -85,12 +85,12 @@ namespace ComputerProject.InsuranceWorkSpace
         public List<String> BillStatus => _billStatus;
         public string StatusBillSelected
         {
-            get => _statusBillSelected;
+            get => InsuranceViewModel.StatusToString(CurrentBill.status);//_statusBillSelected;
             set
             {
-                if (value != _statusBillSelected)
+                if (value != StatusBillSelected)
                 {
-                    _statusBillSelected = value;
+                    //_statusBillSelected = value;
                     CurrentBill.status = InsuranceViewModel.StringToStatus(value);
                     OnPropertyChanged();
                 }
@@ -156,16 +156,23 @@ namespace ComputerProject.InsuranceWorkSpace
                 {
                     _saveCommand = new RelayCommand(async _ =>
                     {
-                        if ((CurrentBill.ITEM_BILL_SERI == null && !String.IsNullOrWhiteSpace(CurrentSeriId)) || CurrentSeriId != CurrentBill.ITEM_BILL_SERI?.seri)
+                        //Check seri before save
+                        if ((CurrentBill.ITEM_BILL_SERI == null && !String.IsNullOrWhiteSpace(CurrentSeriId)) ||
+                            (CurrentBill.ITEM_BILL_SERI != null && (CurrentSeriId != CurrentBill.ITEM_BILL_SERI?.seri)))
                         {
                             if (!CheckSeriWithException())
                             {
                                 CurrentSeriId = null;
-                                var rs  = MessageBoxCustom.ShowDialog("Tiếp tục thực hiện thao tác", "Thông báo", PackIconKind.InformationCircleOutline);
+                                var rs = MessageBoxCustom.ShowDialog("Tiếp tục thực hiện thao tác", "Thông báo", PackIconKind.InformationCircleOutline);
                                 if (rs == MessageBoxResultCustom.No) return;
                             }
                         }
 
+                        if (CurrentBill.HasErrorData)
+                        {
+                            MessageBoxCustom.ShowDialog("Vui lòng điền đầy đủ thông tin trước khi lưu", "Thông báo", PackIconKind.InformationCircleOutline);
+                            return;
+                        }
                         var success = await Save(CurrentBill);
                         if (success)
                         {
