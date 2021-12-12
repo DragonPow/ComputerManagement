@@ -101,7 +101,7 @@
                                     Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                     </Border>
                     <Button Grid.Column="5"
-                            Margin="15,0,0,0"
+                            Margin="15,0"
                             Padding="15,0"
                             Height="35"
                             VerticalAlignment="Center"
@@ -116,22 +116,22 @@
                       Background="{StaticResource Background}"
                       Margin="10,10,10,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="60" />
                         <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="0.7*" />
+                        <ColumnDefinition Width="0.8*" />
+                        <ColumnDefinition Width="0.8*" />
                         <ColumnDefinition Width="150" />
                         <ColumnDefinition Width="90" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="1"
+                    <TextBlock Grid.Column="0"
                                Text="Mã hóa đơn"
                                FontWeight="Bold"
+                               Margin="20,0"
                                VerticalAlignment="Center"
                                FontSize="{x:Static font:Font.Body}"
                                FontFamily="{StaticResource Mulish}"
                                Foreground="Black" />
-                    <TextBlock Grid.Column="2"
+                    <TextBlock Grid.Column="1"
                                Text="Ngày tạo"
                                FontWeight="Bold"
                                Margin="15,0"
@@ -139,7 +139,7 @@
                                FontSize="{x:Static font:Font.Body}"
                                FontFamily="{StaticResource Mulish}"
                                Foreground="Black" />
-                    <TextBlock Grid.Column="3"
+                    <TextBlock Grid.Column="2"
                                Text="Số điện thoại"
                                FontWeight="Bold"
                                Margin="15,0"
@@ -147,7 +147,7 @@
                                FontSize="{x:Static font:Font.Body}"
                                FontFamily="{StaticResource Mulish}"
                                Foreground="Black" />
-                    <TextBlock Grid.Column="4"
+                    <TextBlock Grid.Column="3"
                                Text="Tổng hóa đơn"
                                FontWeight="Bold"
                                Margin="15,0"
@@ -155,7 +155,7 @@
                                FontSize="{x:Static font:Font.Body}"
                                FontFamily="{StaticResource Mulish}"
                                Foreground="Black" />
-                    <TextBlock Grid.Column="5"
+                    <TextBlock Grid.Column="4"
                                Text="Điểm thưởng sử dụng"
                                FontWeight="Bold"
                                Margin="15,0"

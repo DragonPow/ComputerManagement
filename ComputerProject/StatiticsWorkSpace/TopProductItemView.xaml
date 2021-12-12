@@ -11,16 +11,16 @@
         VerticalAlignment="Center"
         >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="72"/>
+            <ColumnDefinition Width="70"/>
         </Grid.ColumnDefinitions>
         <Border
             CornerRadius="5" Margin="0, 0, 10, 0"
             BorderThickness="1"
             >
             <Image
-            Stretch="Fill"
+            Stretch="Uniform"
             Source="{Binding Image, TargetNullValue={StaticResource DefaultImage}}"
             >
             </Image>
