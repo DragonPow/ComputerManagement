@@ -82,8 +82,23 @@ namespace ComputerProject.Helper
                 return false;
             }
 
+            //Tranfer seri to quantity
+            Dictionary<int, int> quantity_product = new Dictionary<int, int>();
+            foreach (var item in info.Products)
+            {
+                if (quantity_product.ContainsKey(item.Id))
+                {
+                    quantity_product[item.Id]++;
+                }
+                else
+                {
+                    quantity_product.Add(item.Id, 1);
+                }
+            }
+
             os = new FileStream(dirFile, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
-            defaultSize = new Rectangle(PageSize.A4.Width, 310 + productInBill.Count * 24 + productInBill.Count(i => i.Name.Length > 16) * 15);
+            defaultSize = new Rectangle(PageSize.A4.Width, 350 + quantity_product.Count * 24 + 
+                                        quantity_product.Sum(i => productInBill.Where(pro => pro.Id == i.Key).First().Name.Length / 30 * 13));// productInBill.Count(i => i.Name.Length > 16) * 15);
             doc = new Document(defaultSize);
             doc.SetMargins(0, 0, 0, 0);
 
@@ -99,7 +114,7 @@ namespace ComputerProject.Helper
             doc.Add(createInfoPurchase(info));
 
             //add product table 
-            doc.Add(this.createTableInfoProduct(info));
+            doc.Add(this.createTableInfoProduct(info, quantity_product));
 
             //add end paragraph
             doc.Add(createEndBill());
@@ -133,7 +148,7 @@ namespace ComputerProject.Helper
             { Alignment = Element.ALIGN_CENTER, SpacingAfter = 25 });
             return title;
         }
-        private PdfPTable createTableInfoProduct(Bill info)
+        private PdfPTable createTableInfoProduct(Bill info, Dictionary<int, int> quantity_product)
         {
             Font font = new Font(basef, 12);
             PdfPTable table = new PdfPTable(4);
@@ -156,20 +171,6 @@ namespace ComputerProject.Helper
             { HorizontalAlignment = PdfPCell.ALIGN_CENTER, Border = defaultBorder, VerticalAlignment = PdfPCell.ALIGN_MIDDLE, PaddingBottom = 10, PaddingTop = 8 });
             table.AddCell(new PdfPCell(new Phrase("Thành tiền", new Font(basef, 12, Font.BOLD)))
             { HorizontalAlignment = PdfPCell.ALIGN_RIGHT, Border = defaultBorder, VerticalAlignment = PdfPCell.ALIGN_MIDDLE, PaddingBottom = 10, PaddingTop = 8 });
-
-            //Tranfer seri to quantity
-            Dictionary<int, int> quantity_product = new Dictionary<int, int>();
-            foreach (var item in info.Products)
-            {
-                if (quantity_product.ContainsKey(item.Id))
-                {
-                    quantity_product[item.Id]++;
-                }
-                else
-                {
-                    quantity_product.Add(item.Id, 1);
-                }
-            }
 
             //add list product
             foreach (var product in quantity_product)
@@ -229,6 +230,7 @@ namespace ComputerProject.Helper
         {
             Paragraph para = new Paragraph("Cảm ơn quý khách đã ghé, hẹn gặp lại quý khách!", new Font(basef, 10));
             para.Alignment = Element.ALIGN_CENTER;
+            para.SpacingBefore = 10;
 
             return para;
         }
@@ -246,7 +248,7 @@ namespace ComputerProject.Helper
             table.SpacingAfter = 20;
 
             table.AddCell(new PdfPCell(new Phrase("Số điện thoại: " + info.Customer.phone, font)) { HorizontalAlignment = PdfPCell.ALIGN_LEFT, Border = PdfPCell.NO_BORDER });
-            table.AddCell(new PdfPCell(new Phrase("Mã hóa đơn: " + info.Id.ToString(), font)) { HorizontalAlignment = PdfPCell.ALIGN_RIGHT, Border = PdfPCell.NO_BORDER});
+            table.AddCell(new PdfPCell(new Phrase("Mã hóa đơn: " + info.Id.ToString(), font)) { HorizontalAlignment = PdfPCell.ALIGN_RIGHT, Border = PdfPCell.NO_BORDER });
 
             return table;
         }
