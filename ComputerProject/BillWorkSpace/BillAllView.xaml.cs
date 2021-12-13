@@ -25,19 +25,30 @@ namespace ComputerProject.BillWorkSpace
         {
             InitializeComponent();
             TimeFrom.Language = TimeTo.Language = System.Windows.Markup.XmlLanguage.GetLanguage(System.Globalization.CultureInfo.GetCultureInfo("vi").IetfLanguageTag);
+            tbxSearch.TextChanged += TbxSearch_TextChanged;
+        }
+
+        private void TbxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchBill();
         }
 
         private void tbxSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                HistoryBillViewModel dataContext = this.DataContext as HistoryBillViewModel;
-                if (dataContext != null)
+                SearchBill();
+            }
+        }
+
+        private void SearchBill()
+        {
+            HistoryBillViewModel dataContext = this.DataContext as HistoryBillViewModel;
+            if (dataContext != null)
+            {
+                if (dataContext.SearchBillCommand.CanExecute(null))
                 {
-                    if (dataContext.SearchBillCommand.CanExecute(null))
-                    {
-                        dataContext.SearchBillCommand.Execute(tbxSearch.Text);
-                    }
+                    dataContext.SearchBillCommand.Execute(tbxSearch.Text);
                 }
             }
         }

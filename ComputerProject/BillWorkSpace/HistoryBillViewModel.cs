@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -19,6 +20,7 @@ namespace ComputerProject.BillWorkSpace
         NavigationService _navigator;
         BillRepository _repository;
         public BusyViewModel BusyService { get; private set; } = new BusyViewModel();
+        CancellationTokenSource cancelSearchBill = new CancellationTokenSource();
 
         int _maxBillsInPage = 10;
         Collection<BILL> _bills;
@@ -231,7 +233,9 @@ namespace ComputerProject.BillWorkSpace
         }
         public void LoadBillsAsync(int pageNumber = 1, string text = null, DateTime? timeFrom = null, DateTime? timeTo = null)
         {
-            BusyService.DoBusyTask(() => LoadBills(pageNumber, text, timeFrom, timeTo));
+            cancelSearchBill.Cancel();
+            cancelSearchBill = new CancellationTokenSource();
+            BusyService.DoBusyTask(() => LoadBills(pageNumber, text, timeFrom, timeTo), cancelSearchBill.Token);
         }
         public void SetNavigator(NavigationService navigator)
         {
