@@ -39,7 +39,7 @@
                    FontFamily="{StaticResource Mulish}"
                    Foreground="Black" />
         <TextBlock Grid.Column="3"
-                   Text="{Binding Id}"
+                   Text="{Binding Seri}"
                    Margin="20,0"
                    VerticalAlignment="Center"
                    FontSize="{x:Static font:Font.Body}"
