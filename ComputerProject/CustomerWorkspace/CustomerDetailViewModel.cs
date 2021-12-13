@@ -18,6 +18,16 @@ namespace ComputerProject.CustomerWorkspace
 
         }
 
+        protected Mode viewMode = CustomerWorkspace.Mode.onlyread;
+        public Mode ViewMode
+        {
+            get => viewMode; set
+            {
+                viewMode = value;
+                OnPropertyChanged(nameof(ViewMode));
+            }
+        }
+
         Visibility buttonGroupVisibility_Edit = Visibility.Hidden;
         public Visibility ButtonGroupVisibility_Edit
         {
