@@ -10,7 +10,7 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:ApplicationViewModel}"
-        Title="Macom" Height="750" Width="1380" Foreground="White" ResizeMode="CanResize" WindowState="Maximized" Icon="/ComputerProject;component/Resource/Image/logo.png">
+        Title="Mancom" Height="750" Width="1380" Foreground="White" ResizeMode="CanResize" WindowState="Maximized" Icon="/ComputerProject;component/Resource/Image/logo.png">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)"

@@ -22,7 +22,8 @@
                        FontWeight="Bold"
                        VerticalAlignment="Center" 
                        FontSize="16" 
-                       Foreground="{StaticResource MainColor}"/>
+                       Foreground="{StaticResource MainColor}">
+            </TextBlock>
             <TextBlock Grid.Row="1" 
                        Text="Tiền khách đưa" 
                        Margin="10,0"

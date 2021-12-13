@@ -276,20 +276,14 @@
                 FontWeight="DemiBold"
                 Foreground="White"
                 Text="Tổng hóa đơn" />
-            <TextBox
-                MinWidth="100"
-                MaxWidth="300"
+            <TextBlock
                 Margin="5,3"
                 Padding="5"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
-                HorizontalContentAlignment="Right"
-                BorderBrush="White"
                 FontSize="16"
                 FontWeight="DemiBold"
                 Foreground="White"
-                PreviewTextInput="PreviewTextInput"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 Text="{Binding Price_String, Mode=OneWay}" />
         </Grid>
         <Grid>
@@ -304,21 +298,23 @@
                 FontWeight="DemiBold"
                 Foreground="{StaticResource Icon}"
                 Text="Tiền khách đưa" />
-            <TextBox
-                MinWidth="100"
-                MaxWidth="250"
-                Margin="5,0"
-                Padding="5"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                HorizontalContentAlignment="Right"
-                BorderThickness="1"
-                FontSize="{x:Static font:Font.Body}"
-                FontWeight="DemiBold"
-                Foreground="Black"
-                PreviewTextInput="PreviewTextInput"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                Text="{Binding CustomerMoney_String, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox   Text="{Binding CustomerMoney_String, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         FontWeight="DemiBold"
+                         MaxWidth="250"
+                         MinWidth="130"
+                         Height="30"
+                         Padding="5"
+                       Margin="0,10,0,5"
+                       VerticalContentAlignment="Center"
+                       Grid.Column="2"
+                         BorderThickness="1.5"
+                        HorizontalAlignment="Right"
+                         PreviewTextInput="PreviewTextInput"
+                         HorizontalContentAlignment="Right"
+                         VerticalAlignment="Center"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         FontSize="{x:Static font:Font.Body}"
+                         Foreground="Black" />
             <TextBlock
                 Grid.Row="1"
                 Margin="10,0"
@@ -329,7 +325,7 @@
                 Text="Tiền thừa" />
             <TextBlock
                 Grid.Row="1"
-                Margin="10,5"
+                
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 FontSize="{x:Static font:Font.Body}"

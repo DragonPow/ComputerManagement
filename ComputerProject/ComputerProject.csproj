@@ -357,6 +357,9 @@
     </Compile>
     <Compile Include="InsuranceWorkSpace\InsuranceTabViewModel.cs" />
     <Compile Include="InsuranceWorkSpace\InsuranceViewModel.cs" />
+    <Compile Include="InsuranceWorkSpace\TotalMoneyView.xaml.cs">
+      <DependentUpon>TotalMoneyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Bill.cs" />
     <Compile Include="InsuranceWorkSpace\InsuranceBillView.xaml.cs">
       <DependentUpon>InsuranceBillView.xaml</DependentUpon>
@@ -656,6 +659,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InsuranceWorkSpace\InsuranceTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InsuranceWorkSpace\TotalMoneyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
