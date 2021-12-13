@@ -407,7 +407,7 @@ namespace ComputerProject.InsuranceWorkSpace
         }
         private void ExportPDF(BILL_REPAIR currentBill)
         {
-            //Helper.PrintPDF.Instance.createBill(currentBill, true);
+            PrintPDF.Instance.createBillInsur(currentBill, true);
         }
         private void ClearObject(TypeObject objectType)
         {
