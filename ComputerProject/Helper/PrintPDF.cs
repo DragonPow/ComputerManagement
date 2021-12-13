@@ -523,7 +523,7 @@ namespace ComputerProject.Helper
             infor.Add(new Paragraph("Thông tin sản phẩm", titleFont)
             { IndentationLeft = lefttilteInden });
 
-            infor.Add(new Paragraph("Tên sản phẩm: " + bill.ITEM_BILL_SERI?.id, inforFont)
+            infor.Add(new Paragraph("Tên sản phẩm: " + (bill.ITEM_BILL_SERI == null ? "Không có" : bill.ITEM_BILL_SERI.PRODUCT.name), inforFont)
             { IndentationLeft = leftInforInden });
             infor.Add(new Paragraph("Số Seri: " + (bill.ITEM_BILL_SERI == null ? "Không có" : bill.ITEM_BILL_SERI.seri.ToString()), inforFont)
             { IndentationLeft = leftInforInden });
