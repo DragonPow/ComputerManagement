@@ -8,10 +8,10 @@
     xmlns:localfont="clr-namespace:ComputerProject.Resource.Font"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DataContext="{d:DesignInstance Type=local:CustomerViewModel}"
     xmlns:converter="clr-namespace:ComputerProject.Converter"
     d:DesignHeight="750"
     d:DesignWidth="1380"
+    d:DataContext="{d:DesignInstance Type=local:CustomerDetailViewModel}"
     Background="{StaticResource Background}"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -67,7 +67,7 @@
                     </Grid.RowDefinitions>
 
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Margin="0,0,0,0.4">
-                        <local:CustomerInfor x:Name="CusInfor" ModeInfor="onlyread"/>
+                        <local:CustomerInfor x:Name="CusInfor" ModeInfor="{Binding ViewMode}"/>
                     </ScrollViewer>
                     <StackPanel
                         x:Name="ButtonEditMode"

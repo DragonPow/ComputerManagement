@@ -48,6 +48,7 @@
                                        IsTabStop="False"
                                        KeyboardNavigation.TabIndex="0"
                                        Foreground="#11142D"
+                                       Style="{StaticResource style_Text}"
                                        Text="{Binding FullName, Mode=TwoWay}" />
 
             <localcustom:TextboxCustom x:Name="Phone"
@@ -62,6 +63,7 @@
                                        IsTabStop="False"
                                        KeyboardNavigation.TabIndex="0"
                                        Foreground="#11142D"
+                                       Style="{StaticResource style_Text}"
                                        Text="{Binding PhoneNumber, Mode=TwoWay}" />
             <StackPanel Grid.Row="3"
                         Grid.Column="0"
@@ -91,6 +93,9 @@
                                 FontSize="{x:Static localfont:Font.Body}"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 BorderThickness="2"
+                                IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, 
+                               AncestorType={x:Type local:CustomerInfor}}, 
+                               Path=Isreadonly, Converter={StaticResource revertbool}}"
                                 SelectedDate="{Binding Birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Border>
             </StackPanel>
@@ -105,6 +110,7 @@
                                        FontSize="{x:Static localfont:Font.Body}"
                                        MarginText="8"
                                        Foreground="#11142D"
+                                       Style="{StaticResource style_Text}"
                                        Text="{Binding Address, Mode=TwoWay}" />
             <localcustom:TextboxCustom x:Name="Point"
                                        Title="   Điểm thưởng"
@@ -118,6 +124,7 @@
                                        FontSize="{x:Static localfont:Font.Body}"
                                        MarginText="8"
                                        Foreground="#11142D"
+                                       Style="{StaticResource style_Text}"
                                        Text="{Binding Point_String, Mode=TwoWay}"
                                        Texthint="0" />
         </StackPanel>

@@ -159,20 +159,23 @@ namespace ComputerProject.CustomerWorkspace
 
         private void SwitchMode_edit()
         {
-            CusInfor.IsEnabled = true;
+            //CusInfor.IsEnabled = true;
             ViewModel.ButtonGroupVisibility_Edit = System.Windows.Visibility.Visible;
             ViewModel.ButtonGroupVisibility_Read = System.Windows.Visibility.Hidden;
             ViewModel.Title = "Chỉnh sửa khách hàng";
+            ViewModel.ViewMode = Mode.edit;
 
             ViewModel.GetBills();
         }
 
         public void SwitchMode_readonly()
         {
-            CusInfor.IsEnabled = false;
+            //CusInfor.IsEnabled = false;
             ViewModel.ButtonGroupVisibility_Edit = System.Windows.Visibility.Hidden;
             ViewModel.ButtonGroupVisibility_Read = System.Windows.Visibility.Visible;
             ViewModel.Title = "Chi tiết khách hàng";
+            ViewModel.ViewMode = Mode.onlyread;
+
             ViewModel.GetBills();
         }
 
