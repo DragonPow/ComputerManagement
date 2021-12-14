@@ -78,16 +78,40 @@
             FontSize="{x:Static font:Font.Body}"
             Foreground="Black"
             Text="{Binding Price_String, Mode=OneWay}" />
-        <Button
+        <Grid Grid.Column="6">
+            <Grid.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Status_String}"
+                                     Value="Đã thanh toán">
+                            <Setter Property="Button.Visibility"
+                                    Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status_String}"
+                                     Value="Đã sửa xong">
+                            <Setter Property="Button.Visibility"
+                                    Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status_String}"
+                                     Value="Đang sửa chữa">
+                            <Setter Property="Button.Visibility"
+                                    Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                </Grid.Style>
+            <Button
             x:Name="btnEdit"
-            Grid.Column="6"
+            
             Click="btnEdit_Click"
             Style="{StaticResource MaterialDesignIconButton}">
-            <Image
+                <Image
                 Width="24"
                 Height="24"
                 Source="/ComputerProject;component/Resource/Icon/akar-icons_edit.png" />
-        </Button>
+            </Button>
+        </Grid>
+   
         <Button
             x:Name="btnDelete"
             Grid.Column="8"

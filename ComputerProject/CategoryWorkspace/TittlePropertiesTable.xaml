@@ -33,7 +33,7 @@
             Margin="10"
             FontSize="{x:Static localfont:Font.Body}"
             Style="{StaticResource TitleCell}">
-            Stt
+            STT
         </TextBlock>
         <TextBlock
             x:Name="NameProperties"

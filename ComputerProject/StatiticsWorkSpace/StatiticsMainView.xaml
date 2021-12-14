@@ -184,7 +184,7 @@
                         Padding="8"
                         local:DatePickerCalendar.IsMonthYear="True"
                         local:DatePickerDateFormat.DateFormat="MM-yyyy"
-                        materialDesign:HintAssist.Hint="Chọn tháng"
+                        materialDesign:HintAssist.Hint="Tháng"
                         BorderBrush="{StaticResource MainColor}"
                         IsEnabled="{Binding IsFree}"
                         SelectedDate="{Binding SelectedDate}"
