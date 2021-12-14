@@ -14,7 +14,7 @@ namespace ComputerProject.Repository
         {
             using (var db = new ComputerManagementEntities())
             {
-                var bill = db.BILL_REPAIR.AsNoTracking().Include(i=>i.ITEM_BILL_SERI).Where(i => currentBill.id == i.id).First();
+                var bill = db.BILL_REPAIR.AsNoTracking().Include(i => i.ITEM_BILL_SERI.PRODUCT).Where(i => currentBill.id == i.id).First();
 
                 //Customer
                 currentBill.customerId = bill.customerId;

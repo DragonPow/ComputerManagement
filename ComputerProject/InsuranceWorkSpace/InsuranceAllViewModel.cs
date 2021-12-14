@@ -1,4 +1,7 @@
-﻿using ComputerProject.HelperService;
+﻿using ComputerProject.CustomMessageBox;
+using ComputerProject.HelperService;
+using ComputerProject.Repository;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +11,7 @@ using static ComputerProject.InsuranceWorkSpace.InsuranceDetailViewModel;
 
 namespace ComputerProject.InsuranceWorkSpace
 {
-    class InsuranceAllViewModel: PagingViewModel<InsuranceViewModel>
+    class InsuranceAllViewModel : PagingViewModel<InsuranceViewModel>
     {
         MultipleControlViewModel viewController;
         public InsuranceAllViewModel()
@@ -19,7 +22,7 @@ namespace ComputerProject.InsuranceWorkSpace
             selectedBillStatus = billStatus[0];
         }
 
-        public InsuranceAllViewModel(MultipleControlViewModel viewController):this()
+        public InsuranceAllViewModel(MultipleControlViewModel viewController) : this()
         {
             this.viewController = viewController;
         }
@@ -95,26 +98,36 @@ namespace ComputerProject.InsuranceWorkSpace
         {
             InsuranceViewModel vm = itemVM as InsuranceViewModel;
             OpenDetailView(vm.Id, StatusView.Edit);
-            //CustomMessageBox.MessageBox.ShowNotify("Click edit item : " + vm.Id_String);
         }
 
-        void OnClickDelete_Item(object itemVM)
+        async void OnClickDelete_Item(object itemVM)
         {
             InsuranceViewModel vm = itemVM as InsuranceViewModel;
-            //CustomMessageBox.MessageBox.ShowNotify("Click delete item : " + vm.Id_String);
+            var repo = new InsuranceRepository();
+            var mess = MessageBoxCustom.ShowDialog("Bạn có chắc xóa hóa đơn này?", "Thông báo", PackIconKind.QuestionMarkCircleOutline);
+            if (mess == MessageBoxResultCustom.Yes)
+            {
+                var success = await repo.Delete(vm.Id);
+                if (success)
+                {
+                    MessageBoxCustom.ShowDialog("Xóa thành công", "Thông báo", PackIconKind.DoneOutline);
+                }
+                else
+                {
+                    MessageBoxCustom.ShowDialog("Lỗi khi thực hiện thao tác xóa", "Thông báo", PackIconKind.ErrorOutline);
+                }
+            }
         }
 
         void OnClickDetail_Item(object itemVM)
         {
             InsuranceViewModel vm = itemVM as InsuranceViewModel;
             OpenDetailView(vm.Id, StatusView.View);
-            //CustomMessageBox.MessageBox.ShowNotify("Click detail item : " + vm.Id_String);
         }
 
         void OnClickInsert()
         {
             OpenDetailView(0, StatusView.Add);
-            //CustomMessageBox.MessageBox.ShowNotify("Click insert");
         }
 
         public void BackToThisView(bool needReloadData)

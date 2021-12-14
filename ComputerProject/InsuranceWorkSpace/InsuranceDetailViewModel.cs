@@ -285,7 +285,15 @@ namespace ComputerProject.InsuranceWorkSpace
             {
                 if (_navigateBackCommand == null)
                 {
-                    _navigateBackCommand = new RelayCommand(_ => OnNavigateBack());
+                    _navigateBackCommand = new RelayCommand(_ =>
+                    {
+                        if (Status == StatusView.Edit) 
+                        {
+                            var rs = MessageBoxCustom.ShowDialog("Hủy bỏ thao tác lưu", "Thông báo", PackIconKind.QuestionMarkCircleOutline);
+                            if (rs == MessageBoxResultCustom.No) return;
+                        }
+                        OnNavigateBack();
+                    });
                 }
                 return _navigateBackCommand;
             }
