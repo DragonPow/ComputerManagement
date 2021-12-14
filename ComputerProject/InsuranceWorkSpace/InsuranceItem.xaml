@@ -106,8 +106,8 @@
             Click="btnEdit_Click"
             Style="{StaticResource MaterialDesignIconButton}">
                 <Image
-                Width="24"
-                Height="24"
+                Width="20"
+                Height="20"
                 Source="/ComputerProject;component/Resource/Icon/akar-icons_edit.png" />
             </Button>
         </Grid>
@@ -118,8 +118,8 @@
             Click="btnDelete_Click"
             Style="{StaticResource MaterialDesignIconButton}">
             <Image
-                Width="24"
-                Height="24"
+                Width="20"
+                Height="20"
                 Source="/ComputerProject;component/Resource/Icon/trash-2.png" />
         </Button>
 
