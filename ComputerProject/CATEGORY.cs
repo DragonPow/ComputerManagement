@@ -19,9 +19,9 @@ namespace ComputerProject
         {
             this.CATEGORY1 = new HashSet<CATEGORY>();
             this.CATEGORY11 = new HashSet<CATEGORY>();
-            this.DETAIL_REPORT_CATEGORY = new HashSet<DETAIL_REPORT_CATEGORY>();
             this.PRODUCTs = new HashSet<PRODUCT>();
             this.SPECIFICATION_TYPE = new HashSet<SPECIFICATION_TYPE>();
+            this.DETAIL_REPORT_CATEGORY = new HashSet<DETAIL_REPORT_CATEGORY>();
         }
     
         public int id { get; set; }
@@ -35,10 +35,10 @@ namespace ComputerProject
         public virtual ICollection<CATEGORY> CATEGORY11 { get; set; }
         public virtual CATEGORY CATEGORY3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DETAIL_REPORT_CATEGORY> DETAIL_REPORT_CATEGORY { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRODUCT> PRODUCTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SPECIFICATION_TYPE> SPECIFICATION_TYPE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DETAIL_REPORT_CATEGORY> DETAIL_REPORT_CATEGORY { get; set; }
     }
 }

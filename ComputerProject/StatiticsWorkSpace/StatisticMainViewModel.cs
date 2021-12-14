@@ -42,21 +42,23 @@ namespace ComputerProject.StatiticsWorkSpace
 
                 DoBusyTask(() => GetReport(selectedDate.Year, selectedDate.Month), operationSelecteMonth.Token, () =>
                 {
-                    OnPropertyChanged(nameof(CountNewBill));
-                    OnPropertyChanged(nameof(RateBill));
+                    /* OnPropertyChanged(nameof(CountNewBill));
+                     OnPropertyChanged(nameof(RateBill));
 
-                    OnPropertyChanged(nameof(CountNewCustomer));
-                    OnPropertyChanged(nameof(RateCustomer));
+                     OnPropertyChanged(nameof(CountNewCustomer));
+                     OnPropertyChanged(nameof(RateCustomer));
 
-                    OnPropertyChanged(nameof(CountNewRepair));
-                    OnPropertyChanged(nameof(RateRepair));
+                     OnPropertyChanged(nameof(CountNewRepair));
+                     OnPropertyChanged(nameof(RateRepair));
 
-                    OnPropertyChanged(nameof(Revenue_String));
-                    OnPropertyChanged(nameof(RateRevenue));
+                     OnPropertyChanged(nameof(Revenue_String));
+                     OnPropertyChanged(nameof(RateRevenue));
 
-                    OnPropertyChanged(nameof(CollectionTopSale));
-                    OnPropertyChanged(nameof(CategoteryPieSeries));
-                    OnPropertyChanged(nameof(RevenueCollection));
+                     OnPropertyChanged(nameof(CollectionTopSale));
+                     OnPropertyChanged(nameof(CategoteryPieSeries));
+                     OnPropertyChanged(nameof(RevenueCollection));*/
+
+                    OnPropertyChanged(string.Empty);
 
                     DoInBackGround(LoadProductImage, operationSelecteMonth.Token);
                 });
@@ -68,7 +70,7 @@ namespace ComputerProject.StatiticsWorkSpace
         protected int lastBillCount;
         protected int lastRepairCount;
         protected int lastCustomerCount;
-        protected int lastRevenue;
+        protected long lastRevenue;
 
         protected int countNewCustomer;
         public int CountNewCustomer
@@ -106,8 +108,8 @@ namespace ComputerProject.StatiticsWorkSpace
         public String CountNewRepair_String => CountNewRepair.ToString();
         public String RateRepair => Rate(CountNewRepair, lastRepairCount);
 
-        protected int revenue;
-        public int Revenue
+        protected long revenue;
+        public long Revenue
         {
             get => revenue;
             set
@@ -131,13 +133,13 @@ namespace ComputerProject.StatiticsWorkSpace
                     series.Add(new PieSeries()
                     {
                         Title = c.CategoryName,
-                        Values = new ChartValues<int>() { c.Money },
+                        Values = new ChartValues<long>() { c.Money },
                     });
                 }
 
                 if (series.Count == maxTopSale)
                 {
-                    int money = 0;
+                    long money = 0;
                     for (int i = maxTopSale; i < revenuePerCate.Count; i++)
                     {
                         var c = revenuePerCate[i];
@@ -146,7 +148,7 @@ namespace ComputerProject.StatiticsWorkSpace
                     series.Add(new PieSeries()
                     {
                         Title = "Khác",
-                        Values = new ChartValues<int>() { money },
+                        Values = new ChartValues<long>() { money },
                     });
                 }
 
@@ -159,18 +161,18 @@ namespace ComputerProject.StatiticsWorkSpace
         {
             get
             {
-                var rs = revenuePerProd.Take(5).ToList();
+                var rs = revenuePerProd.OrderByDescending(r => r.Amount).Take(5).ToList();
 
                 return rs;
             }
         }
 
         protected List<ReportModel> revenuePerDay = new List<ReportModel>();
-        public ChartValues<int> RevenueCollection
+        public ChartValues<long> RevenueCollection
         {
             get
             {
-                var values = new ChartValues<int>();
+                var values = new ChartValues<long>();
                 for (int i = 1; i <= DateTime.DaysInMonth(YearSelected, MonthSelected); i++)
                 {
                     var revenueInDay = revenuePerDay.Where(r => r.StartTime.Day == i).FirstOrDefault();
@@ -192,7 +194,7 @@ namespace ComputerProject.StatiticsWorkSpace
         {
             for (int i = 0; i < revenuePerProd.Count && i < maxTopSale; i++)
             {
-                Console.WriteLine("Load image for " + revenuePerProd[i].ProductName);
+                //Console.WriteLine("Load image for " + revenuePerProd[i].ProductName);
                 var pd = revenuePerProd.Where(prod => prod.ProductID == revenuePerProd[i].ProductID).FirstOrDefault();
                 if (pd != null)
                 {
@@ -210,6 +212,7 @@ namespace ComputerProject.StatiticsWorkSpace
                 FormatHelper.SetTimeOut(db, 120);
 
                 var lastMonth = (new DateTime(_year, _month, 1)).AddMonths(-1);
+                lastMonth = new DateTime(lastMonth.Year, lastMonth.Month, lastMonth.Day, 0, 0, 0);
 
                 var rp = db.REPORTs.Where(r => r.year == YearSelected && r.month == MonthSelected).Select(r => new
                 {
@@ -224,13 +227,19 @@ namespace ComputerProject.StatiticsWorkSpace
                 if (rp == null)
                 {
                     CalcReport(_year, _month, db);
-                    if (SelectedDate < new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1))
+                    var lastDayOfLastMonth = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0)).AddSeconds(-1);
+
+                    if (SelectedDate < lastDayOfLastMonth)
                     {
-                        //SaveResult();
+                        Console.WriteLine("Save report data of " + SelectedDate.ToShortDateString());
+                        SaveResult();
                     }
                 }
                 else
                 {
+                    // Load data has been saved in DB
+                    Console.WriteLine("Load report data of " + SelectedDate.ToShortDateString());
+
                     CountNewBill = rp.newBill.Value;
                     CountNewCustomer = rp.newCustomer.Value;
                     CountNewRepair = rp.newRepair.Value;
@@ -290,7 +299,7 @@ namespace ComputerProject.StatiticsWorkSpace
         protected void CalcReport(int _year, int _month, ComputerManagementEntities db)
         {
             //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Calc: " + s);
-            var data1 = db.ITEM_BILL.Where(b => b.BILL.createTime.Month == _month && b.BILL.createTime.Year == _year).GroupBy(b => new
+            var data = db.ITEM_BILL.Where(b => b.BILL.createTime.Month == _month && b.BILL.createTime.Year == _year).GroupBy(b => new
             {
                 productID = b.PRODUCT.id,
                 categoryID = b.PRODUCT.categoryId,
@@ -311,7 +320,7 @@ namespace ComputerProject.StatiticsWorkSpace
             }).ToList();
 
             var productSaleByDay = new List<ReportModel>();
-            foreach (var day in data1)
+            foreach (var day in data)
             {
                 productSaleByDay.Add(new ReportModel()
                 {
@@ -371,6 +380,38 @@ namespace ComputerProject.StatiticsWorkSpace
                 Amount = g.Sum(p => p.Amount),
             }).ToList();
 
+
+            var revenueRepairByDay = db.BILL_REPAIR.Where(b => b.status == 2 && b.price.HasValue && b.timeDelivery.HasValue && b.timeDelivery.Value.Month == _month && b.timeDelivery.Value.Year == _year).GroupBy(
+                b => new
+                {
+                    b.timeDelivery.Value.Day
+                }).Select(
+                g => new
+                {
+                    g.Key.Day,
+                    Money = g.Sum(b => b.price.Value),
+                }
+                ).ToList();
+
+            foreach (var r in revenueRepairByDay)
+            {
+                var day = revenuePerDay.Where(it => it.Day == r.Day).FirstOrDefault();
+                if (day != null)
+                {
+                    day.Money += r.Money;
+                }
+                else
+                {
+                    day = new ReportModel()
+                    {
+                        StartTime = new DateTime(_year, _month, r.Day),
+                        Money = r.Money,
+                        Amount = 0,
+                    };
+                    revenuePerDay.Add(day);
+                }
+            }
+
             CountNewBill = db.BILLs.Where(b => b.createTime.Year == _year && b.createTime.Month == _month).Count();
 
             CountNewRepair = db.BILL_REPAIR.Where(b => b.timeReceive.Value.Year == _year && b.timeReceive.Value.Month == _month).Count();
@@ -400,8 +441,7 @@ namespace ComputerProject.StatiticsWorkSpace
                     rp.DETAIL_REPORT_CATEGORY.Add(new DETAIL_REPORT_CATEGORY()
                     {
                         categoryId = c.CategoryID,
-                        money = c.Money,
-                        day = 0
+                        money = c.Money
                     });
                 }
 
@@ -412,8 +452,7 @@ namespace ComputerProject.StatiticsWorkSpace
                     {
                         productId = c.ProductID,
                         money = c.Money,
-                        amount = c.Amount,
-                        day = 0
+                        amount = c.Amount
                     });
                 }
 
@@ -435,10 +474,10 @@ namespace ComputerProject.StatiticsWorkSpace
         Func<double, string> formaterLabelMoney = new Func<double, string>((d) => FormatHelper.getMoneyLabel((int)d));
         public Func<double, string> FormaterLabelMoney => formaterLabelMoney;
 
-        String Rate(int nw, int old)
+        String Rate(long nw, long old)
         {
             if (old == 0) return null;
-            int rate = (nw - old) * 100 / old;
+            long rate = (nw - old) * 100 / old;
             if (rate > 0) return "+$1%".Replace("$1", rate.ToString());
             return "$1%".Replace("$1", rate.ToString());
         }
@@ -456,6 +495,46 @@ namespace ComputerProject.StatiticsWorkSpace
 
                 return rs.ToArray();
             }
+        }
+
+        public void ValidateReport(int _year, int _month)
+        {
+            using (var db = new ComputerManagementEntities())
+            {
+                var old = db.REPORTs.Where(rp => rp.year == _year && rp.month == _month).FirstOrDefault();
+                if (old == null) return;
+
+                var temp1 = db.DETAIL_REPORT_CATEGORY.Where(dt => dt.reportId == old.id);
+                db.DETAIL_REPORT_CATEGORY.RemoveRange(temp1);
+
+                var temp2 = db.DETAIL_REPORT_PRODUCT.Where(dt => dt.reportId == old.id);
+                db.DETAIL_REPORT_PRODUCT.RemoveRange(temp2);
+
+                var temp3 = db.DETAIL_REPORT_REVENUE.Where(dt => dt.reportId == old.id);
+                db.DETAIL_REPORT_REVENUE.RemoveRange(temp3);
+
+                db.REPORTs.Remove(old);
+                db.SaveChanges();
+
+                CalcReport(_year, _month, db);
+
+                var selectedMonth = new DateTime(_year, _month, 1, 0, 0, 0);
+                var lastDayOfLastMonth = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0)).AddSeconds(-1);
+
+                if (selectedMonth < lastDayOfLastMonth.AddMonths(-1))
+                {
+                    SaveResult();
+                }
+            }
+        }
+
+        public static void NotifyChangeReport(int _year, int _month)
+        {
+            var vm = new StatisticMainViewModel();
+            vm.ValidateReport(_year, _month);
+
+            var nextMonth = new DateTime(_year, _month, 1, 0, 0, 0).AddMonths(1);
+            vm.ValidateReport(nextMonth.Year, nextMonth.Month);
         }
     }
 }
