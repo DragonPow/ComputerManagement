@@ -390,6 +390,9 @@ namespace ComputerProject.InsuranceWorkSpace
                 }
                 
                 OnPropertyChanged(nameof(CurrentBill));
+
+                int statusPayment = 2;
+                if (CurrentBill.status != statusPayment) BillStatus.RemoveAt(statusPayment);
             }
         }
         private void LoadCustomer()
@@ -509,7 +512,7 @@ namespace ComputerProject.InsuranceWorkSpace
 
             return false;
         }
-        private bool isCheckSeri()
+        public bool isCheckSeri()
         {
             return (CurrentBill.ITEM_BILL_SERI == null && String.IsNullOrWhiteSpace(CurrentSeriId)) ||
                     (CurrentBill.ITEM_BILL_SERI != null && CurrentSeriId == CurrentBill.ITEM_BILL_SERI?.seri);

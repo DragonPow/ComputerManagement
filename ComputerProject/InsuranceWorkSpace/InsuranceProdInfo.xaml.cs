@@ -66,6 +66,7 @@ namespace ComputerProject.InsuranceWorkSpace
         private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var vm = this.DataContext as InsuranceDetailViewModel;
+            if (vm != null && !vm.isCheckSeri()) return;
             try
             {
                 vm?.OnItemBillChanged();
