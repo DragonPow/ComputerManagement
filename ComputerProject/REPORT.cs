@@ -25,7 +25,7 @@ namespace ComputerProject
         public int id { get; set; }
         public byte month { get; set; }
         public short year { get; set; }
-        public int totalMoney { get; set; }
+        public long totalMoney { get; set; }
         public Nullable<int> newBill { get; set; }
         public Nullable<int> newCustomer { get; set; }
         public Nullable<int> newRepair { get; set; }

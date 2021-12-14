@@ -17,10 +17,10 @@ namespace ComputerProject
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCT()
         {
-            this.DETAIL_REPORT_PRODUCT = new HashSet<DETAIL_REPORT_PRODUCT>();
             this.ITEM_BILL = new HashSet<ITEM_BILL>();
             this.SPECIFICATIONs = new HashSet<SPECIFICATION>();
             this.ITEM_BILL_SERI = new HashSet<ITEM_BILL_SERI>();
+            this.DETAIL_REPORT_PRODUCT = new HashSet<DETAIL_REPORT_PRODUCT>();
         }
     
         public int id { get; set; }
@@ -38,12 +38,12 @@ namespace ComputerProject
     
         public virtual CATEGORY CATEGORY { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DETAIL_REPORT_PRODUCT> DETAIL_REPORT_PRODUCT { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ITEM_BILL> ITEM_BILL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SPECIFICATION> SPECIFICATIONs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ITEM_BILL_SERI> ITEM_BILL_SERI { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DETAIL_REPORT_PRODUCT> DETAIL_REPORT_PRODUCT { get; set; }
     }
 }
