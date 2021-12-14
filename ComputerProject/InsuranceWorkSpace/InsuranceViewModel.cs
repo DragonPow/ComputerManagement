@@ -178,10 +178,10 @@ namespace ComputerProject.InsuranceWorkSpace
                 OnPropertyChanged(nameof(SeriId));
             }
         }
-        public string ProductName
-        {
-            get => Model.nameProduct;
-        }
+        //public string ProductName
+        //{
+        //    get => Model.nameProduct;
+        //}
 
         public string CustomerName => Model.CUSTOMER != null ? Model.CUSTOMER.name : null;
         public string CustomerPhone => Model.CUSTOMER != null ? Model.CUSTOMER.phone : null;
@@ -248,7 +248,7 @@ namespace ComputerProject.InsuranceWorkSpace
                             b.desDetailRepair,
                             customerPhone = b.CUSTOMER.phone,
                             customerName = b.CUSTOMER.name,
-                            b.nameProduct,
+                            //b.nameProduct,
                             productSeri = b.isWarranty ? b.ITEM_BILL_SERI.seri : null,
                             productWarrantyTime = b.isWarranty ? b.ITEM_BILL_SERI.PRODUCT.warrantyTime : null,
                             billID = b.isWarranty ? b.ITEM_BILL_SERI.billId : -1,
@@ -294,7 +294,7 @@ namespace ComputerProject.InsuranceWorkSpace
                             status = b.status,
                             timeDelivery = b.timeDelivery,
                             timeReceive = b.timeReceive,
-                            nameProduct = b.nameProduct,
+                            //nameProduct = b.nameProduct,
                             desDetailRepair = b.desDetailRepair,
                             CUSTOMER = new CUSTOMER() { 
                                 id = b.customerId, 
@@ -377,7 +377,7 @@ namespace ComputerProject.InsuranceWorkSpace
                             b.desDetailRepair,
                             customerPhone = b.CUSTOMER.phone,
                             customerName = b.CUSTOMER.name,
-                            b.nameProduct,
+                            //b.nameProduct,
                             productSeri = !b.isWarranty ? null : b.ITEM_BILL_SERI.seri,
                             productId = !b.isWarranty ? -1 : b.ITEM_BILL_SERI.productId,
                             productWarrantyTime = b.isWarranty ? b.ITEM_BILL_SERI.PRODUCT.warrantyTime : null,
@@ -401,7 +401,7 @@ namespace ComputerProject.InsuranceWorkSpace
                         status = data.status,
                         timeDelivery = data.timeDelivery,
                         timeReceive = data.timeReceive,
-                        nameProduct = data.nameProduct,
+                        //nameProduct = data.nameProduct,
                         desDetailRepair = data.desDetailRepair,
                         CUSTOMER = new CUSTOMER()
                         {

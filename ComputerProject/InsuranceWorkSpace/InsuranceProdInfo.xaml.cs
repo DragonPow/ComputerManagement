@@ -60,7 +60,7 @@ namespace ComputerProject.InsuranceWorkSpace
         public InsuranceProdInfo()
         {
             InitializeComponent();
-            Status.SelectionChanged += Status_SelectionChanged;
+            ProductName.SelectionChanged += Status_SelectionChanged;
         }
 
         private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -68,7 +68,7 @@ namespace ComputerProject.InsuranceWorkSpace
             var vm = this.DataContext as InsuranceDetailViewModel;
             try
             {
-                vm.OnItemBillChanged();
+                vm?.OnItemBillChanged();
             }
             catch (NoneTimeWarrantyTimeException)
             {

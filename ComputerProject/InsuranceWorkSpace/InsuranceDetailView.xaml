@@ -307,7 +307,7 @@
                    Width="130"
                     Foreground="White"
                     Content="Chỉnh sửa"
-                    Command="{Binding}">
+                    Command="{Binding TranferToEditModeCommand}">
             </Button>
 
         </StackPanel>

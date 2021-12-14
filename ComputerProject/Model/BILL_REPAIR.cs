@@ -18,12 +18,6 @@ namespace ComputerProject
                 string error = null;
                 switch (columnName)
                 {
-                    case nameof(nameProduct):
-                        if (String.IsNullOrWhiteSpace(nameProduct))
-                        {
-                            error = "Name is not null";
-                        }
-                        break;
                     case nameof(customerMoney):
                         CheckExccesh(ref error);
                         break;

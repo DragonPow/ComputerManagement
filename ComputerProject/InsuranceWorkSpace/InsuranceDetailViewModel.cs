@@ -56,6 +56,7 @@ namespace ComputerProject.InsuranceWorkSpace
         ICommand _navigateBackCommand;
         ICommand _searchCustomerCommand;
         ICommand _addCustomerCommand;
+        ICommand _tranferToEditModeCommand;
         #endregion //Fields
 
         #region Properties
@@ -320,6 +321,20 @@ namespace ComputerProject.InsuranceWorkSpace
                 return _addCustomerCommand;
             }
         }
+        public ICommand TranferToEditModeCommand
+        {
+            get
+            {
+                if (_tranferToEditModeCommand == null)
+                {
+                    _tranferToEditModeCommand = new RelayCommand(_ =>
+                    {
+                        Status = StatusView.Edit;
+                    });
+                }
+                return _tranferToEditModeCommand;
+            }
+        }
 
         public event EventHandler NavigateBack; 
         #endregion //Properties
@@ -362,7 +377,14 @@ namespace ComputerProject.InsuranceWorkSpace
             if (CurrentBill.id != 0)
             {
                 _repository.LoadInsurance(CurrentBill);
-                CurrentSeriId = CurrentBill.ITEM_BILL_SERI?.seri;
+
+                if (CurrentBill.ITEM_BILL_SERI != null)
+                {
+                    ListSearchSeri = new List<ITEM_BILL_SERI>();
+                    ListSearchSeri.Add(CurrentBill.ITEM_BILL_SERI);
+                    CurrentSeriId = CurrentBill.ITEM_BILL_SERI.seri;
+                }
+                
                 OnPropertyChanged(nameof(CurrentBill));
             }
         }
@@ -426,7 +448,6 @@ namespace ComputerProject.InsuranceWorkSpace
                     OnPropertyChanged(nameof(CurrentCustomer));
                     break;
                 case TypeObject.Product:
-                    CurrentBill.nameProduct = null;
                     CurrentBill.seriId = null;
                     CurrentBill.ITEM_BILL_SERI = null;
                     CurrentBill.attachments = null;

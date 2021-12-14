@@ -21,7 +21,6 @@ namespace ComputerProject.Repository
                 //currentBill.CUSTOMER = bill.CUSTOMER;
 
                 //Information Product
-                currentBill.nameProduct = bill.nameProduct;
                 currentBill.seriId = bill.seriId;
                 currentBill.ITEM_BILL_SERI = bill.ITEM_BILL_SERI;
                 currentBill.attachments = bill.attachments;
@@ -61,7 +60,13 @@ namespace ComputerProject.Repository
 
                     //currentBill.CUSTOMER = null;
                     db.Entry(currentBill.CUSTOMER).State = EntityState.Unchanged;
-                    if (currentBill.seriId.HasValue) db.Entry(currentBill.ITEM_BILL_SERI).State = EntityState.Unchanged;
+                    if (currentBill.seriId.HasValue)
+                    {
+                        currentBill.ITEM_BILL_SERI = null;
+                        //db.Entry(currentBill.ITEM_BILL_SERI).State = EntityState.Unchanged;
+                        //db.Entry(currentBill.ITEM_BILL_SERI.PRODUCT).State = EntityState.Unchanged;
+                    }
+
                     db.Entry(currentBill).State = currentBill.id == 0 ? EntityState.Added : EntityState.Modified;
 
 
@@ -101,7 +106,7 @@ namespace ComputerProject.Repository
         {
             using (var db = new ComputerManagementEntities())
             {
-                return db.ITEM_BILL_SERI.AsNoTracking().Include(i=>i.PRODUCT).Where(i => i.seri == seri).OrderByDescending(i=>i.id).ToList();
+                return db.ITEM_BILL_SERI.AsNoTracking().Include(i => i.PRODUCT).Where(i => i.seri == seri).OrderByDescending(i => i.id).ToList();
             }
         }
     }

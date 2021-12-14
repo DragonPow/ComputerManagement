@@ -31,7 +31,6 @@
           <Property Name="status" Type="int" Nullable="false" />
           <Property Name="customerId" Type="int" Nullable="false" />
           <Property Name="seriId" Type="int" />
-          <Property Name="nameProduct" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="attachments" Type="nvarchar" MaxLength="500" />
           <Property Name="desDetailRepair" Type="nvarchar" MaxLength="1000" />
         </EntityType>
@@ -511,19 +510,10 @@
             <End Role="SPECIFICATION_TYPE" EntitySet="SPECIFICATION_TYPE" />
             <End Role="SPECIFICATION" EntitySet="SPECIFICATIONs" />
           </AssociationSet>
-          <EntitySet Name="BILL_REPAIR" EntityType="QuanLyCuaHangViTinhModel.BILL_REPAIR" />
           <EntitySet Name="ITEM_BILL_SERI" EntityType="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI" />
           <AssociationSet Name="FK__ITEM_BILL__billI__2A164134" Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__2A164134">
             <End Role="BILL" EntitySet="BILLs" />
             <End Role="ITEM_BILL_SERI" EntitySet="ITEM_BILL_SERI" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BILL_REPA__custo__57DD0BE4" Association="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__57DD0BE4">
-            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
-            <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BILL_REPA__seriI__58D1301D" Association="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__58D1301D">
-            <End Role="ITEM_BILL_SERI" EntitySet="ITEM_BILL_SERI" />
-            <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
           </AssociationSet>
           <AssociationSet Name="FK__ITEM_BILL__produ__2B0A656D" Association="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__2B0A656D">
             <End Role="PRODUCT" EntitySet="PRODUCTs" />
@@ -552,6 +542,15 @@
           <AssociationSet Name="FK__DETAIL_RE__repor__0D7A0286" Association="QuanLyCuaHangViTinhModel.FK__DETAIL_RE__repor__0D7A0286">
             <End Role="REPORT" EntitySet="REPORTs" />
             <End Role="DETAIL_REPORT_REVENUE" EntitySet="DETAIL_REPORT_REVENUE" />
+          </AssociationSet>
+          <EntitySet Name="BILL_REPAIR" EntityType="QuanLyCuaHangViTinhModel.BILL_REPAIR" />
+          <AssociationSet Name="FK__BILL_REPA__custo__57DD0BE4" Association="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__57DD0BE4">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BILL_REPA__seriI__58D1301D" Association="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__58D1301D">
+            <End Role="ITEM_BILL_SERI" EntitySet="ITEM_BILL_SERI" />
+            <End Role="BILL_REPAIR" EntitySet="BILL_REPAIR" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="BILL">
@@ -768,27 +767,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="BILL_REPAIR">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="timeDelivery" Type="DateTime" Precision="3" />
-          <Property Name="timeReceive" Type="DateTime" Precision="3" />
-          <Property Name="desReceiveItems" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="desProblem" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="price" Type="Int64" />
-          <Property Name="customerMoney" Type="Int64" />
-          <Property Name="isWarranty" Type="Boolean" Nullable="false" />
-          <Property Name="status" Type="Int32" Nullable="false" />
-          <Property Name="customerId" Type="Int32" Nullable="false" />
-          <Property Name="seriId" Type="Int32" />
-          <Property Name="nameProduct" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="attachments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="desDetailRepair" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CUSTOMER" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__57DD0BE4" FromRole="BILL_REPAIR" ToRole="CUSTOMER" />
-          <NavigationProperty Name="ITEM_BILL_SERI" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__58D1301D" FromRole="BILL_REPAIR" ToRole="ITEM_BILL_SERI" />
-        </EntityType>
         <EntityType Name="ITEM_BILL_SERI">
           <Key>
             <PropertyRef Name="id" />
@@ -799,8 +777,8 @@
           <Property Name="seri" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="warrantyEndTime" Type="DateTime" Precision="0" />
           <NavigationProperty Name="BILL" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__billI__2A164134" FromRole="ITEM_BILL_SERI" ToRole="BILL" />
-          <NavigationProperty Name="BILL_REPAIR" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__58D1301D" FromRole="ITEM_BILL_SERI" ToRole="BILL_REPAIR" />
           <NavigationProperty Name="PRODUCT" Relationship="QuanLyCuaHangViTinhModel.FK__ITEM_BILL__produ__2B0A656D" FromRole="ITEM_BILL_SERI" ToRole="PRODUCT" />
+          <NavigationProperty Name="BILL_REPAIR" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__58D1301D" FromRole="ITEM_BILL_SERI" ToRole="BILL_REPAIR" />
         </EntityType>
         <Association Name="FK__ITEM_BILL__billI__2A164134">
           <End Type="QuanLyCuaHangViTinhModel.BILL" Role="BILL" Multiplicity="1" />
@@ -811,30 +789,6 @@
             </Principal>
             <Dependent Role="ITEM_BILL_SERI">
               <PropertyRef Name="billId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BILL_REPA__custo__57DD0BE4">
-          <End Type="QuanLyCuaHangViTinhModel.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
-          <End Type="QuanLyCuaHangViTinhModel.BILL_REPAIR" Role="BILL_REPAIR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CUSTOMER">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="BILL_REPAIR">
-              <PropertyRef Name="customerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BILL_REPA__seriI__58D1301D">
-          <End Type="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI" Role="ITEM_BILL_SERI" Multiplicity="0..1" />
-          <End Type="QuanLyCuaHangViTinhModel.BILL_REPAIR" Role="BILL_REPAIR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ITEM_BILL_SERI">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="BILL_REPAIR">
-              <PropertyRef Name="seriId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -959,6 +913,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BILL_REPAIR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="timeDelivery" Type="DateTime" Precision="3" />
+          <Property Name="timeReceive" Type="DateTime" Precision="3" />
+          <Property Name="desReceiveItems" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="desProblem" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int64" />
+          <Property Name="customerMoney" Type="Int64" />
+          <Property Name="isWarranty" Type="Boolean" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
+          <Property Name="seriId" Type="Int32" />
+          <Property Name="attachments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="desDetailRepair" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CUSTOMER" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__custo__57DD0BE4" FromRole="BILL_REPAIR" ToRole="CUSTOMER" />
+          <NavigationProperty Name="ITEM_BILL_SERI" Relationship="QuanLyCuaHangViTinhModel.FK__BILL_REPA__seriI__58D1301D" FromRole="BILL_REPAIR" ToRole="ITEM_BILL_SERI" />
+        </EntityType>
+        <Association Name="FK__BILL_REPA__custo__57DD0BE4">
+          <End Type="QuanLyCuaHangViTinhModel.CUSTOMER" Role="CUSTOMER" Multiplicity="1" />
+          <End Type="QuanLyCuaHangViTinhModel.BILL_REPAIR" Role="BILL_REPAIR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BILL_REPAIR">
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BILL_REPA__seriI__58D1301D">
+          <End Type="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI" Role="ITEM_BILL_SERI" Multiplicity="0..1" />
+          <End Type="QuanLyCuaHangViTinhModel.BILL_REPAIR" Role="BILL_REPAIR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ITEM_BILL_SERI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BILL_REPAIR">
+              <PropertyRef Name="seriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1054,26 +1052,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BILL_REPAIR">
-            <EntityTypeMapping TypeName="QuanLyCuaHangViTinhModel.BILL_REPAIR">
-              <MappingFragment StoreEntitySet="BILL_REPAIR">
-                <ScalarProperty Name="desDetailRepair" ColumnName="desDetailRepair" />
-                <ScalarProperty Name="attachments" ColumnName="attachments" />
-                <ScalarProperty Name="nameProduct" ColumnName="nameProduct" />
-                <ScalarProperty Name="seriId" ColumnName="seriId" />
-                <ScalarProperty Name="customerId" ColumnName="customerId" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="isWarranty" ColumnName="isWarranty" />
-                <ScalarProperty Name="customerMoney" ColumnName="customerMoney" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="desProblem" ColumnName="desProblem" />
-                <ScalarProperty Name="desReceiveItems" ColumnName="desReceiveItems" />
-                <ScalarProperty Name="timeReceive" ColumnName="timeReceive" />
-                <ScalarProperty Name="timeDelivery" ColumnName="timeDelivery" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ITEM_BILL_SERI">
             <EntityTypeMapping TypeName="QuanLyCuaHangViTinhModel.ITEM_BILL_SERI">
               <MappingFragment StoreEntitySet="ITEM_BILL_SERI">
@@ -1123,6 +1101,25 @@
                 <ScalarProperty Name="totalMoney" ColumnName="totalMoney" />
                 <ScalarProperty Name="year" ColumnName="year" />
                 <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BILL_REPAIR">
+            <EntityTypeMapping TypeName="QuanLyCuaHangViTinhModel.BILL_REPAIR">
+              <MappingFragment StoreEntitySet="BILL_REPAIR">
+                <ScalarProperty Name="desDetailRepair" ColumnName="desDetailRepair" />
+                <ScalarProperty Name="attachments" ColumnName="attachments" />
+                <ScalarProperty Name="seriId" ColumnName="seriId" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="isWarranty" ColumnName="isWarranty" />
+                <ScalarProperty Name="customerMoney" ColumnName="customerMoney" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="desProblem" ColumnName="desProblem" />
+                <ScalarProperty Name="desReceiveItems" ColumnName="desReceiveItems" />
+                <ScalarProperty Name="timeReceive" ColumnName="timeReceive" />
+                <ScalarProperty Name="timeDelivery" ColumnName="timeDelivery" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
