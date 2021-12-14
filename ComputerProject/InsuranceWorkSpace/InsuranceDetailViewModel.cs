@@ -154,7 +154,11 @@ namespace ComputerProject.InsuranceWorkSpace
                             var rs = MessageBoxCustom.ShowDialog("Vui lòng kiểm tra mã Seri trước khi thực hiện thao tác", "Thông báo", PackIconKind.InformationCircleOutline);
                             return;
                         }
-
+                        if (!CurrentBill.price.HasValue)
+                        {
+                            var rs = MessageBoxCustom.ShowDialog("Vui lòng nhập số tiền sửa chữa", "Thông báo", PackIconKind.InformationCircleOutline);
+                            return;
+                        }
                         OpenPaymentView(CurrentBill);
                     });
                 }
