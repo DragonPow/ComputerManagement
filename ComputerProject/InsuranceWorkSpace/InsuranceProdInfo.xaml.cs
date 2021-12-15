@@ -60,13 +60,13 @@ namespace ComputerProject.InsuranceWorkSpace
         public InsuranceProdInfo()
         {
             InitializeComponent();
-            ProductName.SelectionChanged += Status_SelectionChanged;
+            ProductSelected.SelectionChanged += Status_SelectionChanged;
         }
 
         private void Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var vm = this.DataContext as InsuranceDetailViewModel;
-            if (vm != null && vm.isCheckSeri()) return;
+            //if (vm != null) return;
             try
             {
                 vm?.OnItemBillChanged();

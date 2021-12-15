@@ -158,6 +158,11 @@ namespace ComputerProject.SaleWorkSpace
                         db.Entry(item.PRODUCT).State = System.Data.Entity.EntityState.Modified;
                     }
 
+                    foreach (var item in b.ITEM_BILL_SERI)
+                    {
+                        db.Entry(item.PRODUCT).State = System.Data.Entity.EntityState.Modified;
+                    }
+
                     db.SaveChanges();
 
                     CurrentBill.Id = b.id;

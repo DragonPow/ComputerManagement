@@ -120,7 +120,7 @@
                        Margin="0, 0, 0, 10"
                        VerticalAlignment="Top">
             </TextBlock>
-            <ComboBox x:Name="ProductName"
+            <ComboBox x:Name="ProductSelected"
                       Padding="15"
                       Background="{StaticResource Background}"
                       BorderBrush="#DBD7F4"

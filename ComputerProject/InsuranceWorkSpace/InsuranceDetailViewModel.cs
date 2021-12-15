@@ -535,6 +535,7 @@ namespace ComputerProject.InsuranceWorkSpace
         }
         private void CheckSeri(string seri)
         {
+            CurrentBill.ITEM_BILL_SERI = null;
             ListSearchSeri = _repository.GetBillFromSeri(seri);
 
             if (ListSearchSeri == null || ListSearchSeri.Count == 0)
