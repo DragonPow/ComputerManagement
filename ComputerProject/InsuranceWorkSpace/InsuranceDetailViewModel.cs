@@ -146,7 +146,7 @@ namespace ComputerProject.InsuranceWorkSpace
             {
                 if (_paymentCommand == null)
                 {
-                    _paymentCommand = new RelayCommand(_ =>
+                    _paymentCommand = new RelayCommand(async _ =>
                     {
                         //Must check seri before save
                         if (!isCheckSeri())
@@ -158,6 +158,17 @@ namespace ComputerProject.InsuranceWorkSpace
                         {
                             var rs = MessageBoxCustom.ShowDialog("Vui lòng nhập số tiền sửa chữa", "Thông báo", PackIconKind.InformationCircleOutline);
                             return;
+                        }
+                        if (CurrentBill.HasErrorData)
+                        {
+                            MessageBoxCustom.ShowDialog("Vui lòng điền đầy đủ thông tin trước khi thanh toán", "Thông báo", PackIconKind.InformationCircleOutline);
+                            return;
+                        }
+
+                        if (Status != StatusView.View)
+                        {
+                            var success = await Save(CurrentBill);
+                            if (!success) MessageBoxCustom.ShowDialog("Không thể thực hiện thanh toán này", "Thông báo", PackIconKind.InformationCircleOutline);
                         }
                         OpenPaymentView(CurrentBill);
                     });
@@ -430,6 +441,24 @@ namespace ComputerProject.InsuranceWorkSpace
             var view = new InsuranceBillView() { Tag = tag};
 
             InsuranceBillViewModel vm = new InsuranceBillViewModel();
+
+            void CloseWindow() {
+                var window = WindowService.FindWindowbyTag("PaymentInsuranceBill").First();
+                window.Close();
+            }
+
+            vm.SubmitOK += (s, e) =>
+              {
+                  CloseWindow();
+                  MessageBoxCustom.ShowDialog("Thanh toán thành công", "Thông báo", PackIconKind.DoneOutline);
+                  this.NavigateBack?.Invoke(this, null);
+              };
+            vm.ClickBack += (s, e) =>
+             {
+                 var rs = MessageBoxCustom.ShowDialog("Bạn có chắc hủy bỏ thanh toán hay không?", "Thông báo", PackIconKind.QuestionMarkCircleOutline);
+                 if (rs == MessageBoxResultCustom.Yes) CloseWindow();
+             };
+
             vm.LoadAsync(CurrentBill.id);
             void close(object sender, EventArgs e)
             {

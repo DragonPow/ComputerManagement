@@ -9,6 +9,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="800"
+    Tag="PaymentInsuranceBill"
     d:DataContext="{d:DesignInstance Type=local:InsuranceBillViewModel}"
     d:DesignHeight="710"
     Background="White"
