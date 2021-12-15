@@ -38,6 +38,7 @@ namespace ComputerProject.CategoryWorkspace
         static readonly string DUPLICATE_CHILD_CATEGORY_NAME = "At least two item have same name";
         static readonly string DUPLICATE_SPECIFICATION_NAME = "At least two spec in one category have same name";
         static readonly string DUPLICATE_ROOT_CATEGORY_NAME = "Root Category Exsists";
+        static readonly string CANNOT_DELETE_CATEGORY = "Cannot delete specification";
 
         Model.Category _currentParentCategory;
         Model.Category _currentChildCateogry;
@@ -112,7 +113,22 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (_deleteSpecificationCommand == null)
                 {
-                    _deleteSpecificationCommand = new RelayCommand(a => DeleteSpecificationType((Model.Specification_type)a), b => IsEditMode);
+                    _deleteSpecificationCommand = new RelayCommand(a =>
+                    {
+                        try
+                        {
+                            DeleteSpecificationType((Model.Specification_type)a);
+                        }
+                        catch(ArgumentException e)
+                        {
+                            if (e.Message == CANNOT_DELETE_CATEGORY)
+                            {
+                                MessageBoxCustom.ShowDialog("Có sản phẩm sử dụng danh mục này, không thể xóa", "Thông báo", PackIconKind.InformationCircleOutline);
+                            }
+                            else throw e;
+                        }
+
+                    }, b => IsEditMode);
                 }
                 return _deleteSpecificationCommand;
             }
@@ -326,7 +342,18 @@ namespace ComputerProject.CategoryWorkspace
         }
         public void DeleteSpecificationType(Model.Specification_type specification)
         {
-            CurrentChildCategory.SpecificationTypes.Remove(specification);
+            if (CanDelete(specification))
+            {
+                CurrentChildCategory.SpecificationTypes.Remove(specification);
+            }
+            else
+            {
+                throw new ArgumentException(CANNOT_DELETE_CATEGORY);
+            }
+        }
+        bool CanDelete(Specification_type specification)
+        {
+            return _repository.CanDeleteSpec(specification.Id);
         }
         public void Delete(Model.Category category)
         {

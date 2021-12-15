@@ -173,7 +173,7 @@ namespace ComputerProject.ProductWorkSpace
                             /* spec.Model.productId = oldModel.id;
 
                              db.SPECIFICATIONs.Add(spec.Model);*/
-                            oldModel.SPECIFICATIONs.Add(spec.moe);
+                            oldModel.SPECIFICATIONs.Add(spec.Model);
                         }
                     }
                 }

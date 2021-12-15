@@ -261,5 +261,13 @@ namespace ComputerProject.Repository
             }
             Console.WriteLine("Specification_Type load done");
         }
+
+        public bool CanDeleteSpec(int id)
+        {
+            using (var db = new ComputerManagementEntities())
+            {
+                return !db.SPECIFICATIONs.Any(i => i.specificationTypeId == id);
+            }
+        }
     }
 }
