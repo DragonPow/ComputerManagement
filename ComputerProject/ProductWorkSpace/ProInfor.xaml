@@ -149,8 +149,6 @@
                          IsHitTestVisible="{Binding RelativeSource={RelativeSource FindAncestor, 
                                AncestorType={x:Type local:ProInfor}}, 
                                Path=Isreadonly,Converter={StaticResource revertbool}}"
-                        ItemsSource="{Binding CategoryList}"
-                        SelectedItem="{Binding SelectedCategory_String}"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                 </StackPanel>
 
@@ -186,7 +184,6 @@
                     FontSize="{x:Static localfont:Font.Body}"
                     Style="{DynamicResource ResourceKey=style_Text}"
                     PreviewTextInput="PreviewTextInput"
-                    IsReadOnly="True"
                     Text="{Binding Warranty_String, Mode=TwoWay}" />
 
                 <localcustom:TextboxCustom
