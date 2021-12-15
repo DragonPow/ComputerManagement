@@ -402,6 +402,7 @@ namespace ComputerProject.InsuranceWorkSpace
                         timeDelivery = data.timeDelivery,
                         timeReceive = data.timeReceive,
                         //nameProduct = data.nameProduct,
+                        attachments = data.attachments,
                         desDetailRepair = data.desDetailRepair,
                         CUSTOMER = new CUSTOMER()
                         {

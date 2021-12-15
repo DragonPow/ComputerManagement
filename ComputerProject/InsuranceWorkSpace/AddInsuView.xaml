@@ -105,25 +105,16 @@
                     Content="Hủy"
                     Padding="30,0"
                     Command="{Binding CancelCommand}" />
-            <Button x:Name="btnSave"
-                    Style="{StaticResource MaterialDesignOutlinedButton}"
-                    materialDesign:ButtonAssist.CornerRadius="5"
-                    BorderBrush="{StaticResource MainColor}"
-                    Margin="20,0"
-                    Foreground="{StaticResource MainColor}"
-                    Width="100"
-                    Height="35"
-                    Content="Lưu"
-                    Padding="30,0" 
-                    Command="{Binding SaveCommand}"/>
+          
             <Button Background="{StaticResource MainColor}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     materialDesign:ButtonAssist.CornerRadius="5"
                     Height="35"
+                    Margin="20,0"
                     Foreground="White"
-                    Content="Thanh toán"
+                    Content="Lưu"
                     Width="120"
-                    Command="{Binding PaymentCommand}">
+                    Command="{Binding SaveCommand}">
             </Button>
 
         </StackPanel>
