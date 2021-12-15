@@ -86,7 +86,22 @@ namespace ComputerProject.StatiticsWorkSpace
         {
             if (((OverviewCardView)d).Percent == null) return (SolidColorBrush)new BrushConverter().ConvertFromString("#FFFFFF");
             double min = double.Parse(((OverviewCardView)d).Percent.Substring(0, ((OverviewCardView)d).Percent.Length - 1));
-            return min > 0 ? (SolidColorBrush)new BrushConverter().ConvertFromString( "#42BDA1") : (SolidColorBrush)new BrushConverter().ConvertFromString("#F04461");
+
+            SolidColorBrush rs;
+            if (min>0)
+            {
+                rs = (SolidColorBrush)new BrushConverter().ConvertFromString("#42BDA1");
+            }
+            else if (min<0)
+            {
+                rs = (SolidColorBrush)new BrushConverter().ConvertFromString("#F04461");
+            }
+            else
+            {
+                rs = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFFFFF");
+            }
+            return rs;
+            //return min > 0 ? (SolidColorBrush)new BrushConverter().ConvertFromString( "#42BDA1") : (SolidColorBrush)new BrushConverter().ConvertFromString("#F04461");
         }
     }
 }
