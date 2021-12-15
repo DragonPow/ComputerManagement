@@ -182,9 +182,36 @@
                     Title="    Hạn bảo hành (tháng)"
                     Margin="0,10,0,0"
                     FontSize="{x:Static localfont:Font.Body}"
-                    Style="{DynamicResource ResourceKey=style_Text}"
+                        TextWrapping="WrapWithOverflow" 
+                    VerticalAlignment="Center" 
+                   Foreground="Black" 
+                  CornerRadiusText="5"
+                    MarginText="10"
                     PreviewTextInput="PreviewTextInput"
-                    Text="{Binding Warranty_String, Mode=TwoWay}" />
+                    Text="{Binding Warranty_String, Mode=TwoWay}" >
+                    <localcustom:TextboxCustom.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ModeInfor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ProInfor}}}"
+                               Value="insert">
+                                    <Setter Property="TextBox.IsReadOnly"
+                                            Value="False"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ModeInfor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ProInfor}}}"
+                               Value="onlyread">
+                                    <Setter Property="TextBox.IsReadOnly"
+                                            Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ModeInfor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ProInfor}}}"
+                               Value="edit">
+                                    <Setter Property="TextBox.IsReadOnly"
+                                            Value="True"/>
+                                </DataTrigger>
+
+                            </Style.Triggers>
+                        </Style>
+                    </localcustom:TextboxCustom.Style>
+                </localcustom:TextboxCustom>
 
                 <localcustom:TextboxCustom
                     x:Name="Procedure"
