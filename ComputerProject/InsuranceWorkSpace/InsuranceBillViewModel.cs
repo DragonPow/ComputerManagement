@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Data.Entity;
 
 namespace ComputerProject.InsuranceWorkSpace
 {
@@ -75,7 +76,7 @@ namespace ComputerProject.InsuranceWorkSpace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                var old = db.BILL_REPAIR.Where(b => b.id == Id).FirstOrDefault();
+                var old = db.BILL_REPAIR.Include(i=>i.CUSTOMER).Include(i=>i.ITEM_BILL_SERI.PRODUCT).Where(b => b.id == Id).FirstOrDefault();
                 old.customerMoney = CustomerMoney;
                 old.status = 2;
                 if (!old.timeDelivery.HasValue) old.timeDelivery = DateTime.Now;
