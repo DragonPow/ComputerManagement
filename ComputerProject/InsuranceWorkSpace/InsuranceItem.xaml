@@ -41,7 +41,7 @@
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static font:Font.Body}"
             Foreground="Black"
-            Text="{Binding TimeDelivery_String, Mode=OneWay}" />
+                   Text="{Binding TimeReceive_String, Mode=OneWay}" />
         <TextBlock
             x:Name="txtCusPhoneNumber"
             Grid.Column="2"
@@ -68,7 +68,7 @@
             FontFamily="{StaticResource Mulish}"
             FontSize="{x:Static font:Font.Body}"
             Foreground="Black"
-            Text="{Binding TimeReceive_String, Mode=OneWay}" />
+                   Text="{Binding TimeDelivery_String, Mode=OneWay}" />
         <TextBlock
             x:Name="txtTotal"
             Grid.Column="5"

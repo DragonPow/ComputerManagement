@@ -47,8 +47,13 @@ namespace ComputerProject.CategoryWorkspace
             {
                 if (!vm.IsEditMode)
                 {
-                    var rs = MessageBoxCustom.ShowDialog("Mọi thay đổi chưa được lưu, xác nhận hủy và chuyển trang?", "Thông báo", PackIconKind.WarningCircleOutline);
-                    return rs == MessageBoxResultCustom.Yes;
+                    var rs = MessageBoxCustom.ShowDialog("Mọi thay đổi chưa được lưu, xác nhận chuyển trang không?", "Thông báo", PackIconKind.WarningCircleOutline);
+                    var allow = rs == MessageBoxResultCustom.Yes;
+                    if (allow)
+                    {
+                        vm.BackPageCommand.Execute(null);
+                    }
+                    return allow;
                 }
                 else
                 {
