@@ -11,8 +11,11 @@
     mc:Ignorable="d">
     <Border Background="White" CornerRadius="8">
         <Grid>
-            <StackPanel x:Name="Specifications">
-                <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
@@ -27,37 +30,37 @@
                         Text=" Thông số" />
                 </Grid>
 
-                <ListView
+            <ListView
+                Grid.Row="1"
                     x:Name="ListSpecifications"
                     Grid.Column="1"
                     ItemsSource="{Binding SpecificationList}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <local:ProdcutAddSpecificationsRow DataContext="{Binding}" ModeInfor="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Specification}}, Path=ModeInfor}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:ProdcutAddSpecificationsRow DataContext="{Binding}" ModeInfor="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Specification}}, Path=ModeInfor}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
 
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            <Setter Property="Margin" Value="20,0,20,0" />
-                            <Setter Property="Background" Value="Transparent" />
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                        <Border x:Name="Bd" Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Margin" Value="20,0,20,0" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <Border x:Name="Bd" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
 
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-            </StackPanel>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
         </Grid>
     </Border>
 
