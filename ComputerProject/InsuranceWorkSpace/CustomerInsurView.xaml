@@ -31,12 +31,14 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0"
-                               Text="Khách hàng"
                                VerticalAlignment="Center"
                                FontSize="{x:Static font:Font.Body}"
                                FontWeight="Bold"
                                FontFamily="{StaticResource Mulish}"
-                               Foreground="Black"></TextBlock>
+                               Foreground="Black">
+                        <Run Text="Khách hàng" />
+                        <Run Text="*" Foreground="Red"/>
+                    </TextBlock>
                     <Button Grid.Column="1"
                             Foreground="White"
                             Padding="0"

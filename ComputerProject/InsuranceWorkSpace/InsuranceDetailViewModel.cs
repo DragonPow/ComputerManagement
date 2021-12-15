@@ -189,7 +189,8 @@ namespace ComputerProject.InsuranceWorkSpace
                         if (success)
                         {
                             MessageBoxCustom.ShowDialog("Cập nhật thành công", "Thông báo", PackIconKind.InformationCircleOutline);
-                            OnNavigateBack();
+                            Status = StatusView.View;
+                            //OnNavigateBack();
                         }
                         else
                         {

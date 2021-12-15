@@ -62,8 +62,9 @@ namespace ComputerProject.Repository
                     db.Entry(currentBill.CUSTOMER).State = EntityState.Unchanged;
                     if (currentBill.seriId.HasValue)
                     {
-                        currentBill.ITEM_BILL_SERI = null;
-                        //db.Entry(currentBill.ITEM_BILL_SERI).State = EntityState.Unchanged;
+                        //currentBill.ITEM_BILL_SERI = null;
+                        currentBill.ITEM_BILL_SERI.BILL_REPAIR = null;
+                        db.Entry(currentBill.ITEM_BILL_SERI).State = EntityState.Unchanged;
                         //db.Entry(currentBill.ITEM_BILL_SERI.PRODUCT).State = EntityState.Unchanged;
                     }
 
