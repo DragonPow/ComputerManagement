@@ -136,7 +136,7 @@ namespace ComputerProject.ProductWorkSpace
 
                 // return Math.Round(WarrantyTime.Value / 12d, 1).ToString() + " năm";
 
-                return WarrantyTime.Value.ToString() +  " tháng";
+                return WarrantyTime.Value.ToString() + " tháng";
             }
         }
 
@@ -178,31 +178,24 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        public BitmapImage Image => Product.image != null && Product.image.Length > 0 ? FormatHelper.BytesToImage(Product.image) : (BitmapImage) System.Windows.Application.Current.FindResource("NoImage");
+        public BitmapImage Image => Product.image != null && Product.image.Length > 0 ? FormatHelper.BytesToImage(Product.image) : (BitmapImage)System.Windows.Application.Current.FindResource("NoImage");
 
         public void DeleteFromDB(bool hasInBill)
         {
-            try
+            using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                using (ComputerManagementEntities db = new ComputerManagementEntities())
-                {
-                    var old = db.PRODUCTs.Where(p => p.id == Product.id).FirstOrDefault();
-                    //if (old == null) return;
+                var old = db.PRODUCTs.Where(p => p.id == Product.id).FirstOrDefault();
+                //if (old == null) return;
 
-                    if (hasInBill)
-                    {
-                        old.isStopSelling = true;
-                    }
-                    else
-                    {
-                        db.PRODUCTs.Remove(old);
-                    }
-                    db.SaveChanges();
+                if (hasInBill)
+                {
+                    old.isStopSelling = true;
                 }
-            }
-            catch(Exception)
-            {
-                MessageBoxCustom.ShowDialog("Sản phẩm đã bán ra, không thể xóa", "Thông báo", MaterialDesignThemes.Wpf.PackIconKind.InformationCircleOutline);
+                else
+                {
+                    db.PRODUCTs.Remove(old);
+                }
+                db.SaveChanges();
             }
         }
 
