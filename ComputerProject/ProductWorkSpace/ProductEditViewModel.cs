@@ -127,32 +127,32 @@ namespace ComputerProject.ProductWorkSpace
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
                 db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Update: " + s);
-                //this.oldModel = db.PRODUCTs.Where(p => p.id == Product.id).First();
-                this.oldModel.SPECIFICATIONs = db.SPECIFICATIONs.Where(s => s.productId == Product.id).ToList();
-                db.PRODUCTs.Attach(this.oldModel);
+                var old = db.PRODUCTs.Where(p => p.id == Product.id).First();
+                old.SPECIFICATIONs = db.SPECIFICATIONs.Where(s => s.productId == Product.id).ToList();
+
                 Product.nameIndex = FormatHelper.ConvertTo_TiengDongLao(Name);
 
                 // Copy image
                 if (SelectedImagePath != null)
                 {
-                    this.oldModel.image = FormatHelper.ImageToBytes(new System.Drawing.Bitmap(SelectedImagePath));
+                    old.image = FormatHelper.ImageToBytes(new System.Drawing.Bitmap(SelectedImagePath));
                 }
 
                 // Copy spec list
-                if (oldModel.categoryId != Product.categoryId || oldModel.SPECIFICATIONs == null)
+                if (old.categoryId != Product.categoryId || old.SPECIFICATIONs == null)
                 {
-                    if (oldModel.SPECIFICATIONs != null)
+                    if (old.SPECIFICATIONs != null)
                     {
-                        oldModel.SPECIFICATIONs.Clear();
+                        old.SPECIFICATIONs.Clear();
                     }
                     else
                     {
-                        oldModel.SPECIFICATIONs = new List<SPECIFICATION>(Product.SPECIFICATIONs.Count);
+                        old.SPECIFICATIONs = new List<SPECIFICATION>(Product.SPECIFICATIONs.Count);
                     }
 
                     foreach (var spec in SpecificationList)
                     {
-                        oldModel.SPECIFICATIONs.Add(new SPECIFICATION()
+                        old.SPECIFICATIONs.Add(new SPECIFICATION()
                         {
                             productId = spec.ProductID,
                             specificationTypeId = spec.SpecificationTypeId,
@@ -164,7 +164,7 @@ namespace ComputerProject.ProductWorkSpace
                 {
                     foreach (var spec in specificationList)
                     {
-                        var oldSpec = oldModel.SPECIFICATIONs.Where(s => s.specificationTypeId == spec.SpecificationTypeId).FirstOrDefault();
+                        var oldSpec = old.SPECIFICATIONs.Where(s => s.specificationTypeId == spec.SpecificationTypeId).FirstOrDefault();
                         if (oldSpec != null)
                         {
                             oldSpec.value = spec.SpecValue;
@@ -174,14 +174,17 @@ namespace ComputerProject.ProductWorkSpace
                             /* spec.Model.productId = oldModel.id;
 
                              db.SPECIFICATIONs.Add(spec.Model);*/
-                            oldModel.SPECIFICATIONs.Add(spec.Model);
+                            old.SPECIFICATIONs.Add(spec.Model);
                         }
                     }
                 }
 
                 // Copy others
-                CopyTo(base.Product, this.oldModel);
+                CopyTo(base.Product, old);
                 db.SaveChanges();
+
+                CopyTo(old, this.oldModel);
+                this.oldModel.SPECIFICATIONs = old.SPECIFICATIONs;
             }
         }
 

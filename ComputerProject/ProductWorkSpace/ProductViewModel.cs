@@ -207,7 +207,13 @@ namespace ComputerProject.ProductWorkSpace
                     b.billId,
                     b.productId
                 }).FirstOrDefault();
-                return data != null;
+
+                var data2 = db.ITEM_BILL_SERI.Where(b => b.productId == productId).Select(b => new
+                {
+                    b.id,
+                    b.productId
+                }).FirstOrDefault();
+                return data != null && data2 != null;
             }
         }
 
