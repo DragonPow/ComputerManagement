@@ -73,15 +73,7 @@
                       Margin="0, 0, 0, 10"
                       FontFamily="{StaticResource Mulish}"/>
         </StackPanel>
-        <localcustom:TextboxCustom x:Name="Procedure"
-                                   Title="   Nhà cung cấp"
-                                   FontSize="{x:Static localfont:Font.Body}"
-                                   MarginText="5"
-                                   CornerRadiusText="3"
-                                   Margin="20,5"
-                                   IsTabStop="False"
-                                   KeyboardNavigation.TabIndex="0">
-        </localcustom:TextboxCustom>
+
         <StackPanel Margin="20, 5, 20, 0"
                     Visibility="{Binding IsSaleView, Converter={StaticResource visibilityConverter}}">
             <TextBlock FontSize="{x:Static localfont:Font.Body}"
