@@ -216,7 +216,7 @@ namespace ComputerProject.Helper
             table.AddCell(new PdfPCell(new Phrase("Tổng cộng", new Font(basef, 13, Font.BOLD)))
             { Colspan = 3, Border = PdfPCell.TOP_BORDER, PaddingTop = 15 });
 
-            table.AddCell(new PdfPCell(new Phrase(info.TotalPriceProducts.ToString("N0", nfi) + " đ", new Font(basef, 13, Font.BOLD)))
+            table.AddCell(new PdfPCell(new Phrase(info.TotalMoney.ToString("N0", nfi) + " đ", new Font(basef, 13, Font.BOLD)))
             { HorizontalAlignment = PdfPCell.ALIGN_RIGHT, Border = PdfPCell.TOP_BORDER, PaddingTop = 15 });
 
             table.AddCell(new PdfPCell(new Phrase("Tiền khách đưa", new Font(basef, 10, Font.NORMAL)))
