@@ -77,6 +77,7 @@ namespace ComputerProject.InsuranceWorkSpace
             {
                 var old = db.BILL_REPAIR.Where(b => b.id == Id).FirstOrDefault();
                 old.customerMoney = CustomerMoney;
+                old.status = 2;
                 db.SaveChanges();
             }
         }
