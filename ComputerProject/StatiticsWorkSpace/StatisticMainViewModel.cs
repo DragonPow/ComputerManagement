@@ -232,7 +232,7 @@ namespace ComputerProject.StatiticsWorkSpace
                     if (SelectedDate < lastDayOfLastMonth)
                     {
                         Console.WriteLine("Save report data of " + SelectedDate.ToShortDateString());
-                        SaveResult();
+                        //SaveResult();
                     }
                 }
                 else
