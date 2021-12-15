@@ -193,6 +193,7 @@ namespace ComputerProject.ProductWorkSpace
                 }
                 else
                 {
+                    db.SPECIFICATIONs.RemoveRange(db.SPECIFICATIONs.Where(s => s.productId == old.id));
                     db.PRODUCTs.Remove(old);
                 }
                 db.SaveChanges();
