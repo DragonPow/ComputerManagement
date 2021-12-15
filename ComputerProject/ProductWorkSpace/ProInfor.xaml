@@ -95,7 +95,7 @@
                     FontSize="{x:Static localfont:Font.Body}"
                     Style="{DynamicResource ResourceKey=style_Text}"
                     Text="{Binding Name, Mode=TwoWay}" />
-                <StackPanel Margin="0,0,0,10">
+                <StackPanel Margin="0,10,0,10">
                     <TextBlock
                         Margin="0,0,0,10"
                         VerticalAlignment="Top"
@@ -124,34 +124,7 @@
                         SelectedItem="{Binding SelectedCategory_String}"
                         Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                 </StackPanel>
-                <StackPanel Margin="0,0,0,10">
-                    <TextBlock
-                        Margin="0,0,0,10"
-                        VerticalAlignment="Top"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="{x:Static localfont:Font.Body}"
-                        FontWeight="SemiBold"
-                        Foreground="Black"
-                        Text="   Trạng thái" />
-
-                    <ComboBox
-                        x:Name="Statte"
-                        Padding="15"
-                        Background="{StaticResource Background}"
-                        BorderBrush="#DBD7F4"
-                        FontFamily="{StaticResource Mulish}"
-                        FontSize="{x:Static localfont:Font.Body}"
-                        Foreground="Black"
-                        IsEditable="False"
-                        Focusable="{Binding RelativeSource={RelativeSource FindAncestor, 
-                               AncestorType={x:Type local:ProInfor}}, 
-                               Path=Isreadonly,Converter={StaticResource revertbool}}"
-                         IsHitTestVisible="{Binding RelativeSource={RelativeSource FindAncestor, 
-                               AncestorType={x:Type local:ProInfor}}, 
-                               Path=Isreadonly,Converter={StaticResource revertbool}}"
-                        Style="{StaticResource MaterialDesignOutlinedComboBox}" />
-                </StackPanel>
-
+             
                 <localcustom:TextboxCustom
                     x:Name="Quantity"
                     Title="    Số lượng"
