@@ -453,7 +453,11 @@ namespace ComputerProject.InsuranceWorkSpace
                   var rs = MessageBoxCustom.ShowDialog("Thanh toán thành công, có muốn xuất hóa đơn hay không?", "Thông báo", PackIconKind.DoneOutline);
                   if (rs == MessageBoxResultCustom.Yes)
                   {
-                      ExportPDF(CurrentBill);
+                      using (var db = new ComputerManagementEntities())
+                      {
+                          CurrentBill.customerMoney = db.BILL_REPAIR.Where(i => i.id == CurrentBill.id).Select(i => i.customerMoney).First();
+                          ExportPDF(CurrentBill);
+                      }
                   }
               };
             vm.ClickBack += (s, e) =>

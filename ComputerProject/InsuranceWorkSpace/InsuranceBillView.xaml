@@ -299,7 +299,7 @@
                 FontWeight="DemiBold"
                 Foreground="{StaticResource Icon}"
                 Text="Tiền khách đưa" />
-            <TextBox   Text="{Binding CustomerMoney_String, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox   Text="{Binding CustomerMoney_String, UpdateSourceTrigger=PropertyChanged}"
                          FontWeight="DemiBold"
                          MaxWidth="250"
                          MinWidth="130"
