@@ -58,23 +58,8 @@ namespace ComputerProject.CustomerWorkspace
                 if (value == null) return;
 
                 value = value.Trim();
-                if (value.Length != 10)
-                {
-                    error = "Số điện thoại phải có độ dài 10 chữ số";
-                }
-                else if (value.IndexOf('0') != 0)
-                {
-                    error = "Số điện thoại phải bắt đầu bằng 0";
-                }
-                else if (!value.All(c => "0123456789".IndexOf(c) > -1))
-                {
-                    error = "Số điện thoại không hợp lệ";
-                }
-                else
-                {
-                    // OK 
-                    _model.phone = value;
-                }
+                
+                _model.phone = value;
                 OnPropertyChanged(nameof(PhoneNumber));
             }
         }
@@ -95,6 +80,7 @@ namespace ComputerProject.CustomerWorkspace
                 if (Birthday.Year > DateTime.Now.Year - 3)
                 {
                     error = "Khách chưa đủ 4 tuổi";
+                    Birthday = DateTime.MinValue;
                 }
                 else
                 {
@@ -129,6 +115,7 @@ namespace ComputerProject.CustomerWorkspace
                     if (value == "" || !int.TryParse(value, out a))
                     {
                         error = "Điểm thưởng không hợp lệ";
+                        Point = -1;
                     }
                     else
                     {
@@ -170,6 +157,32 @@ namespace ComputerProject.CustomerWorkspace
             if (FullName == null || FullName.Trim().Length < 1)
             {
                 error = "Tên không hợp lệ";
+            }
+            else
+            if (PhoneNumber.Length != 10)
+            {
+                error = "Số điện thoại phải có độ dài 10 chữ số";
+            }
+            else if (PhoneNumber.IndexOf('0') != 0)
+            {
+                error = "Số điện thoại phải bắt đầu bằng 0";
+            }
+            else if (!PhoneNumber.All(c => "0123456789".IndexOf(c) > -1))
+            {
+                error = "Số điện thoại không hợp lệ";
+            }
+            else if (Birthday == DateTime.MinValue)
+            {
+                error = "Khách chưa đủ 4 tuổi";
+            }
+            else if (Point == -1)
+            {
+                error = "Điểm thưởng không hợp lệ";
+            }
+            else
+            {
+                // OK 
+                error = null;
             }
         }
 
