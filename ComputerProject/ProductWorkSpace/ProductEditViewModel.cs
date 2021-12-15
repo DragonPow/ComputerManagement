@@ -127,8 +127,9 @@ namespace ComputerProject.ProductWorkSpace
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
                 db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Update: " + s);
-                this.oldModel = db.PRODUCTs.Where(p => p.id == Product.id).First();
+                //this.oldModel = db.PRODUCTs.Where(p => p.id == Product.id).First();
                 this.oldModel.SPECIFICATIONs = db.SPECIFICATIONs.Where(s => s.productId == Product.id).ToList();
+                db.PRODUCTs.Attach(this.oldModel);
                 Product.nameIndex = FormatHelper.ConvertTo_TiengDongLao(Name);
 
                 // Copy image

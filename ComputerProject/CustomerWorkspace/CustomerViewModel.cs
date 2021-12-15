@@ -373,7 +373,7 @@ namespace ComputerProject.CustomerWorkspace
             }
             void save()
             {
-                if (Error != null)
+                if (Error == null)
                 {
                     try
                     {
