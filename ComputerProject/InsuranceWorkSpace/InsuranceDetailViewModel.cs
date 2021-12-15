@@ -159,7 +159,7 @@ namespace ComputerProject.InsuranceWorkSpace
                             var rs = MessageBoxCustom.ShowDialog("Vui lòng nhập số tiền sửa chữa", "Thông báo", PackIconKind.InformationCircleOutline);
                             return;
                         }
-                        if (CurrentBill.HasErrorData)
+                        if (CurrentBill.HasErrorData || CurrentBill.CUSTOMER == null)
                         {
                             MessageBoxCustom.ShowDialog("Vui lòng điền đầy đủ thông tin trước khi thanh toán", "Thông báo", PackIconKind.InformationCircleOutline);
                             return;
@@ -168,7 +168,11 @@ namespace ComputerProject.InsuranceWorkSpace
                         if (Status != StatusView.View)
                         {
                             var success = await Save(CurrentBill);
-                            if (!success) MessageBoxCustom.ShowDialog("Không thể thực hiện thanh toán này", "Thông báo", PackIconKind.InformationCircleOutline);
+                            if (!success)
+                            {
+                                MessageBoxCustom.ShowDialog("Không thể thực hiện thanh toán này", "Thông báo", PackIconKind.InformationCircleOutline);
+                                return;
+                            }
                         }
                         OpenPaymentView(CurrentBill);
                     });
@@ -191,7 +195,7 @@ namespace ComputerProject.InsuranceWorkSpace
                             return;
                         }
 
-                        if (CurrentBill.HasErrorData)
+                        if (CurrentBill.HasErrorData || CurrentBill.CUSTOMER == null)
                         {
                             MessageBoxCustom.ShowDialog("Vui lòng điền đầy đủ thông tin trước khi lưu", "Thông báo", PackIconKind.InformationCircleOutline);
                             return;
@@ -409,7 +413,7 @@ namespace ComputerProject.InsuranceWorkSpace
         }
         private void LoadCustomer()
         {
-            CurrentBill.CUSTOMER = _repository.GetCustomer(CurrentBill.customerId) ?? new CUSTOMER();
+            CurrentBill.CUSTOMER = _repository.GetCustomer(CurrentBill.customerId) ?? null;
             OnPropertyChanged(nameof(CurrentCustomer));
         }
         public void OnCustomerChanged()

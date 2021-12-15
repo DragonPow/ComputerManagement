@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerProject.CustomMessageBox;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -181,20 +182,27 @@ namespace ComputerProject.ProductWorkSpace
 
         public void DeleteFromDB(bool hasInBill)
         {
-            using (ComputerManagementEntities db = new ComputerManagementEntities())
+            try
             {
-                var old = db.PRODUCTs.Where(p => p.id == Product.id).FirstOrDefault();
-                //if (old == null) return;
+                using (ComputerManagementEntities db = new ComputerManagementEntities())
+                {
+                    var old = db.PRODUCTs.Where(p => p.id == Product.id).FirstOrDefault();
+                    //if (old == null) return;
 
-                if (hasInBill)
-                {
-                    old.isStopSelling = true;
+                    if (hasInBill)
+                    {
+                        old.isStopSelling = true;
+                    }
+                    else
+                    {
+                        db.PRODUCTs.Remove(old);
+                    }
+                    db.SaveChanges();
                 }
-                else
-                {
-                    db.PRODUCTs.Remove(old);
-                }
-                db.SaveChanges();
+            }
+            catch(Exception)
+            {
+                MessageBoxCustom.ShowDialog("Sản phẩm đã bán ra, không thể xóa", "Thông báo", MaterialDesignThemes.Wpf.PackIconKind.InformationCircleOutline);
             }
         }
 

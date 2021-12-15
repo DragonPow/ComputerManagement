@@ -22,7 +22,7 @@ namespace ComputerProject
                         CheckExccesh(ref error);
                         break;
                     case nameof(CUSTOMER):
-                        if (customerId == 0)
+                        if (CUSTOMER == null || customerId == 0)
                         {
                             error = "CUSTOMER not null";
                         }
