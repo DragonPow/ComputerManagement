@@ -111,6 +111,7 @@ namespace ComputerProject.InsuranceWorkSpace
                 if (success)
                 {
                     MessageBoxCustom.ShowDialog("Xóa thành công", "Thông báo", PackIconKind.DoneOutline);
+                    Validation();
                 }
                 else
                 {

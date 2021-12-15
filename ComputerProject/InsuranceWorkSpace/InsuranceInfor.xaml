@@ -73,14 +73,16 @@
             <StackPanel
                             Margin="0,5,20,5"
                             VerticalAlignment="Center">
-                <TextBlock
-                                Margin="0,0,0,10"
-                                VerticalAlignment="Top"
-                                FontFamily="{StaticResource Mulish}"
-                                FontSize="{x:Static font:Font.Body}"
-                                FontWeight="SemiBold"
-                                Foreground="Black"
-                                Text="Ngày tiếp nhận" />
+                <TextBlock Margin="0,0,0,10"
+                           VerticalAlignment="Top"
+                           FontFamily="{StaticResource Mulish}"
+                           FontSize="{x:Static font:Font.Body}"
+                           FontWeight="SemiBold"
+                           Foreground="Black">
+                    <Run Text="Ngày tiếp nhận" />
+                    <Run Text="*"
+                         Foreground="Red" />
+                </TextBlock>
 
                 <Border
                                 Height="40"
