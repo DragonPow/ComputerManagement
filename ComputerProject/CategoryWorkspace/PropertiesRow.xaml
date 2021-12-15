@@ -53,7 +53,25 @@
                      Margin="10, 0, 0,0"
                      Text="{Binding Name, ValidatesOnDataErrors=True}"
                      TextWrapping="Wrap"
-                     Style="{StaticResource TitleCell}">
+                     FontSize="{x:Static localfont:Font.Body}"
+                     Foreground="Black"
+                     FontFamily="{StaticResource Mulish}">
+                <TextBox.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger  Binding="{Binding DataContext.IsEditMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
+                                     Value="True">
+                                <Setter Property="TextBox.IsReadOnly"
+                                    Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding DataContext.IsEditMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
+                                     Value="False">
+                                <Setter Property="TextBox.IsReadOnly"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
             </TextBox>
             <Button Grid.Column="3"
                     x:Name="btnDelete"
