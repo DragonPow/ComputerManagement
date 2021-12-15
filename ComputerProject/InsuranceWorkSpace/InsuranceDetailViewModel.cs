@@ -449,8 +449,12 @@ namespace ComputerProject.InsuranceWorkSpace
             vm.SubmitOK += (s, e) =>
               {
                   CloseWindow();
-                  MessageBoxCustom.ShowDialog("Thanh toán thành công", "Thông báo", PackIconKind.DoneOutline);
                   this.NavigateBack?.Invoke(this, null);
+                  var rs = MessageBoxCustom.ShowDialog("Thanh toán thành công, có muốn xuất hóa đơn hay không?", "Thông báo", PackIconKind.DoneOutline);
+                  if (rs == MessageBoxResultCustom.Yes)
+                  {
+                      ExportPDF(CurrentBill);
+                  }
               };
             vm.ClickBack += (s, e) =>
              {
