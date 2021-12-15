@@ -246,6 +246,17 @@ namespace ComputerProject.CustomerWorkspace
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
                 var old = db.CUSTOMERs.Where(c => c.id == _model.id).First();
+
+                var data1 = db.BILLs.Where(b => b.customerId == _model.id).FirstOrDefault();
+                var data2 = db.BILL_REPAIR.Where(b => b.customerId == _model.id).FirstOrDefault();
+
+                bool hasInBill = data1 != null || data2 != null;
+                if (hasInBill)
+                {
+                    CustomMessageBox.MessageBox.ShowNotify("Không thể xóa do khách đã từng mua hàng");
+                    return;
+                }
+
                 if (old != null)
                 {
                     db.CUSTOMERs.Remove(old);
