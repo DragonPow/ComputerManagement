@@ -221,7 +221,7 @@ namespace ComputerProject.ProductWorkSpace
                     b.id,
                     b.productId
                 }).FirstOrDefault();
-                return data != null && data2 != null;
+                return data != null || data2 != null;
             }
         }
 
