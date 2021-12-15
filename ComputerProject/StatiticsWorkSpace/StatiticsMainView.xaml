@@ -109,16 +109,23 @@
             Margin="10"
             Background="White"
             CornerRadius="8">
-            <StackPanel>
-                <TextBlock
-                    Margin="15,15,0,10"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border BorderBrush="{StaticResource Icon}" BorderThickness="0,0,0,1"  Margin="15,15,0,10">
+                    <TextBlock
+                    Margin="0,0,0,10"
                     FontFamily="{StaticResource Mulish}"
                     FontSize="18"
                     FontWeight="DemiBold"
                     Foreground="#11142D"
                     Text="Top 5 bán chạy" />
-                <Separator Margin="10,0,10,10" Background="{StaticResource Divition}" />
+                </Border>
+             
                 <ListView
+                    Grid.Row="1"
                     Margin="5,0,0,0"
                     ItemsSource="{Binding CollectionTopSale}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -150,7 +157,7 @@
                     </ListView.ItemContainerStyle>
                 </ListView>
 
-            </StackPanel>
+            </Grid>
         </Border>
 
         <Border
