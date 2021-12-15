@@ -437,8 +437,7 @@ namespace ComputerProject.InsuranceWorkSpace
 
         private void OpenPaymentView(BILL_REPAIR currentBill)
         {
-            string tag = "dragnellBill";
-            var view = new InsuranceBillView() { Tag = tag};
+            var view = new InsuranceBillView();
 
             InsuranceBillViewModel vm = new InsuranceBillViewModel();
 
@@ -460,21 +459,21 @@ namespace ComputerProject.InsuranceWorkSpace
              };
 
             vm.LoadAsync(CurrentBill.id);
-            void close(object sender, EventArgs e)
-            {
-                var l = WindowService.FindWindowbyTag(tag);
-                if (l != null && l.Count > 0)
-                {
-                    l[0].Close();
-                }
-            }
-            vm.SubmitOK += (s, e) =>
-            {
-                CustomMessageBox.MessageBox.ShowNotify("Thanh toán thành công");
-                close(s, e);
-                CancelCommand.Execute(this);
-            };
-            vm.ClickBack += close;
+            //void close(object sender, EventArgs e)
+            //{
+            //    var l = WindowService.FindWindowbyTag(tag);
+            //    if (l != null && l.Count > 0)
+            //    {
+            //        l[0].Close();
+            //    }
+            //}
+            //vm.SubmitOK += (s, e) =>
+            //{
+            //    CustomMessageBox.MessageBox.ShowNotify("Thanh toán thành công");
+            //    //close(s, e);
+            //    CancelCommand.Execute(this);
+            //};
+            //vm.ClickBack += close;
             WindowService.ShowSingelWindow(vm, view);
         }
         private Task<bool> Save(BILL_REPAIR currentBill)
