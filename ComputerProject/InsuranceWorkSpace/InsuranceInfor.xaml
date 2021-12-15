@@ -107,7 +107,7 @@
                                     FontFamily="{StaticResource Mulish}"
                                     FontSize="{x:Static font:Font.Body}"
                                     Foreground="#11142D"
-                                    Text="{Binding CurrentBill.timeReceive}" />
+                                    SelectedDate="{Binding CurrentBill.timeReceive}" />
                 </Border>
             </StackPanel>
             <StackPanel
@@ -146,7 +146,7 @@
                                     FontFamily="{StaticResource Mulish}"
                                     FontSize="{x:Static font:Font.Body}"
                                     Foreground="#11142D"
-                                    Text="{Binding CurrentBill.timeDelivery}" />
+                                    SelectedDate="{Binding CurrentBill.timeDelivery}" />
                 </Border>
             </StackPanel>
         </Grid>

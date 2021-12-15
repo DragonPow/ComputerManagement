@@ -254,7 +254,6 @@ namespace ComputerProject.BillWorkSpace
         {
             if (CurrentBills.Contains(bill))
             {
-                CurrentBills.Remove(bill);
                 _repository.Delete(new Model.Bill(bill));
             }
             else
