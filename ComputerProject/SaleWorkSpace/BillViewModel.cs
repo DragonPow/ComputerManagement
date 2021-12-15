@@ -155,6 +155,7 @@ namespace ComputerProject.SaleWorkSpace
                     {
                         var product = db.PRODUCTs.Where(i => i.id == item.productId).First();
                         product.quantity -= item.quantity;
+                        db.Entry(item.PRODUCT).State = System.Data.Entity.EntityState.Modified;
                     }
 
                     db.SaveChanges();
