@@ -57,7 +57,7 @@
                     IsEnabled="False"
                     DataContext="{Binding}"
                     VisibilityAddImage="Hidden" />
-            <local:ProInfor  DataContext="{Binding}" />
+            <local:ProInfor  DataContext="{Binding}" ModeInfor="edit"/>
 
                 <local:Specification
                 Grid.Column="1"

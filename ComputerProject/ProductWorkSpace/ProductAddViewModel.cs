@@ -111,7 +111,7 @@ namespace ComputerProject.ProductWorkSpace
             OnPropertyChanged(nameof(CategoryList));
         }
 
-        private void GetSpecificationList()
+        protected void GetSpecificationList()
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {

@@ -81,7 +81,7 @@ namespace ComputerProject.ProductWorkSpace
 
         protected override int _countMax()
         {
-            return ProductViewModel.CountByName(SearchContent);
+            return ProductViewModel.CountByNameOrId(SearchContent);
         }
 
         public RelayCommand Clicked_Add => new RelayCommand((obj) => OpenAdd());
@@ -115,7 +115,7 @@ namespace ComputerProject.ProductWorkSpace
         {
             var item = (ProductViewModel)(sender as Control).DataContext;
 
-            if (item == null) return;
+            if (item == null || item.IsStopSelling) return;
 
             var detailVM = new ProductDetailViewModel(item.Product);
             detailVM.Prepare();
@@ -131,7 +131,7 @@ namespace ComputerProject.ProductWorkSpace
         {
             var item = (ProductViewModel)(sender as Control).DataContext;
 
-            if (item == null) return;
+            if (item == null || item.IsStopSelling) return;
 
             var editlVM = new ProductEditViewModel(item.Product);
             editlVM.Prepare();
@@ -149,7 +149,7 @@ namespace ComputerProject.ProductWorkSpace
         {
             var item = (ProductViewModel)(sender as Control).DataContext;
 
-            if (item == null) return;
+            if (item == null || item.IsStopSelling) return;
 
             Console.WriteLine("Delete item : " + item.Name);
 
