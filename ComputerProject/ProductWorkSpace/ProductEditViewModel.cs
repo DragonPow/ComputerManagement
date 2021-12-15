@@ -19,6 +19,8 @@ namespace ComputerProject.ProductWorkSpace
         public override void Prepare()
         {
             quantity_String = Quantity.ToString();
+
+            // Load product image
             void task3()
             {
                 if (oldModel.image == null)
@@ -36,9 +38,11 @@ namespace ComputerProject.ProductWorkSpace
                 if (SelectedImagePath == null || SelectedImagePath.Length == 0)
                 {
                     selectedImage = Image;
-                    OnPropertyChanged(nameof(SelectedImage));
+                    OnPropertyChanged(string.Empty);
                 }
             }
+
+            // Load category list to select
             void task2()
             {
                 GetCategoryList();
@@ -46,27 +50,38 @@ namespace ComputerProject.ProductWorkSpace
             void callback2()
             {
                 Console.WriteLine("Loaded cate");
-                OnPropertyChanged(nameof(SelectedCategory_String));
                 IsBusy = false;
                 StartEdit();
                 DoBusyTask(task3, callback3);
             }
 
+            // Load Spec
             void task()
             {
-                specificationList = new List<SpecificationViewModel>(GetSpecifications(Product.id));
-            }
-            void callback()
-            {
-                Console.WriteLine("Loaded spec list");
-                if (SpecificationList != null)
+                var tempSpecs = new List<SpecificationViewModel>(GetSpecifications(Product.id));
+                foreach (var spec in tempSpecs)
                 {
-                    Product.SPECIFICATIONs = new List<SPECIFICATION>();
-                    foreach (var spec in SpecificationList)
+                    Product.SPECIFICATIONs.Add(spec.Model);
+                }
+
+                GetSpecificationList();
+                foreach (var spec in SpecificationList)
+                {
+                    spec.ProductID = Product.id;
+                    var spe = Product.SPECIFICATIONs.Where(s => s.specificationTypeId == spec.Model.specificationTypeId).FirstOrDefault();
+                    if (spe != null)
+                    {
+                        spec.Model.value = spe.value;
+                    }
+                    else
                     {
                         Product.SPECIFICATIONs.Add(spec.Model);
                     }
                 }
+            }
+            void callback()
+            {
+                Console.WriteLine("Loaded spec list");
                 DoBusyTask(task2, callback2);
             }
 
@@ -97,10 +112,11 @@ namespace ComputerProject.ProductWorkSpace
         {
             Product = oldModel;
 
-            foreach (var spec in oldModel.SPECIFICATIONs)
+            foreach (var spec in SpecificationList)
             {
-                specificationList.Where(s => s.SpecificationTypeId.Equals(spec.specificationTypeId)).First().Model = spec;
+                spec.Model.value = oldModel.SPECIFICATIONs.Where(s => s.specificationTypeId.Equals(spec.SpecificationTypeId)).First().value;
             }
+
             OnPropertyChanged(nameof(SpecificationList));
 
             oldModel = null;
@@ -110,11 +126,10 @@ namespace ComputerProject.ProductWorkSpace
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
-                //db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Update: " + s);
-
+                db.Database.Log = s => System.Diagnostics.Debug.WriteLine("MSSQL Update: " + s);
+                this.oldModel = db.PRODUCTs.Where(p => p.id == Product.id).First();
+                this.oldModel.SPECIFICATIONs = db.SPECIFICATIONs.Where(s => s.productId == Product.id).ToList();
                 Product.nameIndex = FormatHelper.ConvertTo_TiengDongLao(Name);
-
-                db.PRODUCTs.Attach(this.oldModel);
 
                 // Copy image
                 if (SelectedImagePath != null)
@@ -146,17 +161,25 @@ namespace ComputerProject.ProductWorkSpace
                 }
                 else
                 {
-                    var destinationSpecs = (List<SPECIFICATION>)oldModel.SPECIFICATIONs;
                     foreach (var spec in specificationList)
                     {
-                        oldModel.SPECIFICATIONs.Where(s => s.specificationTypeId == spec.SpecificationTypeId)
-                            .First().value = spec.SpecValue;
+                        var oldSpec = oldModel.SPECIFICATIONs.Where(s => s.specificationTypeId == spec.SpecificationTypeId).FirstOrDefault();
+                        if (oldSpec != null)
+                        {
+                            oldSpec.value = spec.SpecValue;
+                        }
+                        else
+                        {
+                            /* spec.Model.productId = oldModel.id;
+
+                             db.SPECIFICATIONs.Add(spec.Model);*/
+                            oldModel.SPECIFICATIONs.Add(spec.moe);
+                        }
                     }
                 }
 
                 // Copy others
                 CopyTo(base.Product, this.oldModel);
-
                 db.SaveChanges();
             }
         }

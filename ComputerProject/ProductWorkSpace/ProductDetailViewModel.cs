@@ -59,19 +59,27 @@ namespace ComputerProject.ProductWorkSpace
         {
             void task()
             {
-                specificationList = new List<SpecificationViewModel>(GetSpecifications(Product.id));
+                var tempSpecs = new List<SpecificationViewModel>(GetSpecifications(Product.id));
+                foreach (var spec in tempSpecs)
+                {
+                    Product.SPECIFICATIONs.Add(spec.Model);
+                }
+
+                GetSpecificationList();
+                foreach (var spec in SpecificationList)
+                {
+                    spec.ProductID = Product.id;
+                    var spe = Product.SPECIFICATIONs.Where(s => s.specificationTypeId == spec.Model.specificationTypeId).FirstOrDefault();
+                    if (spe != null)
+                    {
+                        spec.Model.value = spe.value;
+                    }
+                }
+                
             }
             void callback()
             {
                 Console.WriteLine("Loaded spec list");
-                if (SpecificationList != null)
-                {
-                    Product.SPECIFICATIONs = new List<SPECIFICATION>();
-                    foreach (var spec in SpecificationList)
-                    {
-                        Product.SPECIFICATIONs.Add(spec.Model);
-                    }
-                }
                 OnPropertyChanged(nameof(SpecificationList));
             }
 

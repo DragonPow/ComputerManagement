@@ -218,7 +218,7 @@ namespace ComputerProject.ProductWorkSpace
                 using (ComputerManagementEntities db = new ComputerManagementEntities())
                 {
                     string nameDL = FormatHelper.ConvertTo_TiengDongLao(str);
-                    var data1 = db.PRODUCTs.Where(p => p.nameIndex.Contains(nameDL) || p.id.ToString().Contains(str)).Select(
+                    var data1 = db.PRODUCTs.Where(p => p.isStopSelling == false && (p.nameIndex.Contains(nameDL) || p.id.ToString().Contains(str))).Select(
                         p => new
                         {
                             name = p.name,
@@ -295,12 +295,12 @@ namespace ComputerProject.ProductWorkSpace
             }
         }
 
-        public static int CountByName(string str)
+        public static int CountByNameOrId(string str)
         {
             using (ComputerManagementEntities db = new ComputerManagementEntities())
             {
                 string nameDL = FormatHelper.ConvertTo_TiengDongLao(str);
-                int rs = db.PRODUCTs.Where(p => p.nameIndex.Contains(nameDL) || p.id.ToString().Contains(str)).Count();
+                int rs = db.PRODUCTs.Where(p => p.isStopSelling == false && (p.nameIndex.Contains(nameDL) || p.id.ToString().Contains(str))).Count();
                 return rs;
             }
         }
