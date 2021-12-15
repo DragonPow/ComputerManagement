@@ -139,7 +139,7 @@ namespace ComputerProject.CategoryWorkspace
                         var c = (Model.Category)category;
                         if (CanDelete(c.Id))
                         {
-                            var rs = MessageBoxCustom.ShowDialog("Chắc chắn xóa danh mục này hay không?", "Thông báo", PackIconKind.QuestionAnswer);
+                            var rs = MessageBoxCustom.ShowDialog("Chắc chắn xóa danh mục?", "Thông báo", PackIconKind.QuestionAnswer);
                             if (rs == MessageBoxResultCustom.Yes)
                             {
                                 Delete(c);
@@ -147,7 +147,7 @@ namespace ComputerProject.CategoryWorkspace
                         }
                         else
                         {
-                            MessageBoxCustom.ShowDialog("Vui lòng xóa sản phẩm sử dụng danh mục này trước", "Thông báo", PackIconKind.WarningCircleOutline);
+                            MessageBoxCustom.ShowDialog("Vui lòng xóa sản phẩm có trong danh mục!", "Thông báo", PackIconKind.WarningCircleOutline);
                         }
                     }, category => IsEditMode || category == CurrentParentCategory);
                 }
@@ -164,11 +164,11 @@ namespace ComputerProject.CategoryWorkspace
                     {
                         if (String.IsNullOrWhiteSpace(CurrentParentCategory.Name))
                         {
-                            MessageBoxCustom.ShowDialog("Tên danh mục không được để trống", "Lỗi", PackIconKind.ErrorOutline);
+                            MessageBoxCustom.ShowDialog("Tên danh mục không được để trống!", "Lỗi", PackIconKind.ErrorOutline);
                         }
                         else if (CurrentParentCategory.ChildCategories != null && CurrentParentCategory.ChildCategories.Any(i => i.HasErrorData))
                         {
-                            MessageBoxCustom.ShowDialog("Phải điền đầy đủ thông tin danh mục con", "Thông báo", PackIconKind.InformationCircle);
+                            MessageBoxCustom.ShowDialog("Vui lòng điền đầy đủ thông tin danh mục cấp 2!", "Thông báo", PackIconKind.InformationCircle);
                         }
                         else
                         {
@@ -184,7 +184,7 @@ namespace ComputerProject.CategoryWorkspace
                             {
                                 if (e1.Message == DUPLICATE_ROOT_CATEGORY_NAME)
                                 {
-                                    MessageBoxCustom.ShowDialog("Tên danh mục đã tồn tại", "Lỗi", PackIconKind.ErrorOutline);
+                                    MessageBoxCustom.ShowDialog("Tên danh mục đã tồn tại!", "Lỗi", PackIconKind.ErrorOutline);
                                 }
                                 else throw e1;
                             }
@@ -192,11 +192,11 @@ namespace ComputerProject.CategoryWorkspace
                             {
                                 if (e2.Message == DUPLICATE_CHILD_CATEGORY_NAME)
                                 {
-                                    MessageBoxCustom.ShowDialog("Tên danh mục con không được trùng nhau", "Lỗi", PackIconKind.ErrorOutline);
+                                    MessageBoxCustom.ShowDialog("Tên danh mục cấp 2 không được trùng nhau!", "Lỗi", PackIconKind.ErrorOutline);
                                 }
                                 else if (e2.Message == DUPLICATE_SPECIFICATION_NAME)
                                 {
-                                    MessageBoxCustom.ShowDialog("Tên thông số trong cùng 1 danh mục không được trùng nhau", "Lỗi", PackIconKind.ErrorOutline);
+                                    MessageBoxCustom.ShowDialog("Thông số đã tồn tại trong danh mục!", "Lỗi", PackIconKind.ErrorOutline);
                                 }
                                 else throw e2;
                             }
@@ -225,7 +225,7 @@ namespace ComputerProject.CategoryWorkspace
                 {
                     _cancelEditCommand = new RelayCommand(a =>
                     {
-                        var rs = MessageBoxCustom.ShowDialog("Thay đổi chưa được lưu, đồng ý quay lại giá trị ban đầu?", "Thông báo");
+                        var rs = MessageBoxCustom.ShowDialog("Thay đổi chưa được lưu, xác nhận hủy thay đổi?", "Thông báo");
                         if (rs == MessageBoxResultCustom.Yes)
                         {
                             BusyService.DoBusyTask(Cancel);
@@ -245,7 +245,7 @@ namespace ComputerProject.CategoryWorkspace
                     {
                         if (IsEditMode)
                         {
-                            var rs = MessageBoxCustom.ShowDialog("Thay đổi chưa được lưu, đồng ý thoát?", "Thông báo");
+                            var rs = MessageBoxCustom.ShowDialog("Thay đổi chưa được lưu, xác nhận hủy thay đổi và thoát?", "Thông báo");
                             if (rs == MessageBoxResultCustom.No) { return; }
                         }
 
@@ -337,7 +337,7 @@ namespace ComputerProject.CategoryWorkspace
                     //_repository.Delete(category.Id);
                     CategoryChangedEventHandler?.Invoke(this, new CategoryChangedEventArg(this.CurrentParentCategory, EntityState.Deleted));
                 }
-                MessageBoxCustom.ShowDialog("Xóa thành công", "Thông báo", PackIconKind.DoneOutline);
+                MessageBoxCustom.ShowDialog("Xóa danh mục thành công!", "Thông báo", PackIconKind.DoneOutline);
                 NavigateBackPage();
             }
             else
@@ -349,7 +349,7 @@ namespace ComputerProject.CategoryWorkspace
         {
             BusyService.DoBusyTask(() => _repository.Save(CurrentParentCategory), () =>
             {
-                MessageBoxCustom.ShowDialog("Lưu thành công", "Thông báo", PackIconKind.InformationCircle);
+                MessageBoxCustom.ShowDialog("Lưu thành công!", "Thông báo", PackIconKind.InformationCircle);
                 NavigateBackPage();
             });
 

@@ -59,8 +59,24 @@
                                            Margin="15"
                                            MarginText="3"
                                            IsTabStop="False"
-                                           KeyboardNavigation.TabIndex="0"
-                                           IsEnabled="{Binding IsEditMode}" />
+                                           KeyboardNavigation.TabIndex="0">
+                        <localcustom:TextboxCustom.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsEditMode}"
+                                     Value="True">
+                                        <Setter Property="TextBox.IsReadOnly"
+                                    Value="False" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsEditMode}"
+                                     Value="False">
+                                        <Setter Property="TextBox.IsReadOnly"
+                                    Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </localcustom:TextboxCustom.Style>
+                    </localcustom:TextboxCustom>
                     <local:TitleCategoryLv2 x:Name="Btn_Add_Catelv2"
                                         Grid.Row="1"
                                         Margin="15,0"
@@ -153,7 +169,23 @@
                                            MarginText="3"
                                            IsTabStop="False"
                                            KeyboardNavigation.TabIndex="0"
-                                           IsEnabled="{Binding IsEditMode}">
+                                           >
+                        <localcustom:TextboxCustom.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsEditMode}"
+                                     Value="True">
+                                        <Setter Property="TextBox.IsReadOnly"
+                                    Value="False" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsEditMode}"
+                                     Value="False">
+                                        <Setter Property="TextBox.IsReadOnly"
+                                    Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </localcustom:TextboxCustom.Style>
                     </localcustom:TextboxCustom>
                     <local:PropertiesTitlexaml Grid.Row="1"
                                            x:Name="BtnAddSpeci"
