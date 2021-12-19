@@ -59,6 +59,11 @@ namespace ComputerProject.BillWorkSpace
                 {
                     _deleteBillCommand = new RelayCommand(_ =>
                     {
+                        if (isContainsRepairBill(CurrentBill.Id))
+                        {
+                            MessageBoxCustom.ShowDialog("Hóa đơn này chứa sản phẩm đang bảo hành, vui lòng xóa hóa đơn bảo hành trước", "Lỗi", PackIconKind.ErrorOutline);
+                            return;
+                        }
                         var rs = MessageBoxCustom.ShowDialog("Hóa đơn bị xóa sẽ không thể hoàn tác", "Thông báo", PackIconKind.InformationCircle);
                         if (rs == MessageBoxResultCustom.Yes)
                         {
@@ -74,6 +79,12 @@ namespace ComputerProject.BillWorkSpace
                 return _deleteBillCommand;
             }
         }
+
+        private bool isContainsRepairBill(int billid)
+        {
+            return _repository.CheckHaveRepairBill(billid);
+        }
+
         public ICommand BackViewCommand
         {
             get

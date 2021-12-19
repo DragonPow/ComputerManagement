@@ -68,6 +68,14 @@ namespace ComputerProject.Repository
             return bills;
         }
 
+        public bool CheckHaveRepairBill(int billId)
+        {
+            using (var db = new ComputerManagementEntities())
+            {
+                return db.BILL_REPAIR.Any(i => i.ITEM_BILL_SERI != null && i.ITEM_BILL_SERI.billId == billId);
+            }
+        }
+
         public void Delete(Bill currentBill)
         {
             using (var db = new ComputerManagementEntities())

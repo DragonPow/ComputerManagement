@@ -160,12 +160,18 @@ namespace ComputerProject.BillWorkSpace
                 {
                     _deleteBillCommand = new RelayCommand(b =>
                     {
+                        var bill = b as BILL;
+                        if (isContainsRepairBill(bill.id))
+                        {
+                            MessageBoxCustom.ShowDialog("Hóa đơn này chứa sản phẩm đang bảo hành, vui lòng xóa hóa đơn bảo hành trước", "Lỗi", PackIconKind.ErrorOutline);
+                            return;
+                        }
                         var rs = MessageBoxCustom.ShowDialog("Hóa đơn bị xóa sẽ không thể hoàn tác", "Thông báo", PackIconKind.InformationCircle);
                         if (rs == MessageBoxResultCustom.Yes)
                         {
                             BusyService.DoBusyTask(() =>
                             {
-                                DeleteBill(b as BILL);
+                                DeleteBill(bill);
                                 LoadBills(CurrentPage);
                             }, () => MessageBoxCustom.ShowDialog("Xóa hóa đơn thành công", "Thông báo", PackIconKind.DoneOutline));
                         }
@@ -241,7 +247,10 @@ namespace ComputerProject.BillWorkSpace
         {
             this._navigator = navigator;
         }
-
+        private bool isContainsRepairBill(int billid)
+        {
+            return _repository.CheckHaveRepairBill(billid);
+        }
         private void SearchBill(string text, DateTime? timeFrom, DateTime? timeTo)
         {
             LoadBillsAsync(1, text, timeFrom, timeTo);
