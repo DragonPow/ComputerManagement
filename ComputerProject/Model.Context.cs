@@ -18,7 +18,6 @@ namespace ComputerProject
         public ComputerManagementEntities()
             : base("name=ComputerManagementEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

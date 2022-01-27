@@ -29,7 +29,6 @@ namespace ComputerProject
         public string desDetailRepair { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }
-        public virtual ITEM_BILL_SERI ITEM_BILL_SERI { get; 
-            set; }
+        public virtual ITEM_BILL_SERI ITEM_BILL_SERI { get; set; }
     }
 }
